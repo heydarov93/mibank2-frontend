@@ -1,12 +1,5 @@
-import React from 'react';
-
-
-function App() {
-  return (
-    <div>
-     test
-    </div>
-  );
-}
+const App = () => {
+  return <div>test</div>;
+};
 
 export default App;
