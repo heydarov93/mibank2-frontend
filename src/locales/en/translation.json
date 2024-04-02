@@ -1,0 +1,12 @@
+{
+  "header": {
+    "logoTitle": "Millenium Bank",
+    "navMenu": {
+      "home": "Home",
+      "payments": "Payments",
+      "transfers": "Transfers",
+      "history": "History"
+  },
+    "greetings": "Hello"
+}
+}
