@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as BankLogoBoxIcon } from '../../../assets/icons/Logo.svg';
+import { ReactComponent as BankLogoBoxIcon } from 'assets/icons/Logo.svg';
 import {
   LogoContainer,
   StyledLogo,

@@ -8,7 +8,7 @@ export const NavMenu = () => {
   return (
     <StyledNavMenu>
       {navMenuLinks.map(({ content, path }) => (
-        <StyledNavLink to={path}>{t(content)}</StyledNavLink>
+        <StyledNavLink to={path} key={content}>{t(content)}</StyledNavLink>
       ))}
     </StyledNavMenu>
   );

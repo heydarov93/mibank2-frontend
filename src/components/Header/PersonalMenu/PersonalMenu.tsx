@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as LogoutIcon } from '../../../assets/icons/Logout.svg';
-import { ReactComponent as SettingsIcon } from '../../../assets/icons/Settings.svg';
+import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
+import { ReactComponent as SettingsIcon } from 'assets/icons/Settings.svg';
 
 import {
   StyledAvatar,
