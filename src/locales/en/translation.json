@@ -6,7 +6,26 @@
       "payments": "Payments",
       "transfers": "Transfers",
       "history": "History"
-  },
+    },
     "greetings": "Hello"
-}
+  },
+  "LoginPage": {
+    "formTitle": "Sign In",
+    "userInputLabel": "Username",
+    "passwordInputLabel": "Password",
+    "formText": "Remember me",
+    "formBtnSignIn": "Sign In",
+    "formPassText": "Forgot password ?",
+    "formSubTitle": "Do you have an account?",
+    "formBtnSignUp": "Sign Up"
+  },
+  "ErrorPage": {
+    "title": "404 - Page Not Found",
+    "subTitle": "The page you are looking for might have been removed or is temporary unavailable.",
+    "text": "Go back to",
+    "linkText": "Home"
+  },
+  "UnderDevPage": {
+    "title": "This page is currently under development"
+  }
 }
