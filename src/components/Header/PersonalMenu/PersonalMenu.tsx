@@ -12,6 +12,7 @@ import {
   StyledIconButton,
   StyledPersonalMenu,
 } from './PersonalMenu.styled';
+import { useNavigate } from 'react-router-dom';
 
 type PersonalMenuProps = {
   user: {
@@ -24,12 +25,19 @@ export const PersonalMenu = ({ user }: PersonalMenuProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
 
+  const navigate = useNavigate(); 
+
   const openSettingsHandler = () => {
     console.log('Open settings');
   };
 
   const logoutHandler = () => {
-    console.log('Logout');
+    const userToken = localStorage.getItem('userName');
+    if (userToken) {
+      localStorage.removeItem('userName');
+      localStorage.removeItem('password');
+      navigate('/signin');
+    }
   };
 
   return (

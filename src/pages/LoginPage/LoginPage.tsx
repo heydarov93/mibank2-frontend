@@ -14,6 +14,7 @@ import {
 import { LockIcon } from 'components/atoms/LockIcon/LockIcon';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation('translation');
@@ -22,6 +23,8 @@ export const LoginPage: React.FC = () => {
     userName: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,6 +42,7 @@ export const LoginPage: React.FC = () => {
       userName: '',
       password: '',
     });
+    navigate('/');
   };
 
   return (
