@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { navMenuLinks } from './constants';
+
 import { StyledNavLink, StyledNavMenu } from './NavMenu.styled';
+import { navMenuLinks } from './constants';
 
 export const NavMenu = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });

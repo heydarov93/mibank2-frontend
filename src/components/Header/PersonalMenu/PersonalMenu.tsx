@@ -1,7 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
-import { ReactComponent as SettingsIcon } from 'assets/icons/Settings.svg';
+import { useNavigate } from 'react-router-dom';
 
 import {
   StyledAvatar,
@@ -12,7 +11,9 @@ import {
   StyledIconButton,
   StyledPersonalMenu,
 } from './PersonalMenu.styled';
-import { useNavigate } from 'react-router-dom';
+
+import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
+import { ReactComponent as SettingsIcon } from 'assets/icons/Settings.svg';
 
 type PersonalMenuProps = {
   user: {
@@ -25,7 +26,7 @@ export const PersonalMenu = ({ user }: PersonalMenuProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const openSettingsHandler = () => {
     console.log('Open settings');
