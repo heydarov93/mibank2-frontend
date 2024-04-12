@@ -1,7 +1,3 @@
-import React, { ChangeEvent } from 'react';
-import { LoginPageWrapper } from './LoginPage.styled';
-import { StyledPaper } from './LoginPage.styled';
-import { StyledButton } from './LoginPage.styled';
 import {
   Grid,
   Avatar,
@@ -11,10 +7,16 @@ import {
   Checkbox,
   Link,
 } from '@mui/material';
-import { LockIcon } from 'components/atoms/LockIcon/LockIcon';
+import React, { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import { LoginPageWrapper } from './LoginPage.styled';
+import { StyledPaper } from './LoginPage.styled';
+import { StyledButton } from './LoginPage.styled';
+
+import { LockIcon } from 'components/atoms/LockIcon/LockIcon';
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation('translation');

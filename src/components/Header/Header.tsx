@@ -1,4 +1,5 @@
 import { Logo } from '../atoms/Logo';
+
 import { StyledHeader } from './Header.styled';
 import { NavMenu } from './NavMenu';
 import { PersonalMenu } from './PersonalMenu';

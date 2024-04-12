@@ -1,7 +1,8 @@
+import { Typography, Link } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { ErrorPageWrapper, StyledBox } from './ErrorPage.styled';
-import { Typography, Link } from '@mui/material';
 
 export const ErrorPage: React.FC = () => {
   const { t } = useTranslation('translation');

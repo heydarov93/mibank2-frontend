@@ -2,13 +2,13 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
-import {RouterProvider} from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
 import i18n from '../src/i18n';
-import { App } from './App';
+
 import reportWebVitals from './reportWebVitals';
+import { routes } from './router';
 import { theme } from './theme/theme';
-import { routes } from './router'; 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      <RouterProvider router={routes}/>
+      <RouterProvider router={routes} />
       <ThemeProvider theme={theme}>
         <CssBaseline />
       </ThemeProvider>

@@ -1,12 +1,13 @@
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as BankLogoBoxIcon } from 'assets/icons/Logo.svg';
 import {
   LogoContainer,
   StyledLogo,
   StyledLogoNameContainer,
 } from './Logo.styled';
+
+import { ReactComponent as BankLogoBoxIcon } from 'assets/icons/Logo.svg';
 
 export const Logo = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });

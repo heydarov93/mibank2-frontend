@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
-export const StyledNavMenu = styled(Box)(({ theme: { spacing, palette } }) => ({
+export const StyledNavMenu = styled(Box)(({ theme: { palette } }) => ({
   display: 'flex',
   justifyContent: 'start',
   alignItems: 'center',
