@@ -23,8 +23,9 @@ export const theme = createTheme({
       500: '#60636B',
       400: '#6E7A93',
       300: '#A8ADBA',
-      200: '#E0E0E0',
-      100: '#EDEDED',
+      200: '#D3D9E9',
+      100: '#E0E0E0',
+      50: '#EDEDED',
     },
   },
 });

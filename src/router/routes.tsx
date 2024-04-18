@@ -15,6 +15,10 @@ const routes = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
+                index: true,
+                element: <UnderDevPage />
+            },
+            {
                 path: '/payments',
                 element: <UnderDevPage />
             },

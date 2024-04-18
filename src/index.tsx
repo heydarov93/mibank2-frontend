@@ -16,8 +16,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      <RouterProvider router={routes} />
       <ThemeProvider theme={theme}>
+        <RouterProvider router={routes} />
         <CssBaseline />
       </ThemeProvider>
     </I18nextProvider>
