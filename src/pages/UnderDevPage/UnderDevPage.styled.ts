@@ -4,7 +4,7 @@ export const UnderDevPageWrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '70vh',
+  height: '90vh',
 }));
 
 export const StyledBox = styled(Box)(({ theme: { spacing, breakpoints } }) => ({
