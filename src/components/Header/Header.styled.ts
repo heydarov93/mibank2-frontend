@@ -7,7 +7,7 @@ export const StyledHeader = styled('header')(
     justifyContent: 'space-between',
     backgroundColor: palette.common.white,
     padding: spacing(3, 4),
-    boxShadow: `0px 2px 8px 0px #D3D9E9`,
+    boxShadow: `0px 2px 8px 0px ${palette.grey[200]}`,
   }),
 );
 

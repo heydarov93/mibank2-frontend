@@ -1,6 +1,20 @@
 import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
+  typography: {
+    button: {
+      textTransform: 'none',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 425,
+      sm: 600,
+      md: 768,
+      lg: 1024,
+      xl: 1440,
+    },
+  },
   palette: {
     common: {
       white: '#FFFFFF',
