@@ -26,7 +26,9 @@
     "linkText": "Home"
   },
   "UnderDevPage": {
-    "title": "This page is currently under development"
+    "title": "Under Development",
+    "description": "This page is under development. We are preparing something amazing and exciting for you. Stay tuned!",
+    "buttonLabel": "Go Back"
   },
   "footer": {
     "download": "Download the app:",
@@ -43,9 +45,6 @@
     "footerBottom": {
       "terms": "Terms of Use and Privacy Policy",
       "copyright": "Millenium Bank © 2024. All rights reserved."
-    },
-    "title": "Under Development",
-    "description": "This page is under development. We are preparing something amazing and exciting for you. Stay tuned!",
-    "buttonLabel": "Go Back"
+    }
   }
 }
