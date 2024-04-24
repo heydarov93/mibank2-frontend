@@ -44,7 +44,7 @@ build dev artifacts:
   script:
     - echo "Installing source NPM dependencies... and building artifacts"
     - cp $REACT_ENV .env
-    - npm i --legacy-peer-deps && npm run build
+    - CI=false && npm i --legacy-peer-deps && npm run build
   artifacts:
     paths:
       - build/
