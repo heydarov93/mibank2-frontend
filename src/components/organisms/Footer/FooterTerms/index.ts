@@ -1,0 +1,1 @@
+export { FooterTerms } from './FooterTerms';
