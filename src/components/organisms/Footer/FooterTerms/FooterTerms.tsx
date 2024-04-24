@@ -1,8 +1,5 @@
 import { Box, Typography, Link } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
-
-import { termsLink } from '../constants';
 
 import { StyledBottomBox, StyledBox } from './FooterTerms.styled';
 
@@ -11,15 +8,15 @@ export const FooterTerms = () => {
   return (
     <StyledBox>
       <StyledBottomBox sx={{ order: { xs: 0, sm: 2 } }}>
-        <Link
-          component={RouterLink}
-          to={termsLink}
-          color="inherit"
-          variant="body2"
-          underline="hover"
-        >
-          {t('footerBottom.terms')}
-        </Link>
+        <Box sx={{ display: 'flex', gap: 0.5 }}>
+          <Link href="#" color="inherit" variant="body2" underline="hover">
+            {t('footerBottom.terms')}
+          </Link>
+          <Typography variant="body2">{t('footerBottom.and')}</Typography>
+          <Link href="#" color="inherit" variant="body2" underline="hover">
+            {t('footerBottom.policy')}
+          </Link>
+        </Box>
       </StyledBottomBox>
       <StyledBottomBox>
         <Typography variant="body2">{t('footerBottom.copyright')}</Typography>
@@ -27,5 +24,3 @@ export const FooterTerms = () => {
     </StyledBox>
   );
 };
-
-

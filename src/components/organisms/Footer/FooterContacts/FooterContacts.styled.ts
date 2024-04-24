@@ -15,6 +15,9 @@ export const StyledLink = styled(Link)(({ theme: { palette } }) => ({
   display: 'block',
   textDecoration: 'none',
   color: palette.common.black,
+  '&:hover': {
+    color: palette.primary.main,
+  },
 }));
 
 export const StyledFlexBox = styled(Box)(
@@ -35,7 +38,7 @@ export const StyledFlexBox = styled(Box)(
 
 export const TypographyGrey = styled(Typography)(
   ({ theme: { palette, spacing, breakpoints } }) => ({
-    color: palette.grey[500],
+    color: palette.grey[400],
     paddingBottom: spacing(1),
     [breakpoints.up('sm')]: {
       fontSize: '16px',

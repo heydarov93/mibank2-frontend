@@ -38,12 +38,14 @@
       "title": "Our contacts:"
     },
     "workingHours": {
-      "firstLine": "Monday — Friday: 8:00 - 21:00",
-      "secondLine": "Saturday — Sunday: 10:00 - 18:00",
+      "firstLine": "Mon—Fri: 8:00 - 21:00",
+      "secondLine": "Sat—Sun: 10:00 - 18:00",
       "title": "Contact center working hours:"
     },
     "footerBottom": {
-      "terms": "Terms of Use and Privacy Policy",
+      "terms": "Terms of Use",
+      "policy": "Privacy Policy",
+      "and": "and",
       "copyright": "Millenium Bank © 2024. All rights reserved."
     }
   }
