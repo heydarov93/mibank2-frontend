@@ -47,8 +47,5 @@
     "import/resolver": {
       "typescript": {}
     }
-  },
-  "eslintOptions": {
-    "treatWarningsAsErrors": false
   }
 }
