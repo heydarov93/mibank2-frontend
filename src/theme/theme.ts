@@ -8,11 +8,11 @@ export const theme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 425,
+      xs: 0,
       sm: 600,
-      md: 768,
-      lg: 1024,
-      xl: 1440,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
   palette: {
@@ -34,8 +34,8 @@ export const theme = createTheme({
       light: '#FCEEEE',
     },
     grey: {
-      500: '#60636B',
-      400: '#6E7A93',
+      500: '#27282B',
+      400: '#60636B',
       300: '#A8ADBA',
       200: '#D3D9E9',
       100: '#E0E0E0',

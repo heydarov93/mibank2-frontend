@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 export const StyledBottomBox = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
     textDecoration: 'none',
-    color: palette.grey[500],
+    color: palette.grey[400],
     paddingTop: spacing(3),
   }),
 );
