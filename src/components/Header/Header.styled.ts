@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const StyledHeader = styled('header')(
   ({ theme: { palette, spacing } }) => ({
@@ -15,4 +15,17 @@ export const StyledHeaderContent = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+}));
+
+export const StyledLink = styled(Link)(() => ({
+  textDecoration: 'none',
+}));
+
+export const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
 }));

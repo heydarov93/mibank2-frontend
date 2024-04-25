@@ -1,34 +1,21 @@
-import { Box, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledAvatar,
   StyledButtonsContainer,
-  StyledGreetings,
-  StyledGreetingsContainer,
-  StyledGreetingsName,
   StyledIconButton,
   StyledPersonalMenu,
 } from './PersonalMenu.styled';
 
 import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
 import { ReactComponent as SettingsIcon } from 'assets/icons/Settings.svg';
+import { UserCard } from 'components/molecules';
 
-type PersonalMenuProps = {
-  user: {
-    firstName: string;
-    lastName: string;
-  };
-};
-
-export const PersonalMenu = ({ user }: PersonalMenuProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
-
+export const PersonalMenu = () => {
   const navigate = useNavigate();
 
   const openSettingsHandler = () => {
+    // TODO: need to change later
+    // eslint-disable-next-line no-console
     console.log('Open settings');
   };
 
@@ -43,22 +30,13 @@ export const PersonalMenu = ({ user }: PersonalMenuProps) => {
 
   return (
     <StyledPersonalMenu>
-      <StyledGreetingsContainer>
-        <Box>
-          <StyledGreetings>
-            {/* TODO: need to setup line-heaght into the theme */}
-            <Typography sx={{ lineHeight: '16px' }} variant="caption">
-              {`${t('greetings')},`}
-            </Typography>
-          </StyledGreetings>
-          <StyledGreetingsName>
-            <Typography sx={{ lineHeight: '24px' }} variant="body1">
-              {user.firstName}
-            </Typography>
-          </StyledGreetingsName>
-        </Box>
-        <StyledAvatar>{initials}</StyledAvatar>
-      </StyledGreetingsContainer>
+      <UserCard
+        // TODO: need delete mock data
+        user={{
+          firstName: 'Alexandra',
+          lastName: 'Vegas',
+        }}
+      />
 
       <StyledButtonsContainer>
         <StyledIconButton aria-label="settings" onClick={openSettingsHandler}>
