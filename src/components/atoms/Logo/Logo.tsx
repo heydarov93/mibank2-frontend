@@ -2,8 +2,8 @@ import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import {
-  LogoContainer,
   StyledLogo,
+  StyledLogoContainer,
   StyledLogoNameContainer,
 } from './Logo.styled';
 
@@ -13,16 +13,16 @@ export const Logo = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
   return (
-    <StyledLogo>
-      <LogoContainer>
+    <StyledLogoContainer>
+      <StyledLogo>
         <BankLogoBoxIcon />
-      </LogoContainer>
+      </StyledLogo>
       <StyledLogoNameContainer>
         {/* TODO: need to setup line-heaght into the theme */}
         <Typography sx={{ lineHeight: '22px' }} variant="subtitle1">
           {t('logoTitle')}
         </Typography>
       </StyledLogoNameContainer>
-    </StyledLogo>
+    </StyledLogoContainer>
   );
 };

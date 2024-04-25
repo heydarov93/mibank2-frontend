@@ -5,7 +5,10 @@
       "home": "Home",
       "payments": "Payments",
       "transfers": "Transfers",
-      "history": "History"
+      "history": "History",
+      "profile": "My Profile",
+      "settings": "Settings",
+      "logOut": "Log Out"
     },
     "greetings": "Hello"
   },

@@ -1,18 +1,20 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, styled } from '@mui/material';
 
-export const StyledLogo = styled(Box)(({ theme: { spacing } }) => ({
+export const StyledLogoContainer = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   alignItems: 'center',
   gap: spacing(1),
 }));
 
-export const StyledLogoNameContainer = styled(Box)(() => ({
-  maxWidth: '100px',
-  lineHeight: '22px',
-}));
+export const StyledLogoNameContainer = styled(Box)(
+  ({ theme: { palette } }) => ({
+    maxWidth: '100px',
+    lineHeight: '22px',
+    color: palette.common.black,
+  }),
+);
 
-export const LogoContainer = styled(Box)(() => ({
+export const StyledLogo = styled(Box)(() => ({
   height: '50px',
   width: '50px',
 }));

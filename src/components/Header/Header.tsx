@@ -1,21 +1,24 @@
+import { Box } from '@mui/material';
+
 import { Logo } from '../atoms/Logo';
 
-import { StyledHeader } from './Header.styled';
+import { StyledHeader, StyledLink } from './Header.styled';
 import { NavMenu } from './NavMenu';
 import { PersonalMenu } from './PersonalMenu';
+
+import Drawer from 'components/organisms/Drawer/Drawer';
 
 export const Header = () => {
   return (
     <StyledHeader>
-      <Logo />
+      <StyledLink to="/">
+        <Logo />
+      </StyledLink>
       <NavMenu />
-      <PersonalMenu
-        // TODO: need delete mock data
-        user={{
-          firstName: 'Alexandra',
-          lastName: 'Vegas',
-        }}
-      />
+      <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+        <PersonalMenu />
+        <Drawer />
+      </Box>
     </StyledHeader>
   );
 };

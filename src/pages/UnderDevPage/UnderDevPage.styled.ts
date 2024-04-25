@@ -68,7 +68,7 @@ export const StyledTitle = styled(Typography)(({ theme: { breakpoints } }) => ({
 
 export const StyledDescription = styled(Typography)(
   ({ theme: { breakpoints, palette } }) => ({
-    color: palette.grey[500],
+    color: palette.grey[400],
 
     [breakpoints.up('md')]: {
       fontSize: '16px',
