@@ -11,3 +11,8 @@ export const contactLinks: IContactLinks = {
 export const workingHours: IFooterInfo = {
   lines: ['firstLine', 'secondLine'],
 };
+
+export const termsLink =
+  'https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdf';
+export const policyLink =
+  'https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdf';
