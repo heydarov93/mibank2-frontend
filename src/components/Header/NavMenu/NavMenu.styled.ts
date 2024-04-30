@@ -11,7 +11,7 @@ export const StyledNavMenu = styled(Box)(
       borderLeft: `solid 1px ${palette.grey[100]}`,
     },
 
-    [breakpoints.up('lg')]: {
+    [breakpoints.up('md')]: {
       display: 'flex',
     },
   }),
@@ -20,12 +20,13 @@ export const StyledNavMenu = styled(Box)(
 export const StyledNavLink = styled(NavLink)(
   ({ theme: { spacing, palette } }) => ({
     textDecoration: 'none',
-    fontWeight: '500',
+    fontWeight: '400',
     padding: spacing(1, 3.5),
     margin: spacing(0.5, 0),
     color: palette.common.black,
     '&.active': {
       color: palette.primary.dark,
+      fontWeight: '500',
     },
     ':hover': {
       color: palette.primary.main,

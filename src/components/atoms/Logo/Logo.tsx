@@ -19,7 +19,9 @@ export const Logo = () => {
       </StyledLogo>
       <StyledLogoNameContainer>
         {/* TODO: need to setup line-heaght into the theme */}
-        <Typography sx={{ lineHeight: '22px' }} variant="subtitle1">
+        <Typography
+          sx={{ lineHeight: '16px', fontSize: '12px', fontFamily: 'Inter' }}
+        >
           {t('logoTitle')}
         </Typography>
       </StyledLogoNameContainer>

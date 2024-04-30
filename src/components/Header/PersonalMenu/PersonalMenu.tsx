@@ -1,3 +1,5 @@
+import { SettingsOutlined, LogoutOutlined } from '@mui/icons-material';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -6,9 +8,8 @@ import {
   StyledPersonalMenu,
 } from './PersonalMenu.styled';
 
-import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
-import { ReactComponent as SettingsIcon } from 'assets/icons/Settings.svg';
 import { UserCard } from 'components/molecules';
+// import { logoutHandler } from 'constants/index';
 
 export const PersonalMenu = () => {
   const navigate = useNavigate();
@@ -28,22 +29,27 @@ export const PersonalMenu = () => {
     }
   };
 
+  const theme = useTheme();
+  const isDesctopView = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <StyledPersonalMenu>
       <UserCard
         // TODO: need delete mock data
         user={{
-          firstName: 'Alexandra',
-          lastName: 'Vegas',
+          firstName: 'Jane',
+          lastName: 'Doe',
+          email: 'user1@gmail.com',
         }}
+        isShowUserInfo={isDesctopView}
       />
 
       <StyledButtonsContainer>
         <StyledIconButton aria-label="settings" onClick={openSettingsHandler}>
-          <SettingsIcon />
+          <SettingsOutlined />
         </StyledIconButton>
         <StyledIconButton aria-label="logout" onClick={logoutHandler}>
-          <LogoutIcon />
+          <LogoutOutlined />
         </StyledIconButton>
       </StyledButtonsContainer>
     </StyledPersonalMenu>

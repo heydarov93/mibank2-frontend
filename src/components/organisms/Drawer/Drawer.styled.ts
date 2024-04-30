@@ -5,7 +5,7 @@ export const StyledDrawerContainer = styled(Box)(
   ({ theme: { breakpoints } }) => ({
     display: 'block',
 
-    [breakpoints.up('lg')]: {
+    [breakpoints.up('md')]: {
       display: 'none',
     },
   }),
