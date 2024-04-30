@@ -8,13 +8,12 @@ export const StyledLogoContainer = styled(Box)(({ theme: { spacing } }) => ({
 
 export const StyledLogoNameContainer = styled(Box)(
   ({ theme: { palette } }) => ({
-    maxWidth: '100px',
-    lineHeight: '22px',
+    maxWidth: '70px',
     color: palette.common.black,
   }),
 );
 
 export const StyledLogo = styled(Box)(() => ({
-  height: '50px',
-  width: '50px',
+  display: 'flex',
+  alignItems: 'center',
 }));

@@ -10,7 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import {
   StyledDrawerContainer,
@@ -19,6 +19,7 @@ import {
 } from './Drawer.styled';
 
 import { UserCard } from 'components/molecules';
+import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
 
 export default function TemporaryDrawer() {
@@ -26,6 +27,16 @@ export default function TemporaryDrawer() {
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
+  };
+
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    const userToken = localStorage.getItem('userName');
+    if (userToken) {
+      localStorage.removeItem('userName');
+      localStorage.removeItem('password');
+      navigate('/signin');
+    }
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });
@@ -36,10 +47,12 @@ export default function TemporaryDrawer() {
         <UserCard
           // TODO: need delete mock data
           user={{
-            firstName: 'Alexandra',
-            lastName: 'Vegas',
+            firstName: 'Jane',
+            lastName: 'Doe',
+            email: 'user1@gmail.com',
           }}
           isViceversa
+          captureVariant={EGreeting.EMAIL}
         />
       </StyledUserCardContainer>
       <Divider />
@@ -66,7 +79,7 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <ListItem disablePadding>
-        <ListItemButton component={NavLink} to={'/'}>
+        <ListItemButton onClick={logoutHandler}>
           <ListItemIcon sx={{ minWidth: '40px' }}>
             <LogoutOutlined />
           </ListItemIcon>
