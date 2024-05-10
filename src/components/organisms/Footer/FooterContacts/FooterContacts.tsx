@@ -42,7 +42,7 @@ export const FooterContacts = () => {
         </Box>
         <Box>
           <TypographyGrey variant="body2">{t('contacts.title')}</TypographyGrey>
-          <StyledLink href={`tel:${phone}`}>
+          <StyledLink href={`tel:${phone}`} mb={0.5}>
             <Typography variant="body2" sx={{ fontSize: { sm: '16px' } }}>
               {t(`contacts.phone`)}
             </Typography>
@@ -57,15 +57,17 @@ export const FooterContacts = () => {
           <TypographyGrey variant="body2">
             {t('workingHours.title')}
           </TypographyGrey>
-          {lines.map((line) => (
-            <Typography
-              variant="body2"
-              sx={{ fontSize: { sm: '16px' } }}
-              key={line}
-            >
-              {t(`workingHours.${line}`)}
-            </Typography>
-          ))}
+          <Box display='flex' flexDirection='column' gap={0.5}>
+            {lines.map((line) => (
+              <Typography
+                variant="body2"
+                sx={{ fontSize: { sm: '16px' } }}
+                key={line}
+              >
+                {t(`workingHours.${line}`)}
+              </Typography>
+            ))}
+          </Box>
         </Box>
       </StyledFlexBox>
     </Box>

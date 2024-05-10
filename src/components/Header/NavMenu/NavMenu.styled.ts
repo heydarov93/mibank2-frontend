@@ -6,11 +6,6 @@ export const StyledNavMenu = styled(Box)(
     display: 'none',
     justifyContent: 'start',
     alignItems: 'center',
-
-    '& a:last-child': {
-      borderLeft: `solid 1px ${palette.grey[100]}`,
-    },
-
     [breakpoints.up('md')]: {
       display: 'flex',
     },

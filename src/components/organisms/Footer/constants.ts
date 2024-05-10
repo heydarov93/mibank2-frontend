@@ -5,7 +5,7 @@ export const googlePlayLink = 'https://play.google.com/store/apps';
 
 export const contactLinks: IContactLinks = {
   phone: '+48123456789',
-  email: 'info@milleniumbank.pl',
+  email: 'info@millenniumbank.pl',
 };
 
 export const workingHours: IFooterInfo = {
