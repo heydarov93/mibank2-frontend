@@ -15,6 +15,7 @@ export const StyledLink = styled(Link)(({ theme: { palette } }) => ({
   display: 'block',
   textDecoration: 'none',
   color: palette.common.black,
+  transition: 'color 0.3s ease',
   '&:hover': {
     color: palette.primary.main,
   },
@@ -24,15 +25,16 @@ export const StyledFlexBox = styled(Box)(
   ({ theme: { spacing, breakpoints } }) => ({
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: spacing(3, 0, 3, 0),
     gap: spacing(5),
     [breakpoints.up('sm')]: {
       flexDirection: 'row',
     },
     [breakpoints.up('md')]: {
       gap: spacing(12),
+      paddingTop: spacing(1.5),
     },
-    justifyContent: 'space-between',
-    padding: spacing(1.5, 0, 3, 0),
   }),
 );
 
