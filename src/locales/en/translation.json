@@ -13,14 +13,28 @@
     "greetings": "Hello"
   },
   "LoginPage": {
-    "formTitle": "Sign In",
-    "userInputLabel": "Username",
-    "passwordInputLabel": "Password",
+    "email": {
+      "errorMaxLen": "Email should not exceed 320 characters",
+      "errorPattern": "Please enter your email in format: example@gmail.com",
+      "label": "Email"
+    },
+    "password": {
+      "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMaxLen": "Password should not exceed 50 characters",
+      "errorMinLen": "Password should be at least 8 character long",
+      "errorPattern": "Enter your actual password",
+      "label": "Password"
+    },
+    "formTitle": "Log in and let's start!",
     "formText": "Remember me",
-    "formBtnSignIn": "Sign In",
+    "formBtnSignIn": "Log In",
     "formPassText": "Forgot password ?",
     "formSubTitle": "Do you have an account?",
-    "formBtnSignUp": "Sign Up"
+    "formBtnSignUp": "Sign Up",
+    "termsText": "I have read and agree to Millennium Bank's",
+    "requiredField": "The field is required",
+    "hide": "Hide",
+    "show": "Show"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",
