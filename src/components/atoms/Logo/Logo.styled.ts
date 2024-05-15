@@ -13,7 +13,16 @@ export const StyledLogoNameContainer = styled(Box)(
   }),
 );
 
-export const StyledLogo = styled(Box)(() => ({
-  display: 'flex',
-  alignItems: 'center',
-}));
+export const StyledLogo = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isSmall',
+})<{ isSmall: boolean }>(({ isSmall }) => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+
+    '& svg': {
+      width: isSmall ? '35px' : '50px',
+      height: isSmall ? '35px' : '50px',
+    },
+  };
+});

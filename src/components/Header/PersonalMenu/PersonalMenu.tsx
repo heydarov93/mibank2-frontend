@@ -9,7 +9,6 @@ import {
 } from './PersonalMenu.styled';
 
 import { UserCard } from 'components/molecules';
-// import { logoutHandler } from 'constants/index';
 
 export const PersonalMenu = () => {
   const navigate = useNavigate();
