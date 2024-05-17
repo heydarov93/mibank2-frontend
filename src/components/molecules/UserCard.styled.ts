@@ -24,20 +24,20 @@ export const StyledTypography = styled(Typography)(() => ({
   fontFamily: 'Inter',
 }));
 
+export const StyledTypographyName = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'isViceversa',
+})<{ isViceversa: boolean }>(({ isViceversa, theme: { palette } }) => ({
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontFamily: 'Inter',
+  color: palette.common.black,
+  fontWeight: isViceversa ? 500 : 400,
+}));
+
 export const StyledGreetingsName = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'flex-start',
 }));
-
-export const StyledTypographyBoldName = styled(Typography)(
-  ({ theme: { palette } }) => ({
-    fontSize: '14px',
-    lineHeight: '20px',
-    fontFamily: 'Inter',
-    color: palette.common.black,
-    fontWeight: 500,
-  }),
-);
 
 export const StyledAvatar = styled(Avatar)(({ theme: { palette } }) => ({
   backgroundColor: palette.primary.main,

@@ -5,9 +5,9 @@ import {
   StyledAvatar,
   StyledGreetings,
   StyledGreetingsContainer,
-  StyledTypographyBoldName,
   StyledTypography,
   StyledGreetingsName,
+  StyledTypographyName,
 } from './UserCard.styled';
 
 import { EGreeting } from 'constants/index';
@@ -37,14 +37,18 @@ export const UserCard = ({
           <StyledTypography>{`${t('greetings')},`}</StyledTypography>
         </StyledGreetings>
         <StyledGreetingsName>
-          <StyledTypography>{fullName}</StyledTypography>
+          <StyledTypographyName isViceversa={isViceversa}>
+            {fullName}
+          </StyledTypographyName>
         </StyledGreetingsName>
       </Box>
     ),
     [EGreeting.EMAIL]: (
       <Box>
         <StyledGreetingsName>
-          <StyledTypographyBoldName>{fullName}</StyledTypographyBoldName>
+          <StyledTypographyName isViceversa={isViceversa}>
+            {fullName}
+          </StyledTypographyName>
         </StyledGreetingsName>
         <StyledTypography>{user.email}</StyledTypography>
       </Box>
