@@ -33,6 +33,7 @@
     "formBtnSignUp": "Sign Up",
     "termsText": "I have read and agree to Millennium Bank's",
     "requiredField": "The field is required",
+    "infoHint": "Minimum length - 8 characters. Must be present: at least one character in uppercase and one in lowercase, one digit and one of the permitted special characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > <",
     "hide": "Hide",
     "show": "Show"
   },

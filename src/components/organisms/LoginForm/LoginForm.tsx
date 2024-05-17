@@ -13,6 +13,7 @@ import {
   Checkbox,
   Link,
   Box,
+  ClickAwayListener,
 } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
@@ -64,13 +65,22 @@ export const LoginForm = () => {
     },
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleClickShowHint = () =>
-    // eslint-disable-next-line no-alert
-    alert(
-      'Password should have at least 1 one character in uppercase and one in lowercase',
-    );
+  // const handleClickShowHint = () =>
+  //   // eslint-disable-next-line no-alert
+  //   alert(
+  //     'Password should have at least 1 one character in uppercase and one in lowercase',
+  //   );
 
   const handleClear = () => resetField('email');
   const preventChange = (e: SyntheticEvent) => {
@@ -105,7 +115,7 @@ export const LoginForm = () => {
 
   return (
     <StyledBoxContainer>
-      <ErrorNotification/>
+      <ErrorNotification />
       <Logo size={ELogoSize.MEDIUM} />
       <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
 
@@ -152,10 +162,26 @@ export const LoginForm = () => {
               <StyledLable htmlFor="password">
                 {t('LoginPage.password.label')}
               </StyledLable>
-
-              <StyledErrorHint>
-                <ErrorOutline fontSize="small" onClick={handleClickShowHint} />
-              </StyledErrorHint>
+              <ClickAwayListener onClickAway={handleTooltipClose}>
+                <Tooltip
+                  PopperProps={{
+                    disablePortal: true,
+                  }}
+                  onClose={handleTooltipClose}
+                  open={open}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title={t('LoginPage.infoHint')}
+                >
+                  <StyledErrorHint>
+                    <ErrorOutline
+                      fontSize="small"
+                      onClick={handleTooltipOpen}
+                    />
+                  </StyledErrorHint>
+                </Tooltip>
+              </ClickAwayListener>
             </Box>
             <Controller
               name="password"
@@ -188,9 +214,9 @@ export const LoginForm = () => {
                             edge="end"
                           >
                             {showPassword ? (
-                              <VisibilityOutlined />
-                            ) : (
                               <VisibilityOffOutlined />
+                            ) : (
+                              <VisibilityOutlined />
                             )}
                           </IconButton>
                         </Tooltip>
