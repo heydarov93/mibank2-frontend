@@ -19,6 +19,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { ErrorNotification } from '../ErrorNotification/ErrorNotification';
 import { policyLink, termsLink } from '../Footer/constants';
 
 import {
@@ -37,6 +38,8 @@ import {
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
 import { validationLoginSchema } from 'constants/validationShemas';
+import { useAppDispatch } from 'hooks/hook';
+import { signInUser, setError } from 'store/reducers/AuthSlice';
 
 interface IFormInput {
   email: string;
@@ -45,6 +48,7 @@ interface IFormInput {
 }
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
+  const dispatch = useAppDispatch();
   const {
     formState: { errors },
     control,
@@ -75,11 +79,17 @@ export const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: IFormInput) => {
-    localStorage.setItem('userName', data.email);
-    localStorage.setItem('password', data.password);
-
-    navigate('/');
+  const onSubmit = async (data: IFormInput) => {
+    try {
+      dispatch(signInUser({ username: data.email, password: data.password }));
+      navigate('/');
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch(setError(err.message));
+      } else {
+        dispatch(setError('An unknown error occurred'));
+      }
+    }
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -95,6 +105,7 @@ export const LoginForm = () => {
 
   return (
     <StyledBoxContainer>
+      <ErrorNotification/>
       <Logo size={ELogoSize.MEDIUM} />
       <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
 
@@ -214,7 +225,7 @@ export const LoginForm = () => {
           <AgreementContainer variant="body2">
             {`${t('LoginPage.termsText')} `}
 
-            <Box>
+            <>
               <Link
                 href={urlTerms}
                 target="_blank"
@@ -236,7 +247,7 @@ export const LoginForm = () => {
               >
                 {t('footer.footerBottom.policy')}
               </Link>
-            </Box>
+            </>
           </AgreementContainer>
         </CheckboxStyledContainer>
         <StyledButtonContainer>

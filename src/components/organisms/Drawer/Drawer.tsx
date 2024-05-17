@@ -21,9 +21,15 @@ import {
 import { UserCard } from 'components/molecules';
 import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
+import { useAppDispatch } from 'hooks/hook';
+import { useAppSelector } from 'hooks/hook';
+import { logoutFromApp } from 'store/reducers/AuthSlice';
+import { getUser } from 'store/selectors/AuthSelectors';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(getUser);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -31,12 +37,8 @@ export default function TemporaryDrawer() {
 
   const navigate = useNavigate();
   const logoutHandler = () => {
-    const userToken = localStorage.getItem('userName');
-    if (userToken) {
-      localStorage.removeItem('userName');
-      localStorage.removeItem('password');
-      navigate('/signin');
-    }
+    dispatch(logoutFromApp());
+    navigate('/signin');
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });
@@ -44,16 +46,9 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <StyledUserCardContainer>
-        <UserCard
-          // TODO: need delete mock data
-          user={{
-            firstName: 'Jane',
-            lastName: 'Doe',
-            email: 'user1@gmail.com',
-          }}
-          isViceversa
-          captureVariant={EGreeting.EMAIL}
-        />
+        {user && (
+          <UserCard user={user} isViceversa captureVariant={EGreeting.EMAIL} />
+        )}
       </StyledUserCardContainer>
       <Divider />
       <List>

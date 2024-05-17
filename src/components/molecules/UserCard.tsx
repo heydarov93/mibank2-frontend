@@ -11,13 +11,10 @@ import {
 } from './UserCard.styled';
 
 import { EGreeting } from 'constants/index';
+import { IUser } from 'models/IAuth';
 
 type PersonalMenuProps = {
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-  };
+  user: IUser;
   isViceversa?: boolean;
   isShowUserInfo?: boolean;
   captureVariant?: EGreeting;
@@ -29,9 +26,9 @@ export const UserCard = ({
   captureVariant = EGreeting.DEFAULT,
 }: PersonalMenuProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
+  const initials = `${user.name?.charAt(0) ?? ''}${user.family_name?.charAt(0) ?? ''}`;
 
-  const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${user.name} ${user.family_name}`;
 
   const GreetingMap = {
     [EGreeting.DEFAULT]: (

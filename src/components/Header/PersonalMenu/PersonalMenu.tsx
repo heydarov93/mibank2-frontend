@@ -9,9 +9,14 @@ import {
 } from './PersonalMenu.styled';
 
 import { UserCard } from 'components/molecules';
+import { useAppSelector } from 'hooks/hook';
+import { useAppDispatch } from 'hooks/hook';
+import { logoutFromApp } from 'store/reducers/AuthSlice';
+import { getUser } from 'store/selectors/AuthSelectors';
 
 export const PersonalMenu = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const openSettingsHandler = () => {
     // TODO: need to change later
@@ -20,28 +25,17 @@ export const PersonalMenu = () => {
   };
 
   const logoutHandler = () => {
-    const userToken = localStorage.getItem('userName');
-    if (userToken) {
-      localStorage.removeItem('userName');
-      localStorage.removeItem('password');
-      navigate('/signin');
-    }
+    dispatch(logoutFromApp());
+    navigate('/signin');
   };
 
   const theme = useTheme();
   const isDesctopView = useMediaQuery(theme.breakpoints.up('md'));
+  const user = useAppSelector(getUser);
 
   return (
     <StyledPersonalMenu>
-      <UserCard
-        // TODO: need delete mock data
-        user={{
-          firstName: 'Jane',
-          lastName: 'Doe',
-          email: 'user1@gmail.com',
-        }}
-        isShowUserInfo={isDesctopView}
-      />
+      {user && <UserCard user={user} isShowUserInfo={isDesctopView} />}
 
       <StyledButtonsContainer>
         <StyledIconButton aria-label="settings" onClick={openSettingsHandler}>
