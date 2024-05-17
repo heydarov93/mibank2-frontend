@@ -14,8 +14,12 @@ export const StyledBoxContainer = styled(Box)(() => ({
   alignItems: 'center',
 }));
 
-export const StyledForm = styled('form')(() => ({
+export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
+
+  [breakpoints.up('sm')]: {
+    width: 680,
+  },
 }));
 
 export const StyledFormContent = styled(Box)(({ theme: { spacing } }) => ({
@@ -88,10 +92,14 @@ export const CheckboxStyledContainer = styled(Box)(
 );
 
 export const AgreementContainer = styled(Typography)(
-  ({ theme: { spacing } }) => ({
+  ({ theme: { breakpoints, spacing } }) => ({
     paddingTop: spacing(2),
     lineHeight: '16px',
     fontWeight: 500,
+
+    [breakpoints.up('sm')]: {
+      paddingTop: spacing(0),
+    },
   }),
 );
 
