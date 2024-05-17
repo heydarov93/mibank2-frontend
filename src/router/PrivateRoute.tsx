@@ -1,23 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from 'hooks/hook';
+import { getUser, setLoading } from 'store/selectors/AuthSelectors';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const checkUserToken = () => {
-    const userToken = localStorage.getItem('userName');
-
-    if (!userToken) {
-      setIsLoggedIn(false);
-      return navigate('/signin');
-    }
-
-    setIsLoggedIn(true);
-  };
+  const user = useAppSelector(getUser);
+  const loading = useAppSelector(setLoading);
 
   useEffect(() => {
-    checkUserToken();
-  }, [isLoggedIn]);
+    if (!loading && !user) {
+      navigate('/signin');
+    }
+  }, [user, loading, navigate]);
 
-  return <>{isLoggedIn ? children : null}</>;
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (user) {
+    return <>{children}</>;
+  }
+
+  return null;
 };
