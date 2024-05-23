@@ -32,7 +32,7 @@ export const signInUser = createAsyncThunk(
   ) => {
     thunkApi.dispatch(setLoading(true));
     try {
-      const signInResponse = await signIn({ username, password });
+      await signIn({ username, password });
 
       const userAttributes = await fetchUserAttributes();
 
@@ -41,6 +41,8 @@ export const signInUser = createAsyncThunk(
         name: userAttributes.name,
         family_name: userAttributes.family_name,
         email: userAttributes.email,
+        failedLogins: userAttributes['custom:FailedLogins'],
+        lastFailedTime: userAttributes['custom:LastFailedTime'],
       };
 
       thunkApi.dispatch(setUser(user));
