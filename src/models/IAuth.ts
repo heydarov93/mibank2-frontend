@@ -8,4 +8,6 @@ export interface IUser {
   name: string | undefined;
   family_name: string | undefined;
   email: string | undefined;
+  failedLogins: string | undefined;
+  lastFailedTime: string | undefined;
 }
