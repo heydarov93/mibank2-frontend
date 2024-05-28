@@ -1,0 +1,1 @@
+export { generateRandomParam } from './generateRandomParam';

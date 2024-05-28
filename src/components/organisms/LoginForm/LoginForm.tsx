@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import {
   VisibilityOutlined,
   VisibilityOffOutlined,
-  HighlightOff,
   ErrorOutline,
 } from '@mui/icons-material';
 import {
@@ -14,9 +13,10 @@ import {
   Link,
   Box,
   ClickAwayListener,
+  useTheme,
 } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ import { policyLink, termsLink } from '../Footer/constants';
 
 import {
   AgreementContainer,
+  BootstrapTooltip,
   CheckboxStyledContainer,
   StyledBoxContainer,
   StyledButtonContainer,
@@ -38,9 +39,11 @@ import {
 
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
+import { REG_EXP } from 'constants/regExp';
 import { validationLoginSchema } from 'constants/validationShemas';
 import { useAppDispatch } from 'hooks/hook';
 import { signInUser, setError } from 'store/reducers/AuthSlice';
+import { generateRandomParam } from 'utils';
 
 interface IFormInput {
   email: string;
@@ -61,11 +64,35 @@ export const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
-      checkbox: false,
+      checkbox: true,
     },
   });
+
+  const currentPasswordValue = useWatch({
+    control,
+    name: 'password',
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const [capsLockOn, setCapsLockOn] = useState(false);
+
+  const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (currentPasswordValue) {
+      const stringValue = currentPasswordValue.replace(
+        REG_EXP.nonAlphabeticCharactersRegExp,
+        '',
+      );
+      const capsLockIsOn =
+        e.getModifierState('CapsLock') ||
+        (stringValue.length > 1 &&
+          stringValue === currentPasswordValue.toUpperCase());
+      setCapsLockOn(capsLockIsOn);
+    } else {
+      setCapsLockOn(false);
+    }
+  };
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -76,22 +103,25 @@ export const LoginForm = () => {
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  // const handleClickShowHint = () =>
-  //   // eslint-disable-next-line no-alert
-  //   alert(
-  //     'Password should have at least 1 one character in uppercase and one in lowercase',
-  //   );
 
-  const handleClear = () => resetField('email');
+  const handleCleanField = () => {
+    if (errors.password) resetField('password');
+  };
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
   };
 
   const navigate = useNavigate();
 
+  const theme = useTheme();
+
   const onSubmit = async (data: IFormInput) => {
     try {
-      dispatch(signInUser({ username: data.email, password: data.password }));
+      const user = signInUser({
+        username: data.email,
+        password: data.password,
+      });
+      dispatch(user);
       navigate('/');
     } catch (err) {
       if (err instanceof Error) {
@@ -106,9 +136,15 @@ export const LoginForm = () => {
     event.preventDefault();
   };
 
-  const generateRandomParam = () => {
-    return `?${Math.random().toString(36).substring(7)}`;
-  };
+  const title = (
+    <Box>
+      <div>{t('LoginPage.infoHintTitle')}</div>
+      <div>{t('LoginPage.infoHintUpper')}</div>
+      <div>{t('LoginPage.infoHintLower')}</div>
+      <div>{t('LoginPage.infoHintDigit')}</div>
+      <div>{t('LoginPage.infoHintSpecial')}</div>
+    </Box>
+  );
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
@@ -138,21 +174,6 @@ export const LoginForm = () => {
                   error={!!errors.email}
                   placeholder="example@gmail.com"
                   {...field}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          disableRipple
-                          aria-label="toggle password visibility"
-                          onClick={handleClear}
-                          onMouseDown={handleMouseDown}
-                          edge="end"
-                        >
-                          {field.value ? <HighlightOff /> : null}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               )}
             />
@@ -163,24 +184,24 @@ export const LoginForm = () => {
                 {t('LoginPage.password.label')}
               </StyledLable>
               <ClickAwayListener onClickAway={handleTooltipClose}>
-                <Tooltip
-                  PopperProps={{
-                    disablePortal: true,
-                  }}
-                  onClose={handleTooltipClose}
-                  open={open}
-                  disableFocusListener
-                  disableHoverListener
-                  disableTouchListener
-                  title={t('LoginPage.infoHint')}
-                >
-                  <StyledErrorHint>
-                    <ErrorOutline
-                      fontSize="small"
-                      onClick={handleTooltipOpen}
-                    />
+                <div>
+                  <StyledErrorHint onClick={handleTooltipOpen}>
+                    <BootstrapTooltip
+                      PopperProps={{
+                        disablePortal: true,
+                      }}
+                      onClose={handleTooltipClose}
+                      open={open}
+                      disableFocusListener
+                      disableHoverListener
+                      disableTouchListener
+                      placement="right-end"
+                      title={title}
+                    >
+                      <ErrorOutline fontSize="small" />
+                    </BootstrapTooltip>
                   </StyledErrorHint>
-                </Tooltip>
+                </div>
               </ClickAwayListener>
             </Box>
             <Controller
@@ -190,14 +211,15 @@ export const LoginForm = () => {
                 <StyledTextField
                   fullWidth
                   id="password"
-                  helperText={errors.password?.message}
+                  helperText={
+                    (capsLockOn && 'Caps Lock is pressed!') ||
+                    errors.password?.message
+                  }
                   className={errors.password ? 'shake' : ''}
                   error={!!errors.password}
                   type={showPassword ? 'text' : 'password'}
-                  // prevent ctrl+V past
                   onCut={preventChange}
                   onCopy={preventChange}
-                  onPaste={preventChange}
                   placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
                   {...field}
                   InputProps={{
@@ -209,6 +231,7 @@ export const LoginForm = () => {
                         >
                           <IconButton
                             aria-label="toggle password visibility"
+                            sx={{ color: theme.palette.grey[300] }}
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDown}
                             edge="end"
@@ -223,32 +246,45 @@ export const LoginForm = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onKeyUp={onKeyUpHandler}
                 />
               )}
             />
           </Box>
         </StyledFormContent>
-        <CheckboxStyledContainer>
+        <CheckboxStyledContainer className={errors.checkbox ? 'shake' : ''}>
           <Controller
             name="checkbox"
             control={control}
-            render={({ field }) => (
-              <Checkbox
-                disableRipple
-                size="small"
-                sx={{
-                  color: 'grey',
-                  padding: '8px',
-                  '&.Mui-checked': {
-                    color: 'primary',
-                  },
-                }}
-                {...field}
-              />
-            )}
+            render={({ field }) => {
+              return (
+                <Checkbox
+                  disableRipple
+                  defaultChecked
+                  size="small"
+                  sx={{
+                    color: errors.checkbox
+                      ? theme.palette.error.main
+                      : theme.palette.grey[300],
+                    padding: '8px',
+                    '&.Mui-checked': {
+                      color: 'primary',
+                    },
+                  }}
+                  {...field}
+                />
+              );
+            }}
           />
 
-          <AgreementContainer variant="body2">
+          <AgreementContainer
+            variant="body2"
+            sx={{
+              color: errors.checkbox
+                ? theme.palette.error.main
+                : theme.palette.common.black,
+            }}
+          >
             {`${t('LoginPage.termsText')} `}
 
             <>
@@ -277,7 +313,13 @@ export const LoginForm = () => {
           </AgreementContainer>
         </CheckboxStyledContainer>
         <StyledButtonContainer>
-          <Button size="large" variant="contained" fullWidth type="submit">
+          <Button
+            size="large"
+            variant="contained"
+            fullWidth
+            type="submit"
+            onClick={handleCleanField}
+          >
             {t('LoginPage.formBtnSignIn')}
           </Button>
         </StyledButtonContainer>

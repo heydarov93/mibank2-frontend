@@ -1,4 +1,5 @@
 import { styled, TextField, keyframes, Typography, Box } from '@mui/material';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 const shakeAnimation = keyframes`
   0% { transform: translateX(0); }
@@ -19,6 +20,10 @@ export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
 
   [breakpoints.up('sm')]: {
     width: 680,
+  },
+
+  [breakpoints.up('md')]: {
+    width: 575,
   },
 }));
 
@@ -58,6 +63,34 @@ export const StyledErrorHint = styled(Box)(
   }),
 );
 
+export const BootstrapTooltip = styled(
+  ({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ),
+)(({ theme: { breakpoints, palette, spacing } }) => {
+  return {
+    '& .MuiTooltip-tooltip': {
+      backgroundColor: palette.grey[300],
+      width: 255,
+      maxWidth: 500,
+      fontSize: 10,
+      lineHeight: '14px',
+      fontWeight: 500,
+      margin: `0 ${spacing(1)} !important`,
+
+      padding: `${spacing(0.5)} ${spacing(1)}`,
+
+      [breakpoints.up('sm')]: {
+        width: 350,
+      },
+    },
+
+    '&.MuiTooltip-touch': {
+      padding: `${spacing(0.5)} ${spacing(1)}`,
+    },
+  };
+});
+
 export const StyledTextField = styled(TextField)(({ theme: { palette } }) => ({
   '&.shake': {
     animation: `${shakeAnimation} 0.25s`,
@@ -88,6 +121,10 @@ export const CheckboxStyledContainer = styled(Box)(
     display: 'flex',
     alignItems: 'center',
     paddingTop: spacing(1.5),
+
+    '&.shake': {
+      animation: `${shakeAnimation} 0.25s`,
+    },
   }),
 );
 
@@ -95,6 +132,7 @@ export const AgreementContainer = styled(Typography)(
   ({ theme: { breakpoints, spacing } }) => ({
     paddingTop: spacing(2),
     lineHeight: '16px',
+    letterSpacing: 0.5,
     fontWeight: 500,
 
     [breakpoints.up('sm')]: {

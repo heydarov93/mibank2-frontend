@@ -3,7 +3,7 @@
 exports[`UnderDevPage snapshot should match 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-12kyk69"
+    class="MuiBox-root css-1vv3xbs"
   >
     <div
       class="MuiBox-root css-1vqxpay"
@@ -20,7 +20,7 @@ exports[`UnderDevPage snapshot should match 1`] = `
           UnderDevPage.title
         </h5>
         <p
-          class="MuiTypography-root MuiTypography-body2 css-oo8oeu-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body2 css-1p6bacg-MuiTypography-root"
         >
           UnderDevPage.description
         </p>

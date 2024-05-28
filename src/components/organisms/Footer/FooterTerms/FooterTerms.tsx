@@ -5,12 +5,10 @@ import { termsLink, policyLink } from '../constants';
 
 import { StyledBottomBox, StyledBox } from './FooterTerms.styled';
 
+import { generateRandomParam } from 'utils';
+
 export const FooterTerms = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
-
-  const generateRandomParam = () => {
-    return `?${Math.random().toString(36).substring(7)}`;
-  };
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;

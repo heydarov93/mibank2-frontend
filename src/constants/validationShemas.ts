@@ -17,7 +17,6 @@ export const validationLoginSchema = yup.object().shape({
     .string()
     .trim()
     .required(i18n.t(`${loginFields}.requiredField`))
-    .min(8, i18n.t(`${loginFields}.password.errorMinLen`))
     .matches(
       REG_EXP.passwordRegExp,
       i18n.t(`${loginFields}.password.errorPattern`),
