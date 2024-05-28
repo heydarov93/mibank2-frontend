@@ -22,7 +22,7 @@
       "errorIsBlocked": "Account is blocked. Please, contact us",
       "errorMaxLen": "Password should not exceed 50 characters",
       "errorMinLen": "Password should be at least 8 character long",
-      "errorPattern": "Enter your actual password",
+      "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
       "label": "Password"
     },
     "formTitle": "Log in and let's start!",
@@ -33,7 +33,11 @@
     "formBtnSignUp": "Sign Up",
     "termsText": "I have read and agree to Millennium Bank's",
     "requiredField": "The field is required",
-    "infoHint": "Minimum length - 8 characters. Must be present: at least one character in uppercase and one in lowercase, one digit and one of the permitted special characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > <",
+    "infoHintTitle": "Minimum length - 8 characters. Latin letters only. Must present at least:",
+    "infoHintUpper": " - one letter in uppercase",
+    "infoHintLower": " - one letter in lowercase",
+    "infoHintDigit": " - one digit",
+    "infoHintSpecial": " - one special character: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \"\" '. , : ;",
     "hide": "Hide",
     "show": "Show"
   },
