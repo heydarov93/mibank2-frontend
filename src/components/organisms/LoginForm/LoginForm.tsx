@@ -37,13 +37,16 @@ import {
   StyledTextField,
 } from './LoginForm.styled';
 
+import { useAuthorizeMutation } from 'api/authApi';
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
 import { REG_EXP } from 'constants/regExp';
 import { validationLoginSchema } from 'constants/validationShemas';
 import { useAppDispatch } from 'hooks/hook';
-import { signInUser, setError } from 'store/reducers/AuthSlice';
+import { ILoginData, TokenType } from 'models/IAuth';
+import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
 import { generateRandomParam } from 'utils';
+import { localTokenHandler } from 'utils/tokenHandler';
 
 interface IFormInput {
   email: string;
@@ -53,11 +56,14 @@ interface IFormInput {
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
+
+  const [authorize, { isLoading }] = useAuthorizeMutation();
   const {
     formState: { errors },
     control,
     handleSubmit,
     resetField,
+    reset: resetForm,
   } = useForm<IFormInput>({
     resolver: yupResolver(validationLoginSchema),
     mode: 'onBlur',
@@ -115,13 +121,31 @@ export const LoginForm = () => {
 
   const theme = useTheme();
 
+  const logIn = async (credentials: ILoginData) => {
+    try {
+      const data = await authorize(credentials).unwrap();
+
+      localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
+      localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
+      dispatch(setLogIn());
+      dispatch(setLoading(true));
+      navigate('/');
+
+      resetForm();
+    } catch (e) {
+      console.log(e);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
   const onSubmit = async (data: IFormInput) => {
     try {
-      const user = signInUser({
-        username: data.email,
+      logIn({
+        email: data.email,
         password: data.password,
       });
-      dispatch(user);
+      // dispatch(user);
       navigate('/');
     } catch (err) {
       if (err instanceof Error) {

@@ -2,7 +2,10 @@ export interface ILoginData {
   email: string;
   password: string;
 }
-
+export interface IAuth {
+  accessToken: string;
+  refreshToken: string;
+}
 export interface IUser {
   sub: string | undefined;
   name: string | undefined;
@@ -10,4 +13,9 @@ export interface IUser {
   email: string | undefined;
   failedLogins: string | undefined;
   lastFailedTime: string | undefined;
+}
+
+export enum TokenType {
+  ACCESS = 'accessToken',
+  REFRESH = 'refreshToken',
 }
