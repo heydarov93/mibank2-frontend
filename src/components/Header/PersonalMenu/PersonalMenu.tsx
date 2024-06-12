@@ -11,7 +11,8 @@ import {
 import { UserCard } from 'components/molecules';
 import { useAppSelector } from 'hooks/hook';
 import { useAppDispatch } from 'hooks/hook';
-import { logoutFromApp } from 'store/reducers/AuthSlice';
+//TODO: add logic for logoutFromApp
+// import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 
 export const PersonalMenu = () => {
@@ -25,7 +26,8 @@ export const PersonalMenu = () => {
   };
 
   const logoutHandler = () => {
-    dispatch(logoutFromApp());
+    // dispatch(logoutFromApp());
+
     navigate('/signin');
   };
 

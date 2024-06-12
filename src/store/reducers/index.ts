@@ -1,1 +1,1 @@
-export { setUser, setError, clearError } from './AuthSlice';
+export { setError, clearError } from './AuthSlice';

@@ -4,28 +4,33 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/hook';
-import { getUser, setLoading } from 'store/selectors/AuthSelectors';
+import { getIsAuth, getLoading } from 'store/selectors/AuthSelectors';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const user = useAppSelector(getUser);
-  const loading = useAppSelector(setLoading);
+  const isAuth = useAppSelector(getIsAuth);
+  const loading = useAppSelector(getLoading);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!isAuth) {
       navigate('/signin');
     }
-  }, [user, loading, navigate]);
+  }, [isAuth, loading, navigate]);
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
         <CircularProgress />
       </Box>
     );
   }
 
-  if (user) {
+  if (isAuth) {
     return <>{children}</>;
   }
 
