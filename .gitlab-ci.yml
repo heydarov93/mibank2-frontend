@@ -43,7 +43,6 @@ build dev artifacts:
     name: development
   script:
     - echo "Installing source NPM dependencies... and building artifacts"
-    - touch .env
     - cp $REACT_ENV .env
     - CI=false && npm i --legacy-peer-deps && npm run build
   artifacts:
