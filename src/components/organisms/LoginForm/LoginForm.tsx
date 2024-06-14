@@ -15,7 +15,7 @@ import {
   ClickAwayListener,
   useTheme,
 } from '@mui/material';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -47,6 +47,7 @@ import { ILoginData, TokenType } from 'models/IAuth';
 import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
 import { generateRandomParam } from 'utils';
 import { localTokenHandler } from 'utils/tokenHandler';
+
 
 interface IFormInput {
   email: string;
@@ -84,6 +85,9 @@ export const LoginForm = () => {
 
   const [capsLockOn, setCapsLockOn] = useState(false);
 
+  const [remainingTime, setRemainingTime] = useState<number>(0);
+  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (currentPasswordValue) {
       const stringValue = currentPasswordValue.replace(
@@ -113,6 +117,7 @@ export const LoginForm = () => {
   const handleCleanField = () => {
     if (errors.password) resetField('password');
   };
+
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
   };
@@ -132,28 +137,25 @@ export const LoginForm = () => {
       navigate('/');
 
       resetForm();
-    } catch (e) {
-      console.log(e);
+    } catch (error:any) {
+      const { blockTimeRemaining, isBlocked, message } = error.data;
+
+      if(isBlocked) {
+          setIsFormDisabled(true);
+          setRemainingTime(blockTimeRemaining);
+      }; 
+
+      dispatch(setError(message || 'An unknown error occurred'));
     } finally {
       dispatch(setLoading(false));
     }
   };
 
   const onSubmit = async (data: IFormInput) => {
-    try {
       logIn({
         email: data.email,
         password: data.password,
       });
-      // dispatch(user);
-      navigate('/');
-    } catch (err) {
-      if (err instanceof Error) {
-        dispatch(setError(err.message));
-      } else {
-        dispatch(setError('An unknown error occurred'));
-      }
-    }
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -172,6 +174,24 @@ export const LoginForm = () => {
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
+
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isFormDisabled && remainingTime > 0) {
+      timer = setInterval(() => {
+        setRemainingTime((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(timer);
+            setIsFormDisabled(false);
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isFormDisabled, remainingTime]);
 
   return (
     <StyledBoxContainer>
@@ -197,6 +217,7 @@ export const LoginForm = () => {
                   className={errors.email ? 'shake' : ''}
                   error={!!errors.email}
                   placeholder="example@gmail.com"
+                  disabled={isFormDisabled}
                   {...field}
                 />
               )}
@@ -245,6 +266,7 @@ export const LoginForm = () => {
                   onCut={preventChange}
                   onCopy={preventChange}
                   placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
+                  disabled={isFormDisabled}
                   {...field}
                   InputProps={{
                     endAdornment: (
@@ -343,6 +365,14 @@ export const LoginForm = () => {
             fullWidth
             type="submit"
             onClick={handleCleanField}
+            disabled={isFormDisabled}
+            sx={{
+              '&.Mui-disabled': {
+                opacity: '0.65',
+                color: '#FFFFFF',
+                background: '#1C64EE',
+              },
+            }}
           >
             {t('LoginPage.formBtnSignIn')}
           </Button>
