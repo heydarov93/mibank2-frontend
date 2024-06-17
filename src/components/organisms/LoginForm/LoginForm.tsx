@@ -40,29 +40,21 @@ import {
 import { useAuthorizeMutation } from 'api/authApi';
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
-import { REG_EXP } from 'constants/regExp';
-import { validationLoginSchema } from 'constants/validationShemas';
+import { ErrorStatus, REG_EXP, validationLoginSchema } from 'constants/index';
 import { useAppDispatch } from 'hooks/hook';
 import { ILoginData, TokenType } from 'models/IAuth';
+import { IErrorData } from 'models/IError';
 import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
-import { generateRandomParam } from 'utils';
-import { localTokenHandler } from 'utils/tokenHandler';
-
+import {
+  generateRandomParam,
+  formatErrorMessage,
+  localTokenHandler,
+} from 'utils';
 
 interface IFormInput {
   email: string;
   password: string;
   checkbox?: boolean;
-}
-
-interface IErrorData {
-  data: {
-    remainingAttempts: number;
-    message: string;
-    blockTimeRemaining: number;
-    isBlocked: boolean;
-  };
-  status: number;
 }
 
 export const LoginForm = () => {
@@ -153,17 +145,16 @@ export const LoginForm = () => {
 
       if (e instanceof Error) {
         dispatch(setError(e.message));
-      } else if (error.status === 404) {
+      } else if (error.status === ErrorStatus.NOT_FOUND) {
         const { remainingAttempts, message } = error.data;
 
-        const attemptWord = remainingAttempts === 1 ? 'attempt' : 'attempts';
-        const errorMessage = `**${remainingAttempts} more ${attemptWord} left.** ${message}`;
+        const errorMessage = formatErrorMessage(remainingAttempts, message);
 
         dispatch(setError(errorMessage));
         resetField('password');
-      } else if (error.status === 423) {
+      } else if (error.status === ErrorStatus.LOCKED) {
         const { blockTimeRemaining, isBlocked, message } = error.data;
-        
+
         dispatch(setError(message));
         resetField('password');
 
