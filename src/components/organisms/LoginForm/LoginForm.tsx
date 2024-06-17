@@ -49,6 +49,7 @@ import {
   generateRandomParam,
   localTokenHandler,
   useErrorHandlers,
+  useFormatErrorMessage,
 } from 'utils';
 
 interface IFormInput {
@@ -63,6 +64,7 @@ export const LoginForm = () => {
 
   const [authorize, { isLoading }] = useAuthorizeMutation();
   const { handleNotFoundError, handleLockedError } = useErrorHandlers();
+  const { formatErrorMessage } = useFormatErrorMessage();
   const {
     formState: { errors },
     control,
@@ -149,7 +151,7 @@ export const LoginForm = () => {
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
-            handleNotFoundError(error);
+            handleNotFoundError(error, formatErrorMessage);
             resetField('password');
             break;
           case ErrorStatus.LOCKED:
