@@ -54,6 +54,17 @@ interface IFormInput {
   password: string;
   checkbox?: boolean;
 }
+
+interface IErrorData {
+  data: {
+    remainingAttempts: number;
+    message: string;
+    blockTimeRemaining: number;
+    isBlocked: boolean;
+  };
+  status: number;
+}
+
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
@@ -137,15 +148,32 @@ export const LoginForm = () => {
       navigate('/');
 
       resetForm();
-    } catch (error:any) {
-      const { blockTimeRemaining, isBlocked, message } = error.data;
+    } catch (e) {
+      const error = e as IErrorData;
 
-      if(isBlocked) {
+      if (e instanceof Error) {
+        dispatch(setError(e.message));
+      } else if (error.status === 404) {
+        const { remainingAttempts, message } = error.data;
+
+        const attemptWord = remainingAttempts === 1 ? 'attempt' : 'attempts';
+        const errorMessage = `**${remainingAttempts} more ${attemptWord} left.** ${message}`;
+
+        dispatch(setError(errorMessage));
+        resetField('password');
+      } else if (error.status === 423) {
+        const { blockTimeRemaining, isBlocked, message } = error.data;
+        
+        dispatch(setError(message));
+        resetField('password');
+
+        if (isBlocked) {
           setIsFormDisabled(true);
           setRemainingTime(blockTimeRemaining);
-      }; 
-
-      dispatch(setError(message || 'An unknown error occurred'));
+        }
+      } else {
+        dispatch(setError('An unknown error occurred'));
+      }
     } finally {
       dispatch(setLoading(false));
     }
