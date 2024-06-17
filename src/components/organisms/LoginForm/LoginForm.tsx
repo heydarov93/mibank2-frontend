@@ -44,7 +44,7 @@ import { REG_EXP } from 'constants/regExp';
 import { validationLoginSchema } from 'constants/validationShemas';
 import { useAppDispatch } from 'hooks/hook';
 import { ILoginData, TokenType } from 'models/IAuth';
-import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
+import { setError, setLoading, setLogIn, loginToApp } from 'store/reducers/AuthSlice';
 import { generateRandomParam } from 'utils';
 import { localTokenHandler } from 'utils/tokenHandler';
 
@@ -134,6 +134,8 @@ export const LoginForm = () => {
       resetForm();
     } catch (e) {
       console.log(e);
+      // TODO: make redirect to default page
+      // navigate('/signin');
     } finally {
       dispatch(setLoading(false));
     }
@@ -145,7 +147,8 @@ export const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
-      // dispatch(user);
+      dispatch(loginToApp(data.email));
+
       navigate('/');
     } catch (err) {
       if (err instanceof Error) {

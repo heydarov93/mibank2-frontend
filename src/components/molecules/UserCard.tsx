@@ -13,12 +13,13 @@ import {
 
 import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { EGreeting } from 'constants/index';
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch, useAppSelector } from 'hooks/hook';
 import { IUserInfo } from 'models/IUserInfo';
 import { setUserData } from 'store/reducers/AuthSlice';
+import { getUser } from 'store/selectors/AuthSelectors';
 
 type PersonalMenuProps = {
-  user: IUserInfo;
+  user?: IUserInfo;
   isViceversa?: boolean;
   isShowUserInfo?: boolean;
   captureVariant?: EGreeting;
@@ -33,19 +34,19 @@ export const UserCard = ({
   
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
   
-  const { data, isLoading } = useGetUserInfoQuery();
-  
-  const blankFullName = `${user.firstName} ${user.lastName}`;
+  const email = useAppSelector(getUser)?.email;
 
-  const initials = `${data?.firstName?.charAt(0) ?? ''}${data?.lastName?.charAt(0) ?? ''}`;
-  
-  const fullName = `${data?.firstName} ${data?.lastName}`;
-  
+  const { data, isLoading } = useGetUserInfoQuery(email);
+
   useEffect(() => {
     if (!isLoading) {
       dispatch(setUserData(data));
     }
   }, [isLoading]);
+  
+  user = useAppSelector(getUser);
+  const initials = `${user?.firstName?.charAt(0) ?? ''}${user?.lastName?.charAt(0) ?? ''}`;
+  const fullName = `${user?.firstName} ${user?.lastName}`;
 
   const GreetingMap = {
     [EGreeting.DEFAULT]: (
@@ -55,7 +56,7 @@ export const UserCard = ({
         </StyledGreetings>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : blankFullName}
+            {!isLoading ? fullName : ""}
           </StyledTypographyName>
         </StyledGreetingsName>
       </Box>
@@ -64,7 +65,7 @@ export const UserCard = ({
       <Box>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : blankFullName}
+            {!isLoading ? fullName : ""}
           </StyledTypographyName>
         </StyledGreetingsName>
         <StyledTypography>{data?.email}</StyledTypography>
