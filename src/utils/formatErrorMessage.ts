@@ -1,4 +1,4 @@
- export const formatErrorMessage = (
+export const formatErrorMessage = (
   remainingAttempts: number,
   message: string,
 ): string => {

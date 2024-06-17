@@ -171,10 +171,10 @@ export const LoginForm = () => {
   };
 
   const onSubmit = async (data: IFormInput) => {
-      logIn({
-        email: data.email,
-        password: data.password,
-      });
+    logIn({
+      email: data.email,
+      password: data.password,
+    });
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -193,7 +193,6 @@ export const LoginForm = () => {
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
-
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
