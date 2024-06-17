@@ -47,8 +47,8 @@ import { IErrorData } from 'models/IError';
 import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
 import {
   generateRandomParam,
-  formatErrorMessage,
   localTokenHandler,
+  useErrorHandlers,
 } from 'utils';
 
 interface IFormInput {
@@ -62,6 +62,7 @@ export const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   const [authorize, { isLoading }] = useAuthorizeMutation();
+  const { handleNotFoundError, handleLockedError } = useErrorHandlers();
   const {
     formState: { errors },
     control,
@@ -145,25 +146,20 @@ export const LoginForm = () => {
 
       if (e instanceof Error) {
         dispatch(setError(e.message));
-      } else if (error.status === ErrorStatus.NOT_FOUND) {
-        const { remainingAttempts, message } = error.data;
-
-        const errorMessage = formatErrorMessage(remainingAttempts, message);
-
-        dispatch(setError(errorMessage));
-        resetField('password');
-      } else if (error.status === ErrorStatus.LOCKED) {
-        const { blockTimeRemaining, isBlocked, message } = error.data;
-
-        dispatch(setError(message));
-        resetField('password');
-
-        if (isBlocked) {
-          setIsFormDisabled(true);
-          setRemainingTime(blockTimeRemaining);
-        }
       } else {
-        dispatch(setError('An unknown error occurred'));
+        switch (error.status) {
+          case ErrorStatus.NOT_FOUND:
+            handleNotFoundError(error);
+            resetField('password');
+            break;
+          case ErrorStatus.LOCKED:
+            handleLockedError(error, setIsFormDisabled, setRemainingTime);
+            resetField('password');
+            break;
+          default:
+            dispatch(setError('An unknown error occurred'));
+            break;
+        }
       }
     } finally {
       dispatch(setLoading(false));
@@ -195,19 +191,20 @@ export const LoginForm = () => {
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isFormDisabled && remainingTime > 0) {
-      timer = setInterval(() => {
-        setRemainingTime((prevTime) => {
-          if (prevTime <= 1) {
-            clearInterval(timer);
-            setIsFormDisabled(false);
-            return 0;
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
+    if (!isFormDisabled || remainingTime <= 0) {
+      return;
     }
+    const timer = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setIsFormDisabled(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
     return () => clearInterval(timer);
   }, [isFormDisabled, remainingTime]);
 
