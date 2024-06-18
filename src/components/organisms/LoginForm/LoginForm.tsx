@@ -40,7 +40,8 @@ import {
 import { useAuthorizeMutation } from 'api/authApi';
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
-import { ErrorStatus, REG_EXP, validationLoginSchema } from 'constants/index';
+import { REG_EXP, validationLoginSchema } from 'constants/index';
+import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks/hook';
 import { ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -402,8 +403,8 @@ export const LoginForm = () => {
             sx={{
               '&.Mui-disabled': {
                 opacity: '0.65',
-                color: '#FFFFFF',
-                background: '#1C64EE',
+                color: theme.palette.common.white,
+                background: theme.palette.primary.main,
               },
             }}
           >

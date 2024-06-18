@@ -7,11 +7,10 @@ export const useFormatErrorMessage = () => {
     remainingAttempts: number,
     message: string,
   ): string => {
-    const attemptsLeftText =
-      remainingAttempts === 1
-        ? t('LoginPage.moreAttemptLeft')
-        : t('LoginPage.moreAttemptsLeft');
-    return `${remainingAttempts} ${attemptsLeftText}\n${message}`;
+    const attemptsMessage = t('LoginPage.attemptWithCount', {
+      count: remainingAttempts,
+    });
+    return `${attemptsMessage}\n${message}`;
   };
 
   return { formatErrorMessage };
