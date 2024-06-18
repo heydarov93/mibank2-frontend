@@ -44,7 +44,12 @@ import { ErrorStatus, REG_EXP, validationLoginSchema } from 'constants/index';
 import { useAppDispatch } from 'hooks/hook';
 import { ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError, setLoading, setLogIn } from 'store/reducers/AuthSlice';
+import {
+  setError,
+  setLoading,
+  setLogIn,
+  loginToApp,
+} from 'store/reducers/AuthSlice';
 import {
   generateRandomParam,
   localTokenHandler,
@@ -144,6 +149,8 @@ export const LoginForm = () => {
 
       resetForm();
     } catch (e) {
+      // TODO: make redirect to default page
+      // navigate('/signin');
       const error = e as IErrorData;
 
       if (e instanceof Error) {
@@ -169,10 +176,19 @@ export const LoginForm = () => {
   };
 
   const onSubmit = async (data: IFormInput) => {
-    logIn({
-      email: data.email,
-      password: data.password,
-    });
+    try {
+      logIn({
+        email: data.email,
+        password: data.password,
+      });
+      dispatch(loginToApp(data.email));
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch(setError(err.message));
+      } else {
+        dispatch(setError('An unknown error occurred'));
+      }
+    }
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {

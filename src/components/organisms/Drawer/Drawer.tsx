@@ -23,8 +23,7 @@ import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
 import { useAppDispatch } from 'hooks/hook';
 import { useAppSelector } from 'hooks/hook';
-// TODO: add logic for logoutFromApp
-// import { logoutFromApp } from 'store/reducers/AuthSlice';
+import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 
 export default function TemporaryDrawer() {
@@ -38,7 +37,7 @@ export default function TemporaryDrawer() {
 
   const navigate = useNavigate();
   const logoutHandler = () => {
-    // dispatch(logoutFromApp());
+    dispatch(logoutFromApp());
     navigate('/signin');
   };
 
