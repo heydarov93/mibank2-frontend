@@ -11,7 +11,7 @@ export const userInfoApi = createApi({
   baseQuery: baseQueryCreator(),
   endpoints: (builder) => ({
     getUserInfo: builder.query<IUserInfo, string | undefined>({
-      query: (email) => 
+      query: (email) =>
         `${endpoints.userAccountManagement.users.userInformation}?email=${email}`,
     }),
   }),

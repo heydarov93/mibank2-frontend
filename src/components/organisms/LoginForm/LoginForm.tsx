@@ -15,7 +15,7 @@ import {
   ClickAwayListener,
   useTheme,
 } from '@mui/material';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -40,24 +40,37 @@ import {
 import { useAuthorizeMutation } from 'api/authApi';
 import { Logo } from 'components/atoms/Logo';
 import { ELogoSize } from 'components/atoms/Logo/Logo';
-import { REG_EXP } from 'constants/regExp';
-import { validationLoginSchema } from 'constants/validationShemas';
+import { REG_EXP, validationLoginSchema } from 'constants/index';
+import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks/hook';
 import { ILoginData, TokenType } from 'models/IAuth';
-import { setError, setLoading, setLogIn, loginToApp } from 'store/reducers/AuthSlice';
-import { generateRandomParam } from 'utils';
-import { localTokenHandler } from 'utils/tokenHandler';
+import { IErrorData } from 'models/IError';
+import {
+  setError,
+  setLoading,
+  setLogIn,
+  loginToApp,
+} from 'store/reducers/AuthSlice';
+import {
+  generateRandomParam,
+  localTokenHandler,
+  useErrorHandlers,
+  useFormatErrorMessage,
+} from 'utils';
 
 interface IFormInput {
   email: string;
   password: string;
   checkbox?: boolean;
 }
+
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
 
   const [authorize, { isLoading }] = useAuthorizeMutation();
+  const { handleNotFoundError, handleLockedError } = useErrorHandlers();
+  const { formatErrorMessage } = useFormatErrorMessage();
   const {
     formState: { errors },
     control,
@@ -83,6 +96,9 @@ export const LoginForm = () => {
   const [open, setOpen] = useState(false);
 
   const [capsLockOn, setCapsLockOn] = useState(false);
+
+  const [remainingTime, setRemainingTime] = useState<number>(0);
+  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (currentPasswordValue) {
@@ -113,6 +129,7 @@ export const LoginForm = () => {
   const handleCleanField = () => {
     if (errors.password) resetField('password');
   };
+
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
   };
@@ -133,9 +150,27 @@ export const LoginForm = () => {
 
       resetForm();
     } catch (e) {
-      console.log(e);
       // TODO: make redirect to default page
       // navigate('/signin');
+      const error = e as IErrorData;
+
+      if (e instanceof Error) {
+        dispatch(setError(e.message));
+      } else {
+        switch (error.status) {
+          case ErrorStatus.NOT_FOUND:
+            handleNotFoundError(error, formatErrorMessage);
+            resetField('password');
+            break;
+          case ErrorStatus.LOCKED:
+            handleLockedError(error, setIsFormDisabled, setRemainingTime);
+            resetField('password');
+            break;
+          default:
+            dispatch(setError('An unknown error occurred'));
+            break;
+        }
+      }
     } finally {
       dispatch(setLoading(false));
     }
@@ -148,8 +183,6 @@ export const LoginForm = () => {
         password: data.password,
       });
       dispatch(loginToApp(data.email));
-
-      navigate('/');
     } catch (err) {
       if (err instanceof Error) {
         dispatch(setError(err.message));
@@ -176,6 +209,24 @@ export const LoginForm = () => {
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
 
+  useEffect(() => {
+    if (!isFormDisabled || remainingTime <= 0) {
+      return;
+    }
+    const timer = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setIsFormDisabled(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isFormDisabled, remainingTime]);
+
   return (
     <StyledBoxContainer>
       <ErrorNotification />
@@ -200,6 +251,7 @@ export const LoginForm = () => {
                   className={errors.email ? 'shake' : ''}
                   error={!!errors.email}
                   placeholder="example@gmail.com"
+                  disabled={isFormDisabled}
                   {...field}
                 />
               )}
@@ -248,6 +300,7 @@ export const LoginForm = () => {
                   onCut={preventChange}
                   onCopy={preventChange}
                   placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
+                  disabled={isFormDisabled}
                   {...field}
                   InputProps={{
                     endAdornment: (
@@ -346,6 +399,14 @@ export const LoginForm = () => {
             fullWidth
             type="submit"
             onClick={handleCleanField}
+            disabled={isFormDisabled}
+            sx={{
+              '&.Mui-disabled': {
+                opacity: '0.65',
+                color: theme.palette.common.white,
+                background: theme.palette.primary.main,
+              },
+            }}
           >
             {t('LoginPage.formBtnSignIn')}
           </Button>

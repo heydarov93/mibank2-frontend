@@ -39,7 +39,9 @@
     "infoHintDigit": " - one digit",
     "infoHintSpecial": " - one special character: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \"\" '. , : ;",
     "hide": "Hide",
-    "show": "Show"
+    "show": "Show",
+    "attemptWithCount_one": "{{count}} more attempt left",
+    "attemptWithCount_other": "{{count}} more attempts left"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",

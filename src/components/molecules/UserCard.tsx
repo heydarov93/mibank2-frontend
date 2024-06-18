@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -31,9 +31,9 @@ export const UserCard = ({
   captureVariant = EGreeting.DEFAULT,
 }: PersonalMenuProps) => {
   const dispatch = useAppDispatch();
-  
+
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  
+
   const email = useAppSelector(getUser)?.email;
 
   const { data, isLoading } = useGetUserInfoQuery(email);
@@ -43,7 +43,7 @@ export const UserCard = ({
       dispatch(setUserData(data));
     }
   }, [isLoading]);
-  
+
   user = useAppSelector(getUser);
   const initials = `${user?.firstName?.charAt(0) ?? ''}${user?.lastName?.charAt(0) ?? ''}`;
   const fullName = `${user?.firstName} ${user?.lastName}`;
@@ -56,7 +56,7 @@ export const UserCard = ({
         </StyledGreetings>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : ""}
+            {!isLoading ? fullName : ''}
           </StyledTypographyName>
         </StyledGreetingsName>
       </Box>
@@ -65,14 +65,14 @@ export const UserCard = ({
       <Box>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : ""}
+            {!isLoading ? fullName : ''}
           </StyledTypographyName>
         </StyledGreetingsName>
         <StyledTypography>{data?.email}</StyledTypography>
       </Box>
     ),
   };
-  
+
   return (
     <StyledGreetingsContainer isViceversa={isViceversa}>
       {isShowUserInfo ? GreetingMap[captureVariant as EGreeting] : null}

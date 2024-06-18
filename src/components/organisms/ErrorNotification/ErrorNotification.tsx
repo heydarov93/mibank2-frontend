@@ -21,7 +21,7 @@ export const ErrorNotification = () => {
       onClose={handleClose}
     >
       <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-        {error}
+        <pre>{error}</pre>
       </Alert>
     </Snackbar>
   );
