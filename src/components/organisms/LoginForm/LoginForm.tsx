@@ -52,6 +52,7 @@ import {
   loginToApp,
 } from 'store/reducers/AuthSlice';
 import {
+  convertSecondsToTime,
   generateRandomParam,
   localTokenHandler,
   useErrorHandlers,
@@ -208,6 +209,8 @@ export const LoginForm = () => {
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
+  const remainingTimeLabel =
+    remainingTime > 0 ? ` (${convertSecondsToTime(remainingTime)})` : '';
 
   useEffect(() => {
     if (!isFormDisabled || remainingTime <= 0) {
@@ -409,6 +412,7 @@ export const LoginForm = () => {
             }}
           >
             {t('LoginPage.formBtnSignIn')}
+            {remainingTimeLabel}
           </Button>
         </StyledButtonContainer>
       </StyledForm>
