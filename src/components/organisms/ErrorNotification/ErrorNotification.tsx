@@ -36,6 +36,7 @@ export const ErrorNotification = ({
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
+      sx={{ mb: position.vertical === 'bottom' ? 2 : 0 }}
     >
       <Alert
         onClose={handleClose}
