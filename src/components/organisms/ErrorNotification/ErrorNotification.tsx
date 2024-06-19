@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Snackbar, useTheme } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from 'hooks/hook';
 import { clearError } from 'store/reducers/AuthSlice';
@@ -24,6 +24,8 @@ export const ErrorNotification = ({
   const title = errorParts.length > 1 ? errorParts[0] : '';
   const message = errorParts.length > 1 ? errorParts.slice(1).join('.') : error;
 
+  const theme = useTheme();
+
   const handleClose = () => {
     dispatch(clearError());
   };
@@ -35,7 +37,15 @@ export const ErrorNotification = ({
       autoHideDuration={5000}
       onClose={handleClose}
     >
-      <Alert onClose={handleClose} severity="error" color="error">
+      <Alert
+        onClose={handleClose}
+        severity="error"
+        sx={{
+          width: '100%',
+          backgroundColor: theme.palette.error.light,
+          color: theme.palette.error.main,
+        }}
+      >
         {message}
         {title && <AlertTitle>{title}</AlertTitle>}
       </Alert>
