@@ -4,7 +4,18 @@ import { useAppSelector, useAppDispatch } from 'hooks/hook';
 import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors/AuthSelectors';
 
-export const ErrorNotification = () => {
+type Position = {
+  vertical: 'top' | 'bottom';
+  horizontal: 'center' | 'left' | 'right';
+};
+
+interface ErrorNotificationProps {
+  position?: Position;
+}
+
+export const ErrorNotification = ({
+  position = { vertical: 'top', horizontal: 'center' },
+}: ErrorNotificationProps) => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(errorMessage);
   const open = Boolean(error);
@@ -19,11 +30,10 @@ export const ErrorNotification = () => {
 
   return (
     <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      anchorOrigin={position}
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
-      sx={{ bgcolor: 'background.paper' }}
     >
       <Alert onClose={handleClose} severity="error" color="error">
         {message}
