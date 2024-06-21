@@ -41,13 +41,25 @@ export const StyledLable = styled('label')(({ theme: { palette } }) => ({
   fontWeight: 500,
 }));
 
-export const StyledFormTitle = styled(Typography)(({ theme: { spacing } }) => ({
-  marginTop: spacing(6),
-  marginBottom: spacing(3),
+export const StyledFormTitle = styled(Typography)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    marginTop: spacing(6),
+    marginBottom: spacing(3),
+    fontSize: 20,
+    fontWeight: 500,
 
-  fontSize: 20,
-  fontWeight: 500,
-}));
+    [breakpoints.up('sm')]: {
+      marginTop: spacing(5),
+      marginBottom: spacing(2),
+      fontSize: 32,
+      fontWeight: 400,
+    },
+
+    [breakpoints.up('md')]: {
+      marginTop: '18px',
+    },
+  }),
+);
 
 export const StyledErrorHint = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
@@ -70,7 +82,7 @@ export const BootstrapTooltip = styled(
 )(({ theme: { breakpoints, palette, spacing } }) => {
   return {
     '& .MuiTooltip-tooltip': {
-      backgroundColor: palette.grey[300],
+      backgroundColor: palette.grey[400],
       width: 255,
       maxWidth: 500,
       fontSize: 10,
@@ -120,7 +132,7 @@ export const CheckboxStyledContainer = styled(Box)(
   ({ theme: { spacing } }) => ({
     display: 'flex',
     alignItems: 'center',
-    paddingTop: spacing(1.5),
+    paddingTop: spacing(2),
 
     '&.shake': {
       animation: `${shakeAnimation} 0.25s`,
@@ -141,6 +153,12 @@ export const AgreementContainer = styled(Typography)(
   }),
 );
 
-export const StyledButtonContainer = styled(Box)(({ theme: { spacing } }) => ({
-  paddingTop: spacing(3),
-}));
+export const StyledButtonContainer = styled(Box)(
+  ({ theme: { breakpoints, spacing } }) => ({
+    paddingTop: spacing(3),
+
+    [breakpoints.up('sm')]: {
+      paddingTop: spacing(2),
+    },
+  }),
+);
