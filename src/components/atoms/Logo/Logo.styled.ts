@@ -1,15 +1,20 @@
 import { Box, styled } from '@mui/material';
 
-export const StyledLogoContainer = styled(Box)(({ theme: { spacing } }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: spacing(1),
-}));
+export const StyledLogoContainer = styled(Box)<{ isMedium: boolean }>(
+  ({ theme: { spacing }, isMedium }) => ({
+    display: 'flex',
+    flexDirection: isMedium ? 'column' : 'row',
+    alignItems: 'center',
+    gap: spacing(1),
+  }),
+);
 
-export const StyledLogoNameContainer = styled(Box)(
-  ({ theme: { palette } }) => ({
-    maxWidth: '70px',
+export const StyledLogoNameContainer = styled(Box)<{ isSmall: boolean }>(
+  ({ theme: { palette }, isSmall }) => ({
     color: palette.common.black,
+    ...(isSmall && {
+      maxWidth: '70px',
+    }),
   }),
 );
 
@@ -21,8 +26,8 @@ export const StyledLogo = styled(Box, {
     alignItems: 'center',
 
     '& svg': {
-      width: isSmall ? '35px' : '50px',
-      height: isSmall ? '35px' : '50px',
+      width: isSmall ? '36px' : '75px',
+      height: isSmall ? '36px' : '75px',
     },
   };
 });

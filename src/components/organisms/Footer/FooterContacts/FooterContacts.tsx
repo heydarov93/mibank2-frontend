@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ export const FooterContacts = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
   const { phone, email } = contactLinks;
   const { lines } = workingHours;
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -61,7 +62,10 @@ export const FooterContacts = () => {
             {lines.map((line) => (
               <Typography
                 variant="body2"
-                sx={{ fontSize: { sm: '16px' } }}
+                sx={{
+                  fontSize: { sm: '16px' },
+                  color: theme.palette.common.black,
+                }}
                 key={line}
               >
                 {t(`workingHours.${line}`)}

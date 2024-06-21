@@ -279,6 +279,9 @@ export const LoginForm = () => {
                       disableTouchListener
                       placement="right-end"
                       title={title}
+                      sx={{
+                        opacity: 0.9,
+                      }}
                     >
                       <ErrorOutline fontSize="small" />
                     </BootstrapTooltip>
@@ -349,7 +352,7 @@ export const LoginForm = () => {
                     color: errors.checkbox
                       ? theme.palette.error.main
                       : theme.palette.grey[300],
-                    padding: '8px',
+                    padding: '12px 8px 12px 0px',
                     '&.Mui-checked': {
                       color: 'primary',
                     },
