@@ -13,6 +13,7 @@ export const StyledBoxContainer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  maxWidth: 768,
 }));
 
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({

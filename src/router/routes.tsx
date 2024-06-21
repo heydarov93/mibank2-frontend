@@ -5,6 +5,7 @@ import { ErrorPage, LoginPage, UnderDevPage } from '../pages';
 import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
+import VerificationPage from 'pages/VerificationPage/VerificationPage';
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
   {
     path: '/signin',
     element: <LoginPage />,
+  },
+  {
+    path: '/verification',
+    element: <VerificationPage />,
   },
 ]);
 
