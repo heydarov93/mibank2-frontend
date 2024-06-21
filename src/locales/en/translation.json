@@ -43,6 +43,12 @@
     "attemptWithCount_one": "{{count}} more attempt left",
     "attemptWithCount_other": "{{count}} more attempts left"
   },
+  "VerificationPage": {
+    "verificationTitle": "Enter verification code",
+    "verificationTextSm": "Enter the verification code we sent via email",
+    "verificationTextMd": "Enter the verification code we sent via email to your registered email",
+    "recendCodeInTime": "Resend code in"
+  },
   "ErrorPage": {
     "title": "404 - Page Not Found",
     "subTitle": "The page you are looking for might have been removed or is temporary unavailable.",

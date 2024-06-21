@@ -57,7 +57,7 @@ export const FooterContacts = () => {
           <TypographyGrey variant="body2">
             {t('workingHours.title')}
           </TypographyGrey>
-          <Box display='flex' flexDirection='column' gap={0.5}>
+          <Box display="flex" flexDirection="column" gap={0.5}>
             {lines.map((line) => (
               <Typography
                 variant="body2"
