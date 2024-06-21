@@ -10,7 +10,7 @@ import { TokenType } from '..//models/IAuth';
 import { BASE_URL } from 'api/environmentVerification';
 import { localTokenHandler } from 'utils';
 
-// TODO: add logic for token expired 
+// TODO: add logic for token expired
 // import { setTokenExpired } from './reducers/AuthSlice';
 // import { setLogOut } from './reducers';
 
