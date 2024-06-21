@@ -5,6 +5,16 @@ export const theme = createTheme({
     button: {
       textTransform: 'none',
     },
+    smallLogo: {
+      fontSize: '11px',
+      lineHeight: '15px',
+      fontFamily: 'Inter',
+    },
+    mediumLogo: {
+      fontSize: '14px',
+      lineHeight: '20px',
+      fontFamily: 'Roboto',
+    },
   },
   breakpoints: {
     values: {

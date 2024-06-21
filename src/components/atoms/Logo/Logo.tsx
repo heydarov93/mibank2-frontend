@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -20,24 +20,23 @@ import { ReactComponent as BankLogoBoxIcon } from 'assets/icons/Logo.svg';
 
 export const Logo = ({ size = ELogoSize.SMALL }: LogoProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
+  const theme = useTheme();
 
   const isSmall = size === ELogoSize.SMALL;
 
   const isMedium = size === ELogoSize.MEDIUM;
 
   return (
-    <StyledLogoContainer>
+    <StyledLogoContainer isMedium={isMedium}>
       <StyledLogo isSmall={isSmall}>
         <BankLogoBoxIcon />
       </StyledLogo>
-      <StyledLogoNameContainer>
+      <StyledLogoNameContainer isSmall={isSmall}>
         {/* TODO: need to setup line-heaght into the theme */}
         <Typography
-          sx={{
-            lineHeight: isSmall ? '16px' : '22px',
-            fontSize: isSmall ? '12px' : '16px',
-            fontFamily: 'Inter',
-          }}
+          sx={
+            isSmall ? theme.typography.smallLogo : theme.typography.mediumLogo
+          }
         >
           {t('logoTitle')}
         </Typography>
