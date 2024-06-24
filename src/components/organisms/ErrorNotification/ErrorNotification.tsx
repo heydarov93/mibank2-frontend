@@ -47,8 +47,8 @@ export const ErrorNotification = ({
           color: theme.palette.error.main,
         }}
       >
-        {message}
         {title && <AlertTitle>{title}</AlertTitle>}
+        {message}
       </Alert>
     </Snackbar>
   );
