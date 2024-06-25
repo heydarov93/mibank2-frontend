@@ -1,5 +1,3 @@
-import { Logo } from '../../atoms/Logo';
-
 import {
   StyledBox,
   StyledHeader,
@@ -9,7 +7,8 @@ import {
 import { NavMenu } from './NavMenu';
 import { PersonalMenu } from './PersonalMenu';
 
-import Drawer from 'components/organisms/Drawer/Drawer';
+import { Logo } from 'components/atoms';
+import { Drawer } from 'components/organisms';
 
 export const Header = () => {
   return (

@@ -12,13 +12,12 @@ import {
   StyledVerificationTitle,
 } from './VerificationForm.styled';
 
-import { Logo } from 'components/atoms/Logo';
-import { ELogoSize } from 'components/atoms/Logo/Logo';
+import { Logo, ELogoSize } from 'components/atoms';
 import { VerificationInputs } from 'components/molecules';
 
 const mockEmail = 'user1@gmail.com';
 
-const VerificationForm = () => {
+export const VerificationForm = () => {
   const { t } = useTranslation('translation');
 
   const [values, setValues] = useState(Array(6).fill(''));
@@ -59,5 +58,3 @@ const VerificationForm = () => {
     </StyledBoxContainer>
   );
 };
-
-export default VerificationForm;

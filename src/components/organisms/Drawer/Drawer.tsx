@@ -21,12 +21,11 @@ import {
 import { UserCard } from 'components/molecules';
 import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
-import { useAppDispatch } from 'hooks/hook';
-import { useAppSelector } from 'hooks/hook';
+import { useAppDispatch, useAppSelector } from 'hooks/hook';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 
-export default function TemporaryDrawer() {
+export const TemporaryDrawer = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const user = useAppSelector(getUser);

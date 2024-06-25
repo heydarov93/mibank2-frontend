@@ -1,9 +1,8 @@
 import { VerificationPageWrapper } from './VerificationPage.styled';
 
-import { Footer } from 'components/organisms/Footer/Footer';
-import VerificationForm from 'components/organisms/VerificationForm/VerificationForm';
+import { Footer, VerificationForm } from 'components/organisms';
 
-const VerificationPage = () => {
+export const VerificationPage = () => {
   return (
     <>
       <VerificationPageWrapper>
@@ -13,5 +12,3 @@ const VerificationPage = () => {
     </>
   );
 };
-
-export default VerificationPage;

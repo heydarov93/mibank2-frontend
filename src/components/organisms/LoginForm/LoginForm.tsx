@@ -20,7 +20,7 @@ import { useForm, Controller, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorNotification } from '../ErrorNotification/ErrorNotification';
+import { ErrorNotification } from '../';
 import { policyLink, termsLink } from '../Footer/constants';
 
 import {
@@ -38,8 +38,7 @@ import {
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation } from 'api/authApi';
-import { Logo } from 'components/atoms/Logo';
-import { ELogoSize } from 'components/atoms/Logo/Logo';
+import { Logo, ELogoSize } from 'components/atoms';
 import { REG_EXP, validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks/hook';
