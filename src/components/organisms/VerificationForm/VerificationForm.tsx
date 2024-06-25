@@ -1,10 +1,11 @@
-import { Box, Input, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
 
 import {
+  StyledButton,
   StyledVerificationBoxTitle,
   StyledVerificationForm,
   StyledVerificationFormContent,
@@ -14,16 +15,50 @@ import {
 
 import { Logo, ELogoSize } from 'components/atoms';
 import { VerificationInputs } from 'components/molecules';
+import { convertSecondsToTime } from 'utils';
 
 const mockEmail = 'user1@gmail.com';
 
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
 
-  const [values, setValues] = useState(Array(6).fill(''));
+  const [value, setValue] = useState('');
+  const [remainingTime, setRemainingTime] = useState<number>(60);
+  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 
   const theme = useTheme();
-  const isDesctopView = useMediaQuery(theme.breakpoints.up('md'));
+  const isDesktopView = useMediaQuery(theme.breakpoints.up('md'));
+
+  const handleResendCode = () => {
+    // TODO: logic for resend code
+    console.log('Resend code');
+
+    setRemainingTime(600); //for failed attempts
+    setIsFormDisabled(true); //move to submit for 3 unfailed attempts
+  };
+
+  useEffect(() => {
+    if (remainingTime <= 0) {
+      return;
+    }
+    const timer = setInterval(() => {
+      setRemainingTime((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setIsFormDisabled(false);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [remainingTime]);
+
+  const remainingTimeLabel =
+    remainingTime > 0
+      ? ` ${t('VerificationPage.resendCodeIn')} ${convertSecondsToTime(remainingTime)}`
+      : t('VerificationPage.resendCode');
 
   return (
     <StyledBoxContainer>
@@ -33,7 +68,7 @@ export const VerificationForm = () => {
           {t('VerificationPage.verificationTitle')}
         </StyledVerificationTitle>
         <StyledVerificationSubTitle>
-          {isDesctopView
+          {isDesktopView
             ? t('VerificationPage.verificationTextMd')
             : t('VerificationPage.verificationTextSm')}{' '}
           {mockEmail}
@@ -41,20 +76,16 @@ export const VerificationForm = () => {
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <VerificationInputs />
+          <VerificationInputs
+            value={value}
+            onChange={setValue}
+            isFormDisabled={isFormDisabled}
+          />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
-      <Typography
-        textAlign="center"
-        sx={{
-          marginTop: '20px',
-          fontWeight: 500,
-          color: '#1847C1',
-          fontSize: `${isDesctopView ? `16px` : `12px`}`,
-        }}
-      >
-        {t('VerificationPage.recendCodeInTime')}
-      </Typography>
+      <StyledButton onClick={handleResendCode} disabled={remainingTime > 0}>
+        {remainingTimeLabel}
+      </StyledButton>
     </StyledBoxContainer>
   );
 };

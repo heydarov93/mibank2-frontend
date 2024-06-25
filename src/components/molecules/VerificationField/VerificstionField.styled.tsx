@@ -43,5 +43,9 @@ export const StyledInputElement = styled(Input)(
     '&.hasValue': {
       border: `1px solid ${palette.primary.main}`,
     },
+
+    '&.Mui-disabled': {
+      border: `1px solid ${palette.grey[300]}`,
+    },
   }),
 );

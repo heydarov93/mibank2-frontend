@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { ReactNode, Fragment, useRef, useState, useEffect } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import {
   StyledInputElement,
@@ -11,11 +11,13 @@ const VerificationCode = ({
   length,
   value,
   onChange,
+  isFormDisabled,
 }: {
   separator: React.ReactNode;
   length: number;
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  isFormDisabled: boolean;
 }) => {
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
@@ -74,7 +76,7 @@ const VerificationCode = ({
           setTimeout(() => setError(false), 1000);
         }
         setTimeout(() => {
-          selectInput(currentIndex + 1), focusInput(currentIndex + 1);
+          handleNavigation(1);
         }, 0);
         break;
     }
@@ -159,7 +161,7 @@ const VerificationCode = ({
       {new Array(length).fill(null).map((_, index) => (
         <Fragment key={index}>
           <StyledInputElement
-            disabled={index > value.length}
+            disabled={isFormDisabled || index > value.length}
             disableUnderline
             className={value[index] ? 'hasValue' : ''}
             slotProps={{ input: { style: { textAlign: 'center' } } }}
@@ -196,9 +198,17 @@ const VerificationCode = ({
   );
 };
 
-export const VerificationInputs = () => {
-  const [value, setValue] = useState('');
+interface VerificationInputsProps {
+  isFormDisabled: boolean;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
+}
 
+export const VerificationInputs = ({
+  isFormDisabled,
+  onChange,
+  value,
+}: VerificationInputsProps) => {
   return (
     <Box
       sx={{
@@ -211,7 +221,8 @@ export const VerificationInputs = () => {
       <VerificationCode
         separator={<span>-</span>}
         value={value}
-        onChange={setValue}
+        onChange={onChange}
+        isFormDisabled={isFormDisabled}
         length={6}
       />
     </Box>

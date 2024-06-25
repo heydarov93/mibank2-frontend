@@ -18,7 +18,9 @@ export const useErrorHandlers = () => {
   ) => {
     const { remainingAttempts, message } = error.data;
 
-    const errorMessage = formatErrorMessage(remainingAttempts, message);
+    const errorMessage = message
+      ? formatErrorMessage(remainingAttempts, message)
+      : 'An unknown error occurred';
 
     dispatch(setError(errorMessage));
   };
