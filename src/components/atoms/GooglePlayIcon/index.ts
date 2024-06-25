@@ -1,1 +1,0 @@
-export { GooglePlayIcon } from './GooglePlayIcon';

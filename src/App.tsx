@@ -2,9 +2,8 @@ import { Amplify } from 'aws-amplify';
 import { Outlet } from 'react-router-dom';
 
 import awsExports from './aws-exports';
-import { Header } from './components/organisms/Header';
 
-import { Footer } from 'components/organisms/Footer';
+import { Footer, Header } from 'components/organisms';
 
 Amplify.configure(awsExports);
 

@@ -11,8 +11,7 @@ import {
   TypographyGrey,
 } from './FooterContacts.styled';
 
-import { GooglePlayIcon } from 'components/atoms/GooglePlayIcon';
-import { Logo } from 'components/atoms/Logo';
+import { GooglePlayIcon, Logo } from 'components/atoms';
 
 export const FooterContacts = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
