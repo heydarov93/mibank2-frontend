@@ -1,7 +1,10 @@
 import { Box } from '@mui/material';
-import { ReactNode, Fragment, useRef, useState } from 'react';
+import { ReactNode, Fragment, useRef, useState, useEffect } from 'react';
 
-import { StyledInputElement } from './VerificstionField.styled';
+import {
+  StyledInputElement,
+  StyledVerificationBox,
+} from './VerificstionField.styled';
 
 const VerificationCode = ({
   separator,
@@ -14,6 +17,7 @@ const VerificationCode = ({
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
 }) => {
+  const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
   const focusInput = (targetIndex: number) => {
@@ -65,8 +69,13 @@ const VerificationCode = ({
 
       default:
         if (!/\d/.test(event.key)) {
+          setError(true);
           event.preventDefault();
+          setTimeout(() => setError(false), 1000);
         }
+        setTimeout(() => {
+          selectInput(currentIndex + 1), focusInput(currentIndex + 1);
+        }, 0);
         break;
     }
   };
@@ -146,26 +155,35 @@ const VerificationCode = ({
   };
 
   return (
-    <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+    <StyledVerificationBox className={error ? 'shake' : ''}>
       {new Array(length).fill(null).map((_, index) => (
         <Fragment key={index}>
           <StyledInputElement
+            disabled={index > value.length}
             disableUnderline
+            className={value[index] ? 'hasValue' : ''}
             slotProps={{ input: { style: { textAlign: 'center' } } }}
             inputRef={(el) => (inputRefs.current[index] = el!)}
             onKeyDown={(event) =>
-              handleKeyDown(event as React.KeyboardEvent<HTMLInputElement>, index )
-						}
+              handleKeyDown(
+                event as React.KeyboardEvent<HTMLInputElement>,
+                index,
+              )
+            }
             onChange={(event) =>
               handleChange(event as React.ChangeEvent<HTMLInputElement>, index)
             }
             onClick={(event) =>
               handleClick(
-                event as React.MouseEvent<HTMLInputElement, MouseEvent>, index,)
+                event as React.MouseEvent<HTMLInputElement, MouseEvent>,
+                index,
+              )
             }
             onPaste={(event) =>
               handlePaste(
-                event as React.ClipboardEvent<HTMLInputElement>,index,)
+                event as React.ClipboardEvent<HTMLInputElement>,
+                index,
+              )
             }
             placeholder="0"
             aria-label={`Digit ${index + 1} of Verification Code`}
@@ -174,7 +192,7 @@ const VerificationCode = ({
           {index === length / 2 - 1 ? separator : null}
         </Fragment>
       ))}
-    </Box>
+    </StyledVerificationBox>
   );
 };
 
