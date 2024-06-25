@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 
 import {
   StyledInputElement,
@@ -16,7 +16,7 @@ const VerificationCode = ({
   separator: React.ReactNode;
   length: number;
   value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string) => void;
   isFormDisabled: boolean;
 }) => {
   const [error, setError] = useState(false);
@@ -61,12 +61,12 @@ const VerificationCode = ({
         break;
       case 'Delete':
         event.preventDefault();
-        onChange((prev) => handleDeletion(prev));
+        onChange(handleDeletion(value));
         break;
       case 'Backspace':
         event.preventDefault();
         handleNavigation(-1);
-        onChange((prev) => handleDeletion(prev));
+        onChange(handleDeletion(value));
         break;
 
       default:
@@ -100,12 +100,14 @@ const VerificationCode = ({
         break;
       }
     }
-    onChange((prev) => {
-      const verificationArray = prev.split('');
-      const lastValue = currentValue[currentValue.length - 1];
-      verificationArray[indexToEnter] = lastValue;
-      return verificationArray.join('');
-    });
+
+    const verificationArray = value.split('');
+    const lastValue = currentValue[currentValue.length - 1];
+    verificationArray[indexToEnter] = lastValue;
+    const newValue = verificationArray.join('');
+
+    onChange(newValue);
+
     if (currentValue !== '') {
       if (currentIndex < length - 1) {
         focusInput(currentIndex + 1);
@@ -200,7 +202,7 @@ const VerificationCode = ({
 
 interface VerificationInputsProps {
   isFormDisabled: boolean;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string) => void;
   value: string;
 }
 

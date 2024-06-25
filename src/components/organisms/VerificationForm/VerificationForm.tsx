@@ -1,7 +1,9 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
+import { ErrorNotification } from '../';
 import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
 
 import {
@@ -15,26 +17,66 @@ import {
 
 import { Logo, ELogoSize } from 'components/atoms';
 import { VerificationInputs } from 'components/molecules';
-import { convertSecondsToTime } from 'utils';
+import { useAppDispatch } from 'hooks/hook';
+import { setError } from 'store/reducers';
+import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
 const mockEmail = 'user1@gmail.com';
+const mockCode = '123456';
 
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
+  const dispatch = useAppDispatch();
 
   const [value, setValue] = useState('');
   const [remainingTime, setRemainingTime] = useState<number>(60);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [failedAttempts, setFailedAttempts] = useState<number>(1);
 
   const theme = useTheme();
+  const navigate = useNavigate();
   const isDesktopView = useMediaQuery(theme.breakpoints.up('md'));
 
-  const handleResendCode = () => {
-    // TODO: logic for resend code
-    console.log('Resend code');
+  const { formatErrorMessage } = useFormatErrorMessage();
 
-    setRemainingTime(600); //for failed attempts
-    setIsFormDisabled(true); //move to submit for 3 unfailed attempts
+  const handleInputChange = (newValue: string) => {
+    setValue(newValue);
+
+    if (newValue.length === 6) {
+      handleVerificationSubmit(newValue);
+    }
+  };
+
+  const handleVerificationSubmit = (value: string) => {
+    // Simulate backend verification (replace with actual API call in real implementation)
+    const maxAttempts = 3;
+
+    if (value === mockCode) {
+      setFailedAttempts(1);
+      navigate('/');
+    } else {
+      setValue('');
+      setFailedAttempts((prevAttempts) => prevAttempts + 1);
+
+      if (failedAttempts < maxAttempts) {
+        const remainingAttempts = maxAttempts - failedAttempts;
+        const message =
+          'Verification code is incorrect. Enter correct code or resend the code or contact us.';
+
+        const errorMessage = formatErrorMessage(remainingAttempts, message);
+
+        dispatch(setError(errorMessage));
+      } else if (failedAttempts >= maxAttempts) {
+        setIsFormDisabled(true);
+        setRemainingTime(600);
+        setFailedAttempts(1);
+
+        const errorMessage =
+          'Too many failed attempts. Please try to request the code again in 10 minutes or contact us for assistance';
+
+        dispatch(setError(errorMessage));
+      }
+    }
   };
 
   useEffect(() => {
@@ -62,6 +104,9 @@ export const VerificationForm = () => {
 
   return (
     <StyledBoxContainer>
+      <ErrorNotification
+        position={{ vertical: 'bottom', horizontal: 'center' }}
+      />
       <Logo size={ELogoSize.MEDIUM} />
       <StyledVerificationBoxTitle>
         <StyledVerificationTitle>
@@ -78,12 +123,12 @@ export const VerificationForm = () => {
         <StyledVerificationFormContent>
           <VerificationInputs
             value={value}
-            onChange={setValue}
+            onChange={handleInputChange}
             isFormDisabled={isFormDisabled}
           />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
-      <StyledButton onClick={handleResendCode} disabled={remainingTime > 0}>
+      <StyledButton disabled={remainingTime > 0}>
         {remainingTimeLabel}
       </StyledButton>
     </StyledBoxContainer>
