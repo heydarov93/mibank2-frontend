@@ -128,6 +128,7 @@ export const LoginForm = () => {
 
   const handleCleanField = () => {
     if (errors.password) resetField('password');
+    if (errors.email) resetField('email');
   };
 
   const preventChange = (e: SyntheticEvent) => {
