@@ -320,6 +320,7 @@ export const LoginForm = () => {
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDown}
                             edge="end"
+                            disabled={isFormDisabled}
                           >
                             {showPassword ? (
                               <VisibilityOffOutlined />
