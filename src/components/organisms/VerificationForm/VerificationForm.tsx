@@ -1,9 +1,10 @@
-import { Box, Input, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
 
+import { VerificationField } from './VerificationField';
 import {
   StyledVerificationBoxTitle,
   StyledVerificationForm,
@@ -13,7 +14,6 @@ import {
 } from './VerificationForm.styled';
 
 import { Logo, ELogoSize } from 'components/atoms';
-import { VerificationInputs } from 'components/molecules';
 
 const mockEmail = 'user1@gmail.com';
 
@@ -41,7 +41,7 @@ export const VerificationForm = () => {
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <VerificationInputs />
+          <VerificationField />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
       <Typography
