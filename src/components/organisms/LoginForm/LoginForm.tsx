@@ -355,7 +355,11 @@ export const LoginForm = () => {
                     '&.Mui-checked': {
                       color: 'primary',
                     },
+                    '&.Mui-disabled': {
+                      color: theme.palette.grey[300],
+                    },
                   }}
+                  disabled={isFormDisabled}
                   {...field}
                 />
               );
@@ -369,6 +373,7 @@ export const LoginForm = () => {
                 ? theme.palette.error.main
                 : theme.palette.common.black,
             }}
+            className={isFormDisabled ? 'disabled' : ''}
           >
             {`${t('LoginPage.termsText')} `}
 
