@@ -27,6 +27,7 @@ export const PersonalMenu = () => {
   const logoutHandler = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
+    localStorage.clear();
   };
 
   const theme = useTheme();
