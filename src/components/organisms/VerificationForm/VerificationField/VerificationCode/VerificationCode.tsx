@@ -1,12 +1,11 @@
-import { Box } from '@mui/material';
-import { ReactNode, Fragment, useRef, useState, useEffect } from 'react';
+import { Fragment, useRef, useState } from 'react';
 
 import {
   StyledInputElement,
   StyledVerificationBox,
-} from './VerificstionField.styled';
+} from './VerificstionCode.styled';
 
-const VerificationCode = ({
+export const VerificationCode = ({
   separator,
   length,
   value,
@@ -73,9 +72,7 @@ const VerificationCode = ({
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
         }
-        setTimeout(() => {
-          selectInput(currentIndex + 1), focusInput(currentIndex + 1);
-        }, 0);
+        setTimeout(() => handleNavigation(1), 0);
         break;
     }
   };
@@ -193,27 +190,5 @@ const VerificationCode = ({
         </Fragment>
       ))}
     </StyledVerificationBox>
-  );
-};
-
-export const VerificationInputs = () => {
-  const [value, setValue] = useState('');
-
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-        marginTop: 2,
-      }}
-    >
-      <VerificationCode
-        separator={<span>-</span>}
-        value={value}
-        onChange={setValue}
-        length={6}
-      />
-    </Box>
   );
 };

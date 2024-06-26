@@ -100,4 +100,4 @@ export const TemporaryDrawer = () => {
       </Drawer>
     </StyledDrawerContainer>
   );
-}
+};
