@@ -10,7 +10,7 @@ export const userInfoApi = createApi({
   reducerPath: 'userInfoApi',
   baseQuery: baseQueryCreator(),
   endpoints: (builder) => ({
-    getUserInfo: builder.query<IUserInfo, string | undefined>({
+    getUserInfo: builder.query<IUserInfo, string>({
       query: (email) =>
         `${endpoints.userAccountManagement.users.userInformation}?email=${email}`,
     }),

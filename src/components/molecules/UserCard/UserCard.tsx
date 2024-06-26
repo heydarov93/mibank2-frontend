@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { skipToken } from '@reduxjs/toolkit/query';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,6 +19,7 @@ import { IUserInfo } from 'models/IUserInfo';
 import { setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 
+
 type PersonalMenuProps = {
   user?: IUserInfo;
   isViceversa?: boolean;
@@ -34,9 +36,9 @@ export const UserCard = ({
 
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
-  const email = useAppSelector(getUser)?.email;
+  const email = localStorage.getItem('email');
 
-  const { data, isLoading } = useGetUserInfoQuery(email);
+  const { data, isLoading } = useGetUserInfoQuery(email ?? skipToken);
 
   useEffect(() => {
     if (!isLoading) {
