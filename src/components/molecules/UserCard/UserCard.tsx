@@ -19,7 +19,6 @@ import { IUserInfo } from 'models/IUserInfo';
 import { setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 
-
 type PersonalMenuProps = {
   user?: IUserInfo;
   isViceversa?: boolean;

@@ -371,12 +371,8 @@ export const LoginForm = () => {
 
           <AgreementContainer
             variant="body2"
-            sx={{
-              color: errors.checkbox
-                ? theme.palette.error.main
-                : theme.palette.common.black,
-            }}
-            className={isFormDisabled ? 'disabled' : ''}
+            disabled={isFormDisabled}
+            hasError={Boolean(errors.checkbox)}
           >
             {`${t('LoginPage.termsText')} `}
 
