@@ -38,6 +38,7 @@ export const TemporaryDrawer = () => {
   const logoutHandler = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
+    localStorage.clear();
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });

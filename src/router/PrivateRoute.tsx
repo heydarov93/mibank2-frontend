@@ -8,7 +8,7 @@ import { getIsAuth, getLoading } from 'store/selectors/AuthSelectors';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const isAuth = useAppSelector(getIsAuth);
+  const isAuth = localStorage.getItem('isAuth');
   const loading = useAppSelector(getLoading);
 
   useEffect(() => {
