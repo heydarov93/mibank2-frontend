@@ -1,11 +1,18 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
 
 import { VerificationCode } from './VerificationCode';
 
-export const VerificationField = () => {
-  const [value, setValue] = useState('');
+interface VerificationFieldProps {
+  isFormDisabled: boolean;
+  onChange: (value: string) => void;
+  value: string;
+}
 
+export const VerificationField = ({
+  isFormDisabled,
+  onChange,
+  value,
+}: VerificationFieldProps) => {
   return (
     <Box
       sx={{
@@ -18,7 +25,8 @@ export const VerificationField = () => {
       <VerificationCode
         separator={<span>-</span>}
         value={value}
-        onChange={setValue}
+        onChange={onChange}
+        isFormDisabled={isFormDisabled}
         length={6}
       />
     </Box>

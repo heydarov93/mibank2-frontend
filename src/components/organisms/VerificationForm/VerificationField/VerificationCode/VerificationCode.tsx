@@ -10,11 +10,13 @@ export const VerificationCode = ({
   length,
   value,
   onChange,
+  isFormDisabled,
 }: {
   separator: React.ReactNode;
   length: number;
   value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string) => void;
+  isFormDisabled: boolean;
 }) => {
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
@@ -58,12 +60,12 @@ export const VerificationCode = ({
         break;
       case 'Delete':
         event.preventDefault();
-        onChange((prev) => handleDeletion(prev));
+        onChange(handleDeletion(value));
         break;
       case 'Backspace':
         event.preventDefault();
         handleNavigation(-1);
-        onChange((prev) => handleDeletion(prev));
+        onChange(handleDeletion(value));
         break;
 
       default:
@@ -95,12 +97,14 @@ export const VerificationCode = ({
         break;
       }
     }
-    onChange((prev) => {
-      const verificationArray = prev.split('');
-      const lastValue = currentValue[currentValue.length - 1];
-      verificationArray[indexToEnter] = lastValue;
-      return verificationArray.join('');
-    });
+
+    const verificationArray = value.split('');
+    const lastValue = currentValue[currentValue.length - 1];
+    verificationArray[indexToEnter] = lastValue;
+    const newValue = verificationArray.join('');
+
+    onChange(newValue);
+
     if (currentValue !== '') {
       if (currentIndex < length - 1) {
         focusInput(currentIndex + 1);
@@ -156,7 +160,7 @@ export const VerificationCode = ({
       {new Array(length).fill(null).map((_, index) => (
         <Fragment key={index}>
           <StyledInputElement
-            disabled={index > value.length}
+            disabled={isFormDisabled || index > value.length}
             disableUnderline
             className={value[index] ? 'hasValue' : ''}
             slotProps={{ input: { style: { textAlign: 'center' } } }}
