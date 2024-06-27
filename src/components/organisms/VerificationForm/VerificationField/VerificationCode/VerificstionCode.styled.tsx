@@ -46,6 +46,7 @@ export const StyledInputElement = styled(Input, {
   },
 
   ...(isCorrect && {
+    color: palette.success.dark,
     border: `1px solid ${palette.success.dark}`,
     backgroundColor: `${palette.success.light}`,
     '&.hasValue': {
