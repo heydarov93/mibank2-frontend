@@ -99,6 +99,7 @@ export const LoginForm = () => {
 
   const [remainingTime, setRemainingTime] = useState<number>(0);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [lockoutEndTime, setLockoutEndTime] = useState<number>(0);
 
   const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (currentPasswordValue) {
@@ -152,8 +153,6 @@ export const LoginForm = () => {
       localStorage.setItem('isAuth', 'true');
       resetForm();
     } catch (e) {
-      // TODO: make redirect to default page
-      // navigate('/signin');
       const error = e as IErrorData;
 
       if (e instanceof Error) {
@@ -165,7 +164,12 @@ export const LoginForm = () => {
             resetField('password');
             break;
           case ErrorStatus.LOCKED:
-            handleLockedError(error, setIsFormDisabled, setRemainingTime);
+            handleLockedError(
+              error,
+              setIsFormDisabled,
+              setRemainingTime,
+              setLockoutEndTime,
+            );
             resetField('password');
             break;
           default:
@@ -210,26 +214,28 @@ export const LoginForm = () => {
 
   const urlTerms = `${termsLink}${generateRandomParam()}`;
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
+  const timeUntilUnlock = lockoutEndTime ? lockoutEndTime - Date.now() : 0;
   const remainingTimeLabel =
-    remainingTime > 0 ? ` (${convertSecondsToTime(remainingTime)})` : '';
+    timeUntilUnlock > 0
+      ? ` (${convertSecondsToTime(Math.ceil(remainingTime / 1000))})`
+      : '';
 
   useEffect(() => {
-    if (!isFormDisabled || remainingTime <= 0) {
+    if (!isFormDisabled || lockoutEndTime <= 0) {
       return;
     }
+
     const timer = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime <= 1) {
-          clearInterval(timer);
-          setIsFormDisabled(false);
-          return 0;
-        }
-        return prevTime - 1;
-      });
+      const timeLeft = lockoutEndTime - Date.now();
+      setRemainingTime(timeLeft);
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        setIsFormDisabled(false);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isFormDisabled, remainingTime]);
+  }, [isFormDisabled, lockoutEndTime]);
 
   return (
     <StyledBoxContainer>
