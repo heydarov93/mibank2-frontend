@@ -32,6 +32,7 @@ export const VerificationForm = () => {
   const [remainingTime, setRemainingTime] = useState<number>(60);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [failedAttempts, setFailedAttempts] = useState<number>(1);
+  const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
 
   const theme = useTheme();
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ export const VerificationForm = () => {
 
   const handleInputChange = (newValue: string) => {
     setValue(newValue);
+    setIsCodeCorrect(newValue === mockCode);
 
     if (newValue.length === 6) {
       handleVerificationSubmit(newValue);
@@ -52,11 +54,14 @@ export const VerificationForm = () => {
     const maxAttempts = 3;
 
     if (value === mockCode) {
+      setIsCodeCorrect(true);
       setFailedAttempts(1);
-      navigate('/');
+
+      setTimeout(() => navigate('/'), 1000);
     } else {
       setValue('');
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
+      setIsCodeCorrect(false);
 
       if (failedAttempts < maxAttempts) {
         const remainingAttempts = maxAttempts - failedAttempts;
@@ -125,6 +130,7 @@ export const VerificationForm = () => {
             value={value}
             onChange={handleInputChange}
             isFormDisabled={isFormDisabled}
+            isCodeCorrect={isCodeCorrect}
           />
         </StyledVerificationFormContent>
       </StyledVerificationForm>

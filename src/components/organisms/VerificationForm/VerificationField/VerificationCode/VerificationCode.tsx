@@ -5,19 +5,23 @@ import {
   StyledVerificationBox,
 } from './VerificstionCode.styled';
 
+interface VerificationCodeProps {
+  separator: React.ReactNode;
+  length: number;
+  value: string;
+  isCodeCorrect: boolean;
+  isFormDisabled: boolean;
+  onChange: (value: string) => void;
+}
+
 export const VerificationCode = ({
   separator,
   length,
   value,
-  onChange,
+  isCodeCorrect,
   isFormDisabled,
-}: {
-  separator: React.ReactNode;
-  length: number;
-  value: string;
-  onChange: (value: string) => void;
-  isFormDisabled: boolean;
-}) => {
+  onChange,
+}: VerificationCodeProps) => {
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
@@ -163,6 +167,7 @@ export const VerificationCode = ({
             disabled={isFormDisabled || index > value.length}
             disableUnderline
             className={value[index] ? 'hasValue' : ''}
+            isCorrect={isCodeCorrect}
             slotProps={{ input: { style: { textAlign: 'center' } } }}
             inputRef={(el) => (inputRefs.current[index] = el!)}
             onKeyDown={(event) =>

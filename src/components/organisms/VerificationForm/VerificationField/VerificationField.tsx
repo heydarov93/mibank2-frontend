@@ -3,12 +3,14 @@ import { Box } from '@mui/material';
 import { VerificationCode } from './VerificationCode';
 
 interface VerificationFieldProps {
+  isCodeCorrect: boolean;
   isFormDisabled: boolean;
   onChange: (value: string) => void;
   value: string;
 }
 
 export const VerificationField = ({
+  isCodeCorrect,
   isFormDisabled,
   onChange,
   value,
@@ -26,6 +28,7 @@ export const VerificationField = ({
         separator={<span>-</span>}
         value={value}
         onChange={onChange}
+        isCodeCorrect={isCodeCorrect}
         isFormDisabled={isFormDisabled}
         length={6}
       />
