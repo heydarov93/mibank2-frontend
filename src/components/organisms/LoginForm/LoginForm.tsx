@@ -128,6 +128,7 @@ export const LoginForm = () => {
 
   const handleCleanField = () => {
     if (errors.password) resetField('password');
+    if (errors.email) resetField('email');
   };
 
   const preventChange = (e: SyntheticEvent) => {
@@ -146,8 +147,9 @@ export const LoginForm = () => {
       localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
       dispatch(setLogIn());
       dispatch(setLoading(true));
-      navigate('/');
-
+      navigate('/verification');
+      localStorage.setItem('email', credentials.email);
+      localStorage.setItem('isAuth', 'true');
       resetForm();
     } catch (e) {
       // TODO: make redirect to default page
@@ -320,6 +322,7 @@ export const LoginForm = () => {
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDown}
                             edge="end"
+                            disabled={isFormDisabled}
                           >
                             {showPassword ? (
                               <VisibilityOffOutlined />

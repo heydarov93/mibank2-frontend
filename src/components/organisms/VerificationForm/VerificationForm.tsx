@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorNotification } from '../';
 import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
 
+import { VerificationField } from './VerificationField';
 import {
   StyledButton,
   StyledVerificationBoxTitle,
@@ -16,7 +17,6 @@ import {
 } from './VerificationForm.styled';
 
 import { Logo, ELogoSize } from 'components/atoms';
-import { VerificationInputs } from 'components/molecules';
 import { useAppDispatch } from 'hooks/hook';
 import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
@@ -121,7 +121,7 @@ export const VerificationForm = () => {
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <VerificationInputs
+          <VerificationField
             value={value}
             onChange={handleInputChange}
             isFormDisabled={isFormDisabled}

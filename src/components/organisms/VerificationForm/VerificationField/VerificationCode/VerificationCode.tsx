@@ -1,23 +1,20 @@
-import { Box } from '@mui/material';
 import { Fragment, useRef, useState } from 'react';
 
 import {
   StyledInputElement,
   StyledVerificationBox,
-} from './VerificstionField.styled';
+} from './VerificstionCode.styled';
 
-const VerificationCode = ({
+export const VerificationCode = ({
   separator,
   length,
   value,
   onChange,
-  isFormDisabled,
 }: {
   separator: React.ReactNode;
   length: number;
   value: string;
-  onChange: (value: string) => void;
-  isFormDisabled: boolean;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
@@ -61,12 +58,12 @@ const VerificationCode = ({
         break;
       case 'Delete':
         event.preventDefault();
-        onChange(handleDeletion(value));
+        onChange((prev) => handleDeletion(prev));
         break;
       case 'Backspace':
         event.preventDefault();
         handleNavigation(-1);
-        onChange(handleDeletion(value));
+        onChange((prev) => handleDeletion(prev));
         break;
 
       default:
@@ -75,9 +72,7 @@ const VerificationCode = ({
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
         }
-        setTimeout(() => {
-          handleNavigation(1);
-        }, 0);
+        setTimeout(() => handleNavigation(1), 0);
         break;
     }
   };
@@ -100,14 +95,12 @@ const VerificationCode = ({
         break;
       }
     }
-
-    const verificationArray = value.split('');
-    const lastValue = currentValue[currentValue.length - 1];
-    verificationArray[indexToEnter] = lastValue;
-    const newValue = verificationArray.join('');
-
-    onChange(newValue);
-
+    onChange((prev) => {
+      const verificationArray = prev.split('');
+      const lastValue = currentValue[currentValue.length - 1];
+      verificationArray[indexToEnter] = lastValue;
+      return verificationArray.join('');
+    });
     if (currentValue !== '') {
       if (currentIndex < length - 1) {
         focusInput(currentIndex + 1);
@@ -163,7 +156,7 @@ const VerificationCode = ({
       {new Array(length).fill(null).map((_, index) => (
         <Fragment key={index}>
           <StyledInputElement
-            disabled={isFormDisabled || index > value.length}
+            disabled={index > value.length}
             disableUnderline
             className={value[index] ? 'hasValue' : ''}
             slotProps={{ input: { style: { textAlign: 'center' } } }}
@@ -197,36 +190,5 @@ const VerificationCode = ({
         </Fragment>
       ))}
     </StyledVerificationBox>
-  );
-};
-
-interface VerificationInputsProps {
-  isFormDisabled: boolean;
-  onChange: (value: string) => void;
-  value: string;
-}
-
-export const VerificationInputs = ({
-  isFormDisabled,
-  onChange,
-  value,
-}: VerificationInputsProps) => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
-        marginTop: 2,
-      }}
-    >
-      <VerificationCode
-        separator={<span>-</span>}
-        value={value}
-        onChange={onChange}
-        isFormDisabled={isFormDisabled}
-        length={6}
-      />
-    </Box>
   );
 };
