@@ -88,15 +88,17 @@ export const VerificationForm = () => {
     if (remainingTime <= 0) {
       return;
     }
+    const endTime = Date.now() + remainingTime * 1000;
+
     const timer = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime <= 1) {
-          clearInterval(timer);
-          setIsFormDisabled(false);
-          return 0;
-        }
-        return prevTime - 1;
-      });
+      const now = Date.now();
+      const timeLeft = Math.max((endTime - now) / 1000, 0);
+      setRemainingTime(Math.floor(timeLeft));
+
+      if (timeLeft <= 0) {
+        setIsFormDisabled(false);
+        clearInterval(timer);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
