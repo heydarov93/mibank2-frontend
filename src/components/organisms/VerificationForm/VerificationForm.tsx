@@ -1,11 +1,14 @@
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
-import { useState } from 'react';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
+import { ErrorNotification } from '../';
 import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
 
 import { VerificationField } from './VerificationField';
 import {
+  StyledButton,
   StyledVerificationBoxTitle,
   StyledVerificationForm,
   StyledVerificationFormContent,
@@ -14,26 +17,110 @@ import {
 } from './VerificationForm.styled';
 
 import { Logo, ELogoSize } from 'components/atoms';
+import { useAppDispatch } from 'hooks/hook';
+import { setError } from 'store/reducers';
+import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
 const mockEmail = 'user1@gmail.com';
+const mockCode = '123456';
 
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
+  const dispatch = useAppDispatch();
 
-  const [values, setValues] = useState(Array(6).fill(''));
+  const [value, setValue] = useState('');
+  const [remainingTime, setRemainingTime] = useState<number>(60);
+  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [failedAttempts, setFailedAttempts] = useState<number>(1);
+  const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
 
   const theme = useTheme();
-  const isDesctopView = useMediaQuery(theme.breakpoints.up('md'));
+  const navigate = useNavigate();
+  const isDesktopView = useMediaQuery(theme.breakpoints.up('md'));
+
+  const { formatErrorMessage } = useFormatErrorMessage();
+
+  const handleInputChange = (newValue: string) => {
+    setValue(newValue);
+    setIsCodeCorrect(newValue === mockCode);
+
+    if (newValue.length === 6) {
+      handleVerificationSubmit(newValue);
+    }
+  };
+
+  const handleVerificationSubmit = (value: string) => {
+    // Simulate backend verification (replace with actual API call in real implementation)
+    const maxAttempts = 3;
+
+    if (value === mockCode) {
+      setIsCodeCorrect(true);
+      setFailedAttempts(1);
+
+      setTimeout(() => navigate('/'), 1000);
+    } else {
+      setValue('');
+      setFailedAttempts((prevAttempts) => prevAttempts + 1);
+      setIsCodeCorrect(false);
+
+      if (failedAttempts < maxAttempts) {
+        const remainingAttempts = maxAttempts - failedAttempts;
+        const message =
+          'Verification code is incorrect. Enter correct code or resend the code or contact us.';
+
+        const errorMessage = formatErrorMessage(remainingAttempts, message);
+
+        dispatch(setError(errorMessage));
+      } else if (failedAttempts >= maxAttempts) {
+        setIsFormDisabled(true);
+        setRemainingTime(600);
+        setFailedAttempts(1);
+
+        const errorMessage =
+          'Too many failed attempts. Please try to request the code again in 10 minutes or contact us for assistance';
+
+        dispatch(setError(errorMessage));
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (remainingTime <= 0) {
+      return;
+    }
+    const endTime = Date.now() + remainingTime * 1000;
+
+    const timer = setInterval(() => {
+      const now = Date.now();
+      const timeLeft = Math.max((endTime - now) / 1000, 0);
+      setRemainingTime(Math.floor(timeLeft));
+
+      if (timeLeft <= 0) {
+        setIsFormDisabled(false);
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [remainingTime]);
+
+  const remainingTimeLabel =
+    remainingTime > 0
+      ? ` ${t('VerificationPage.resendCodeIn')} ${convertSecondsToTime(remainingTime)}`
+      : t('VerificationPage.resendCode');
 
   return (
     <StyledBoxContainer>
+      <ErrorNotification
+        position={{ vertical: 'bottom', horizontal: 'center' }}
+      />
       <Logo size={ELogoSize.MEDIUM} />
       <StyledVerificationBoxTitle>
         <StyledVerificationTitle>
           {t('VerificationPage.verificationTitle')}
         </StyledVerificationTitle>
         <StyledVerificationSubTitle>
-          {isDesctopView
+          {isDesktopView
             ? t('VerificationPage.verificationTextMd')
             : t('VerificationPage.verificationTextSm')}{' '}
           {mockEmail}
@@ -41,20 +128,17 @@ export const VerificationForm = () => {
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <VerificationField />
+          <VerificationField
+            value={value}
+            onChange={handleInputChange}
+            isFormDisabled={isFormDisabled}
+            isCodeCorrect={isCodeCorrect}
+          />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
-      <Typography
-        textAlign="center"
-        sx={{
-          marginTop: '20px',
-          fontWeight: 500,
-          color: '#1847C1',
-          fontSize: `${isDesctopView ? `16px` : `12px`}`,
-        }}
-      >
-        {t('VerificationPage.recendCodeInTime')}
-      </Typography>
+      <StyledButton disabled={remainingTime > 0}>
+        {remainingTimeLabel}
+      </StyledButton>
     </StyledBoxContainer>
   );
 };

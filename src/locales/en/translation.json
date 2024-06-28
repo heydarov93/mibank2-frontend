@@ -47,7 +47,8 @@
     "verificationTitle": "Enter verification code",
     "verificationTextSm": "Enter the verification code we sent via email",
     "verificationTextMd": "Enter the verification code we sent via email to your registered email",
-    "recendCodeInTime": "Resend code in"
+    "resendCode": "Resend code",
+    "resendCodeIn": "Resend code in"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",
