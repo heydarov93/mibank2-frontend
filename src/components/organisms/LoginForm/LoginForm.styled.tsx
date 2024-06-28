@@ -141,15 +141,23 @@ export const CheckboxStyledContainer = styled(Box)(
   }),
 );
 
-export const AgreementContainer = styled(Typography)(
-  ({ theme: { breakpoints, spacing } }) => ({
-    paddingTop: spacing(2),
+export const AgreementContainer = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',
+})<{ disabled: boolean; hasError: boolean }>(
+  ({ theme, disabled, hasError }) => ({
+    paddingTop: theme.spacing(2),
     lineHeight: '16px',
     letterSpacing: 0.5,
-    fontWeight: 500,
+    fontWeight: 400,
 
-    [breakpoints.up('sm')]: {
-      paddingTop: spacing(0),
+    color: hasError
+      ? theme.palette.error.main
+      : disabled
+        ? theme.palette.grey[300]
+        : theme.palette.common.black,
+
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing(0),
     },
   }),
 );
