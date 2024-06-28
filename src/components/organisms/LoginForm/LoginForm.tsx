@@ -364,7 +364,11 @@ export const LoginForm = () => {
                     '&.Mui-checked': {
                       color: 'primary',
                     },
+                    '&.Mui-disabled': {
+                      color: theme.palette.grey[300],
+                    },
                   }}
+                  disabled={isFormDisabled}
                   {...field}
                 />
               );
@@ -373,11 +377,8 @@ export const LoginForm = () => {
 
           <AgreementContainer
             variant="body2"
-            sx={{
-              color: errors.checkbox
-                ? theme.palette.error.main
-                : theme.palette.common.black,
-            }}
+            disabled={isFormDisabled}
+            hasError={Boolean(errors.checkbox)}
           >
             {`${t('LoginPage.termsText')} `}
 

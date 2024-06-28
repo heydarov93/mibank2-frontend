@@ -73,7 +73,10 @@ export const VerificationCode = ({
         break;
 
       default:
-        if (!/\d/.test(event.key)) {
+        if (event.ctrlKey && (event.key === 'v' || event.key === 'V')) {
+          break;
+        }
+        if (!/\d/.test(event.key) && !event.ctrlKey) {
           setError(true);
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
@@ -133,9 +136,9 @@ export const VerificationCode = ({
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.substring(0, length).trim();
+      pastedText = pastedText.replace(/[^0-9]/g, '').substring(0, length);
       let indexToEnter = 0;
-      if (!/^\d+$/.test(pastedText)) return;
+      if (!pastedText) return;
 
       while (indexToEnter <= currentIndex) {
         if (
@@ -148,13 +151,17 @@ export const VerificationCode = ({
         }
       }
 
-      const verificationArr = value.split('');
+      let verificationArr = value.split('');
 
       for (let i = indexToEnter; i < length; i += 1) {
-        const lastValue = pastedText[i - indexToEnter] ?? ' ';
+        const lastValue = pastedText[i - indexToEnter] ?? '';
         verificationArr[i] = lastValue;
       }
-
+      verificationArr = verificationArr.slice(0, length);
+      setTimeout(() => {
+        selectInput(verificationArr.length - 1);
+        focusInput(verificationArr.length - 1);
+      }, 0);
       onChange(verificationArr.join(''));
     }
   };
