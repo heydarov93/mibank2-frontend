@@ -130,6 +130,10 @@ export const LoginForm = () => {
   const handleCleanField = () => {
     if (errors.password) resetField('password');
     if (errors.email) resetField('email');
+    if (errors.checkbox) {
+      dispatch(setError(t('LoginPage.errorTermsPrivacyRequired')));
+      resetField('checkbox', { defaultValue: false });
+    }
   };
 
   const preventChange = (e: SyntheticEvent) => {

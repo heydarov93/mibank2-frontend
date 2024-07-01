@@ -25,6 +25,7 @@
       "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
       "label": "Password"
     },
+    "errorTermsPrivacyRequired": "Please read and agree to our Terms of Use and Privacy Policy to continue",
     "formTitle": "Log in and let's start!",
     "formText": "Remember me",
     "formBtnSignIn": "Log In",
