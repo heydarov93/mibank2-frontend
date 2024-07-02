@@ -1,4 +1,11 @@
-import { styled, TextField, keyframes, Typography, Box } from '@mui/material';
+import {
+  styled,
+  TextField,
+  keyframes,
+  Typography,
+  Box,
+  Link,
+} from '@mui/material';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 const shakeAnimation = keyframes`
@@ -171,3 +178,24 @@ export const StyledButtonContainer = styled(Box)(
     },
   }),
 );
+
+export const StyledSignUpLinkContainer = styled(Box)(
+  ({ theme: { breakpoints, palette } }) => ({
+    display: 'flex',
+    paddingTop: 39,
+    fontSize: 16,
+    fontWeight: 400,
+    color: palette.common.black,
+
+    [breakpoints.up('sm')]: {
+      paddingTop: 31,
+    },
+  }),
+);
+
+export const StyledSignUpLink = styled(Link)(({ theme }) => ({
+  paddingLeft: 8,
+  fontWeight: 500,
+  textDecoration: 'none',
+  color: theme.palette.primary.main,
+}));
