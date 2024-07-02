@@ -39,6 +39,10 @@ const routes = createBrowserRouter([
     element: <LoginPage />,
   },
   {
+    path: '/signup',
+    element: <UnderDevPage />,
+  },
+  {
     path: '/verification',
     element: <VerificationPage />,
   },

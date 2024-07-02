@@ -14,6 +14,7 @@ import {
   Box,
   ClickAwayListener,
   useTheme,
+  Typography,
 } from '@mui/material';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
@@ -34,6 +35,8 @@ import {
   StyledFormContent,
   StyledFormTitle,
   StyledLable,
+  StyledSignUpLink,
+  StyledSignUpLinkContainer,
   StyledTextField,
 } from './LoginForm.styled';
 
@@ -432,6 +435,12 @@ export const LoginForm = () => {
           </Button>
         </StyledButtonContainer>
       </StyledForm>
+      <StyledSignUpLinkContainer>
+        <Typography>{t('LoginPage.signUpLink')}</Typography>
+        <StyledSignUpLink href="/signup">
+          {t('LoginPage.formBtnSignUp')}
+        </StyledSignUpLink>
+      </StyledSignUpLinkContainer>
     </StyledBoxContainer>
   );
 };
