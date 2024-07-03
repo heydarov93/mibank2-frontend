@@ -22,7 +22,7 @@ interface CheckboxWithLabelProps {
   isFormDisabled: boolean;
 }
 
-const CheckboxWithLabel = ({
+export const CheckboxWithLabel = ({
   control,
   errors,
   isFormDisabled,
@@ -97,5 +97,3 @@ const CheckboxWithLabel = ({
     </CheckboxStyledContainer>
   );
 };
-
-export default CheckboxWithLabel;

@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ErrorNotification } from '../';
 
-import CheckboxWithLabel from './CheckboxWithLabel/CheckboxWithLabel';
+import { CheckboxWithLabel } from './CheckboxWithLabel';
 import {
   BootstrapTooltip,
   StyledBoxContainer,
