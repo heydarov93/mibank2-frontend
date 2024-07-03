@@ -1,5 +1,4 @@
 import { styled, TextField, Typography, Box } from '@mui/material';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 export const StyledBoxContainer = styled(Box)(() => ({
   display: 'flex',
@@ -53,48 +52,6 @@ export const StyledFormTitle = styled(Typography)(
     },
   }),
 );
-
-export const StyledErrorHint = styled(Box)(
-  ({ theme: { spacing, palette } }) => ({
-    color: palette.common.black,
-    paddingLeft: spacing(0.5),
-    display: 'flex',
-    alignItems: 'center',
-
-    '& svg': {
-      width: 16,
-      height: 16,
-    },
-  }),
-);
-
-export const BootstrapTooltip = styled(
-  ({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ),
-)(({ theme: { breakpoints, palette, spacing } }) => {
-  return {
-    '& .MuiTooltip-tooltip': {
-      backgroundColor: palette.grey[400],
-      width: 255,
-      maxWidth: 500,
-      fontSize: 10,
-      lineHeight: '14px',
-      fontWeight: 500,
-      margin: `0 ${spacing(1)} !important`,
-
-      padding: `${spacing(0.5)} ${spacing(1)}`,
-
-      [breakpoints.up('sm')]: {
-        width: 350,
-      },
-    },
-
-    '&.MuiTooltip-touch': {
-      padding: `${spacing(0.5)} ${spacing(1)}`,
-    },
-  };
-});
 
 export const StyledTextField = styled(TextField)(
   ({ theme: { palette, animations } }) => ({

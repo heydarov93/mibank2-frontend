@@ -1,16 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  VisibilityOutlined,
-  VisibilityOffOutlined,
-  ErrorOutline,
-} from '@mui/icons-material';
+import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import {
   IconButton,
   InputAdornment,
   Button,
   Tooltip,
   Box,
-  ClickAwayListener,
   useTheme,
 } from '@mui/material';
 import { SyntheticEvent, useEffect, useState } from 'react';
@@ -20,12 +15,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { ErrorNotification } from '../';
 
-import { CheckboxWithLabel } from './CheckboxWithLabel';
 import {
-  BootstrapTooltip,
   StyledBoxContainer,
   StyledButtonContainer,
-  StyledErrorHint,
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
@@ -35,6 +27,7 @@ import {
 
 import { useAuthorizeMutation } from 'api/authApi';
 import { Logo, ELogoSize } from 'components/atoms';
+import { CheckboxWithLabel, PasswordTooltip } from 'components/molecules';
 import { REG_EXP, validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks/hook';
@@ -88,7 +81,6 @@ export const LoginForm = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const [capsLockOn, setCapsLockOn] = useState(false);
 
@@ -110,14 +102,6 @@ export const LoginForm = () => {
     } else {
       setCapsLockOn(false);
     }
-  };
-
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -201,16 +185,6 @@ export const LoginForm = () => {
     event.preventDefault();
   };
 
-  const title = (
-    <Box>
-      <div>{t('LoginPage.infoHintTitle')}</div>
-      <div>{t('LoginPage.infoHintUpper')}</div>
-      <div>{t('LoginPage.infoHintLower')}</div>
-      <div>{t('LoginPage.infoHintDigit')}</div>
-      <div>{t('LoginPage.infoHintSpecial')}</div>
-    </Box>
-  );
-
   const timeUntilUnlock = lockoutEndTime ? lockoutEndTime - Date.now() : 0;
   const remainingTimeLabel =
     timeUntilUnlock > 0
@@ -269,29 +243,7 @@ export const LoginForm = () => {
               <StyledLable htmlFor="password">
                 {t('LoginPage.password.label')}
               </StyledLable>
-              <ClickAwayListener onClickAway={handleTooltipClose}>
-                <div>
-                  <StyledErrorHint onClick={handleTooltipOpen}>
-                    <BootstrapTooltip
-                      PopperProps={{
-                        disablePortal: true,
-                      }}
-                      onClose={handleTooltipClose}
-                      open={open}
-                      disableFocusListener
-                      disableHoverListener
-                      disableTouchListener
-                      placement="right-end"
-                      title={title}
-                      sx={{
-                        opacity: 0.9,
-                      }}
-                    >
-                      <ErrorOutline fontSize="small" />
-                    </BootstrapTooltip>
-                  </StyledErrorHint>
-                </div>
-              </ClickAwayListener>
+              <PasswordTooltip />
             </Box>
             <Controller
               name="password"
