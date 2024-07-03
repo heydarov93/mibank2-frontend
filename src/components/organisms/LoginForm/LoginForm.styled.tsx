@@ -1,13 +1,5 @@
-import { styled, TextField, keyframes, Typography, Box } from '@mui/material';
+import { styled, TextField, Typography, Box } from '@mui/material';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-
-const shakeAnimation = keyframes`
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-`;
 
 export const StyledBoxContainer = styled(Box)(() => ({
   display: 'flex',
@@ -104,42 +96,42 @@ export const BootstrapTooltip = styled(
   };
 });
 
-export const StyledTextField = styled(TextField)(({ theme: { palette } }) => ({
-  '&.shake': {
-    animation: `${shakeAnimation} 0.25s`,
-  },
-
-  '& .MuiOutlinedInput-root': {
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderRadius: 8,
-      border: `1px solid ${palette.grey[300]}`,
-    },
-
-    '&.Mui-focused': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: 'secondary.main',
-      },
-    },
-
-    '&:hover:not(.Mui-focused)': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        border: `2px solid ${palette.grey[400]}`,
-      },
-    },
-  },
-}));
-
-export const CheckboxStyledContainer = styled(Box)(
-  ({ theme: { spacing } }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    paddingTop: spacing(2),
-
+export const StyledTextField = styled(TextField)(
+  ({ theme: { palette, animations } }) => ({
     '&.shake': {
-      animation: `${shakeAnimation} 0.25s`,
+      animation: `${animations?.shake} 0.25s`,
+    },
+
+    '& .MuiOutlinedInput-root': {
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderRadius: 8,
+        border: `1px solid ${palette.grey[300]}`,
+      },
+
+      '&.Mui-focused': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'secondary.main',
+        },
+      },
+
+      '&:hover:not(.Mui-focused)': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          border: `2px solid ${palette.grey[400]}`,
+        },
+      },
     },
   }),
 );
+
+export const CheckboxStyledContainer = styled(Box)(({ theme: { spacing, animations } }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  paddingTop: spacing(2),
+
+  '&.shake': {
+    animation: `${animations?.shake} 0.25s`,
+  },
+}));
 
 export const AgreementContainer = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',
