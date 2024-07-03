@@ -9,8 +9,6 @@ import {
   InputAdornment,
   Button,
   Tooltip,
-  Checkbox,
-  Link,
   Box,
   ClickAwayListener,
   useTheme,
@@ -21,12 +19,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { ErrorNotification } from '../';
-import { policyLink, termsLink } from '../Footer/constants';
 
+import CheckboxWithLabel from './CheckboxWithLabel/CheckboxWithLabel';
 import {
-  AgreementContainer,
   BootstrapTooltip,
-  CheckboxStyledContainer,
   StyledBoxContainer,
   StyledButtonContainer,
   StyledErrorHint,
@@ -52,7 +48,6 @@ import {
 } from 'store/reducers/AuthSlice';
 import {
   convertSecondsToTime,
-  generateRandomParam,
   localTokenHandler,
   useErrorHandlers,
   useFormatErrorMessage,
@@ -216,8 +211,6 @@ export const LoginForm = () => {
     </Box>
   );
 
-  const urlTerms = `${termsLink}${generateRandomParam()}`;
-  const urlPolicy = `${policyLink}${generateRandomParam()}`;
   const timeUntilUnlock = lockoutEndTime ? lockoutEndTime - Date.now() : 0;
   const remainingTimeLabel =
     timeUntilUnlock > 0
@@ -350,67 +343,11 @@ export const LoginForm = () => {
             />
           </Box>
         </StyledFormContent>
-        <CheckboxStyledContainer className={errors.checkbox ? 'shake' : ''}>
-          <Controller
-            name="checkbox"
-            control={control}
-            render={({ field }) => {
-              return (
-                <Checkbox
-                  disableRipple
-                  defaultChecked
-                  size="small"
-                  sx={{
-                    color: errors.checkbox
-                      ? theme.palette.error.main
-                      : theme.palette.grey[300],
-                    padding: '12px 8px 12px 0px',
-                    '&.Mui-checked': {
-                      color: 'primary',
-                    },
-                    '&.Mui-disabled': {
-                      color: theme.palette.grey[300],
-                    },
-                  }}
-                  disabled={isFormDisabled}
-                  {...field}
-                />
-              );
-            }}
-          />
-
-          <AgreementContainer
-            variant="body2"
-            disabled={isFormDisabled}
-            hasError={Boolean(errors.checkbox)}
-          >
-            {`${t('LoginPage.termsText')} `}
-
-            <>
-              <Link
-                href={urlTerms}
-                target="_blank"
-                color="inherit"
-                variant="body2"
-                fontWeight={500}
-              >
-                {t('footer.footerBottom.terms')}
-              </Link>
-
-              {` ${t('footer.footerBottom.and')} `}
-
-              <Link
-                href={urlPolicy}
-                target="_blank"
-                color="inherit"
-                variant="body2"
-                fontWeight={500}
-              >
-                {t('footer.footerBottom.policy')}
-              </Link>
-            </>
-          </AgreementContainer>
-        </CheckboxStyledContainer>
+        <CheckboxWithLabel
+          control={control}
+          errors={errors}
+          isFormDisabled={isFormDisabled}
+        />
         <StyledButtonContainer>
           <Button
             size="large"

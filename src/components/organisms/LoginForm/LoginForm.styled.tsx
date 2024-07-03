@@ -123,37 +123,6 @@ export const StyledTextField = styled(TextField)(
   }),
 );
 
-export const CheckboxStyledContainer = styled(Box)(({ theme: { spacing, animations } }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  paddingTop: spacing(2),
-
-  '&.shake': {
-    animation: `${animations?.shake} 0.25s`,
-  },
-}));
-
-export const AgreementContainer = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',
-})<{ disabled: boolean; hasError: boolean }>(
-  ({ theme, disabled, hasError }) => ({
-    paddingTop: theme.spacing(2),
-    lineHeight: '16px',
-    letterSpacing: 0.5,
-    fontWeight: 400,
-
-    color: hasError
-      ? theme.palette.error.main
-      : disabled
-        ? theme.palette.grey[300]
-        : theme.palette.common.black,
-
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(0),
-    },
-  }),
-);
-
 export const StyledButtonContainer = styled(Box)(
   ({ theme: { breakpoints, spacing } }) => ({
     paddingTop: spacing(3),
