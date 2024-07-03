@@ -198,4 +198,8 @@ export const StyledSignUpLink = styled(Link)(({ theme }) => ({
   fontWeight: 500,
   textDecoration: 'none',
   color: theme.palette.primary.main,
+
+  '&:hover, &:focus': {
+    textDecoration: 'underline',
+  },
 }));
