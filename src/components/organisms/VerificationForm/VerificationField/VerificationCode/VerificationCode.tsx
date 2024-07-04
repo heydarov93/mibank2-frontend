@@ -46,7 +46,6 @@ export const VerificationCode = ({
         selectInput(newIndex);
       }
     };
-
     const handleDeletion = (prev: string) =>
       prev.slice(0, currentIndex) + prev.slice(currentIndex + 1);
 
@@ -76,7 +75,10 @@ export const VerificationCode = ({
         if (event.ctrlKey && (event.key === 'v' || event.key === 'V')) {
           break;
         }
-        if (!/\d/.test(event.key) && !event.ctrlKey) {
+        if (event.ctrlKey) {
+          break;
+        }
+        if (!/\d/.test(event.key)) {
           setError(true);
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
@@ -136,9 +138,15 @@ export const VerificationCode = ({
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.replace(/[^0-9]/g, '').substring(0, length);
+      pastedText = pastedText
+        .replace(/[^0-9]/g, '')
+        .substring(0, length - value.length);
       let indexToEnter = 0;
-      if (!pastedText) return;
+      if (!pastedText) {
+        setError(true);
+        setTimeout(() => setError(false), 1000);
+        return;
+      }
 
       while (indexToEnter <= currentIndex) {
         if (
@@ -151,16 +159,24 @@ export const VerificationCode = ({
         }
       }
 
-      let verificationArr = value.split('');
+      const verificationArr = value.split('');
 
-      for (let i = indexToEnter; i < length; i += 1) {
+      for (let i = indexToEnter; i < indexToEnter + pastedText.length; i += 1) {
         const lastValue = pastedText[i - indexToEnter] ?? '';
         verificationArr[i] = lastValue;
       }
-      verificationArr = verificationArr.slice(0, length);
+
       setTimeout(() => {
-        selectInput(verificationArr.length - 1);
-        focusInput(verificationArr.length - 1);
+        selectInput(
+          verificationArr.length < length
+            ? verificationArr.length
+            : verificationArr.length - 1,
+        );
+        focusInput(
+          verificationArr.length < length
+            ? verificationArr.length
+            : verificationArr.length - 1,
+        );
       }, 0);
       onChange(verificationArr.join(''));
     }
