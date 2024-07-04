@@ -1,13 +1,11 @@
-import { LoginPageWrapper } from './LoginPage.styled';
-
-import { Footer, LoginForm } from 'components/organisms';
+import { AuthWrapper, Footer, LoginForm } from 'components/organisms';
 
 export const LoginPage = () => {
   return (
     <>
-      <LoginPageWrapper>
+      <AuthWrapper>
         <LoginForm />
-      </LoginPageWrapper>
+      </AuthWrapper>
       <Footer />
     </>
   );

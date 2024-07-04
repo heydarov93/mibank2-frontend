@@ -14,10 +14,7 @@ import { useForm, Controller, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorNotification } from '../';
-
 import {
-  StyledBoxContainer,
   StyledButtonContainer,
   StyledForm,
   StyledFormContent,
@@ -29,7 +26,6 @@ import {
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation } from 'api/authApi';
-import { Logo, ELogoSize } from 'components/atoms';
 import { CheckboxWithLabel, PasswordTooltip } from 'components/molecules';
 import { REG_EXP, validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
@@ -212,18 +208,14 @@ export const LoginForm = () => {
   }, [isFormDisabled, lockoutEndTime]);
 
   return (
-    <StyledBoxContainer>
-      <ErrorNotification />
-      <Logo size={ELogoSize.MEDIUM} />
+    <>
       <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
-
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLable htmlFor="email">
               {t('LoginPage.email.label')}
             </StyledLable>
-
             <Controller
               name="email"
               control={control}
@@ -330,6 +322,6 @@ export const LoginForm = () => {
           {t('LoginPage.formBtnSignUp')}
         </StyledSignUpLink>
       </StyledSignUpLinkContainer>
-    </StyledBoxContainer>
+    </>
   );
 };

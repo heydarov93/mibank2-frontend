@@ -1,13 +1,13 @@
-import { VerificationPageWrapper } from './VerificationPage.styled';
-
-import { Footer, VerificationForm } from 'components/organisms';
+import { AuthWrapper, Footer, VerificationForm } from 'components/organisms';
 
 export const VerificationPage = () => {
   return (
     <>
-      <VerificationPageWrapper>
+      <AuthWrapper
+        notificationPosition={{ vertical: 'bottom', horizontal: 'center' }}
+      >
         <VerificationForm />
-      </VerificationPageWrapper>
+      </AuthWrapper>
       <Footer />
     </>
   );
