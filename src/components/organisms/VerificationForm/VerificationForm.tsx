@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorNotification } from '../';
-import { StyledBoxContainer } from '../LoginForm/LoginForm.styled';
-
 import { VerificationField } from './VerificationField';
 import {
   StyledButton,
@@ -16,7 +13,6 @@ import {
   StyledVerificationTitle,
 } from './VerificationForm.styled';
 
-import { Logo, ELogoSize } from 'components/atoms';
 import { useAppDispatch } from 'hooks/hook';
 import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
@@ -110,11 +106,7 @@ export const VerificationForm = () => {
       : t('VerificationPage.resendCode');
 
   return (
-    <StyledBoxContainer>
-      <ErrorNotification
-        position={{ vertical: 'bottom', horizontal: 'center' }}
-      />
-      <Logo size={ELogoSize.MEDIUM} />
+    <>
       <StyledVerificationBoxTitle>
         <StyledVerificationTitle>
           {t('VerificationPage.verificationTitle')}
@@ -139,6 +131,6 @@ export const VerificationForm = () => {
       <StyledButton disabled={remainingTime > 0}>
         {remainingTimeLabel}
       </StyledButton>
-    </StyledBoxContainer>
+    </>
   );
 };

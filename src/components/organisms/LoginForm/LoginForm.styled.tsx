@@ -1,12 +1,5 @@
 import { styled, TextField, Typography, Box, Link } from '@mui/material';
 
-export const StyledBoxContainer = styled(Box)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  maxWidth: 768,
-}));
-
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
 
