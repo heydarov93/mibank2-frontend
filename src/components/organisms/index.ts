@@ -1,3 +1,4 @@
+export { AuthWrapper } from './AuthWrapper/AuthWrapper';
 export { TemporaryDrawer as Drawer } from './Drawer/Drawer';
 export { ErrorNotification } from './ErrorNotification/ErrorNotification';
 export { Footer } from './Footer/Footer';

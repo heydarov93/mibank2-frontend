@@ -1,27 +1,4 @@
-import {
-  styled,
-  TextField,
-  keyframes,
-  Typography,
-  Box,
-  Link,
-} from '@mui/material';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-
-const shakeAnimation = keyframes`
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-`;
-
-export const StyledBoxContainer = styled(Box)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  maxWidth: 768,
-}));
+import { styled, TextField, Typography, Box, Link } from '@mui/material';
 
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
@@ -69,102 +46,29 @@ export const StyledFormTitle = styled(Typography)(
   }),
 );
 
-export const StyledErrorHint = styled(Box)(
-  ({ theme: { spacing, palette } }) => ({
-    color: palette.common.black,
-    paddingLeft: spacing(0.5),
-    display: 'flex',
-    alignItems: 'center',
-
-    '& svg': {
-      width: 16,
-      height: 16,
-    },
-  }),
-);
-
-export const BootstrapTooltip = styled(
-  ({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ),
-)(({ theme: { breakpoints, palette, spacing } }) => {
-  return {
-    '& .MuiTooltip-tooltip': {
-      backgroundColor: palette.grey[400],
-      width: 255,
-      maxWidth: 500,
-      fontSize: 10,
-      lineHeight: '14px',
-      fontWeight: 500,
-      margin: `0 ${spacing(1)} !important`,
-
-      padding: `${spacing(0.5)} ${spacing(1)}`,
-
-      [breakpoints.up('sm')]: {
-        width: 350,
-      },
-    },
-
-    '&.MuiTooltip-touch': {
-      padding: `${spacing(0.5)} ${spacing(1)}`,
-    },
-  };
-});
-
-export const StyledTextField = styled(TextField)(({ theme: { palette } }) => ({
-  '&.shake': {
-    animation: `${shakeAnimation} 0.25s`,
-  },
-
-  '& .MuiOutlinedInput-root': {
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderRadius: 8,
-      border: `1px solid ${palette.grey[300]}`,
-    },
-
-    '&.Mui-focused': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: 'secondary.main',
-      },
-    },
-
-    '&:hover:not(.Mui-focused)': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        border: `2px solid ${palette.grey[400]}`,
-      },
-    },
-  },
-}));
-
-export const CheckboxStyledContainer = styled(Box)(
-  ({ theme: { spacing } }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    paddingTop: spacing(2),
-
+export const StyledTextField = styled(TextField)(
+  ({ theme: { palette, animations } }) => ({
     '&.shake': {
-      animation: `${shakeAnimation} 0.25s`,
+      animation: `${animations?.shake} 0.25s`,
     },
-  }),
-);
 
-export const AgreementContainer = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',
-})<{ disabled: boolean; hasError: boolean }>(
-  ({ theme, disabled, hasError }) => ({
-    paddingTop: theme.spacing(2),
-    lineHeight: '16px',
-    letterSpacing: 0.5,
-    fontWeight: 400,
+    '& .MuiOutlinedInput-root': {
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderRadius: 8,
+        border: `1px solid ${palette.grey[300]}`,
+      },
 
-    color: hasError
-      ? theme.palette.error.main
-      : disabled
-        ? theme.palette.grey[300]
-        : theme.palette.common.black,
+      '&.Mui-focused': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'secondary.main',
+        },
+      },
 
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(0),
+      '&:hover:not(.Mui-focused)': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          border: `2px solid ${palette.grey[400]}`,
+        },
+      },
     },
   }),
 );

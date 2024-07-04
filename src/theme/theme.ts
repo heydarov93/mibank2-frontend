@@ -1,4 +1,12 @@
-import { createTheme } from '@mui/material';
+import { createTheme, keyframes } from '@mui/material';
+
+const shakeAnimation = keyframes`
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+`;
 
 export const theme = createTheme({
   typography: {
@@ -52,5 +60,8 @@ export const theme = createTheme({
       100: '#E0E0E0',
       50: '#EDEDED',
     },
+  },
+  animations: {
+    shake: shakeAnimation,
   },
 });

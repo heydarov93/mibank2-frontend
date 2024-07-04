@@ -27,3 +27,17 @@ declare module '@mui/material/styles/createTypography' {
     };
   }
 }
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    animations?: {
+      shake?: Keyframes;
+    };
+  }
+
+  interface ThemeOptions {
+    animations?: {
+      shake?: Keyframes;
+    };
+  }
+}
