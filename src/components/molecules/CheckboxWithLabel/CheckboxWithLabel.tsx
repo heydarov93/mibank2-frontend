@@ -8,13 +8,8 @@ import {
 } from './CheckboxWithLabel.styled';
 
 import { termsLink, policyLink } from 'components/organisms/Footer/constants';
+import { IFormInput } from 'models/IAuth';
 import { generateRandomParam } from 'utils';
-
-interface IFormInput {
-  email: string;
-  password: string;
-  checkbox?: boolean;
-}
 
 interface CheckboxWithLabelProps {
   control?: Control<IFormInput>;

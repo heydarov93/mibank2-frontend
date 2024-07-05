@@ -15,6 +15,12 @@ export interface IUser {
   lastFailedTime: string | undefined;
 }
 
+export interface IFormInput {
+  email: string;
+  password: string;
+  checkbox?: boolean;
+}
+
 export enum TokenType {
   ACCESS = 'accessToken',
   REFRESH = 'refreshToken',

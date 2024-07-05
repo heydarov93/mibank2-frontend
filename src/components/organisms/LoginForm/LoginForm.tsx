@@ -1,16 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import {
-  IconButton,
-  InputAdornment,
-  Button,
-  Tooltip,
-  Box,
-  useTheme,
-  Typography,
-} from '@mui/material';
-import { SyntheticEvent, useEffect, useState } from 'react';
-import { useForm, Controller, useWatch } from 'react-hook-form';
+import { Button, Box, useTheme, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,11 +17,15 @@ import {
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation } from 'api/authApi';
-import { CheckboxWithLabel, PasswordTooltip } from 'components/molecules';
-import { REG_EXP, validationLoginSchema } from 'constants/index';
+import {
+  CheckboxWithLabel,
+  PasswordField,
+  PasswordTooltip,
+} from 'components/molecules';
+import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks/hook';
-import { ILoginData, TokenType } from 'models/IAuth';
+import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import {
   setError,
@@ -44,12 +39,6 @@ import {
   useErrorHandlers,
   useFormatErrorMessage,
 } from 'utils';
-
-interface IFormInput {
-  email: string;
-  password: string;
-  checkbox?: boolean;
-}
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
@@ -74,36 +63,11 @@ export const LoginForm = () => {
     },
   });
 
-  const currentPasswordValue = useWatch({
-    control,
-    name: 'password',
-  });
-
-  const [showPassword, setShowPassword] = useState(false);
-
   const [capsLockOn, setCapsLockOn] = useState(false);
 
   const [remainingTime, setRemainingTime] = useState<number>(0);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
   const [lockoutEndTime, setLockoutEndTime] = useState<number>(0);
-
-  const onKeyUpHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (currentPasswordValue) {
-      const stringValue = currentPasswordValue.replace(
-        REG_EXP.nonAlphabeticCharactersRegExp,
-        '',
-      );
-      const capsLockIsOn =
-        e.getModifierState('CapsLock') ||
-        (stringValue.length > 1 &&
-          stringValue === currentPasswordValue.toUpperCase());
-      setCapsLockOn(capsLockIsOn);
-    } else {
-      setCapsLockOn(false);
-    }
-  };
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleCleanField = () => {
     if (errors.password) resetField('password');
@@ -112,10 +76,6 @@ export const LoginForm = () => {
       dispatch(setError(t('LoginPage.errorTermsPrivacyRequired')));
       resetField('checkbox', { defaultValue: false });
     }
-  };
-
-  const preventChange = (e: SyntheticEvent) => {
-    e.preventDefault();
   };
 
   const navigate = useNavigate();
@@ -180,10 +140,6 @@ export const LoginForm = () => {
     }
   };
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const timeUntilUnlock = lockoutEndTime ? lockoutEndTime - Date.now() : 0;
   const remainingTimeLabel =
     timeUntilUnlock > 0
@@ -240,53 +196,13 @@ export const LoginForm = () => {
               </StyledLable>
               <PasswordTooltip />
             </Box>
-            <Controller
-              name="password"
+            <PasswordField
               control={control}
-              render={({ field }) => (
-                <StyledTextField
-                  fullWidth
-                  id="password"
-                  helperText={
-                    (capsLockOn && 'Caps Lock is pressed!') ||
-                    errors.password?.message
-                  }
-                  className={errors.password ? 'shake' : ''}
-                  error={!!errors.password}
-                  type={showPassword ? 'text' : 'password'}
-                  onCut={preventChange}
-                  onCopy={preventChange}
-                  placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
-                  disabled={isFormDisabled}
-                  {...field}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Tooltip
-                          title={showPassword ? 'Hide' : 'Show'}
-                          placement="right"
-                        >
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            sx={{ color: theme.palette.grey[300] }}
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDown}
-                            edge="end"
-                            disabled={isFormDisabled}
-                          >
-                            {showPassword ? (
-                              <VisibilityOffOutlined />
-                            ) : (
-                              <VisibilityOutlined />
-                            )}
-                          </IconButton>
-                        </Tooltip>
-                      </InputAdornment>
-                    ),
-                  }}
-                  onKeyUp={onKeyUpHandler}
-                />
-              )}
+              name="password"
+              errors={errors}
+              isFormDisabled={isFormDisabled}
+              capsLockOn={capsLockOn}
+              setCapsLockOn={setCapsLockOn}
             />
           </Box>
         </StyledFormContent>
