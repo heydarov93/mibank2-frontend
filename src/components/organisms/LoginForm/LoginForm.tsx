@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Box, useTheme, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +13,10 @@ import {
   StyledLable,
   StyledSignUpLink,
   StyledSignUpLinkContainer,
-  StyledTextField,
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation } from 'api/authApi';
+import { InputField } from 'components/atoms';
 import {
   CheckboxWithLabel,
   PasswordField,
@@ -62,8 +62,6 @@ export const LoginForm = () => {
       checkbox: true,
     },
   });
-
-  const [capsLockOn, setCapsLockOn] = useState(false);
 
   const [remainingTime, setRemainingTime] = useState<number>(0);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -172,21 +170,13 @@ export const LoginForm = () => {
             <StyledLable htmlFor="email">
               {t('LoginPage.email.label')}
             </StyledLable>
-            <Controller
+            <InputField
               name="email"
               control={control}
-              render={({ field }) => (
-                <StyledTextField
-                  fullWidth
-                  id="email"
-                  helperText={errors.email?.message}
-                  className={errors.email ? 'shake' : ''}
-                  error={!!errors.email}
-                  placeholder="example@gmail.com"
-                  disabled={isFormDisabled}
-                  {...field}
-                />
-              )}
+              className={errors.email ? 'shake' : ''}
+              error={errors.email}
+              placeholder="example@gmail.com"
+              disabled={isFormDisabled}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -201,8 +191,6 @@ export const LoginForm = () => {
               name="password"
               errors={errors}
               isFormDisabled={isFormDisabled}
-              capsLockOn={capsLockOn}
-              setCapsLockOn={setCapsLockOn}
             />
           </Box>
         </StyledFormContent>

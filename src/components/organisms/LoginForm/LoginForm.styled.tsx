@@ -1,4 +1,4 @@
-import { styled, TextField, Typography, Box, Link } from '@mui/material';
+import { styled, Typography, Box, Link } from '@mui/material';
 
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
@@ -42,33 +42,6 @@ export const StyledFormTitle = styled(Typography)(
 
     [breakpoints.up('md')]: {
       marginTop: '18px',
-    },
-  }),
-);
-
-export const StyledTextField = styled(TextField)(
-  ({ theme: { palette, animations } }) => ({
-    '&.shake': {
-      animation: `${animations?.shake} 0.25s`,
-    },
-
-    '& .MuiOutlinedInput-root': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderRadius: 8,
-        border: `1px solid ${palette.grey[300]}`,
-      },
-
-      '&.Mui-focused': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: 'secondary.main',
-        },
-      },
-
-      '&:hover:not(.Mui-focused)': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          border: `2px solid ${palette.grey[400]}`,
-        },
-      },
     },
   }),
 );
