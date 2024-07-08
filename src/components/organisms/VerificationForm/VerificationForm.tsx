@@ -61,9 +61,10 @@ export const VerificationForm = () => {
       setTimeout(() => navigate('/'), 1000);
     } else {
       setIsCodeWrong(true);
-      setTimeout(() => setIsCodeWrong(false), 1000);
+      setTimeout(() => {
+        setIsCodeWrong(false), setValue('');
+      }, 1000);
 
-      setValue('');
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
       setIsCodeCorrect(false);
 
