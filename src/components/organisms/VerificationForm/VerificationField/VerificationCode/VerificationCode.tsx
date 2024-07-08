@@ -3,7 +3,7 @@ import { Fragment, useRef, useState } from 'react';
 import {
   StyledInputElement,
   StyledVerificationBox,
-} from './VerificstionCode.styled';
+} from './VerificationCode.styled';
 
 interface VerificationCodeProps {
   separator: React.ReactNode;

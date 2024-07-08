@@ -19,7 +19,7 @@ export const StyledVerificationTitle = styled(Typography)(
     fontSize: 24,
     fontWeight: 500,
 
-    [breakpoints.up('md')]: {
+    [breakpoints.up('sm')]: {
       fontSize: 40,
     },
   }),
@@ -29,11 +29,16 @@ export const StyledVerificationSubTitle = styled(Typography)(
   ({ theme: { breakpoints } }) => ({
     fontSize: 14,
     lineHeight: '20px',
-    fontFamily: 'Roboto',
     textAlign: 'center',
 
-    [breakpoints.up('md')]: {
+    [breakpoints.up('sm')]: {
       fontSize: 20,
+      lineHeight: '30px',
+      maxWidth: '588px',
+    },
+
+    '&>span': {
+      whiteSpace: 'nowrap',
     },
   }),
 );
@@ -79,7 +84,7 @@ export const StyledButton = styled(Button)(
       color: palette.primary.dark,
     },
 
-    [breakpoints.up('md')]: {
+    [breakpoints.up('sm')]: {
       fontSize: 16,
     },
   }),

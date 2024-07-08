@@ -1,1 +1,1 @@
-export { VerificationField } from './VerificationField';
+export { MemoizedVerificationField } from './VerificationField';
