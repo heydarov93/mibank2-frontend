@@ -60,6 +60,9 @@ export const VerificationForm = () => {
 
       setTimeout(() => navigate('/'), 1000);
     } else {
+      setIsCodeWrong(true);
+      setTimeout(() => setIsCodeWrong(false), 1000);
+
       setValue('');
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
       setIsCodeCorrect(false);
@@ -72,9 +75,6 @@ export const VerificationForm = () => {
         const errorMessage = formatErrorMessage(remainingAttempts, message);
 
         dispatch(setError(errorMessage));
-
-        setIsCodeWrong(true);
-        setTimeout(() => setIsCodeWrong(false), 1000);
       } else if (failedAttempts >= maxAttempts) {
         setIsFormDisabled(true);
         setRemainingTime(600);
