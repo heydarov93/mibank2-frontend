@@ -21,7 +21,6 @@ export const StyledInputElement = styled(Input, {
 })<{ isCorrect: boolean }>(({ theme: { palette, spacing }, isCorrect }) => ({
   width: 46,
   height: 50,
-  fontFamily: 'Roboto',
   fontSize: 16,
   fontWeight: 400,
   padding: spacing(2),
@@ -31,6 +30,15 @@ export const StyledInputElement = styled(Input, {
 
   '&.Mui-focused': {
     border: `2px solid ${palette.primary.main}`,
+  },
+
+  '&.Mui-disabled>input::placeholder': {
+    color: `${palette.grey[300]}`,
+    '-webkit-text-fill-color': `${palette.grey[300]}`,
+  },
+
+  '&>input::placeholder': {
+    color: `${palette.grey[300]}`,
   },
 
   '&.hasValue': {

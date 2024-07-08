@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import React from 'react';
 
 import { VerificationCode } from './VerificationCode';
 
@@ -9,7 +10,7 @@ interface VerificationFieldProps {
   value: string;
 }
 
-export const VerificationField = ({
+const VerificationField = ({
   isCodeCorrect,
   isFormDisabled,
   onChange,
@@ -35,3 +36,5 @@ export const VerificationField = ({
     </Box>
   );
 };
+
+export const MemoizedVerificationField = React.memo(VerificationField);

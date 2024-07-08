@@ -1,9 +1,9 @@
 import { useMediaQuery, useTheme } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { VerificationField } from './VerificationField';
+import { MemoizedVerificationField } from './VerificationField';
 import {
   StyledButton,
   StyledVerificationBoxTitle,
@@ -17,6 +17,7 @@ import { useAppDispatch } from 'hooks/hook';
 import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
+const email = localStorage.getItem('email');
 const mockEmail = 'user1@gmail.com';
 const mockCode = '123456';
 
@@ -32,18 +33,21 @@ export const VerificationForm = () => {
 
   const theme = useTheme();
   const navigate = useNavigate();
-  const isDesktopView = useMediaQuery(theme.breakpoints.up('md'));
+  const isTabletView = useMediaQuery(theme.breakpoints.up('sm'));
 
   const { formatErrorMessage } = useFormatErrorMessage();
 
-  const handleInputChange = (newValue: string) => {
-    setValue(newValue);
-    setIsCodeCorrect(newValue === mockCode);
+  const handleInputChange = useCallback(
+    (newValue: string) => {
+      setValue(newValue);
+      setIsCodeCorrect(newValue === mockCode);
 
-    if (newValue.length === 6) {
-      handleVerificationSubmit(newValue);
-    }
-  };
+      if (newValue.length === 6) {
+        handleVerificationSubmit(newValue);
+      }
+    },
+    [value],
+  );
 
   const handleVerificationSubmit = (value: string) => {
     // Simulate backend verification (replace with actual API call in real implementation)
@@ -112,15 +116,15 @@ export const VerificationForm = () => {
           {t('VerificationPage.verificationTitle')}
         </StyledVerificationTitle>
         <StyledVerificationSubTitle>
-          {isDesktopView
+          {isTabletView
             ? t('VerificationPage.verificationTextMd')
             : t('VerificationPage.verificationTextSm')}{' '}
-          {mockEmail}
+          <span>{email}</span>
         </StyledVerificationSubTitle>
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <VerificationField
+          <MemoizedVerificationField
             value={value}
             onChange={handleInputChange}
             isFormDisabled={isFormDisabled}
