@@ -9,6 +9,7 @@ export const StyledVerificationBox = styled(Box)(
     '&.shake': {
       animation: `${animations?.shake} 0.25s`,
       '&>div': {
+        color: `${palette.error.main}`,
         border: `1px solid ${palette.error.main}`,
         backgroundColor: `${palette.error.light}`,
       },
@@ -34,7 +35,7 @@ export const StyledInputElement = styled(Input, {
 
   '&.Mui-disabled>input::placeholder': {
     color: `${palette.grey[300]}`,
-    '-webkit-text-fill-color': `${palette.grey[300]}`,
+    WebkitTextFillColor: `${palette.grey[300]}`,
   },
 
   '&>input::placeholder': {

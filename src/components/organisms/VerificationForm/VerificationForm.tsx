@@ -18,7 +18,6 @@ import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
 const email = localStorage.getItem('email');
-const mockEmail = 'user1@gmail.com';
 const mockCode = '123456';
 
 export const VerificationForm = () => {
@@ -28,6 +27,7 @@ export const VerificationForm = () => {
   const [value, setValue] = useState('');
   const [remainingTime, setRemainingTime] = useState<number>(60);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
   const [failedAttempts, setFailedAttempts] = useState<number>(1);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
 
@@ -56,6 +56,7 @@ export const VerificationForm = () => {
     if (value === mockCode) {
       setIsCodeCorrect(true);
       setFailedAttempts(1);
+      setIsCodeWrong(false);
 
       setTimeout(() => navigate('/'), 1000);
     } else {
@@ -71,6 +72,9 @@ export const VerificationForm = () => {
         const errorMessage = formatErrorMessage(remainingAttempts, message);
 
         dispatch(setError(errorMessage));
+
+        setIsCodeWrong(true);
+        setTimeout(() => setIsCodeWrong(false), 1000);
       } else if (failedAttempts >= maxAttempts) {
         setIsFormDisabled(true);
         setRemainingTime(600);
@@ -128,6 +132,7 @@ export const VerificationForm = () => {
             value={value}
             onChange={handleInputChange}
             isFormDisabled={isFormDisabled}
+            isCodeWrong={isCodeWrong}
             isCodeCorrect={isCodeCorrect}
           />
         </StyledVerificationFormContent>
