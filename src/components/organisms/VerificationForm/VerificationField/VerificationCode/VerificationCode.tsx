@@ -1,9 +1,13 @@
 import { Fragment, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   StyledInputElement,
   StyledVerificationBox,
 } from './VerificationCode.styled';
+
+import { useAppDispatch } from 'hooks/hook';
+import { setError as setStoreError } from 'store/reducers';
 
 interface VerificationCodeProps {
   separator: React.ReactNode;
@@ -22,6 +26,9 @@ export const VerificationCode = ({
   isFormDisabled,
   onChange,
 }: VerificationCodeProps) => {
+  const { t } = useTranslation('translation');
+  const dispatch = useAppDispatch();
+
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
@@ -82,6 +89,7 @@ export const VerificationCode = ({
           setError(true);
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
+          dispatch(setStoreError(t('VerificationPage.errorPattern')));
         }
         setTimeout(() => handleNavigation(1), 0);
         break;
