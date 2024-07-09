@@ -24,7 +24,7 @@ jest.mock('utils', () => {
     handleNotFoundError: jest.fn(),
     handleLockedError: jest.fn(),
     useErrorHandlers: jest.fn,
-    formatErrorMessage: jest.fn(), 
+    formatErrorMessage: jest.fn(),
     useFormatErrorMessage: jest.fn,
   };
 });
