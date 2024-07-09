@@ -1,4 +1,3 @@
-import { useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +17,6 @@ import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
 const email = localStorage.getItem('email');
-const mockEmail = 'user1@gmail.com';
 const mockCode = '123456';
 
 export const VerificationForm = () => {
@@ -31,9 +29,7 @@ export const VerificationForm = () => {
   const [failedAttempts, setFailedAttempts] = useState<number>(1);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
 
-  const theme = useTheme();
   const navigate = useNavigate();
-  const isTabletView = useMediaQuery(theme.breakpoints.up('sm'));
 
   const { formatErrorMessage } = useFormatErrorMessage();
 
@@ -116,10 +112,7 @@ export const VerificationForm = () => {
           {t('VerificationPage.verificationTitle')}
         </StyledVerificationTitle>
         <StyledVerificationSubTitle>
-          {isTabletView
-            ? t('VerificationPage.verificationTextMd')
-            : t('VerificationPage.verificationTextSm')}{' '}
-          <span>{email}</span>
+          {t('VerificationPage.verificationText')} <span>{email}</span>
         </StyledVerificationSubTitle>
       </StyledVerificationBoxTitle>
       <StyledVerificationForm>

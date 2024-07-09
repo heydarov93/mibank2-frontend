@@ -47,8 +47,7 @@
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",
-    "verificationTextSm": "Enter the verification code we sent via email",
-    "verificationTextMd": "Enter the verification code we sent via email to your registered email",
+    "verificationText": "Enter the verification code we sent via email",
     "resendCode": "Resend code",
     "resendCodeIn": "Resend code in"
   },
