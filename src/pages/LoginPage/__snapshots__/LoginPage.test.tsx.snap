@@ -202,7 +202,7 @@ exports[`LoginPage snapshot should match 1`] = `
             I have read and agree to Millennium Bank's 
             <a
               class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways css-ysipq6-MuiTypography-root-MuiLink-root"
-              href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdf?m4ua57"
+              href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdfundefined"
               target="_blank"
             >
               Terms of Use
@@ -210,7 +210,7 @@ exports[`LoginPage snapshot should match 1`] = `
              and 
             <a
               class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways css-ysipq6-MuiTypography-root-MuiLink-root"
-              href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdf?o0gm09"
+              href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdfundefined"
               target="_blank"
             >
               Privacy Policy
@@ -368,7 +368,7 @@ exports[`LoginPage snapshot should match 1`] = `
         >
           <a
             class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineHover css-9smqfy-MuiTypography-root-MuiLink-root"
-            href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdf?t462o5"
+            href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdfundefined"
             target="_blank"
           >
             Terms of Use
@@ -380,7 +380,7 @@ exports[`LoginPage snapshot should match 1`] = `
           </p>
           <a
             class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineHover css-9smqfy-MuiTypography-root-MuiLink-root"
-            href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdf?j6qo3e"
+            href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdfundefined"
             target="_blank"
           >
             Privacy Policy
