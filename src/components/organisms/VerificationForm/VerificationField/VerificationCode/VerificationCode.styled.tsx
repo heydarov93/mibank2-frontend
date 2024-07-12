@@ -27,6 +27,7 @@ export const StyledInputElement = styled(Input, {
   borderRadius: 8,
   textAlign: 'center',
   border: `1px solid ${palette.grey[300]}`,
+  caretColor: 'transparent',
 
   '&.Mui-focused': {
     border: `2px solid ${palette.primary.main}`,
