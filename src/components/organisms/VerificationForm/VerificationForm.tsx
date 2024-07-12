@@ -2,26 +2,26 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { MemoizedVerificationField } from './VerificationField';
+import {
+  MemoizedVerificationField,
+  VerificationTitle,
+} from './VerificationField';
 import {
   StyledButton,
-  StyledVerificationBoxTitle,
   StyledVerificationForm,
   StyledVerificationFormContent,
-  StyledVerificationSubTitle,
-  StyledVerificationTitle,
 } from './VerificationForm.styled';
 
 import { useAppDispatch } from 'hooks/hook';
 import { setError } from 'store/reducers';
 import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
 
-const email = localStorage.getItem('email');
 const mockCode = '123456';
 
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
+  const email = localStorage.getItem('email');
 
   const [value, setValue] = useState('');
   const [remainingTime, setRemainingTime] = useState<number>(60);
@@ -113,14 +113,7 @@ export const VerificationForm = () => {
 
   return (
     <>
-      <StyledVerificationBoxTitle>
-        <StyledVerificationTitle>
-          {t('VerificationPage.verificationTitle')}
-        </StyledVerificationTitle>
-        <StyledVerificationSubTitle>
-          {t('VerificationPage.verificationText')} <span>{email}</span>
-        </StyledVerificationSubTitle>
-      </StyledVerificationBoxTitle>
+      <VerificationTitle email={email} />
       <StyledVerificationForm>
         <StyledVerificationFormContent>
           <MemoizedVerificationField
