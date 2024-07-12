@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Box, useTheme, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,7 @@ import {
   CheckboxWithLabel,
   PasswordField,
   PasswordTooltip,
+  Timer,
 } from 'components/molecules';
 import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
@@ -34,7 +35,6 @@ import {
   loginToApp,
 } from 'store/reducers/AuthSlice';
 import {
-  convertSecondsToTime,
   localTokenHandler,
   useErrorHandlers,
   useFormatErrorMessage,
@@ -138,29 +138,6 @@ export const LoginForm = () => {
     }
   };
 
-  const timeUntilUnlock = lockoutEndTime ? lockoutEndTime - Date.now() : 0;
-  const remainingTimeLabel =
-    timeUntilUnlock > 0
-      ? ` (${convertSecondsToTime(Math.ceil(remainingTime / 1000))})`
-      : '';
-
-  useEffect(() => {
-    if (!isFormDisabled || lockoutEndTime <= 0) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      const timeLeft = lockoutEndTime - Date.now();
-      setRemainingTime(timeLeft);
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        setIsFormDisabled(false);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [isFormDisabled, lockoutEndTime]);
-
   return (
     <>
       <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
@@ -216,7 +193,18 @@ export const LoginForm = () => {
             }}
           >
             {t('LoginPage.formBtnSignIn')}
-            {remainingTimeLabel}
+            {isFormDisabled && (
+              <>
+                <span>&nbsp;</span>
+                <span>{'('}</span>
+                <Timer
+                  time={remainingTime}
+                  endTime={lockoutEndTime}
+                  runTimer={setIsFormDisabled}
+                />
+                <span>{`)`}</span>
+              </>
+            )}
           </Button>
         </StyledButtonContainer>
       </StyledForm>
