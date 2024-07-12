@@ -4,13 +4,13 @@ import {
   StyledInputElement,
   StyledVerificationBox,
 } from './VerificationCode.styled';
-
 interface VerificationCodeProps {
   separator: React.ReactNode;
   length: number;
   value: string;
   isCodeCorrect: boolean;
   isFormDisabled: boolean;
+  isCodeWrong: boolean;
   onChange: (value: string) => void;
 }
 
@@ -20,6 +20,7 @@ export const VerificationCode = ({
   value,
   isCodeCorrect,
   isFormDisabled,
+  isCodeWrong,
   onChange,
 }: VerificationCodeProps) => {
   const [error, setError] = useState(false);
@@ -183,7 +184,7 @@ export const VerificationCode = ({
   };
 
   return (
-    <StyledVerificationBox className={error ? 'shake' : ''}>
+    <StyledVerificationBox className={error || isCodeWrong ? 'shake' : ''}>
       {new Array(length).fill(null).map((_, index) => (
         <Fragment key={index}>
           <StyledInputElement

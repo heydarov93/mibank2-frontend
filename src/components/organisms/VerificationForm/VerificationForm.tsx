@@ -26,6 +26,7 @@ export const VerificationForm = () => {
   const [value, setValue] = useState('');
   const [remainingTime, setRemainingTime] = useState<number>(60);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
   const [failedAttempts, setFailedAttempts] = useState<number>(1);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
 
@@ -52,10 +53,15 @@ export const VerificationForm = () => {
     if (value === mockCode) {
       setIsCodeCorrect(true);
       setFailedAttempts(1);
+      setIsCodeWrong(false);
 
       setTimeout(() => navigate('/'), 1000);
     } else {
-      setValue('');
+      setIsCodeWrong(true);
+      setTimeout(() => {
+        setIsCodeWrong(false), setValue('');
+      }, 1000);
+
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
       setIsCodeCorrect(false);
 
@@ -121,6 +127,7 @@ export const VerificationForm = () => {
             value={value}
             onChange={handleInputChange}
             isFormDisabled={isFormDisabled}
+            isCodeWrong={isCodeWrong}
             isCodeCorrect={isCodeCorrect}
           />
         </StyledVerificationFormContent>
