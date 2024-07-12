@@ -1,0 +1,1 @@
+export { VerificationTitle } from './VerificationTitle';
