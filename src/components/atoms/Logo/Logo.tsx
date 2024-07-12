@@ -27,7 +27,7 @@ export const Logo = ({ size = ELogoSize.SMALL }: LogoProps) => {
   const isMedium = size === ELogoSize.MEDIUM;
 
   return (
-    <StyledLogoContainer isMedium={isMedium}>
+    <StyledLogoContainer isMedium={isMedium} data-testid="logo">
       <StyledLogo isSmall={isSmall}>
         <BankLogoBoxIcon />
       </StyledLogo>

@@ -85,7 +85,7 @@ export const TemporaryDrawer = () => {
   );
 
   return (
-    <StyledDrawerContainer>
+    <StyledDrawerContainer data-testid="drawer">
       <IconButton
         color="inherit"
         aria-label="open drawer"

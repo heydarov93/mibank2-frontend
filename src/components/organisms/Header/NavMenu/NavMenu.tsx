@@ -8,7 +8,7 @@ export const NavMenu = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });
 
   return (
-    <StyledNavMenu>
+    <StyledNavMenu data-testid="nav-menu">
       {navMenuLinks.map(({ content, path }) => (
         <StyledNavLink to={path} key={content}>
           {t(content)}

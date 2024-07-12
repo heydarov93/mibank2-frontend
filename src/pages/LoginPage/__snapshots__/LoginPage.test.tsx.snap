@@ -10,6 +10,7 @@ exports[`LoginPage snapshot should match 1`] = `
     >
       <div
         class="MuiBox-root css-w0slhu"
+        data-testid="logo"
       >
         <div
           class="MuiBox-root css-yruxu8"
@@ -260,6 +261,7 @@ exports[`LoginPage snapshot should match 1`] = `
       >
         <div
           class="MuiBox-root css-1szp4xl"
+          data-testid="logo"
         >
           <div
             class="MuiBox-root css-2t4951"

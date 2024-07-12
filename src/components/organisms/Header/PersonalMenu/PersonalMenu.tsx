@@ -35,7 +35,7 @@ export const PersonalMenu = () => {
   const user = useAppSelector(getUser);
 
   return (
-    <StyledPersonalMenu>
+    <StyledPersonalMenu data-testid="personal-menu">
       {user && <UserCard user={user} isShowUserInfo={isDesctopView} />}
 
       <StyledButtonsContainer>
