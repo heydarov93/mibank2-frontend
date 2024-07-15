@@ -36,6 +36,11 @@ export const VerificationCode = ({
     targetInput.select();
   };
 
+  const blurInput = (targetIndex: number) => {
+    const targetInput = inputRefs.current[targetIndex];
+    targetInput.blur();
+  };
+
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
     currentIndex: number,
@@ -45,6 +50,8 @@ export const VerificationCode = ({
       if (newIndex >= 0 && newIndex < length) {
         focusInput(newIndex);
         selectInput(newIndex);
+      } else {
+        blurInput(currentIndex);
       }
     };
     const handleDeletion = (prev: string) =>
