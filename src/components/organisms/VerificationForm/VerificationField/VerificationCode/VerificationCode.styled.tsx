@@ -30,10 +30,6 @@ export const StyledInputElement = styled(Input, {
   border: `1px solid ${palette.grey[300]}`,
   caretColor: 'transparent',
 
-  '&.Mui-focused': {
-    border: `2px solid ${palette.primary.main}`,
-  },
-
   '&.Mui-disabled>input::placeholder': {
     color: `${palette.grey[300]}`,
     WebkitTextFillColor: `${palette.grey[300]}`,
@@ -45,6 +41,10 @@ export const StyledInputElement = styled(Input, {
 
   '&.hasValue': {
     border: `1px solid ${palette.primary.main}`,
+  },
+
+  '&.Mui-focused': {
+    border: `2px solid ${palette.primary.main}`,
   },
 
   ...(isCorrect && {
