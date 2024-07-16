@@ -3,6 +3,7 @@ import { IconButton, InputAdornment, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react';
 import { useController, Control, FieldErrors } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { InputField } from 'components/atoms';
 import { IFormInput } from 'models/IAuth';
@@ -21,6 +22,7 @@ export const PasswordField = ({
   isFormDisabled,
 }: PasswordFieldProps) => {
   const theme = useTheme();
+  const { t } = useTranslation('translation');
   const { field } = useController({
     name,
     control,
@@ -51,8 +53,14 @@ export const PasswordField = ({
     e.preventDefault();
   };
 
-  const helperText =
-    (capsLockOn && 'Caps Lock is pressed!') || errors.password?.message;
+  const helperText = (
+    <>
+      {capsLockOn && (
+        <span>{`${t('LoginPage.password.capsLockWarning')} `}</span>
+      )}
+      {errors.password?.message && <span>{errors.password.message}</span>}
+    </>
+  );
 
   const passwordInputProps = {
     endAdornment: (

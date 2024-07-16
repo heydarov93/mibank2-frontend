@@ -6,6 +6,12 @@ export const StyledTextField = styled(TextField)(
       animation: `${animations?.shake} 0.25s`,
     },
 
+    '& .MuiFormHelperText-root': {
+      color: palette.error.main,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
     '& .MuiOutlinedInput-root': {
       '& .MuiOutlinedInput-notchedOutline': {
         borderRadius: 8,

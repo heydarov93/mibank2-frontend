@@ -1,4 +1,4 @@
-import { SyntheticEvent, KeyboardEvent } from 'react';
+import { SyntheticEvent, KeyboardEvent, ReactNode } from 'react';
 import { Controller, Control, FieldError } from 'react-hook-form';
 
 import { StyledTextField } from './InputField.styled';
@@ -12,7 +12,7 @@ interface InputFieldProps {
   type?: string;
   disabled?: boolean;
   error?: FieldError;
-  helperText?: string;
+  helperText?: string | ReactNode;
   className?: string;
   InputProps?: {
     endAdornment: JSX.Element;
@@ -33,6 +33,7 @@ export const InputField = ({
   className,
   onCut,
   onCopy,
+  onKeyUp,
   InputProps,
 }: InputFieldProps) => (
   <Controller
@@ -50,6 +51,7 @@ export const InputField = ({
         disabled={disabled}
         onCut={onCut}
         onCopy={onCopy}
+        onKeyUp={onKeyUp}
         InputProps={InputProps}
         {...field}
       />
