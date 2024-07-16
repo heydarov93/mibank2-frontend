@@ -73,10 +73,6 @@ export const StyledSignUpLinkContainer = styled(Box)(
 export const StyledSignUpLink = styled(Link)(({ theme }) => ({
   paddingLeft: 8,
   fontWeight: 500,
-  textDecoration: 'none',
+  textDecoration: 'underline',
   color: theme.palette.primary.main,
-
-  '&:hover, &:focus': {
-    textDecoration: 'underline',
-  },
 }));
