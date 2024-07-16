@@ -6,6 +6,7 @@ import { VerificationCode } from './VerificationCode';
 interface VerificationFieldProps {
   isCodeCorrect: boolean;
   isFormDisabled: boolean;
+  isCodeWrong: boolean;
   onChange: (value: string) => void;
   value: string;
 }
@@ -13,6 +14,7 @@ interface VerificationFieldProps {
 const VerificationField = ({
   isCodeCorrect,
   isFormDisabled,
+  isCodeWrong,
   onChange,
   value,
 }: VerificationFieldProps) => {
@@ -31,6 +33,7 @@ const VerificationField = ({
         onChange={onChange}
         isCodeCorrect={isCodeCorrect}
         isFormDisabled={isFormDisabled}
+        isCodeWrong={isCodeWrong}
         length={6}
       />
     </Box>

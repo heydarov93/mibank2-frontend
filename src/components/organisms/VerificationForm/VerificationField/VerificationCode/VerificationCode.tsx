@@ -6,13 +6,13 @@ import {
   StyledTypography,
   StyledVerificationBox,
 } from './VerificationCode.styled';
-
 interface VerificationCodeProps {
   separator: React.ReactNode;
   length: number;
   value: string;
   isCodeCorrect: boolean;
   isFormDisabled: boolean;
+  isCodeWrong: boolean;
   onChange: (value: string) => void;
 }
 
@@ -22,6 +22,7 @@ export const VerificationCode = ({
   value,
   isCodeCorrect,
   isFormDisabled,
+  isCodeWrong,
   onChange,
 }: VerificationCodeProps) => {
   const { t } = useTranslation('translation');
@@ -39,6 +40,11 @@ export const VerificationCode = ({
     targetInput.select();
   };
 
+  const blurInput = (targetIndex: number) => {
+    const targetInput = inputRefs.current[targetIndex];
+    targetInput.blur();
+  };
+
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
     currentIndex: number,
@@ -48,6 +54,8 @@ export const VerificationCode = ({
       if (newIndex >= 0 && newIndex < length) {
         focusInput(newIndex);
         selectInput(newIndex);
+      } else {
+        blurInput(currentIndex);
       }
     };
     const handleDeletion = (prev: string) =>
@@ -188,7 +196,7 @@ export const VerificationCode = ({
 
   return (
     <>
-      <StyledVerificationBox className={error ? 'shake' : ''}>
+      <StyledVerificationBox className={error || isCodeWrong ? 'shake' : ''}>
         {new Array(length).fill(null).map((_, index) => (
           <Fragment key={index}>
             <StyledInputElement
