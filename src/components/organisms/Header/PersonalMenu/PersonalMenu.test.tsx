@@ -66,21 +66,24 @@ jest.mock('hooks/hook', () => ({
   useAppDispatch: () => mockDispatch,
 }));
 
+const renderComponent = () =>
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <ThemeProvider theme={theme}>
+          <PersonalMenu />
+        </ThemeProvider>
+      </MemoryRouter>
+    </Provider>,
+  );
+
 describe('PersonalMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('renders without crashing', () => {
-    render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <ThemeProvider theme={theme}>
-            <PersonalMenu />
-          </ThemeProvider>
-        </MemoryRouter>
-      </Provider>,
-    );
+    renderComponent();
 
     const personalMenu = screen.getByTestId('personal-menu');
     expect(personalMenu).toBeInTheDocument();
@@ -89,15 +92,7 @@ describe('PersonalMenu component', () => {
   it('handles settings button click', () => {
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
 
-    const { getByLabelText } = render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <ThemeProvider theme={theme}>
-            <PersonalMenu />
-          </ThemeProvider>
-        </MemoryRouter>
-      </Provider>,
-    );
+    const { getByLabelText } = renderComponent();
 
     fireEvent.click(getByLabelText('settings'));
     expect(consoleSpy).toHaveBeenCalledWith('Open settings');
@@ -111,15 +106,7 @@ describe('PersonalMenu component', () => {
       .spyOn(Storage.prototype, 'clear')
       .mockImplementation();
 
-    const { getByLabelText } = render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <ThemeProvider theme={theme}>
-            <PersonalMenu />
-          </ThemeProvider>
-        </MemoryRouter>
-      </Provider>,
-    );
+    const { getByLabelText } = renderComponent();
 
     fireEvent.click(getByLabelText('logout'));
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
@@ -132,15 +119,7 @@ describe('PersonalMenu component', () => {
   it('does not render UserCard when user is undefined', () => {
     (useAppSelector as jest.Mock).mockReturnValue(null);
 
-    render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <ThemeProvider theme={theme}>
-            <PersonalMenu />
-          </ThemeProvider>
-        </MemoryRouter>
-      </Provider>,
-    );
+    renderComponent();
 
     const userCard = screen.queryByText('John Doe');
     expect(userCard).not.toBeInTheDocument();

@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import { Header } from './Header';
 
@@ -22,14 +21,7 @@ const mockStore = configureStore({
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
-      t: (str: string) => {
-        switch (str) {
-          case 'header.logoTitle':
-            return 'Millennium Bank';
-          default:
-            return str;
-        }
-      },
+      t: (str: string) => str,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
@@ -41,73 +33,35 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+const renderHeader = () =>
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    </Provider>,
+  );
+
 describe('Header component', () => {
+  it('snapshot should match', () => {
+    const { asFragment } = renderHeader();
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('renders without crashing', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
+    renderHeader();
   });
 
-  it('renders the logo', async () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
-    const logo = screen.getByTestId('logo');
-    expect(logo).toBeInTheDocument();
-  });
-
-  it('renders the navigation menu', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
-    const navMenu = screen.getByTestId('nav-menu');
-    expect(navMenu).toBeInTheDocument();
-  });
-
-  it('renders the personal menu', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
-    const personalMenu = screen.getByTestId('personal-menu');
-    expect(personalMenu).toBeInTheDocument();
-  });
-
-  it('renders the drawer', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
-    const drawer = screen.getByTestId('drawer');
-    expect(drawer).toBeInTheDocument();
+  it('renders essential elements', () => {
+    renderHeader();
+    expect(screen.getByTestId('logo')).toBeInTheDocument();
+    expect(screen.getByTestId('nav-menu')).toBeInTheDocument();
+    expect(screen.getByTestId('personal-menu')).toBeInTheDocument();
+    expect(screen.getByTestId('drawer')).toBeInTheDocument();
   });
 
   it('link to homepage works correctly', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>
-      </Provider>,
-    );
+    renderHeader();
     const homeLink = screen.getByRole('link', { name: /logo/i });
     expect(homeLink).toHaveAttribute('href', '/');
   });

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import { LoginPage } from './LoginPage';
 
@@ -39,9 +39,9 @@ describe('LoginPage', () => {
   it('snapshot should match', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
-        <BrowserRouter>
+        <MemoryRouter>
           <LoginPage />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>,
     );
     expect(asFragment()).toMatchSnapshot();
