@@ -9,6 +9,7 @@ export const StyledVerificationBox = styled(Box)(
     '&.shake': {
       animation: `${animations?.shake} 0.25s`,
       '&>div': {
+        color: `${palette.error.main}`,
         border: `1px solid ${palette.error.main}`,
         backgroundColor: `${palette.error.light}`,
       },
@@ -27,14 +28,11 @@ export const StyledInputElement = styled(Input, {
   borderRadius: 8,
   textAlign: 'center',
   border: `1px solid ${palette.grey[300]}`,
-
-  '&.Mui-focused': {
-    border: `2px solid ${palette.primary.main}`,
-  },
+  caretColor: 'transparent',
 
   '&.Mui-disabled>input::placeholder': {
     color: `${palette.grey[300]}`,
-    '-webkit-text-fill-color': `${palette.grey[300]}`,
+    WebkitTextFillColor: `${palette.grey[300]}`,
   },
 
   '&>input::placeholder': {
@@ -43,6 +41,10 @@ export const StyledInputElement = styled(Input, {
 
   '&.hasValue': {
     border: `1px solid ${palette.primary.main}`,
+  },
+
+  '&.Mui-focused': {
+    border: `2px solid ${palette.primary.main}`,
   },
 
   ...(isCorrect && {
