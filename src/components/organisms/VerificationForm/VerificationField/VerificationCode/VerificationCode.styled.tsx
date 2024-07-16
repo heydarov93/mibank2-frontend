@@ -1,4 +1,4 @@
-import { styled, Input, Box } from '@mui/material';
+import { styled, Input, Box, Typography } from '@mui/material';
 
 export const StyledVerificationBox = styled(Box)(
   ({ theme: { palette, spacing, animations } }) => ({
@@ -54,3 +54,15 @@ export const StyledInputElement = styled(Input, {
     },
   }),
 }));
+
+export const StyledTypography = styled(Typography)(
+  ({ theme: { spacing, palette } }) => ({
+    color: palette.error.main,
+    paddingTop: spacing(1),
+    paddingBottom: spacing(1),
+    lineHeight: spacing(2),
+    fontSize: 16,
+    fontWeight: 400,
+    textAlign: 'center',
+  }),
+);
