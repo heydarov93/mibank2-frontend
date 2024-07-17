@@ -1,0 +1,404 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage snapshot should match 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1s1whvx"
+  >
+    <div
+      class="MuiBox-root css-1jw1wke"
+    >
+      <div
+        class="MuiBox-root css-w0slhu"
+        data-testid="logo"
+      >
+        <div
+          class="MuiBox-root css-yruxu8"
+        >
+          <svg>
+            Logo.svg
+          </svg>
+        </div>
+        <div
+          class="MuiBox-root css-hl2cc3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+          >
+            Millennium Bank
+          </p>
+        </div>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-2rfywt-MuiTypography-root"
+      >
+        Log in and let's start!
+      </p>
+      <form
+        class="css-17qjlz5"
+      >
+        <div
+          class="MuiBox-root css-1y34vg3"
+        >
+          <div
+            class="MuiBox-root css-8atqhb"
+          >
+            <label
+              class="css-2ogreq"
+              for="email"
+            >
+              Email
+            </label>
+            <div
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-4hflq4-MuiFormControl-root-MuiTextField-root"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                  id="email"
+                  name="email"
+                  placeholder="example@gmail.com"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="css-ihdtdm"
+                  >
+                    <span
+                      class="notranslate"
+                    >
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-8atqhb"
+          >
+            <div
+              class="MuiBox-root css-k008qs"
+            >
+              <label
+                class="css-2ogreq"
+                for="password"
+              >
+                Password
+              </label>
+              <div>
+                <div
+                  class="MuiBox-root css-1b0aevj"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                    data-mui-internal-clone-element="true"
+                    data-testid="ErrorOutlineIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-4hflq4-MuiFormControl-root-MuiTextField-root"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                  id="password"
+                  name="password"
+                  placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
+                  type="password"
+                  value=""
+                />
+                <div
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                >
+                  <button
+                    aria-label="toggle password visibility"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-wedaf4-MuiButtonBase-root-MuiIconButton-root"
+                    data-mui-internal-clone-element="true"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="VisibilityOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4m0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+                <fieldset
+                  aria-hidden="true"
+                  class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="css-ihdtdm"
+                  >
+                    <span
+                      class="notranslate"
+                    >
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class=" MuiBox-root css-356ou8"
+        >
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall css-1k5us2r-MuiButtonBase-root-MuiCheckbox-root"
+          >
+            <input
+              checked=""
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              name="checkbox"
+              type="checkbox"
+              value="true"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+              data-testid="CheckBoxIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+              />
+            </svg>
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-alflwa-MuiTypography-root"
+          >
+            I have read and agree to Millennium Bank's 
+            <a
+              class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways css-ysipq6-MuiTypography-root-MuiLink-root"
+              href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdfundefined"
+              target="_blank"
+            >
+              Terms of Use
+            </a>
+             and 
+            <a
+              class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways css-ysipq6-MuiTypography-root-MuiLink-root"
+              href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdfundefined"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-mytjhh"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1ytmvr3-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="submit"
+          >
+            Log In
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </form>
+      <div
+        class="MuiBox-root css-12190x1"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        >
+          Don't have an account?
+        </p>
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-ycryz0-MuiTypography-root-MuiLink-root"
+          href="/signup"
+        >
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </div>
+  <footer
+    class="css-1fsslgi"
+  >
+    <div
+      class="MuiBox-root css-4la022"
+    >
+      <div
+        class="MuiBox-root css-8qypj0"
+      >
+        <div
+          class="MuiBox-root css-1szp4xl"
+          data-testid="logo"
+        >
+          <div
+            class="MuiBox-root css-2t4951"
+          >
+            <svg>
+              Logo.svg
+            </svg>
+          </div>
+          <div
+            class="MuiBox-root css-dh57yn"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Millennium Bank
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1bb51f5"
+      >
+        <div
+          class="MuiBox-root css-1i3j0ff"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-bmqpby-MuiTypography-root"
+          >
+            Download the app:
+          </p>
+          <a
+            href="https://play.google.com/store/apps"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <svg
+              height="52"
+              width="180"
+            >
+              GooglePlay.svg
+            </svg>
+          </a>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-bmqpby-MuiTypography-root"
+          >
+            Our contacts:
+          </p>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-2eg1gn-MuiTypography-root-MuiLink-root"
+            href="tel:+48123456789"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-1q3dlv1-MuiTypography-root"
+            >
+              (+48) 123 456 789
+            </p>
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-tev1fw-MuiTypography-root-MuiLink-root"
+            href="mailto:info@millenniumbank.pl"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-1q3dlv1-MuiTypography-root"
+            >
+              info@millenniumbank.pl
+            </p>
+          </a>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-bmqpby-MuiTypography-root"
+          >
+            Contact center working hours:
+          </p>
+          <div
+            class="MuiBox-root css-1kkt86i"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-1flhzfi-MuiTypography-root"
+            >
+              Mon—Fri: 8:00 - 21:00
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-1flhzfi-MuiTypography-root"
+            >
+              Sat—Sun: 10:00 - 18:00
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-1cdmgj5"
+    >
+      <div
+        class="MuiBox-root css-1feu43h"
+      >
+        <div
+          class="MuiBox-root css-1utx3w7"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineHover css-9smqfy-MuiTypography-root-MuiLink-root"
+            href="https://web-dev.mibank2.andersenlab.dev/docs/Terms+of+Use.pdfundefined"
+            target="_blank"
+          >
+            Terms of Use
+          </a>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            and
+          </p>
+          <a
+            class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineHover css-9smqfy-MuiTypography-root-MuiLink-root"
+            href="https://web-dev.mibank2.andersenlab.dev/docs/Privacy+Policy.pdfundefined"
+            target="_blank"
+          >
+            Privacy Policy
+          </a>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1ccg4iv"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+        >
+          Millennium Bank © 2024. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+</DocumentFragment>
+`;
