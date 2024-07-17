@@ -64,7 +64,7 @@ export const LoginForm = () => {
   });
 
   const [remainingTime, setRemainingTime] = useState<number>(0);
-  const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
   const [lockoutEndTime, setLockoutEndTime] = useState<number>(0);
 
   const handleCleanField = () => {
@@ -149,6 +149,7 @@ export const LoginForm = () => {
             </StyledLable>
             <InputField
               name="email"
+              id="email"
               control={control}
               className={errors.email ? 'shake' : ''}
               error={errors.email}
@@ -165,6 +166,7 @@ export const LoginForm = () => {
             </Box>
             <PasswordField
               control={control}
+              id="password"
               name="password"
               errors={errors}
               isFormDisabled={isFormDisabled}
@@ -210,7 +212,7 @@ export const LoginForm = () => {
       </StyledForm>
       <StyledSignUpLinkContainer>
         <Typography>{t('LoginPage.signUpLink')}</Typography>
-        <StyledSignUpLink href="/signup">
+        <StyledSignUpLink href="/signup-start">
           {t('LoginPage.formBtnSignUp')}
         </StyledSignUpLink>
       </StyledSignUpLinkContainer>

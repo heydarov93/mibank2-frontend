@@ -5,3 +5,5 @@ export { Footer } from './Footer/Footer';
 export { Header } from './Header/Header';
 export { LoginForm } from './LoginForm/LoginForm';
 export { VerificationForm } from './VerificationForm/VerificationForm';
+export { SignupFormEmail } from './SignupForm/SignupFormEmail';
+export { SignupFormPassword } from './SignupForm/SignupFormPassword';

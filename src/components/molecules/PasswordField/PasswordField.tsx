@@ -9,7 +9,8 @@ import { IFormInput } from 'models/IAuth';
 
 interface PasswordFieldProps {
   control: Control<IFormInput>;
-  name: 'password';
+  name: 'password' | 'confirmPassword';
+  id: 'password' | 'confirmPassword';
   errors: FieldErrors<IFormInput>;
   isFormDisabled: boolean;
 }
@@ -17,6 +18,7 @@ interface PasswordFieldProps {
 export const PasswordField = ({
   control,
   name,
+  id,
   errors,
   isFormDisabled,
 }: PasswordFieldProps) => {
@@ -75,7 +77,8 @@ export const PasswordField = ({
 
   return (
     <InputField
-      name="password"
+      name={name}
+      id={id}
       control={control}
       helperText={helperText}
       className={errors.password ? 'shake' : ''}
