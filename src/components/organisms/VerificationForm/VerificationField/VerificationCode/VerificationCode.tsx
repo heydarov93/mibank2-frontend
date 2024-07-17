@@ -1,7 +1,9 @@
 import { Fragment, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   StyledInputElement,
+  StyledTypography,
   StyledVerificationBox,
 } from './VerificationCode.styled';
 interface VerificationCodeProps {
@@ -23,6 +25,8 @@ export const VerificationCode = ({
   isCodeWrong,
   onChange,
 }: VerificationCodeProps) => {
+  const { t } = useTranslation('translation');
+
   const [error, setError] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
@@ -189,44 +193,61 @@ export const VerificationCode = ({
   };
 
   return (
-    <StyledVerificationBox className={error || isCodeWrong ? 'shake' : ''}>
-      {new Array(length).fill(null).map((_, index) => (
-        <Fragment key={index}>
-          <StyledInputElement
-            disabled={isFormDisabled || index > value.length}
-            disableUnderline
-            className={value[index] ? 'hasValue' : ''}
-            isCorrect={isCodeCorrect}
-            slotProps={{ input: { style: { textAlign: 'center' } } }}
-            inputRef={(el) => (inputRefs.current[index] = el!)}
-            onKeyDown={(event) =>
-              handleKeyDown(
-                event as React.KeyboardEvent<HTMLInputElement>,
-                index,
-              )
-            }
-            onChange={(event) =>
-              handleChange(event as React.ChangeEvent<HTMLInputElement>, index)
-            }
-            onClick={(event) =>
-              handleClick(
-                event as React.MouseEvent<HTMLInputElement, MouseEvent>,
-                index,
-              )
-            }
-            onPaste={(event) =>
-              handlePaste(
-                event as React.ClipboardEvent<HTMLInputElement>,
-                index,
-              )
-            }
-            placeholder="0"
-            aria-label={`Digit ${index + 1} of Verification Code`}
-            value={value[index] ?? ''}
-          />
-          {index === length / 2 - 1 ? separator : null}
-        </Fragment>
-      ))}
-    </StyledVerificationBox>
+    <>
+      <StyledVerificationBox className={error || isCodeWrong ? 'shake' : ''}>
+        {new Array(length).fill(null).map((_, index) => (
+          <Fragment key={index}>
+            <StyledInputElement
+              disabled={isFormDisabled || index > value.length}
+              disableUnderline
+              className={value[index] ? 'hasValue' : ''}
+              isCorrect={isCodeCorrect}
+              slotProps={{ input: { style: { textAlign: 'center' } } }}
+              inputRef={(el) => (inputRefs.current[index] = el!)}
+              onKeyDown={(event) =>
+                handleKeyDown(
+                  event as React.KeyboardEvent<HTMLInputElement>,
+                  index,
+                )
+              }
+              onChange={(event) =>
+                handleChange(
+                  event as React.ChangeEvent<HTMLInputElement>,
+                  index,
+                )
+              }
+              onClick={(event) =>
+                handleClick(
+                  event as React.MouseEvent<HTMLInputElement, MouseEvent>,
+                  index,
+                )
+              }
+              onPaste={(event) =>
+                handlePaste(
+                  event as React.ClipboardEvent<HTMLInputElement>,
+                  index,
+                )
+              }
+              placeholder="0"
+              aria-label={`Digit ${index + 1} of Verification Code`}
+              value={value[index] ?? ''}
+            />
+            {index === length / 2 - 1 ? separator : null}
+          </Fragment>
+        ))}
+      </StyledVerificationBox>
+      {error && (
+        <StyledTypography>
+          {t('VerificationPage.errorPattern')
+            .split('\n')
+            .map((line, index) => (
+              <Fragment key={index}>
+                {line}
+                <br />
+              </Fragment>
+            ))}
+        </StyledTypography>
+      )}
+    </>
   );
 };

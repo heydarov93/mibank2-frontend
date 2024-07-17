@@ -14,7 +14,7 @@ export const theme = createTheme({
       textTransform: 'none',
     },
     smallLogo: {
-      fontSize: '11px',
+      fontSize: '12px',
       lineHeight: '15px',
       fontFamily: 'Inter',
     },

@@ -69,7 +69,8 @@
     "verificationTitle": "Enter verification code",
     "verificationText": "Enter the verification code we sent via email",
     "resendCode": "Resend code",
-    "resendCodeIn": "Resend code in"
+    "resendCodeIn": "Resend code in",
+    "errorPattern": "Only digits can be entered into the field. \nPlease, try again"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",
