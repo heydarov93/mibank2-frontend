@@ -39,6 +39,7 @@
       "label": "Email"
     },
     "password": {
+      "capsLockWarning": "Caps Lock is pressed!",
       "errorIsBlocked": "Account is blocked. Please, contact us",
       "errorMaxLen": "Password should not exceed 50 characters",
       "errorMinLen": "Password should be at least 8 character long",
