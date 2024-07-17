@@ -146,9 +146,7 @@ export const VerificationCode = ({
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText
-        .replace(/[^0-9]/g, '')
-        .substring(0, length - value.length);
+      pastedText = pastedText.replace(/[^0-9]/g, '').substring(0, length);
       let indexToEnter = 0;
       if (!pastedText) {
         setError(true);
