@@ -5,8 +5,15 @@ import { StyledTextField } from './InputField.styled';
 
 import { IFormInput } from 'models/IAuth';
 
+const enum FieldName {
+  email = 'email',
+  password = 'password',
+  confirmPassword = 'confirmPassword',
+}
+
 interface InputFieldProps {
-  name: 'email' | 'password';
+  name: `${FieldName}`;
+  id: `${FieldName}`;
   control: Control<IFormInput>;
   placeholder: string;
   type?: string;
@@ -24,6 +31,7 @@ interface InputFieldProps {
 
 export const InputField = ({
   name,
+  id,
   control,
   placeholder,
   type = 'text',
@@ -41,7 +49,7 @@ export const InputField = ({
     render={({ field }) => (
       <StyledTextField
         fullWidth
-        id={name}
+        id={id}
         helperText={helperText || error?.message}
         className={className}
         error={!!error}

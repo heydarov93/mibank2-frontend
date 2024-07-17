@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ErrorPage, LoginPage, UnderDevPage, VerificationPage } from '../pages';
+import { ErrorPage, LoginPage, UnderDevPage, VerificationPage, SignupPageEmail, SignupPagePassword } from '../pages';
 
 import { PrivateRoute } from './PrivateRoute';
 
@@ -39,8 +39,12 @@ const routes = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/signup',
-    element: <UnderDevPage />,
+    path: '/signup-start',
+    element: <SignupPageEmail />,
+  },
+  {
+    path: '/signup-end',
+    element: <SignupPagePassword />,
   },
   {
     path: '/verification',

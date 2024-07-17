@@ -12,6 +12,26 @@
     },
     "greetings": "Hello"
   },
+  "SignupPage": {
+    "formTitle": "Registration",
+    "password": {
+      "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMaxLen": "Password should not exceed 50 characters",
+      "errorMinLen": "Password should be at least 8 character long",
+      "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
+      "label": "Password"
+    },
+    "confirmPassword": {
+      "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMaxLen": "Password should not exceed 50 characters",
+      "errorMinLen": "Password should be at least 8 character long",
+      "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
+      "label": "Confirm Password"
+    },
+    "buttonLabel": "Sign Up",
+    "moveToLoginLink": "Log in",
+    "haveAccountMsg": "Already have an account?"
+  },
   "LoginPage": {
     "email": {
       "errorMaxLen": "Email should not exceed 320 characters",
