@@ -1,4 +1,4 @@
-import { RootState } from 'store/store';
+import { RootState } from 'store';
 
 export const getUser = (state: RootState) => state.auth.user;
 export const getIsAuth = (state: RootState) => state.auth.isAuth;

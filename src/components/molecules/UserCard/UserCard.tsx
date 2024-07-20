@@ -14,7 +14,7 @@ import {
 
 import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { EGreeting } from 'constants/index';
-import { useAppDispatch, useAppSelector } from 'hooks/hook';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { IUserInfo } from 'models/IUserInfo';
 import { setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';

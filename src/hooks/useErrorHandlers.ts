@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers/AuthSlice';
 
@@ -18,9 +18,9 @@ export const useErrorHandlers = () => {
   ) => {
     const { remainingAttempts, message } = error.data;
 
-    const errorMessage = message
+    const errorMessage = remainingAttempts
       ? formatErrorMessage(remainingAttempts, message)
-      : 'An unknown error occurred';
+      : message;
 
     dispatch(setError(errorMessage));
   };

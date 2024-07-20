@@ -23,13 +23,11 @@ import {
 import { validationLoginSchema } from 'constants/validationShemas';
 import { IFormInput } from 'models/IAuth';
 
-
 export const SignupFormPassword = () => {
-
   const { t } = useTranslation('translation');
-  
+
   const navigate = useNavigate();
-  
+
   const theme = useTheme();
 
   const {
@@ -50,11 +48,11 @@ export const SignupFormPassword = () => {
   });
   //TODO: handle with disable form
   const [isFormDisabled, setIsFormDisabled] = useState(false);
-    
+
   const onSubmit = async (data: IFormInput) => {
     console.log(data);
   };
-  
+
   const handleCleanField = () => {
     if (errors.password) resetField('password');
     if (errors.password) resetField('confirmPassword');
@@ -127,7 +125,6 @@ export const SignupFormPassword = () => {
           {t('SignupPage.moveToLoginLink')}
         </StyledSignInLink>
       </StyledSignInLinkContainer>
-
     </>
   );
-}
+};

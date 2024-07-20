@@ -9,8 +9,8 @@ import {
 } from './PersonalMenu.styled';
 
 import { UserCard } from 'components/molecules';
-import { useAppSelector } from 'hooks/hook';
-import { useAppDispatch } from 'hooks/hook';
+import { useAppSelector } from 'hooks';
+import { useAppDispatch } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 

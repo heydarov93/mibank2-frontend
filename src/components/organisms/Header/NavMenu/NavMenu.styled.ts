@@ -1,16 +1,14 @@
 import { Box, styled } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-export const StyledNavMenu = styled(Box)(
-  ({ theme: { palette, breakpoints } }) => ({
-    display: 'none',
-    justifyContent: 'start',
-    alignItems: 'center',
-    [breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  }),
-);
+export const StyledNavMenu = styled(Box)(({ theme: { breakpoints } }) => ({
+  display: 'none',
+  justifyContent: 'start',
+  alignItems: 'center',
+  [breakpoints.up('md')]: {
+    display: 'flex',
+  },
+}));
 
 export const StyledNavLink = styled(NavLink)(
   ({ theme: { spacing, palette } }) => ({

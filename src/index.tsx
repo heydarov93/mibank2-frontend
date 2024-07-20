@@ -7,9 +7,8 @@ import { RouterProvider } from 'react-router-dom';
 
 import i18n from '../src/i18n';
 
-import reportWebVitals from './reportWebVitals';
 import { routes } from './router';
-import { store } from './store/store';
+import { store } from './store';
 import { theme } from './theme/theme';
 
 const root = ReactDOM.createRoot(

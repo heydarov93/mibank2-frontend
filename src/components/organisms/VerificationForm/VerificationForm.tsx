@@ -12,9 +12,9 @@ import {
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
 
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch, useFormatErrorMessage } from 'hooks';
 import { setError } from 'store/reducers';
-import { convertSecondsToTime, useFormatErrorMessage } from 'utils';
+import { convertSecondsToTime } from 'utils';
 
 const mockCode = '123456';
 
