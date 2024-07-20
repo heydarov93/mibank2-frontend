@@ -25,7 +25,7 @@ import {
 } from 'components/molecules';
 import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
 import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import {
@@ -34,11 +34,7 @@ import {
   setLogIn,
   loginToApp,
 } from 'store/reducers/AuthSlice';
-import {
-  localTokenHandler,
-  useErrorHandlers,
-  useFormatErrorMessage,
-} from 'utils';
+import { localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation');

@@ -1,6 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ErrorPage, LoginPage, UnderDevPage, VerificationPage, SignupPageEmail, SignupPagePassword } from '../pages';
+import {
+  ErrorPage,
+  LoginPage,
+  UnderDevPage,
+  VerificationPage,
+  SignupPageEmail,
+  SignupPagePassword,
+} from '../pages';
 
 import { PrivateRoute } from './PrivateRoute';
 

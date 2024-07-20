@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { PersonalMenu } from './PersonalMenu';
 
-import { useAppSelector } from 'hooks/hook';
+import { useAppSelector } from 'hooks';
 
 jest.mock('store/reducers/AuthSlice', () => ({
   ...jest.requireActual('store/reducers/AuthSlice'),

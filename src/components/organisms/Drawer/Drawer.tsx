@@ -21,7 +21,7 @@ import {
 import { UserCard } from 'components/molecules';
 import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
-import { useAppDispatch, useAppSelector } from 'hooks/hook';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
 

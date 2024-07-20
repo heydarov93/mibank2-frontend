@@ -1,6 +1,6 @@
 import { Alert, AlertTitle, Snackbar, useTheme } from '@mui/material';
 
-import { useAppSelector, useAppDispatch } from 'hooks/hook';
+import { useAppSelector, useAppDispatch } from 'hooks';
 import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors/AuthSelectors';
 
