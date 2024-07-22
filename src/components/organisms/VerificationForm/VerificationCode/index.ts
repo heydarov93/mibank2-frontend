@@ -1,0 +1,1 @@
+export { MemoizedVerificationCode } from './VerificationCode';

@@ -18,9 +18,7 @@ import { InputField } from 'components/atoms';
 import { validationLoginSchema } from 'constants/validationShemas';
 import { IFormInput } from 'models/IAuth';
 
-
 export const SignupFormEmail = () => {
-
   const { t } = useTranslation('translation');
 
   const navigate = useNavigate();
@@ -41,7 +39,7 @@ export const SignupFormEmail = () => {
       email: '',
     },
   });
-  
+
   const onSubmit = async (data: IFormInput) => {
     //TODO: logic for submit
     console.log(data);
@@ -98,4 +96,4 @@ export const SignupFormEmail = () => {
       </StyledSignInLinkContainer>
     </>
   );
-}
+};
