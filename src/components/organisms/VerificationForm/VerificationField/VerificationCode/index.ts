@@ -1,1 +1,0 @@
-export { VerificationCode } from './VerificationCode';

@@ -1,5 +1,12 @@
 import { styled, Input, Box, Typography } from '@mui/material';
 
+export const StyledBoxContainer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 2,
+  marginTop: 2,
+}));
+
 export const StyledVerificationBox = styled(Box)(
   ({ theme: { palette, spacing, animations } }) => ({
     display: 'flex',
@@ -48,11 +55,11 @@ export const StyledInputElement = styled(Input, {
   },
 
   ...(isCorrect && {
-    color: palette.success.dark,
-    border: `1px solid ${palette.success.dark}`,
-    backgroundColor: `${palette.success.light}`,
+    color: palette.primary.dark,
+    border: `1px solid ${palette.primary.dark}`,
+    backgroundColor: `${palette.primary.light}`,
     '&.hasValue': {
-      border: `1px solid ${palette.success.dark}`,
+      border: `1px solid ${palette.primary.dark}`,
     },
   }),
 }));

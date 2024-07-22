@@ -1,33 +1,34 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  StyledBoxContainer,
   StyledInputElement,
   StyledTypography,
   StyledVerificationBox,
 } from './VerificationCode.styled';
+
 interface VerificationCodeProps {
   separator: React.ReactNode;
   length: number;
-  value: string;
   isCodeCorrect: boolean;
   isFormDisabled: boolean;
   isCodeWrong: boolean;
-  onChange: (value: string) => void;
+  onReady: (value: string) => void;
 }
 
-export const VerificationCode = ({
+const VerificationCode = ({
   separator,
   length,
-  value,
   isCodeCorrect,
   isFormDisabled,
   isCodeWrong,
-  onChange,
+  onReady,
 }: VerificationCodeProps) => {
   const { t } = useTranslation('translation');
 
   const [error, setError] = useState(false);
+  const [otp, setOtp] = useState(new Array(length).fill(''));
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
   const focusInput = (targetIndex: number) => {
@@ -45,6 +46,10 @@ export const VerificationCode = ({
     targetInput.blur();
   };
 
+  const resetField = () => {
+    setOtp(new Array(length).fill(''));
+  };
+
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
     currentIndex: number,
@@ -58,8 +63,12 @@ export const VerificationCode = ({
         blurInput(currentIndex);
       }
     };
-    const handleDeletion = (prev: string) =>
-      prev.slice(0, currentIndex) + prev.slice(currentIndex + 1);
+
+    const handleDeletion = () => {
+      const newArr = [...otp];
+      newArr[currentIndex] = '';
+      setOtp(newArr);
+    };
 
     switch (event.key) {
       case ' ':
@@ -74,13 +83,9 @@ export const VerificationCode = ({
         handleNavigation(1);
         break;
       case 'Delete':
-        event.preventDefault();
-        onChange(handleDeletion(value));
-        break;
       case 'Backspace':
         event.preventDefault();
-        handleNavigation(-1);
-        onChange(handleDeletion(value));
+        handleDeletion();
         break;
 
       default:
@@ -94,6 +99,7 @@ export const VerificationCode = ({
           setError(true);
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
+          break;
         }
         setTimeout(() => handleNavigation(1), 0);
         break;
@@ -105,26 +111,11 @@ export const VerificationCode = ({
     currentIndex: number,
   ) => {
     const currentValue = event.target.value;
-    let indexToEnter = 0;
     if (!/\d/.test(currentValue)) return;
 
-    while (indexToEnter <= currentIndex) {
-      if (
-        inputRefs.current[indexToEnter].value &&
-        indexToEnter < currentIndex
-      ) {
-        indexToEnter += 1;
-      } else {
-        break;
-      }
-    }
-
-    const verificationArray = value.split('');
-    const lastValue = currentValue[currentValue.length - 1];
-    verificationArray[indexToEnter] = lastValue;
-    const newValue = verificationArray.join('');
-
-    onChange(newValue);
+    const newArr = [...otp];
+    newArr[currentIndex] = currentValue;
+    setOtp(newArr);
 
     if (currentValue !== '') {
       if (currentIndex < length - 1) {
@@ -151,59 +142,57 @@ export const VerificationCode = ({
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
       pastedText = pastedText.replace(/[^0-9]/g, '').substring(0, length);
-      let indexToEnter = 0;
       if (!pastedText) {
         setError(true);
         setTimeout(() => setError(false), 1000);
         return;
       }
 
-      while (indexToEnter <= currentIndex) {
-        if (
-          inputRefs.current[indexToEnter].value &&
-          indexToEnter < currentIndex
-        ) {
-          indexToEnter += 1;
-        } else {
-          break;
-        }
+      const newArr = [...otp];
+      for (let i = currentIndex; i < currentIndex + pastedText.length; i++) {
+        newArr[i] = pastedText[i - currentIndex];
       }
-
-      const verificationArr = value.split('');
-
-      for (let i = indexToEnter; i < indexToEnter + pastedText.length; i += 1) {
-        const lastValue = pastedText[i - indexToEnter] ?? '';
-        verificationArr[i] = lastValue;
-      }
+      setOtp(newArr);
 
       setTimeout(() => {
         selectInput(
-          verificationArr.length < length
-            ? verificationArr.length
-            : verificationArr.length - 1,
+          currentIndex + pastedText.length < length
+            ? currentIndex + pastedText.length
+            : currentIndex + pastedText.length - 1,
         );
         focusInput(
-          verificationArr.length < length
-            ? verificationArr.length
-            : verificationArr.length - 1,
+          currentIndex + pastedText.length < length
+            ? currentIndex + pastedText.length
+            : currentIndex + pastedText.length - 1,
         );
       }, 0);
-      onChange(verificationArr.join(''));
     }
   };
 
+  useEffect(() => {
+    if (isCodeWrong) resetField();
+  }, [isCodeWrong]);
+
+  useEffect(() => {
+    if (otp.every((i) => !!i)) onReady(otp.join(''));
+  }, [otp]);
+
   return (
-    <>
+    <StyledBoxContainer>
       <StyledVerificationBox className={error || isCodeWrong ? 'shake' : ''}>
-        {new Array(length).fill(null).map((_, index) => (
+        {otp.map((digit, index) => (
           <Fragment key={index}>
             <StyledInputElement
-              disabled={isFormDisabled || index > value.length}
+              disabled={
+                isFormDisabled || (index !== 0 && !otp[index - 1] && !digit)
+              }
               disableUnderline
-              className={value[index] ? 'hasValue' : ''}
+              className={digit ? 'hasValue' : ''}
               isCorrect={isCodeCorrect}
-              slotProps={{ input: { style: { textAlign: 'center' } } }}
-              inputRef={(el) => (inputRefs.current[index] = el!)}
+              slotProps={{
+                input: { style: { textAlign: 'center' }, maxLength: 1 },
+              }}
+              inputRef={(el) => (inputRefs.current[index] = el)}
               onKeyDown={(event) =>
                 handleKeyDown(
                   event as React.KeyboardEvent<HTMLInputElement>,
@@ -230,7 +219,7 @@ export const VerificationCode = ({
               }
               placeholder="0"
               aria-label={`Digit ${index + 1} of Verification Code`}
-              value={value[index] ?? ''}
+              value={digit}
             />
             {index === length / 2 - 1 ? separator : null}
           </Fragment>
@@ -248,6 +237,8 @@ export const VerificationCode = ({
             ))}
         </StyledTypography>
       )}
-    </>
+    </StyledBoxContainer>
   );
 };
+
+export const MemoizedVerificationCode = memo(VerificationCode);

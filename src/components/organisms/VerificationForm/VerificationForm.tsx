@@ -2,15 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  MemoizedVerificationField,
-  VerificationTitle,
-} from './VerificationField';
+import { MemoizedVerificationCode } from './VerificationCode';
 import {
   StyledButton,
   StyledVerificationForm,
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
+import { VerificationTitle } from './VerificationTitle';
 
 import { useAppDispatch, useFormatErrorMessage } from 'hooks';
 import { setError } from 'store/reducers';
@@ -34,14 +32,11 @@ export const VerificationForm = () => {
 
   const { formatErrorMessage } = useFormatErrorMessage();
 
-  const handleInputChange = useCallback(
+  const handleVerificationCode = useCallback(
     (newValue: string) => {
       setValue(newValue);
       setIsCodeCorrect(newValue === mockCode);
-
-      if (newValue.length === 6) {
-        handleVerificationSubmit(newValue);
-      }
+      handleVerificationSubmit(newValue);
     },
     [value],
   );
@@ -116,12 +111,13 @@ export const VerificationForm = () => {
       <VerificationTitle email={email} />
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <MemoizedVerificationField
-            value={value}
-            onChange={handleInputChange}
+          <MemoizedVerificationCode
+            onReady={handleVerificationCode}
             isFormDisabled={isFormDisabled}
             isCodeWrong={isCodeWrong}
             isCodeCorrect={isCodeCorrect}
+            separator={<span>-</span>}
+            length={6}
           />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
