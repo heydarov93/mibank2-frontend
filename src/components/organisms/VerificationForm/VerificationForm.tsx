@@ -63,9 +63,6 @@ export const VerificationForm = () => {
       setTimeout(() => navigate('/'), 1000);
     } else {
       setIsCodeWrong(true);
-      setTimeout(() => {
-        setIsCodeWrong(false), setValue('');
-      }, 1000);
 
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
       setIsCodeCorrect(false);
@@ -89,6 +86,11 @@ export const VerificationForm = () => {
         dispatch(setError(errorMessage));
       }
     }
+  };
+
+  const handleResetCodeWrong = () => {
+    setIsCodeWrong(false);
+    setValue('');
   };
 
   useEffect(() => {
@@ -132,6 +134,7 @@ export const VerificationForm = () => {
             onReady={handleVerificationCode}
             isFormDisabled={isFormDisabled}
             isCodeWrong={isCodeWrong}
+            onResetCodeWrong={handleResetCodeWrong}
             isCodeCorrect={isCodeCorrect}
             separator={<span>-</span>}
             length={6}
