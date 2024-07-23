@@ -14,6 +14,7 @@ interface VerificationCodeProps {
   isCodeCorrect: boolean;
   isFormDisabled: boolean;
   isCodeWrong: boolean;
+  onResetCodeWrong: () => void;
   onReady: (value: string) => void;
 }
 
@@ -23,12 +24,14 @@ const VerificationCode = ({
   isCodeCorrect,
   isFormDisabled,
   isCodeWrong,
+  onResetCodeWrong,
   onReady,
 }: VerificationCodeProps) => {
   const { t } = useTranslation('translation');
 
   const [error, setError] = useState(false);
   const [otp, setOtp] = useState(new Array(length).fill(''));
+  const [isNonDigit, setIsNonDigit] = useState(false);
   const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
 
   const focusInput = (targetIndex: number) => {
@@ -97,10 +100,14 @@ const VerificationCode = ({
         }
         if (!/\d/.test(event.key)) {
           setError(true);
+          setIsNonDigit(true);
           event.preventDefault();
           setTimeout(() => setError(false), 1000);
           break;
+        } else {
+          setIsNonDigit(false);
         }
+
         setTimeout(() => handleNavigation(1), 0);
         break;
     }
@@ -170,8 +177,15 @@ const VerificationCode = ({
   };
 
   useEffect(() => {
-    if (isCodeWrong) resetField();
-  }, [isCodeWrong]);
+    if (isCodeWrong) {
+      const timer = setTimeout(() => {
+        resetField();
+        onResetCodeWrong();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isCodeWrong, resetField, onResetCodeWrong]);
 
   useEffect(() => {
     if (otp.every((i) => !!i)) onReady(otp.join(''));
@@ -225,7 +239,7 @@ const VerificationCode = ({
           </Fragment>
         ))}
       </StyledVerificationBox>
-      {error && (
+      {isNonDigit && (
         <StyledTypography>
           {t('VerificationPage.errorPattern')
             .split('\n')
