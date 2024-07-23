@@ -36,6 +36,7 @@ export const SignupFormPassword = () => {
     handleSubmit,
     resetField,
     //TODO: logic for reset form
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
   } = useForm<IFormInput>({
     resolver: yupResolver(validationLoginSchema),
@@ -47,9 +48,11 @@ export const SignupFormPassword = () => {
     },
   });
   //TODO: handle with disable form
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isFormDisabled, setIsFormDisabled] = useState(false);
 
   const onSubmit = async (data: IFormInput) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

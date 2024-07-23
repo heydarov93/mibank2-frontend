@@ -50,7 +50,7 @@ exports[`LoginPage snapshot should match 1`] = `
               Email
             </label>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-4hflq4-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-16pom90-MuiFormControl-root-MuiTextField-root"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
@@ -113,12 +113,13 @@ exports[`LoginPage snapshot should match 1`] = `
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-4hflq4-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-16pom90-MuiFormControl-root-MuiTextField-root"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
+                  aria-describedby="password-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
                   id="password"
@@ -168,6 +169,10 @@ exports[`LoginPage snapshot should match 1`] = `
                   </legend>
                 </fieldset>
               </div>
+              <p
+                class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+                id="password-helper-text"
+              />
             </div>
           </div>
         </div>
@@ -242,8 +247,8 @@ exports[`LoginPage snapshot should match 1`] = `
           Don't have an account?
         </p>
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-ycryz0-MuiTypography-root-MuiLink-root"
-          href="/signup"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-ioj6kh-MuiTypography-root-MuiLink-root"
+          href="/signup-start"
         >
           Sign Up
         </a>

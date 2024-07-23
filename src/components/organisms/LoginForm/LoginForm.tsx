@@ -28,19 +28,14 @@ import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
 import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import {
-  setError,
-  setLoading,
-  setLogIn,
-  loginToApp,
-} from 'store/reducers/AuthSlice';
+import { setError, setLoading, loginToApp } from 'store/reducers/AuthSlice';
 import { localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
 
-  const [authorize, { isLoading }] = useAuthorizeMutation();
+  const [authorize] = useAuthorizeMutation();
   const { handleNotFoundError, handleLockedError } = useErrorHandlers();
   const { formatErrorMessage } = useFormatErrorMessage();
   const {
@@ -80,13 +75,10 @@ export const LoginForm = () => {
     try {
       const data = await authorize(credentials).unwrap();
 
-      localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
-      localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
-      dispatch(setLogIn());
+      localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
+
       dispatch(setLoading(true));
       navigate('/verification');
-      localStorage.setItem('email', credentials.email);
-      localStorage.setItem('isAuth', 'true');
       resetForm();
     } catch (e) {
       const error = e as IErrorData;

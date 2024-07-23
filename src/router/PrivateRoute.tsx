@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks';
-import { getIsAuth, getLoading } from 'store/selectors/AuthSelectors';
+import { getLoading } from 'store/selectors/AuthSelectors';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();

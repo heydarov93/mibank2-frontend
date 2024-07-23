@@ -11,16 +11,23 @@ import {
 import { VerificationTitle } from './VerificationTitle';
 
 import { useAppDispatch, useFormatErrorMessage } from 'hooks';
+import { TokenType } from 'models/IAuth';
 import { setError } from 'store/reducers';
-import { convertSecondsToTime } from 'utils';
+import {
+  convertSecondsToTime,
+  getEmailFromToken,
+  localTokenHandler,
+} from 'utils';
 
 const mockCode = '123456';
 
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
-  const email = localStorage.getItem('email');
 
+  const token = localTokenHandler.getToken(TokenType.TEMPORARY);
+
+  const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
   const [remainingTime, setRemainingTime] = useState<number>(60);
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
@@ -36,12 +43,12 @@ export const VerificationForm = () => {
     (newValue: string) => {
       setValue(newValue);
       setIsCodeCorrect(newValue === mockCode);
-      handleVerificationSubmit(newValue);
+      handleVerificationSubmit(newValue, email);
     },
-    [value],
+    [value, email],
   );
 
-  const handleVerificationSubmit = (value: string) => {
+  const handleVerificationSubmit = (value: string, currentEmail: string) => {
     // Simulate backend verification (replace with actual API call in real implementation)
     const maxAttempts = 3;
 
@@ -49,6 +56,9 @@ export const VerificationForm = () => {
       setIsCodeCorrect(true);
       setFailedAttempts(1);
       setIsCodeWrong(false);
+
+      localStorage.setItem('isAuth', 'true');
+      localStorage.setItem('email', currentEmail);
 
       setTimeout(() => navigate('/'), 1000);
     } else {
@@ -80,6 +90,13 @@ export const VerificationForm = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (!token) return;
+
+    const email = getEmailFromToken(token);
+    setEmail(email || '');
+  }, [token]);
 
   useEffect(() => {
     if (remainingTime <= 0) {
