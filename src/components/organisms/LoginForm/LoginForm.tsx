@@ -15,7 +15,7 @@ import {
   StyledSignUpLinkContainer,
 } from './LoginForm.styled';
 
-import { useAuthorizeMutation } from 'api/authApi';
+import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
 import { InputField } from 'components/atoms';
 import {
   CheckboxWithLabel,
@@ -28,7 +28,7 @@ import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
 import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError, setLoading, loginToApp } from 'store/reducers/AuthSlice';
+import { setError, setLoading, setVerifying } from 'store/reducers/AuthSlice';
 import { localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
@@ -36,6 +36,7 @@ export const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   const [authorize] = useAuthorizeMutation();
+  const [sendcode] = useSendcodeMutation();
   const { handleNotFoundError, handleLockedError } = useErrorHandlers();
   const { formatErrorMessage } = useFormatErrorMessage();
   const {
@@ -76,8 +77,9 @@ export const LoginForm = () => {
       const data = await authorize(credentials).unwrap();
 
       localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
-
+      dispatch(setVerifying(true));
       dispatch(setLoading(true));
+      await sendcode(null);
       navigate('/verification');
       resetForm();
     } catch (e) {
@@ -116,7 +118,7 @@ export const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
-      dispatch(loginToApp(data.email));
+      // dispatch(loginToApp(data.email));
     } catch (err) {
       if (err instanceof Error) {
         dispatch(setError(err.message));

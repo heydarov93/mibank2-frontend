@@ -20,9 +20,13 @@ export const baseQueryCreator =
     const baseQuery = fetchBaseQuery({
       baseUrl: BASE_URL(),
       prepareHeaders: (headers) => {
-        const token = localTokenHandler.getToken(TokenType.ACCESS);
-        if (token) {
-          headers.set('authorization', `Bearer ${token}`);
+        const accessToken = localTokenHandler.getToken(TokenType.ACCESS);
+        const temporaryToken = localTokenHandler.getToken(TokenType.TEMPORARY);
+        if (accessToken) {
+          headers.set('authorization', `Bearer ${accessToken}`);
+        }
+        if (temporaryToken) {
+          headers.set('Temporary-Token', `${temporaryToken}`);
         }
         return headers;
       },

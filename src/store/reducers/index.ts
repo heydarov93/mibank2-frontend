@@ -1,1 +1,1 @@
-export { setError, clearError } from './AuthSlice';
+export { setError, clearError, setVerifying } from './AuthSlice';

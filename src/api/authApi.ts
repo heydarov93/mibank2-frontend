@@ -17,7 +17,23 @@ export const authApi = createApi({
         body: credentials,
       }),
     }),
+    sendcode: builder.mutation({
+      query: () => ({
+        url: endpoints.userAccountManagement.users.sendcode,
+        method: 'GET',
+      }),
+    }),
+    verifyCode: builder.mutation({
+      query: (code) => ({
+        url: endpoints.userAccountManagement.users.verifycode + `?code=${code}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useAuthorizeMutation } = authApi;
+export const {
+  useAuthorizeMutation,
+  useSendcodeMutation,
+  useVerifyCodeMutation,
+} = authApi;
