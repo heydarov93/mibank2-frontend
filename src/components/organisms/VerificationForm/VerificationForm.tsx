@@ -10,20 +10,20 @@ import {
 } from './VerificationForm.styled';
 import { VerificationTitle } from './VerificationTitle';
 
+import { useVerifyCodeMutation } from 'api/authApi';
 import { useAppDispatch, useFormatErrorMessage } from 'hooks';
 import { TokenType } from 'models/IAuth';
-import { setError } from 'store/reducers';
+import { setError, setVerifying } from 'store/reducers';
 import {
   convertSecondsToTime,
   getEmailFromToken,
   localTokenHandler,
 } from 'utils';
 
-const mockCode = '123456';
-
 export const VerificationForm = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
+  const [verifyCode] = useVerifyCodeMutation();
 
   const token = localTokenHandler.getToken(TokenType.TEMPORARY);
 
@@ -42,49 +42,58 @@ export const VerificationForm = () => {
   const handleVerificationCode = useCallback(
     (newValue: string) => {
       setValue(newValue);
-      setIsCodeCorrect(newValue === mockCode);
       handleVerificationSubmit(newValue, email);
     },
     [value, email],
   );
 
-  const handleVerificationSubmit = (value: string, currentEmail: string) => {
-    // Simulate backend verification (replace with actual API call in real implementation)
+  const handleVerificationSubmit = async (
+    value: string,
+    currentEmail: string,
+  ) => {
     const maxAttempts = 3;
-
-    if (value === mockCode) {
-      setIsCodeCorrect(true);
-      setFailedAttempts(1);
-      setIsCodeWrong(false);
-
-      localStorage.setItem('isAuth', 'true');
-      localStorage.setItem('email', currentEmail);
-
-      setTimeout(() => navigate('/'), 1000);
-    } else {
-      setIsCodeWrong(true);
-
-      setFailedAttempts((prevAttempts) => prevAttempts + 1);
-      setIsCodeCorrect(false);
-
-      if (failedAttempts < maxAttempts) {
-        const remainingAttempts = maxAttempts - failedAttempts;
-        const message =
-          'Verification code is incorrect. Enter correct code or resend the code or contact us.';
-
-        const errorMessage = formatErrorMessage(remainingAttempts, message);
-
-        dispatch(setError(errorMessage));
-      } else if (failedAttempts >= maxAttempts) {
-        setIsFormDisabled(true);
-        setRemainingTime(600);
+    try {
+      const data = await verifyCode(value).unwrap();
+      localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
+      if (localStorage.getItem('accessToken')) {
+        setIsCodeCorrect(true);
         setFailedAttempts(1);
+        setIsCodeWrong(false);
+        dispatch(setVerifying(false));
 
-        const errorMessage =
-          'Too many failed attempts. Please try to request the code again in 10 minutes or contact us for assistance';
+        localStorage.setItem('isAuth', 'true');
+        localStorage.setItem('email', currentEmail);
+        localStorage.removeItem('temporaryToken');
 
-        dispatch(setError(errorMessage));
+        setTimeout(() => navigate('/'), 1000);
+      } else {
+        setIsCodeWrong(true);
+
+        setFailedAttempts((prevAttempts) => prevAttempts + 1);
+        setIsCodeCorrect(false);
+
+        if (failedAttempts < maxAttempts) {
+          const remainingAttempts = maxAttempts - failedAttempts;
+          const message =
+            'Verification code is incorrect. Enter correct code or resend the code or contact us.';
+
+          const errorMessage = formatErrorMessage(remainingAttempts, message);
+
+          dispatch(setError(errorMessage));
+        } else if (failedAttempts >= maxAttempts) {
+          setIsFormDisabled(true);
+          setRemainingTime(600);
+          setFailedAttempts(1);
+
+          const errorMessage =
+            'Too many failed attempts. Please try to request the code again in 10 minutes or contact us for assistance';
+
+          dispatch(setError(errorMessage));
+        }
       }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
     }
   };
 

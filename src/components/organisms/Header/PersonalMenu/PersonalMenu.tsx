@@ -41,8 +41,10 @@ export const PersonalMenu = () => {
   const { data, isLoading } = useGetUserInfoQuery(email ?? skipToken);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && data) {
       dispatch(setUserData(data));
+    } else if (!isLoading && !data) {
+      logoutHandler();
     }
   }, [isLoading]);
 

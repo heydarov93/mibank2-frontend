@@ -5,6 +5,7 @@ export interface ILoginData {
 export interface IAuth {
   accessToken: string;
   refreshToken: string;
+  temporaryToken: string;
 }
 export interface IUser {
   sub: string | undefined;

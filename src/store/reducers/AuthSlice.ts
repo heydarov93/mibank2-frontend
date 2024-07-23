@@ -3,14 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUserInfo } from 'models/IUserInfo';
 
 interface AuthState {
-  isAuth: boolean;
+  isVerifying: boolean;
   user: IUserInfo | undefined;
   error: string | null;
   loading: boolean;
 }
 
 const initialState: AuthState = {
-  isAuth: false,
+  isVerifying: false,
   user: {
     firstName: '',
     lastName: '',
@@ -29,6 +29,9 @@ const AuthSlice = createSlice({
     setError(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
+    setVerifying: (state, action) => {
+      state.isVerifying = action.payload;
+    },
     clearError(state) {
       state.error = null;
     },
@@ -38,9 +41,6 @@ const AuthSlice = createSlice({
     setUserData(state, action: PayloadAction<IUserInfo | undefined>) {
       state.user = action.payload;
     },
-    loginToApp(state, action: PayloadAction<string>) {
-      state.user ? (state.user.email = action.payload) : state.user;
-    },
     logoutFromApp(state) {
       state.user = initialState.user;
     },
@@ -49,10 +49,10 @@ const AuthSlice = createSlice({
 
 export const {
   setError,
+  setVerifying,
   clearError,
   setLoading,
   setUserData,
   logoutFromApp,
-  loginToApp,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;
