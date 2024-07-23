@@ -1,6 +1,4 @@
 import { Box } from '@mui/material';
-import { skipToken } from '@reduxjs/toolkit/query';
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -12,40 +10,25 @@ import {
   StyledTypographyName,
 } from './UserCard.styled';
 
-import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { EGreeting } from 'constants/index';
-import { useAppDispatch, useAppSelector } from 'hooks';
 import { IUserInfo } from 'models/IUserInfo';
-import { setUserData } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors/AuthSelectors';
 
 type PersonalMenuProps = {
   user?: IUserInfo;
   isViceversa?: boolean;
   isShowUserInfo?: boolean;
   captureVariant?: EGreeting;
+  isLoading?: boolean;
 };
 export const UserCard = ({
   user,
   isViceversa = false,
   isShowUserInfo = true,
   captureVariant = EGreeting.DEFAULT,
+  isLoading,
 }: PersonalMenuProps) => {
-  const dispatch = useAppDispatch();
-
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
-  const email = localStorage.getItem('email');
-
-  const { data, isLoading } = useGetUserInfoQuery(email ?? skipToken);
-
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(setUserData(data));
-    }
-  }, [isLoading]);
-
-  user = useAppSelector(getUser);
   const initials = `${user?.firstName?.charAt(0) ?? ''}${user?.lastName?.charAt(0) ?? ''}`;
   const fullName = `${user?.firstName} ${user?.lastName}`;
 
@@ -69,7 +52,7 @@ export const UserCard = ({
             {!isLoading ? fullName : ''}
           </StyledTypographyName>
         </StyledGreetingsName>
-        <StyledTypography>{data?.email}</StyledTypography>
+        <StyledTypography>{user?.email}</StyledTypography>
       </Box>
     ),
   };

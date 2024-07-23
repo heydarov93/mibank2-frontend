@@ -33,7 +33,7 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
-jest.mock('hooks/hook', () => ({
+jest.mock('hooks', () => ({
   useAppSelector: jest.fn().mockReturnValue({
     firstName: 'John',
     lastName: 'Doe',
@@ -57,7 +57,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const mockDispatch = jest.fn();
-jest.mock('hooks/hook', () => ({
+jest.mock('hooks', () => ({
   useAppSelector: jest.fn().mockReturnValue({
     firstName: 'John',
     lastName: 'Doe',

@@ -31,6 +31,7 @@ export const SignupFormEmail = () => {
     handleSubmit,
     resetField,
     //TODO: logic for reset form
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
   } = useForm<IFormInput>({
     resolver: yupResolver(validationLoginSchema),
@@ -42,6 +43,7 @@ export const SignupFormEmail = () => {
 
   const onSubmit = async (data: IFormInput) => {
     //TODO: logic for submit
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 
