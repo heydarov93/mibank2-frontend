@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Box, useTheme, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
+  StyledButton,
   StyledButtonContainer,
   StyledForm,
   StyledFormContent,
@@ -27,8 +28,6 @@ export const SignupFormPassword = () => {
   const { t } = useTranslation('translation');
 
   const navigate = useNavigate();
-
-  const theme = useTheme();
 
   const {
     formState: { errors },
@@ -104,22 +103,15 @@ export const SignupFormPassword = () => {
           isFormDisabled={isFormDisabled}
         />
         <StyledButtonContainer>
-          <Button
+          <StyledButton
             size="large"
             variant="contained"
             fullWidth
             type="submit"
             onClick={handleCleanField}
-            sx={{
-              '&.Mui-disabled': {
-                opacity: '0.65',
-                color: theme.palette.common.white,
-                background: theme.palette.primary.main,
-              },
-            }}
           >
             {t('SignupPage.buttonLabel')}
-          </Button>
+          </StyledButton>
         </StyledButtonContainer>
       </StyledForm>
       <StyledSignInLinkContainer>

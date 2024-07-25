@@ -1,4 +1,4 @@
-import { styled, Typography, Box, Link } from '@mui/material';
+import { styled, Typography, Box, Link, Button } from '@mui/material';
 
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
@@ -52,6 +52,26 @@ export const StyledButtonContainer = styled(Box)(
 
     [breakpoints.up('sm')]: {
       paddingTop: spacing(2),
+    },
+  }),
+);
+
+export const StyledButton = styled(Button)(
+  ({ theme: { palette, breakpoints } }) => ({
+    fontSize: '16px',
+    padding: '12px 22px',
+    height: '43px',
+    borderRadius: '8px',
+
+    '&.Mui-disabled': {
+      opacity: '0.65',
+      color: palette.common.white,
+      background: palette.primary.main,
+    },
+
+    [breakpoints.up('sm')]: {
+      padding: '10px 22px',
+      height: '56px',
     },
   }),
 );

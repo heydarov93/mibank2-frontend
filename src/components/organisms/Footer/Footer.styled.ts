@@ -8,5 +8,6 @@ export const StyledFooterWrapper = styled('footer')(
       padding: spacing(3, 4),
     },
     boxShadow: `0px -2px 15px 0px ${palette.grey[200]}`,
+    marginTop: 'auto',
   }),
 );

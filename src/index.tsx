@@ -10,6 +10,7 @@ import i18n from '../src/i18n';
 import { routes } from './router';
 import { store } from './store';
 import { theme } from './theme/theme';
+import './assets/css/global.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

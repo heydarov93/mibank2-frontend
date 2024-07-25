@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ import {
   StyledTitleContainer,
   StyledTitle,
   StyledDescription,
+  StyledButton,
 } from './UnderDevPage.styled';
 
 import { ReactComponent as UnderDevelopmentImage } from 'assets/icons/Under_development.svg';
@@ -34,14 +34,15 @@ export const UnderDevPage: React.FC = () => {
             {t('UnderDevPage.description')}
           </StyledDescription>
         </StyledTitleContainer>
-        <Button
+        <StyledButton
           variant="contained"
           color="primary"
           size="large"
+          fullWidth
           onClick={goBackHandler}
         >
           {t('UnderDevPage.buttonLabel')}
-        </Button>
+        </StyledButton>
       </StyledBox>
     </UnderDevPageWrapper>
   );
