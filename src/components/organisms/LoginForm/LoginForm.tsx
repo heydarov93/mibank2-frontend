@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Box, useTheme, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
+  StyledButton,
   StyledButtonContainer,
   StyledForm,
   StyledFormContent,
@@ -70,8 +71,6 @@ export const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  const theme = useTheme();
-
   const logIn = async (credentials: ILoginData) => {
     try {
       const data = await authorize(credentials).unwrap();
@@ -118,7 +117,6 @@ export const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
-      // dispatch(loginToApp(data.email));
     } catch (err) {
       if (err instanceof Error) {
         dispatch(setError(err.message));
@@ -169,20 +167,13 @@ export const LoginForm = () => {
           isFormDisabled={isFormDisabled}
         />
         <StyledButtonContainer>
-          <Button
+          <StyledButton
             size="large"
             variant="contained"
             fullWidth
             type="submit"
             onClick={handleCleanField}
             disabled={isFormDisabled}
-            sx={{
-              '&.Mui-disabled': {
-                opacity: '0.65',
-                color: theme.palette.common.white,
-                background: theme.palette.primary.main,
-              },
-            }}
           >
             {t('LoginPage.formBtnSignIn')}
             {isFormDisabled && (
@@ -197,7 +188,7 @@ export const LoginForm = () => {
                 <span>{`)`}</span>
               </>
             )}
-          </Button>
+          </StyledButton>
         </StyledButtonContainer>
       </StyledForm>
       <StyledSignUpLinkContainer>
