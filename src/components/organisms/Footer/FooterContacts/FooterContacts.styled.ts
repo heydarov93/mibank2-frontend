@@ -47,3 +47,12 @@ export const TypographyGrey = styled(Typography)(
     },
   }),
 );
+
+export const StyledTypographyWorkingHours = styled(Typography)(
+  ({ theme: { palette, breakpoints } }) => ({
+    color: palette.common.black,
+    [breakpoints.up('sm')]: {
+      fontSize: '16px',
+    },
+  }),
+);

@@ -63,7 +63,7 @@ export const VerificationForm = () => {
 
         localStorage.setItem('isAuth', 'true');
         localStorage.setItem('email', currentEmail);
-        localStorage.removeItem('temporaryToken');
+        localTokenHandler.clearToken(TokenType.TEMPORARY);
 
         setTimeout(() => navigate('/'), 1000);
       } else {

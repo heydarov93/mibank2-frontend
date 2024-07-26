@@ -1,23 +1,59 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { googlePlayLink, contactLinks, workingHours } from '../constants';
+import { googlePlayLink } from '../constants';
 
 import {
   LogoWrapper,
   StyledLink,
   StyledFlexBox,
   TypographyGrey,
+  StyledTypographyWorkingHours,
 } from './FooterContacts.styled';
 
+import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
 import { GooglePlayIcon, Logo } from 'components/atoms';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setContacts } from 'store/reducers';
+import { getContacts } from 'store/selectors/BankContactsSelectors';
+import { formatPhoneNumber } from 'utils';
 
 export const FooterContacts = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
-  const { phone, email } = contactLinks;
-  const { lines } = workingHours;
-  const theme = useTheme();
+  const [skip, setSkip] = useState(true);
+  const dispatch = useAppDispatch();
+  const { data: version } = useGetVersionQuery(null);
+  const { data: contacts } = useGetContactsQuery(null, { skip });
+  const currentContacts = useAppSelector(getContacts);
+  const {
+    id: currentVersion,
+    email,
+    phoneNumber,
+    contactCenterWorkingDays,
+    contactCenterWorkingDayBeginTime,
+    contactCenterWorkingDayEndTime,
+    contactCenterShortenedDays,
+    contactCenterShortenedDayBeginTime,
+    contactCenterShortenedDayEndTime,
+  } = currentContacts;
+  const phone = formatPhoneNumber(phoneNumber);
+
+  useEffect(() => {
+    if (version) {
+      if (currentVersion !== version.id) {
+        setSkip(false);
+      }
+    }
+  }, [currentVersion, version]);
+
+  useEffect(() => {
+    if (contacts) {
+      dispatch(setContacts(contacts));
+    }
+  }, [contacts]);
+
   return (
     <Box
       sx={{
@@ -44,12 +80,12 @@ export const FooterContacts = () => {
           <TypographyGrey variant="body2">{t('contacts.title')}</TypographyGrey>
           <StyledLink href={`tel:${phone}`} mb={0.5}>
             <Typography variant="body2" sx={{ fontSize: { sm: '16px' } }}>
-              {t(`contacts.phone`)}
+              {phone}
             </Typography>
           </StyledLink>
           <StyledLink href={`mailto:${email}`}>
             <Typography variant="body2" sx={{ fontSize: { sm: '16px' } }}>
-              {t(`contacts.email`)}
+              {email}
             </Typography>
           </StyledLink>
         </Box>
@@ -58,18 +94,14 @@ export const FooterContacts = () => {
             {t('workingHours.title')}
           </TypographyGrey>
           <Box display="flex" flexDirection="column" gap={0.5}>
-            {lines.map((line) => (
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { sm: '16px' },
-                  color: theme.palette.common.black,
-                }}
-                key={line}
-              >
-                {t(`workingHours.${line}`)}
-              </Typography>
-            ))}
+            <StyledTypographyWorkingHours variant="body2">
+              {contactCenterWorkingDays} {contactCenterWorkingDayBeginTime} -{' '}
+              {contactCenterWorkingDayEndTime}
+            </StyledTypographyWorkingHours>
+            <StyledTypographyWorkingHours variant="body2">
+              {contactCenterShortenedDays}: {contactCenterShortenedDayBeginTime}{' '}
+              - {contactCenterShortenedDayEndTime}
+            </StyledTypographyWorkingHours>
           </Box>
         </Box>
       </StyledFlexBox>
