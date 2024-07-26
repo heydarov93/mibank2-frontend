@@ -7,4 +7,8 @@ export const endpoints = {
       userInformation: '/uas/api/user/details',
     },
   },
+  contactInfo: {
+    version: '/is/contact/version',
+    contacts: '/is/contact',
+  },
 };

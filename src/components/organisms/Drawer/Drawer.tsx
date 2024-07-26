@@ -22,8 +22,10 @@ import { UserCard } from 'components/molecules';
 import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors/AuthSelectors';
+import { localTokenHandler } from 'utils';
 
 export const TemporaryDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -38,7 +40,9 @@ export const TemporaryDrawer = () => {
   const logoutHandler = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
-    localStorage.clear();
+    localTokenHandler.clearToken(TokenType.ACCESS);
+    localStorage.removeItem('isAuth');
+    localStorage.removeItem('email');
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });
