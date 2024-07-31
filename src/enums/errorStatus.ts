@@ -1,4 +1,5 @@
 export enum ErrorStatus {
   NOT_FOUND = 404,
   LOCKED = 423,
+  TOO_MANY_REQUESTS = 429,
 }
