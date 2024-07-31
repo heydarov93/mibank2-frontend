@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { convertSecondsToTime } from 'utils';
 
@@ -6,14 +7,20 @@ interface TimerProps {
   time: number;
   endTime: number;
   runTimer: Dispatch<SetStateAction<boolean>>;
+  setTime?: Dispatch<SetStateAction<number>>;
+  hasResendBtn?: boolean;
 }
 
-export const Timer = ({ time, endTime, runTimer }: TimerProps) => {
-  const [remainingTime, setRemainingTime] = useState<number>(time);
+export const Timer = ({
+  time,
+  endTime,
+  runTimer,
+  setTime,
+  hasResendBtn,
+}: TimerProps) => {
+  const { t } = useTranslation('translation');
 
-  const remainingTimeLabel = convertSecondsToTime(
-    Math.ceil(remainingTime / 1000),
-  );
+  const [remainingTime, setRemainingTime] = useState<number>(time);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,11 +29,21 @@ export const Timer = ({ time, endTime, runTimer }: TimerProps) => {
       if (timeLeft <= 0) {
         clearInterval(timer);
         runTimer(false);
+        setTime && setTime(0);
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [remainingTime]);
+  }, [endTime, runTimer]);
 
-  return <span>{remainingTimeLabel}</span>;
+  const remainingTimeLabel = convertSecondsToTime(
+    Math.ceil(remainingTime / 1000),
+  );
+
+  const timeLabelResend =
+    remainingTime > 0
+      ? ` ${t('VerificationPage.resendCodeIn')} ${convertSecondsToTime(Math.ceil(remainingTime / 1000))}`
+      : t('VerificationPage.resendCode');
+
+  return <span>{hasResendBtn ? timeLabelResend : remainingTimeLabel}</span>;
 };
