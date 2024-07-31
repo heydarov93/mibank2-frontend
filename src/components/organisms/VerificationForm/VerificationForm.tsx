@@ -9,20 +9,24 @@ import {
 } from './VerificationForm.styled';
 import { VerificationTitle } from './VerificationTitle';
 
-import { useVerifyCodeMutation } from 'api/authApi';
+import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
 import { Timer } from 'components/molecules';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch, useErrorHandlers } from 'hooks';
+import { useAppDispatch, useAppSelector, useErrorHandlers } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
+import { getVerifyingTimer } from 'store/selectors/AuthSelectors';
 import { getEmailFromToken, localTokenHandler } from 'utils';
 
 export const VerificationForm = () => {
   const dispatch = useAppDispatch();
+
+  const [sendcode] = useSendcodeMutation();
   const [verifyCode] = useVerifyCodeMutation();
 
   const token = localTokenHandler.getToken(TokenType.TEMPORARY);
+  const expiredTimer = useAppSelector(getVerifyingTimer);
 
   const [email, setEmail] = useState('');
   const [value, setValue] = useState('');
@@ -93,6 +97,19 @@ export const VerificationForm = () => {
     }
   };
 
+  const startTimer = (seconds: number) => {
+    const millis = seconds * 1000;
+    const endTimestamp = Date.now() + millis;
+    setLockoutEndTime(endTimestamp);
+    setRemainingTime(millis);
+  };
+
+  const handleResendButton = async () => {
+    await sendcode(null);
+    setIsFormDisabled(false);
+    startTimer(60);
+  };
+
   const handleResetCodeWrong = () => {
     setIsCodeWrong(false);
     setValue('');
@@ -104,6 +121,13 @@ export const VerificationForm = () => {
     const email = getEmailFromToken(token);
     setEmail(email || '');
   }, [token]);
+
+  useEffect(() => {
+    if (expiredTimer === 0) return;
+
+    setIsFormDisabled(true);
+    startTimer(expiredTimer);
+  }, []);
 
   return (
     <>
@@ -121,7 +145,7 @@ export const VerificationForm = () => {
           />
         </StyledVerificationFormContent>
       </StyledVerificationForm>
-      <StyledButton disabled={remainingTime > 0}>
+      <StyledButton onClick={handleResendButton} disabled={remainingTime > 0}>
         <Timer
           time={remainingTime}
           endTime={lockoutEndTime}

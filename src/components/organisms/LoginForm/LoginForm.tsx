@@ -29,8 +29,21 @@ import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
 import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError, setLoading, setVerifying } from 'store/reducers/AuthSlice';
+import {
+  setError,
+  setLoading,
+  setVerifying,
+  setVerifyingTimer,
+} from 'store/reducers/AuthSlice';
 import { localTokenHandler } from 'utils';
+
+type IError = {
+  data: {
+    status: string;
+    expiredTimer: number;
+  };
+  status: number;
+};
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
@@ -78,7 +91,14 @@ export const LoginForm = () => {
       localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
       dispatch(setVerifying(true));
       dispatch(setLoading(true));
-      await sendcode(null);
+      const response = await sendcode(null);
+
+      if ('error' in response) {
+        const error = response.error as IError;
+        const { expiredTimer } = error.data;
+
+        dispatch(setVerifyingTimer(expiredTimer));
+      }
       navigate('/verification');
       resetForm();
     } catch (e) {

@@ -12,7 +12,7 @@ export const VerificationPage = () => {
 
   useEffect(() => {
     if (!hasToken) {
-      navigate('/signin');
+      navigate(-1);
     }
   }, [hasToken, navigate]);
 

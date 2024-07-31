@@ -4,6 +4,7 @@ import { IUserInfo } from 'models/IUserInfo';
 
 interface AuthState {
   isVerifying: boolean;
+  verifyingTimer: number;
   user: IUserInfo | undefined;
   error: string | null;
   loading: boolean;
@@ -11,6 +12,7 @@ interface AuthState {
 
 const initialState: AuthState = {
   isVerifying: false,
+  verifyingTimer: 0,
   user: {
     firstName: '',
     lastName: '',
@@ -32,6 +34,9 @@ const AuthSlice = createSlice({
     setVerifying: (state, action) => {
       state.isVerifying = action.payload;
     },
+    setVerifyingTimer: (state, action) => {
+      state.verifyingTimer = action.payload;
+    },
     clearError(state) {
       state.error = null;
     },
@@ -50,6 +55,7 @@ const AuthSlice = createSlice({
 export const {
   setError,
   setVerifying,
+  setVerifyingTimer,
   clearError,
   setLoading,
   setUserData,
