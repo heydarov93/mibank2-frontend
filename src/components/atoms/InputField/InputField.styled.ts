@@ -30,5 +30,11 @@ export const StyledTextField = styled(TextField)(
         },
       },
     },
+
+    '& .MuiOutlinedInput-input': {
+      '&:-webkit-autofill': {
+        WebkitBackgroundClip: 'text',
+      },
+    },
   }),
 );
