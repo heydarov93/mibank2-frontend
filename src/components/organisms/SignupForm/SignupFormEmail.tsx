@@ -1,21 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledButton,
-  StyledButtonContainer,
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
   StyledLable,
-  StyledSignInLink,
-  StyledSignInLinkContainer,
 } from './SignupForm.styled';
 
-import { InputField } from 'components/atoms';
+import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { validationLoginSchema } from 'constants/validationShemas';
 import { IFormInput } from 'models/IAuth';
 
@@ -70,24 +66,16 @@ export const SignupFormEmail = () => {
             />
           </Box>
         </StyledFormContent>
-        <StyledButtonContainer>
-          <StyledButton
-            size="large"
-            variant="contained"
-            fullWidth
-            type="submit"
-            onClick={handleCleanField}
-          >
-            {t('SignupPage.buttonLabel')}
-          </StyledButton>
-        </StyledButtonContainer>
+        <SubmitButton
+          onClick={handleCleanField}
+          buttonContent={t('SignupPage.buttonLabel')}
+        />
       </StyledForm>
-      <StyledSignInLinkContainer>
-        <Typography>{t('SignupPage.haveAccountMsg')}</Typography>
-        <StyledSignInLink href="/signin">
-          {t('SignupPage.moveToLoginLink')}
-        </StyledSignInLink>
-      </StyledSignInLinkContainer>
+      <ButtonLink
+        message="SignupPage.haveAccountMsg"
+        linkText="SignupPage.moveToLoginLink"
+        href="/signin"
+      />
     </>
   );
 };
