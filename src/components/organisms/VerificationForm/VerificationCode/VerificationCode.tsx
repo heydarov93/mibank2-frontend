@@ -134,17 +134,20 @@ const VerificationCode = ({
   const handleClick = (
     event: React.MouseEvent<HTMLInputElement, MouseEvent>,
     currentIndex: number,
+    disabled: boolean,
   ) => {
+    if (disabled) return;
     selectInput(currentIndex);
   };
 
   const handlePaste = (
     event: React.ClipboardEvent<HTMLInputElement>,
     currentIndex: number,
+    disabled: boolean,
   ) => {
     event.preventDefault();
+    if (disabled) return;
     const clipboardData = event.clipboardData;
-
     // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
       let pastedText = clipboardData.getData('text/plain');
@@ -156,7 +159,7 @@ const VerificationCode = ({
       }
 
       const newArr = [...otp];
-      for (let i = currentIndex; i < currentIndex + pastedText.length; i++) {
+      for (let i = currentIndex; i < pastedText.length; i++) {
         newArr[i] = pastedText[i - currentIndex];
       }
       setOtp(newArr);
@@ -165,12 +168,12 @@ const VerificationCode = ({
         selectInput(
           currentIndex + pastedText.length < length
             ? currentIndex + pastedText.length
-            : currentIndex + pastedText.length - 1,
+            : length - 1,
         );
         focusInput(
           currentIndex + pastedText.length < length
             ? currentIndex + pastedText.length
-            : currentIndex + pastedText.length - 1,
+            : length - 1,
         );
       }, 0);
     }
@@ -223,12 +226,14 @@ const VerificationCode = ({
                 handleClick(
                   event as React.MouseEvent<HTMLInputElement, MouseEvent>,
                   index,
+                  isFormDisabled || (index !== 0 && !otp[index - 1] && !digit),
                 )
               }
               onPaste={(event) =>
                 handlePaste(
                   event as React.ClipboardEvent<HTMLInputElement>,
                   index,
+                  isFormDisabled || (index !== 0 && !otp[index - 1] && !digit),
                 )
               }
               placeholder="0"
