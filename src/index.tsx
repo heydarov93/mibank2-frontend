@@ -5,6 +5,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import './firebase';
 
 import i18n from '../src/i18n';
 
