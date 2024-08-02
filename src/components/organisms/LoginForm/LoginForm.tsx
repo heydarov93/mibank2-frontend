@@ -1,23 +1,19 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledButton,
-  StyledButtonContainer,
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
   StyledLable,
-  StyledSignUpLink,
-  StyledSignUpLinkContainer,
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
-import { InputField } from 'components/atoms';
+import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import {
   CheckboxWithLabel,
   PasswordField,
@@ -146,6 +142,24 @@ export const LoginForm = () => {
     }
   };
 
+  const buttonContent = (
+    <>
+      {t('LoginPage.formBtnSignIn')}
+      {isFormDisabled && (
+        <>
+          <span>&nbsp;</span>
+          <span>{'('}</span>
+          <Timer
+            time={remainingTime}
+            endTime={lockoutEndTime}
+            runTimer={setIsFormDisabled}
+          />
+          <span>{`)`}</span>
+        </>
+      )}
+    </>
+  );
+
   return (
     <>
       <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
@@ -186,37 +200,17 @@ export const LoginForm = () => {
           errors={errors}
           isFormDisabled={isFormDisabled}
         />
-        <StyledButtonContainer>
-          <StyledButton
-            size="large"
-            variant="contained"
-            fullWidth
-            type="submit"
-            onClick={handleCleanField}
-            disabled={isFormDisabled}
-          >
-            {t('LoginPage.formBtnSignIn')}
-            {isFormDisabled && (
-              <>
-                <span>&nbsp;</span>
-                <span>{'('}</span>
-                <Timer
-                  time={remainingTime}
-                  endTime={lockoutEndTime}
-                  runTimer={setIsFormDisabled}
-                />
-                <span>{`)`}</span>
-              </>
-            )}
-          </StyledButton>
-        </StyledButtonContainer>
+        <SubmitButton
+          onClick={handleCleanField}
+          buttonContent={buttonContent}
+          isDisabled={isFormDisabled}
+        />
       </StyledForm>
-      <StyledSignUpLinkContainer>
-        <Typography>{t('LoginPage.signUpLink')}</Typography>
-        <StyledSignUpLink href="/signup-start">
-          {t('LoginPage.formBtnSignUp')}
-        </StyledSignUpLink>
-      </StyledSignUpLinkContainer>
+      <ButtonLink
+        message="LoginPage.signUpLink"
+        linkText="LoginPage.formBtnSignUp"
+        href="/signup-start"
+      />
     </>
   );
 };

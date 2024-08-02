@@ -1,4 +1,4 @@
-import { styled, Typography, Box, Link, Button } from '@mui/material';
+import { styled, Typography, Box } from '@mui/material';
 
 export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
   width: 345,
@@ -45,54 +45,3 @@ export const StyledFormTitle = styled(Typography)(
     },
   }),
 );
-
-export const StyledButtonContainer = styled(Box)(
-  ({ theme: { breakpoints, spacing } }) => ({
-    paddingTop: spacing(3),
-
-    [breakpoints.up('sm')]: {
-      paddingTop: spacing(2),
-    },
-  }),
-);
-
-export const StyledButton = styled(Button)(
-  ({ theme: { palette, breakpoints } }) => ({
-    fontSize: '16px',
-    padding: '12px 22px',
-    height: '43px',
-    borderRadius: '8px',
-
-    '&.Mui-disabled': {
-      opacity: '0.65',
-      color: palette.common.white,
-      background: palette.primary.main,
-    },
-
-    [breakpoints.up('sm')]: {
-      padding: '10px 22px',
-      height: '56px',
-    },
-  }),
-);
-
-export const StyledSignUpLinkContainer = styled(Box)(
-  ({ theme: { breakpoints, palette } }) => ({
-    display: 'flex',
-    paddingTop: 39,
-    fontSize: 16,
-    fontWeight: 400,
-    color: palette.common.black,
-
-    [breakpoints.up('sm')]: {
-      paddingTop: 31,
-    },
-  }),
-);
-
-export const StyledSignUpLink = styled(Link)(({ theme }) => ({
-  paddingLeft: 8,
-  fontWeight: 500,
-  textDecoration: 'underline',
-  color: theme.palette.primary.main,
-}));
