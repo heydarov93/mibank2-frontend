@@ -6,7 +6,11 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { PersonalMenu } from './PersonalMenu';
 
+import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { useAppSelector } from 'hooks';
+import { TokenType } from 'models/IAuth';
+import { logoutFromApp } from 'store/reducers/AuthSlice';
+import { localTokenHandler } from 'utils';
 
 jest.mock('store/reducers/AuthSlice', () => ({
   ...jest.requireActual('store/reducers/AuthSlice'),
@@ -17,8 +21,15 @@ const theme = createTheme();
 
 const initialValues = {
   auth: {
-    isAuth: true,
-    user: { firstName: 'John', lastName: 'Doe', email: 'john@example.com' },
+    isVerifying: false,
+    verifyingTimer: 0,
+    user: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      status: '0',
+      isBlocked: null,
+    },
     error: null,
     loading: false,
   },
@@ -27,6 +38,20 @@ const initialValues = {
 const mockStore = configureStore({
   reducer: () => initialValues,
 });
+
+jest.mock('utils', () => ({
+  localTokenHandler: {
+    clearToken: jest.fn(),
+    storeToken: jest.fn(),
+    getToken: jest.fn(),
+  },
+}));
+
+jest.mock('models/IAuth', () => ({
+  TokenType: {
+    ACCESS: 'ACCESS',
+  },
+}));
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
@@ -66,6 +91,13 @@ jest.mock('hooks', () => ({
   useAppDispatch: () => mockDispatch,
 }));
 
+jest.mock('api/userInfoApi', () => ({
+  useGetUserInfoQuery: jest.fn().mockReturnValue({
+    data: undefined,
+    isLoading: false,
+  }),
+}));
+
 const renderComponent = () =>
   render(
     <Provider store={mockStore}>
@@ -80,43 +112,77 @@ const renderComponent = () =>
 describe('PersonalMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
+      if (key === 'email') {
+        return 'john@example.com';
+      }
+      return null;
+    });
+    jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
   });
 
   it('renders without crashing', () => {
-    renderComponent();
+    (useGetUserInfoQuery as jest.Mock).mockReturnValue({
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        status: '0',
+        isBlocked: null,
+      },
+      isLoading: false,
+    });
 
+    renderComponent();
     const personalMenu = screen.getByTestId('personal-menu');
     expect(personalMenu).toBeInTheDocument();
   });
 
   it('handles settings button click', () => {
+    (useGetUserInfoQuery as jest.Mock).mockReturnValue({
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        status: '0',
+        isBlocked: null,
+      },
+      isLoading: false,
+    });
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
 
     const { getByLabelText } = renderComponent();
 
     fireEvent.click(getByLabelText('settings'));
     expect(consoleSpy).toHaveBeenCalledWith('Open settings');
-
     consoleSpy.mockRestore();
   });
 
   it('handles logout button click', () => {
-    const logoutFromApp = jest.fn();
-    const localStorageSpy = jest
-      .spyOn(Storage.prototype, 'clear')
-      .mockImplementation();
-
+    (useGetUserInfoQuery as jest.Mock).mockReturnValue({
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        status: '0',
+        isBlocked: null,
+      },
+      isLoading: false,
+    });
     const { getByLabelText } = renderComponent();
-
     fireEvent.click(getByLabelText('logout'));
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
+    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(TokenType.ACCESS);
+    expect(Storage.prototype.removeItem).toHaveBeenCalledWith('isAuth');
+    expect(Storage.prototype.removeItem).toHaveBeenCalledWith('email');
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
-    expect(localStorageSpy).toHaveBeenCalled();
-
-    localStorageSpy.mockRestore();
   });
 
   it('does not render UserCard when user is undefined', () => {
+    (useGetUserInfoQuery as jest.Mock).mockReturnValue({
+      data: undefined,
+      isLoading: false,
+    });
     (useAppSelector as jest.Mock).mockReturnValue(null);
 
     renderComponent();
