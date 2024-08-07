@@ -28,8 +28,7 @@ export const Timer = ({
       setRemainingTime(timeLeft);
       if (timeLeft <= 0) {
         clearInterval(timer);
-        runTimer(false);
-        setTime && setTime(0);
+        setTime ? setTime(0) : runTimer(false);
       }
     }, 1000);
 

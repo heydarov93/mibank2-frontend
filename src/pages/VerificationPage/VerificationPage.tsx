@@ -1,27 +1,31 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthWrapper, Footer, VerificationForm } from 'components/organisms';
-import { TokenType } from 'models/IAuth';
-import { localTokenHandler } from 'utils';
+import { useAppSelector } from 'hooks';
+import { getIsVerifying } from 'store/selectors';
 
 export const VerificationPage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const hasToken = localTokenHandler.getToken(TokenType.TEMPORARY);
+  const isVerifying = useAppSelector(getIsVerifying);
+
+  const { isError } = location.state || {};
+  const shouldDisableFields = isError;
 
   useEffect(() => {
-    if (!hasToken) {
+    if (!isVerifying) {
       navigate(-1);
     }
-  }, [hasToken, navigate]);
+  }, [isVerifying, navigate]);
 
-  if (!hasToken) return null;
+  if (!isVerifying) return null;
 
   return (
     <>
       <AuthWrapper>
-        <VerificationForm />
+        <VerificationForm disableFields={shouldDisableFields} />
       </AuthWrapper>
       <Footer />
     </>

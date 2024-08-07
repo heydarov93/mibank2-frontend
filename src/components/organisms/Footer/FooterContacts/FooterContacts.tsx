@@ -17,7 +17,7 @@ import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
 import { GooglePlayIcon, Logo } from 'components/atoms';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setContacts } from 'store/reducers';
-import { getContacts } from 'store/selectors/BankContactsSelectors';
+import { getContacts } from 'store/selectors';
 import { formatPhoneNumber } from 'utils';
 
 export const FooterContacts = () => {
