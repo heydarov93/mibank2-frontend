@@ -23,7 +23,9 @@ type VerificationFormProps = {
   disableFields?: boolean;
 };
 
-export const VerificationForm = ({ disableFields }: VerificationFormProps) => {
+export const VerificationForm = ({
+  disableFields = false,
+}: VerificationFormProps) => {
   const dispatch = useAppDispatch();
 
   const [sendcode] = useSendcodeMutation();
@@ -41,6 +43,7 @@ export const VerificationForm = ({ disableFields }: VerificationFormProps) => {
 
   const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
+  const [shouldClearFields, setShouldClearFields] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -161,11 +164,20 @@ export const VerificationForm = ({ disableFields }: VerificationFormProps) => {
   }, []);
 
   useEffect(() => {
-    if (remainingTime > 0) return;
+    if (remainingTime > 0) {
+      setIsFormDisabled(disableFields);
+      setShouldClearFields(false);
+      return;
+    } else {
+      setIsFormDisabled(true);
+      setShouldClearFields(true);
+    }
 
     const isAuth = localStorage.getItem('isAuth');
     if (isAuth) {
-      setTimeout(() => navigate('/'), 1000);
+      const timer = setTimeout(() => navigate('/'), 1000);
+
+      return () => clearTimeout(timer);
     }
   }, [remainingTime, navigate]);
 
@@ -182,6 +194,7 @@ export const VerificationForm = ({ disableFields }: VerificationFormProps) => {
             isCodeCorrect={isCodeCorrect}
             separator={<span>-</span>}
             length={6}
+            shouldClearFields={shouldClearFields}
           />
         </StyledVerificationFormContent>
       </StyledVerificationForm>

@@ -16,6 +16,7 @@ interface VerificationCodeProps {
   isCodeWrong: boolean;
   onResetCodeWrong: () => void;
   onReady: (value: string) => void;
+  shouldClearFields: boolean;
 }
 
 const VerificationCode = ({
@@ -26,6 +27,7 @@ const VerificationCode = ({
   isCodeWrong,
   onResetCodeWrong,
   onReady,
+  shouldClearFields,
 }: VerificationCodeProps) => {
   const { t } = useTranslation('translation');
 
@@ -193,6 +195,12 @@ const VerificationCode = ({
   useEffect(() => {
     if (otp.every((i) => !!i)) onReady(otp.join(''));
   }, [otp]);
+
+  useEffect(() => {
+    if (shouldClearFields) {
+      resetField();
+    }
+  }, [shouldClearFields]);
 
   return (
     <StyledBoxContainer>
