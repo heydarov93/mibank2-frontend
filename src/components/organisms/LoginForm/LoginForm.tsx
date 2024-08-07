@@ -109,7 +109,7 @@ export const LoginForm = () => {
       if (e instanceof CustomError) {
         dispatch(setVerifyingTimer(e.details));
       } else if (e instanceof Error) {
-        dispatch(setError(e.message));
+        dispatch(setError(t('VerificationPage.serverError')));
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
