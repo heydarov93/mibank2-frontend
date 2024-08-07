@@ -5,9 +5,12 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { Header } from './Header';
 
+import { useGetUserInfoQuery } from 'api/userInfoApi';
+
 const initialValues = {
   auth: {
-    isAuth: false,
+    isVerifying: false,
+    verifyingTimer: 0,
     user: null,
     error: null,
     loading: false,
@@ -33,6 +36,19 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('api/userInfoApi', () => ({
+  useGetUserInfoQuery: jest.fn().mockReturnValue({
+    data: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      status: '0',
+      isBlocked: null,
+    },
+    isLoading: false,
+  }),
+}));
+
 const renderHeader = () =>
   render(
     <Provider store={mockStore}>
@@ -43,6 +59,20 @@ const renderHeader = () =>
   );
 
 describe('Header component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    (useGetUserInfoQuery as jest.Mock).mockReturnValue({
+      data: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        status: '0',
+        isBlocked: null,
+      },
+      isLoading: false,
+    });
+  });
+
   it('snapshot should match', () => {
     const { asFragment } = renderHeader();
     expect(asFragment()).toMatchSnapshot();

@@ -3,30 +3,30 @@
 exports[`UnderDevPage snapshot should match 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-1vv3xbs"
+    class="MuiBox-root css-1h6jbjl"
   >
     <div
-      class="MuiBox-root css-1vqxpay"
+      class="MuiBox-root css-1nw2bre"
     >
       <svg>
         Under_development.svg
       </svg>
       <div
-        class="MuiBox-root css-ywyrgg"
+        class="MuiBox-root css-411q4v"
       >
         <h5
-          class="MuiTypography-root MuiTypography-h5 css-1wl7trx-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h5 css-an0ph6-MuiTypography-root"
         >
           UnderDevPage.title
         </h5>
         <p
-          class="MuiTypography-root MuiTypography-body2 css-1p6bacg-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body2 css-1phg0rf-MuiTypography-root"
         >
           UnderDevPage.description
         </p>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-jh47zj-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-a4gmad-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
