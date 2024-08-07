@@ -24,7 +24,7 @@ import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors/AuthSelectors';
+import { getUser } from 'store/selectors';
 import { localTokenHandler } from 'utils';
 
 export const TemporaryDrawer = () => {

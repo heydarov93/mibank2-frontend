@@ -23,7 +23,12 @@ import {
 import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
-import { IFormInput, ILoginData, TokenType } from 'models/IAuth';
+import {
+  IFormInput,
+  ILoginData,
+  SendCodeResponse,
+  TokenType,
+} from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import {
   setError,
@@ -31,15 +36,7 @@ import {
   setVerifying,
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
-import { localTokenHandler } from 'utils';
-
-type IError = {
-  data: {
-    status: string;
-    expiredTimer: number;
-  };
-  status: number;
-};
+import { CustomError, localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation');
@@ -89,18 +86,29 @@ export const LoginForm = () => {
       dispatch(setLoading(true));
       const response = await sendcode(null);
 
-      if ('error' in response) {
-        const error = response.error as IError;
-        const { expiredTimer } = error.data;
+      const isError = 'error' in response;
 
-        dispatch(setVerifyingTimer(expiredTimer));
-      }
-      navigate('/verification');
+      navigate('/verification', { state: { isError } });
       resetForm();
+
+      if (!isError) {
+        const expiredTimer = (response as SendCodeResponse).data.expiredTimer;
+        dispatch(setVerifyingTimer(expiredTimer || 0));
+      } else {
+        const error = response.error as SendCodeResponse;
+        if (error.data.expiredTimer) {
+          throw new CustomError<number>(
+            error.data.status,
+            error.data.expiredTimer,
+          );
+        }
+      }
     } catch (e) {
       const error = e as IErrorData;
 
-      if (e instanceof Error) {
+      if (e instanceof CustomError) {
+        dispatch(setVerifyingTimer(e.details));
+      } else if (e instanceof Error) {
         dispatch(setError(e.message));
       } else {
         switch (error.status) {

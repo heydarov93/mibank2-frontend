@@ -13,13 +13,17 @@ import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
 import { Timer } from 'components/molecules';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch, useAppSelector, useErrorHandlers } from 'hooks';
-import { TokenType } from 'models/IAuth';
+import { SendCodeResponse, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
-import { getVerifyingTimer } from 'store/selectors/AuthSelectors';
-import { getEmailFromToken, localTokenHandler } from 'utils';
+import { getVerifyingTimer } from 'store/selectors';
+import { CustomError, getEmailFromToken, localTokenHandler } from 'utils';
 
-export const VerificationForm = () => {
+type VerificationFormProps = {
+  disableFields?: boolean;
+};
+
+export const VerificationForm = ({ disableFields }: VerificationFormProps) => {
   const dispatch = useAppDispatch();
 
   const [sendcode] = useSendcodeMutation();
@@ -60,13 +64,15 @@ export const VerificationForm = () => {
       if (localStorage.getItem('accessToken')) {
         setIsCodeCorrect(true);
         setIsCodeWrong(false);
-        dispatch(setVerifying(false));
 
         localStorage.setItem('isAuth', 'true');
         localStorage.setItem('email', currentEmail);
         localTokenHandler.clearToken(TokenType.TEMPORARY);
 
-        setTimeout(() => navigate('/'), 1000);
+        setTimeout(() => {
+          navigate('/');
+          dispatch(setVerifying(false));
+        }, 1000);
       }
     } catch (e) {
       setIsCodeWrong(true);
@@ -105,9 +111,34 @@ export const VerificationForm = () => {
   };
 
   const handleResendButton = async () => {
-    await sendcode(null);
-    setIsFormDisabled(false);
-    startTimer(60);
+    try {
+      const response = await sendcode(null);
+      setIsFormDisabled(false);
+
+      const data = (response as SendCodeResponse).data;
+      const isError = 'error' in response;
+
+      if (!isError) {
+        const expiredTimer = data ? data.expiredTimer : null;
+
+        if (expiredTimer) startTimer(expiredTimer);
+      } else {
+        const error = response.error as SendCodeResponse;
+        if (error.data.expiredTimer) {
+          throw new CustomError<number>(
+            error.data.status,
+            error.data.expiredTimer,
+          );
+        }
+      }
+    } catch (e) {
+      if (e instanceof CustomError) {
+        startTimer(e.details);
+        setIsFormDisabled(true);
+      } else if (e instanceof Error) {
+        dispatch(setError(e.message));
+      }
+    }
   };
 
   const handleResetCodeWrong = () => {
@@ -125,9 +156,18 @@ export const VerificationForm = () => {
   useEffect(() => {
     if (expiredTimer === 0) return;
 
-    setIsFormDisabled(true);
+    if (disableFields) setIsFormDisabled(true);
     startTimer(expiredTimer);
   }, []);
+
+  useEffect(() => {
+    if (remainingTime > 0) return;
+
+    const isAuth = localStorage.getItem('isAuth');
+    if (isAuth) {
+      setTimeout(() => navigate('/'), 1000);
+    }
+  }, [remainingTime, navigate]);
 
   return (
     <>

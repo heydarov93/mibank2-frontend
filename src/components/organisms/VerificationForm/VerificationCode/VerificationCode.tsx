@@ -200,6 +200,8 @@ const VerificationCode = ({
         {otp.map((digit, index) => (
           <Fragment key={index}>
             <StyledInputElement
+              type="tel"
+              inputMode="numeric"
               disabled={
                 isFormDisabled || (index !== 0 && !otp[index - 1] && !digit)
               }

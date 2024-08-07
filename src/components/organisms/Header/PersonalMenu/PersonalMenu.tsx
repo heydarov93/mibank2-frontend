@@ -15,7 +15,7 @@ import { UserCard } from 'components/molecules';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors/AuthSelectors';
+import { getUser } from 'store/selectors';
 import { localTokenHandler } from 'utils';
 
 export const PersonalMenu = () => {
