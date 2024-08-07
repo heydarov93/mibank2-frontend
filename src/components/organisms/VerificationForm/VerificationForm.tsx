@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { MemoizedVerificationCode } from './VerificationCode';
@@ -26,6 +27,9 @@ type VerificationFormProps = {
 export const VerificationForm = ({
   disableFields = false,
 }: VerificationFormProps) => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'VerificationPage',
+  });
   const dispatch = useAppDispatch();
 
   const [sendcode] = useSendcodeMutation();
@@ -44,6 +48,7 @@ export const VerificationForm = ({
   const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
   const [shouldClearFields, setShouldClearFields] = useState<boolean>(false);
+  const [isLockedOut, setIsLockedOut] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -84,7 +89,7 @@ export const VerificationForm = ({
       const error = e as IErrorData;
 
       if (e instanceof Error) {
-        dispatch(setError(e.message));
+        dispatch(setError(t('serverError')));
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
@@ -93,13 +98,13 @@ export const VerificationForm = ({
           case ErrorStatus.TOO_MANY_REQUESTS:
             handleLockedError(
               error,
-              setIsFormDisabled,
+              setIsLockedOut,
               setRemainingTime,
               setLockoutEndTime,
             );
             break;
           default:
-            dispatch(setError('An unknown error occurred'));
+            dispatch(setError(t('serverError')));
             break;
         }
       }
@@ -133,13 +138,14 @@ export const VerificationForm = ({
             error.data.expiredTimer,
           );
         }
+        throw new Error(t('serverError'));
       }
     } catch (e) {
       if (e instanceof CustomError) {
         startTimer(e.details);
         setIsFormDisabled(true);
-      } else if (e instanceof Error) {
-        dispatch(setError(e.message));
+      } else {
+        dispatch(setError(t('serverError')));
       }
     }
   };
@@ -165,7 +171,9 @@ export const VerificationForm = ({
 
   useEffect(() => {
     if (remainingTime > 0) {
-      setIsFormDisabled(disableFields);
+      const shouldDisableForm = disableFields || isLockedOut;
+      setIsFormDisabled(shouldDisableForm);
+
       setShouldClearFields(false);
       return;
     } else {

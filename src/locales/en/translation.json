@@ -71,7 +71,8 @@
     "verificationText": "Enter the verification code we sent via email",
     "resendCode": "Resend code",
     "resendCodeIn": "Resend code in",
-    "errorPattern": "Only digits can be entered into the field. \nPlease, try again"
+    "errorPattern": "Only digits can be entered into the field. \nPlease, try again",
+    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",
