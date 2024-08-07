@@ -108,7 +108,7 @@ const VerificationCode = ({
           setIsNonDigit(false);
         }
 
-        setTimeout(() => handleNavigation(1), 0);
+        setTimeout(() => handleNavigation(1), 100);
         break;
     }
   };
