@@ -19,7 +19,7 @@ export const VerificationPage = () => {
     if (!isVerifying) {
       navigate(-1);
     }
-  }, [isVerifying, navigate]);
+  }, []);
 
   if (!isVerifying) return null;
 
