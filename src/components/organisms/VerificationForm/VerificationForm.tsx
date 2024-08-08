@@ -48,7 +48,6 @@ export const VerificationForm = ({
   const [isCodeWrong, setIsCodeWrong] = useState<boolean>(false);
   const [isCodeCorrect, setIsCodeCorrect] = useState<boolean>(false);
   const [shouldClearFields, setShouldClearFields] = useState<boolean>(false);
-  const [isLockedOut, setIsLockedOut] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -70,6 +69,7 @@ export const VerificationForm = ({
       const data = await verifyCode({
         verificationCode: value,
       }).unwrap();
+
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
       if (localStorage.getItem('accessToken')) {
         setIsCodeCorrect(true);
@@ -100,7 +100,7 @@ export const VerificationForm = ({
           case ErrorStatus.TOO_MANY_REQUESTS:
             handleLockedError(
               error,
-              setIsLockedOut,
+              setIsFormDisabled,
               setRemainingTime,
               setLockoutEndTime,
             );
@@ -165,17 +165,7 @@ export const VerificationForm = ({
   }, [token]);
 
   useEffect(() => {
-    if (expiredTimer === 0) return;
-
-    if (disableFields) setIsFormDisabled(true);
-    startTimer(expiredTimer);
-  }, []);
-
-  useEffect(() => {
     if (remainingTime > 0) {
-      const shouldDisableForm = disableFields || isLockedOut;
-      setIsFormDisabled(shouldDisableForm);
-
       setShouldClearFields(false);
       return;
     } else {
@@ -190,6 +180,13 @@ export const VerificationForm = ({
       return () => clearTimeout(timer);
     }
   }, [remainingTime, navigate]);
+
+  useEffect(() => {
+    if (expiredTimer === 0) return;
+
+    setIsFormDisabled(disableFields);
+    startTimer(expiredTimer);
+  }, [expiredTimer]);
 
   return (
     <>
