@@ -4,8 +4,8 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { endpoints } from './endpoints';
 import { BASE_URL } from './environmentVerification';
 
-export const contactVersionApi = createApi({
-  reducerPath: 'contactVersionApi',
+export const contactInfoApi = createApi({
+  reducerPath: 'contactInfoApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
@@ -19,4 +19,4 @@ export const contactVersionApi = createApi({
   }),
 });
 
-export const { useGetVersionQuery, useGetContactsQuery } = contactVersionApi;
+export const { useGetVersionQuery, useGetContactsQuery } = contactInfoApi;

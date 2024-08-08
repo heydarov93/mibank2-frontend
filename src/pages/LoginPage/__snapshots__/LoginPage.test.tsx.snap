@@ -3,7 +3,7 @@
 exports[`LoginPage snapshot should match 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-1s1whvx"
+    class="MuiBox-root css-x3jde3"
   >
     <div
       class="MuiBox-root css-1jw1wke"
@@ -50,7 +50,7 @@ exports[`LoginPage snapshot should match 1`] = `
               Email
             </label>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-16pom90-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-r9hhrf-MuiFormControl-root-MuiTextField-root"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
@@ -113,7 +113,7 @@ exports[`LoginPage snapshot should match 1`] = `
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-16pom90-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-r9hhrf-MuiFormControl-root-MuiTextField-root"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
@@ -227,7 +227,7 @@ exports[`LoginPage snapshot should match 1`] = `
           class="MuiBox-root css-mytjhh"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1ytmvr3-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="submit"
           >
@@ -256,7 +256,7 @@ exports[`LoginPage snapshot should match 1`] = `
     </div>
   </div>
   <footer
-    class="css-1fsslgi"
+    class="css-1ysvaad"
   >
     <div
       class="MuiBox-root css-4la022"
@@ -320,23 +320,19 @@ exports[`LoginPage snapshot should match 1`] = `
           </p>
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-2eg1gn-MuiTypography-root-MuiLink-root"
-            href="tel:+48123456789"
+            href="tel:undefined"
           >
             <p
               class="MuiTypography-root MuiTypography-body2 css-1q3dlv1-MuiTypography-root"
-            >
-              (+48) 123 456 789
-            </p>
+            />
           </a>
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-tev1fw-MuiTypography-root-MuiLink-root"
-            href="mailto:info@millenniumbank.pl"
+            href="mailto:"
           >
             <p
               class="MuiTypography-root MuiTypography-body2 css-1q3dlv1-MuiTypography-root"
-            >
-              info@millenniumbank.pl
-            </p>
+            />
           </a>
         </div>
         <div
@@ -351,14 +347,14 @@ exports[`LoginPage snapshot should match 1`] = `
             class="MuiBox-root css-1kkt86i"
           >
             <p
-              class="MuiTypography-root MuiTypography-body2 css-1flhzfi-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body2 css-1topzfl-MuiTypography-root"
             >
-              Mon—Fri: 8:00 - 21:00
+                - 
             </p>
             <p
-              class="MuiTypography-root MuiTypography-body2 css-1flhzfi-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body2 css-1topzfl-MuiTypography-root"
             >
-              Sat—Sun: 10:00 - 18:00
+              :  - 
             </p>
           </div>
         </div>

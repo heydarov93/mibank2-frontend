@@ -5,6 +5,10 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { LoginPage } from './LoginPage';
 
+import { authApi } from 'api/authApi';
+import { contactInfoApi } from 'api/contactInfoApi';
+import { userInfoApi } from 'api/userInfoApi';
+
 const initialValues = {
   auth: {
     isAuth: false,
@@ -12,10 +16,35 @@ const initialValues = {
     error: null,
     loading: false,
   },
+  contacts: {
+    info: {
+      id: 0,
+      email: '',
+      phoneNumber: '',
+      contactCenterWorkingDays: '',
+      contactCenterShortenedDays: '',
+      contactCenterWorkingDayBeginTime: '',
+      contactCenterWorkingDayEndTime: '',
+      contactCenterShortenedDayBeginTime: '',
+      contactCenterShortenedDayEndTime: '',
+    },
+  },
 };
 
 const mockStore = configureStore({
-  reducer: () => initialValues,
+  reducer: {
+    auth: (state = initialValues.auth) => state,
+    contacts: (state = initialValues.contacts) => state,
+    [authApi.reducerPath]: authApi.reducer,
+    [userInfoApi.reducerPath]: userInfoApi.reducer,
+    [contactInfoApi.reducerPath]: contactInfoApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([
+      authApi.middleware,
+      userInfoApi.middleware,
+      contactInfoApi.middleware,
+    ]),
 });
 
 jest.mock('utils', () => {
@@ -26,6 +55,10 @@ jest.mock('utils', () => {
     useErrorHandlers: jest.fn,
     formatErrorMessage: jest.fn(),
     useFormatErrorMessage: jest.fn,
+    localTokenHandler: {
+      getToken: jest.fn(),
+    },
+    formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
   };
 });
 

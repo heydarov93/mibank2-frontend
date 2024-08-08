@@ -15,7 +15,7 @@ import AuthReducer from './reducers/AuthSlice';
 import BankContactReducer from './reducers/BankContactsSlice';
 
 import { authApi } from 'api/authApi';
-import { contactVersionApi } from 'api/contactInfoApi';
+import { contactInfoApi } from 'api/contactInfoApi';
 import { userInfoApi } from 'api/userInfoApi';
 
 const rootReducer = combineReducers({
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   contacts: BankContactReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userInfoApi.reducerPath]: userInfoApi.reducer,
-  [contactVersionApi.reducerPath]: contactVersionApi.reducer,
+  [contactInfoApi.reducerPath]: contactInfoApi.reducer,
 });
 
 const persistConfig = {
@@ -33,7 +33,7 @@ const persistConfig = {
   blacklist: [
     authApi.reducerPath,
     userInfoApi.reducerPath,
-    contactVersionApi.reducerPath,
+    contactInfoApi.reducerPath,
   ],
 };
 
@@ -49,7 +49,7 @@ const store = configureStore({
     }).concat([
       authApi.middleware,
       userInfoApi.middleware,
-      contactVersionApi.middleware,
+      contactInfoApi.middleware,
     ]),
 });
 

@@ -26,6 +26,9 @@ jest.mock('utils', () => {
     useErrorHandlers: jest.fn,
     formatErrorMessage: jest.fn(),
     useFormatErrorMessage: jest.fn,
+    localTokenHandler: {
+      getToken: jest.fn(),
+    },
   };
 });
 
