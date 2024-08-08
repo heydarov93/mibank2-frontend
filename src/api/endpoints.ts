@@ -3,7 +3,7 @@ export const endpoints = {
     users: {
       authenticate: '/uas/api/user/authenticate',
       sendcode: '/uas/api/user/login/send-code',
-      verifycode: '/uas/api/user/login/verifycode',
+      verifycode: '/uas/api/user/login/verify-code',
       userInformation: '/uas/api/user/details',
     },
   },

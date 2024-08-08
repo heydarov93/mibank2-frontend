@@ -25,8 +25,9 @@ export const authApi = createApi({
     }),
     verifyCode: builder.mutation({
       query: (code) => ({
-        url: endpoints.userAccountManagement.users.verifycode + `?code=${code}`,
-        method: 'GET',
+        url: endpoints.userAccountManagement.users.verifycode,
+        method: 'POST',
+        body: code,
       }),
     }),
   }),

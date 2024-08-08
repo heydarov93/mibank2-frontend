@@ -67,7 +67,9 @@ export const VerificationForm = ({
     currentEmail: string,
   ) => {
     try {
-      const data = await verifyCode(value).unwrap();
+      const data = await verifyCode({
+        verificationCode: value,
+      }).unwrap();
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
       if (localStorage.getItem('accessToken')) {
         setIsCodeCorrect(true);
