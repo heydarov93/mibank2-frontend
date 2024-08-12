@@ -14,7 +14,9 @@ import {
 import { ReactComponent as UnderDevelopmentImage } from 'assets/icons/Under_development.svg';
 
 export const UnderDevPage: React.FC = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'UnderDevPage',
+  });
   const navigate = useNavigate();
 
   const goBackHandler = () => {
@@ -27,11 +29,11 @@ export const UnderDevPage: React.FC = () => {
         <UnderDevelopmentImage />
         <StyledTitleContainer>
           <StyledTitle variant="h5" fontWeight="500" textAlign="center">
-            {t('UnderDevPage.title')}
+            {t('title')}
           </StyledTitle>
 
           <StyledDescription variant="body2" textAlign="center">
-            {t('UnderDevPage.description')}
+            {t('description')}
           </StyledDescription>
         </StyledTitleContainer>
         <StyledButton
@@ -41,7 +43,7 @@ export const UnderDevPage: React.FC = () => {
           fullWidth
           onClick={goBackHandler}
         >
-          {t('UnderDevPage.buttonLabel')}
+          {t('buttonLabel')}
         </StyledButton>
       </StyledBox>
     </UnderDevPageWrapper>

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState, memo } from 'react';
+import { Fragment, useEffect, useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -7,6 +7,8 @@ import {
   StyledTypography,
   StyledVerificationBox,
 } from './VerificationCode.styled';
+
+import { useOtp } from 'hooks';
 
 interface VerificationCodeProps {
   separator: React.ReactNode;
@@ -30,30 +32,18 @@ const VerificationCode = ({
   shouldClearFields,
 }: VerificationCodeProps) => {
   const { t } = useTranslation('translation');
+  const {
+    otp,
+    setOtp,
+    inputRefs,
+    focusInput,
+    selectInput,
+    blurInput,
+    resetField,
+  } = useOtp(length);
 
   const [error, setError] = useState(false);
-  const [otp, setOtp] = useState(new Array(length).fill(''));
   const [isNonDigit, setIsNonDigit] = useState(false);
-  const inputRefs = useRef<HTMLInputElement[]>(new Array(length).fill(null));
-
-  const focusInput = (targetIndex: number) => {
-    const targetInput = inputRefs.current[targetIndex];
-    targetInput.focus();
-  };
-
-  const selectInput = (targetIndex: number) => {
-    const targetInput = inputRefs.current[targetIndex];
-    targetInput.select();
-  };
-
-  const blurInput = (targetIndex: number) => {
-    const targetInput = inputRefs.current[targetIndex];
-    targetInput.blur();
-  };
-
-  const resetField = () => {
-    setOtp(new Array(length).fill(''));
-  };
 
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,

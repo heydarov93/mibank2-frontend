@@ -39,7 +39,7 @@ import {
 import { CustomError, localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });
   const dispatch = useAppDispatch();
 
   const [authorize] = useAuthorizeMutation();
@@ -70,7 +70,7 @@ export const LoginForm = () => {
     if (errors.password) resetField('password');
     if (errors.email) resetField('email');
     if (errors.checkbox) {
-      dispatch(setError(t('LoginPage.errorTermsPrivacyRequired')));
+      dispatch(setError(t('errorTermsPrivacyRequired')));
       resetField('checkbox', { defaultValue: false });
     }
   };
@@ -109,7 +109,7 @@ export const LoginForm = () => {
       if (e instanceof CustomError) {
         dispatch(setVerifyingTimer(e.details));
       } else if (e instanceof Error) {
-        dispatch(setError(t('VerificationPage.serverError')));
+        dispatch(setError(t('serverError')));
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
@@ -152,7 +152,7 @@ export const LoginForm = () => {
 
   const buttonContent = (
     <>
-      {t('LoginPage.formBtnSignIn')}
+      {t('formBtnSignIn')}
       {isFormDisabled && (
         <>
           <span>&nbsp;</span>
@@ -170,13 +170,11 @@ export const LoginForm = () => {
 
   return (
     <>
-      <StyledFormTitle>{t('LoginPage.formTitle')}</StyledFormTitle>
+      <StyledFormTitle>{t('formTitle')}</StyledFormTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLable htmlFor="email">
-              {t('LoginPage.email.label')}
-            </StyledLable>
+            <StyledLable htmlFor="email">{t('email.label')}</StyledLable>
             <InputField
               name="email"
               id="email"
@@ -190,7 +188,7 @@ export const LoginForm = () => {
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
               <StyledLable htmlFor="password">
-                {t('LoginPage.password.label')}
+                {t('password.label')}
               </StyledLable>
               <PasswordTooltip />
             </Box>

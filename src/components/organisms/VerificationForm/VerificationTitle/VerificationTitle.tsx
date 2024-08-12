@@ -11,16 +11,18 @@ interface VerificationTitleProprs {
 }
 
 export const VerificationTitle = ({ email }: VerificationTitleProprs) => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'VerificationPage',
+  });
 
   return (
     <>
       <StyledVerificationBoxTitle>
         <StyledVerificationTitle>
-          {t('VerificationPage.verificationTitle')}
+          {t('verificationTitle')}
         </StyledVerificationTitle>
         <StyledVerificationSubTitle>
-          {t('VerificationPage.verificationText')} <span>{email}</span>
+          {t('verificationText')} <span>{email}</span>
         </StyledVerificationSubTitle>
       </StyledVerificationBoxTitle>
     </>
