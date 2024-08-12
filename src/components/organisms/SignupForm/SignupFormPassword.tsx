@@ -22,7 +22,7 @@ import { validationLoginSchema } from 'constants/validationShemas';
 import { IFormInput } from 'models/IAuth';
 
 export const SignupFormPassword = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
 
   const navigate = useNavigate();
 
@@ -60,13 +60,13 @@ export const SignupFormPassword = () => {
 
   return (
     <>
-      <StyledFormTitle>{t('SignupPage.formTitle')}</StyledFormTitle>
+      <StyledFormTitle>{t('formTitle')}</StyledFormTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
               <StyledLable htmlFor="password">
-                {t('SignupPage.password.label')}
+                {t('password.label')}
               </StyledLable>
               <PasswordTooltip />
             </Box>
@@ -81,7 +81,7 @@ export const SignupFormPassword = () => {
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
               <StyledLable htmlFor="confirmPassword">
-                {t('SignupPage.confirmPassword.label')}
+                {t('confirmPassword.label')}
               </StyledLable>
               <PasswordTooltip />
             </Box>
@@ -101,7 +101,7 @@ export const SignupFormPassword = () => {
         />
         <SubmitButton
           onClick={handleCleanField}
-          buttonContent={t('SignupPage.buttonLabel')}
+          buttonContent={t('buttonLabel')}
         />
       </StyledForm>
       <ButtonLink

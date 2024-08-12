@@ -18,7 +18,9 @@ export const Timer = ({
   setTime,
   hasResendBtn,
 }: TimerProps) => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'VerificationPage',
+  });
 
   const [remainingTime, setRemainingTime] = useState<number>(time);
 
@@ -41,8 +43,8 @@ export const Timer = ({
 
   const timeLabelResend =
     remainingTime > 0
-      ? ` ${t('VerificationPage.resendCodeIn')} ${convertSecondsToTime(Math.ceil(remainingTime / 1000))}`
-      : t('VerificationPage.resendCode');
+      ? ` ${t('resendCodeIn')} ${convertSecondsToTime(Math.ceil(remainingTime / 1000))}`
+      : t('resendCode');
 
   return <span>{hasResendBtn ? timeLabelResend : remainingTimeLabel}</span>;
 };

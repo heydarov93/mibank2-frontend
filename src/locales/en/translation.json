@@ -64,7 +64,8 @@
     "show": "Show",
     "attemptWithCount_one": "{{count}} more attempt left",
     "attemptWithCount_other": "{{count}} more attempts left",
-    "signUpLink": "Don't have an account?"
+    "signUpLink": "Don't have an account?",
+    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",

@@ -7,7 +7,9 @@ import { BootstrapTooltip, StyledErrorHint } from './PasswordTooltip.styled';
 
 export const PasswordTooltip = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'LoginPage',
+  });
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -19,11 +21,11 @@ export const PasswordTooltip = () => {
 
   const title = (
     <Box>
-      <div>{t('LoginPage.infoHintTitle')}</div>
-      <div>{t('LoginPage.infoHintUpper')}</div>
-      <div>{t('LoginPage.infoHintLower')}</div>
-      <div>{t('LoginPage.infoHintDigit')}</div>
-      <div>{t('LoginPage.infoHintSpecial')}</div>
+      <div>{t('infoHintTitle')}</div>
+      <div>{t('infoHintUpper')}</div>
+      <div>{t('infoHintLower')}</div>
+      <div>{t('infoHintDigit')}</div>
+      <div>{t('infoHintSpecial')}</div>
     </Box>
   );
 
