@@ -73,7 +73,8 @@
     "resendCode": "Resend code",
     "resendCodeIn": "Resend code in",
     "errorPattern": "Only digits can be entered into the field. \nPlease, try again",
-    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
+    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us",
+    "lostConnection": "The action can't be completed because of the connection loss or some system issue. Please, check your internet connection and try again later. If the problem continues, contact us"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",

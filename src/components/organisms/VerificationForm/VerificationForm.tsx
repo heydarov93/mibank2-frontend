@@ -13,7 +13,12 @@ import { VerificationTitle } from './VerificationTitle';
 import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
 import { Timer } from 'components/molecules';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch, useAppSelector, useErrorHandlers } from 'hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useConnectionStatus,
+  useErrorHandlers,
+} from 'hooks';
 import { SendCodeResponse, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
@@ -52,6 +57,7 @@ export const VerificationForm = ({
   const navigate = useNavigate();
 
   const { handleLockedError } = useErrorHandlers();
+  useConnectionStatus();
 
   const handleVerificationCode = useCallback(
     (newValue: string) => {
