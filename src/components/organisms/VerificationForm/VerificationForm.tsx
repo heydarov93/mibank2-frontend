@@ -143,9 +143,9 @@ export const VerificationForm = ({
         throw new Error(t('serverError'));
       }
     } catch (e) {
+      setIsFormDisabled(true);
       if (e instanceof CustomError) {
         startTimer(e.details);
-        setIsFormDisabled(true);
       } else {
         dispatch(setError(t('serverError')));
       }
