@@ -4,7 +4,7 @@ import { ButtonLink } from './ButtonLink';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (str: string) => str, // Identity function for simplicity in tests
+    t: (str: string) => str,
   }),
 }));
 
