@@ -36,7 +36,7 @@ describe('UnderDevPage', () => {
     render(<UnderDevPage />);
 
     const button = screen.getByRole('button', {
-      name: 'UnderDevPage.buttonLabel',
+      name: 'buttonLabel',
     });
     expect(button).toBeInTheDocument();
 
