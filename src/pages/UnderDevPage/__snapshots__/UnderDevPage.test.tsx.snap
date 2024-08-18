@@ -17,12 +17,12 @@ exports[`UnderDevPage snapshot should match 1`] = `
         <h5
           class="MuiTypography-root MuiTypography-h5 css-an0ph6-MuiTypography-root"
         >
-          UnderDevPage.title
+          title
         </h5>
         <p
           class="MuiTypography-root MuiTypography-body2 css-1phg0rf-MuiTypography-root"
         >
-          UnderDevPage.description
+          description
         </p>
       </div>
       <button
@@ -30,7 +30,7 @@ exports[`UnderDevPage snapshot should match 1`] = `
         tabindex="0"
         type="button"
       >
-        UnderDevPage.buttonLabel
+        buttonLabel
         <span
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />
