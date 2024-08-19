@@ -303,6 +303,7 @@ exports[`LoginPage snapshot should match 1`] = `
             target="_blank"
           >
             <svg
+              data-testid="google-play-icon"
               height="52"
               width="180"
             >

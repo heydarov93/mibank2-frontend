@@ -4,7 +4,7 @@ import { useForm, FieldErrors } from 'react-hook-form';
 
 import { PasswordField } from './PasswordField';
 
-import { IFormInput } from 'models/IAuth';
+import { ISignupFormInput } from 'models/IAuth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -13,7 +13,7 @@ jest.mock('react-i18next', () => ({
 }));
 
 interface WrapperComponentProps {
-  errors?: FieldErrors<IFormInput>;
+  errors?: FieldErrors<ISignupFormInput>;
   isFormDisabled?: boolean;
   name: 'password' | 'confirmPassword';
   id: 'password' | 'confirmPassword';
@@ -25,7 +25,7 @@ const WrapperComponent = ({
   name,
   id,
 }: WrapperComponentProps) => {
-  const { control } = useForm<IFormInput>();
+  const { control } = useForm<ISignupFormInput>();
 
   return (
     <ThemeProvider theme={createTheme()}>
@@ -66,7 +66,7 @@ describe('PasswordField Component', () => {
   });
 
   it('displays error message when there is an error', () => {
-    const errors: FieldErrors<IFormInput> = {
+    const errors: FieldErrors<ISignupFormInput> = {
       password: {
         type: 'required',
         message: 'Password is required',
