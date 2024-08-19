@@ -6,5 +6,11 @@ export const GooglePlayIcon = () => {
   const isTablet = useMediaQuery('(max-width: 768px)');
   const iconWidth = isTablet ? 139 : 180;
   const iconHeight = isTablet ? 40 : 52;
-  return <GooglePlayIconBtn width={iconWidth} height={iconHeight} />;
+  return (
+    <GooglePlayIconBtn
+      data-testid="google-play-icon"
+      width={iconWidth}
+      height={iconHeight}
+    />
+  );
 };
