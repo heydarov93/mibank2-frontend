@@ -4,7 +4,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 
 import { CheckboxWithLabel } from './CheckboxWithLabel';
 
-import { IFormInput } from 'models/IAuth';
+import { ILoginFormInput } from 'models/IAuth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -16,14 +16,15 @@ const WrapperComponent = ({
   errors = {},
   isFormDisabled = false,
 }: {
-  errors?: FieldErrors<IFormInput>;
+  errors?: FieldErrors<ILoginFormInput>;
   isFormDisabled?: boolean;
 }) => {
-  const { control } = useForm<IFormInput>();
+  const { control } = useForm<ILoginFormInput>();
 
   return (
     <ThemeProvider theme={createTheme()}>
       <CheckboxWithLabel
+        name="checkbox"
         control={control}
         errors={errors}
         isFormDisabled={isFormDisabled}
@@ -42,7 +43,7 @@ describe('CheckboxWithLabel Component', () => {
   });
 
   it('displays error state when there is an error', () => {
-    const errors: FieldErrors<IFormInput> = {
+    const errors: FieldErrors<ILoginFormInput> = {
       checkbox: {
         type: 'required',
         message: 'Error',

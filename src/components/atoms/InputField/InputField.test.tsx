@@ -5,7 +5,7 @@ import { FieldError, useForm } from 'react-hook-form';
 
 import { InputField } from './InputField';
 
-import { IFormInput } from 'models/IAuth';
+import { ILoginFormInput, ISignupFormInput } from 'models/IAuth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -42,7 +42,7 @@ const WrapperComponent = ({
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }) => {
-  const { control } = useForm<IFormInput>();
+  const { control } = useForm<ILoginFormInput | ISignupFormInput>();
 
   return (
     <ThemeProvider theme={createTheme()}>
