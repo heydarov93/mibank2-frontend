@@ -1,5 +1,11 @@
 import { Checkbox, Link, useTheme } from '@mui/material';
-import { Control, Controller, FieldErrors } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldErrors,
+  FieldValues,
+  Path,
+} from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -8,20 +14,22 @@ import {
 } from './CheckboxWithLabel.styled';
 
 import { termsLink, policyLink } from 'components/organisms/Footer/constants';
-import { IFormInput } from 'models/IAuth';
+import { ILoginFormInput } from 'models/IAuth';
 import { generateRandomParam } from 'utils';
 
-interface CheckboxWithLabelProps {
-  control?: Control<IFormInput>;
-  errors: FieldErrors<IFormInput>;
+interface CheckboxWithLabelProps<T extends FieldValues> {
+  control?: Control<T>;
+  name: Path<T>;
+  errors: FieldErrors<ILoginFormInput>;
   isFormDisabled: boolean;
 }
 
-export const CheckboxWithLabel = ({
+export const CheckboxWithLabel = <T extends FieldValues>({
   control,
   errors,
+  name,
   isFormDisabled,
-}: CheckboxWithLabelProps) => {
+}: CheckboxWithLabelProps<T>) => {
   const { t } = useTranslation('translation');
   const theme = useTheme();
 
@@ -31,7 +39,7 @@ export const CheckboxWithLabel = ({
   return (
     <CheckboxStyledContainer className={errors.checkbox ? 'shake' : ''}>
       <Controller
-        name="checkbox"
+        name={name}
         control={control}
         render={({ field }) => {
           return (

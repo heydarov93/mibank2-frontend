@@ -2,27 +2,33 @@ import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { IconButton, InputAdornment, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react';
-import { useController, Control, FieldErrors } from 'react-hook-form';
+import {
+  useController,
+  Control,
+  FieldErrors,
+  FieldValues,
+  Path,
+} from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { InputField } from 'components/atoms';
-import { IFormInput } from 'models/IAuth';
+import { ISignupFormInput } from 'models/IAuth';
 
-interface PasswordFieldProps {
-  control: Control<IFormInput>;
-  name: 'password' | 'confirmPassword';
+interface PasswordFieldProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
   id: 'password' | 'confirmPassword';
-  errors: FieldErrors<IFormInput>;
+  errors: FieldErrors<ISignupFormInput>;
   isFormDisabled: boolean;
 }
 
-export const PasswordField = ({
+export const PasswordField = <T extends FieldValues>({
   control,
   name,
   id,
   errors,
   isFormDisabled,
-}: PasswordFieldProps) => {
+}: PasswordFieldProps<T>) => {
   const theme = useTheme();
   const { t } = useTranslation('translation');
   const { field } = useController({
@@ -60,7 +66,7 @@ export const PasswordField = ({
       {capsLockOn && (
         <span>{`${t('LoginPage.password.capsLockWarning')} `}</span>
       )}
-      {errors.password?.message && <span>{errors.password.message}</span>}
+      {errors[id] && <span>{errors[id]?.message}</span>}
     </>
   );
 
@@ -89,8 +95,8 @@ export const PasswordField = ({
       id={id}
       control={control}
       helperText={helperText}
-      className={errors.password ? 'shake' : ''}
-      error={errors.password}
+      className={errors[id] ? 'shake' : ''}
+      error={errors[id]}
       type={showPassword ? 'text' : 'password'}
       onCut={preventChange}
       onCopy={preventChange}

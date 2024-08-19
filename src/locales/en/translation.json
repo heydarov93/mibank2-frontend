@@ -23,12 +23,15 @@
     },
     "confirmPassword": {
       "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMatch": "Passwords don't match. Please check it and try again",
       "errorMaxLen": "Password should not exceed 50 characters",
       "errorMinLen": "Password should be at least 8 character long",
       "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
       "label": "Confirm Password"
     },
-    "buttonLabel": "Sign Up",
+    "buttonLabelSignup": "Sign Up",
+    "buttonLabelContinue": "Continue",
+    "errorTermsPrivacyRequired": "Please, read and agree to our Terms of Use and Privacy Policy to continue",
     "moveToLoginLink": "Log in",
     "haveAccountMsg": "Already have an account?"
   },
@@ -46,7 +49,7 @@
       "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
       "label": "Password"
     },
-    "errorTermsPrivacyRequired": "Please read and agree to our Terms of Use and Privacy Policy to continue",
+    "errorTermsPrivacyRequired": "Please, read and agree to our Terms of Use and Privacy Policy to continue",
     "formTitle": "Log in and let's start!",
     "formText": "Remember me",
     "formBtnSignIn": "Log In",

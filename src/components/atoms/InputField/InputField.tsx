@@ -1,9 +1,13 @@
 import { SyntheticEvent, KeyboardEvent, ReactNode } from 'react';
-import { Controller, Control, FieldError } from 'react-hook-form';
+import {
+  Controller,
+  Control,
+  FieldError,
+  FieldValues,
+  Path,
+} from 'react-hook-form';
 
 import { StyledTextField } from './InputField.styled';
-
-import { IFormInput } from 'models/IAuth';
 
 const enum FieldName {
   email = 'email',
@@ -11,10 +15,10 @@ const enum FieldName {
   confirmPassword = 'confirmPassword',
 }
 
-interface InputFieldProps {
-  name: `${FieldName}`;
+interface InputFieldProps<T extends FieldValues> {
+  name: Path<T>;
   id: `${FieldName}`;
-  control: Control<IFormInput>;
+  control: Control<T>;
   placeholder: string;
   type?: string;
   disabled?: boolean;
@@ -29,7 +33,7 @@ interface InputFieldProps {
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export const InputField = ({
+export const InputField = <T extends FieldValues>({
   name,
   id,
   control,
@@ -43,7 +47,7 @@ export const InputField = ({
   onCopy,
   onKeyUp,
   InputProps,
-}: InputFieldProps) => (
+}: InputFieldProps<T>) => (
   <Controller
     name={name}
     control={control}

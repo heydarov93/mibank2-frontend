@@ -16,11 +16,20 @@ export interface IUser {
   lastFailedTime: string | undefined;
 }
 
-export interface IFormInput {
+export interface ILoginFormInput {
   email: string;
   password: string;
-  confirmPassword?: string;
   checkbox?: boolean;
+}
+
+export interface ISignupFormInput {
+  password: string;
+  confirmPassword: string;
+  checkbox?: boolean;
+}
+
+export interface IEmailFormInput {
+  email: string;
 }
 
 export enum TokenType {
