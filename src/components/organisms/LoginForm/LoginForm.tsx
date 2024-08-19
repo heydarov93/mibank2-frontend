@@ -24,7 +24,7 @@ import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
 import {
-  IFormInput,
+  ILoginFormInput,
   ILoginData,
   SendCodeResponse,
   TokenType,
@@ -52,7 +52,7 @@ export const LoginForm = () => {
     handleSubmit,
     resetField,
     reset: resetForm,
-  } = useForm<IFormInput>({
+  } = useForm<ILoginFormInput>({
     resolver: yupResolver(validationLoginSchema),
     mode: 'onBlur',
     defaultValues: {
@@ -135,7 +135,7 @@ export const LoginForm = () => {
     }
   };
 
-  const onSubmit = async (data: IFormInput) => {
+  const onSubmit = async (data: ILoginFormInput) => {
     try {
       logIn({
         email: data.email,
@@ -202,6 +202,7 @@ export const LoginForm = () => {
           </Box>
         </StyledFormContent>
         <CheckboxWithLabel
+          name="checkbox"
           control={control}
           errors={errors}
           isFormDisabled={isFormDisabled}

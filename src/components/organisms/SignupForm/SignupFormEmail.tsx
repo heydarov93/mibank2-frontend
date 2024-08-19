@@ -12,8 +12,8 @@ import {
 } from './SignupForm.styled';
 
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
-import { validationLoginSchema } from 'constants/validationShemas';
-import { IFormInput } from 'models/IAuth';
+import { validationEmailSchema } from 'constants/validationShemas';
+import { IEmailFormInput } from 'models/IAuth';
 
 export const SignupFormEmail = () => {
   const { t } = useTranslation('translation');
@@ -28,23 +28,23 @@ export const SignupFormEmail = () => {
     //TODO: logic for reset form
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
-  } = useForm<IFormInput>({
-    resolver: yupResolver(validationLoginSchema),
+  } = useForm<IEmailFormInput>({
+    resolver: yupResolver(validationEmailSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = async (data: IFormInput) => {
+  const onSubmit = async (data: IEmailFormInput) => {
     //TODO: logic for submit
     // eslint-disable-next-line no-console
     console.log(data);
+    navigate('/signup-end');
   };
 
   const handleCleanField = () => {
     if (errors.email) resetField('email');
-    navigate('/signup-end');
   };
 
   return (
@@ -68,7 +68,7 @@ export const SignupFormEmail = () => {
         </StyledFormContent>
         <SubmitButton
           onClick={handleCleanField}
-          buttonContent={t('SignupPage.buttonLabel')}
+          buttonContent={t('SignupPage.buttonLabelContinue')}
         />
       </StyledForm>
       <ButtonLink

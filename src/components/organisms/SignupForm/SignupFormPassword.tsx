@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import {
   StyledForm,
@@ -18,13 +17,14 @@ import {
   PasswordField,
   PasswordTooltip,
 } from 'components/molecules';
-import { validationLoginSchema } from 'constants/validationShemas';
-import { IFormInput } from 'models/IAuth';
+import { validationSignupSchema } from 'constants/validationShemas';
+import { useAppDispatch } from 'hooks';
+import { ISignupFormInput } from 'models/IAuth';
+import { setError } from 'store/reducers/AuthSlice';
 
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
-
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {
     formState: { errors },
@@ -34,8 +34,8 @@ export const SignupFormPassword = () => {
     //TODO: logic for reset form
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
-  } = useForm<IFormInput>({
-    resolver: yupResolver(validationLoginSchema),
+  } = useForm<ISignupFormInput>({
+    resolver: yupResolver(validationSignupSchema),
     mode: 'onBlur',
     defaultValues: {
       password: '',
@@ -47,15 +47,20 @@ export const SignupFormPassword = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isFormDisabled, setIsFormDisabled] = useState(false);
 
-  const onSubmit = async (data: IFormInput) => {
+  const onSubmit = async (data: ISignupFormInput) => {
     // eslint-disable-next-line no-console
     console.log(data);
   };
 
   const handleCleanField = () => {
-    if (errors.password) resetField('password');
-    if (errors.password) resetField('confirmPassword');
-    navigate('/verification');
+    if (errors.password || errors.confirmPassword) {
+      resetField('password');
+      resetField('confirmPassword');
+    }
+    if (errors.checkbox) {
+      dispatch(setError(t('errorTermsPrivacyRequired')));
+      resetField('checkbox', { defaultValue: false });
+    }
   };
 
   return (
@@ -95,13 +100,14 @@ export const SignupFormPassword = () => {
           </Box>
         </StyledFormContent>
         <CheckboxWithLabel
+          name="checkbox"
           control={control}
           errors={errors}
           isFormDisabled={isFormDisabled}
         />
         <SubmitButton
           onClick={handleCleanField}
-          buttonContent={t('buttonLabel')}
+          buttonContent={t('buttonLabelSignup')}
         />
       </StyledForm>
       <ButtonLink
