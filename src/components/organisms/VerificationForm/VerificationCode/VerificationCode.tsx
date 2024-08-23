@@ -84,10 +84,13 @@ const VerificationCode = ({
         break;
 
       default:
-        if (event.ctrlKey && (event.key === 'v' || event.key === 'V')) {
+        if (
+          (event.ctrlKey || event.metaKey) &&
+          (event.key === 'v' || event.key === 'V')
+        ) {
           break;
         }
-        if (event.ctrlKey) {
+        if (event.ctrlKey || event.metaKey) {
           break;
         }
         if (!/\d/.test(event.key)) {

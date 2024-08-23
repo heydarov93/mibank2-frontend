@@ -31,7 +31,7 @@ const WrapperComponent = ({
     <ThemeProvider theme={createTheme()}>
       <PasswordField
         control={control}
-        name={name}
+        name="password"
         id={id}
         errors={errors}
         isFormDisabled={isFormDisabled}

@@ -37,11 +37,3 @@ export enum TokenType {
   REFRESH = 'refreshToken',
   TEMPORARY = 'temporaryToken',
 }
-
-export type SendCodeResponse = {
-  data: {
-    status: string;
-    expiredTimer: number;
-  };
-  status: number;
-};
