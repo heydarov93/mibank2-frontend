@@ -19,11 +19,11 @@ import {
   useConnectionStatus,
   useErrorHandlers,
 } from 'hooks';
-import { SendCodeResponse, TokenType } from 'models/IAuth';
+import { TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
 import { getVerifyingTimer } from 'store/selectors';
-import { CustomError, getEmailFromToken, localTokenHandler } from 'utils';
+import { getEmailFromToken, localTokenHandler } from 'utils';
 
 type VerificationFormProps = {
   disableFields?: boolean;
@@ -101,7 +101,7 @@ export const VerificationForm = ({
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
-            dispatch(setError(error.data.message));
+            dispatch(setError(error.data.exceptionMessage));
             break;
           case ErrorStatus.TOO_MANY_REQUESTS:
             handleLockedError(
@@ -128,32 +128,20 @@ export const VerificationForm = ({
 
   const handleResendButton = async () => {
     try {
-      const response = await sendcode(null);
+      const response = await sendcode(null).unwrap();
       setIsFormDisabled(false);
-
-      const data = (response as SendCodeResponse).data;
-      const isError = 'error' in response;
-
-      if (!isError) {
-        const expiredTimer = data ? data.expiredTimer : null;
-
-        if (expiredTimer) startTimer(expiredTimer);
-      } else {
-        const error = response.error as SendCodeResponse;
-        if (error.data.expiredTimer) {
-          throw new CustomError<number>(
-            error.data.status,
-            error.data.expiredTimer,
-          );
-        }
-        throw new Error(t('serverError'));
-      }
+      startTimer(response.expiredTimer);
     } catch (e) {
+      const error = e as IErrorData;
       setIsFormDisabled(true);
-      if (e instanceof CustomError) {
-        startTimer(e.details);
-      } else {
-        dispatch(setError(t('serverError')));
+      switch (error.status) {
+        case ErrorStatus.TOO_MANY_REQUESTS:
+          startTimer(error.data.expiredTimer);
+          break;
+        case ErrorStatus.UNATHORIZED:
+        default:
+          dispatch(setError(t('serverError')));
+          break;
       }
     }
   };

@@ -4,26 +4,8 @@ import { useAppDispatch } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers/AuthSlice';
 
-type FormatErrorMessageType = (
-  remainingAttempts: number,
-  message: string,
-) => string;
-
 export const useErrorHandlers = () => {
   const dispatch = useAppDispatch();
-
-  const handleNotFoundError = (
-    error: IErrorData,
-    formatErrorMessage: FormatErrorMessageType,
-  ) => {
-    const { remainingAttempts, message } = error.data;
-
-    const errorMessage = remainingAttempts
-      ? formatErrorMessage(remainingAttempts, message)
-      : message;
-
-    dispatch(setError(errorMessage));
-  };
 
   const handleLockedError = (
     error: IErrorData,
@@ -31,10 +13,11 @@ export const useErrorHandlers = () => {
     setRemainingTime: Dispatch<SetStateAction<number>>,
     setEndTime: Dispatch<SetStateAction<number>>,
   ) => {
-    const { blockTimeRemaining, isBlocked, message } = error.data;
-    dispatch(setError(message));
+    const { blockTimeRemaining, blocked, exceptionMessage } = error.data;
 
-    if (isBlocked) {
+    dispatch(setError(exceptionMessage));
+
+    if (blocked) {
       setIsFormDisabled(true);
       const endTimestamp = Date.now() + blockTimeRemaining * 1000;
       setEndTime(endTimestamp);
@@ -42,5 +25,5 @@ export const useErrorHandlers = () => {
     }
   };
 
-  return { handleNotFoundError, handleLockedError };
+  return { handleLockedError };
 };

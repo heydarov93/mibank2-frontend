@@ -22,13 +22,8 @@ import {
 } from 'components/molecules';
 import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch, useErrorHandlers, useFormatErrorMessage } from 'hooks';
-import {
-  ILoginFormInput,
-  ILoginData,
-  SendCodeResponse,
-  TokenType,
-} from 'models/IAuth';
+import { useAppDispatch, useErrorHandlers } from 'hooks';
+import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import {
   setError,
@@ -36,7 +31,7 @@ import {
   setVerifying,
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
-import { CustomError, localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });
@@ -44,8 +39,7 @@ export const LoginForm = () => {
 
   const [authorize] = useAuthorizeMutation();
   const [sendcode] = useSendcodeMutation();
-  const { handleNotFoundError, handleLockedError } = useErrorHandlers();
-  const { formatErrorMessage } = useFormatErrorMessage();
+  const { handleLockedError } = useErrorHandlers();
   const {
     formState: { errors },
     control,
@@ -84,39 +78,41 @@ export const LoginForm = () => {
       localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
       dispatch(setVerifying(true));
       dispatch(setLoading(true));
-      const response = await sendcode(null);
 
-      const isError = 'error' in response;
+      let isError = false;
 
-      navigate('/verification', { state: { isError } });
-      resetForm();
-
-      if (!isError) {
-        const expiredTimer = (response as SendCodeResponse).data.expiredTimer;
-        dispatch(setVerifyingTimer(expiredTimer || 0));
-      } else {
-        const error = response.error as SendCodeResponse;
-        if (error.data.expiredTimer) {
-          throw new CustomError<number>(
-            error.data.status,
-            error.data.expiredTimer,
-          );
+      try {
+        const response = await sendcode(null).unwrap();
+        const expiredTimer = response.expiredTimer;
+        dispatch(setVerifyingTimer(expiredTimer));
+      } catch (e) {
+        const error = e as IErrorData;
+        isError = true;
+        switch (error.status) {
+          case ErrorStatus.TOO_MANY_REQUESTS:
+            dispatch(setVerifyingTimer(error.data.expiredTimer));
+            break;
+          default:
+            dispatch(setError('An unknown error occurred'));
+            break;
         }
+      } finally {
+        navigate('/verification', { state: { isError } });
       }
+
+      resetForm();
     } catch (e) {
       const error = e as IErrorData;
 
-      if (e instanceof CustomError) {
-        dispatch(setVerifyingTimer(e.details));
-      } else if (e instanceof Error) {
+      if (e instanceof Error) {
         dispatch(setError(t('serverError')));
       } else {
         switch (error.status) {
           case ErrorStatus.NOT_FOUND:
-            handleNotFoundError(error, formatErrorMessage);
+            dispatch(setError(error.data.exceptionMessage));
             resetField('password');
             break;
-          case ErrorStatus.LOCKED:
+          case ErrorStatus.TOO_MANY_REQUESTS:
             handleLockedError(
               error,
               setIsFormDisabled,

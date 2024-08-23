@@ -1,9 +1,9 @@
 export interface IErrorData {
   data: {
-    remainingAttempts: number;
-    message: string;
+    exceptionMessage: string;
     blockTimeRemaining: number;
-    isBlocked: boolean;
+    blocked: boolean;
+    expiredTimer: number;
   };
   status: number;
 }

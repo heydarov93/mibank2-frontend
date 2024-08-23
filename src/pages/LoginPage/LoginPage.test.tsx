@@ -50,11 +50,8 @@ const mockStore = configureStore({
 jest.mock('utils', () => {
   return {
     generateRandomParam: jest.fn().mockReturnValue(''),
-    handleNotFoundError: jest.fn(),
     handleLockedError: jest.fn(),
     useErrorHandlers: jest.fn,
-    formatErrorMessage: jest.fn(),
-    useFormatErrorMessage: jest.fn,
     localTokenHandler: {
       getToken: jest.fn(),
     },
