@@ -90,6 +90,9 @@
     "description": "This page is under development. We are preparing something amazing and exciting for you. Stay tuned!",
     "buttonLabel": "Go Back"
   },
+  "ErrorNotification": {
+    "contactUs": "contact us"
+  },
   "footer": {
     "download": "Download the app:",
     "contacts": {

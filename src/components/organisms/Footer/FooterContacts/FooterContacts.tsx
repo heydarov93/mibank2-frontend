@@ -61,6 +61,7 @@ export const FooterContacts = () => {
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-between',
       }}
+      id="contact-section"
     >
       <LogoWrapper>
         <Logo />
