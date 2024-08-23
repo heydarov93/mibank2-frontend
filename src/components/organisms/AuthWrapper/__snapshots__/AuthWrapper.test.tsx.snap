@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthWrapper snapshot should match 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-x3jde3"
+  >
+    <div
+      class="MuiBox-root css-1jw1wke"
+    >
+      <div>
+        Test Child
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -127,7 +127,6 @@ describe('InputField component', () => {
       />,
     );
     const inputElement = screen.getByPlaceholderText('example@gmail.com');
-    screen.debug();
     expect(inputElement).toBeDisabled();
   });
 
