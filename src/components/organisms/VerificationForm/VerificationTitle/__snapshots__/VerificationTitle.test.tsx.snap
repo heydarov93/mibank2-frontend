@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerificationTitle Component snapshot should match 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1or0xvx"
+  >
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-n2huo-MuiTypography-root"
+    >
+      verificationTitle
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-96ujk7-MuiTypography-root"
+    >
+      verificationText 
+      <span>
+        test@example.com
+      </span>
+    </p>
+  </div>
+</DocumentFragment>
+`;

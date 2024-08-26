@@ -260,6 +260,7 @@ exports[`LoginPage snapshot should match 1`] = `
   >
     <div
       class="MuiBox-root css-4la022"
+      id="contact-section"
     >
       <div
         class="MuiBox-root css-8qypj0"
