@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks';
 import { getLoading } from 'store/selectors';
+import { getAuthStatus } from 'utils';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const isAuth = localStorage.getItem('isAuth');
+  const isAuth = getAuthStatus();
   const loading = useAppSelector(getLoading);
 
   useEffect(() => {

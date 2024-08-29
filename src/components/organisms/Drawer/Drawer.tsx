@@ -25,7 +25,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler, removeAuthData } from 'utils';
 
 export const TemporaryDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -41,8 +41,7 @@ export const TemporaryDrawer = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
     localTokenHandler.clearToken(TokenType.ACCESS);
-    localStorage.removeItem('isAuth');
-    localStorage.removeItem('email');
+    removeAuthData();
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'header.navMenu' });

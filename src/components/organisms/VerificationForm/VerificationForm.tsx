@@ -23,7 +23,12 @@ import { TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
 import { getVerifyingTimer } from 'store/selectors';
-import { getEmailFromToken, localTokenHandler } from 'utils';
+import {
+  getAuthStatus,
+  getEmailFromToken,
+  localTokenHandler,
+  setAuthData,
+} from 'utils';
 
 type VerificationFormProps = {
   disableFields?: boolean;
@@ -77,12 +82,11 @@ export const VerificationForm = ({
       }).unwrap();
 
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
-      if (localStorage.getItem('accessToken')) {
+      if (localTokenHandler.getToken(TokenType.ACCESS)) {
         setIsCodeCorrect(true);
         setIsCodeWrong(false);
 
-        localStorage.setItem('isAuth', 'true');
-        localStorage.setItem('email', currentEmail);
+        setAuthData(true, currentEmail);
         localTokenHandler.clearToken(TokenType.TEMPORARY);
 
         setTimeout(() => {
@@ -167,7 +171,7 @@ export const VerificationForm = ({
       setShouldClearFields(true);
     }
 
-    const isAuth = localStorage.getItem('isAuth');
+    const isAuth = getAuthStatus();
     if (isAuth) {
       const timer = setTimeout(() => navigate('/'), 1000);
 
