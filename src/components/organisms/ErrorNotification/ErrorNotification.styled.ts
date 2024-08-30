@@ -8,6 +8,6 @@ export const StyledAlert = styled(Alert)(({ theme: { palette } }) => ({
 
 export const StyledLink = styled(Link)(({ theme: { palette } }) => ({
   cursor: 'pointer',
-  textDecoration: 'underline',
-  color: palette.error.main,
+  textDecoration: 'none',
+  color: palette.primary.dark,
 }));

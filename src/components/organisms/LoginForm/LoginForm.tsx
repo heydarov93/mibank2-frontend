@@ -92,8 +92,14 @@ export const LoginForm = () => {
           case ErrorStatus.TOO_MANY_REQUESTS:
             dispatch(setVerifyingTimer(error.data.expiredTimer));
             break;
+          case ErrorStatus.LOCKED:
+            dispatch(setVerifyingTimer(error.data.blockTimeRemaining));
+            break;
+          case ErrorStatus.BAD_REQUEST:
+            dispatch(setError(error.data.exceptionMessage));
+            break;
           default:
-            dispatch(setError('An unknown error occurred'));
+            dispatch(setError(t('serverError')));
             break;
         }
       } finally {
@@ -103,28 +109,23 @@ export const LoginForm = () => {
       resetForm();
     } catch (e) {
       const error = e as IErrorData;
-
-      if (e instanceof Error) {
-        dispatch(setError(t('serverError')));
-      } else {
-        switch (error.status) {
-          case ErrorStatus.NOT_FOUND:
-            dispatch(setError(error.data.exceptionMessage));
-            resetField('password');
-            break;
-          case ErrorStatus.TOO_MANY_REQUESTS:
-            handleLockedError(
-              error,
-              setIsFormDisabled,
-              setRemainingTime,
-              setLockoutEndTime,
-            );
-            resetField('password');
-            break;
-          default:
-            dispatch(setError('An unknown error occurred'));
-            break;
-        }
+      switch (error.status) {
+        case ErrorStatus.NOT_FOUND:
+          dispatch(setError(error.data.exceptionMessage));
+          resetField('password');
+          break;
+        case ErrorStatus.LOCKED:
+          handleLockedError(
+            error,
+            setIsFormDisabled,
+            setRemainingTime,
+            setLockoutEndTime,
+          );
+          resetField('password');
+          break;
+        default:
+          dispatch(setError(t('serverError')));
+          break;
       }
     } finally {
       dispatch(setLoading(false));

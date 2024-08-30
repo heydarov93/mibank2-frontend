@@ -103,7 +103,7 @@ export const VerificationForm = ({
           case ErrorStatus.NOT_FOUND:
             dispatch(setError(error.data.exceptionMessage));
             break;
-          case ErrorStatus.TOO_MANY_REQUESTS:
+          case ErrorStatus.LOCKED:
             handleLockedError(
               error,
               setIsFormDisabled,
@@ -137,6 +137,9 @@ export const VerificationForm = ({
       switch (error.status) {
         case ErrorStatus.TOO_MANY_REQUESTS:
           startTimer(error.data.expiredTimer);
+          break;
+        case ErrorStatus.BAD_REQUEST:
+          dispatch(setError(error.data.exceptionMessage));
           break;
         case ErrorStatus.UNATHORIZED:
         default:
