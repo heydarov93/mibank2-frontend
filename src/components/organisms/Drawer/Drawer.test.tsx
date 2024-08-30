@@ -10,8 +10,10 @@ import { TemporaryDrawer } from './Drawer';
 
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
 import { useAppDispatch } from 'hooks';
+import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
+import { localTokenHandler, removeAuthData } from 'utils';
 
 jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
@@ -47,6 +49,15 @@ const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
+}));
+
+jest.mock('utils', () => ({
+  localTokenHandler: {
+    clearToken: jest.fn(),
+    storeToken: jest.fn(),
+    getToken: jest.fn(),
+  },
+  removeAuthData: jest.fn(),
 }));
 
 describe('TemporaryDrawer', () => {
@@ -98,8 +109,8 @@ describe('TemporaryDrawer', () => {
     fireEvent.click(logoutButton);
 
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
+    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(TokenType.ACCESS);
+    expect(removeAuthData).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
-    expect(localStorage.getItem('isAuth')).toBeNull();
-    expect(localStorage.getItem('email')).toBeNull();
   });
 });

@@ -16,7 +16,7 @@ import { useAppSelector, useAppDispatch } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
-import { localTokenHandler } from 'utils';
+import { getEmail, localTokenHandler, removeAuthData } from 'utils';
 
 export const PersonalMenu = () => {
   const navigate = useNavigate();
@@ -32,15 +32,14 @@ export const PersonalMenu = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
     localTokenHandler.clearToken(TokenType.ACCESS);
-    localStorage.removeItem('isAuth');
-    localStorage.removeItem('email');
+    removeAuthData();
   };
 
   const theme = useTheme();
   const isDesctopView = useMediaQuery(theme.breakpoints.up('md'));
   const user = useAppSelector(getUser);
 
-  const email = localStorage.getItem('email');
+  const email = getEmail();
 
   const { data, isLoading } = useGetUserInfoQuery(email ?? skipToken);
 

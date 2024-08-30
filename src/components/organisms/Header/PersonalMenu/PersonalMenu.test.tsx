@@ -10,7 +10,7 @@ import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { useAppSelector } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler, removeAuthData } from 'utils';
 
 jest.mock('store/reducers/AuthSlice', () => ({
   ...jest.requireActual('store/reducers/AuthSlice'),
@@ -45,6 +45,7 @@ jest.mock('utils', () => ({
     storeToken: jest.fn(),
     getToken: jest.fn(),
   },
+  removeAuthData: jest.fn(),
 }));
 
 jest.mock('models/IAuth', () => ({
@@ -112,13 +113,6 @@ const renderComponent = () =>
 describe('PersonalMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
-      if (key === 'email') {
-        return 'john@example.com';
-      }
-      return null;
-    });
-    jest.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {});
   });
 
   it('renders without crashing', () => {
@@ -173,8 +167,7 @@ describe('PersonalMenu component', () => {
     fireEvent.click(getByLabelText('logout'));
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
     expect(localTokenHandler.clearToken).toHaveBeenCalledWith(TokenType.ACCESS);
-    expect(Storage.prototype.removeItem).toHaveBeenCalledWith('isAuth');
-    expect(Storage.prototype.removeItem).toHaveBeenCalledWith('email');
+    expect(removeAuthData).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
   });
 
