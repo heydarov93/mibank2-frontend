@@ -41,7 +41,7 @@ export const ErrorNotification = () => {
       autoHideDuration={5000}
       onClose={handleClose}
     >
-      <StyledAlert onClose={handleClose} severity="error">
+      <StyledAlert severity="error">
         {title && <AlertTitle>{title}</AlertTitle>}
         <div>
           {message[0]}
