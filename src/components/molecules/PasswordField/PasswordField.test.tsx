@@ -22,7 +22,6 @@ interface WrapperComponentProps {
 const WrapperComponent = ({
   errors = {},
   isFormDisabled = false,
-  name,
   id,
 }: WrapperComponentProps) => {
   const { control } = useForm<ISignupFormInput>();

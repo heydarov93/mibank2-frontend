@@ -1,4 +1,5 @@
 import { render, screen, act } from '@testing-library/react';
+
 import { Timer } from './Timer';
 
 jest.mock('react-i18next', () => ({

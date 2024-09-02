@@ -19,7 +19,7 @@ interface PasswordFieldProps<T extends FieldValues> {
   name: Path<T>;
   id: 'password' | 'confirmPassword';
   errors: FieldErrors<ISignupFormInput>;
-  isFormDisabled: boolean;
+  isFormDisabled?: boolean;
 }
 
 export const PasswordField = <T extends FieldValues>({

@@ -20,7 +20,6 @@ import {
   PasswordTooltip,
   Timer,
 } from 'components/molecules';
-import { validationLoginSchema } from 'constants/index';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
@@ -32,6 +31,7 @@ import {
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
 import { localTokenHandler } from 'utils';
+import { validationLoginSchema } from 'validation';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });

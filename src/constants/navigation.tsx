@@ -7,6 +7,7 @@ import {
   History,
 } from '@mui/icons-material';
 import { ReactNode } from 'react';
+
 interface IMenuLinks {
   path: string;
   content: string;

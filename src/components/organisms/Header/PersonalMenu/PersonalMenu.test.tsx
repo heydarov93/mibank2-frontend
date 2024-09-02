@@ -12,6 +12,21 @@ import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { localTokenHandler, removeAuthData } from 'utils';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string) => str,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
+  },
+}));
+
 jest.mock('store/reducers/AuthSlice', () => ({
   ...jest.requireActual('store/reducers/AuthSlice'),
   logoutFromApp: jest.fn().mockReturnValue({ type: 'Auth/logoutFromApp' }),
@@ -46,6 +61,7 @@ jest.mock('utils', () => ({
     getToken: jest.fn(),
   },
   removeAuthData: jest.fn(),
+  getEmail: jest.fn(),
 }));
 
 jest.mock('models/IAuth', () => ({

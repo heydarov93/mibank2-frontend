@@ -10,7 +10,7 @@ import {
   StyledTypographyName,
 } from './UserCard.styled';
 
-import { EGreeting } from 'constants/index';
+import { EGreeting } from 'enums';
 import { IUserInfo } from 'models/IUserInfo';
 
 type PersonalMenuProps = {

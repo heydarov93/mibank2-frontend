@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -17,10 +16,10 @@ import {
   PasswordField,
   PasswordTooltip,
 } from 'components/molecules';
-import { validationSignupSchema } from 'constants/validationShemas';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { setError } from 'store/reducers/AuthSlice';
+import { validationSignupSchema } from 'validation';
 
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
@@ -31,8 +30,6 @@ export const SignupFormPassword = () => {
     control,
     handleSubmit,
     resetField,
-    //TODO: logic for reset form
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
   } = useForm<ISignupFormInput>({
     resolver: yupResolver(validationSignupSchema),
@@ -43,13 +40,11 @@ export const SignupFormPassword = () => {
       checkbox: true,
     },
   });
-  //TODO: handle with disable form
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isFormDisabled, setIsFormDisabled] = useState(false);
 
   const onSubmit = async (data: ISignupFormInput) => {
     // eslint-disable-next-line no-console
     console.log(data);
+    resetForm();
   };
 
   const handleCleanField = () => {
@@ -80,7 +75,6 @@ export const SignupFormPassword = () => {
               name="password"
               id="password"
               errors={errors}
-              isFormDisabled={isFormDisabled}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -95,16 +89,10 @@ export const SignupFormPassword = () => {
               name="confirmPassword"
               id="confirmPassword"
               errors={errors}
-              isFormDisabled={isFormDisabled}
             />
           </Box>
         </StyledFormContent>
-        <CheckboxWithLabel
-          name="checkbox"
-          control={control}
-          errors={errors}
-          isFormDisabled={isFormDisabled}
-        />
+        <CheckboxWithLabel name="checkbox" control={control} errors={errors} />
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('buttonLabelSignup')}
