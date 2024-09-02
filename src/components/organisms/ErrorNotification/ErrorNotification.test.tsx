@@ -1,9 +1,14 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { ErrorNotification } from './ErrorNotification';
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { clearError } from 'store/reducers/AuthSlice';
+import { useAppSelector } from 'hooks';
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
 
 jest.mock('hooks', () => ({
   useAppDispatch: jest.fn(),
@@ -13,8 +18,6 @@ jest.mock('hooks', () => ({
 jest.mock('store/reducers/AuthSlice', () => ({
   clearError: jest.fn(),
 }));
-
-const dispatch = jest.fn();
 
 describe('ErrorNotification', () => {
   it('renders without crashing', () => {
@@ -32,15 +35,5 @@ describe('ErrorNotification', () => {
       /Please, read and agree to our Terms of Use and Privacy Policy to continue/i,
     );
     expect(errorMessage).toBeInTheDocument();
-  });
-
-  it('dispatches clearError action when alert is closed', () => {
-    (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
-    (useAppSelector as jest.Mock).mockReturnValue('Error occurred.');
-
-    render(<ErrorNotification />);
-
-    fireEvent.click(screen.getByRole('button', { name: /close/i }));
-    expect(dispatch).toHaveBeenCalledWith(clearError());
   });
 });

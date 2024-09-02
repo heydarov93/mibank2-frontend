@@ -19,8 +19,8 @@ import {
 } from './Drawer.styled';
 
 import { UserCard } from 'components/molecules';
-import { EGreeting } from 'constants/index';
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
+import { EGreeting } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';

@@ -1,7 +1,27 @@
 import { render, screen } from '@testing-library/react';
+
 import { UserCard } from './UserCard';
-import { EGreeting } from 'constants/index';
+
+import { EGreeting } from 'enums';
 import { IUserInfo } from 'models/IUserInfo';
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (key: string) => {
+        if (key === 'greetings') return 'Hello';
+        return key;
+      },
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: () => {},
+  },
+}));
 
 describe('UserCard Component', () => {
   const user: IUserInfo = {

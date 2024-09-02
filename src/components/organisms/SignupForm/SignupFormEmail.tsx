@@ -12,8 +12,8 @@ import {
 } from './SignupForm.styled';
 
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
-import { validationEmailSchema } from 'constants/validationShemas';
 import { IEmailFormInput } from 'models/IAuth';
+import { validationEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
   const { t } = useTranslation('translation');
@@ -25,8 +25,6 @@ export const SignupFormEmail = () => {
     control,
     handleSubmit,
     resetField,
-    //TODO: logic for reset form
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset: resetForm,
   } = useForm<IEmailFormInput>({
     resolver: yupResolver(validationEmailSchema),
@@ -41,6 +39,7 @@ export const SignupFormEmail = () => {
     // eslint-disable-next-line no-console
     console.log(data);
     navigate('/signup-end');
+    resetForm();
   };
 
   const handleCleanField = () => {

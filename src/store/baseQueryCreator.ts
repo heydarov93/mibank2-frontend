@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit/query';
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TokenType } from '..//models/IAuth';
+import { TokenType } from '../models/IAuth';
 
 import { BASE_URL } from 'api/environmentVerification';
 import { localTokenHandler } from 'utils';

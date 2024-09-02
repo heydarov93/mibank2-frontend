@@ -21,7 +21,7 @@ interface CheckboxWithLabelProps<T extends FieldValues> {
   control?: Control<T>;
   name: Path<T>;
   errors: FieldErrors<ILoginFormInput>;
-  isFormDisabled: boolean;
+  isFormDisabled?: boolean;
 }
 
 export const CheckboxWithLabel = <T extends FieldValues>({
@@ -68,7 +68,7 @@ export const CheckboxWithLabel = <T extends FieldValues>({
 
       <AgreementContainer
         variant="body2"
-        disabled={isFormDisabled}
+        disabled={!!isFormDisabled}
         hasError={Boolean(errors.checkbox)}
       >
         {`${t('LoginPage.termsText')} `}
