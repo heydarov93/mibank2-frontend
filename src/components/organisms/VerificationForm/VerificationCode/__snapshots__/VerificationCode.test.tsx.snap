@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerificationCode Component renders correctly with the given props 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-nbevi5"
+  >
+    <div
+      class=" MuiBox-root css-dx6tua"
+    >
+      <div
+        aria-label="Digit 1 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-0"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+      <div
+        aria-label="Digit 2 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary Mui-disabled  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-1"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+      <div
+        aria-label="Digit 3 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary Mui-disabled  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-2"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+      -
+      <div
+        aria-label="Digit 4 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary Mui-disabled  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-3"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+      <div
+        aria-label="Digit 5 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary Mui-disabled  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-4"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+      <div
+        aria-label="Digit 6 of Verification Code"
+        class="MuiInputBase-root MuiInput-root MuiInputBase-colorPrimary Mui-disabled  css-w9tmwf-MuiInputBase-root-MuiInput-root"
+        data-testid="otp-input-5"
+        inputmode="numeric"
+      >
+        <input
+          class="MuiInputBase-input MuiInput-input Mui-disabled css-1x51dt5-MuiInputBase-input-MuiInput-input"
+          disabled=""
+          maxlength="1"
+          placeholder="0"
+          style="text-align: center;"
+          type="tel"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

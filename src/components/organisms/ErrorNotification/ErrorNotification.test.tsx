@@ -10,6 +10,12 @@ jest.mock('react-i18next', () => ({
   }),
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (str: string) => str,
+  }),
+}));
+
 jest.mock('hooks', () => ({
   useAppDispatch: jest.fn(),
   useAppSelector: jest.fn(),
