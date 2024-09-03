@@ -21,7 +21,7 @@ interface VerificationCodeProps {
   shouldClearFields: boolean;
 }
 
-const VerificationCode = ({
+export const VerificationCode = ({
   separator,
   length,
   isCodeCorrect,
@@ -203,6 +203,7 @@ const VerificationCode = ({
             <StyledInputElement
               type="tel"
               inputMode="numeric"
+              data-testid={`otp-input-${index}`}
               disabled={
                 isFormDisabled || (index !== 0 && !otp[index - 1] && !digit)
               }
