@@ -1,8 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
-import { BASE_URL } from './environmentVerification';
 
 export const contactInfoApi = createApi({
   reducerPath: 'contactInfoApi',
