@@ -7,7 +7,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { TokenType } from '../models/IAuth';
 
-import { BASE_URL } from 'api/environmentVerification';
+import { BASE_URL } from 'api/config';
 import { localTokenHandler } from 'utils';
 
 // TODO: add logic for token expired
