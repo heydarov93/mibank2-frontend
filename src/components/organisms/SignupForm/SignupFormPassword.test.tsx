@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import { SignupFormPassword } from './SignupFormPassword';
@@ -49,27 +48,26 @@ describe('SignupFormPassword', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('shows an error message if the format is wrong', async () => {
+  it('should enable the submit button only when the form is valid', async () => {
     render(
       <Provider store={mockStore}>
         <SignupFormPassword />
       </Provider>,
     );
+
     const passwordInput = screen.getByLabelText('Password');
-    const signupButton = screen.getByText('Sign Up');
+    const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+    const submitButton = screen.getByText('Sign Up');
 
-    waitFor(() => {
-      userEvent.type(passwordInput, 'BADPASSWORd');
+    expect(submitButton).toBeDisabled();
+
+    fireEvent.change(passwordInput, { target: { value: 'validPassword!123' } });
+    fireEvent.change(confirmPasswordInput, {
+      target: { value: 'validPassword!123' },
     });
 
-    waitFor(() => {
-      userEvent.click(signupButton);
+    await waitFor(() => {
+      expect(submitButton).not.toBeDisabled();
     });
-
-    const errorMessage = await screen.findByText(
-      'Format is not correct. Please click ⓘ sign to see requirements',
-    );
-
-    expect(errorMessage).toBeInTheDocument();
   });
 });

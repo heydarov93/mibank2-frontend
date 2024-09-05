@@ -26,7 +26,7 @@ export const SignupFormPassword = () => {
   const dispatch = useAppDispatch();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     control,
     handleSubmit,
     resetField,
@@ -96,6 +96,7 @@ export const SignupFormPassword = () => {
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('buttonLabelSignup')}
+          isDisabled={!isValid}
         />
       </StyledForm>
       <ButtonLink
