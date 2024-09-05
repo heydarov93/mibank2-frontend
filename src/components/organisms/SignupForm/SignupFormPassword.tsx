@@ -26,7 +26,7 @@ export const SignupFormPassword = () => {
   const dispatch = useAppDispatch();
 
   const {
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     control,
     handleSubmit,
     resetField,
@@ -40,6 +40,8 @@ export const SignupFormPassword = () => {
       checkbox: true,
     },
   });
+
+  const isValidConfirm = isDirty && !errors?.password;
 
   const onSubmit = async (data: ISignupFormInput) => {
     // eslint-disable-next-line no-console
@@ -82,13 +84,13 @@ export const SignupFormPassword = () => {
               <StyledLable htmlFor="confirmPassword">
                 {t('confirmPassword.label')}
               </StyledLable>
-              <PasswordTooltip />
             </Box>
             <PasswordField
               control={control}
               name="confirmPassword"
               id="confirmPassword"
               errors={errors}
+              isFormDisabled={!isValidConfirm}
             />
           </Box>
         </StyledFormContent>

@@ -74,16 +74,22 @@ export const PasswordField = <T extends FieldValues>({
     endAdornment: (
       <InputAdornment position="end">
         <Tooltip title={showPassword ? 'Hide' : 'Show'} placement="right">
-          <IconButton
-            aria-label="toggle password visibility"
-            sx={{ color: theme.palette.grey[300] }}
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDown}
-            edge="end"
-            disabled={isFormDisabled}
-          >
-            {showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}
-          </IconButton>
+          <span>
+            <IconButton
+              aria-label="toggle password visibility"
+              sx={{ color: theme.palette.grey[300] }}
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDown}
+              edge="end"
+              disabled={isFormDisabled}
+            >
+              {showPassword ? (
+                <VisibilityOffOutlined />
+              ) : (
+                <VisibilityOutlined />
+              )}
+            </IconButton>
+          </span>
         </Tooltip>
       </InputAdornment>
     ),
