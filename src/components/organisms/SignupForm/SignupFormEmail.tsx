@@ -21,7 +21,7 @@ export const SignupFormEmail = () => {
   const navigate = useNavigate();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     control,
     handleSubmit,
     resetField,
@@ -68,6 +68,7 @@ export const SignupFormEmail = () => {
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('SignupPage.buttonLabelContinue')}
+          isDisabled={!isValid}
         />
       </StyledForm>
       <ButtonLink

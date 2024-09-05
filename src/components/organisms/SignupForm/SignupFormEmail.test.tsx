@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import { SignupFormEmail } from './SignupFormEmail';
@@ -49,7 +48,7 @@ describe('SignupFormEmail', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('shows an error message if the format is wrong', async () => {
+  it('should enable the submit button only when the form is valid', async () => {
     render(
       <Provider store={mockStore}>
         <SignupFormEmail />
@@ -59,18 +58,14 @@ describe('SignupFormEmail', () => {
     const emailInput = screen.getByLabelText('Email');
     const continueButton = screen.getByText('Continue');
 
-    waitFor(() => {
-      userEvent.type(emailInput, 'BAD_EMAIL');
+    expect(continueButton).toBeDisabled();
+
+    fireEvent.change(emailInput, {
+      target: { value: 'validemail@example.com' },
     });
 
-    waitFor(() => {
-      userEvent.click(continueButton);
+    await waitFor(() => {
+      expect(continueButton).not.toBeDisabled();
     });
-
-    const errorMessage = await screen.findByText(
-      'Please enter your email in format: example@gmail.com',
-    );
-
-    expect(errorMessage).toBeInTheDocument();
   });
 });
