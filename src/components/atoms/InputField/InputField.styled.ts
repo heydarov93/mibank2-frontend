@@ -24,7 +24,18 @@ export const StyledTextField = styled(TextField)(
         },
       },
 
-      '&:hover:not(.Mui-focused)': {
+      '&.Mui-disabled': {
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: palette.grey[300],
+        },
+        '&:hover': {
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: `1px solid ${palette.grey[300]}`,
+          },
+        },
+      },
+
+      '&:hover:not(.Mui-focused):not(.Mui-disabled)': {
         '& .MuiOutlinedInput-notchedOutline': {
           border: `2px solid ${palette.grey[400]}`,
         },
