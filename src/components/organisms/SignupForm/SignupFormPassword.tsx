@@ -10,16 +10,17 @@ import {
   StyledLable,
 } from './SignupForm.styled';
 
-import { ButtonLink, SubmitButton } from 'components/atoms';
+import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
 import {
   CheckboxWithLabel,
   PasswordField,
   PasswordTooltip,
 } from 'components/molecules';
+import { ValidationKey } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { setError } from 'store/reducers/AuthSlice';
-import { validationSignupSchema } from 'validation';
+import { passwordValidationRules, validationSignupSchema } from 'validation';
 
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
@@ -31,6 +32,7 @@ export const SignupFormPassword = () => {
     handleSubmit,
     resetField,
     reset: resetForm,
+    watch,
   } = useForm<ISignupFormInput>({
     resolver: yupResolver(validationSignupSchema),
     mode: 'onBlur',
@@ -40,6 +42,7 @@ export const SignupFormPassword = () => {
       checkbox: true,
     },
   });
+  const passwordValue = watch('password');
 
   const isValidConfirm = !errors?.password && touchedFields.password;
 
@@ -82,6 +85,15 @@ export const SignupFormPassword = () => {
               id="password"
               errors={errors}
             />
+            {Object.keys(passwordValidationRules).map((key) => (
+              <ValidationTag
+                key={key}
+                tagText={t(`password.${key}`)}
+                isValidated={passwordValidationRules[key as ValidationKey](
+                  passwordValue,
+                )}
+              />
+            ))}
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>

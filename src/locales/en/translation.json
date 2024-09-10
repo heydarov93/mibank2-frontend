@@ -19,7 +19,13 @@
       "errorMaxLen": "Password should not exceed 50 characters",
       "errorMinLen": "Password should be at least 8 character long",
       "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
-      "label": "Password"
+      "label": "Password",
+      "minimumChar": "Minimum 8 characters",
+      "latinLetters": "Latin letters only",
+      "oneUpperCase": "One letter in uppercase",
+      "oneLowerCase": "One letter in lowercase",
+      "oneDigit": "One digit",
+      "specialChar": "One special character"
     },
     "confirmPassword": {
       "errorIsBlocked": "Account is blocked. Please, contact us",

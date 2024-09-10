@@ -11,11 +11,8 @@ export const validationSignupSchema = yup.object().shape({
   password: yup
     .string()
     .trim()
-    .required(i18n.t(`${loginFields}.requiredField`))
-    .matches(
-      REG_EXP.passwordRegExp,
-      i18n.t(`${loginFields}.password.errorPattern`),
-    )
+    .required(' ')
+    .matches(REG_EXP.passwordRegExp, ' ')
     .max(50, i18n.t(`${loginFields}.password.errorMaxLen`)),
   confirmPassword: yup
     .string()
