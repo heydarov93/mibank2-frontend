@@ -26,7 +26,7 @@ export const SignupFormPassword = () => {
   const dispatch = useAppDispatch();
 
   const {
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid, touchedFields },
     control,
     handleSubmit,
     resetField,
@@ -41,7 +41,7 @@ export const SignupFormPassword = () => {
     },
   });
 
-  const isValidConfirm = isDirty && !errors?.password;
+  const isValidConfirm = !errors?.password && touchedFields.password;
 
   const onSubmit = async (data: ISignupFormInput) => {
     // eslint-disable-next-line no-console
@@ -58,6 +58,10 @@ export const SignupFormPassword = () => {
       dispatch(setError(t('errorTermsPrivacyRequired')));
       resetField('checkbox', { defaultValue: false });
     }
+  };
+
+  const handleCheckboxChange = (isChecked: boolean) => {
+    if (!isChecked) dispatch(setError(t('errorTermsPrivacyRequired')));
   };
 
   return (
@@ -94,7 +98,12 @@ export const SignupFormPassword = () => {
             />
           </Box>
         </StyledFormContent>
-        <CheckboxWithLabel name="checkbox" control={control} errors={errors} />
+        <CheckboxWithLabel
+          name="checkbox"
+          control={control}
+          errors={errors}
+          onCheckboxChange={handleCheckboxChange}
+        />
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('buttonLabelSignup')}
