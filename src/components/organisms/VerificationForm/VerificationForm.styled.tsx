@@ -2,14 +2,14 @@ import { styled, Box, Button } from '@mui/material';
 
 export const StyledVerificationForm = styled('form')(
   ({ theme: { breakpoints } }) => ({
-    width: 345,
+    width: 275,
 
     [breakpoints.up('sm')]: {
-      width: 680,
+      width: 375,
     },
 
     [breakpoints.up('md')]: {
-      width: 575,
+      width: 675,
     },
   }),
 );
