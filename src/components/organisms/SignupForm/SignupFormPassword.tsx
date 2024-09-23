@@ -7,7 +7,7 @@ import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLable,
+  StyledLabel,
 } from './SignupForm.styled';
 
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
@@ -74,9 +74,9 @@ export const SignupFormPassword = () => {
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
-              <StyledLable htmlFor="password">
+              <StyledLabel htmlFor="password">
                 {t('password.label')}
-              </StyledLable>
+              </StyledLabel>
               <PasswordTooltip />
             </Box>
             <PasswordField
@@ -97,9 +97,9 @@ export const SignupFormPassword = () => {
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
-              <StyledLable htmlFor="confirmPassword">
+              <StyledLabel htmlFor="confirmPassword">
                 {t('confirmPassword.label')}
-              </StyledLable>
+              </StyledLabel>
             </Box>
             <PasswordField
               control={control}

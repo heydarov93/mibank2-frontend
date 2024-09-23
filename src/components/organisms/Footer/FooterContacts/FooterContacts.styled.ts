@@ -28,7 +28,7 @@ export const StyledFlexBox = styled(Box)(
     justifyContent: 'space-between',
     padding: spacing(3, 0, 3, 0),
     gap: spacing(5),
-    [breakpoints.up('sm')]: {
+    [breakpoints.up(500)]: {
       flexDirection: 'row',
     },
     [breakpoints.up('md')]: {
