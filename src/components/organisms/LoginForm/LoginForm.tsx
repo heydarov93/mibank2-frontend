@@ -9,7 +9,7 @@ import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLable,
+  StyledLabel,
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
@@ -171,7 +171,7 @@ export const LoginForm = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLable htmlFor="email">{t('email.label')}</StyledLable>
+            <StyledLabel htmlFor="email">{t('email.label')}</StyledLabel>
             <InputField
               name="email"
               id="email"
@@ -184,9 +184,9 @@ export const LoginForm = () => {
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>
-              <StyledLable htmlFor="password">
+              <StyledLabel htmlFor="password">
                 {t('password.label')}
-              </StyledLable>
+              </StyledLabel>
               <PasswordTooltip />
             </Box>
             <PasswordField

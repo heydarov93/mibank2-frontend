@@ -8,7 +8,7 @@ import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLable,
+  StyledLabel,
 } from './SignupForm.styled';
 
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
@@ -52,9 +52,9 @@ export const SignupFormEmail = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLable htmlFor="email">
+            <StyledLabel htmlFor="email">
               {t('LoginPage.email.label')}
-            </StyledLable>
+            </StyledLabel>
             <InputField
               name="email"
               id="email"

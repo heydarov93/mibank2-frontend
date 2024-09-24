@@ -84,9 +84,9 @@ export const PasswordField = <T extends FieldValues>({
               disabled={isFormDisabled}
             >
               {showPassword ? (
-                <VisibilityOffOutlined />
-              ) : (
                 <VisibilityOutlined />
+              ) : (
+                <VisibilityOffOutlined />
               )}
             </IconButton>
           </span>

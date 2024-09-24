@@ -1,18 +1,8 @@
 import { styled, Box, Button } from '@mui/material';
 
-export const StyledVerificationForm = styled('form')(
-  ({ theme: { breakpoints } }) => ({
-    width: 275,
+import { defaultBreakpointsStyle } from 'constants/defaultBreakpointsStyle';
 
-    [breakpoints.up('sm')]: {
-      width: 375,
-    },
-
-    [breakpoints.up('md')]: {
-      width: 675,
-    },
-  }),
-);
+export const StyledVerificationForm = defaultBreakpointsStyle;
 
 export const StyledVerificationFormContent = styled(Box)(
   ({ theme: { spacing } }) => ({

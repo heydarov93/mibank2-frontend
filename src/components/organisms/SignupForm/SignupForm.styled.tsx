@@ -1,16 +1,8 @@
 import { styled, Typography, Box } from '@mui/material';
 
-export const StyledForm = styled('form')(({ theme: { breakpoints } }) => ({
-  width: 275,
+import { defaultBreakpointsStyle } from 'constants/defaultBreakpointsStyle';
 
-  [breakpoints.up('sm')]: {
-    width: 375,
-  },
-
-  [breakpoints.up('md')]: {
-    width: 675,
-  },
-}));
+export const StyledForm = defaultBreakpointsStyle;
 
 export const StyledFormContent = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
@@ -19,7 +11,7 @@ export const StyledFormContent = styled(Box)(({ theme: { spacing } }) => ({
   gap: spacing(2),
 }));
 
-export const StyledLable = styled('label')(({ theme: { palette } }) => ({
+export const StyledLabel = styled('label')(({ theme: { palette } }) => ({
   color: palette.common.black,
   fontSize: 14,
   lineHeight: '20px',
