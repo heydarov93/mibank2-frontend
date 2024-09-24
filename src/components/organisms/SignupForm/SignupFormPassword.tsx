@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -25,6 +26,8 @@ import { passwordValidationRules, validationSignupSchema } from 'validation';
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
   const dispatch = useAppDispatch();
+
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const {
     formState: { errors, isValid, touchedFields },
@@ -84,16 +87,19 @@ export const SignupFormPassword = () => {
               name="password"
               id="password"
               errors={errors}
+              onFocus={() => setIsPasswordFocused(true)}
             />
-            {Object.keys(passwordValidationRules).map((key) => (
-              <ValidationTag
-                key={key}
-                tagText={t(`password.${key}`)}
-                isValidated={passwordValidationRules[key as ValidationKey](
-                  passwordValue,
-                )}
-              />
-            ))}
+            {isPasswordFocused &&
+              !isValidConfirm &&
+              Object.keys(passwordValidationRules).map((key) => (
+                <ValidationTag
+                  key={key}
+                  tagText={t(`password.${key}`)}
+                  isValidated={passwordValidationRules[key as ValidationKey](
+                    passwordValue,
+                  )}
+                />
+              ))}
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ display: 'flex' }}>

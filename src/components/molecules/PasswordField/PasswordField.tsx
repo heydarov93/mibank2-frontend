@@ -20,6 +20,7 @@ interface PasswordFieldProps<T extends FieldValues> {
   id: 'password' | 'confirmPassword';
   errors: FieldErrors<ISignupFormInput>;
   isFormDisabled?: boolean;
+  onFocus?: () => void;
 }
 
 export const PasswordField = <T extends FieldValues>({
@@ -28,6 +29,7 @@ export const PasswordField = <T extends FieldValues>({
   id,
   errors,
   isFormDisabled,
+  onFocus,
 }: PasswordFieldProps<T>) => {
   const theme = useTheme();
   const { t } = useTranslation('translation');
@@ -110,6 +112,7 @@ export const PasswordField = <T extends FieldValues>({
       disabled={isFormDisabled}
       InputProps={passwordInputProps}
       onKeyUp={onKeyUpHandler}
+      onFocus={onFocus}
     />
   );
 };
