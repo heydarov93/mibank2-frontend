@@ -32,6 +32,7 @@ interface InputFieldProps<T extends FieldValues> {
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onFocus?: (e: SyntheticEvent) => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const InputField = <T extends FieldValues>({
@@ -48,6 +49,7 @@ export const InputField = <T extends FieldValues>({
   onCopy,
   onKeyUp,
   onFocus,
+  onKeyDown,
   InputProps,
 }: InputFieldProps<T>) => (
   <Controller
@@ -67,6 +69,7 @@ export const InputField = <T extends FieldValues>({
         onCopy={onCopy}
         onKeyUp={onKeyUp}
         onFocus={onFocus}
+        onKeyDown={onKeyDown}
         InputProps={InputProps}
         {...field}
       />
