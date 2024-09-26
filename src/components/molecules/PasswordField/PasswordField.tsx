@@ -58,6 +58,12 @@ export const PasswordField = <T extends FieldValues>({
   const handleMouseDown = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+  
+  const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === " ") {
+      event.preventDefault()
+    } 
+  };
 
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -113,6 +119,7 @@ export const PasswordField = <T extends FieldValues>({
       InputProps={passwordInputProps}
       onKeyUp={onKeyUpHandler}
       onFocus={onFocus}
+      onKeyDown={onKeyDownHandler}
     />
   );
 };
