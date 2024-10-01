@@ -21,6 +21,18 @@ export const StyledLink = styled(Link)(({ theme: { palette } }) => ({
   },
 }));
 
+export const StyledBox = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    padding: spacing(3, 0, 3, 0),
+    gap: spacing(1),
+    [breakpoints.down('sm')]: {
+      flexDirection: 'row'
+    }
+  })
+)
+
 export const StyledFlexBox = styled(Box)(
   ({ theme: { spacing, breakpoints } }) => ({
     display: 'flex',
@@ -30,6 +42,7 @@ export const StyledFlexBox = styled(Box)(
     gap: spacing(5),
     [breakpoints.up(500)]: {
       flexDirection: 'row',
+      
     },
     [breakpoints.up('md')]: {
       gap: spacing(12),

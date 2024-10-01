@@ -3,18 +3,19 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { googlePlayLink } from '../constants';
+import { googlePlayLink, appStoreLink } from '../constants';
 
 import {
   LogoWrapper,
   StyledLink,
+  StyledBox,
   StyledFlexBox,
   TypographyGrey,
   StyledTypographyWorkingHours,
 } from './FooterContacts.styled';
 
 import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
-import { GooglePlayIcon, Logo } from 'components/atoms';
+import { GooglePlayIcon, AppStoreIcon, Logo } from 'components/atoms';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setContacts } from 'store/reducers';
 import { getContacts } from 'store/selectors';
@@ -69,13 +70,26 @@ export const FooterContacts = () => {
       <StyledFlexBox>
         <Box sx={{ order: { xs: 0, sm: 4 } }}>
           <TypographyGrey variant="body2">{t('download')}</TypographyGrey>
-          <RouterLink
-            to={googlePlayLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GooglePlayIcon />
-          </RouterLink>
+          <StyledBox>
+            <Box>
+              <RouterLink
+                to={googlePlayLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GooglePlayIcon />
+              </RouterLink>
+            </Box>
+            <Box>
+              <RouterLink
+                to={appStoreLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AppStoreIcon />
+              </RouterLink>
+            </Box>
+          </StyledBox>
         </Box>
         <Box>
           <TypographyGrey variant="body2">{t('contacts.title')}</TypographyGrey>
