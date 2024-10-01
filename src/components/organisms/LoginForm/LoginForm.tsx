@@ -14,12 +14,7 @@ import {
 
 import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
-import {
-  CheckboxWithLabel,
-  PasswordField,
-  PasswordTooltip,
-  Timer,
-} from 'components/molecules';
+import { CheckboxWithLabel, PasswordField, Timer } from 'components/molecules';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
@@ -187,7 +182,6 @@ export const LoginForm = () => {
               <StyledLabel htmlFor="password">
                 {t('password.label')}
               </StyledLabel>
-              <PasswordTooltip />
             </Box>
             <PasswordField
               control={control}

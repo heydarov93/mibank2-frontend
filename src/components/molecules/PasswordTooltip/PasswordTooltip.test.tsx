@@ -17,39 +17,36 @@ describe('PasswordTooltip Component', () => {
       </ThemeProvider>,
     );
 
-  it('renders ErrorOutline icon', () => {
+  it('renders InfoOutlinedIcon icon', () => {
     renderComponent();
-    const errorIcon = screen.getByTestId('ErrorOutlineIcon');
+    const errorIcon = screen.getByTestId('InfoOutlinedIcon');
     expect(errorIcon).toBeInTheDocument();
   });
 
-  it('opens tooltip on icon click', () => {
+  it('opens tooltip on icon hover', () => {
     renderComponent();
-    const errorIcon = screen.getByTestId('ErrorOutlineIcon');
-    fireEvent.click(errorIcon);
+    const errorIcon = screen.getByTestId('InfoOutlinedIcon');
+    fireEvent.mouseOver(errorIcon);
 
-    const tooltipContent = screen.getByText('infoHintTitle');
+    const tooltipContent = screen.getByText('infoHintSpecial');
     expect(tooltipContent).toBeInTheDocument();
   });
 
   it('displays correct content in the tooltip', () => {
     renderComponent();
-    const errorIcon = screen.getByTestId('ErrorOutlineIcon');
-    fireEvent.click(errorIcon);
-
-    expect(screen.getByText('infoHintTitle')).toBeInTheDocument();
-    expect(screen.getByText('infoHintUpper')).toBeInTheDocument();
-    expect(screen.getByText('infoHintLower')).toBeInTheDocument();
-    expect(screen.getByText('infoHintDigit')).toBeInTheDocument();
-    expect(screen.getByText('infoHintSpecial')).toBeInTheDocument();
-  });
-
-  it('does not open the tooltip on hover', () => {
-    renderComponent();
-    const errorIcon = screen.getByTestId('ErrorOutlineIcon');
+    const errorIcon = screen.getByTestId('InfoOutlinedIcon');
     fireEvent.mouseOver(errorIcon);
 
-    const tooltipContent = screen.queryByText('infoHintTitle');
-    expect(tooltipContent).not.toBeInTheDocument();
+    expect(screen.getByText('infoHintSpecial')).toBeInTheDocument();
+    expect(screen.getByText('infoHintSpecialCharacters')).toBeInTheDocument();
+  });
+
+  it('opens the tooltip on hover', () => {
+    renderComponent();
+    const errorIcon = screen.getByTestId('InfoOutlinedIcon');
+    fireEvent.mouseOver(errorIcon);
+
+    const tooltipContent = screen.queryByText('infoHintSpecial');
+    expect(tooltipContent).toBeInTheDocument();
   });
 });

@@ -1,5 +1,5 @@
-import { ErrorOutline } from '@mui/icons-material';
-import { Box, ClickAwayListener } from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -21,37 +21,33 @@ export const PasswordTooltip = () => {
 
   const title = (
     <Box>
-      <div>{t('infoHintTitle')}</div>
-      <div>{t('infoHintUpper')}</div>
-      <div>{t('infoHintLower')}</div>
-      <div>{t('infoHintDigit')}</div>
       <div>{t('infoHintSpecial')}</div>
+      <div>{t('infoHintSpecialCharacters')}</div>
     </Box>
   );
 
   return (
-    <ClickAwayListener onClickAway={handleTooltipClose}>
-      <div>
-        <StyledErrorHint onClick={handleTooltipOpen}>
-          <BootstrapTooltip
-            PopperProps={{
-              disablePortal: true,
-            }}
-            onClose={handleTooltipClose}
-            open={open}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            placement="right-end"
-            title={title}
-            sx={{
-              opacity: 0.9,
-            }}
-          >
-            <ErrorOutline fontSize="small" />
-          </BootstrapTooltip>
-        </StyledErrorHint>
-      </div>
-    </ClickAwayListener>
+    <StyledErrorHint
+      onMouseEnter={handleTooltipOpen}
+      onMouseLeave={handleTooltipClose}
+    >
+      <BootstrapTooltip
+        PopperProps={{
+          disablePortal: true,
+        }}
+        onClose={handleTooltipClose}
+        open={open}
+        disableFocusListener
+        disableHoverListener
+        disableTouchListener
+        placement="top"
+        title={title}
+        sx={{
+          opacity: 0.9,
+        }}
+      >
+        <InfoOutlinedIcon fontSize="small" />
+      </BootstrapTooltip>
+    </StyledErrorHint>
   );
 };
