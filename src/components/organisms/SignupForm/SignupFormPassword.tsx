@@ -12,11 +12,7 @@ import {
 } from './SignupForm.styled';
 
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
-import {
-  CheckboxWithLabel,
-  PasswordField,
-  PasswordTooltip,
-} from 'components/molecules';
+import { CheckboxWithLabel, PasswordField } from 'components/molecules';
 import { ValidationKey } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
@@ -80,7 +76,6 @@ export const SignupFormPassword = () => {
               <StyledLabel htmlFor="password">
                 {t('password.label')}
               </StyledLabel>
-              <PasswordTooltip />
             </Box>
             <PasswordField
               control={control}
@@ -98,6 +93,7 @@ export const SignupFormPassword = () => {
                   isValidated={passwordValidationRules[key as ValidationKey](
                     passwordValue,
                   )}
+                  isSpecial={key === ValidationKey.SPECIAL_CHAR ? true : false}
                 />
               ))}
           </Box>
