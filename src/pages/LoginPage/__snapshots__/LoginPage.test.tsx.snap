@@ -303,19 +303,44 @@ exports[`LoginPage snapshot should match 1`] = `
           >
             Download the app:
           </p>
-          <a
-            href="https://play.google.com/store/apps"
-            rel="noopener noreferrer"
-            target="_blank"
+          <div
+            class="MuiBox-root css-8uxqxp"
           >
-            <svg
-              data-testid="google-play-icon"
-              height="52"
-              width="180"
+            <div
+              class="MuiBox-root css-0"
             >
-              GooglePlay.svg
-            </svg>
-          </a>
+              <a
+                href="https://play.google.com/store/apps"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  data-testid="google-play-icon"
+                  height="52"
+                  width="180"
+                >
+                  GooglePlay.svg
+                </svg>
+              </a>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <a
+                href="https://www.apple.com/app-store/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  data-testid="app-store-icon"
+                  height="52"
+                  width="180"
+                >
+                  AppStore.svg
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
         <div
           class="MuiBox-root css-0"
