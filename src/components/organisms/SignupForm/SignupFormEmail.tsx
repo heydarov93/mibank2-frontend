@@ -11,12 +11,18 @@ import {
   StyledLabel,
 } from './SignupForm.styled';
 
+import { useCheckEmailMutation } from 'api/checkEmailApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import { ErrorStatus } from 'enums';
+import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
+import { IErrorData } from 'models/IError';
+import { setError } from 'store/reducers';
 import { validationEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
   const { t } = useTranslation('translation');
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
@@ -34,11 +40,29 @@ export const SignupFormEmail = () => {
     },
   });
 
+  const [checkEmail] = useCheckEmailMutation();
+
   const onSubmit = async (data: IEmailFormInput) => {
-    //TODO: logic for submit
-    // eslint-disable-next-line no-console
-    console.log(data);
-    navigate('/signup-end');
+    try {
+      // TODO: handle response
+      const response = await checkEmail(data).unwrap();
+      if (!response.success) {
+        throw {
+          originalStatus: ErrorStatus.BAD_REQUEST,
+        };
+      }
+      navigate('/signup-end');
+    } catch (e) {
+      const error = e as IErrorData;
+      switch (error.originalStatus) {
+        case ErrorStatus.BAD_REQUEST:
+          dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
+          break;
+        default:
+          dispatch(setError(t('LoginPage.serverError')));
+          break;
+      }
+    }
     resetForm();
   };
 

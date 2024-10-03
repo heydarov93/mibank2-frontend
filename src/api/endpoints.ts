@@ -5,6 +5,7 @@ export const endpoints = {
       sendcode: '/uas/api/user/login/send-code',
       verifycode: '/uas/api/user/login/verify-code',
       userInformation: '/uas/api/user/details',
+      checkEmail: '/uas/api/user/email',
     },
   },
   contactInfo: {
