@@ -6,4 +6,5 @@ export interface IErrorData {
     expiredTimer: number;
   };
   status: number;
+  originalStatus?: number;
 }
