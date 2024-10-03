@@ -36,11 +36,11 @@ export const ErrorNotification = () => {
       return (
         <>
           Please, read and agree to our{' '}
-          <StyledLink href={urlTerms}>
+          <StyledLink href={urlTerms} target='_blank'>
             Terms of Use
           </StyledLink>{' '}
           and {' '} 
-          <StyledLink href={urlPolicy}>
+          <StyledLink href={urlPolicy} target='_blank'>
             Privacy Policy
           </StyledLink> to continue
         </>
