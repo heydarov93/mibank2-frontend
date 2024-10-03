@@ -44,9 +44,8 @@ export const SignupFormEmail = () => {
 
   const onSubmit = async (data: IEmailFormInput) => {
     try {
-      // TODO: handle response
       const response = await checkEmail(data).unwrap();
-      if (!response.success) {
+      if (response !== null) {
         throw {
           originalStatus: ErrorStatus.BAD_REQUEST,
         };
