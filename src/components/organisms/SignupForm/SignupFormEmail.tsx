@@ -1,15 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
 
 import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLabel,
+  StyledLabel
 } from './SignupForm.styled';
+
 
 import { useCheckEmailMutation } from 'api/checkEmailApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
@@ -20,7 +23,10 @@ import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { validationEmailSchema } from 'validation';
 
+
+
 export const SignupFormEmail = () => {
+  const [shake, setShake] = useState(false)
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
 
@@ -56,6 +62,8 @@ export const SignupFormEmail = () => {
       switch (error.originalStatus) {
         case ErrorStatus.BAD_REQUEST:
           dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
+          setShake(true)
+          setTimeout(() => setShake(false), 500);
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
@@ -94,11 +102,13 @@ export const SignupFormEmail = () => {
           isDisabled={!isValid}
         />
       </StyledForm>
-      <ButtonLink
-        message="SignupPage.haveAccountMsg"
-        linkText="SignupPage.moveToLoginLink"
-        href="/signin"
+      <ButtonLink 
+            message="SignupPage.haveAccountMsg"
+            linkText="SignupPage.moveToLoginLink"
+            href="/signin"
+            shake={shake}
       />
+      
     </>
   );
 };

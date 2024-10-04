@@ -19,4 +19,8 @@ export const StyledButtonLink = styled(Link)(({ theme }) => ({
   fontWeight: 500,
   textDecoration: 'underline',
   color: theme.palette.primary.main,
-}));
+
+  '&.shake': {
+      animation: `${theme.animations?.shake} 0.25s`,
+    },
+  }));

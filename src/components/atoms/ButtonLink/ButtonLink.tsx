@@ -10,15 +10,16 @@ type ButtonLinkProps = {
   message: string;
   linkText: string;
   href: string;
+  shake?: boolean;
 };
 
-export const ButtonLink = ({ message, linkText, href }: ButtonLinkProps) => {
+export const ButtonLink = ({ message, linkText, href, shake = false }: ButtonLinkProps) => {
   const { t } = useTranslation('translation');
 
   return (
     <StyledButtonLinkContainer>
       <Typography>{t(message)}</Typography>
-      <StyledButtonLink href={href}>{t(linkText)}</StyledButtonLink>
+      <StyledButtonLink href={href} className={shake ? 'shake' : ''}>{t(linkText)}</StyledButtonLink>
     </StyledButtonLinkContainer>
   );
 };
