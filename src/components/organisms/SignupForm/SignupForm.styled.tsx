@@ -37,11 +37,3 @@ export const StyledFormTitle = styled(Typography)(
     },
   }),
 );
-
-export const StyledLink = styled(Box)(
-  ({ theme: {  animations } }) => ({
-   '&.shake': {
-      animation: `${animations?.shake} 0.25s`,
-    },
-  }),
-);
