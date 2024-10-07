@@ -44,6 +44,10 @@ export const SignupFormEmail = () => {
 
   const [checkEmail] = useCheckEmailMutation();
 
+  const handleAnimationEnd = () => {
+    setShake(false);
+  };
+
   const onSubmit = async (data: IEmailFormInput) => {
     try {
       const response = await checkEmail(data).unwrap();
@@ -57,12 +61,12 @@ export const SignupFormEmail = () => {
       const error = e as IErrorData;
       switch (error.originalStatus) {
         case ErrorStatus.BAD_REQUEST:
-          setShake(false);
           dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
-          setTimeout(() => setShake(true), 0);
+          setShake(true);
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
+          setShake(false);
           break;
       }
     }
@@ -104,6 +108,7 @@ export const SignupFormEmail = () => {
         href="/signin"
         delay={0.5}
         shake={shake}
+        onAnimationEnd={handleAnimationEnd}
       />
     </>
   );
