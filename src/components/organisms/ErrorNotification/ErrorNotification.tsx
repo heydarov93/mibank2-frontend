@@ -9,9 +9,6 @@ import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
 import { generateRandomParam } from 'utils';
 
-
-
-
 export const ErrorNotification = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
@@ -31,8 +28,8 @@ export const ErrorNotification = () => {
     dispatch(clearError());
   };
 
-  const isMessageTerm = (message: null | string) => {    
-    if( message && message === t('SignupPage.errorTermsPrivacyRequired') ){
+  const isMessageTerm = (message: null | string) => {
+    if (message && message === t('SignupPage.errorTermsPrivacyRequired')) {
       return (
         <>
           Please, read and agree to our{' '}
@@ -46,8 +43,8 @@ export const ErrorNotification = () => {
         </>
       );
     }
-    return message ? message : null
-  }
+    return message ? message : null;
+  };
 
   const scrollToContactSection = () => {
     const contactSection = document.getElementById('contact-section');
@@ -64,14 +61,15 @@ export const ErrorNotification = () => {
     >
       <StyledAlert severity="error">
         {title && <AlertTitle>{title}</AlertTitle>}
-        <div>          
+        <div>
           {isMessageTerm(message[0])}
           {message.length > 1 && (
             <StyledLink onClick={scrollToContactSection}>
               {t('ErrorNotification.contactUs')}
             </StyledLink>
           )}
-          {message.length > 1 && message.slice(1).join(t('ErrorNotification.contactUs'))}
+          {message.length > 1 &&
+            message.slice(1).join(t('ErrorNotification.contactUs'))}
         </div>
       </StyledAlert>
     </Snackbar>
