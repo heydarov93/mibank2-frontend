@@ -34,7 +34,6 @@ interface InputFieldProps<T extends FieldValues> {
   onFocus?: (e: SyntheticEvent) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onPaste?: (e: SyntheticEvent) => void;
-  
 }
 
 export const InputField = <T extends FieldValues>({
@@ -73,7 +72,7 @@ export const InputField = <T extends FieldValues>({
         onKeyUp={onKeyUp}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
-        onPaste = {onPaste}
+        onPaste={onPaste}
         InputProps={InputProps}
         {...field}
       />

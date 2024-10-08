@@ -41,11 +41,11 @@ export const SignupFormEmail = () => {
     },
   });
 
-  const [checkEmail] = useCheckEmailMutation(); 
+  const [checkEmail] = useCheckEmailMutation();
 
-      const onSubmit = async (data: IEmailFormInput) => {
+  const onSubmit = async (data: IEmailFormInput) => {
     try {
-      localStorage.setItem('email', data.email)
+      localStorage.setItem('email', data.email);
       const response = await checkEmail(data).unwrap();
       if (response !== null) {
         throw {
