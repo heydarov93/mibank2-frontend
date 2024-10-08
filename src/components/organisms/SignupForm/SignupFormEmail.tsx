@@ -14,10 +14,11 @@ import {
 import { useCheckEmailMutation } from 'api/checkEmailApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
+import { errorMessage } from 'store/selectors';
 import { validationEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
@@ -70,6 +71,9 @@ export const SignupFormEmail = () => {
     if (errors.email) resetField('email');
   };
 
+  const errorMsg = useAppSelector(errorMessage);
+  const isShake = t('SignupPage.email.errorEmailRegistered') === errorMsg;
+
   return (
     <>
       <StyledFormTitle>{t('SignupPage.formTitle')}</StyledFormTitle>
@@ -99,6 +103,8 @@ export const SignupFormEmail = () => {
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
         href="/signin"
+        delay={0.5}
+        shake={isShake}
       />
     </>
   );
