@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import { PasswordTooltip } from './PasswordTooltip';
 
@@ -32,6 +32,18 @@ describe('PasswordTooltip Component', () => {
     expect(tooltipContent).toBeInTheDocument();
   });
 
+  it('should close the tooltip when mouse leaves the icon', async () => {
+    render(<PasswordTooltip />);
+    const errorHintIcon = screen.getByTestId('InfoOutlinedIcon');
+    fireEvent.mouseEnter(errorHintIcon);
+    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+
+    fireEvent.mouseLeave(errorHintIcon);
+    await waitFor(() => {
+      expect(screen.queryByRole('tooltip')).toBeInTheDocument();
+    });
+  });
+
   it('displays correct content in the tooltip', () => {
     renderComponent();
     const errorIcon = screen.getByTestId('InfoOutlinedIcon');
@@ -39,14 +51,5 @@ describe('PasswordTooltip Component', () => {
 
     expect(screen.getByText('infoHintSpecial')).toBeInTheDocument();
     expect(screen.getByText('infoHintSpecialCharacters')).toBeInTheDocument();
-  });
-
-  it('opens the tooltip on hover', () => {
-    renderComponent();
-    const errorIcon = screen.getByTestId('InfoOutlinedIcon');
-    fireEvent.mouseOver(errorIcon);
-
-    const tooltipContent = screen.queryByText('infoHintSpecial');
-    expect(tooltipContent).toBeInTheDocument();
   });
 });

@@ -22,4 +22,10 @@ describe('ValidationTag', () => {
     render(<ValidationTag tagText="" isValidated={false} />);
     expect(screen.getByTestId('ClearIcon')).toBeInTheDocument();
   });
+
+  it('renders info icon when isSpecial is true', () => {
+    render(<ValidationTag tagText="" isValidated isSpecial />);
+    const infoIcon = screen.getByTestId('InfoOutlinedIcon');
+    expect(infoIcon).toBeInTheDocument();
+  });
 });
