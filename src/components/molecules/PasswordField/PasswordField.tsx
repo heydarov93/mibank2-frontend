@@ -58,18 +58,16 @@ export const PasswordField = <T extends FieldValues>({
   const handleMouseDown = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  
+
   const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === " ") {
-      event.preventDefault()
-    } 
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
   };
 
   const onPaste = (event: SyntheticEvent) => {
-    event.preventDefault()
-    
+    event.preventDefault();
   };
-
 
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
