@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -15,14 +14,14 @@ import {
 import { useCheckEmailMutation } from 'api/checkEmailApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
+import { errorMessage } from 'store/selectors';
 import { validationEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
-  const [shake, setShake] = useState(false);
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
 
@@ -44,10 +43,6 @@ export const SignupFormEmail = () => {
 
   const [checkEmail] = useCheckEmailMutation();
 
-  const handleAnimationEnd = () => {
-    setShake(false);
-  };
-
   const onSubmit = async (data: IEmailFormInput) => {
     try {
       const response = await checkEmail(data).unwrap();
@@ -62,11 +57,9 @@ export const SignupFormEmail = () => {
       switch (error.originalStatus) {
         case ErrorStatus.BAD_REQUEST:
           dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
-          setShake(true);
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
-          setShake(false);
           break;
       }
     }
@@ -76,6 +69,9 @@ export const SignupFormEmail = () => {
   const handleCleanField = () => {
     if (errors.email) resetField('email');
   };
+
+  const errorMsg = useAppSelector(errorMessage);
+  const isShake = t('SignupPage.email.errorEmailRegistered') === errorMsg;
 
   return (
     <>
@@ -107,8 +103,7 @@ export const SignupFormEmail = () => {
         linkText="SignupPage.moveToLoginLink"
         href="/signin"
         delay={0.5}
-        shake={shake}
-        onAnimationEnd={handleAnimationEnd}
+        shake={isShake}
       />
     </>
   );
