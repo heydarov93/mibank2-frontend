@@ -42,7 +42,8 @@
     "buttonLabelContinue": "Continue",
     "errorTermsPrivacyRequired": "Please, read and agree to our Terms of Use and Privacy Policy to continue",
     "moveToLoginLink": "Log in",
-    "haveAccountMsg": "Already have an account?"
+    "haveAccountMsg": "Already have an account?",
+    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
   "LoginPage": {
     "email": {

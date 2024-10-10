@@ -8,6 +8,7 @@ import {
   SignupPageEmail,
   SignupPagePassword,
 } from '../pages';
+import { SignupPageFinish } from '../pages/SignupPageFinish/SignupPageFinish';
 
 import { PrivateRoute } from './PrivateRoute';
 
@@ -52,6 +53,10 @@ const routes = createBrowserRouter([
   {
     path: '/signup-end',
     element: <SignupPagePassword />,
+  },
+  {
+    path: '/signup-finished',
+    element: <SignupPageFinish />,
   },
   {
     path: '/verification',

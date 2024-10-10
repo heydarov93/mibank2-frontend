@@ -17,7 +17,9 @@ import BankContactReducer from './reducers/BankContactsSlice';
 import { authApi } from 'api/authApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { contactInfoApi } from 'api/contactInfoApi';
+import {registerNewUserApi} from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
+
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -26,6 +28,7 @@ const rootReducer = combineReducers({
   [userInfoApi.reducerPath]: userInfoApi.reducer,
   [contactInfoApi.reducerPath]: contactInfoApi.reducer,
   [checkEmailApi.reducerPath]: checkEmailApi.reducer,
+  [registerNewUserApi.reducerPath]: registerNewUserApi.reducer
 });
 
 const persistConfig = {
@@ -37,6 +40,7 @@ const persistConfig = {
     userInfoApi.reducerPath,
     contactInfoApi.reducerPath,
     checkEmailApi.reducerPath,
+    registerNewUserApi.reducerPath,
   ],
 };
 
@@ -54,6 +58,7 @@ const store = configureStore({
       userInfoApi.middleware,
       contactInfoApi.middleware,
       checkEmailApi.middleware,
+      registerNewUserApi.middleware,
     ]),
 });
 
