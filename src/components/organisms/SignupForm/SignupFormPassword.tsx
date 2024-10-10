@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import {
   StyledForm,
@@ -11,11 +12,14 @@ import {
   StyledLabel,
 } from './SignupForm.styled';
 
+import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
 import { CheckboxWithLabel, PasswordField } from 'components/molecules';
 import { ValidationKey } from 'enums';
+import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
+import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers/AuthSlice';
 import { passwordValidationRules, validationSignupSchema } from 'validation';
 
@@ -24,6 +28,7 @@ export const SignupFormPassword = () => {
   const dispatch = useAppDispatch();
 
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const navigate = useNavigate();
 
   const {
     formState: { errors, isValid, touchedFields },
@@ -44,10 +49,27 @@ export const SignupFormPassword = () => {
   const passwordValue = watch('password');
 
   const isValidConfirm = !errors?.password && touchedFields.password;
+  const [registerNewUser] = useRegisterNewUserMutation();
 
   const onSubmit = async (data: ISignupFormInput) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    const userData = {
+      email: localStorage.getItem('email'),
+      password: data.password,
+    };
+    try {
+      const postRequest = await registerNewUser(userData).unwrap();
+      if (!postRequest) {
+        throw {
+          originalStatus: ErrorStatus.BAD_REQUEST,
+        };
+      }
+    } catch (e) {
+      const error = e as IErrorData;
+      if (error.originalStatus) {
+        dispatch(setError(t('serverError')));
+      }
+    }
+    navigate('/signup-finished');
     resetForm();
   };
 
