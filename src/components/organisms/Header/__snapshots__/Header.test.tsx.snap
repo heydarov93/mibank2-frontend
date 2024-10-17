@@ -19,7 +19,9 @@ exports[`Header component snapshot should match 1`] = `
           <div
             class="MuiBox-root css-2t4951"
           >
-            <svg>
+            <svg
+              class="css-1w10xs4"
+            >
               Logo.svg
             </svg>
           </div>
