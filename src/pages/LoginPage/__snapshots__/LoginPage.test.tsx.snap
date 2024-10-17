@@ -15,7 +15,9 @@ exports[`LoginPage snapshot should match 1`] = `
         <div
           class="MuiBox-root css-yruxu8"
         >
-          <svg>
+          <svg
+            class="css-1w10xs4"
+          >
             Logo.svg
           </svg>
         </div>
@@ -259,7 +261,9 @@ exports[`LoginPage snapshot should match 1`] = `
           <div
             class="MuiBox-root css-2t4951"
           >
-            <svg>
+            <svg
+              class="css-1w10xs4"
+            >
               Logo.svg
             </svg>
           </div>

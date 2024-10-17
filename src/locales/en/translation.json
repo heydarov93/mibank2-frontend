@@ -81,6 +81,9 @@
     "signUpLink": "Don't have an account?",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
+  "Registration": {
+    "personalInfoTitle": "Personal info"
+  },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",
     "verificationText": "Enter the verification code we sent via email",

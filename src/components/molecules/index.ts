@@ -3,3 +3,4 @@ export { PasswordField } from './PasswordField/PasswordField';
 export { PasswordTooltip } from './PasswordTooltip/PasswordTooltip';
 export { UserCard } from './UserCard/UserCard';
 export { Timer } from './Timer/Timer';
+export { RegistrationSideBar } from './RegistrationSideBar/RegistrationSideBar';

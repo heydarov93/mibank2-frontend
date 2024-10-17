@@ -5,10 +5,12 @@ import {
   StyledLogo,
   StyledLogoContainer,
   StyledLogoNameContainer,
+  StyledIcon,
 } from './Logo.styled';
 
 type LogoProps = {
   size?: ELogoSize;
+  color?: ELogoColor;
 };
 
 export enum ELogoSize {
@@ -16,9 +18,15 @@ export enum ELogoSize {
   MEDIUM = 'medium',
 }
 
-import { ReactComponent as BankLogoBoxIcon } from 'assets/icons/Logo.svg';
+export enum ELogoColor {
+  DARK = 'dark',
+  WHITE = 'white',
+}
 
-export const Logo = ({ size = ELogoSize.SMALL }: LogoProps) => {
+export const Logo = ({
+  size = ELogoSize.SMALL,
+  color = ELogoColor.DARK,
+}: LogoProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
   const theme = useTheme();
 
@@ -26,12 +34,14 @@ export const Logo = ({ size = ELogoSize.SMALL }: LogoProps) => {
 
   const isMedium = size === ELogoSize.MEDIUM;
 
+  const isWhite = color === ELogoColor.WHITE;
+
   return (
     <StyledLogoContainer isMedium={isMedium} data-testid="logo">
       <StyledLogo isSmall={isSmall}>
-        <BankLogoBoxIcon />
+        <StyledIcon isWhite={isWhite} />
       </StyledLogo>
-      <StyledLogoNameContainer isSmall={isSmall}>
+      <StyledLogoNameContainer isSmall={isSmall} isWhite={isWhite}>
         {/* TODO: need to setup line-heaght into the theme */}
         <Typography
           sx={
