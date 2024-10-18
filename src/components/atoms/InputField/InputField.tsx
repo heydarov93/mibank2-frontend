@@ -13,6 +13,10 @@ const enum FieldName {
   email = 'email',
   password = 'password',
   confirmPassword = 'confirmPassword',
+  name = 'name',
+  surname = 'surname',
+  dateOfBirth = 'dateOfBirth',
+  phoneNumber = 'phoneNumber',
 }
 
 interface InputFieldProps<T extends FieldValues> {

@@ -83,10 +83,23 @@
   },
   "RegistrationPage": {
     "personalInfoTitle": "Personal info",
+    "buttonLabelContinue": "Continue",
+    "inputName": {
+      "labelName": "Name",
+      "labelSurname": "Surname",
+      "labelDateOfBirth": "Date of birth"
+    },
     "phoneNumber": {
       "label": "Phone number",
       "errorInvalid": "The phone number is invalid"
-    }
+    },
+    "placeholder": {
+      "placeholderName": "Enter here",
+      "placeholderDateOfBirth": "Pick the date"
+    },
+    "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
+    "errorMaxLen": "Name should not exceed 40 characters",
+    "requiredField": "The field is required"
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",

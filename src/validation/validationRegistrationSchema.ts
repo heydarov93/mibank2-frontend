@@ -1,8 +1,24 @@
 import * as yup from 'yup';
 
+import { REG_EXP } from './regExp';
+
 import i18n from 'i18n';
+const personalPage = 'RegistrationPage';
 
 export const validationRegistrationSchema = yup.object().shape({
+  name: yup
+    .string()
+    .trim()
+    .required(i18n.t(`${personalPage}.requiredField`))
+    .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
+    .max(40, i18n.t(`${personalPage}.errorMaxLen`)),
+  surname: yup
+    .string()
+    .trim()
+    .required(i18n.t(`${personalPage}.requiredField`))
+    .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
+    .max(40, i18n.t(`${personalPage}.errorMaxLen`)),
+
   phoneNumber: yup
     .number()
     .required(i18n.t(`LoginPage.requiredField`))

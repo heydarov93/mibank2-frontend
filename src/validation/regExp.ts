@@ -4,4 +4,5 @@ export const REG_EXP: { [field: string]: RegExp } = {
   emailRegExp:
     /^(?=.{1,64}$)(?!^\.|\.$)[a-zA-Z0-9!#$%&'\\"*+\-/=?^_`.{|}~]*(?:[a-zA-Z0-9]|(?<!\.)\.)(?:[a-zA-Z0-9]|(?<!\.)\.)*[a-zA-Z0-9]*@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9]\.){1,253}(?:[a-zA-Z]{2,}|xn--[a-zA-Z0-9]+)$/,
   nonAlphabeticCharactersRegExp: /[^A-Za-z]/g,
+  nameRegExp: /^[A-ZА-ЯЁ][a-zа-яё'-]*$/g,
 };
