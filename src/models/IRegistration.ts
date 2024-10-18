@@ -1,6 +1,6 @@
 export interface IPersonalInfo {
-  // name: string | undefined;
-  // surname: string | undefined;
+  name: string;
+  surname: string;
   // dateOfBirth: string | undefined;
   phoneNumber: number;
 }
