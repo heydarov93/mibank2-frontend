@@ -159,7 +159,6 @@ export const LoginForm = () => {
       )}
     </>
   );
-
   return (
     <>
       <StyledFormTitle>{t('formTitle')}</StyledFormTitle>

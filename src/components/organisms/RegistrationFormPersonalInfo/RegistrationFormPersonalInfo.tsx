@@ -1,4 +1,7 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Box } from '@mui/material';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -6,13 +9,29 @@ import {
   StyledForm,
   StyledFormContent,
   StyledBoxContainer,
+  StyledLabel,
 } from './RegistrationFormPersonalInfo.styled';
 
 import { SubmitButton } from 'components/atoms';
 import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
+import { PhoneNumberField } from 'components/molecules';
+import { IPersonalInfo } from 'models/IRegistration';
+import { validationRegistrationSchema } from 'validation';
 
 export const RegistrationFormPersonalInfo = () => {
   const { t } = useTranslation('translation');
+
+  const {
+    formState: { errors },
+    control,
+  } = useForm<IPersonalInfo>({
+    resolver: yupResolver(validationRegistrationSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      phoneNumber: 0,
+    },
+  });
+
   const handleCleanField = () => {
     setIsFormDisabled(false);
   };
@@ -23,9 +42,23 @@ export const RegistrationFormPersonalInfo = () => {
     <>
       <StyledBoxContainer>
         <BackArrow />
-        <StyledFormTitle>{t('Registration.personalInfoTitle')}</StyledFormTitle>
+        <StyledFormTitle>
+          {t('RegistrationPage.personalInfoTitle')}
+        </StyledFormTitle>
         <StyledForm>
-          <StyledFormContent></StyledFormContent>
+          <StyledFormContent>
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ display: 'flex' }}>
+                <StyledLabel htmlFor="phone">{'Phone number'}</StyledLabel>
+              </Box>
+              <PhoneNumberField
+                className={errors.phoneNumber ? 'shake' : ''}
+                control={control}
+                name="phoneNumber"
+                errors={errors}
+              />
+            </Box>
+          </StyledFormContent>
           <SubmitButton
             isDisabled={isFormDisabled}
             onClick={handleCleanField}

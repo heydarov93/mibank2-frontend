@@ -81,8 +81,12 @@
     "signUpLink": "Don't have an account?",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
-  "Registration": {
-    "personalInfoTitle": "Personal info"
+  "RegistrationPage": {
+    "personalInfoTitle": "Personal info",
+    "phoneNumber": {
+      "label": "Phone number",
+      "errorInvalid": "The phone number is invalid"
+    }
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",
