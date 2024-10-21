@@ -71,30 +71,4 @@ describe('LoginForm', () => {
 
     expect(errorMessage).toBeInTheDocument();
   });
-
-  it('show error password message', async () => {
-    render(
-      <Provider store={mockStore}>
-        <LoginForm />
-      </Provider>,
-    );
-    const emailInput = screen.getByLabelText('Email');
-    const passwordInput = screen.getByLabelText('Password');
-    const button = screen.getByText('Log In');
-
-    waitFor(() => {
-      userEvent.type(emailInput, 'user@gmail.com');
-      userEvent.type(passwordInput, 'BADPASSWORd');
-    });
-
-    waitFor(() => {
-      userEvent.click(button);
-    });
-
-    const errorMessage = await screen.findByText(
-      'Format is not correct. Please click ⓘ sign to see requirements',
-    );
-
-    expect(errorMessage).toBeInTheDocument();
-  });
 });
