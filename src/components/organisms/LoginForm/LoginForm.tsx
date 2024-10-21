@@ -13,9 +13,14 @@ import {
 } from './LoginForm.styled';
 
 import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
-import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import {
+  ButtonLink,
+  InputField,
+  SubmitButton,
+  ValidationTag,
+} from 'components/atoms';
 import { CheckboxWithLabel, PasswordField, Timer } from 'components/molecules';
-import { ErrorStatus } from 'enums';
+import { ErrorStatus, ValidationKey } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -26,7 +31,7 @@ import {
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
 import { localTokenHandler } from 'utils';
-import { validationLoginSchema } from 'validation';
+import { passwordValidationRules, validationLoginSchema } from 'validation';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });
@@ -36,10 +41,11 @@ export const LoginForm = () => {
   const [sendcode] = useSendcodeMutation();
   const { handleLockedError } = useErrorHandlers();
   const {
-    formState: { errors },
+    formState: { errors, touchedFields },
     control,
     handleSubmit,
     resetField,
+    watch,
     reset: resetForm,
   } = useForm<ILoginFormInput>({
     resolver: yupResolver(validationLoginSchema),
@@ -64,7 +70,12 @@ export const LoginForm = () => {
     }
   };
 
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const navigate = useNavigate();
+
+  const passwordValue = watch('password');
+
+  const isValidConfirm = !errors?.password && touchedFields.password;
 
   const logIn = async (credentials: ILoginData) => {
     try {
@@ -189,7 +200,20 @@ export const LoginForm = () => {
               name="password"
               errors={errors}
               isFormDisabled={isFormDisabled}
+              onFocus={() => setIsPasswordFocused(true)}
             />
+            {isPasswordFocused &&
+              !isValidConfirm &&
+              Object.keys(passwordValidationRules).map((key) => (
+                <ValidationTag
+                  key={key}
+                  tagText={t(`password.${key}`)}
+                  isValidated={passwordValidationRules[key as ValidationKey](
+                    passwordValue,
+                  )}
+                  isSpecial={key === ValidationKey.SPECIAL_CHAR ? true : false}
+                />
+              ))}
           </Box>
         </StyledFormContent>
         <CheckboxWithLabel

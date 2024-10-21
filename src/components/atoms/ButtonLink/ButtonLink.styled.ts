@@ -14,17 +14,14 @@ export const StyledButtonLinkContainer = styled(Box)(
   }),
 );
 
-  export const StyledButtonLink = styled(Link, {
-    shouldForwardProp: (prop) => prop !== 'shake' && prop !== 'delay',
-  })<{ shake?: boolean; delay?: number }>(
-    ({ shake, delay, theme }) => ({
-      paddingLeft: 8,
-      fontWeight: 500,
-      textDecoration: 'underline',
-      color: theme.palette.primary.main,
-      animation: shake ? `${theme.animations?.shake} 0.25s` : 'none',
-      'animation-delay': `${delay || 0}s`, 
-      'animation-iteration-count': '1',                                                   
-    }),
-  );
-  
+export const StyledButtonLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'shake' && prop !== 'delay',
+})<{ shake?: boolean; delay?: number }>(({ shake, delay, theme }) => ({
+  paddingLeft: 8,
+  fontWeight: 500,
+  textDecoration: 'underline',
+  color: theme.palette.primary.main,
+  animation: shake ? `${theme.animations?.shake} 0.25s` : 'none',
+  animationDelay: `${delay || 0}s`,
+  animationIterationCount: '1',
+}));
