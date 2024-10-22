@@ -64,6 +64,8 @@ describe('SignupFormEmail', () => {
       target: { value: 'validemail@example.com' },
     });
 
+    fireEvent.blur(emailInput);
+
     await waitFor(() => {
       expect(continueButton).not.toBeDisabled();
     });

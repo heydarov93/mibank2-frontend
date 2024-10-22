@@ -22,7 +22,6 @@ interface CheckboxWithLabelProps<T extends FieldValues> {
   name: Path<T>;
   errors: FieldErrors<ILoginFormInput>;
   isFormDisabled?: boolean;
-  onCheckboxChange?: (isChecked: boolean) => void;
 }
 
 export const CheckboxWithLabel = <T extends FieldValues>({
@@ -30,7 +29,6 @@ export const CheckboxWithLabel = <T extends FieldValues>({
   errors,
   name,
   isFormDisabled,
-  onCheckboxChange,
 }: CheckboxWithLabelProps<T>) => {
   const { t } = useTranslation('translation');
   const theme = useTheme();
@@ -64,10 +62,8 @@ export const CheckboxWithLabel = <T extends FieldValues>({
               disabled={isFormDisabled}
               {...field}
               onChange={(e) => {
-                const isChecked = e.target.checked;
                 field.onChange(e);
                 field.onBlur();
-                if (onCheckboxChange) onCheckboxChange(isChecked);
               }}
             />
           );

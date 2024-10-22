@@ -2,13 +2,7 @@ import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { IconButton, InputAdornment, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react';
-import {
-  useController,
-  Control,
-  FieldErrors,
-  FieldValues,
-  Path,
-} from 'react-hook-form';
+import { Control, FieldErrors, FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { InputField } from 'components/atoms';
@@ -33,24 +27,13 @@ export const PasswordField = <T extends FieldValues>({
 }: PasswordFieldProps<T>) => {
   const theme = useTheme();
   const { t } = useTranslation('translation');
-  const { field } = useController({
-    name,
-    control,
-  });
 
   const [showPassword, setShowPassword] = useState(false);
   const [capsLockOn, setCapsLockOn] = useState(false);
 
   const onKeyUpHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (field.value) {
-      const stringValue = field.value.replace(/[^a-zA-Z]/g, '');
-      const capsLockIsOn =
-        e.getModifierState('CapsLock') ||
-        (stringValue.length > 1 && stringValue === field.value.toUpperCase());
-      setCapsLockOn(capsLockIsOn);
-    } else {
-      setCapsLockOn(false);
-    }
+    const capsLockIsOn = e.getModifierState('CapsLock');
+    setCapsLockOn(capsLockIsOn);
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
