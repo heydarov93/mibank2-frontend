@@ -1,7 +1,7 @@
 import { StyledButton, StyledButtonContainer } from './SubmitButton.styled';
 
 type SubmitButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   buttonContent: React.ReactNode;
   isDisabled?: boolean;
 };

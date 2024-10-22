@@ -28,7 +28,7 @@ export const SignupFormEmail = () => {
   const navigate = useNavigate();
 
   const {
-    formState: { errors, isValid },
+    formState: { errors, isValid, touchedFields },
     control,
     handleSubmit,
     resetField,
@@ -73,6 +73,7 @@ export const SignupFormEmail = () => {
 
   const errorMsg = useAppSelector(errorMessage);
   const isShake = t('SignupPage.email.errorEmailRegistered') === errorMsg;
+  const isValidEmail = isValid && !errors.email && touchedFields.email;
 
   return (
     <>
@@ -96,7 +97,7 @@ export const SignupFormEmail = () => {
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('SignupPage.buttonLabelContinue')}
-          isDisabled={!isValid}
+          isDisabled={!isValidEmail}
         />
       </StyledForm>
       <ButtonLink

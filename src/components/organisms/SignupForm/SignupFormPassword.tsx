@@ -34,7 +34,6 @@ export const SignupFormPassword = () => {
     formState: { errors, isValid, touchedFields },
     control,
     handleSubmit,
-    resetField,
     reset: resetForm,
     watch,
   } = useForm<ISignupFormInput>({
@@ -71,21 +70,6 @@ export const SignupFormPassword = () => {
     }
     navigate('/signup-finished');
     resetForm();
-  };
-
-  const handleCleanField = () => {
-    if (errors.password || errors.confirmPassword) {
-      resetField('password');
-      resetField('confirmPassword');
-    }
-    if (errors.checkbox) {
-      dispatch(setError(t('errorTermsPrivacyRequired')));
-      resetField('checkbox', { defaultValue: false });
-    }
-  };
-
-  const handleCheckboxChange = (isChecked: boolean) => {
-    if (!isChecked) dispatch(setError(t('errorTermsPrivacyRequired')));
   };
 
   return (
@@ -134,14 +118,8 @@ export const SignupFormPassword = () => {
             />
           </Box>
         </StyledFormContent>
-        <CheckboxWithLabel
-          name="checkbox"
-          control={control}
-          errors={errors}
-          onCheckboxChange={handleCheckboxChange}
-        />
+        <CheckboxWithLabel name="checkbox" control={control} errors={errors} />
         <SubmitButton
-          onClick={handleCleanField}
           buttonContent={t('buttonLabelSignup')}
           isDisabled={!isValid}
         />

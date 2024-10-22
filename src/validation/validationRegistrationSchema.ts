@@ -21,10 +21,10 @@ export const validationRegistrationSchema = yup.object().shape({
 
   phoneNumber: yup
     .number()
-    .required(i18n.t(`LoginPage.requiredField`))
+    .required(i18n.t(`${personalPage}.requiredField`))
     .test(
       'len',
-      i18n.t(`RegistrationPage.phoneNumber.errorInvalid`),
+      i18n.t(`${personalPage}.phoneNumber.errorInvalid`),
       (val) => val.toString().length >= 10,
     ),
 });

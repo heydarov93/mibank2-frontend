@@ -3,19 +3,15 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledAlert, StyledLink } from './ErrorNotification.styled';
 
-import { termsLink, policyLink } from 'components/organisms/Footer/constants';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
-import { generateRandomParam } from 'utils';
 
 export const ErrorNotification = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
   const error = useAppSelector(errorMessage);
   const open = Boolean(error);
-  const urlTerms = `${termsLink}${generateRandomParam()}`;
-  const urlPolicy = `${policyLink}${generateRandomParam()}`;
 
   const errorParts = error ? error.split('.') : [];
   const title = errorParts.length > 1 ? errorParts[0] : '';
@@ -26,24 +22,6 @@ export const ErrorNotification = () => {
       : [error];
   const handleClose = () => {
     dispatch(clearError());
-  };
-
-  const isMessageTerm = (message: null | string) => {
-    if (message && message === t('SignupPage.errorTermsPrivacyRequired')) {
-      return (
-        <>
-          Please, read and agree to our{' '}
-          <StyledLink href={urlTerms} target='_blank'>
-            Terms of Use
-          </StyledLink>{' '}
-          and {' '} 
-          <StyledLink href={urlPolicy} target='_blank'>
-            Privacy Policy
-          </StyledLink> to continue
-        </>
-      );
-    }
-    return message ? message : null;
   };
 
   const scrollToContactSection = () => {
@@ -62,7 +40,7 @@ export const ErrorNotification = () => {
       <StyledAlert severity="error">
         {title && <AlertTitle>{title}</AlertTitle>}
         <div>
-          {isMessageTerm(message[0])}
+          {message[0]}
           {message.length > 1 && (
             <StyledLink onClick={scrollToContactSection}>
               {t('ErrorNotification.contactUs')}
