@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
+import { setEmail } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
 import { validationEmailSchema } from 'validation';
 
@@ -52,6 +53,7 @@ export const SignupFormEmail = () => {
           originalStatus: ErrorStatus.BAD_REQUEST,
         };
       }
+      setEmail(data);
       navigate('/signup-end');
     } catch (e) {
       const error = e as IErrorData;
