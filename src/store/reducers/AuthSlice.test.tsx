@@ -1,6 +1,7 @@
 import authReducer, {
   setError,
   setVerifying,
+  setEmail,
   setVerifyingTimer,
   clearError,
   setLoading,
@@ -13,6 +14,7 @@ import { IUserInfo } from 'models/IUserInfo';
 describe('AuthSlice', () => {
   const initialState = {
     isVerifying: false,
+    email: '',
     verifyingTimer: 0,
     user: {
       firstName: '',
@@ -37,6 +39,12 @@ describe('AuthSlice', () => {
     expect(authReducer(initialState, setVerifying(isVerifying))).toEqual(
       expectedState,
     );
+  });
+
+  it('should handle setEmail', () => {
+    const email = 'test@example.com';
+    const expectedState = { ...initialState, email };
+    expect(authReducer(initialState, setEmail(email))).toEqual(expectedState);
   });
 
   it('should handle setVerifyingTimer', () => {
