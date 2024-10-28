@@ -5,3 +5,4 @@ export { UserCard } from './UserCard/UserCard';
 export { Timer } from './Timer/Timer';
 export { RegistrationSideBar } from './RegistrationSideBar/RegistrationSideBar';
 export { PhoneNumberField } from './PhoneNumberField/PhoneNumberField';
+export { DateOfBirthField } from './DateOfBirthField/DateOfBirthField';
