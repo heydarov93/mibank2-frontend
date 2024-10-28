@@ -15,7 +15,7 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
-import { PhoneNumberField } from 'components/molecules';
+import { DateOfBirthField, PhoneNumberField } from 'components/molecules';
 import { IPersonalInfo } from 'models/IRegistration';
 import { validationRegistrationSchema } from 'validation';
 
@@ -76,7 +76,14 @@ export const RegistrationFormPersonalInfo = () => {
                 placeholder={t('RegistrationPage.placeholder.placeholderName')}
               />
             </Box>
-
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ display: 'flex' }}>
+                <StyledLabel htmlFor="dateOfBirth">
+                  {t('RegistrationPage.inputName.labelDateOfBirth')}
+                </StyledLabel>
+              </Box>
+              <DateOfBirthField />
+            </Box>
             <Box sx={{ width: '100%' }}>
               <Box sx={{ display: 'flex' }}>
                 <StyledLabel htmlFor="phone">{'Phone number'}</StyledLabel>
