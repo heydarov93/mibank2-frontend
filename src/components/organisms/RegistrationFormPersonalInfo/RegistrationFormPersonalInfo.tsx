@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { AutoQCStepper } from '../AutoQCStepper/AutoQCStepper';
+
 import {
   StyledFormTitle,
   StyledForm,
@@ -45,6 +47,7 @@ export const RegistrationFormPersonalInfo = () => {
     <>
       <StyledBoxContainer>
         <BackArrow />
+        <AutoQCStepper />
         <StyledFormTitle>
           {t('RegistrationPage.personalInfoTitle')}
         </StyledFormTitle>
