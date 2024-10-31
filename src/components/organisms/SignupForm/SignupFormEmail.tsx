@@ -48,15 +48,17 @@ export const SignupFormEmail = () => {
     try {
       localStorage.setItem('email', data.email);
       const response = await checkEmail(data).unwrap();
+
       if (response !== null) {
         throw {
           originalStatus: ErrorStatus.BAD_REQUEST,
         };
       }
-      setEmail(data);
+      dispatch(setEmail(data));
       navigate('/signup-end');
     } catch (e) {
       const error = e as IErrorData;
+
       switch (error.originalStatus) {
         case ErrorStatus.BAD_REQUEST:
           dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
