@@ -85,11 +85,14 @@
   },
   "RegistrationPage": {
     "personalInfoTitle": "Personal info",
+    "documentInfoTitle": "Document info",
     "buttonLabelContinue": "Continue",
     "inputName": {
       "labelName": "Name",
       "labelSurname": "Surname",
-      "labelDateOfBirth": "Date of birth"
+      "labelDateOfBirth": "Date of birth",
+      "labelPassportIssueDate": "Passport Issue date",
+      "labelPassportExpirationDate": "Passport Expiration date"
     },
     "phoneNumber": {
       "label": "Phone number",

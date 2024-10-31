@@ -1,7 +1,7 @@
 import { Box, styled } from '@mui/material';
 
 export const PageWrapper = styled(Box)(
-  ({ theme: { palette, breakpoints, spacing } }) => ({
+  ({ theme: { palette, breakpoints } }) => ({
     display: 'flex',
     flex: 1,
     color: palette.common.black,
@@ -10,8 +10,7 @@ export const PageWrapper = styled(Box)(
     backgroundColor: '#1847C1',
 
     [breakpoints.down('sm')]: {
-      marginTop: spacing(11),
-      marginBottom: spacing(10),
+      flexDirection: 'column',
     },
   }),
 );
