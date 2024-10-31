@@ -1,6 +1,6 @@
 export enum ErrorStatus {
   BAD_REQUEST = 400,
-  UNATHORIZED = 401,
+  UNAUTHORIZED = 401,
   NOT_FOUND = 404,
   LOCKED = 423,
   TOO_MANY_REQUESTS = 429,

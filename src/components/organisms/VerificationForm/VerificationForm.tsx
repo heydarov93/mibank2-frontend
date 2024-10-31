@@ -145,7 +145,7 @@ export const VerificationForm = ({
         case ErrorStatus.BAD_REQUEST:
           dispatch(setError(error.data.exceptionMessage));
           break;
-        case ErrorStatus.UNATHORIZED:
+        case ErrorStatus.UNAUTHORIZED:
         default:
           dispatch(setError(t('serverError')));
           break;
