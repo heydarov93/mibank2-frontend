@@ -2,15 +2,20 @@ import { styled, Typography, Box } from '@mui/material';
 
 import { defaultBreakpointsStyle } from 'constants/defaultBreakpointsStyle';
 
-export const StyledBoxContainer = styled(Box)(({ theme: { spacing } }) => ({
-  display: 'flex',
-  position: 'relative',
-  flexDirection: 'column',
-  alignItems: 'center',
-  flexBasis: '70%',
-  paddingTop: spacing(12),
-  backgroundColor: 'white',
-}));
+export const StyledBoxContainer = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    display: 'flex',
+    position: 'relative',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flexBasis: '70%',
+    paddingTop: spacing(12),
+    backgroundColor: 'white',
+    [breakpoints.down('sm')]: {
+      paddingTop: spacing(0),
+    },
+  }),
+);
 
 export const StyledForm = defaultBreakpointsStyle;
 
@@ -38,6 +43,12 @@ export const StyledFormTitle = styled(Typography)(
       marginBottom: spacing(2),
       fontSize: 32,
       fontWeight: 500,
+    },
+    [breakpoints.down('sm')]: {
+      marginTop: spacing(1),
+      marginBottom: spacing(2),
+      fontSize: 24,
+      fontWeight: 600,
     },
 
     [breakpoints.up('md')]: {

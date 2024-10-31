@@ -6,3 +6,5 @@ export { Timer } from './Timer/Timer';
 export { RegistrationSideBar } from './RegistrationSideBar/RegistrationSideBar';
 export { PhoneNumberField } from './PhoneNumberField/PhoneNumberField';
 export { DateOfBirthField } from './DateOfBirthField/DateOfBirthField';
+export { PassportExpirationDate } from './PassportExpirationDate/PassportExpirationDate';
+export { PassportIssueDate } from './PassportIssueDate/PassportIssueDate';
