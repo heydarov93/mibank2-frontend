@@ -17,7 +17,11 @@ export const validationRegistrationSchema = yup.object().shape({
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
-    .max(40, i18n.t(`${personalPage}.errorMaxLen`)),
+    .max(80, i18n.t(`${personalPage}.errorMaxLen`)),
+  dateOfBirth: yup
+    .string()
+    .trim()
+    .required(i18n.t(`${personalPage}.requiredField`)),
 
   phoneNumber: yup
     .number()
