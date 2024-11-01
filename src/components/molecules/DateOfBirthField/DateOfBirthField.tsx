@@ -3,23 +3,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import {
-  Controller,
-  Control,
-  FieldValues,
-  Path,
-  FieldErrors,
-} from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  StyledDatePicker,
-  StyledTextButtons,
-  ShakeWrapper,
-  StyledErrorText,
-} from './DateOfBirthField.styled';
-
-import { IPersonalInfo } from 'models/IRegistration';
+import { StyledDatePicker, StyledTextButtons } from './DateOfBirthField.styled';
 
 dayjs.extend(updateLocale);
 const today = dayjs();
@@ -28,65 +14,38 @@ dayjs.updateLocale('en', {
   weekStart: 1,
 });
 
-interface DateOfBirthFieldProps<T extends FieldValues> {
-  name: Path<T>;
-  control: Control<T>;
-  errors: FieldErrors<IPersonalInfo>;
-  className?: string;
-}
-
-export const DateOfBirthField = <T extends FieldValues>({
-  name,
-  control,
-  errors,
-  className,
-}: DateOfBirthFieldProps<T>) => {
+export const DateOfBirthField = () => {
   const { t } = useTranslation('translation');
-
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) => (
-        <ShakeWrapper>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <StyledDatePicker
-              {...field}
-              value={field.value ? field.value : null}
-              maxDate={minDate}
-              dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
-              showDaysOutsideCurrentMonth
-              format="DD/MM/YYYY"
-              className={className}
-              slots={{
-                openPickerIcon: CalendarTodayOutlinedIcon,
-                actionBar: StyledTextButtons,
-              }}
-              slotProps={{
-                popper: {
-                  placement: 'top-end',
-                },
-                actionBar: {
-                  actions: ['cancel', 'accept'],
-                },
-                textField: {
-                  id: 'dateOfBirth',
-
-                  placeholder: t(
-                    'RegistrationPage.placeholder.placeholderDateOfBirth',
-                  ),
-                  onKeyDown: (e) => e.preventDefault(),
-                },
-              }}
-            />
-          </LocalizationProvider>
-          <StyledErrorText>
-            {errors.dateOfBirth && (
-              <span className="errorText">{errors.dateOfBirth?.message}</span>
-            )}
-          </StyledErrorText>
-        </ShakeWrapper>
-      )}
-    />
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <StyledDatePicker
+        maxDate={minDate}
+        dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
+        showDaysOutsideCurrentMonth
+        format="DD/MM/YYYY"
+        slots={{
+          openPickerIcon: CalendarTodayOutlinedIcon,
+          actionBar: StyledTextButtons,
+        }}
+        slotProps={{
+          popper: {
+            placement: 'top-end',
+          },
+          actionBar: {
+            actions: ['cancel', 'accept'],
+          },
+          textField: {
+            name: 'dateOfBirth',
+            id: 'dateOfBirth',
+            placeholder: t(
+              'RegistrationPage.placeholder.placeholderDateOfBirth',
+            ),
+            onKeyDown: (e) => {
+              e.preventDefault();
+            },
+          },
+        }}
+      />
+    </LocalizationProvider>
   );
 };
