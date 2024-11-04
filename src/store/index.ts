@@ -13,22 +13,23 @@ import storage from 'redux-persist/lib/storage';
 
 import AuthReducer from './reducers/AuthSlice';
 import BankContactReducer from './reducers/BankContactsSlice';
+import RegistrationReducer from './reducers/RegistrationSlice';
 
 import { authApi } from 'api/authApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { contactInfoApi } from 'api/contactInfoApi';
-import {registerNewUserApi} from 'api/registerNewUserApi';
+import { registerNewUserApi } from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
-
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
   contacts: BankContactReducer,
+  registration: RegistrationReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userInfoApi.reducerPath]: userInfoApi.reducer,
   [contactInfoApi.reducerPath]: contactInfoApi.reducer,
   [checkEmailApi.reducerPath]: checkEmailApi.reducer,
-  [registerNewUserApi.reducerPath]: registerNewUserApi.reducer
+  [registerNewUserApi.reducerPath]: registerNewUserApi.reducer,
 });
 
 const persistConfig = {
