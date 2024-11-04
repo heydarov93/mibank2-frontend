@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled, FormHelperText } from '@mui/material';
 import { DatePicker, PickersActionBar } from '@mui/x-date-pickers';
 
 export const StyledDatePicker = styled(DatePicker)(
@@ -59,3 +59,20 @@ export const StyledTextButtons = styled(PickersActionBar)(
     },
   }),
 );
+
+export const StyledErrorText = styled(FormHelperText)(
+  ({ theme: { palette } }) => ({
+    '& .errorText': {
+      marginLeft: '14px',
+      color: palette.error.main,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+  }),
+);
+
+export const ShakeWrapper = styled('div')(({ theme: { animations } }) => ({
+  '&.shake': {
+    animation: `${animations?.shake} 0.25s`,
+  },
+}));
