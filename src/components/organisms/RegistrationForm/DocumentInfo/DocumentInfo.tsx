@@ -1,7 +1,7 @@
-// import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import { useState } from 'react';
-// import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -12,14 +12,13 @@ import {
   StyledLabel,
 } from './DocumentInfo.styled';
 
-import { SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton } from 'components/atoms';
 import {
   PassportExpirationDate,
   PassportIssueDate,
 } from 'components/molecules';
-// TODO: this import will need to use with form state
-// import { IPersonalInfo } from 'models/IRegistration';
-// import { validationRegistrationSchema } from 'validation';
+import { IDocumentInfo } from 'models/IRegistration';
+import { validationDocumentInfoSchema } from 'validation';
 
 export const DocumentInfo = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
@@ -28,19 +27,16 @@ export const DocumentInfo = () => {
     setIsFormDisabled(false);
   };
 
-  //TODO: when redux store will be ready, finish formState
-  // const {
-  //   formState: { errors },
-  //   control,
-  // } = useForm<IPersonalInfo>({
-  //   resolver: yupResolver(validationRegistrationSchema),
-  //   mode: 'onBlur',
-  //   defaultValues: {
-  //     name: '',
-  //     surname: '',
-  //     phoneNumber: 0,
-  //   },
-  // });
+  const {
+    formState: { errors },
+    control,
+  } = useForm<IDocumentInfo>({
+    resolver: yupResolver(validationDocumentInfoSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      passportNumber: '',
+    },
+  });
 
   return (
     <StyledBoxContainer>
@@ -49,6 +45,19 @@ export const DocumentInfo = () => {
       </StyledFormTitle>
       <StyledForm>
         <StyledFormContent>
+          <Box sx={{ width: '100%' }}>
+            <StyledLabel htmlFor="passportIssueDate">
+              {t('RegistrationPage.inputName.labelPassportNumber')}
+            </StyledLabel>
+            <InputField
+              name="passportNumber"
+              id="passportNumber"
+              control={control}
+              className={errors.passportNumber ? 'shake' : ''}
+              error={errors.passportNumber}
+              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+            />
+          </Box>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportIssueDate">
               {t('RegistrationPage.inputName.labelPassportIssueDate')}

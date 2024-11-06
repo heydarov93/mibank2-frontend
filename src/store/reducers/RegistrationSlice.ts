@@ -30,7 +30,7 @@ const initialState: RegistrationSlice = {
     peselNumber: 0,
   },
   documentInfo: {
-    passport: '',
+    passportNumber: '',
     issueDate: '',
     expirationDate: '',
   },
