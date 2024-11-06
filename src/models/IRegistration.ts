@@ -6,9 +6,10 @@ export interface IPersonalInfo {
 }
 
 export interface ILegalStatus {
-  citizenship: string;
-  taxResidence: string;
-  pesel: number;
+  // TODO: add these types when creating fields
+  // citizenship: string;
+  // taxResidence: string;
+  peselNumber: number;
 }
 
 export interface IDocumentInfo {

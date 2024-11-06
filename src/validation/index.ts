@@ -4,4 +4,5 @@ export {
   validationEmailSchema,
 } from './validationSignupSchema';
 export { validationRegistrationSchema } from './validationRegistrationSchema';
+export { validationLegalStatusSchema } from './validationLegalStatusSchema';
 export { passwordValidationRules } from './passwordValidationRules';
