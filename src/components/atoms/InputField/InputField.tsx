@@ -17,6 +17,7 @@ const enum FieldName {
   surname = 'surname',
   dateOfBirth = 'dateOfBirth',
   phoneNumber = 'phoneNumber',
+  passportNumber = 'passportNumber',
   peselNumber = 'peselNumber',
 }
 

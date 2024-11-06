@@ -22,7 +22,6 @@ export const validationRegistrationSchema = yup.object().shape({
     .string()
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`)),
-
   phoneNumber: yup
     .number()
     .required(i18n.t(`${personalPage}.requiredField`))
