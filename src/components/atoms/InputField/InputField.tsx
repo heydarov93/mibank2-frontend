@@ -17,6 +17,7 @@ const enum FieldName {
   surname = 'surname',
   dateOfBirth = 'dateOfBirth',
   phoneNumber = 'phoneNumber',
+  peselNumber = 'peselNumber',
 }
 
 interface InputFieldProps<T extends FieldValues> {
@@ -32,6 +33,7 @@ interface InputFieldProps<T extends FieldValues> {
   InputProps?: {
     endAdornment: JSX.Element;
   };
+  maxLength?: number;
   onCut?: (e: SyntheticEvent) => void;
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -57,6 +59,7 @@ export const InputField = <T extends FieldValues>({
   onKeyDown,
   onPaste,
   InputProps,
+  maxLength,
 }: InputFieldProps<T>) => (
   <Controller
     name={name}
@@ -77,7 +80,12 @@ export const InputField = <T extends FieldValues>({
         onFocus={onFocus}
         onKeyDown={onKeyDown}
         onPaste={onPaste}
-        InputProps={InputProps}
+        InputProps={{
+          ...InputProps,
+          inputProps: {
+            maxLength,
+          },
+        }}
         {...field}
       />
     )}

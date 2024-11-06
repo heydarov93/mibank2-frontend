@@ -2,6 +2,7 @@ import { AutoQCStepper } from '../AutoQCStepper/AutoQCStepper';
 import { DocumentInfo } from '../RegistrationForm/DocumentInfo/DocumentInfo';
 // TODO: after redux store will be ready, need to create routing between forms
 // import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
+// import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
 
 import { StyledBoxContainer } from './RegistrationFormWrapper.styled';
 
@@ -13,6 +14,7 @@ export const RegistrationFormWrapper = () => {
       <BackArrow />
       <AutoQCStepper />
       {/* <PersonalInfo /> */}
+      {/* <LegalStatus /> */}
       <DocumentInfo />
     </StyledBoxContainer>
   );

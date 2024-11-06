@@ -8,6 +8,7 @@ export { VerificationForm } from './VerificationForm/VerificationForm';
 export { SignupFormEmail } from './SignupForm/SignupFormEmail';
 export { SignupFormPassword } from './SignupForm/SignupFormPassword';
 export { PersonalInfo } from './RegistrationForm/PersonalInfo/PersonalInfo';
+export { LegalStatus } from './RegistrationForm/LegalStatus/LegalStatus';
 export { DocumentInfo } from './RegistrationForm/DocumentInfo/DocumentInfo';
 export { RegistrationFormWrapper } from './RegistrationFormWrapper/RegistrationFormWrapper';
 export { AutoQCStepper } from './AutoQCStepper/AutoQCStepper';
