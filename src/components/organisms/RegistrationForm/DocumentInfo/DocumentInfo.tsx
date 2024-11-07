@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import {
   StyledFormTitle,
@@ -17,26 +17,36 @@ import {
   PassportExpirationDate,
   PassportIssueDate,
 } from 'components/molecules';
+import { EStepper } from 'enums/EStepper';
 import { IDocumentInfo } from 'models/IRegistration';
+import { setDocumentInfoData } from 'store/reducers/RegistrationSlice';
+import { setStep } from 'store/reducers/StepperSlice';
 import { validationDocumentInfoSchema } from 'validation';
 
 export const DocumentInfo = () => {
-  const [isFormDisabled, setIsFormDisabled] = useState(true);
   const { t } = useTranslation('translation');
-  const handleCleanField = () => {
-    setIsFormDisabled(false);
-  };
+  const dispatch = useDispatch();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     control,
+    handleSubmit,
   } = useForm<IDocumentInfo>({
     resolver: yupResolver(validationDocumentInfoSchema),
     mode: 'onBlur',
     defaultValues: {
       passportNumber: '',
+      issueDate: '',
+      expirationDate: '',
     },
   });
+
+  const onSubmit = (data: IDocumentInfo) => {
+    dispatch(setDocumentInfoData(data));
+    dispatch(setStep(EStepper.PERSONAL_INFO));
+  };
+
+  const isValidForm = isValid;
 
   return (
     <StyledBoxContainer>
@@ -62,18 +72,26 @@ export const DocumentInfo = () => {
             <StyledLabel htmlFor="passportIssueDate">
               {t('RegistrationPage.inputName.labelPassportIssueDate')}
             </StyledLabel>
-            <PassportIssueDate />
+            <PassportIssueDate
+              name="issueDate"
+              control={control}
+              errors={errors}
+            />
           </Box>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportExpirationDate">
               {t('RegistrationPage.inputName.labelPassportExpirationDate')}
             </StyledLabel>
-            <PassportExpirationDate />
+            <PassportExpirationDate
+              name="expirationDate"
+              control={control}
+              errors={errors}
+            />
           </Box>
         </StyledFormContent>
         <SubmitButton
-          isDisabled={isFormDisabled}
-          onClick={handleCleanField}
+          isDisabled={!isValidForm}
+          onClick={handleSubmit(onSubmit)}
           buttonContent={t('SignupPage.buttonLabelContinue')}
         ></SubmitButton>
       </StyledForm>

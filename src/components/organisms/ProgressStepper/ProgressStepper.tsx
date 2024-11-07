@@ -17,7 +17,9 @@ export const ProgressStepper = ({
     <StyledStepper activeStep={activeStep}>
       {steps.map((label, index) => (
         <StyledStep key={label}>
-          <StyledStepLabel visible={index === activeStep}>
+          <StyledStepLabel
+            className={index === activeStep ? 'visible' : 'hidden'}
+          >
             {label}
           </StyledStepLabel>
         </StyledStep>

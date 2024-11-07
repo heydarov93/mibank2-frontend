@@ -1,21 +1,37 @@
+import { useSelector } from 'react-redux';
+
 import { AutoQCStepper } from '../AutoQCStepper/AutoQCStepper';
 import { DocumentInfo } from '../RegistrationForm/DocumentInfo/DocumentInfo';
-// TODO: after redux store will be ready, need to create routing between forms
-// import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
-// import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
+import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
+import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
 
 import { StyledBoxContainer } from './RegistrationFormWrapper.styled';
 
 import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
+import { EStepper } from 'enums/EStepper';
+import { getStep } from 'store/selectors/StepperSelectors';
 
 export const RegistrationFormWrapper = () => {
+  const step = useSelector(getStep);
+
+  const renderFormStep = () => {
+    switch (step) {
+      case EStepper.PERSONAL_INFO:
+        return <PersonalInfo />;
+      case EStepper.LEGAL_STATUS:
+        return <LegalStatus />;
+      case EStepper.DOCUMENT_INFO:
+        return <DocumentInfo />;
+      default:
+        return <PersonalInfo />;
+    }
+  };
+
   return (
     <StyledBoxContainer>
       <BackArrow />
       <AutoQCStepper />
-      {/* <PersonalInfo /> */}
-      {/* <LegalStatus /> */}
-      <DocumentInfo />
+      {renderFormStep()}
     </StyledBoxContainer>
   );
 };

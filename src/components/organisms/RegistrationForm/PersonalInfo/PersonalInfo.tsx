@@ -15,8 +15,10 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import { DateOfBirthField, PhoneNumberField } from 'components/molecules';
+import { EStepper } from 'enums/EStepper';
 import { IPersonalInfo } from 'models/IRegistration';
 import { setPersonalInfoData } from 'store/reducers/RegistrationSlice';
+import { setStep } from 'store/reducers/StepperSlice';
 import { validationRegistrationSchema } from 'validation';
 
 export const PersonalInfo = () => {
@@ -40,6 +42,7 @@ export const PersonalInfo = () => {
 
   const onSubmit = (data: IPersonalInfo) => {
     dispatch(setPersonalInfoData(data));
+    dispatch(setStep(EStepper.LEGAL_STATUS));
   };
 
   const isValidForm = isValid && Object.keys(touchedFields).length > 2;
