@@ -42,6 +42,7 @@ export const DateOfBirthField = <T extends FieldValues>({
   className,
 }: DateOfBirthFieldProps<T>) => {
   const { t } = useTranslation('translation');
+  const hasError = !!errors.dateOfBirth;
 
   return (
     <Controller
@@ -52,6 +53,7 @@ export const DateOfBirthField = <T extends FieldValues>({
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StyledDatePicker
               {...field}
+              hasError={hasError}
               value={field.value ? field.value : null}
               maxDate={minDate}
               dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}

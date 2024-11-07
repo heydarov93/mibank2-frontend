@@ -1,0 +1,6 @@
+export enum EStepper {
+  PERSONAL_INFO,
+  LEGAL_STATUS,
+  DOCUMENT_INFO,
+  ADDRESS,
+}
