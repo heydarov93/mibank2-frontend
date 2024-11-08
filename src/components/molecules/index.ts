@@ -8,3 +8,4 @@ export { PhoneNumberField } from './PhoneNumberField/PhoneNumberField';
 export { DateOfBirthField } from './DateOfBirthField/DateOfBirthField';
 export { PassportExpirationDate } from './PassportExpirationDate/PassportExpirationDate';
 export { PassportIssueDate } from './PassportIssueDate/PassportIssueDate';
+export { CountrySelectField } from './CountrySelectField/CountrySelectField';

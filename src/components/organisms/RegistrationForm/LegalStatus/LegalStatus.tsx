@@ -13,6 +13,7 @@ import {
 } from './LegalStatus.styled';
 
 import { InputField, SubmitButton } from 'components/atoms';
+import { CountrySelectField } from 'components/molecules';
 import { EStepper } from 'enums/EStepper';
 import { ILegalStatus } from 'models/IRegistration';
 import { setLegalStatusData } from 'store/reducers/RegistrationSlice';
@@ -31,6 +32,8 @@ export const LegalStatus = () => {
     resolver: yupResolver(validationLegalStatusSchema),
     mode: 'onBlur',
     defaultValues: {
+      citizenship: '',
+      taxResidenceCountry: '',
       peselNumber: undefined,
     },
   });
@@ -49,6 +52,28 @@ export const LegalStatus = () => {
       </StyledFormTitle>
       <StyledForm>
         <StyledFormContent>
+          <Box sx={{ width: '100%' }}>
+            <StyledLabel htmlFor="pesel">
+              {t('RegistrationPage.inputName.labelCitizenship')}
+            </StyledLabel>
+            <CountrySelectField
+              name="citizenship"
+              control={control}
+              error={errors?.citizenship}
+              className={errors.citizenship ? 'shake' : ''}
+            />
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <StyledLabel htmlFor="pesel">
+              {t('RegistrationPage.inputName.labelTaxResidenceCountry')}
+            </StyledLabel>
+            <CountrySelectField
+              name="taxResidenceCountry"
+              control={control}
+              error={errors?.taxResidenceCountry}
+              className={errors.taxResidenceCountry ? 'shake' : ''}
+            />
+          </Box>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="pesel">
               {t('RegistrationPage.inputName.labelPeselNumber')}

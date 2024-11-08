@@ -93,6 +93,8 @@
       "labelSurname": "Surname",
       "labelDateOfBirth": "Date of birth",
       "labelPassportNumber": "Passport number",
+      "labelCitizenship": "Citizenship",
+      "labelTaxResidenceCountry": "Tax Residence country",
       "labelPeselNumber": "PESEL",
       "labelPassportIssueDate": "Passport Issue date",
       "labelPassportExpirationDate": "Passport Expiration date"

@@ -13,4 +13,8 @@ export const validationLegalStatusSchema = yup.object().shape({
       i18n.t(`${personalPage}.errorPeselDigits`),
       (val) => val.toString().length === 11,
     ),
+  citizenship: yup.string().required(i18n.t(`${personalPage}.requiredField`)),
+  taxResidenceCountry: yup
+    .string()
+    .required(i18n.t(`${personalPage}.requiredField`)),
 });
