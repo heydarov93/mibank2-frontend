@@ -24,9 +24,8 @@ const initialState: RegistrationSlice = {
     phoneNumber: 0,
   },
   legalStatus: {
-    // TODO: uncomment when the fields are created
-    // citizenship: '',
-    // taxResidence: '',
+    citizenship: '',
+    taxResidenceCountry: '',
     peselNumber: 0,
   },
   documentInfo: {

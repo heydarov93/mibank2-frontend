@@ -56,7 +56,7 @@ export const DocumentInfo = () => {
       <StyledForm>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="passportIssueDate">
+            <StyledLabel htmlFor="passportNumber">
               {t('RegistrationPage.inputName.labelPassportNumber')}
             </StyledLabel>
             <InputField
