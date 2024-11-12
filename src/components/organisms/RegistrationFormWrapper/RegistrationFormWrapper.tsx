@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 
-import { AutoQCStepper } from '../AutoQCStepper/AutoQCStepper';
+import { MiBankStepper } from '../MiBankStepper/MiBankStepper';
+import { Address } from '../RegistrationForm/Address/Address';
 import { DocumentInfo } from '../RegistrationForm/DocumentInfo/DocumentInfo';
 import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
 import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
@@ -22,6 +23,8 @@ export const RegistrationFormWrapper = () => {
         return <LegalStatus />;
       case EStepper.DOCUMENT_INFO:
         return <DocumentInfo />;
+      case EStepper.ADDRESS:
+        return <Address />;
       default:
         return <PersonalInfo />;
     }
@@ -30,7 +33,7 @@ export const RegistrationFormWrapper = () => {
   return (
     <StyledBoxContainer>
       <BackArrow />
-      <AutoQCStepper />
+      <MiBankStepper />
       {renderFormStep()}
     </StyledBoxContainer>
   );

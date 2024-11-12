@@ -87,7 +87,9 @@
     "personalInfoTitle": "Personal info",
     "legalStatusTitle": "Legal Status",
     "documentInfoTitle": "Document info",
+    "addressTitle": "Address",
     "buttonLabelContinue": "Continue",
+    "buttonLabelSaveAndProceed": "Save and proceed",
     "inputName": {
       "labelName": "Name",
       "labelSurname": "Surname",
@@ -97,15 +99,17 @@
       "labelTaxResidenceCountry": "Tax Residence country",
       "labelPeselNumber": "PESEL",
       "labelPassportIssueDate": "Passport Issue date",
-      "labelPassportExpirationDate": "Passport Expiration date"
+      "labelPassportExpirationDate": "Passport Expiration date",
+      "labelCity": "City"
     },
     "phoneNumber": {
       "label": "Phone number",
       "errorInvalid": "The phone number is invalid"
     },
     "placeholder": {
-      "placeholderName": "Enter here",
-      "placeholderDateOfBirth": "Pick the date"
+      "name": "Enter here",
+      "dateOfBirth": "Pick the date",
+      "selectField": "Choose here"
     },
     "requiredField": "The field is required",
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",

@@ -43,7 +43,7 @@ export const DocumentInfo = () => {
 
   const onSubmit = (data: IDocumentInfo) => {
     dispatch(setDocumentInfoData(data));
-    dispatch(setStep(EStepper.PERSONAL_INFO));
+    dispatch(setStep(EStepper.ADDRESS));
   };
 
   const isValidForm = isValid;
@@ -65,7 +65,7 @@ export const DocumentInfo = () => {
               control={control}
               className={errors.passportNumber ? 'shake' : ''}
               error={errors.passportNumber}
-              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              placeholder={t('RegistrationPage.placeholder.name')}
             />
           </Box>
           <Box sx={{ width: '100%' }}>

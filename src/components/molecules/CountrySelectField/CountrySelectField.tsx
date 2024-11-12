@@ -6,6 +6,7 @@ import {
   Path,
   FieldError,
 } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { StyledCountrySelectField } from './CountrySelectField.styled';
 
@@ -24,6 +25,7 @@ export const CountrySelectField = <T extends FieldValues>({
   error,
   className,
 }: CountrySelectFieldProps<T>) => {
+  const { t } = useTranslation('translation');
   return (
     <Controller
       name={name}
@@ -53,7 +55,7 @@ export const CountrySelectField = <T extends FieldValues>({
             renderInput={(params) => (
               <StyledCountrySelectField
                 {...params}
-                placeholder="Choose here"
+                placeholder={t('RegistrationPage.placeholder.selectField')}
                 error={!!error}
                 className={className}
               />

@@ -84,7 +84,7 @@ export const LegalStatus = () => {
               control={control}
               className={errors.peselNumber ? 'shake' : ''}
               error={errors.peselNumber}
-              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              placeholder={t('RegistrationPage.placeholder.name')}
               maxLength={11}
             />
           </Box>

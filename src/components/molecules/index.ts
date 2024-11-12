@@ -9,3 +9,4 @@ export { DateOfBirthField } from './DateOfBirthField/DateOfBirthField';
 export { PassportExpirationDate } from './PassportExpirationDate/PassportExpirationDate';
 export { PassportIssueDate } from './PassportIssueDate/PassportIssueDate';
 export { CountrySelectField } from './CountrySelectField/CountrySelectField';
+export { CitySelectField } from './CitySelectField/CitySelectField';

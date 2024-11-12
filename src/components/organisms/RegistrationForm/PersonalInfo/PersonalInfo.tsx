@@ -64,7 +64,7 @@ export const PersonalInfo = () => {
               control={control}
               className={errors.name ? 'shake' : ''}
               error={errors.name}
-              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              placeholder={t('RegistrationPage.placeholder.name')}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -77,7 +77,7 @@ export const PersonalInfo = () => {
               control={control}
               className={errors.surname ? 'shake' : ''}
               error={errors.surname}
-              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              placeholder={t('RegistrationPage.placeholder.name')}
             />
           </Box>
           <Box sx={{ width: '100%' }}>

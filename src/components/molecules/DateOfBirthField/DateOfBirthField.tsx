@@ -74,9 +74,7 @@ export const DateOfBirthField = <T extends FieldValues>({
                 textField: {
                   id: 'dateOfBirth',
 
-                  placeholder: t(
-                    'RegistrationPage.placeholder.placeholderDateOfBirth',
-                  ),
+                  placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
                   onKeyDown: (e) => e.preventDefault(),
                 },
               }}
