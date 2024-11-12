@@ -65,7 +65,7 @@ export const Address = () => {
               name="street"
               id="street"
               control={control}
-              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              placeholder={t('RegistrationPage.placeholder.name')}
               error={errors.street}
               className={errors.street ? 'shake' : ''}
             />
@@ -79,7 +79,7 @@ export const Address = () => {
                 name="building"
                 id="building"
                 control={control}
-                placeholder={t('RegistrationPage.placeholder.placeholderName')}
+                placeholder={t('RegistrationPage.placeholder.name')}
                 error={errors.building}
                 className={errors.building ? 'shake' : ''}
               />
@@ -92,7 +92,7 @@ export const Address = () => {
                 name="apartment"
                 id="apartment"
                 control={control}
-                placeholder={t('RegistrationPage.placeholder.placeholderName')}
+                placeholder={t('RegistrationPage.placeholder.name')}
                 error={errors.apartment}
                 className={errors.apartment ? 'shake' : ''}
               />
