@@ -19,9 +19,9 @@ export interface IDocumentInfo {
 
 export interface IAddress {
   city: string;
+  street: string;
+  building: string;
+  apartment: string;
   // TODO: uncomment when fields are created
-  // street: string;
-  // building: number;
-  // apartment: number;
   // postcode: number;
 }

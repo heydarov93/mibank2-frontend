@@ -19,6 +19,9 @@ const enum FieldName {
   phoneNumber = 'phoneNumber',
   passportNumber = 'passportNumber',
   peselNumber = 'peselNumber',
+  street = 'street',
+  building = 'building',
+  apartment = 'apartment',
 }
 
 interface InputFieldProps<T extends FieldValues> {
