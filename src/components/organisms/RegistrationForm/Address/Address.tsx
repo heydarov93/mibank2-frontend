@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from './Address.styled';
 
-import { SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { IAddress } from 'models/IRegistration';
 import { setAddressData } from 'store/reducers/RegistrationSlice';
@@ -31,6 +31,9 @@ export const Address = () => {
     mode: 'onBlur',
     defaultValues: {
       city: '',
+      street: '',
+      building: '',
+      apartment: '',
     },
   });
 
@@ -44,15 +47,56 @@ export const Address = () => {
       <StyledForm>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="passportNumber">
+            <StyledLabel htmlFor="city">
               {t('RegistrationPage.inputName.labelCity')}
             </StyledLabel>
             <CitySelectField
               name="city"
               control={control}
-              error={errors?.city}
+              error={errors.city}
               className={errors.city ? 'shake' : ''}
             />
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <StyledLabel htmlFor="street">
+              {t('RegistrationPage.inputName.labelStreet')}
+            </StyledLabel>
+            <InputField
+              name="street"
+              id="street"
+              control={control}
+              placeholder={t('RegistrationPage.placeholder.placeholderName')}
+              error={errors.street}
+              className={errors.street ? 'shake' : ''}
+            />
+          </Box>
+          <Box sx={{ display: 'flex', gap: 'inherit', width: '100%' }}>
+            <Box sx={{ flex: 1 }}>
+              <StyledLabel htmlFor="building">
+                {t('RegistrationPage.inputName.labelBuilding')}
+              </StyledLabel>
+              <InputField
+                name="building"
+                id="building"
+                control={control}
+                placeholder={t('RegistrationPage.placeholder.placeholderName')}
+                error={errors.building}
+                className={errors.building ? 'shake' : ''}
+              />
+            </Box>
+            <Box sx={{ flex: 1 }}>
+              <StyledLabel htmlFor="apartment">
+                {t('RegistrationPage.inputName.labelApartment')}
+              </StyledLabel>
+              <InputField
+                name="apartment"
+                id="apartment"
+                control={control}
+                placeholder={t('RegistrationPage.placeholder.placeholderName')}
+                error={errors.apartment}
+                className={errors.apartment ? 'shake' : ''}
+              />
+            </Box>
           </Box>
         </StyledFormContent>
         <SubmitButton
