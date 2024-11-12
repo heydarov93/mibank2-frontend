@@ -65,9 +65,7 @@ export const PassportIssueDate = <T extends FieldValues>({
               textField: {
                 name: 'passportIssueDate',
                 id: 'passportIssueDate',
-                placeholder: t(
-                  'RegistrationPage.placeholder.placeholderDateOfBirth',
-                ),
+                placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
                 onKeyDown: (e) => {
                   e.preventDefault();
                 },
