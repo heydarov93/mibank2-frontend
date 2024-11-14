@@ -90,6 +90,7 @@
     "addressTitle": "Address",
     "buttonLabelContinue": "Continue",
     "buttonLabelSaveAndProceed": "Save and proceed",
+    "buttonBackArrow": "Back",
     "inputName": {
       "labelName": "Name",
       "labelSurname": "Surname",
@@ -113,6 +114,12 @@
       "name": "Enter here",
       "dateOfBirth": "Pick the date",
       "selectField": "Choose here"
+    },
+    "navigationWarningModal": {
+      "title": "Leaving the page?",
+      "contentText": "Are you sure that you want to leave the page? The changes on this page will not be saved.",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     },
     "requiredField": "The field is required",
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",

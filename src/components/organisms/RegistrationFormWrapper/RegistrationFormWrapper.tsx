@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { MiBankStepper } from '../MiBankStepper/MiBankStepper';
 import { Address } from '../RegistrationForm/Address/Address';
@@ -8,12 +10,29 @@ import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
 
 import { StyledBoxContainer } from './RegistrationFormWrapper.styled';
 
-import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
+import { NavigationWarningModal } from 'components/atoms';
+import { BackArrow } from 'components/atoms';
 import { EStepper } from 'enums/EStepper';
 import { getStep } from 'store/selectors/StepperSelectors';
 
 export const RegistrationFormWrapper = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const step = useSelector(getStep);
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleConfirm = () => {
+    setModalOpen(false);
+    navigate(-1);
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false);
+  };
 
   const renderFormStep = () => {
     switch (step) {
@@ -32,7 +51,12 @@ export const RegistrationFormWrapper = () => {
 
   return (
     <StyledBoxContainer>
-      <BackArrow />
+      <BackArrow onBackClick={handleBackClick} />
+      <NavigationWarningModal
+        open={isModalOpen}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
       <MiBankStepper />
       {renderFormStep()}
     </StyledBoxContainer>
