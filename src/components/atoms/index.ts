@@ -1,9 +1,11 @@
 export { BackButton } from './BackButton/BackButton';
+export { BackArrow } from './BackArrow/BackArrow';
 export { ButtonLink } from './ButtonLink/ButtonLink';
 export { GooglePlayIcon } from './GooglePlayIcon/GooglePlayIcon';
-export { AppStoreIcon} from './AppStoreIcon/AppStoreIcon';
+export { AppStoreIcon } from './AppStoreIcon/AppStoreIcon';
 export { InputField } from './InputField/InputField';
 export { LockIcon } from './LockIcon/LockIcon';
 export { Logo, ELogoSize } from './Logo/Logo';
 export { SubmitButton } from './SubmitButton/SubmitButton';
 export { ValidationTag } from './ValidationTag/ValidationTag';
+export { NavigationWarningModal } from './NavigationWarningModal/NavigationWarningModal';

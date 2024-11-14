@@ -1,18 +1,15 @@
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { StyledBackArrow } from './BackArrow.styled';
 
-export const BackArrow = () => {
-  const navigate = useNavigate();
+export const BackArrow = ({ onBackClick }: { onBackClick?: () => void }) => {
+  const { t } = useTranslation('translation');
 
-  const handleClick = () => {
-    navigate(-1);
-  };
   return (
-    <StyledBackArrow onClick={handleClick}>
+    <StyledBackArrow onClick={onBackClick}>
       <KeyboardArrowLeftIcon />
-      Back
+      {t('RegistrationPage.buttonBackArrow')}
     </StyledBackArrow>
   );
 };
