@@ -104,7 +104,8 @@
       "labelCity": "City",
       "labelStreet": "Street",
       "labelBuilding": "Building",
-      "labelApartment": "Apartment"
+      "labelApartment": "Apartment",
+      "labelPostcode": "Postcode"
     },
     "phoneNumber": {
       "label": "Phone number",
@@ -113,7 +114,8 @@
     "placeholder": {
       "name": "Enter here",
       "dateOfBirth": "Pick the date",
-      "selectField": "Choose here"
+      "selectField": "Choose here",
+      "postcodeField": "12-345"
     },
     "navigationWarningModal": {
       "title": "Leaving the page?",
@@ -125,6 +127,7 @@
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
     "errorBuildingAndApartmentFormat": "Only Latin letters and digits are acceptable",
     "errorMaxLenName": "Name should not exceed 40 characters",
+    "errorMaxLenSurname": "Surname should not exceed 80 characters",
     "errorMaxLenStreet": "Street should not exceed 100 characters",
     "errorMaxLenBuilding": "Building should not exceed 10 characters",
     "errorMaxLenApartment": "Apartment should not exceed 10 characters",
@@ -132,7 +135,11 @@
     "errorPassportNumMaxLen": "Passport number should not exceed 20 characters",
     "errorPassportNumFormat": "Passport number should contain only uppercase letters and digits",
     "errorPeselDigits": "PESEL numbers format: 11 digits",
-    "errorPeselFormat": "Input must be a number"
+    "errorPeselFormat": "Input must be a number",
+    "errorAddressFormat": "Your address does not exist please enter the postcode manually ",
+    "errorPostcodeFormat": "Only digits are acceptable",
+    "errorPostcodeMinLength": "Postcode format: XX-XXX",
+    "errorPostcodeMaxLength": "Postcode should not exceed 5 characters"
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",

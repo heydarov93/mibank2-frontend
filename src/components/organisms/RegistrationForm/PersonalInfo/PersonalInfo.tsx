@@ -31,7 +31,7 @@ export const PersonalInfo = () => {
     handleSubmit,
   } = useForm<IPersonalInfo>({
     resolver: yupResolver(validationRegistrationSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
     defaultValues: {
       name: '',
       surname: '',

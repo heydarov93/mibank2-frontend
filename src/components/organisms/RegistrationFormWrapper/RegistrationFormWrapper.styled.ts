@@ -11,7 +11,7 @@ export const StyledBoxContainer = styled(Box)(
     paddingLeft: spacing(6),
     paddingRight: spacing(6),
     paddingTop: spacing(12),
-    paddingBottom: spacing(3),
+    paddingBottom: spacing(6),
     backgroundColor: palette.common.white,
     [breakpoints.down('sm')]: {
       paddingTop: spacing(2),

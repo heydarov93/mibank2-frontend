@@ -14,7 +14,9 @@ export const StyledDatePicker = styled(DatePicker)(
           borderColor: 'secondary.main',
         },
       },
-
+      input: {
+        '-webkit-text-fill-color': palette.common.black,
+      },
       '&.Mui-disabled': {
         '& .MuiOutlinedInput-notchedOutline': {
           borderColor: palette.grey[300],

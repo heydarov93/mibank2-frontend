@@ -7,6 +7,7 @@ export const endpoints = {
       userInformation: '/uas/api/user/details',
       checkEmail: '/uas/api/user/email',
       registerNewUser: '/uas/api/user/signup',
+      getPostcode: '/uas/api/user/postcode',
     },
   },
   contactInfo: {

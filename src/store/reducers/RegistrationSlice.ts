@@ -38,8 +38,7 @@ const initialState: RegistrationSlice = {
     street: '',
     building: '',
     apartment: '',
-    // TODO: uncomment when fields are created
-    // postcode: 0,
+    postcode: '',
   },
   error: null,
   loading: false,

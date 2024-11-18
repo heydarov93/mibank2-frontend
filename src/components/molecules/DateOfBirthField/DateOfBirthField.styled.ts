@@ -9,7 +9,7 @@ export const StyledDatePicker = styled(DatePicker, {
       border: '3px solid red',
       outline: `1px solid ${hasError ? palette.error.main : palette.grey[300]}`,
     },
-    '& .MuiOutlinedInput-notchedOutline': {
+    '&.MuiOutlinedInput-notchedOutline': {
       borderRadius: 8,
       border: `1px solid ${palette.grey[300]}`,
     },
@@ -18,6 +18,9 @@ export const StyledDatePicker = styled(DatePicker, {
       '& .MuiOutlinedInput-notchedOutline': {
         borderColor: 'secondary.main',
       },
+    },
+    input: {
+      '-webkit-text-fill-color': palette.common.black,
     },
 
     '&.Mui-disabled': {

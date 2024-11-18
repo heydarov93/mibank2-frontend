@@ -102,7 +102,7 @@ export const DocumentInfo = () => {
           isDisabled={!isValidForm}
           onClick={handleSubmit(onSubmit)}
           buttonContent={t('SignupPage.buttonLabelContinue')}
-        ></SubmitButton>
+        />
       </StyledForm>
     </StyledBoxContainer>
   );

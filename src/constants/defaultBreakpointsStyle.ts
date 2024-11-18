@@ -9,7 +9,7 @@ export const defaultBreakpointsStyle = styled('form')(
     },
 
     [breakpoints.up('md')]: {
-      width: 675,
+      width: 420,
     },
   }),
 );

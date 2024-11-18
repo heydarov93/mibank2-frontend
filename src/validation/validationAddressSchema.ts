@@ -31,4 +31,14 @@ export const validationAddressSchema = yup.object().shape({
       i18n.t(`${personalPage}.errorBuildingAndApartmentFormat`),
     )
     .max(10, i18n.t(`${personalPage}.errorMaxLenApartment`)),
+  postcode: yup
+    .string()
+    .trim()
+    .required(i18n.t(`${personalPage}.requiredField`))
+    .max(6, i18n.t(`${personalPage}.errorPostcodeMaxLength`))
+    .min(6, i18n.t(`${personalPage}.errorPostcodeMinLength`))
+    .matches(
+      REG_EXP.DigitsRegExp,
+      i18n.t(`${personalPage}.errorPostcodeFormat`),
+    ),
 });
