@@ -1,4 +1,5 @@
-import { Autocomplete, Box } from '@mui/material';
+import { Autocomplete, Box, createFilterOptions } from '@mui/material';
+import { KeyboardEvent } from 'react';
 import {
   Controller,
   Control,
@@ -17,13 +18,27 @@ interface CountrySelectFieldProps<T extends FieldValues> {
   control: Control<T>;
   error?: FieldError;
   className?: string;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
+
+interface CountryOptionType {
+  code: string;
+  label: string;
+  phone: string;
+  isInEurope?: boolean;
+}
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option: CountryOptionType) => option.label,
+});
 
 export const CountrySelectField = <T extends FieldValues>({
   name,
   control,
   error,
   className,
+  onKeyDown,
 }: CountrySelectFieldProps<T>) => {
   const { t } = useTranslation('translation');
   return (
@@ -42,6 +57,7 @@ export const CountrySelectField = <T extends FieldValues>({
             options={countries}
             disableClearable
             getOptionLabel={(option) => option.label}
+            filterOptions={filterOptions}
             onChange={(_, value) => field.onChange(value?.label)}
             isOptionEqualToValue={(option, value) =>
               option.label === value?.label
@@ -58,6 +74,7 @@ export const CountrySelectField = <T extends FieldValues>({
                 placeholder={t('RegistrationPage.placeholder.selectField')}
                 error={!!error}
                 className={className}
+                onKeyDown={onKeyDown}
               />
             )}
           />

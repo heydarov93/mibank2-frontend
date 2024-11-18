@@ -128,6 +128,7 @@
     "errorMaxLenStreet": "Street should not exceed 100 characters",
     "errorMaxLenBuilding": "Building should not exceed 10 characters",
     "errorMaxLenApartment": "Apartment should not exceed 10 characters",
+    "errorPassportNumMinLen": "Passport number should be at least 6 characters",
     "errorPassportNumMaxLen": "Passport number should not exceed 20 characters",
     "errorPassportNumFormat": "Passport number should contain only uppercase letters and digits",
     "errorPeselDigits": "PESEL numbers format: 11 digits",

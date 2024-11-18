@@ -14,6 +14,7 @@ import {
 
 import { InputField, SubmitButton } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
+import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { IAddress } from 'models/IRegistration';
 import { setAddressData } from 'store/reducers/RegistrationSlice';
 import { validationAddressSchema } from 'validation';
@@ -55,6 +56,14 @@ export const Address = () => {
               control={control}
               error={errors.city}
               className={errors.city ? 'shake' : ''}
+              onKeyDown={(e) => {
+                if (
+                  !/^[a-zA-Z]+$/.test(e.key) &&
+                  !ALLOWED_KEYS.includes(e.key)
+                ) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Box>
           <Box sx={{ width: '100%' }}>

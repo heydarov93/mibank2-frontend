@@ -8,6 +8,7 @@ export const validationDocumentInfoSchema = yup.object().shape({
     .string()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(/^[A-Z0-9]+$/, i18n.t(`${personalPage}.errorPassportNumFormat`))
+    .min(6, i18n.t(`${personalPage}.errorPassportNumMinLen`))
     .max(20, i18n.t(`${personalPage}.errorPassportNumMaxLen`)),
   issueDate: yup.string().required(i18n.t(`${personalPage}.requiredField`)),
   expirationDate: yup

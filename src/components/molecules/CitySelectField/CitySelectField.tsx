@@ -1,4 +1,5 @@
-import { Autocomplete, Box } from '@mui/material';
+import { Autocomplete, Box, createFilterOptions } from '@mui/material';
+import { KeyboardEvent } from 'react';
 import {
   Controller,
   Control,
@@ -20,6 +21,7 @@ interface CountrySelectFieldProps<T extends FieldValues> {
   control: Control<T>;
   error?: FieldError;
   className?: string;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 interface CityOptionType {
@@ -27,24 +29,17 @@ interface CityOptionType {
   voivodeship: string;
 }
 
-const filterOptions = (
-  options: CityOptionType[],
-  { inputValue }: { inputValue: string },
-) => {
-  const lowercasedInput = inputValue.toLowerCase();
-
-  return options.filter(
-    (option) =>
-      option.city.toLowerCase().startsWith(lowercasedInput) ||
-      option.voivodeship.toLowerCase().startsWith(lowercasedInput),
-  );
-};
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option: CityOptionType) => option.city,
+});
 
 export const CitySelectField = <T extends FieldValues>({
   name,
   control,
   error,
   className,
+  onKeyDown,
 }: CountrySelectFieldProps<T>) => {
   const { t } = useTranslation('translation');
 
@@ -79,6 +74,7 @@ export const CitySelectField = <T extends FieldValues>({
                 placeholder={t('RegistrationPage.placeholder.selectField')}
                 error={!!error}
                 className={className}
+                onKeyDown={onKeyDown}
               />
             )}
           />
