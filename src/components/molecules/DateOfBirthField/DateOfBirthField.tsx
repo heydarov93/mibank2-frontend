@@ -24,6 +24,7 @@ import { IPersonalInfo } from 'models/IRegistration';
 dayjs.extend(updateLocale);
 const today = dayjs();
 const minDate = today.subtract(16, 'year');
+const maxAge = today.subtract(120, 'year');
 dayjs.updateLocale('en', {
   weekStart: 1,
 });
@@ -56,6 +57,7 @@ export const DateOfBirthField = <T extends FieldValues>({
               hasError={hasError}
               value={field.value ? field.value : null}
               maxDate={minDate}
+              minDate={maxAge}
               dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
               showDaysOutsideCurrentMonth
               format="DD/MM/YYYY"
@@ -73,7 +75,7 @@ export const DateOfBirthField = <T extends FieldValues>({
                 },
                 textField: {
                   id: 'dateOfBirth',
-
+                  disabled: true,
                   placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
                   onKeyDown: (e) => e.preventDefault(),
                 },

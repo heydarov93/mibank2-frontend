@@ -22,6 +22,5 @@ export interface IAddress {
   street: string;
   building: string;
   apartment: string;
-  // TODO: uncomment when fields are created
-  // postcode: number;
+  postcode: string;
 }

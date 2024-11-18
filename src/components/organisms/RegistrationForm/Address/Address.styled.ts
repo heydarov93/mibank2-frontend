@@ -9,7 +9,7 @@ export const StyledBoxContainer = styled(Box)(
     flexDirection: 'column',
     alignItems: 'center',
     flexBasis: '70%',
-    paddingTop: spacing(12),
+    paddingTop: spacing(10),
     backgroundColor: 'white',
     [breakpoints.down('sm')]: {
       paddingTop: spacing(0),
@@ -50,7 +50,6 @@ export const StyledFormTitle = styled(Typography)(
       fontSize: 24,
       fontWeight: 600,
     },
-
     [breakpoints.up('md')]: {
       marginTop: '18px',
     },

@@ -22,6 +22,7 @@ const enum FieldName {
   street = 'street',
   building = 'building',
   apartment = 'apartment',
+  postcode = 'postcode',
 }
 
 interface InputFieldProps<T extends FieldValues> {
@@ -44,6 +45,7 @@ interface InputFieldProps<T extends FieldValues> {
   onFocus?: (e: SyntheticEvent) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onPaste?: (e: SyntheticEvent) => void;
+  onChange?: (e: SyntheticEvent) => void;
 }
 
 export const InputField = <T extends FieldValues>({
@@ -62,6 +64,7 @@ export const InputField = <T extends FieldValues>({
   onFocus,
   onKeyDown,
   onPaste,
+  onChange,
   InputProps,
   maxLength,
 }: InputFieldProps<T>) => (
@@ -88,6 +91,7 @@ export const InputField = <T extends FieldValues>({
           ...InputProps,
           inputProps: {
             maxLength,
+            onChange: onChange,
           },
         }}
         {...field}

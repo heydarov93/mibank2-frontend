@@ -12,7 +12,7 @@ export const StyledStepper = styled(Stepper)(
     },
 
     [breakpoints.up('md')]: {
-      width: 675,
+      width: 420,
     },
 
     '& .MuiStepLabel-iconContainer': {

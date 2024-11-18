@@ -19,6 +19,7 @@ import StepperReducer from './reducers/StepperSlice';
 import { authApi } from 'api/authApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { contactInfoApi } from 'api/contactInfoApi';
+import { getPostcode } from 'api/getPostcode';
 import { registerNewUserApi } from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   [userInfoApi.reducerPath]: userInfoApi.reducer,
   [contactInfoApi.reducerPath]: contactInfoApi.reducer,
   [checkEmailApi.reducerPath]: checkEmailApi.reducer,
+  [getPostcode.reducerPath]: getPostcode.reducer,
   [registerNewUserApi.reducerPath]: registerNewUserApi.reducer,
 });
 
@@ -41,6 +43,7 @@ const persistConfig = {
   blacklist: [
     authApi.reducerPath,
     userInfoApi.reducerPath,
+    getPostcode.reducerPath,
     contactInfoApi.reducerPath,
     checkEmailApi.reducerPath,
     registerNewUserApi.reducerPath,
@@ -59,6 +62,7 @@ const store = configureStore({
     }).concat([
       authApi.middleware,
       userInfoApi.middleware,
+      getPostcode.middleware,
       contactInfoApi.middleware,
       checkEmailApi.middleware,
       registerNewUserApi.middleware,

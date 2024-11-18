@@ -22,6 +22,7 @@ import { IDocumentInfo } from 'models/IRegistration';
 dayjs.extend(updateLocale);
 const today = dayjs();
 const minDate = today.add(1, 'year');
+const maxDate = today.add(20, 'year');
 dayjs.updateLocale('en', {
   weekStart: 1,
 });
@@ -48,6 +49,7 @@ export const PassportExpirationDate = <T extends FieldValues>({
             {...field}
             value={field.value ? field.value : null}
             minDate={minDate}
+            maxDate={maxDate}
             dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
             showDaysOutsideCurrentMonth
             format="DD/MM/YYYY"
@@ -66,6 +68,7 @@ export const PassportExpirationDate = <T extends FieldValues>({
                 name: 'passportExpirationDate',
                 id: 'passportExpirationDate',
                 placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
+                disabled: true,
                 onKeyDown: (e) => {
                   e.preventDefault();
                 },

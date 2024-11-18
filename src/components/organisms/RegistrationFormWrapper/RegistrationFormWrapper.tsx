@@ -27,7 +27,7 @@ export const RegistrationFormWrapper = () => {
 
   const handleConfirm = () => {
     setModalOpen(false);
-    navigate(-1);
+    navigate('/signin');
   };
 
   const handleCancel = () => {

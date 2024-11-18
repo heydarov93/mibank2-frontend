@@ -7,4 +7,5 @@ export const REG_EXP: { [field: string]: RegExp } = {
   nameRegExp: /^[A-ZА-ЯЁ][a-zа-яё'-]*$/g,
   streetRegExp: /^[A-Za-zА-Яа-яЁё0-9 -]+$/g,
   latinLettersAndDigitsRegExp: /^[A-Za-z0-9]+$/g,
+  DigitsRegExp: /^[\d-]+$/,
 };

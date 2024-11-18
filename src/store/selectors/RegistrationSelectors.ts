@@ -1,12 +1,12 @@
 import { RootState } from 'store';
 
 export const getLoading = (state: RootState) => state.registration.loading;
-export const setPersonalInfoData = (state: RootState) =>
+export const getPersonalInfoData = (state: RootState) =>
   state.registration.personalData;
-export const setLegalStatusData = (state: RootState) =>
+export const getLegalStatusData = (state: RootState) =>
   state.registration.legalStatus;
-export const setDocumentInfoData = (state: RootState) =>
+export const getDocumentInfoData = (state: RootState) =>
   state.registration.documentInfo;
-export const setAddressData = (state: RootState) => state.registration.address;
+export const getAddressData = (state: RootState) => state.registration.address;
 
 export const errorMessage = (state: RootState) => state.registration.error;
