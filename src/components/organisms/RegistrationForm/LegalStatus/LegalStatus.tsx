@@ -14,6 +14,7 @@ import {
 
 import { InputField, SubmitButton } from 'components/atoms';
 import { CountrySelectField } from 'components/molecules';
+import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { EStepper } from 'enums/EStepper';
 import { ILegalStatus } from 'models/IRegistration';
 import { setLegalStatusData } from 'store/reducers/RegistrationSlice';
@@ -61,6 +62,14 @@ export const LegalStatus = () => {
               control={control}
               error={errors?.citizenship}
               className={errors.citizenship ? 'shake' : ''}
+              onKeyDown={(e) => {
+                if (
+                  !/^[a-zA-Z]+$/.test(e.key) &&
+                  !ALLOWED_KEYS.includes(e.key)
+                ) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -72,6 +81,14 @@ export const LegalStatus = () => {
               control={control}
               error={errors?.taxResidenceCountry}
               className={errors.taxResidenceCountry ? 'shake' : ''}
+              onKeyDown={(e) => {
+                if (
+                  !/^[a-zA-Z]+$/.test(e.key) &&
+                  !ALLOWED_KEYS.includes(e.key)
+                ) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -86,6 +103,11 @@ export const LegalStatus = () => {
               error={errors.peselNumber}
               placeholder={t('RegistrationPage.placeholder.name')}
               maxLength={11}
+              onKeyDown={(e) => {
+                if (!/^\d$/.test(e.key) && !ALLOWED_KEYS.includes(e.key)) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Box>
         </StyledFormContent>

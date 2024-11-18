@@ -17,6 +17,7 @@ import {
   PassportExpirationDate,
   PassportIssueDate,
 } from 'components/molecules';
+import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { EStepper } from 'enums/EStepper';
 import { IDocumentInfo } from 'models/IRegistration';
 import { setDocumentInfoData } from 'store/reducers/RegistrationSlice';
@@ -66,6 +67,14 @@ export const DocumentInfo = () => {
               className={errors.passportNumber ? 'shake' : ''}
               error={errors.passportNumber}
               placeholder={t('RegistrationPage.placeholder.name')}
+              onKeyDown={(e) => {
+                if (
+                  !/^[A-Z0-9]+$/.test(e.key) &&
+                  !ALLOWED_KEYS.includes(e.key)
+                ) {
+                  e.preventDefault();
+                }
+              }}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
