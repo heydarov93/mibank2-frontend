@@ -752,7 +752,7 @@ export const countries: readonly CountryType[] = [
   },
   {
     code: 'FM',
-    label: 'Micronesia, Federated States of',
+    label: 'Micronesia, Federated States of Micronesia',
     phone: '691',
   },
   {

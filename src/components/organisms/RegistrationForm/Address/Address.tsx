@@ -38,6 +38,7 @@ export const Address = () => {
 
   const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
+  const regExpPreventSpecialAndSpace = /^[a-zA-Z1-9]+$/;
 
   const {
     formState: { errors, isValid },
@@ -150,6 +151,11 @@ export const Address = () => {
                 placeholder={t('RegistrationPage.placeholder.name')}
                 error={errors.building}
                 className={errors.building ? 'shake' : ''}
+                onKeyDown={(e) => {
+                  if (!regExpPreventSpecialAndSpace.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
               />
             </Box>
             <Box sx={{ flex: 1 }}>
@@ -163,6 +169,11 @@ export const Address = () => {
                 placeholder={t('RegistrationPage.placeholder.name')}
                 error={errors.apartment}
                 className={errors.apartment ? 'shake' : ''}
+                onKeyDown={(e) => {
+                  if (!regExpPreventSpecialAndSpace.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
               />
             </Box>
           </Box>
