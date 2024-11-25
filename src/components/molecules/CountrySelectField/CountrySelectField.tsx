@@ -1,5 +1,5 @@
 import { Autocomplete, Box, createFilterOptions } from '@mui/material';
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,
   Control,
@@ -18,6 +18,7 @@ interface CountrySelectFieldProps<T extends FieldValues> {
   control: Control<T>;
   error?: FieldError;
   className?: string;
+  helperText?: string | ReactNode;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
@@ -37,6 +38,7 @@ export const CountrySelectField = <T extends FieldValues>({
   name,
   control,
   error,
+  helperText,
   className,
   onKeyDown,
 }: CountrySelectFieldProps<T>) => {
@@ -73,6 +75,7 @@ export const CountrySelectField = <T extends FieldValues>({
                 {...params}
                 placeholder={t('RegistrationPage.placeholder.selectField')}
                 error={!!error}
+                helperText={helperText || error?.message}
                 className={className}
                 onKeyDown={onKeyDown}
               />

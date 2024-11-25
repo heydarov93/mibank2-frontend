@@ -6,7 +6,7 @@ const personalPage = 'RegistrationPage';
 export const validationLegalStatusSchema = yup.object().shape({
   peselNumber: yup
     .number()
-    .typeError(i18n.t(`${personalPage}.errorPeselFormat`))
+    .typeError(i18n.t(`${personalPage}.requiredField`))
     .required(i18n.t(`${personalPage}.requiredField`))
     .test(
       'len',

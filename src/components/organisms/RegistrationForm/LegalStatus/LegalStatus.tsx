@@ -60,7 +60,7 @@ export const LegalStatus = () => {
             <CountrySelectField
               name="citizenship"
               control={control}
-              error={errors?.citizenship}
+              error={errors.citizenship}
               className={errors.citizenship ? 'shake' : ''}
               onKeyDown={(e) => {
                 if (
