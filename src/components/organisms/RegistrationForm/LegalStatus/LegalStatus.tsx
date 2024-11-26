@@ -31,7 +31,7 @@ export const LegalStatus = () => {
     handleSubmit,
   } = useForm<ILegalStatus>({
     resolver: yupResolver(validationLegalStatusSchema),
-    mode: 'onBlur',
+    mode: 'all',
     defaultValues: {
       citizenship: '',
       taxResidenceCountry: '',

@@ -38,7 +38,7 @@ export const Address = () => {
 
   const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
-  const regExpPreventSpecialAndSpace = /^[a-zA-Z1-9]+$/;
+  const regExpPreventSpecialAndSpace = /^[a-zA-Z0-9]+$/;
 
   const {
     formState: { errors, isValid },
@@ -48,7 +48,7 @@ export const Address = () => {
     setValue,
   } = useForm<IAddress>({
     resolver: yupResolver(validationAddressSchema),
-    mode: 'onChange',
+    mode: 'all',
     defaultValues: {
       city: '',
       street: '',
