@@ -34,7 +34,7 @@ export const DocumentInfo = () => {
     handleSubmit,
   } = useForm<IDocumentInfo>({
     resolver: yupResolver(validationDocumentInfoSchema),
-    mode: 'onBlur',
+    mode: 'all',
     defaultValues: {
       passportNumber: '',
       issueDate: '',
