@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { MiBankStepper } from '../MiBankStepper/MiBankStepper';
 import { Address } from '../RegistrationForm/Address/Address';
-import { DocumentInfo } from '../RegistrationForm/DocumentInfo/DocumentInfo';
+import { DocumentInfoWrapper } from '../RegistrationForm/DocumentInfoWrapper/DocumentInfoWrapper';
 import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
 import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
 
@@ -41,7 +41,7 @@ export const RegistrationFormWrapper = () => {
       case EStepper.LEGAL_STATUS:
         return <LegalStatus />;
       case EStepper.DOCUMENT_INFO:
-        return <DocumentInfo />;
+        return <DocumentInfoWrapper />;
       case EStepper.ADDRESS:
         return <Address />;
       default:

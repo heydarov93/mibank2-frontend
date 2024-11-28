@@ -1,4 +1,4 @@
-import { Autocomplete, Box, createFilterOptions } from '@mui/material';
+import { Autocomplete, Box } from '@mui/material';
 import { KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,
@@ -30,10 +30,16 @@ interface CityOptionType {
   voivodeship: string;
 }
 
-const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option: CityOptionType) => option.city,
-});
+const filterOptions = (
+  options: CityOptionType[],
+  { inputValue }: { inputValue: string },
+) => {
+  const lowercasedInput = inputValue.toLowerCase();
+
+  return options.filter((option) =>
+    option.city.toLowerCase().startsWith(lowercasedInput),
+  );
+};
 
 export const CitySelectField = <T extends FieldValues>({
   name,

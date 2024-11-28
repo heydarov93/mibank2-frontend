@@ -48,23 +48,19 @@ export const CountrySelectField = <T extends FieldValues>({
       name={name}
       control={control}
       render={({ field }) => {
-        // TODO: use this later to store EU country info
-        // const selectedCountry = countries.find(
-        //   (country) => country.label === field.value,
-        // );
-
         return (
-          <Autocomplete
+          <Autocomplete<CountryOptionType>
             {...field}
             options={countries}
-            disableClearable
             getOptionLabel={(option) => option.label}
             filterOptions={filterOptions}
-            onChange={(_, value) => field.onChange(value?.label)}
+            onChange={(_, value) => field.onChange(value?.label || '')}
             isOptionEqualToValue={(option, value) =>
               option.label === value?.label
             }
-            value={field.value || undefined}
+            value={
+              countries.find((country) => country.label === field.value) || null
+            }
             renderOption={(props, option) => (
               <Box key={option.label} component="li" {...props}>
                 {option.label}

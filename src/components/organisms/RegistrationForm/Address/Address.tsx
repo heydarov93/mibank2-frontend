@@ -14,7 +14,7 @@ import {
 } from './Address.styled';
 
 import { useGetPostcodeMutation } from 'api/getPostcode';
-import { InputField, SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { ErrorStatus } from 'enums';
@@ -90,7 +90,9 @@ export const Address = () => {
       }
     }
   };
-
+  const onPreviousForm = () => {
+    dispatch(setStep(EStepper.DOCUMENT_INFO));
+  };
   const onSubmit = (data: IAddress) => {
     dispatch(setAddressData(data));
     dispatch(setStep(EStepper.PERSONAL_INFO));
@@ -193,11 +195,17 @@ export const Address = () => {
             />
           </Box>
         </StyledFormContent>
-        <SubmitButton
-          isDisabled={!isValid}
-          onClick={handleSubmit(onSubmit)}
-          buttonContent={t('RegistrationPage.buttonLabelSaveAndProceed')}
-        />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <SecondaryButton
+            onClick={onPreviousForm}
+            buttonContent={t('RegistrationPage.buttonBackArrow')}
+          />
+          <SubmitButton
+            isDisabled={!isValid}
+            onClick={handleSubmit(onSubmit)}
+            buttonContent={t('RegistrationPage.buttonLabelSaveAndProceed')}
+          />
+        </Box>
       </StyledForm>
     </StyledBoxContainer>
   );

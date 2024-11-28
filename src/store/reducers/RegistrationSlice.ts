@@ -4,6 +4,7 @@ import {
   IPersonalInfo,
   ILegalStatus,
   IDocumentInfo,
+  IEUDocumentInfo,
   IAddress,
 } from 'models/IRegistration';
 
@@ -11,6 +12,7 @@ interface RegistrationSlice {
   personalData: IPersonalInfo | undefined;
   legalStatus: ILegalStatus | undefined;
   documentInfo: IDocumentInfo | undefined;
+  euDocumentInfo: IEUDocumentInfo | undefined;
   address: IAddress | undefined;
   error: string | null;
   loading: boolean;
@@ -26,10 +28,15 @@ const initialState: RegistrationSlice = {
   legalStatus: {
     citizenship: '',
     taxResidenceCountry: '',
-    peselNumber: 0,
+    peselNumber: '',
   },
   documentInfo: {
     passportNumber: '',
+    issueDate: '',
+    expirationDate: '',
+  },
+  euDocumentInfo: {
+    idCardNumber: '',
     issueDate: '',
     expirationDate: '',
   },
@@ -72,6 +79,12 @@ const RegistrationSlice = createSlice({
     ) {
       state.documentInfo = action.payload;
     },
+    setEUDocumentInfoData(
+      state,
+      action: PayloadAction<IEUDocumentInfo | undefined>,
+    ) {
+      state.euDocumentInfo = action.payload;
+    },
     setAddressData(state, action: PayloadAction<IAddress | undefined>) {
       state.address = action.payload;
     },
@@ -85,6 +98,7 @@ export const {
   setPersonalInfoData,
   setLegalStatusData,
   setDocumentInfoData,
+  setEUDocumentInfoData,
   setAddressData,
 } = RegistrationSlice.actions;
 export default RegistrationSlice.reducer;
