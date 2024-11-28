@@ -1,7 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { IUserInfo } from '../models/IUserInfo';
-
 import { endpoints } from './endpoints';
 
 import { baseQueryCreator } from 'store/baseQueryCreator';
@@ -10,9 +8,14 @@ export const userInfoApi = createApi({
   reducerPath: 'userInfoApi',
   baseQuery: baseQueryCreator(),
   endpoints: (builder) => ({
-    getUserInfo: builder.query<IUserInfo, string>({
-      query: (email) =>
-        `${endpoints.userAccountManagement.users.userInformation}?email=${email}`,
+    getUserInfo: builder.query({
+      query: (data) => ({
+        url: `${endpoints.userAccountManagement.users.userInformation}?email=${data.email}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
     }),
   }),
 });
