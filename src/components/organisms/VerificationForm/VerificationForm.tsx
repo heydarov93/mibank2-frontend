@@ -11,8 +11,9 @@ import {
 import { VerificationTitle } from './VerificationTitle';
 
 import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
+import { useLazyGetUserInfoQuery } from 'api/userInfoApi';
 import { Timer } from 'components/molecules';
-import { ErrorStatus } from 'enums';
+import { ErrorStatus, EUserStatus } from 'enums';
 import {
   useAppDispatch,
   useAppSelector,
@@ -44,6 +45,7 @@ export const VerificationForm = ({
 
   const [sendcode] = useSendcodeMutation();
   const [verifyCode] = useVerifyCodeMutation();
+  const [triggerGetUserInfo] = useLazyGetUserInfoQuery();
 
   const token = localTokenHandler.getToken(TokenType.TEMPORARY);
   const expiredTimer = useAppSelector(getVerifyingTimer);
@@ -81,6 +83,14 @@ export const VerificationForm = ({
         verificationCode: value,
       }).unwrap();
 
+      const paramsForUserInfo = {
+        email: currentEmail,
+        token: data.accessToken,
+      };
+
+      const userInfoResult =
+        await triggerGetUserInfo(paramsForUserInfo).unwrap();
+
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
       if (localTokenHandler.getToken(TokenType.ACCESS)) {
         setIsCodeCorrect(true);
@@ -88,11 +98,18 @@ export const VerificationForm = ({
 
         setAuthData(true, currentEmail);
         localTokenHandler.clearToken(TokenType.TEMPORARY);
-
-        setTimeout(() => {
-          navigate('/');
-          dispatch(setVerifying(false));
-        }, 1000);
+        if (userInfoResult.status === EUserStatus.ACTIVE) {
+          setTimeout(() => {
+            navigate('/registration');
+            dispatch(setVerifying(false));
+          }, 1000);
+        }
+        if (userInfoResult.status === EUserStatus.REGISTRED) {
+          setTimeout(() => {
+            navigate('/');
+            dispatch(setVerifying(false));
+          }, 1000);
+        }
       }
     } catch (e) {
       setIsCodeWrong(true);
