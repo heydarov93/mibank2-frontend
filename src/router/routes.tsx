@@ -7,9 +7,9 @@ import {
   VerificationPage,
   SignupPageEmail,
   SignupPagePassword,
+  RegistrationPage,
+  SignupPageFinish,
 } from '../pages';
-import { RegistrationPage } from '../pages/RegistrationPage/RegistrationPage';
-import { SignupPageFinish } from '../pages/SignupPageFinish/SignupPageFinish';
 
 import { PrivateRoute } from './PrivateRoute';
 

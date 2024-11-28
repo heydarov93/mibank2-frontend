@@ -11,20 +11,21 @@ import {
   StyledFormContent,
   StyledBoxContainer,
   StyledLabel,
-} from './DocumentInfo.styled';
+} from './EUDocumentInfo.styled';
 
-import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
+import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { EStepper } from 'enums/EStepper';
-import { IDocumentInfo } from 'models/IRegistration';
-import { setDocumentInfoData } from 'store/reducers/RegistrationSlice';
+import { IEUDocumentInfo } from 'models/IRegistration';
+import { setEUDocumentInfoData } from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
-import { validationDocumentInfoSchema } from 'validation';
+import { validationEUDocumentInfoSchema } from 'validation';
 
-export const DocumentInfo = () => {
+export const EUDocumentInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
+
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -36,25 +37,21 @@ export const DocumentInfo = () => {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<IDocumentInfo>({
-    resolver: yupResolver(validationDocumentInfoSchema),
-    mode: 'all',
+  } = useForm<IEUDocumentInfo>({
+    resolver: yupResolver(validationEUDocumentInfoSchema),
+    mode: 'onBlur',
     defaultValues: {
-      passportNumber: '',
+      idCardNumber: '',
       issueDate: '',
       expirationDate: '',
     },
   });
 
-  const onSubmit = (data: IDocumentInfo) => {
-    dispatch(setDocumentInfoData(data));
+  const onSubmit = (data: IEUDocumentInfo) => {
+    dispatch(setEUDocumentInfoData(data));
     dispatch(setStep(EStepper.ADDRESS));
   };
-  const onPreviousForm = () => {
-    dispatch(setStep(EStepper.LEGAL_STATUS));
-  };
-
-  const passportRegExp = /^[A-Z0-9]+$/;
+  const idCardRegExp = /^[A-Z0-9]+$/;
   const isValidForm = isValid;
 
   return (
@@ -66,28 +63,28 @@ export const DocumentInfo = () => {
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportNumber">
-              {t('RegistrationPage.inputName.labelPassportNumber')}
+              {t('RegistrationPage.inputName.labelIDCardNumber')}
             </StyledLabel>
             <InputField
-              name="passportNumber"
-              id="passportNumber"
+              name="idCardNumber"
+              id="idCardNumber"
               control={control}
-              className={errors.passportNumber ? 'shake' : ''}
-              error={errors.passportNumber}
-              placeholder={t('RegistrationPage.placeholder.name')}
+              className={errors.idCardNumber ? 'shake' : ''}
+              error={errors.idCardNumber}
               onKeyDown={(e) => {
                 if (
-                  !passportRegExp.test(e.key) &&
+                  !idCardRegExp.test(e.key) &&
                   !ALLOWED_KEYS.includes(e.key)
                 ) {
                   e.preventDefault();
                 }
               }}
+              placeholder={t('RegistrationPage.placeholder.name')}
             />
           </Box>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportIssueDate">
-              {t('RegistrationPage.inputName.labelPassportIssueDate')}
+              {t('RegistrationPage.inputName.labelIssueDate')}
             </StyledLabel>
             <DocumentDatePicker
               name="issueDate"
@@ -100,7 +97,7 @@ export const DocumentInfo = () => {
           </Box>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportExpirationDate">
-              {t('RegistrationPage.inputName.labelPassportExpirationDate')}
+              {t('RegistrationPage.inputName.labelExpirationDate')}
             </StyledLabel>
             <DocumentDatePicker
               name="expirationDate"
@@ -112,17 +109,11 @@ export const DocumentInfo = () => {
             />
           </Box>
         </StyledFormContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <SecondaryButton
-            onClick={onPreviousForm}
-            buttonContent={t('RegistrationPage.buttonBackArrow')}
-          />
-          <SubmitButton
-            isDisabled={!isValidForm}
-            onClick={handleSubmit(onSubmit)}
-            buttonContent={t('SignupPage.buttonLabelContinue')}
-          />
-        </Box>
+        <SubmitButton
+          isDisabled={!isValidForm}
+          onClick={handleSubmit(onSubmit)}
+          buttonContent={t('SignupPage.buttonLabelContinue')}
+        ></SubmitButton>
       </StyledForm>
     </StyledBoxContainer>
   );

@@ -18,7 +18,7 @@ export const validationAddressSchema = yup.object().shape({
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(
-      REG_EXP.latinLettersAndDigitsRegExp,
+      REG_EXP.latinLettersDigitsSpecialRegExp,
       i18n.t(`${personalPage}.errorBuildingAndApartmentFormat`),
     )
     .max(10, i18n.t(`${personalPage}.errorMaxLenBuilding`)),
@@ -27,7 +27,7 @@ export const validationAddressSchema = yup.object().shape({
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(
-      REG_EXP.latinLettersAndDigitsRegExp,
+      REG_EXP.latinLettersDigitsSpecialRegExp,
       i18n.t(`${personalPage}.errorBuildingAndApartmentFormat`),
     )
     .max(10, i18n.t(`${personalPage}.errorMaxLenApartment`)),

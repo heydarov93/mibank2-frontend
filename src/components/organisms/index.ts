@@ -13,3 +13,4 @@ export { DocumentInfo } from './RegistrationForm/DocumentInfo/DocumentInfo';
 export { Address } from './RegistrationForm/Address/Address';
 export { RegistrationFormWrapper } from './RegistrationFormWrapper/RegistrationFormWrapper';
 export { MiBankStepper } from './MiBankStepper/MiBankStepper';
+export { DocumentInfoWrapper } from './RegistrationForm/DocumentInfoWrapper/DocumentInfoWrapper';

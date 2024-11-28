@@ -12,36 +12,45 @@ import {
   StyledLabel,
 } from './LegalStatus.styled';
 
-import { InputField, SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { CountrySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { countries } from 'constants/countries';
 import { EStepper } from 'enums/EStepper';
 import { ILegalStatus } from 'models/IRegistration';
 import { setLegalStatusData } from 'store/reducers/RegistrationSlice';
-import { setStep } from 'store/reducers/StepperSlice';
+import { setEU, setStep } from 'store/reducers/StepperSlice';
 import { validationLegalStatusSchema } from 'validation';
 
 export const LegalStatus = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-
+  const checkEUStatus = (countryLabel: string) => {
+    return countries.some(
+      (country) => country.label === countryLabel && country.isInEurope,
+    );
+  };
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
+    getValues,
   } = useForm<ILegalStatus>({
     resolver: yupResolver(validationLegalStatusSchema),
     mode: 'all',
     defaultValues: {
       citizenship: '',
       taxResidenceCountry: '',
-      peselNumber: undefined,
+      peselNumber: '',
     },
   });
-
+  const onPreviousForm = () => {
+    dispatch(setStep(EStepper.PERSONAL_INFO));
+  };
   const onSubmit = (data: ILegalStatus) => {
+    dispatch(setEU(checkEUStatus(getValues('citizenship'))));
     dispatch(setLegalStatusData(data));
-    dispatch(setStep(EStepper.DOCUMENT_INFO));
+    dispatch(setStep(2));
   };
 
   const isValidForm = isValid;
@@ -111,11 +120,17 @@ export const LegalStatus = () => {
             />
           </Box>
         </StyledFormContent>
-        <SubmitButton
-          isDisabled={!isValidForm}
-          onClick={handleSubmit(onSubmit)}
-          buttonContent={t('SignupPage.buttonLabelContinue')}
-        />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <SecondaryButton
+            onClick={onPreviousForm}
+            buttonContent={t('RegistrationPage.buttonBackArrow')}
+          />
+          <SubmitButton
+            isDisabled={!isValidForm}
+            onClick={handleSubmit(onSubmit)}
+            buttonContent={t('SignupPage.buttonLabelContinue')}
+          />
+        </Box>
       </StyledForm>
     </StyledBoxContainer>
   );

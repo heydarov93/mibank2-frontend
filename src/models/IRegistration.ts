@@ -8,11 +8,17 @@ export interface IPersonalInfo {
 export interface ILegalStatus {
   citizenship: string;
   taxResidenceCountry: string;
-  peselNumber: number;
+  peselNumber: string;
 }
 
 export interface IDocumentInfo {
   passportNumber: string;
+  issueDate: string;
+  expirationDate: string;
+}
+
+export interface IEUDocumentInfo {
+  idCardNumber: string;
   issueDate: string;
   expirationDate: string;
 }

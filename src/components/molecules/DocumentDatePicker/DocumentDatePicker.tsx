@@ -1,7 +1,7 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import {
   Controller,
@@ -15,14 +15,11 @@ import { useTranslation } from 'react-i18next';
 import {
   StyledDatePicker,
   StyledTextButtons,
-} from './PassportExpirationDate.styled';
+} from './DocumentDatePicker.styled';
 
 import { IDocumentInfo } from 'models/IRegistration';
 
 dayjs.extend(updateLocale);
-const today = dayjs();
-const minDate = today.add(1, 'year');
-const maxDate = today.add(20, 'year');
 dayjs.updateLocale('en', {
   weekStart: 1,
 });
@@ -30,13 +27,19 @@ dayjs.updateLocale('en', {
 interface PassportExpFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
+  minDate: Dayjs;
+  maxDate: Dayjs;
+  placeholder: string;
   errors: FieldErrors<IDocumentInfo>;
   className?: string;
 }
 
-export const PassportExpirationDate = <T extends FieldValues>({
+export const DocumentDatePicker = <T extends FieldValues>({
   name,
   control,
+  minDate,
+  maxDate,
+  placeholder,
 }: PassportExpFieldProps<T>) => {
   const { t } = useTranslation('translation');
   return (
@@ -65,9 +68,9 @@ export const PassportExpirationDate = <T extends FieldValues>({
                 actions: ['cancel', 'accept'],
               },
               textField: {
-                name: 'passportExpirationDate',
-                id: 'passportExpirationDate',
-                placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
+                name,
+                id: name,
+                placeholder: t(`${placeholder}`),
                 disabled: true,
                 onKeyDown: (e) => {
                   e.preventDefault();
