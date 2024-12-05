@@ -221,6 +221,12 @@ export const LoginForm = () => {
           errors={errors}
           isFormDisabled={isFormDisabled}
         />
+        <ButtonLink
+          message=""
+          linkText="LoginPage.formBtnForgotPassword"
+          href="/forgot-password"
+        />
+
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={buttonContent}

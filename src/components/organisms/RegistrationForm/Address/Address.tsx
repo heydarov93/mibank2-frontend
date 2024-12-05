@@ -1,9 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { SyntheticEvent } from 'react';
+import dayjs from 'dayjs';
+import { SyntheticEvent, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
   StyledFormTitle,
@@ -14,17 +16,30 @@ import {
 } from './Address.styled';
 
 import { useGetPostcodeMutation } from 'api/getPostcode';
+import { usePostRegistrationInfoMutation } from 'api/postRegistrationInfoApi';
 import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { TO_HOME } from 'constants/routesName';
 import { ErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
 import { IAddress } from 'models/IRegistration';
+import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { setError } from 'store/reducers';
 import { setAddressData } from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
+import {
+  getAddressData,
+  getDocumentInfoData,
+  getEUDocumentInfoData,
+  getLegalStatusData,
+  getPersonalInfoData,
+  getPhoneCode,
+} from 'store/selectors/RegistrationSelectors';
+import { getEU } from 'store/selectors/StepperSelectors';
 import { validationAddressSchema } from 'validation';
+
 interface IPostCodeAddress {
   postcode: string;
 }
@@ -35,6 +50,17 @@ export const Address = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const [getPost] = useGetPostcodeMutation();
+  const isEU = useSelector(getEU) ? 'EU' : 'NON_EU';
+  const personalInfoData = useSelector(getPersonalInfoData);
+  const legalInfoData = useSelector(getLegalStatusData);
+  const addressData = useSelector(getAddressData);
+  const [postRegistrationInfo] = usePostRegistrationInfoMutation();
+  const navigate = useNavigate();
+
+  const codePhone = useSelector(getPhoneCode);
+  const documentInfoData = useSelector(getEU)
+    ? useSelector(getEUDocumentInfoData)
+    : useSelector(getDocumentInfoData);
 
   const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
@@ -71,6 +97,7 @@ export const Address = () => {
         const resp: IPostCodeResponse = await getPost({
           address: `${city} ${street} ${building} ${apartment} `,
         }).unwrap();
+
         if (resp.address?.postcode) {
           setValue('postcode', resp.address.postcode);
         } else {
@@ -79,7 +106,6 @@ export const Address = () => {
       }
     } catch (e) {
       const error = e as IErrorData;
-
       switch (error.status) {
         case ErrorStatus.NOT_FOUND:
           dispatch(setError(t('RegistrationPage.errorAddressFormat')));
@@ -90,19 +116,87 @@ export const Address = () => {
       }
     }
   };
+
   const onPreviousForm = () => {
     dispatch(setStep(EStepper.DOCUMENT_INFO));
   };
-  const onSubmit = (data: IAddress) => {
-    dispatch(setAddressData(data));
-    dispatch(setStep(EStepper.PERSONAL_INFO));
-  };
-  const inputMask = (value: SyntheticEvent): void => {
-    const target = value.target as HTMLInputElement;
 
+  const postcodeInputMask = (value: SyntheticEvent): void => {
+    const target = value.target as HTMLInputElement;
     const formatted = target.value.replace(regExpPostcodeMask, '$1-$2');
     target.value = formatted;
   };
+
+  const createDataForApi = () => {
+    const data: IRegistrationForApi = {
+      personalInfo: {
+        firstName: personalInfoData.name,
+        lastName: personalInfoData.surname,
+        citizenship: legalInfoData.citizenship,
+        phoneNumber: String(personalInfoData.phoneNumber), //unique
+        phoneCode: codePhone,
+        taxResidenceCountry: legalInfoData.taxResidenceCountry,
+        pesel: legalInfoData.peselNumber, // unuque
+        birthDate: personalInfoData.dateOfBirth,
+      },
+      address: {
+        city: addressData.city,
+        street: addressData.street,
+        building: addressData.building,
+        apartment: addressData.apartment,
+        postCode: addressData.postcode,
+      },
+
+      document: {
+        number: documentInfoData.documentNumber, //unique
+        issueDate: documentInfoData.issueDate,
+        expiryDate: documentInfoData.expirationDate,
+        documentType: isEU,
+      },
+      registrationDate: dayjs().format('YYYY-MM-DD'),
+      email: localStorage.getItem('email') || '',
+      accessToken: localStorage.getItem('accessToken') || '',
+    };
+    return data;
+  };
+
+  const postRegistrationInfoFunction = async (data: IRegistrationForApi) => {
+    try {
+      if (data) {
+        await postRegistrationInfo(data);
+      } else {
+        throw new Error("You don't have data");
+      }
+    } catch (e) {
+      const error = e as IErrorData;
+      switch (error.status) {
+        case ErrorStatus.SERVER_ERROR:
+          dispatch(setError(t('RegistrationPage.errorServerUnacceptable')));
+          break;
+        case ErrorStatus.BAD_REQUEST:
+          dispatch(setError(t('RegistrationPage.errorBadRequest')));
+          break;
+        default:
+          dispatch(setError(t('LoginPage.serverError')));
+          break;
+      }
+    }
+  };
+
+  const formSubmitted = useRef(false);
+
+  const onSubmit = async (data: IAddress) => {
+    formSubmitted.current = true;
+    await dispatch(setAddressData(data));
+  };
+
+  useEffect(() => {
+    if (formSubmitted.current && addressData) {
+      const apiData = createDataForApi();
+      postRegistrationInfoFunction(apiData);
+      navigate(TO_HOME);
+    }
+  }, [addressData]);
 
   return (
     <StyledBoxContainer>
@@ -180,7 +274,7 @@ export const Address = () => {
             </Box>
           </Box>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="street">
+            <StyledLabel htmlFor="postcode">
               {t('RegistrationPage.inputName.labelPostcode')}
             </StyledLabel>
             <InputField
@@ -190,7 +284,7 @@ export const Address = () => {
               placeholder={t('RegistrationPage.placeholder.postcodeField')}
               error={errors.postcode}
               className={errors.postcode ? 'shake' : ''}
-              onChange={inputMask}
+              onChange={postcodeInputMask}
               maxLength={6}
             />
           </Box>

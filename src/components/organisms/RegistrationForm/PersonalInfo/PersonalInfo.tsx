@@ -1,4 +1,3 @@
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import { useEffect } from 'react';
@@ -20,16 +19,19 @@ import { DateOfBirthField, PhoneNumberField } from 'components/molecules';
 import { EStepper } from 'enums/EStepper';
 import { IPersonalInfo } from 'models/IRegistration';
 import { RootState } from 'store';
-import { setPersonalInfoData } from 'store/reducers/RegistrationSlice';
+import {
+  setPersonalInfoData,
+  setPhoneCode,
+} from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
 import { validationRegistrationSchema } from 'validation';
-
 
 export const PersonalInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-  const personalData: IPersonalInfo = useSelector((state: RootState) => state.registration.personalData as IPersonalInfo);
-
+  const personalData: IPersonalInfo = useSelector(
+    (state: RootState) => state.registration.personalData as IPersonalInfo,
+  );
 
   const {
     formState: { errors, isValid, touchedFields },
@@ -52,17 +54,31 @@ export const PersonalInfo = () => {
       surname: personalData.surname,
       dateOfBirth: personalData.dateOfBirth,
       phoneNumber: String(personalData.phoneNumber),
-    })
+    });
   }, [personalData, reset]);
 
+  const getPhoneCode = () => {
+    const codeCountry = document
+      .querySelector('.selected-flag')
+      ?.getAttribute('title');
+
+    if (codeCountry && codeCountry.includes('+')) {
+      const parts = codeCountry.split('+');
+      const countryCode = parts[1].trim();
+      return countryCode;
+    }
+
+    return null;
+  };
   const onSubmit = (data: IPersonalInfo) => {
     dispatch(setPersonalInfoData(data));
+    dispatch(setPhoneCode(getPhoneCode()));
     dispatch(setStep(EStepper.LEGAL_STATUS));
   };
 
-  const isValidForm = personalData ? isValid : isValid && Object.keys(touchedFields).length > 2;
-
-
+  const isValidForm = personalData
+    ? isValid
+    : isValid && Object.keys(touchedFields).length > 2;
 
   return (
     <StyledBoxContainer>

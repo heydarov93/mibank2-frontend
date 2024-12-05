@@ -1,6 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import {
+  TO_HOME,
+  TO_PAYMENTS,
+  TO_TRANSFERS,
+  TO_HISTORY,
+  TO_SIGN_IN,
+  TO_SIGN_UP_START,
+  TO_SIGN_UP_END,
+  TO_SIGN_UP_FINISHED,
+  TO_VERIFICATION,
+  TO_REGISTRATION,
+} from '../constants/routesName';
+import {
   ErrorPage,
   LoginPage,
   UnderDevPage,
@@ -17,7 +29,7 @@ import { App } from 'App';
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: TO_HOME,
     element: (
       <PrivateRoute>
         <App />
@@ -30,41 +42,41 @@ const routes = createBrowserRouter([
         element: <UnderDevPage />,
       },
       {
-        path: '/payments',
+        path: TO_PAYMENTS,
         element: <UnderDevPage />,
       },
       {
-        path: '/transfers',
+        path: TO_TRANSFERS,
         element: <UnderDevPage />,
       },
       {
-        path: '/history',
+        path: TO_HISTORY,
         element: <UnderDevPage />,
       },
     ],
   },
   {
-    path: '/signin',
+    path: TO_SIGN_IN,
     element: <LoginPage />,
   },
   {
-    path: '/signup-start',
+    path: TO_SIGN_UP_START,
     element: <SignupPageEmail />,
   },
   {
-    path: '/signup-end',
+    path: TO_SIGN_UP_END,
     element: <SignupPagePassword />,
   },
   {
-    path: '/signup-finished',
+    path: TO_SIGN_UP_FINISHED,
     element: <SignupPageFinish />,
   },
   {
-    path: '/verification',
+    path: TO_VERIFICATION,
     element: <VerificationPage />,
   },
   {
-    path: '/registration',
+    path: TO_REGISTRATION,
     element: <RegistrationPage />,
   },
 ]);

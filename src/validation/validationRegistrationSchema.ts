@@ -10,12 +10,20 @@ export const validationRegistrationSchema = yup.object().shape({
     .string()
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
+    .matches(
+      REG_EXP.capitalizeLetters,
+      i18n.t(`${personalPage}.errorNonCapitalName`),
+    )
     .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
     .max(40, i18n.t(`${personalPage}.errorMaxLenName`)),
   surname: yup
     .string()
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
+    .matches(
+      REG_EXP.capitalizeLetters,
+      i18n.t(`${personalPage}.errorNonCapitalSurname`),
+    )
     .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
     .max(80, i18n.t(`${personalPage}.errorMaxLenSurname`)),
   dateOfBirth: yup

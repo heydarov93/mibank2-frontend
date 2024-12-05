@@ -4,7 +4,7 @@ import i18n from 'i18n';
 const personalPage = 'RegistrationPage';
 
 export const validationDocumentInfoSchema = yup.object().shape({
-  passportNumber: yup
+  documentNumber: yup
     .string()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(/^[A-Z0-9]+$/, i18n.t(`${personalPage}.errorPassportNumFormat`))
@@ -17,7 +17,7 @@ export const validationDocumentInfoSchema = yup.object().shape({
 });
 
 export const validationEUDocumentInfoSchema = yup.object().shape({
-  idCardNumber: yup
+  documentNumber: yup
     .string()
     .required(i18n.t(`${personalPage}.requiredField`))
     .matches(/^[A-Z0-9]+$/, i18n.t(`${personalPage}.errorIdCardNumFormat`))

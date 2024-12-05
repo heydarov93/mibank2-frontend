@@ -9,21 +9,20 @@ import {
   StyledFormContent,
   StyledFormTitle,
   StyledLabel,
-} from './SignupForm.styled';
+} from './ForgotPassword.styled';
 
 import { useCheckEmailMutation } from 'api/checkEmailApi';
-import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton } from 'components/atoms';
 import { TO_SIGN_UP_END } from 'constants/routesName';
 import { ErrorStatus } from 'enums';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
-import { errorMessage } from 'store/selectors';
 import { validationEmailSchema } from 'validation';
 
-export const SignupFormEmail = () => {
+export const ForgotPassword = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
 
@@ -60,14 +59,15 @@ export const SignupFormEmail = () => {
     } catch (e) {
       const error = e as IErrorData;
 
-      switch (error.originalStatus) {
-        case ErrorStatus.BAD_REQUEST:
-          dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
-          break;
-        default:
-          dispatch(setError(t('LoginPage.serverError')));
-          break;
-      }
+      dispatch(
+        setError(
+          t(
+            error.originalStatus === ErrorStatus.BAD_REQUEST
+              ? 'SignupPage.email.errorEmailRegistered'
+              : 'LoginPage.serverError',
+          ),
+        ),
+      );
     }
     resetForm();
   };
@@ -75,14 +75,11 @@ export const SignupFormEmail = () => {
   const handleCleanField = () => {
     if (errors.email) resetField('email');
   };
-
-  const errorMsg = useAppSelector(errorMessage);
-  const isShake = t('SignupPage.email.errorEmailRegistered') === errorMsg;
   const isValidEmail = isValid && !errors.email && touchedFields.email;
 
   return (
     <>
-      <StyledFormTitle>{t('SignupPage.formTitle')}</StyledFormTitle>
+      <StyledFormTitle>{t('ForgotPassword.EmailPageTitle')}</StyledFormTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
@@ -95,23 +92,16 @@ export const SignupFormEmail = () => {
               control={control}
               className={errors.email ? 'shake' : ''}
               error={errors.email}
-              placeholder="example@gmail.com"
+              placeholder={t('ForgotPassword.EmailPagePlaceholder')}
             />
           </Box>
         </StyledFormContent>
         <SubmitButton
           onClick={handleCleanField}
-          buttonContent={t('SignupPage.buttonLabelContinue')}
+          buttonContent={t('ForgotPassword.EmailPageButton')}
           isDisabled={!isValidEmail}
         />
       </StyledForm>
-      <ButtonLink
-        message="SignupPage.haveAccountMsg"
-        linkText="SignupPage.moveToLoginLink"
-        href="/signin"
-        delay={0.5}
-        shake={isShake}
-      />
     </>
   );
 };

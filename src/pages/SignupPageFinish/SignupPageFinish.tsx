@@ -4,6 +4,7 @@ import { StyledLink, StyledTitle, StyledText } from './SignupPageFinish.styled';
 
 import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
 import { AuthWrapper, Footer } from 'components/organisms';
+import { TO_SIGN_IN } from 'constants/routesName';
 
 export const SignupPageFinish = () => {
   return (
@@ -25,7 +26,7 @@ export const SignupPageFinish = () => {
           </StyledText>
           <StyledText>
             Already confirmed an account?
-            <StyledLink to={'/signin'}>Log in</StyledLink>
+            <StyledLink to={TO_SIGN_IN}>Log in</StyledLink>
           </StyledText>
         </Box>
       </AuthWrapper>

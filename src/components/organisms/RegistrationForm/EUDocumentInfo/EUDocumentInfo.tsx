@@ -27,7 +27,9 @@ import { validationEUDocumentInfoSchema } from 'validation';
 export const EUDocumentInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-  const euDocumentInfo: IEUDocumentInfo = useSelector((state: RootState) => state.registration.euDocumentInfo as IEUDocumentInfo);
+  const euDocumentInfo: IEUDocumentInfo = useSelector(
+    (state: RootState) => state.registration.euDocumentInfo as IEUDocumentInfo,
+  );
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -44,17 +46,17 @@ export const EUDocumentInfo = () => {
     resolver: yupResolver(validationEUDocumentInfoSchema),
     mode: 'onBlur',
     defaultValues: {
-      idCardNumber: '',
+      documentNumber: '',
       issueDate: '',
       expirationDate: '',
     },
   });
   useEffect(() => {
     reset({
-      idCardNumber: euDocumentInfo.idCardNumber,
+      documentNumber: euDocumentInfo.documentNumber,
       issueDate: euDocumentInfo.issueDate,
       expirationDate: euDocumentInfo.expirationDate,
-    })
+    });
   }, [euDocumentInfo, reset]);
   const onSubmit = (data: IEUDocumentInfo) => {
     dispatch(setEUDocumentInfoData(data));
@@ -77,11 +79,11 @@ export const EUDocumentInfo = () => {
               {t('RegistrationPage.inputName.labelIDCardNumber')}
             </StyledLabel>
             <InputField
-              name="idCardNumber"
-              id="idCardNumber"
+              name="documentNumber"
+              id="documentNumber"
               control={control}
-              className={errors.idCardNumber ? 'shake' : ''}
-              error={errors.idCardNumber}
+              className={errors.documentNumber ? 'shake' : ''}
+              error={errors.documentNumber}
               onKeyDown={(e) => {
                 if (
                   !idCardRegExp.test(e.key) &&

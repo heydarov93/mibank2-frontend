@@ -20,8 +20,10 @@ import { authApi } from 'api/authApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { getPostcode } from 'api/getPostcode';
+import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { registerNewUserApi } from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
+import registrationDataMiddleware from 'middleware/dateFormatterMiddleware';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -34,6 +36,7 @@ const rootReducer = combineReducers({
   [checkEmailApi.reducerPath]: checkEmailApi.reducer,
   [getPostcode.reducerPath]: getPostcode.reducer,
   [registerNewUserApi.reducerPath]: registerNewUserApi.reducer,
+  [postRegistrationInfoApi.reducerPath]: postRegistrationInfoApi.reducer,
 });
 
 const persistConfig = {
@@ -47,6 +50,7 @@ const persistConfig = {
     contactInfoApi.reducerPath,
     checkEmailApi.reducerPath,
     registerNewUserApi.reducerPath,
+    postRegistrationInfoApi.reducerPath,
   ],
 };
 
@@ -66,6 +70,8 @@ const store = configureStore({
       contactInfoApi.middleware,
       checkEmailApi.middleware,
       registerNewUserApi.middleware,
+      postRegistrationInfoApi.middleware,
+      registrationDataMiddleware,
     ]),
 });
 
