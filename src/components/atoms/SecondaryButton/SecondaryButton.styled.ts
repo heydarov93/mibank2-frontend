@@ -37,6 +37,7 @@ export const StyledButton = styled(Button)(
     [breakpoints.up('sm')]: {
       padding: '10px 22px',
       height: '56px',
+      width:'84px',
     },
   }),
 );

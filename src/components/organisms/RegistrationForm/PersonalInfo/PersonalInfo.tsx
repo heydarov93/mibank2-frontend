@@ -1,8 +1,10 @@
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   StyledFormTitle,
@@ -17,18 +19,23 @@ import { InputField } from 'components/atoms';
 import { DateOfBirthField, PhoneNumberField } from 'components/molecules';
 import { EStepper } from 'enums/EStepper';
 import { IPersonalInfo } from 'models/IRegistration';
+import { RootState } from 'store';
 import { setPersonalInfoData } from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
 import { validationRegistrationSchema } from 'validation';
 
+
 export const PersonalInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
+  const personalData: IPersonalInfo = useSelector((state: RootState) => state.registration.personalData as IPersonalInfo);
+
 
   const {
     formState: { errors, isValid, touchedFields },
     control,
     handleSubmit,
+    reset,
   } = useForm<IPersonalInfo>({
     resolver: yupResolver(validationRegistrationSchema),
     mode: 'all',
@@ -36,16 +43,26 @@ export const PersonalInfo = () => {
       name: '',
       surname: '',
       dateOfBirth: '',
-      phoneNumber: 0,
+      phoneNumber: '',
     },
   });
+  useEffect(() => {
+    reset({
+      name: personalData.name,
+      surname: personalData.surname,
+      dateOfBirth: personalData.dateOfBirth,
+      phoneNumber: String(personalData.phoneNumber),
+    })
+  }, [personalData, reset]);
 
   const onSubmit = (data: IPersonalInfo) => {
     dispatch(setPersonalInfoData(data));
     dispatch(setStep(EStepper.LEGAL_STATUS));
   };
 
-  const isValidForm = isValid && Object.keys(touchedFields).length > 2;
+  const isValidForm = personalData ? isValid : isValid && Object.keys(touchedFields).length > 2;
+
+
 
   return (
     <StyledBoxContainer>

@@ -2,7 +2,7 @@ export interface IPersonalInfo {
   name: string;
   surname: string;
   dateOfBirth: string;
-  phoneNumber: number;
+  phoneNumber: string;
 }
 
 export interface ILegalStatus {
