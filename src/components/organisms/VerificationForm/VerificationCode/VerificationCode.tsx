@@ -63,6 +63,7 @@ export const VerificationCode = ({
       const newArr = [...otp];
       newArr[currentIndex] = '';
       setOtp(newArr);
+      handleNavigation(-1);
     };
 
     switch (event.key) {
