@@ -1,9 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   StyledFormTitle,
@@ -13,11 +14,12 @@ import {
   StyledLabel,
 } from './EUDocumentInfo.styled';
 
-import { InputField, SubmitButton } from 'components/atoms';
+import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { EStepper } from 'enums/EStepper';
 import { IEUDocumentInfo } from 'models/IRegistration';
+import { RootState } from 'store';
 import { setEUDocumentInfoData } from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
 import { validationEUDocumentInfoSchema } from 'validation';
@@ -25,7 +27,7 @@ import { validationEUDocumentInfoSchema } from 'validation';
 export const EUDocumentInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-
+  const euDocumentInfo: IEUDocumentInfo = useSelector((state: RootState) => state.registration.euDocumentInfo as IEUDocumentInfo);
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -37,6 +39,7 @@ export const EUDocumentInfo = () => {
     formState: { errors, isValid },
     control,
     handleSubmit,
+    reset,
   } = useForm<IEUDocumentInfo>({
     resolver: yupResolver(validationEUDocumentInfoSchema),
     mode: 'onBlur',
@@ -46,14 +49,22 @@ export const EUDocumentInfo = () => {
       expirationDate: '',
     },
   });
-
+  useEffect(() => {
+    reset({
+      idCardNumber: euDocumentInfo.idCardNumber,
+      issueDate: euDocumentInfo.issueDate,
+      expirationDate: euDocumentInfo.expirationDate,
+    })
+  }, [euDocumentInfo, reset]);
   const onSubmit = (data: IEUDocumentInfo) => {
     dispatch(setEUDocumentInfoData(data));
     dispatch(setStep(EStepper.ADDRESS));
   };
   const idCardRegExp = /^[A-Z0-9]+$/;
   const isValidForm = isValid;
-
+  const onPreviousForm = () => {
+    dispatch(setStep(EStepper.LEGAL_STATUS));
+  };
   return (
     <StyledBoxContainer>
       <StyledFormTitle>
@@ -109,11 +120,17 @@ export const EUDocumentInfo = () => {
             />
           </Box>
         </StyledFormContent>
-        <SubmitButton
-          isDisabled={!isValidForm}
-          onClick={handleSubmit(onSubmit)}
-          buttonContent={t('SignupPage.buttonLabelContinue')}
-        ></SubmitButton>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <SecondaryButton
+            onClick={onPreviousForm}
+            buttonContent={t('RegistrationPage.buttonBackArrow')}
+          />
+          <SubmitButton
+            isDisabled={!isValidForm}
+            onClick={handleSubmit(onSubmit)}
+            buttonContent={t('SignupPage.buttonLabelContinue')}
+          ></SubmitButton>
+        </Box>
       </StyledForm>
     </StyledBoxContainer>
   );

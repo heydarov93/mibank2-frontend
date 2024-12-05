@@ -50,7 +50,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StyledDatePicker
             {...field}
-            value={field.value ? field.value : null}
+            value={field.value ? dayjs(field.value) : null}
             minDate={minDate}
             maxDate={maxDate}
             dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}

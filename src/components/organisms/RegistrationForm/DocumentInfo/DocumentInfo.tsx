@@ -1,9 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   StyledFormTitle,
@@ -18,6 +19,7 @@ import { DocumentDatePicker } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { EStepper } from 'enums/EStepper';
 import { IDocumentInfo } from 'models/IRegistration';
+import { RootState } from 'store';
 import { setDocumentInfoData } from 'store/reducers/RegistrationSlice';
 import { setStep } from 'store/reducers/StepperSlice';
 import { validationDocumentInfoSchema } from 'validation';
@@ -25,6 +27,7 @@ import { validationDocumentInfoSchema } from 'validation';
 export const DocumentInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
+  const documentInfo: IDocumentInfo = useSelector((state: RootState) => state.registration.documentInfo as IDocumentInfo);
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -36,6 +39,7 @@ export const DocumentInfo = () => {
     formState: { errors, isValid },
     control,
     handleSubmit,
+    reset,
   } = useForm<IDocumentInfo>({
     resolver: yupResolver(validationDocumentInfoSchema),
     mode: 'all',
@@ -45,7 +49,13 @@ export const DocumentInfo = () => {
       expirationDate: '',
     },
   });
-
+  useEffect(() => {
+    reset({
+      passportNumber: documentInfo.passportNumber,
+      issueDate: documentInfo.issueDate,
+      expirationDate: documentInfo.expirationDate,
+    })
+  }, [documentInfo, reset]);
   const onSubmit = (data: IDocumentInfo) => {
     dispatch(setDocumentInfoData(data));
     dispatch(setStep(EStepper.ADDRESS));

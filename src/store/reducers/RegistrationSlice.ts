@@ -23,7 +23,7 @@ const initialState: RegistrationSlice = {
     name: '',
     surname: '',
     dateOfBirth: '',
-    phoneNumber: 0,
+    phoneNumber: '',
   },
   legalStatus: {
     citizenship: '',

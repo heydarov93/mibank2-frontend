@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   StyledFormTitle,
@@ -18,6 +19,7 @@ import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { countries } from 'constants/countries';
 import { EStepper } from 'enums/EStepper';
 import { ILegalStatus } from 'models/IRegistration';
+import { RootState } from 'store';
 import { setLegalStatusData } from 'store/reducers/RegistrationSlice';
 import { setEU, setStep } from 'store/reducers/StepperSlice';
 import { validationLegalStatusSchema } from 'validation';
@@ -25,6 +27,7 @@ import { validationLegalStatusSchema } from 'validation';
 export const LegalStatus = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
+  const legalStatusData:ILegalStatus = useSelector((state:RootState) => state.registration.legalStatus as ILegalStatus);
   const checkEUStatus = (countryLabel: string) => {
     return countries.some(
       (country) => country.label === countryLabel && country.isInEurope,
@@ -35,6 +38,7 @@ export const LegalStatus = () => {
     control,
     handleSubmit,
     getValues,
+    reset,
   } = useForm<ILegalStatus>({
     resolver: yupResolver(validationLegalStatusSchema),
     mode: 'all',
@@ -47,6 +51,13 @@ export const LegalStatus = () => {
   const onPreviousForm = () => {
     dispatch(setStep(EStepper.PERSONAL_INFO));
   };
+  useEffect(()=>{
+    reset({
+      citizenship: legalStatusData.citizenship,
+      taxResidenceCountry: legalStatusData.taxResidenceCountry,
+      peselNumber: legalStatusData.peselNumber,
+   })
+   },[legalStatusData,reset]);
   const onSubmit = (data: ILegalStatus) => {
     dispatch(setEU(checkEUStatus(getValues('citizenship'))));
     dispatch(setLegalStatusData(data));

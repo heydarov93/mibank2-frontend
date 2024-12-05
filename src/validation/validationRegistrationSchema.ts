@@ -23,7 +23,7 @@ export const validationRegistrationSchema = yup.object().shape({
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`)),
   phoneNumber: yup
-    .number()
+    .string()
     .required(i18n.t(`${personalPage}.requiredField`))
     .test(
       'len',

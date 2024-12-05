@@ -55,7 +55,7 @@ export const DateOfBirthField = <T extends FieldValues>({
             <StyledDatePicker
               {...field}
               hasError={hasError}
-              value={field.value ? field.value : null}
+              value={field.value ? dayjs(field.value) : null}
               maxDate={minDate}
               minDate={maxAge}
               dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
