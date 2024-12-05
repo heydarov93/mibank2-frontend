@@ -71,7 +71,6 @@ export const DocumentDatePicker = <T extends FieldValues>({
                 name,
                 id: name,
                 placeholder: t(`${placeholder}`),
-                disabled: true,
                 onKeyDown: (e) => {
                   e.preventDefault();
                 },

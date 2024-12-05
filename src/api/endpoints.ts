@@ -5,6 +5,7 @@ export const endpoints = {
       sendcode: '/uas/api/user/login/send-code',
       verifycode: '/uas/api/user/login/verify-code',
       userInformation: '/uas/api/user/details',
+      postRegistrationInfo: '/uas/api/user/update/details',
       checkEmail: '/uas/api/user/email',
       registerNewUser: '/uas/api/user/signup',
       getPostcode: '/uas/api/user/postcode',

@@ -57,17 +57,19 @@ export const CitySelectField = <T extends FieldValues>({
       control={control}
       render={({ field }) => {
         return (
-          <Autocomplete
+          <Autocomplete<CityOptionType>
             {...field}
             options={citiesInPoland}
-            disableClearable
             filterOptions={filterOptions}
             getOptionLabel={(option) => `${option.city}, ${option.voivodeship}`}
-            onChange={(_, value) => field.onChange(value.city)}
+            onChange={(_, value) => field.onChange(value?.city || '')}
             isOptionEqualToValue={(option, value) =>
-              option.city === value?.city
+              option.city === (value as CityOptionType)?.city
             }
-            value={field.value || undefined}
+            value={
+              citiesInPoland.find((option) => option.city === field.value) ||
+              null
+            }
             renderOption={(props, option) => (
               <Box key={option.city} component="li" {...props}>
                 <StyledCityText>

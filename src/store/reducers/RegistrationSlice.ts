@@ -9,11 +9,13 @@ import {
 } from 'models/IRegistration';
 
 interface RegistrationSlice {
-  personalData: IPersonalInfo | undefined;
-  legalStatus: ILegalStatus | undefined;
-  documentInfo: IDocumentInfo | undefined;
-  euDocumentInfo: IEUDocumentInfo | undefined;
-  address: IAddress | undefined;
+  personalData: IPersonalInfo;
+  legalStatus: ILegalStatus;
+  documentInfo: IDocumentInfo;
+  euDocumentInfo: IEUDocumentInfo;
+  address: IAddress;
+  phoneCode: string;
+  registrationDate: string;
   error: string | null;
   loading: boolean;
 }
@@ -31,12 +33,12 @@ const initialState: RegistrationSlice = {
     peselNumber: '',
   },
   documentInfo: {
-    passportNumber: '',
+    documentNumber: '',
     issueDate: '',
     expirationDate: '',
   },
   euDocumentInfo: {
-    idCardNumber: '',
+    documentNumber: '',
     issueDate: '',
     expirationDate: '',
   },
@@ -47,6 +49,8 @@ const initialState: RegistrationSlice = {
     apartment: '',
     postcode: '',
   },
+  registrationDate: '',
+  phoneCode: '',
   error: null,
   loading: false,
 };
@@ -64,29 +68,26 @@ const RegistrationSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
-    setPersonalInfoData(
-      state,
-      action: PayloadAction<IPersonalInfo | undefined>,
-    ) {
+    setPersonalInfoData(state, action: PayloadAction<IPersonalInfo>) {
       state.personalData = action.payload;
     },
-    setLegalStatusData(state, action: PayloadAction<ILegalStatus | undefined>) {
+    setLegalStatusData(state, action: PayloadAction<ILegalStatus>) {
       state.legalStatus = action.payload;
     },
-    setDocumentInfoData(
-      state,
-      action: PayloadAction<IDocumentInfo | undefined>,
-    ) {
+    setDocumentInfoData(state, action: PayloadAction<IDocumentInfo>) {
       state.documentInfo = action.payload;
     },
-    setEUDocumentInfoData(
-      state,
-      action: PayloadAction<IEUDocumentInfo | undefined>,
-    ) {
+    setEUDocumentInfoData(state, action: PayloadAction<IEUDocumentInfo>) {
       state.euDocumentInfo = action.payload;
     },
-    setAddressData(state, action: PayloadAction<IAddress | undefined>) {
+    setAddressData(state, action: PayloadAction<IAddress>) {
       state.address = action.payload;
+    },
+    setPhoneCode(state, action) {
+      state.phoneCode = action.payload;
+    },
+    setDateRegistration(state, action) {
+      state.registrationDate = action.payload;
     },
   },
 });
@@ -100,5 +101,7 @@ export const {
   setDocumentInfoData,
   setEUDocumentInfoData,
   setAddressData,
+  setPhoneCode,
+  setDateRegistration,
 } = RegistrationSlice.actions;
 export default RegistrationSlice.reducer;

@@ -184,6 +184,19 @@ exports[`LoginForm snapshot should match 1`] = `
       </p>
     </div>
     <div
+      class="MuiBox-root css-12190x1"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      />
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-anuv2a-MuiTypography-root-MuiLink-root"
+        href="/forgot-password"
+      >
+        Forgot password?
+      </a>
+    </div>
+    <div
       class="MuiBox-root css-mytjhh"
     >
       <button

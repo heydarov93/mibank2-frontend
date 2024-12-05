@@ -1,5 +1,5 @@
 export enum EUserStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
-  REGISTRED = 'REGISTRED',
+  REGISTRED = 'REGISTERED',
 }

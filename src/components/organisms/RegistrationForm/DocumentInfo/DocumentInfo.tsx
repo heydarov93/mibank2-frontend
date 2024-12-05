@@ -27,7 +27,9 @@ import { validationDocumentInfoSchema } from 'validation';
 export const DocumentInfo = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-  const documentInfo: IDocumentInfo = useSelector((state: RootState) => state.registration.documentInfo as IDocumentInfo);
+  const documentInfo: IDocumentInfo = useSelector(
+    (state: RootState) => state.registration.documentInfo as IDocumentInfo,
+  );
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -44,17 +46,17 @@ export const DocumentInfo = () => {
     resolver: yupResolver(validationDocumentInfoSchema),
     mode: 'all',
     defaultValues: {
-      passportNumber: '',
+      documentNumber: '',
       issueDate: '',
       expirationDate: '',
     },
   });
   useEffect(() => {
     reset({
-      passportNumber: documentInfo.passportNumber,
+      documentNumber: documentInfo.documentNumber,
       issueDate: documentInfo.issueDate,
       expirationDate: documentInfo.expirationDate,
-    })
+    });
   }, [documentInfo, reset]);
   const onSubmit = (data: IDocumentInfo) => {
     dispatch(setDocumentInfoData(data));
@@ -68,7 +70,7 @@ export const DocumentInfo = () => {
   const isValidForm = isValid;
 
   return (
-    <StyledBoxContainer>
+    <StyledBoxContainer data-testid="document-info-title">
       <StyledFormTitle>
         {t('RegistrationPage.documentInfoTitle')}
       </StyledFormTitle>
@@ -79,11 +81,11 @@ export const DocumentInfo = () => {
               {t('RegistrationPage.inputName.labelPassportNumber')}
             </StyledLabel>
             <InputField
-              name="passportNumber"
-              id="passportNumber"
+              name="documentNumber"
+              id="documentNumber"
               control={control}
-              className={errors.passportNumber ? 'shake' : ''}
-              error={errors.passportNumber}
+              className={errors.documentNumber ? 'shake' : ''}
+              error={errors.documentNumber}
               placeholder={t('RegistrationPage.placeholder.name')}
               onKeyDown={(e) => {
                 if (

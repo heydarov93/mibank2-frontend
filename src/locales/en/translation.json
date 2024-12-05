@@ -69,6 +69,7 @@
     "formTitle": "Log in and let's start!",
     "formText": "Remember me",
     "formBtnSignIn": "Log In",
+    "formBtnForgotPassword": "Forgot password?",
     "formPassText": "Forgot password ?",
     "formSubTitle": "Do you have an account?",
     "formBtnSignUp": "Sign Up",
@@ -130,7 +131,9 @@
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
     "errorBuildingAndApartmentFormat": "Only Latin letters and digits are acceptable",
     "errorMaxLenName": "Name should not exceed 40 characters",
+    "errorNonCapitalName": "The name must begin with a capital letter",
     "errorMaxLenSurname": "Surname should not exceed 80 characters",
+    "errorNonCapitalSurname": "The surname must begin with a capital letter",
     "errorMaxLenStreet": "Street should not exceed 100 characters",
     "errorMaxLenBuilding": "Building should not exceed 10 characters",
     "errorMaxLenApartment": "Apartment should not exceed 10 characters",
@@ -145,7 +148,9 @@
     "errorAddressFormat": "Your address does not exist please enter the postcode manually ",
     "errorPostcodeFormat": "Only digits are acceptable",
     "errorPostcodeMinLength": "Postcode format: XX-XXX",
-    "errorPostcodeMaxLength": "Postcode should not exceed 5 characters"
+    "errorPostcodeMaxLength": "Postcode should not exceed 5 characters",
+    "errorServerUnacceptable": "Sorry, we have some issues with the server. Please, try again later or contact us",
+    "errorBadRequest": "Something wrong with your request. Please, try again later or contact us"
   },
   "VerificationPage": {
     "verificationTitle": "Enter verification code",
@@ -155,6 +160,12 @@
     "errorPattern": "Only digits can be entered into the field. \nPlease, try again",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us",
     "lostConnection": "The action can't be completed because of the connection loss or some system issue. Please, check your internet connection and try again later. If the problem continues, contact us"
+  },
+  "ForgotPassword": {
+    "EmailPageTitle": "Forgot password",
+    "EmailPageInput": "Email",
+    "EmailPagePlaceholder": "example@gmail.com",
+    "EmailPageButton": "Send code"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",

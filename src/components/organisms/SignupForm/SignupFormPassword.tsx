@@ -15,6 +15,7 @@ import {
 import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
 import { CheckboxWithLabel, PasswordField } from 'components/molecules';
+import { TO_SIGN_UP_FINISHED } from 'constants/routesName';
 import { ValidationKey } from 'enums';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
@@ -68,7 +69,7 @@ export const SignupFormPassword = () => {
         dispatch(setError(t('serverError')));
       }
     }
-    navigate('/signup-finished');
+    navigate(TO_SIGN_UP_FINISHED);
     resetForm();
   };
 

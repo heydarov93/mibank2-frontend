@@ -12,13 +12,13 @@ export interface ILegalStatus {
 }
 
 export interface IDocumentInfo {
-  passportNumber: string;
+  documentNumber: string;
   issueDate: string;
   expirationDate: string;
 }
 
 export interface IEUDocumentInfo {
-  idCardNumber: string;
+  documentNumber: string;
   issueDate: string;
   expirationDate: string;
 }

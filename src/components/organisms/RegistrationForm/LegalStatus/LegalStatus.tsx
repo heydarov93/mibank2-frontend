@@ -63,9 +63,7 @@ export const LegalStatus = () => {
     dispatch(setLegalStatusData(data));
     dispatch(setStep(2));
   };
-
   const isValidForm = isValid;
-
   return (
     <StyledBoxContainer>
       <StyledFormTitle>
