@@ -9,5 +9,5 @@ export const REG_EXP: { [field: string]: RegExp } = {
   latinLettersAndDigitsRegExp: /^[A-Za-z0-9]+$/g,
   latinLettersDigitsSpecialRegExp: /^(?!\s)[a-zA-Z0-9\s!@#$%^&*()]*$/g,
   DigitsRegExp: /^[\d-]+$/,
-  capitalizeLetters: /^[A-ZА-ЯЁ]/,
+  capitalizeLetters: /^^[A-ZА-Я][a-zа-я]*$/,
 };
