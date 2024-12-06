@@ -22,8 +22,8 @@ export const SignupPageFinish = () => {
           <StyledTitle>Email verification</StyledTitle>
           <StyledText>
             We sent a link for verification via email{' '}
-            <b>{localStorage.getItem('email')}</b>{' '}
           </StyledText>
+          <b>{localStorage.getItem('email')}</b>
           <StyledText>
             Already confirmed an account?
             <StyledLink to={TO_SIGN_IN}>Log in</StyledLink>
