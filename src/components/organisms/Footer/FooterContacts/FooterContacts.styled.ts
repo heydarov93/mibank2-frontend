@@ -29,7 +29,10 @@ export const StyledBox = styled(Box)(
     gap: spacing(1),
     [breakpoints.down('sm')]: {
       flexDirection: 'row'
-    }
+    },
+    [breakpoints.down(600)]: {
+      flexDirection: 'row',
+    },
   })
 )
 
@@ -40,9 +43,12 @@ export const StyledFlexBox = styled(Box)(
     justifyContent: 'space-between',
     padding: spacing(3, 0, 3, 0),
     gap: spacing(5),
-    [breakpoints.up(500)]: {
+    [breakpoints.up(600)]: {
       flexDirection: 'row',
-      
+    },
+    [breakpoints.down(600)]: {
+      flexDirection: 'column',
+
     },
     [breakpoints.up('md')]: {
       gap: spacing(12),
@@ -69,3 +75,15 @@ export const StyledTypographyWorkingHours = styled(Typography)(
     },
   }),
 );
+
+export const StyledFlexOrderBox = styled(Box)(
+  ({ theme: { breakpoints } }) => ({
+
+    [breakpoints.down(600)]: {
+      order: 0
+    },
+    [breakpoints.up(600)]: {
+      order: 4
+    },
+  })
+)

@@ -261,7 +261,7 @@ exports[`LoginPage snapshot should match 1`] = `
     class="css-1ysvaad"
   >
     <div
-      class="MuiBox-root css-4la022"
+      class="MuiBox-root css-144sf9l"
       id="contact-section"
     >
       <div
@@ -292,10 +292,10 @@ exports[`LoginPage snapshot should match 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-wnmqg0"
+        class="MuiBox-root css-5pclqa"
       >
         <div
-          class="MuiBox-root css-1i3j0ff"
+          class="MuiBox-root css-1v7rmvu"
         >
           <p
             class="MuiTypography-root MuiTypography-body2 css-bmqpby-MuiTypography-root"

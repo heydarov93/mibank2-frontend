@@ -12,6 +12,7 @@ import {
   StyledFlexBox,
   TypographyGrey,
   StyledTypographyWorkingHours,
+  StyledFlexOrderBox,
 } from './FooterContacts.styled';
 
 import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
@@ -59,7 +60,7 @@ export const FooterContacts = () => {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
+        flexDirection: { xs: 'column', md: 'column', lg: 'row', sm: 'column' },
         justifyContent: 'space-between',
       }}
       id="contact-section"
@@ -68,7 +69,7 @@ export const FooterContacts = () => {
         <Logo />
       </LogoWrapper>
       <StyledFlexBox>
-        <Box sx={{ order: { xs: 0, sm: 4 } }}>
+        <StyledFlexOrderBox>
           <TypographyGrey variant="body2">{t('download')}</TypographyGrey>
           <StyledBox>
             <Box>
@@ -90,7 +91,7 @@ export const FooterContacts = () => {
               </RouterLink>
             </Box>
           </StyledBox>
-        </Box>
+        </StyledFlexOrderBox>
         <Box>
           <TypographyGrey variant="body2">{t('contacts.title')}</TypographyGrey>
           <StyledLink href={`tel:${phone}`} mb={0.5}>
