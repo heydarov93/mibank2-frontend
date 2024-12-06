@@ -131,7 +131,7 @@
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
     "errorBuildingAndApartmentFormat": "Only Latin letters and digits are acceptable",
     "errorMaxLenName": "Name should not exceed 40 characters",
-    "errorNonCapitalName": "The name must begin with a capital letter",
+    "errorNonCapitalName": "Only the first letter must be capital",
     "errorMaxLenSurname": "Surname should not exceed 80 characters",
     "errorNonCapitalSurname": "The surname must begin with a capital letter",
     "errorMaxLenStreet": "Street should not exceed 100 characters",

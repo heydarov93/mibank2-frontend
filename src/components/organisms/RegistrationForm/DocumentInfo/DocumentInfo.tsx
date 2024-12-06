@@ -77,7 +77,7 @@ export const DocumentInfo = () => {
       <StyledForm>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="passportNumber">
+            <StyledLabel htmlFor="documentNumber">
               {t('RegistrationPage.inputName.labelPassportNumber')}
             </StyledLabel>
             <InputField
@@ -98,11 +98,12 @@ export const DocumentInfo = () => {
             />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="passportIssueDate">
+            <StyledLabel htmlFor="issueDate">
               {t('RegistrationPage.inputName.labelPassportIssueDate')}
             </StyledLabel>
             <DocumentDatePicker
               name="issueDate"
+              id="issueDate"
               control={control}
               errors={errors}
               maxDate={dateLimitation.minDateIssue}
@@ -111,11 +112,12 @@ export const DocumentInfo = () => {
             />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="passportExpirationDate">
+            <StyledLabel htmlFor="expirationDate">
               {t('RegistrationPage.inputName.labelPassportExpirationDate')}
             </StyledLabel>
             <DocumentDatePicker
               name="expirationDate"
+              id="expirationDate"
               control={control}
               errors={errors}
               maxDate={dateLimitation.maxDateExpiration}

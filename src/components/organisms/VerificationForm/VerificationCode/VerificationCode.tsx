@@ -144,31 +144,30 @@ export const VerificationCode = ({
     event.preventDefault();
     if (disabled) return;
     const clipboardData = event.clipboardData;
-    // Check if there is text data in the clipboard
     if (clipboardData.types.includes('text/plain')) {
-      let pastedText = clipboardData.getData('text/plain');
-      pastedText = pastedText.replace(/[^0-9]/g, '').substring(0, length);
-      if (!pastedText) {
-        setError(true);
-        setTimeout(() => setError(false), 1000);
+      const pastedText = clipboardData.getData('text/plain');
+      const pastedTextWithoutSymbols = pastedText.replace(/[^0-9]/g, '');
+      if (!pastedText || /([a-zA-Zа-яА-Я])/g.test(pastedText)) {
+        setError(true), setIsNonDigit(true);
+        setTimeout(() => (setError(false), setIsNonDigit(false)), 2000);
         return;
       }
 
       const newArr = [...otp];
-      for (let i = currentIndex; i < pastedText.length; i++) {
-        newArr[i] = pastedText[i - currentIndex];
+      for (let i = currentIndex; i < pastedTextWithoutSymbols.length; i++) {
+        newArr[i] = pastedTextWithoutSymbols[i - currentIndex];
       }
       setOtp(newArr);
 
       setTimeout(() => {
         selectInput(
-          currentIndex + pastedText.length < length
-            ? currentIndex + pastedText.length
+          currentIndex + pastedTextWithoutSymbols.length < length
+            ? currentIndex + pastedTextWithoutSymbols.length
             : length - 1,
         );
         focusInput(
-          currentIndex + pastedText.length < length
-            ? currentIndex + pastedText.length
+          currentIndex + pastedTextWithoutSymbols.length < length
+            ? currentIndex + pastedTextWithoutSymbols.length
             : length - 1,
         );
       }, 0);

@@ -26,6 +26,7 @@ dayjs.updateLocale('en', {
 
 interface PassportExpFieldProps<T extends FieldValues> {
   name: Path<T>;
+  id: string;
   control: Control<T>;
   minDate: Dayjs;
   maxDate: Dayjs;
@@ -37,6 +38,7 @@ interface PassportExpFieldProps<T extends FieldValues> {
 export const DocumentDatePicker = <T extends FieldValues>({
   name,
   control,
+  id,
   minDate,
   maxDate,
   placeholder,
@@ -69,7 +71,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
               },
               textField: {
                 name,
-                id: name,
+                id: id,
                 placeholder: t(`${placeholder}`),
                 onKeyDown: (e) => {
                   e.preventDefault();
