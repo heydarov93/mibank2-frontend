@@ -12,5 +12,8 @@ export const PageWrapper = styled(Box)(
     [breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
+    [breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   }),
 );
