@@ -40,8 +40,14 @@ export const PersonalMenu = () => {
   const user = useAppSelector(getUser);
 
   const email = getEmail();
+  const paramsForUserInfo = {
+    email: email,
+    token: localTokenHandler.getToken(TokenType.ACCESS),
+  };
 
-  const { data, isLoading } = useGetUserInfoQuery(email ?? skipToken);
+  const { data, isLoading } = useGetUserInfoQuery(
+    paramsForUserInfo ? paramsForUserInfo : skipToken,
+  );
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -49,7 +55,7 @@ export const PersonalMenu = () => {
     } else if (!isLoading && !data) {
       logoutHandler();
     }
-  }, [isLoading]);
+  }, [isLoading, data]);
 
   return (
     <StyledPersonalMenu data-testid="personal-menu">
