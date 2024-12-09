@@ -21,6 +21,7 @@ export const StyledDatePicker = styled(DatePicker, {
     },
     input: {
       WebkitTextFillColor: palette.common.black,
+      WebkitAppearance: 'none',
     },
 
     '&.Mui-disabled': {
