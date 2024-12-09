@@ -1,4 +1,6 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { Dayjs } from 'dayjs';
@@ -43,6 +45,8 @@ export const DocumentDatePicker = <T extends FieldValues>({
   maxDate,
   placeholder,
 }: PassportExpFieldProps<T>) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(500));
   const { t } = useTranslation('translation');
   return (
     <Controller
@@ -73,8 +77,8 @@ export const DocumentDatePicker = <T extends FieldValues>({
                 name,
                 id: id,
                 placeholder: t(`${placeholder}`),
-                onKeyDown: (e) => {
-                  e.preventDefault();
+                inputProps: {
+                  disabled: isMobile ? false : true,
                 },
               },
             }}

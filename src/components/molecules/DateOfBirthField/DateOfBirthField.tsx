@@ -1,4 +1,6 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
@@ -44,6 +46,8 @@ export const DateOfBirthField = <T extends FieldValues>({
 }: DateOfBirthFieldProps<T>) => {
   const { t } = useTranslation('translation');
   const hasError = !!errors.dateOfBirth;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(500));
 
   return (
     <Controller
@@ -76,7 +80,9 @@ export const DateOfBirthField = <T extends FieldValues>({
                 textField: {
                   id: 'dateOfBirth',
                   placeholder: t('RegistrationPage.placeholder.dateOfBirth'),
-                  onKeyDown: (e) => e.preventDefault(),
+                  inputProps: {
+                    disabled: isMobile ? false : true,
+                  },
                 },
               }}
             />
