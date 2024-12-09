@@ -30,7 +30,8 @@ export const UserCard = ({
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
   const initials = `${user?.firstName?.charAt(0) ?? ''}${user?.lastName?.charAt(0) ?? ''}`;
-  const fullName = `${user?.firstName} ${user?.lastName}`;
+  //Will use after refactor end point
+  // const fullName = `${user?.firstName} ${user?.lastName}`;
 
   const GreetingMap = {
     [EGreeting.DEFAULT]: (
@@ -40,7 +41,7 @@ export const UserCard = ({
         </StyledGreetings>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : ''}
+            {!isLoading ? '' : ''}
           </StyledTypographyName>
         </StyledGreetingsName>
       </Box>
@@ -49,7 +50,7 @@ export const UserCard = ({
       <Box>
         <StyledGreetingsName>
           <StyledTypographyName isViceversa={isViceversa}>
-            {!isLoading ? fullName : ''}
+            {!isLoading ? '' : ''}
           </StyledTypographyName>
         </StyledGreetingsName>
         <StyledTypography>{user?.email}</StyledTypography>

@@ -1,4 +1,3 @@
-import { Padding } from '@mui/icons-material';
 import { Box, styled } from '@mui/material';
 
 export const StyledBoxContainer = styled(Box)(
@@ -14,6 +13,5 @@ export const StyledBoxContainer = styled(Box)(
       paddingTop: spacing(8),
       paddingBottom: spacing(8),
     },
-
   }),
 );
