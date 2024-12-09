@@ -65,13 +65,13 @@ export const Address = () => {
   const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
   const regExpPreventSpecialAndSpace = /^[a-zA-Z0-9]+$/;
-
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
     getValues,
     setValue,
+    reset,
   } = useForm<IAddress>({
     resolver: yupResolver(validationAddressSchema),
     mode: 'all',
@@ -83,6 +83,20 @@ export const Address = () => {
       postcode: '',
     },
   });
+
+  const formatPostalCode = (postalCode: string): string => {
+    return postalCode?.slice(0, 2) + '-' + postalCode.slice(2);
+  }
+
+  useEffect(() => {
+    reset({
+      city: addressData.city,
+      street: addressData.street,
+      building: addressData.building,
+      apartment: addressData.apartment,
+      postcode: addressData.postcode ? formatPostalCode(addressData.postcode) : '',
+    });
+  }, [addressData, reset]);
 
   const getPostCode = async () => {
     const [city, street, building, apartment] = getValues([
@@ -117,10 +131,23 @@ export const Address = () => {
     }
   };
 
-  const onPreviousForm = () => {
+  const onPreviousForm = async () => {
+    const [city, street, building, apartment, postcode] = getValues([
+      'city',
+      'street',
+      'building',
+      'apartment',
+      'postcode',
+    ]);
+    await dispatch(setAddressData({
+      city: city,
+      street: street,
+      building: building,
+      apartment: apartment,
+      postcode: postcode,
+    }));
     dispatch(setStep(EStepper.DOCUMENT_INFO));
   };
-
   const postcodeInputMask = (value: SyntheticEvent): void => {
     const target = value.target as HTMLInputElement;
     const formatted = target.value.replace(regExpPostcodeMask, '$1-$2');
