@@ -1,7 +1,7 @@
 import { Step, StepLabel, Stepper, styled } from '@mui/material';
 
 export const StyledStepper = styled(Stepper)(
-  ({ theme: { breakpoints, palette } }) => ({
+  ({ theme: { breakpoints, palette, spacing } }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -9,6 +9,7 @@ export const StyledStepper = styled(Stepper)(
 
     [breakpoints.up('sm')]: {
       width: 375,
+      marginBottom: spacing(2)
     },
 
     [breakpoints.up('md')]: {

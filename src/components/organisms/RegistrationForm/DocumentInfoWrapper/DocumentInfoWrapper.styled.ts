@@ -7,9 +7,8 @@ export const StyledBoxContainer = styled(Box)(
     flexDirection: 'column',
     alignItems: 'center',
     flexBasis: '70%',
-    paddingTop: spacing(10),
     backgroundColor: 'white',
-    [breakpoints.down('sm')]: {
+    [breakpoints.down(450)]: {
       paddingTop: spacing(0),
     },
   }),

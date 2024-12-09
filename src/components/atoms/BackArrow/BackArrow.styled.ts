@@ -17,10 +17,11 @@ export const StyledBackArrow = styled(Button)(
       top: spacing(5),
       left: spacing(5),
     },
-    [breakpoints.down('sm')]: {
+    [breakpoints.down(600)]: {
       color: palette.common.white,
-      top: spacing(-23),
-      left: spacing(2),
+      top: spacing(-27),
+      left: spacing(3),
+
     },
 
     [breakpoints.up('lg')]: {

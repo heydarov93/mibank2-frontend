@@ -1,3 +1,4 @@
+import { Padding } from '@mui/icons-material';
 import { Box, styled } from '@mui/material';
 
 export const StyledBoxContainer = styled(Box)(
@@ -8,10 +9,11 @@ export const StyledBoxContainer = styled(Box)(
     justifyContent: 'center',
     flexBasis: '30%',
     backgroundColor: '#1847C1',
-    [breakpoints.down('sm')]: {
+    [breakpoints.down(600)]: {
       flexDirection: 'column',
-      paddingTop: spacing(6),
-      paddingBottom: spacing(6),
+      paddingTop: spacing(8),
+      paddingBottom: spacing(8),
     },
+
   }),
 );

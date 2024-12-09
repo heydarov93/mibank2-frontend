@@ -258,7 +258,7 @@ exports[`LoginPage snapshot should match 1`] = `
     </div>
   </div>
   <footer
-    class="css-1m6uh07"
+    class="css-rhc22l"
   >
     <div
       class="MuiBox-root css-144sf9l"
@@ -292,10 +292,10 @@ exports[`LoginPage snapshot should match 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-5pclqa"
+        class="MuiBox-root css-1bb51f5"
       >
         <div
-          class="MuiBox-root css-1v7rmvu"
+          class="MuiBox-root css-1gj1vea"
         >
           <p
             class="MuiTypography-root MuiTypography-body2 css-bmqpby-MuiTypography-root"
@@ -392,7 +392,7 @@ exports[`LoginPage snapshot should match 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1cdmgj5"
+      class="MuiBox-root css-1xwpvmf"
     >
       <div
         class="MuiBox-root css-1feu43h"
