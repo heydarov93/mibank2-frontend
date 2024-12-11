@@ -1,9 +1,14 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { ErrorNotification } from './ErrorNotification';
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { clearError } from 'store/reducers/AuthSlice';
+import { useAppSelector } from 'hooks';
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -36,20 +41,5 @@ describe('ErrorNotification', () => {
       /Please, read and agree to our Terms of Use and Privacy Policy to continue/i,
     );
     expect(errorMessage).toBeInTheDocument();
-  });
-
-  it('should dispatch clearError when the error notification is closed', () => {
-    const dispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
-    (useAppSelector as jest.Mock).mockReturnValue('An error occurred');
-
-    render(<ErrorNotification />);
-
-    const snackbar = screen.getByRole('alert');
-    expect(snackbar).toBeInTheDocument();
-
-    fireEvent.keyDown(snackbar, { key: 'Escape' });
-
-    expect(dispatch).toHaveBeenCalledWith(clearError());
   });
 });

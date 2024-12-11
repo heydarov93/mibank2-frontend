@@ -86,7 +86,7 @@ export const Address = () => {
 
   const formatPostalCode = (postalCode: string): string => {
     return postalCode?.slice(0, 2) + '-' + postalCode.slice(2);
-  }
+  };
 
   useEffect(() => {
     reset({
@@ -94,7 +94,9 @@ export const Address = () => {
       street: addressData.street,
       building: addressData.building,
       apartment: addressData.apartment,
-      postcode: addressData.postcode ? formatPostalCode(addressData.postcode) : '',
+      postcode: addressData.postcode
+        ? formatPostalCode(addressData.postcode)
+        : '',
     });
   }, [addressData, reset]);
 
@@ -139,13 +141,15 @@ export const Address = () => {
       'apartment',
       'postcode',
     ]);
-    await dispatch(setAddressData({
-      city: city,
-      street: street,
-      building: building,
-      apartment: apartment,
-      postcode: postcode,
-    }));
+    await dispatch(
+      setAddressData({
+        city: city,
+        street: street,
+        building: building,
+        apartment: apartment,
+        postcode: postcode,
+      }),
+    );
     dispatch(setStep(EStepper.DOCUMENT_INFO));
   };
   const postcodeInputMask = (value: SyntheticEvent): void => {

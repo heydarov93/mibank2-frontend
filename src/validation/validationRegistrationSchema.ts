@@ -10,21 +10,38 @@ export const validationRegistrationSchema = yup.object().shape({
     .string()
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
+    .test(
+      'only-one-capital-letter',
+      i18n.t(`${personalPage}.errorDoubleCapitalName`),
+      (value) => {
+        if (!value) return true;
+        return !REG_EXP.onlyOneCapitalizeLetter.test(value);
+      },
+    )
+    .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
     .matches(
       REG_EXP.capitalizeLetters,
       i18n.t(`${personalPage}.errorNonCapitalName`),
     )
-    .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
+
     .max(40, i18n.t(`${personalPage}.errorMaxLenName`)),
   surname: yup
     .string()
     .trim()
     .required(i18n.t(`${personalPage}.requiredField`))
-    .matches(
-      REG_EXP.capitalizeLetters,
-      i18n.t(`${personalPage}.errorNonCapitalSurname`),
+    .test(
+      'only-one-capital-letter',
+      i18n.t(`${personalPage}.errorDoubleCapitalName`),
+      (value) => {
+        if (!value) return true;
+        return !REG_EXP.onlyOneCapitalizeLetter.test(value);
+      },
     )
     .matches(REG_EXP.nameRegExp, i18n.t(`${personalPage}.nameErrorPattern`))
+    .matches(
+      REG_EXP.capitalizeLetters,
+      i18n.t(`${personalPage}.errorNonCapitalName`),
+    )
     .max(80, i18n.t(`${personalPage}.errorMaxLenSurname`)),
   dateOfBirth: yup
     .string()

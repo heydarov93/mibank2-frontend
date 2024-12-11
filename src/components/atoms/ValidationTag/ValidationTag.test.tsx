@@ -2,6 +2,13 @@ import { render, screen } from '@testing-library/react';
 
 import { ValidationTag } from './ValidationTag';
 
+// Мокаем i18next для тестов
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Просто возвращаем ключ как текст
+  }),
+}));
+
 describe('ValidationTag', () => {
   it('should render without crashing', () => {
     const { container } = render(<ValidationTag tagText={''} isValidated />);

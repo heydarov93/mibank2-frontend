@@ -21,20 +21,18 @@ export const StyledLink = styled(Link)(({ theme: { palette } }) => ({
   },
 }));
 
-export const StyledBox = styled(Box)(
-  ({ theme: { spacing, breakpoints } }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing(3, 0, 3, 0),
-    gap: spacing(1),
-    [breakpoints.down('sm')]: {
-      flexDirection: 'row'
-    },
-    [breakpoints.down(600)]: {
-      flexDirection: 'row',
-    },
-  })
-)
+export const StyledBox = styled(Box)(({ theme: { spacing, breakpoints } }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: spacing(3, 0, 3, 0),
+  gap: spacing(1),
+  [breakpoints.down('sm')]: {
+    flexDirection: 'row',
+  },
+  [breakpoints.down(600)]: {
+    flexDirection: 'row',
+  },
+}));
 
 export const StyledFlexBox = styled(Box)(
   ({ theme: { spacing, breakpoints } }) => ({
@@ -72,13 +70,11 @@ export const StyledTypographyWorkingHours = styled(Typography)(
   }),
 );
 
-export const StyledFlexOrderBox = styled(Box)(
-  ({ theme: { breakpoints } }) => ({
-    [breakpoints.up('sm')]: {
-      order: 4,
-    },
-    [breakpoints.down(600)]: {
-      order: 0,
-    },
-  })
-)
+export const StyledFlexOrderBox = styled(Box)(({ theme: { breakpoints } }) => ({
+  [breakpoints.up('sm')]: {
+    order: 4,
+  },
+  [breakpoints.down(600)]: {
+    order: 0,
+  },
+}));

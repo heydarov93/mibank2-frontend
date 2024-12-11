@@ -2,14 +2,12 @@ import { Box } from '@mui/material';
 
 import { StyledLink, StyledTitle, StyledText } from './SignupPageFinish.styled';
 
-import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
 import { AuthWrapper, Footer } from 'components/organisms';
 import { TO_SIGN_IN } from 'constants/routesName';
 
 export const SignupPageFinish = () => {
   return (
     <>
-      <BackArrow />
       <AuthWrapper>
         <Box
           sx={{
@@ -20,9 +18,7 @@ export const SignupPageFinish = () => {
           }}
         >
           <StyledTitle>Email verification</StyledTitle>
-          <StyledText>
-            We sent a link for verification via email{' '}
-          </StyledText>
+          <StyledText>We sent a link for verification via email </StyledText>
           <b>{localStorage.getItem('email')}</b>
           <StyledText>
             Already confirmed an account?

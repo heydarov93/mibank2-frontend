@@ -8,7 +8,9 @@ import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
 
 export const ErrorNotification = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'ErrorNotification',
+  });
   const dispatch = useAppDispatch();
   const error = useAppSelector(errorMessage);
   const open = Boolean(error);
@@ -18,8 +20,9 @@ export const ErrorNotification = () => {
 
   const message =
     errorParts.length > 1
-      ? errorParts.slice(1).join('.').split(t('ErrorNotification.contactUs'))
+      ? errorParts.slice(1).join('.').split(t('contactUs'))
       : [error];
+
   const handleClose = () => {
     dispatch(clearError());
   };
@@ -30,6 +33,7 @@ export const ErrorNotification = () => {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -43,11 +47,10 @@ export const ErrorNotification = () => {
           {message[0]}
           {message.length > 1 && (
             <StyledLink onClick={scrollToContactSection}>
-              {t('ErrorNotification.contactUs')}
+              {t('contactUs')}
             </StyledLink>
           )}
-          {message.length > 1 &&
-            message.slice(1).join(t('ErrorNotification.contactUs'))}
+          {message.length > 1 && message.slice(1).join(t('contactUs'))}
         </div>
       </StyledAlert>
     </Snackbar>

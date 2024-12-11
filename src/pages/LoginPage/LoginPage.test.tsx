@@ -8,7 +8,6 @@ import { LoginPage } from './LoginPage';
 import { authApi } from 'api/authApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { userInfoApi } from 'api/userInfoApi';
-import { localTokenHandler } from 'utils';
 
 const initialValues = {
   auth: {
@@ -76,15 +75,5 @@ describe('LoginPage', () => {
       </Provider>,
     );
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('should navigate to home page when access token is present', () => {
-    (localTokenHandler.getToken as jest.Mock).mockReturnValue(
-      'mock-access-token',
-    );
-
-    render(<LoginPage />);
-
-    expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 });

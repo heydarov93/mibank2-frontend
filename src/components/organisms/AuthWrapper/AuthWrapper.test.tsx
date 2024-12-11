@@ -1,8 +1,25 @@
 import { render, RenderResult, screen } from '@testing-library/react';
+import i18n from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 
 import { AuthWrapper } from './AuthWrapper';
 
 import { ELogoSize, Logo } from 'components/atoms';
+
+i18n.init({
+  resources: {
+    en: {
+      translation: {
+        'Test Child': 'Test Child',
+      },
+    },
+  },
+  lng: 'en',
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 jest.mock('../ErrorNotification/ErrorNotification', () => ({
   ErrorNotification: jest.fn(() => <div>Error Notification</div>),
@@ -18,9 +35,11 @@ describe('AuthWrapper', () => {
 
   beforeEach(() => {
     renderResult = render(
-      <AuthWrapper>
-        <div>Test Child</div>
-      </AuthWrapper>,
+      <I18nextProvider i18n={i18n}>
+        <AuthWrapper>
+          <div>Test Child</div>
+        </AuthWrapper>
+      </I18nextProvider>,
     );
   });
 
