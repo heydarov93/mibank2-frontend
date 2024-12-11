@@ -7,7 +7,7 @@ export const PageWrapper = styled(Box)(
     alignItems: 'center',
     flex: 1,
     color: palette.common.black,
-    marginTop: spacing(12.5),
+    marginTop: spacing(4),
     marginBottom: spacing(4),
 
     [breakpoints.down('sm')]: {
