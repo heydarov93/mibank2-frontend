@@ -11,11 +11,8 @@ export const StyledBottomBox = styled(Box)(
 
 export const StyledBox = styled(Box)(({ theme: { palette, breakpoints } }) => ({
   display: 'flex',
-  flexDirection: 'column-reverse',
-  [breakpoints.down('sm')]: {
-    flexDirection: 'column',
-  },
-  [breakpoints.up('md')]: {
+  flexDirection: 'column',
+  [breakpoints.up('sm')]: {
     flexDirection: 'row',
   },
   justifyContent: 'space-between',

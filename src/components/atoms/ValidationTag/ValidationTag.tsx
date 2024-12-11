@@ -26,6 +26,7 @@ export const ValidationTag = ({
         isValidated={isValidated}
         icon={isValidated ? <CheckIcon /> : <ClearIcon />}
         isSpecial={isSpecial ?? false}
+        data-testid="InfoOutlinedIcon"
       />
       {isSpecial && <PasswordTooltip />}
     </StyledValidationTagContainer>

@@ -16,8 +16,11 @@ export const validationLoginSchema = yup.object().shape({
   password: yup
     .string()
     .trim()
-    .required(' ')
-    .matches(REG_EXP.passwordRegExp, ' ')
+    .required(i18n.t(`${loginFields}.requiredField`))
+    .matches(
+      REG_EXP.passwordRegExp,
+      i18n.t(`${loginFields}.password.errorPattern`),
+    )
     .max(50, i18n.t(`${loginFields}.password.errorMaxLen`)),
   checkbox: yup.boolean().oneOf([true]),
 });

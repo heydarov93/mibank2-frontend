@@ -1,15 +1,22 @@
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import { PropsWithChildren } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks';
 import { getLoading } from 'store/selectors';
 import { getAuthStatus } from 'utils';
 
-export const PrivateRoute = ({ children }: PropsWithChildren<object>) => {
+export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
   const isAuth = getAuthStatus();
   const loading = useAppSelector(getLoading);
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate('/signin');
+    }
+  }, [isAuth, loading, navigate]);
 
   if (loading) {
     return (
@@ -24,5 +31,9 @@ export const PrivateRoute = ({ children }: PropsWithChildren<object>) => {
     );
   }
 
-  return isAuth ? <>{children}</> : <Navigate to="/signin" replace />;
+  if (isAuth) {
+    return <>{children}</>;
+  }
+
+  return null;
 };

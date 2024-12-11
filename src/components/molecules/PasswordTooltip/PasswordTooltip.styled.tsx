@@ -9,11 +9,8 @@ export const StyledErrorHint = styled(Box)(
     alignItems: 'center',
 
     '& svg': {
-      position: 'absolute',
       width: 16,
       height: 16,
-      translate: '-30px',
-      transform: 'scale(0.85)',
     },
   }),
 );
@@ -27,11 +24,11 @@ export const BootstrapTooltip = styled(
     '& .MuiTooltip-tooltip': {
       backgroundColor: palette.grey[400],
       width: 255,
-      maxWidth: 225,
+      maxWidth: 500,
       fontSize: 10,
       lineHeight: '14px',
-      fontWeight: 400,
-      margin: `0 ${spacing(0, 0.5)} !important`,
+      fontWeight: 500,
+      margin: `0 ${spacing(1)} !important`,
 
       padding: `${spacing(0.5)} ${spacing(1)}`,
 

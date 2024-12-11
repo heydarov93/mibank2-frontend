@@ -69,6 +69,19 @@ export const DocumentDatePicker = <T extends FieldValues>({
             slotProps={{
               popper: {
                 placement: 'top-end',
+                modifiers: [
+                  {
+                    name: 'preventOverflow',
+                    enabled: true,
+                    options: {
+                      altAxis: true,
+                      altBoundary: true,
+                      tether: true,
+                      rootBoundary: 'document',
+                      padding: 8,
+                    },
+                  },
+                ],
               },
               actionBar: {
                 actions: ['cancel', 'accept'],

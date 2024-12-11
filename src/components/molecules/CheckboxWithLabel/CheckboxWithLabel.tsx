@@ -61,10 +61,6 @@ export const CheckboxWithLabel = <T extends FieldValues>({
               }}
               disabled={isFormDisabled}
               {...field}
-              onChange={(e) => {
-                field.onChange(e);
-                field.onBlur();
-              }}
             />
           );
         }}

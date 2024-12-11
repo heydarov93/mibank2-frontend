@@ -27,7 +27,9 @@ import { validationLegalStatusSchema } from 'validation';
 export const LegalStatus = () => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
-  const legalStatusData:ILegalStatus = useSelector((state:RootState) => state.registration.legalStatus as ILegalStatus);
+  const legalStatusData: ILegalStatus = useSelector(
+    (state: RootState) => state.registration.legalStatus as ILegalStatus,
+  );
   const checkEUStatus = (countryLabel: string) => {
     return countries.some(
       (country) => country.label === countryLabel && country.isInEurope,
@@ -51,13 +53,13 @@ export const LegalStatus = () => {
   const onPreviousForm = () => {
     dispatch(setStep(EStepper.PERSONAL_INFO));
   };
-  useEffect(()=>{
+  useEffect(() => {
     reset({
       citizenship: legalStatusData.citizenship,
       taxResidenceCountry: legalStatusData.taxResidenceCountry,
       peselNumber: legalStatusData.peselNumber,
-   })
-   },[legalStatusData,reset]);
+    });
+  }, [legalStatusData, reset]);
   const onSubmit = (data: ILegalStatus) => {
     dispatch(setEU(checkEUStatus(getValues('citizenship'))));
     dispatch(setLegalStatusData(data));
