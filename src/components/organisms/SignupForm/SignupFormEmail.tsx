@@ -35,6 +35,7 @@ export const SignupFormEmail = () => {
     handleSubmit,
     resetField,
     reset: resetForm,
+    setError: setFormError,
   } = useForm<IEmailFormInput>({
     resolver: yupResolver(validationEmailSchema),
     mode: 'onBlur',
@@ -57,19 +58,18 @@ export const SignupFormEmail = () => {
       }
       dispatch(setEmail(data));
       navigate(TO_SIGN_UP_END);
+      resetForm()
     } catch (e) {
       const error = e as IErrorData;
-
-      switch (error.originalStatus) {
+      switch (error.status) {
         case ErrorStatus.BAD_REQUEST:
-          dispatch(setError(t('SignupPage.email.errorEmailRegistered')));
+          setFormError("email", { type: "focus", message: t('SignupPage.email.errorEmailRegistered') }, { shouldFocus: true });
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
           break;
       }
     }
-    resetForm();
   };
 
   const handleCleanField = () => {
@@ -79,7 +79,6 @@ export const SignupFormEmail = () => {
   const errorMsg = useAppSelector(errorMessage);
   const isShake = t('SignupPage.email.errorEmailRegistered') === errorMsg;
   const isValidEmail = isValid && !errors.email && touchedFields.email;
-
   return (
     <>
       <StyledFormTitle>{t('SignupPage.formTitle')}</StyledFormTitle>
