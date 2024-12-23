@@ -9,3 +9,4 @@ export { validationEUDocumentInfoSchema } from './validationDocumentInfoSchema';
 export { validationLegalStatusSchema } from './validationLegalStatusSchema';
 export { passwordValidationRules } from './passwordValidationRules';
 export { validationAddressSchema } from './validationAddressSchema';
+export { validationForgotPasswordSchema } from './validationForgotPasswordSchema';

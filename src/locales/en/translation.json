@@ -166,7 +166,38 @@
     "EmailPageTitle": "Forgot password",
     "EmailPageInput": "Email",
     "EmailPagePlaceholder": "example@gmail.com",
-    "EmailPageButton": "Send code"
+    "EmailPageButton": "Send code",
+    "CreateForgotPassword": "Create new password",
+    "Confirm": "Confirm",
+    "EnterVerificatonCode": "Enter verification code",
+    "OnlyDigitsAllowed": "Only digits can be entered into the field. Please, try again",
+    "requiredField": "The field is required",
+    "errorInvalid": "The verification code must be 6 digits",
+    "invalidVerificationCode": "Invalid code provided.",
+    "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us",
+    "password": {
+      "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMaxLen": "Password should not exceed 50 characters",
+      "errorMinLen": "Password should be at least 8 character long",
+      "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
+      "label": "Password",
+      "minimumChar": "Minimum 8 characters",
+      "latinLetters": "Latin letters only",
+      "oneUpperCase": "One letter in uppercase",
+      "oneLowerCase": "One letter in lowercase",
+      "oneDigit": "One digit",
+      "specialChar": "One special character"
+    },
+    "confirmPassword": {
+      "errorIsBlocked": "Account is blocked. Please, contact us",
+      "errorMatch": "Passwords don't match. Please check it and try again",
+      "errorMaxLen": "Password should not exceed 50 characters",
+      "errorMinLen": "Password should be at least 8 character long",
+      "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
+      "label": "Confirm Password"
+    },
+    "PasswordUpdated": "Password has been updated",
+    "PasswordUpdatedDescription": "Password has been successfully updated"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",

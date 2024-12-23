@@ -6,4 +6,6 @@ export { SignupPageEmail } from './SignupPageEmail/SignupPageEmail';
 export { SignupPagePassword } from './SignupPagePassword/SignupPagePassword';
 export { RegistrationPage } from './RegistrationPage/RegistrationPage';
 export { SignupPageFinish } from './SignupPageFinish/SignupPageFinish';
+export { CreateFogotPasswordPage } from './CreateForgotPasswordPage/CreateForgotPasswordPage';
+export { ForgotPasswordPageFinished } from './CreateForgotPasswordPage/ForgotPasswordPageFinished';
 export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';

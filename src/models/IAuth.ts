@@ -37,3 +37,9 @@ export enum TokenType {
   REFRESH = 'refreshToken',
   TEMPORARY = 'temporaryToken',
 }
+
+export interface IForgotPasswordFormInput {
+  password: string;
+  confirmPassword: string;
+  verificationCode: string;
+}
