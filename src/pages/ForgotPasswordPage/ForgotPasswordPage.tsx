@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { BackArrow } from 'components/atoms';
-import { AuthWrapper, Footer } from 'components/organisms';
+import { AuthWrapper, Footer, ForgotPassword } from 'components/organisms';
 import { TO_SIGN_IN } from 'constants/routesName';
 
 export const ForgotPasswordPage = () => {
@@ -13,6 +13,7 @@ export const ForgotPasswordPage = () => {
     <>
       <AuthWrapper>
         <BackArrow onBackClick={backToLogIn} />
+        <ForgotPassword />
       </AuthWrapper>
       <Footer />
     </>

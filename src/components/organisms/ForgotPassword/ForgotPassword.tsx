@@ -43,7 +43,6 @@ export const ForgotPassword = () => {
   });
 
   const [checkEmail] = useCheckEmailMutation();
-
   const onSubmit = async (data: IEmailFormInput) => {
     try {
       localStorage.setItem('email', data.email);
@@ -80,7 +79,10 @@ export const ForgotPassword = () => {
   return (
     <>
       <StyledFormTitle>{t('ForgotPassword.EmailPageTitle')}</StyledFormTitle>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ marginBottom: '50px' }}
+      >
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="email">
