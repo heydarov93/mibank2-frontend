@@ -25,6 +25,7 @@ const enum FieldName {
   postcode = 'postcode',
   idCardNumber = 'idCardNumber',
   documentNumber = 'documentNumber',
+  verificationCode = 'verificationCode',
 }
 
 interface InputFieldProps<T extends FieldValues> {

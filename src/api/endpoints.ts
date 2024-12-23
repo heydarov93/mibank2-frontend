@@ -9,6 +9,7 @@ export const endpoints = {
       checkEmail: '/uas/api/user/email',
       registerNewUser: '/uas/api/user/signup',
       getPostcode: '/uas/api/user/postcode',
+      confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
     },
   },
   contactInfo: {

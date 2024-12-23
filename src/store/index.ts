@@ -18,6 +18,7 @@ import StepperReducer from './reducers/StepperSlice';
 
 import { authApi } from 'api/authApi';
 import { checkEmailApi } from 'api/checkEmailApi';
+import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { getPostcode } from 'api/getPostcode';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   [getPostcode.reducerPath]: getPostcode.reducer,
   [registerNewUserApi.reducerPath]: registerNewUserApi.reducer,
   [postRegistrationInfoApi.reducerPath]: postRegistrationInfoApi.reducer,
+  [confirmForgotPasswordApi.reducerPath]: confirmForgotPasswordApi.reducer,
 });
 
 const persistConfig = {
@@ -51,6 +53,7 @@ const persistConfig = {
     checkEmailApi.reducerPath,
     registerNewUserApi.reducerPath,
     postRegistrationInfoApi.reducerPath,
+    confirmForgotPasswordApi.reducerPath,
   ],
 };
 
@@ -72,6 +75,7 @@ const store = configureStore({
       registerNewUserApi.middleware,
       postRegistrationInfoApi.middleware,
       registrationDataMiddleware,
+      confirmForgotPasswordApi.middleware,
     ]),
 });
 

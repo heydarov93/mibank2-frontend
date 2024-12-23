@@ -11,6 +11,8 @@ import {
   TO_SIGN_UP_FINISHED,
   TO_VERIFICATION,
   TO_REGISTRATION,
+  TO_CREATE_FORGOT_PASSWORD,
+  TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_FORGOT_PASSWORD,
 } from '../constants/routesName';
 import {
@@ -22,6 +24,8 @@ import {
   SignupPagePassword,
   RegistrationPage,
   SignupPageFinish,
+  CreateFogotPasswordPage,
+  ForgotPasswordPageFinished,
   ForgotPasswordPage,
 } from '../pages';
 
@@ -80,6 +84,14 @@ const routes = createBrowserRouter([
   {
     path: TO_REGISTRATION,
     element: <RegistrationPage />,
+  },
+  {
+    path: TO_CREATE_FORGOT_PASSWORD,
+    element: <CreateFogotPasswordPage />,
+  },
+  {
+    path: TO_CREATE_FORGOT_PASSWORD_FINISHED,
+    element: <ForgotPasswordPageFinished />,
   },
   {
     path: TO_FORGOT_PASSWORD,
