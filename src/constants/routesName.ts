@@ -10,3 +10,4 @@ export const TO_SIGN_UP_END = '/signup-end';
 export const TO_SIGN_UP_FINISHED = '/signup-finished';
 export const TO_VERIFICATION = '/verification';
 export const TO_REGISTRATION = '/registration';
+export const TO_FORGOT_PASSWORD = '/forgot-password';

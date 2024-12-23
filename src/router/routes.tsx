@@ -11,6 +11,7 @@ import {
   TO_SIGN_UP_FINISHED,
   TO_VERIFICATION,
   TO_REGISTRATION,
+  TO_FORGOT_PASSWORD,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -21,6 +22,7 @@ import {
   SignupPagePassword,
   RegistrationPage,
   SignupPageFinish,
+  ForgotPasswordPage,
 } from '../pages';
 
 import { PrivateRoute } from './PrivateRoute';
@@ -78,6 +80,10 @@ const routes = createBrowserRouter([
   {
     path: TO_REGISTRATION,
     element: <RegistrationPage />,
+  },
+  {
+    path: TO_FORGOT_PASSWORD,
+    element: <ForgotPasswordPage />,
   },
 ]);
 
