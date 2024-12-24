@@ -63,12 +63,8 @@ export const CreateForgotPasswordForm = () => {
       newPassword: data.password,
     };
     try {
-      const postRequest = await confirmForgotPassword(userData).unwrap();
-      if (!postRequest) {
-        throw {
-          originalStatus: ErrorStatus.BAD_REQUEST,
-        };
-      }
+      await confirmForgotPassword(userData).unwrap();
+      navigate(TO_CREATE_FORGOT_PASSWORD_FINISHED);
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
@@ -84,7 +80,6 @@ export const CreateForgotPasswordForm = () => {
           break;
       }
     }
-    navigate(TO_CREATE_FORGOT_PASSWORD_FINISHED);
     resetForm();
   };
 

@@ -11,9 +11,9 @@ import {
   StyledLabel,
 } from './ForgotPassword.styled';
 
-import { useCheckEmailMutation } from 'api/checkEmailApi';
+import { useGetCodeForForgotPasswordMutation } from 'api/getCodeForForgotPasswordApi';
 import { InputField, SubmitButton } from 'components/atoms';
-import { TO_SIGN_UP_END } from 'constants/routesName';
+import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
@@ -42,11 +42,12 @@ export const ForgotPassword = () => {
     },
   });
 
-  const [checkEmail] = useCheckEmailMutation();
+  const [getCodeForForgotPassword] = useGetCodeForForgotPasswordMutation();
+
   const onSubmit = async (data: IEmailFormInput) => {
     try {
       localStorage.setItem('email', data.email);
-      const response = await checkEmail(data).unwrap();
+      const response = await getCodeForForgotPassword(data).unwrap();
 
       if (response !== null) {
         throw {
@@ -54,10 +55,9 @@ export const ForgotPassword = () => {
         };
       }
       dispatch(setEmail(data));
-      navigate(TO_SIGN_UP_END);
+      navigate(TO_CREATE_FORGOT_PASSWORD);
     } catch (e) {
       const error = e as IErrorData;
-
       dispatch(
         setError(
           t(
