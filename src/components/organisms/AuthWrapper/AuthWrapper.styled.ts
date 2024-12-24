@@ -8,8 +8,7 @@ export const PageWrapper = styled(Box)(
     flex: 1,
     color: palette.common.black,
     marginTop: spacing(4),
-    marginBottom: spacing(4),
-
+    marginBottom: spacing(8),
     [breakpoints.down('sm')]: {
       marginTop: spacing(11),
       marginBottom: spacing(10),
