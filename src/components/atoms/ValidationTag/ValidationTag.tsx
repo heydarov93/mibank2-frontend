@@ -6,8 +6,6 @@ import {
   StyledValidationTag,
 } from './ValidationTag.styled';
 
-import { PasswordTooltip } from 'components/molecules';
-
 type ValidationTagProps = {
   tagText: string;
   isValidated: boolean;
@@ -28,7 +26,6 @@ export const ValidationTag = ({
         isSpecial={isSpecial ?? false}
         data-testid="InfoOutlinedIcon"
       />
-      {isSpecial && <PasswordTooltip />}
     </StyledValidationTagContainer>
   );
 };

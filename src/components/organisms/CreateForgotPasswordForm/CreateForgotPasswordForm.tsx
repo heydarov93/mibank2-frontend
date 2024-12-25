@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +43,8 @@ export const CreateForgotPasswordForm = () => {
     reset: resetForm,
     watch,
     setError: setFormError,
+    setValue: setFormInputValue,
+    clearErrors,
   } = useForm<IForgotPasswordFormInput>({
     resolver: yupResolver(validationForgotPasswordSchema),
     mode: 'onBlur',
@@ -54,6 +56,32 @@ export const CreateForgotPasswordForm = () => {
   });
 
   const passwordValue = watch('password');
+  const confirmPasswordValue = watch('confirmPassword');
+
+  useEffect(() => {
+    const trimmedPassword = passwordValue.trim();
+    const trimmedConfirmPassword = confirmPasswordValue.trim();
+
+    if (
+      trimmedConfirmPassword.length > 0 &&
+      trimmedPassword !== trimmedConfirmPassword
+    ) {
+      setFormError(
+        'confirmPassword',
+        {
+          type: 'focus',
+          message: t('confirmPassword.errorMatch'),
+        },
+        { shouldFocus: true },
+      );
+    } else if (
+      trimmedPassword === trimmedConfirmPassword &&
+      errors?.confirmPassword
+    ) {
+      clearErrors('confirmPassword');
+    }
+  }, [passwordValue, confirmPasswordValue]);
+
   const isValidConfirm = !errors?.password && touchedFields.password;
 
   const onSubmit = async (data: IForgotPasswordFormInput) => {
@@ -65,6 +93,7 @@ export const CreateForgotPasswordForm = () => {
     try {
       await confirmForgotPassword(userData).unwrap();
       navigate(TO_CREATE_FORGOT_PASSWORD_FINISHED);
+      resetForm();
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
@@ -80,7 +109,15 @@ export const CreateForgotPasswordForm = () => {
           break;
       }
     }
-    resetForm();
+  };
+
+  const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const clipboardData = event.clipboardData;
+    if (clipboardData.types.includes('text/plain')) {
+      const pastedText = clipboardData.getData('text/plain');
+      setFormInputValue('verificationCode', pastedText);
+    }
   };
 
   return (
@@ -140,6 +177,9 @@ export const CreateForgotPasswordForm = () => {
               name="verificationCode"
               errors={errors}
               isFormDisabled={!isValidConfirm}
+              onPaste={(event) =>
+                handlePaste(event as React.ClipboardEvent<HTMLInputElement>)
+              }
             />
           </Box>
         </StyledFormContent>
