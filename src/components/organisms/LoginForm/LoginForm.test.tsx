@@ -71,4 +71,16 @@ describe('LoginForm', () => {
 
     expect(errorMessage).toBeInTheDocument();
   });
+
+  it('should navigate to forgot password page', async () => {
+    render(
+      <Provider store={mockStore}>
+        <LoginForm />
+      </Provider>,
+    );
+    const forgotPasswordLink = screen.getByRole('link', {
+      name: 'Forgot password?',
+    });
+    expect(forgotPasswordLink).toHaveAttribute('href', '/forgot-password');
+  });
 });
