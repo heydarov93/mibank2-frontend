@@ -5,7 +5,7 @@ export const StyledAutoLogoutModal = styled(Dialog)(
     '& .MuiDialog-paper': {
       width: '100%',
       height: '100%',
-      maxHeight: '300px',
+      maxHeight: '350px',
       maxWidth: '520px',
       borderRadius: '10px',
       flexDirection: 'column',
@@ -13,7 +13,7 @@ export const StyledAutoLogoutModal = styled(Dialog)(
       justifyContent: 'center',
       textAlign: 'center',
       [theme.breakpoints.down('sm')]: {
-        maxHeight: '270px',
+        maxHeight: 'max-content',
       },
     },
 
@@ -27,20 +27,34 @@ export const StyledAutoLogoutModal = styled(Dialog)(
         marginTop: '20px',
       },
     },
+    '& .MuiDialogContent-root': {
+      overflowY: 'hidden',
+      paddingInline: '50px',
+      [theme.breakpoints.down('sm')]: {
+        paddingInline: '10px',
+        minHeight: 'max-content',
+        paddingBlock: '0px',
+      },
+    },
     '& .MuiDialogContentText-root': {
       fontSize: '16px',
       display: 'flex',
       justifyContent: 'center',
-      width: '400px',
+      width: '100%',
       color: 'initial',
       [theme.breakpoints.down('sm')]: {
-        width: '230px',
         fontSize: '14px',
       },
     },
     '& .MuiDialogActions-root': {
       padding: theme.spacing(1, 2),
       justifyContent: 'space-between',
+      display: 'flex',
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+        display: 'flex',
+        flexDirection: 'column',
+      },
     },
     '& .MuiButton-root': {
       fontSize: '16px',
@@ -53,7 +67,7 @@ export const StyledAutoLogoutModal = styled(Dialog)(
         fontSize: '12px',
         width: '120px',
         height: '48px',
-        margin: '0px 4px 35px 4px',
+        margin: '0px 4px 15px 4px',
       },
     },
     '& .confirmButton': {
