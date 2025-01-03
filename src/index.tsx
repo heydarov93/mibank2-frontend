@@ -12,7 +12,9 @@ import i18n from '../src/i18n';
 import { routes } from './router';
 import store, { persistor } from './store';
 import { theme } from './theme/theme';
+
 import './assets/css/global.css';
+import { AutoLogoutModal } from 'components/atoms/AutoLogoutModal/AutoLogoutModal';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -24,6 +26,7 @@ root.render(
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
             <RouterProvider router={routes} />
+            <AutoLogoutModal open={false} />
             <CssBaseline />
           </ThemeProvider>
         </PersistGate>
