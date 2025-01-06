@@ -14,6 +14,7 @@ import store, { persistor } from './store';
 import { theme } from './theme/theme';
 
 import './assets/css/global.css';
+import { AutoLogoutMessageModal } from 'components/atoms/AutoLogoutModal/AutoLogoutMessageModal';
 import { AutoLogoutModal } from 'components/atoms/AutoLogoutModal/AutoLogoutModal';
 
 const root = ReactDOM.createRoot(
@@ -26,7 +27,8 @@ root.render(
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
             <RouterProvider router={routes} />
-            <AutoLogoutModal open={false} />
+            <AutoLogoutModal />
+            <AutoLogoutMessageModal />
             <CssBaseline />
           </ThemeProvider>
         </PersistGate>

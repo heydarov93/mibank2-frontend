@@ -232,6 +232,8 @@
       "autoLogoutTitle" : "Are you still here?",
       "autoLogoutDescription" : "You have been inactive for too long. Your current session will expire in:",
       "logoutBtn" : "Log out",
-      "getBackBtn" : "Get back"
+      "getBackBtn" : "Get back",
+      "logIn": "Log in",
+     "autoLogoutMessage" :"Your session has been terminated due to inactivity. Please, log in again!"
   }
 }
