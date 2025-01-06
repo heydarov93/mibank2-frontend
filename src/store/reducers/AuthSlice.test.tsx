@@ -25,6 +25,7 @@ describe('AuthSlice', () => {
     },
     error: null,
     loading: false,
+    isAutoLogout: false,
   };
 
   it('should handle setError', () => {

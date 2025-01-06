@@ -23,6 +23,7 @@ import { contactInfoApi } from 'api/contactInfoApi';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
 import { getPostcode } from 'api/getPostcode';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
+import { refreshToken } from 'api/refreshTokenApi';
 import { registerNewUserApi } from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
 import registrationDataMiddleware from 'middleware/dateFormatterMiddleware';
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   [getCodeForForgotPasswordApi.reducerPath]:
     getCodeForForgotPasswordApi.reducer,
   [confirmForgotPasswordApi.reducerPath]: confirmForgotPasswordApi.reducer,
+  [refreshToken.reducerPath]: refreshToken.reducer,
 });
 
 const persistConfig = {
@@ -58,6 +60,7 @@ const persistConfig = {
     postRegistrationInfoApi.reducerPath,
     getCodeForForgotPasswordApi.reducerPath,
     confirmForgotPasswordApi.reducerPath,
+    refreshToken.reducerPath,
   ],
 };
 
@@ -81,6 +84,7 @@ const store = configureStore({
       registrationDataMiddleware,
       getCodeForForgotPasswordApi.middleware,
       confirmForgotPasswordApi.middleware,
+      refreshToken.middleware,
     ]),
 });
 

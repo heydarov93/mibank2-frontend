@@ -9,6 +9,7 @@ interface AuthState {
   user: IUserInfo | undefined;
   error: string | null;
   loading: boolean;
+  isAutoLogout: boolean;
 }
 
 const initialState: AuthState = {
@@ -24,6 +25,7 @@ const initialState: AuthState = {
   },
   error: null,
   loading: false,
+  isAutoLogout: false,
 };
 
 const AuthSlice = createSlice({
@@ -54,6 +56,9 @@ const AuthSlice = createSlice({
     logoutFromApp(state) {
       state.user = initialState.user;
     },
+    setIsAutoLogout: (state, action) => {
+      state.isAutoLogout = action.payload;
+    },
   },
 });
 
@@ -66,5 +71,6 @@ export const {
   setLoading,
   setUserData,
   logoutFromApp,
+  setIsAutoLogout,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;

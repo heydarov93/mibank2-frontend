@@ -92,6 +92,7 @@ export const VerificationForm = ({
         await triggerGetUserInfo(paramsForUserInfo).unwrap();
 
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
+      localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
       if (localTokenHandler.getToken(TokenType.ACCESS)) {
         setIsCodeCorrect(true);
         setIsCodeWrong(false);

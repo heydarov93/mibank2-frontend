@@ -11,6 +11,7 @@ export const endpoints = {
       getPostcode: '/uas/api/user/postcode',
       forgotPassword: '/uas/api/user/forgot-password',
       confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
+      refreshToken: 'uas/api/user/refresh-token',
     },
   },
   contactInfo: {
