@@ -14,8 +14,8 @@ import store, { persistor } from './store';
 import { theme } from './theme/theme';
 
 import './assets/css/global.css';
-import { AutoLogoutMessageModal } from 'components/atoms/AutoLogoutModal/AutoLogoutMessageModal';
-import { AutoLogoutModal } from 'components/atoms/AutoLogoutModal/AutoLogoutModal';
+import { AutoLogoutMessageModal } from 'components/organisms/AutoLogoutModal/AutoLogoutMessageModal';
+import { AutoLogoutModal } from 'components/organisms/AutoLogoutModal/AutoLogoutModal';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
