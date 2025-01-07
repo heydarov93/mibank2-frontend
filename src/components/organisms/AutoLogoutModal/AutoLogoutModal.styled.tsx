@@ -60,7 +60,7 @@ export const StyledAutoLogoutModal = styled(Dialog)(
       fontSize: '16px',
       width: '196px',
       height: '56px',
-      margin: '0px 8px 35px 8px',
+      margin: '15px 8px 15px 8px',
       border: `2px solid ${palette.primary.main}`,
       borderRadius: '8px',
       [theme.breakpoints.down('sm')]: {
@@ -85,6 +85,19 @@ export const StyledAutoLogoutModal = styled(Dialog)(
         color: palette.primary.dark,
         border: `2px solid ${palette.primary.dark}`,
       },
+    },
+
+    '& .timer': {
+      color: palette.primary.main,
+      backgroundColor: palette.primary.light,
+      justifyContent: 'center',
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100px',
+      height: '45px',
+      border: `2px solid ${palette.primary.light}`,
+      borderRadius: '8px',
     },
 
     '& .MuiIconButton-root': {

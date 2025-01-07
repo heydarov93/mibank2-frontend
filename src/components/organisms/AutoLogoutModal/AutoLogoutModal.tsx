@@ -1,16 +1,17 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton } from '@mui/material';
+import { IconButton, Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledAutoLogoutModal } from './AutoLogoutModal.styled';
 
 import { useGetRefreshTokenMutation } from 'api/refreshTokenApi';
+import { ReactComponent as StopWatch } from 'assets/icons/StopWatch.svg';
 import { useAppDispatch } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { routes } from 'router';
@@ -20,6 +21,10 @@ import { localTokenHandler, getEmail, removeAuthData } from 'utils';
 
 export const AutoLogoutModal = () => {
   const { t } = useTranslation('translation');
+
+  type UserChoice = 'logout' | 'extend';
+
+  const In_Activity_Timeout_In_Milliseconds: number = 9 * 60 * 1000;
 
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<number>(60);
@@ -35,16 +40,11 @@ export const AutoLogoutModal = () => {
     if (intervalRef.current) {
       clearTimeout(intervalRef.current);
     }
-    const newTimer = setTimeout(
-      () => {
-        setIsPopupVisible(true);
-      },
-      9 * 60 * 1000,
-    );
+    const newTimer = setTimeout(() => {
+      setIsPopupVisible(true);
+    }, In_Activity_Timeout_In_Milliseconds);
     intervalRef.current = newTimer;
   };
-
-  type UserChoice = 'logout' | 'extend';
 
   const handleUserChoice = (choice: UserChoice) => {
     if (choice === 'logout') {
@@ -63,11 +63,9 @@ export const AutoLogoutModal = () => {
       countdownRef.current -= 1;
       setCountdown(countdownRef.current);
       if (countdownRef.current <= 0) {
-        dispatch(setIsAutoLogout(true));
-        setIsPopupVisible(false);
-        logout();
+        handleUserChoice('logout');
         clearInterval(interval);
-        resetInactivityTimer();
+        dispatch(setIsAutoLogout(true));
       }
     }, 1000);
   };
@@ -76,12 +74,12 @@ export const AutoLogoutModal = () => {
     const handleActivity = () => {
       resetInactivityTimer();
     };
-
-    window.addEventListener('mousemove', handleActivity);
-    window.addEventListener('keydown', handleActivity);
-    window.addEventListener('click', handleActivity);
-    resetInactivityTimer();
-
+    if (pathName !== '/signin') {
+      window.addEventListener('mousemove', handleActivity);
+      window.addEventListener('keydown', handleActivity);
+      window.addEventListener('click', handleActivity);
+      resetInactivityTimer();
+    }
     return () => {
       window.removeEventListener('mousemove', handleActivity);
       window.removeEventListener('keydown', handleActivity);
@@ -115,7 +113,6 @@ export const AutoLogoutModal = () => {
     };
     try {
       const data = await refreshToken(payloadData).unwrap();
-
       localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
       localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
     } catch (err) {
@@ -128,12 +125,7 @@ export const AutoLogoutModal = () => {
   };
 
   return (
-    <StyledAutoLogoutModal
-      open={isPopupVisible && pathName !== '/signin'}
-      onClose={() => {
-        handleUserChoice('logout');
-      }}
-    >
+    <StyledAutoLogoutModal open={isPopupVisible}>
       <DialogTitle>
         {t('AutoLogout.autoLogoutTitle')}
         <IconButton
@@ -148,8 +140,13 @@ export const AutoLogoutModal = () => {
         <DialogContentText>
           {t('AutoLogout.autoLogoutDescription')}
         </DialogContentText>
-        <p>00: {countdown >= 10 ? countdown : `0${countdown}`}</p>
       </DialogContent>
+      <Box className="timer">
+        <StopWatch />
+        <p style={{ paddingLeft: '10px' }}>
+          00: {countdown >= 10 ? countdown : `0${countdown}`}
+        </p>
+      </Box>
       <DialogActions>
         <Button
           onClick={() => {
