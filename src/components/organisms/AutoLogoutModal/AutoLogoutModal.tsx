@@ -65,6 +65,9 @@ export const AutoLogoutModal = () => {
     resetInactivityTimer();
     countdownRef.current = 60;
     setCountdown(60);
+    if (sixtySecondTimerInterval.current) {
+      clearInterval(sixtySecondTimerInterval.current);
+    }
   };
 
   const startCountdown = () => {
