@@ -12,12 +12,18 @@ import { StyledAutoLogoutModal } from './AutoLogoutModal.styled';
 
 import { useGetRefreshTokenMutation } from 'api/refreshTokenApi';
 import { ReactComponent as StopWatch } from 'assets/icons/StopWatch.svg';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { TokenType } from 'models/IAuth';
 import { routes } from 'router';
 import { setError } from 'store/reducers';
 import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
-import { localTokenHandler, getEmail, removeAuthData } from 'utils';
+import { getIsVerifying } from 'store/selectors';
+import {
+  localTokenHandler,
+  getEmail,
+  removeAuthData,
+  getAuthStatus,
+} from 'utils';
 
 export const AutoLogoutModal = () => {
   const { t } = useTranslation('translation');
@@ -31,11 +37,12 @@ export const AutoLogoutModal = () => {
 
   const countdownRef = useRef<number>(60);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const sixtySecondTimerInterval = useRef<NodeJS.Timeout | null>(null);
   const [refreshToken] = useGetRefreshTokenMutation();
   const email = getEmail();
   const dispatch = useAppDispatch();
-  const pathName = window.location.pathname;
-
+  const isAuth = getAuthStatus();
+  const isVerifying = useAppSelector(getIsVerifying);
   const resetInactivityTimer = () => {
     if (intervalRef.current) {
       clearTimeout(intervalRef.current);
@@ -56,29 +63,47 @@ export const AutoLogoutModal = () => {
     }
     setIsPopupVisible(false);
     resetInactivityTimer();
+    countdownRef.current = 60;
+    setCountdown(60);
   };
 
   const startCountdown = () => {
+    if (sixtySecondTimerInterval.current) {
+      clearInterval(sixtySecondTimerInterval.current);
+    }
+    if (countdownRef.current <= 60) {
+      countdownRef.current = 60;
+      setCountdown(60);
+    }
     const interval = setInterval(() => {
       countdownRef.current -= 1;
       setCountdown(countdownRef.current);
       if (countdownRef.current <= 0) {
+        countdownRef.current = 60;
         handleUserChoice('logout');
         clearInterval(interval);
+        sixtySecondTimerInterval.current = null;
         dispatch(setIsAutoLogout(true));
       }
     }, 1000);
+    sixtySecondTimerInterval.current = interval;
   };
-
   useEffect(() => {
     const handleActivity = () => {
       resetInactivityTimer();
     };
-    if (pathName !== '/signin') {
+    if (isAuth) {
       window.addEventListener('mousemove', handleActivity);
       window.addEventListener('keydown', handleActivity);
       window.addEventListener('click', handleActivity);
       resetInactivityTimer();
+    } else {
+      if (intervalRef.current) {
+        clearTimeout(intervalRef.current);
+      }
+      if (sixtySecondTimerInterval.current) {
+        clearInterval(sixtySecondTimerInterval.current);
+      }
     }
     return () => {
       window.removeEventListener('mousemove', handleActivity);
@@ -88,8 +113,13 @@ export const AutoLogoutModal = () => {
       if (intervalRef.current) {
         clearTimeout(intervalRef.current);
       }
+      if (sixtySecondTimerInterval.current) {
+        clearInterval(sixtySecondTimerInterval.current);
+      }
+      setCountdown(60);
+      countdownRef.current = 60;
     };
-  }, []);
+  }, [isAuth, isVerifying]);
 
   useEffect(() => {
     if (isPopupVisible) {
