@@ -14,6 +14,8 @@ const enum FieldName {
   password = 'password',
   confirmPassword = 'confirmPassword',
   name = 'name',
+  firstName = 'firstName',
+  lastName = 'lastName',
   surname = 'surname',
   dateOfBirth = 'dateOfBirth',
   phoneNumber = 'phoneNumber',
@@ -26,6 +28,7 @@ const enum FieldName {
   idCardNumber = 'idCardNumber',
   documentNumber = 'documentNumber',
   verificationCode = 'verificationCode',
+  dateAdded = 'dateAdded',
 }
 
 interface InputFieldProps<T extends FieldValues> {

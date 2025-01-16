@@ -14,6 +14,7 @@ import {
   TO_CREATE_FORGOT_PASSWORD,
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_FORGOT_PASSWORD,
+  BACK_OFFICE_CREATE_EMPLOYEE,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -32,6 +33,7 @@ import {
 import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
+import BackOffice from 'pages/BackOffice/BackOffice';
 
 const routes = createBrowserRouter([
   {
@@ -96,6 +98,10 @@ const routes = createBrowserRouter([
   {
     path: TO_FORGOT_PASSWORD,
     element: <ForgotPasswordPage />,
+  },
+  {
+    path: BACK_OFFICE_CREATE_EMPLOYEE,
+    element: <BackOffice />,
   },
 ]);
 
