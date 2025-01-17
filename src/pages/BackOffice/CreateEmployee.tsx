@@ -1,10 +1,10 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Typography, Autocomplete, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { InputField, SubmitButton } from 'components/atoms';
-
-const roles = ['Administrator', 'Employee'];
+import { employeeRoles, employeeValidationSchema } from 'validation/validationCreateEmployee';
 
 type FormData = {
   firstName: string;
@@ -15,7 +15,12 @@ type FormData = {
 };
 
 const CreateEmployee: React.FC = () => {
-  const { control, setValue } = useForm<FormData>({
+  const {
+    control,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<FormData>({
+    resolver: yupResolver(employeeValidationSchema),
     mode: 'onBlur',
     defaultValues: {
       firstName: '',
@@ -46,6 +51,8 @@ const CreateEmployee: React.FC = () => {
             control={control}
             id="firstName"
             placeholder="Enter the First Name"
+            error={errors.firstName}
+            helperText={errors.firstName?.message || ''}
           />
         </Box>
 
@@ -56,6 +63,8 @@ const CreateEmployee: React.FC = () => {
             control={control}
             id="lastName"
             placeholder="Enter the Last Name"
+            error={errors.lastName}
+            helperText={errors.lastName?.message || ''}
           />
         </Box>
 
@@ -66,12 +75,14 @@ const CreateEmployee: React.FC = () => {
             control={control}
             id="email"
             placeholder="example@gmail.com"
+            error={errors.email}
+            helperText={errors.email?.message || ''}
           />
         </Box>
         <Box mb={2}>
           <Typography fontWeight={'bold'}>Role</Typography>
           <Autocomplete
-            options={roles}
+            options={employeeRoles}
             getOptionLabel={(option) => option}
             onChange={(_, value) => setValue('role', value || '')}
             sx={{
@@ -96,13 +107,15 @@ const CreateEmployee: React.FC = () => {
           <InputField
             type="date"
             placeholder="Date Added"
+            error={errors.dateAdded}
+            helperText={errors.dateAdded?.message || ''}
             name="dateAdded"
             control={control}
             id="dateAdded"
           />
         </Box>
 
-        <SubmitButton buttonContent="Save" />
+        <SubmitButton isDisabled={!isValid} buttonContent="Save" />
       </form>
     </Box>
   );
