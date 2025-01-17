@@ -36,5 +36,8 @@ export const StyledTextField = styled(TextField)(
         WebkitBackgroundClip: 'text',
       },
     },
+    "& input[type='password']::-ms-reveal": {
+      display: 'none',
+    },
   }),
 );
