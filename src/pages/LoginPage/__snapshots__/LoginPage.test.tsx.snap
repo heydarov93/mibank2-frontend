@@ -292,7 +292,7 @@ exports[`LoginPage snapshot should match 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1bb51f5"
+        class="MuiBox-root css-1p16v3r"
       >
         <div
           class="MuiBox-root css-1gj1vea"
@@ -303,7 +303,7 @@ exports[`LoginPage snapshot should match 1`] = `
             Download the app:
           </p>
           <div
-            class="MuiBox-root css-8uxqxp"
+            class="MuiBox-root css-19n5j0m"
           >
             <div
               class="MuiBox-root css-0"
