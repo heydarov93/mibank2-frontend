@@ -5,6 +5,11 @@ import '@testing-library/jest-dom';
 import CreateEmployee from './CreateEmployee';
 
 describe('CreateEmployee Component', () => {
+  it('matches the snapshot', () => {
+    const { asFragment } = render(<CreateEmployee />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('renders the form correctly', () => {
     render(<CreateEmployee />);
 

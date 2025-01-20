@@ -12,6 +12,15 @@ describe('BackOffice Component', () => {
       </MemoryRouter>,
     );
 
+  it('matches the snapshot', () => {
+    const { asFragment } = render(
+      <MemoryRouter initialEntries={['/back-office/create-employee']}>
+        <BackOffice />
+      </MemoryRouter>,
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should render the BackOfficeComponent', () => {
     renderComponent();
   });

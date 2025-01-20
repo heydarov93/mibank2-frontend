@@ -30,7 +30,7 @@ interface PassportExpFieldProps<T extends FieldValues> {
   name: Path<T>;
   id: string;
   control: Control<T>;
-  minDate: Dayjs;
+  minDate?: Dayjs;
   maxDate: Dayjs;
   placeholder: string;
   errors: FieldErrors<IDocumentInfo>;

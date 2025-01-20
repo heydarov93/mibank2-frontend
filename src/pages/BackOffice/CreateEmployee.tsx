@@ -1,10 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Typography, Autocomplete, TextField } from '@mui/material';
+import dayjs from 'dayjs';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { InputField, SubmitButton } from 'components/atoms';
-import { employeeRoles, employeeValidationSchema } from 'validation/validationCreateEmployee';
+import { DocumentDatePicker } from 'components/molecules';
+import {
+  employeeRoles,
+  employeeValidationSchema,
+} from 'validation/validationCreateEmployee';
 
 type FormData = {
   firstName: string;
@@ -21,7 +26,7 @@ const CreateEmployee: React.FC = () => {
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver(employeeValidationSchema),
-    mode: 'onBlur',
+    mode: 'all',
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -42,10 +47,14 @@ const CreateEmployee: React.FC = () => {
       height={'auto'}
       padding={5}
     >
-      <Typography variant="h6">Add new employee</Typography>
-      <form style={{ width: '45%' }}>
-        <Box mb={2}>
-          <Typography fontWeight={'bold'}>First Name</Typography>
+      <Typography fontSize={32} mb={3} fontWeight={'bold'}>
+        Add new employee
+      </Typography>
+      <form style={{ width: '420px' }}>
+        <Box mb={3}>
+          <Typography fontWeight={'bold'} fontSize={14}>
+            First Name
+          </Typography>
           <InputField
             name="firstName"
             control={control}
@@ -56,8 +65,10 @@ const CreateEmployee: React.FC = () => {
           />
         </Box>
 
-        <Box mb={2}>
-          <Typography fontWeight={'bold'}>Last Name</Typography>
+        <Box mb={3}>
+          <Typography fontWeight={'bold'} fontSize={14}>
+            Last Name
+          </Typography>
           <InputField
             name="lastName"
             control={control}
@@ -68,8 +79,10 @@ const CreateEmployee: React.FC = () => {
           />
         </Box>
 
-        <Box mb={2}>
-          <Typography fontWeight={'bold'}>Email</Typography>
+        <Box mb={3}>
+          <Typography fontWeight={'bold'} fontSize={14}>
+            Email
+          </Typography>
           <InputField
             name="email"
             control={control}
@@ -79,8 +92,10 @@ const CreateEmployee: React.FC = () => {
             helperText={errors.email?.message || ''}
           />
         </Box>
-        <Box mb={2}>
-          <Typography fontWeight={'bold'}>Role</Typography>
+        <Box mb={3}>
+          <Typography fontWeight={'bold'} fontSize={14}>
+            Role
+          </Typography>
           <Autocomplete
             options={employeeRoles}
             getOptionLabel={(option) => option}
@@ -102,16 +117,18 @@ const CreateEmployee: React.FC = () => {
           />
         </Box>
 
-        <Box mb={2}>
-          <Typography fontWeight={'bold'}>Date Added</Typography>
-          <InputField
-            type="date"
-            placeholder="Date Added"
-            error={errors.dateAdded}
-            helperText={errors.dateAdded?.message || ''}
+        <Box mb={3}>
+          <Typography fontWeight={'bold'} fontSize={14}>
+            Date Added
+          </Typography>
+          <DocumentDatePicker
             name="dateAdded"
+            placeholder="Date Added"
             control={control}
-            id="dateAdded"
+            errors={errors}
+            className={errors.dateAdded ? 'shake' : ''}
+            id={'dateAdded'}
+            maxDate={dayjs()}
           />
         </Box>
 
