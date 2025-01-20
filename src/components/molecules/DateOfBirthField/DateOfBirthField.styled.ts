@@ -5,12 +5,14 @@ export const StyledDatePicker = styled(DatePicker, {
   shouldForwardProp: (prop) => prop !== 'hasError',
 })<{ hasError: boolean }>(({ theme: { palette }, hasError }) => ({
   '& .MuiOutlinedInput-root': {
+    borderRadius: 10,
     '& .MuiOutlinedInput-root:hover': {
+      borderRadius: 10,
       border: '3px solid red',
       outline: `1px solid ${hasError ? palette.error.main : palette.grey[300]}`,
     },
     '&.MuiOutlinedInput-notchedOutline': {
-      borderRadius: 8,
+      borderRadius: 10,
       border: `1px solid ${palette.grey[300]}`,
     },
 
@@ -32,7 +34,7 @@ export const StyledDatePicker = styled(DatePicker, {
 
     '&:hover:not(.Mui-focused):not(.Mui-disabled)': {
       '& .MuiOutlinedInput-notchedOutline': {
-        border: `2px solid ${hasError ? palette.error.main : palette.grey[300]}`,
+        border: `2px solid ${hasError ? palette.error.main : palette.grey[700]}`,
       },
     },
   },
