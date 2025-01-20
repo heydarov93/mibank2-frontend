@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeLeftSidebar matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-8atqhb"
+  >
+    <div
+      class="MuiBox-root css-kbn7if"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        Millennium Bank
+      </p>
+      <div
+        class="MuiBox-root css-yruxu8"
+      >
+        <svg
+          class="css-vaf8oq"
+        >
+          Logo.svg
+        </svg>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-y1gt6f"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-h6 css-b937i3-MuiTypography-root"
+      >
+        Employees
+      </h6>
+      <div
+        class="MuiBox-root css-e7x1qm"
+      >
+        <a
+          href="/back-office/create-employee"
+          style="text-decoration: none; color: white; display: flex; align-items: center; gap: 5px;"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="ControlPointIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"
+            />
+          </svg>
+           Add a new employee
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

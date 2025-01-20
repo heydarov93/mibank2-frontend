@@ -13,6 +13,17 @@ const mockLocation = (pathname: string) => ({
 });
 
 describe('BackOfficeLeftSidebar', () => {
+  it('matches the snapshot', () => {
+    const { asFragment } = render(
+      <MemoryRouter>
+        <BackOfficeLeftSidebar
+          location={mockLocation('/back-office/create-employee')}
+        />
+      </MemoryRouter>,
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   test('renders the Millennium Bank title and logo', () => {
     render(
       <MemoryRouter>
