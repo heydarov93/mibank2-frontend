@@ -235,5 +235,15 @@
       "getBackBtn" : "Get back",
       "logIn": "Log in",
      "autoLogoutMessage" :"Your session has been terminated due to inactivity. Please, log in again!"
+  },
+  "OTPVerificationPage": {
+    "stepOne": "Step 1",
+    "stepTwo": "Step 2",
+    "qrCodeTitle": "Scan QR code",
+    "qrCodeText": "Scan this QR code authentication app to verify your device.",
+    "verificationTitle": "Enter Verification Code",
+    "verificationText": "Enter the 6-digit code you see in your authentication app.",
+    "cancelButtonText": "Cancel",
+    "confirmButtonText": "Confirm"
   }
 }

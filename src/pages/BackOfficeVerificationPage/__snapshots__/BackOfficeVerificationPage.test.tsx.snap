@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeVerificationPage matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1r7hsju"
+    data-testid="main-container"
+  >
+    <div
+      class="MuiBox-root css-59whaf"
+    >
+      <div
+        class="MuiBox-root css-rablmd"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-t9yhn4-MuiTypography-root"
+        >
+          OTPVerificationPage.stepOne
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1ndck2n-MuiTypography-root"
+          data-testid="step-one"
+        >
+          OTPVerificationPage.qrCodeTitle
+        </p>
+      </div>
+      <div
+        class="MuiBox-root css-1h93ewi"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1sr3rul-MuiTypography-root"
+          data-testid="qr-code-title"
+        >
+          OTPVerificationPage.qrCodeText
+        </p>
+        <svg
+          fill="none"
+          height="240"
+          viewBox="0 0 240 240"
+          width="240"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M240 0H0V240H240V0Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-59whaf"
+    >
+      <div
+        class="MuiBox-root css-rablmd"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-t9yhn4-MuiTypography-root"
+        >
+          OTPVerificationPage.stepTwo
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1ndck2n-MuiTypography-root"
+          data-testid="step-two"
+        >
+          OTPVerificationPage.verificationTitle
+        </p>
+      </div>
+      <div
+        class="MuiBox-root css-1h93ewi"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1sr3rul-MuiTypography-root"
+          data-testid="step-two-text"
+        >
+          OTPVerificationPage.verificationText
+        </p>
+        <div>
+          One Time Passcode Form
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
