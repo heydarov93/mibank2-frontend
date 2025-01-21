@@ -15,3 +15,4 @@ export const TO_CREATE_FORGOT_PASSWORD_FINISHED =
   '/create-forgot-password-finished';
 export const TO_FORGOT_PASSWORD = '/forgot-password';
 export const BACK_OFFICE_CREATE_EMPLOYEE = '/back-office/create-employee';
+export const TO_BACK_OFFICE_VERIFICATION = '/back-office/verify';
