@@ -38,6 +38,7 @@ import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
 import BackOffice from 'pages/BackOffice/BackOffice';
+import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 const routes = createBrowserRouter([
   {
@@ -114,6 +115,7 @@ const routes = createBrowserRouter([
   {
     path: TO_BACK_OFFICE_VERIFICATION,
     element: <BackOfficeVerificationPage />,
+    errorElement: <BackOfficeVerificationErrorPage />,
   },
 ]);
 

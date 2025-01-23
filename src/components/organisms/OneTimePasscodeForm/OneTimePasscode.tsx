@@ -1,45 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { DigitInput } from './OneTimePasscodeForm.styled';
 
-const OneTimePasscode = () => {
-  const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
-  const handleChange = (value: string, index: number) => {
-    if (!/^\d*$/.test(value)) return;
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-    if (value && index < otp.length - 1) {
-      document.getElementById(`digit-${index + 1}`)?.focus();
-    }
-  };
-  const handleKeyDown = (
+import { theme } from 'theme/theme';
+
+interface OneTimePasscodeProps {
+  otp: string[];
+  handleChange: (value: string, index: number) => void;
+  handleKeyDown: (
     event: React.KeyboardEvent<HTMLInputElement>,
     index: number,
-  ) => {
-    if (event.key === 'Backspace') {
-      const newOtp = [...otp];
-      newOtp[index] = '';
-      setOtp(newOtp);
-      if (index > 0) {
-        document.getElementById(`digit-${index - 1}`)?.focus();
-      }
-    }
-  };
+  ) => void;
+  inputRefs: React.MutableRefObject<(HTMLInputElement | null)[]>;
+}
 
+const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
+  otp,
+  handleChange,
+  handleKeyDown,
+  inputRefs,
+}) => {
   return (
     <>
       {otp.map((value, index) => (
         <DigitInput
           key={index}
-          id={`digit-${index}`}
           value={value}
           onChange={(e) => handleChange(e.target.value, index)}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
             handleKeyDown(e, index)
           }
-          inputProps={{
-            maxLength: 1,
+          maxLength={1}
+          ref={(element: HTMLInputElement | null) =>
+            (inputRefs.current[index] = element)
+          }
+          sx={{
+            backgroundColor: value
+              ? theme.palette.primary.light
+              : 'transparent',
+            borderColor: value ? theme.palette.primary.dark : '',
           }}
         />
       ))}
