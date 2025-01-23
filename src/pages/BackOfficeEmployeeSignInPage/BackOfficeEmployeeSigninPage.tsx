@@ -1,0 +1,28 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { AuthWrapper } from 'components/organisms';
+import { BackOfficeEmployeeLoginForm } from 'components/organisms/BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
+import { TokenType } from 'models/IAuth';
+import { localTokenHandler } from 'utils';
+
+export const BackOfficeEmployeeLoginPage = () => {
+  const navigate = useNavigate();
+  const hasAccessToken = localTokenHandler.getToken(TokenType.ACCESS);
+
+  useEffect(() => {
+    if (hasAccessToken) {
+      navigate('/');
+    }
+  }, [hasAccessToken, navigate]);
+
+  if (hasAccessToken) return null;
+
+  return (
+    <>
+      <AuthWrapper>
+        <BackOfficeEmployeeLoginForm />
+      </AuthWrapper>
+    </>
+  );
+};

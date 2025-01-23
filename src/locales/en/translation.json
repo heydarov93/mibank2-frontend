@@ -236,6 +236,12 @@
       "logIn": "Log in",
      "autoLogoutMessage" :"Your session has been terminated due to inactivity. Please, log in again!"
   },
+  "EmployeeLoginPage":{
+       "formTitle": "Log in",
+       "email": "Email",
+       "emailRequired": "The email is required",
+       "submitButton": "Continue"
+  },
   "OTPVerificationPage": {
     "stepOne": "Step 1",
     "stepTwo": "Step 2",

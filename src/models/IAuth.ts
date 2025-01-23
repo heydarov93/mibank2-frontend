@@ -43,3 +43,7 @@ export interface IForgotPasswordFormInput {
   confirmPassword: string;
   verificationCode: string;
 }
+
+export interface IBackOfficeEmployeeLogin {
+  email: string;
+}
