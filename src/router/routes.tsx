@@ -14,6 +14,7 @@ import {
   TO_CREATE_FORGOT_PASSWORD,
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_FORGOT_PASSWORD,
+  BACK_OFFICE_EMPLOYEE_SIGN_IN,
   BACK_OFFICE_CREATE_EMPLOYEE,
   TO_BACK_OFFICE_VERIFICATION,
 } from '../constants/routesName';
@@ -29,6 +30,7 @@ import {
   CreateFogotPasswordPage,
   ForgotPasswordPageFinished,
   ForgotPasswordPage,
+  BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
 } from '../pages';
 
@@ -100,6 +102,10 @@ const routes = createBrowserRouter([
   {
     path: TO_FORGOT_PASSWORD,
     element: <ForgotPasswordPage />,
+  },
+  {
+    path: BACK_OFFICE_EMPLOYEE_SIGN_IN,
+    element: <BackOfficeEmployeeLoginPage />,
   },
   {
     path: BACK_OFFICE_CREATE_EMPLOYEE,

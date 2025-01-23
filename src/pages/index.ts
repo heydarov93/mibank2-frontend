@@ -9,4 +9,5 @@ export { SignupPageFinish } from './SignupPageFinish/SignupPageFinish';
 export { CreateFogotPasswordPage } from './CreateForgotPasswordPage/CreateForgotPasswordPage';
 export { ForgotPasswordPageFinished } from './CreateForgotPasswordPage/ForgotPasswordPageFinished';
 export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
+export { BackOfficeEmployeeLoginPage } from './BackOfficeEmployeeSignInPage/BackOfficeEmployeeSigninPage';
 export { BackOfficeVerificationPage } from './BackOfficeVerificationPage/BackOfficeVerificationPage';
