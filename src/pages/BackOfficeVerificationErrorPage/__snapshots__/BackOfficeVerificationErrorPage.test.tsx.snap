@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeVerificationErrorPage matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-hc9d5v"
+  >
+    <div
+      class="MuiBox-root css-0"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-4jir3w-MuiTypography-root"
+        data-testid="title-text"
+      >
+        QR Code has expired
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1aj66-MuiTypography-root"
+        data-testid="secondary-text"
+      >
+        Refresh the page to generate a new one
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-4g6ai3"
+    >
+      <div
+        data-testid="reload-icon"
+      >
+        Reload Button
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
