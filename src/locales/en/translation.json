@@ -253,5 +253,18 @@
     "confirmButtonText": "Confirm",
     "QRCodeExpired": "QR Code has expired",
     "RefreshPage": "Refresh the page to generate a new one"
+  },
+  "BackOffice": {
+    "SideBar": {
+      "productHeader": "Products",
+      "createProduct": "Create New Product",
+      "viewProducts": "View All Products",
+      "employeeHeader": "Employees",
+      "addEmployee": "Add New Employee",
+      "viewEmployees": "View All Employees",
+      "clientHeader": "Clients",
+      "addClient": "Add a New Client",
+      "viewClients": "View All Clients"
+    }
   }
 }

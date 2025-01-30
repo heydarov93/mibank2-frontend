@@ -1,42 +1,40 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-
+import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BackOffice from './BackOffice';
 
-describe('BackOffice Component', () => {
-  const renderComponent = (route = '/back-office/create-employee') =>
-    render(
-      <MemoryRouter initialEntries={[route]}>
+jest.mock('./BackOfficeLeftSidebar', () => ({
+  __esModule: true,
+  default: () => <div data-testid="BackOfficeLeftSidebar">Sidebar</div>,
+}));
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  Outlet: () => <div data-testid="Outlet">Outlet</div>,
+}));
+
+describe('BackOffice', () => {
+  it('renders BackOfficeLeftSidebar and Outlet', () => {
+    const { getByTestId } = render(
+      <Router>
         <BackOffice />
-      </MemoryRouter>,
+      </Router>,
     );
 
-  it('matches the snapshot', () => {
-    const { asFragment } = render(
-      <MemoryRouter initialEntries={['/back-office/create-employee']}>
+    expect(getByTestId('BackOfficeLeftSidebar')).toBeInTheDocument();
+    expect(getByTestId('Outlet')).toBeInTheDocument();
+  });
+
+  it('has correct layout with flex display', () => {
+    const { container } = render(
+      <Router>
         <BackOffice />
-      </MemoryRouter>,
+      </Router>,
     );
-    expect(asFragment()).toMatchSnapshot();
-  });
 
-  it('should render the BackOfficeComponent', () => {
-    renderComponent();
-  });
-
-  it('should render the BackOfficeComponent with the LeftSidebar and CreateEmployee component', () => {
-    renderComponent('/back-office/create-employee');
-    expect(screen.getByText('Millennium Bank')).toBeInTheDocument();
-    expect(screen.getByText('Logo.svg')).toBeInTheDocument();
-    expect(screen.getByText('Employees')).toBeInTheDocument();
-    expect(screen.getByText('Employees')).toBeInTheDocument();
-    expect(screen.getByText('Add a new employee')).toBeInTheDocument();
-    expect(screen.getByText('Add new employee')).toBeInTheDocument();
-    expect(screen.getByText('First Name')).toBeInTheDocument();
-    expect(screen.getByText('Last Name')).toBeInTheDocument();
-    expect(screen.getByText('Email')).toBeInTheDocument();
-    expect(screen.getByText('Role')).toBeInTheDocument();
-    expect(screen.getByText('Date Added')).toBeInTheDocument();
+    const backOfficeContainer = container.firstChild as HTMLElement;
+    expect(backOfficeContainer).toHaveStyle('display: flex');
+    expect(backOfficeContainer).toHaveStyle('min-height: 100vh');
+    expect(backOfficeContainer).toHaveStyle('width: 100%');
   });
 });

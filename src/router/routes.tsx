@@ -15,8 +15,8 @@ import {
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_FORGOT_PASSWORD,
   BACK_OFFICE_EMPLOYEE_SIGN_IN,
-  BACK_OFFICE_CREATE_EMPLOYEE,
   TO_BACK_OFFICE_VERIFICATION,
+  TO_BACK_OFFICE,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -38,6 +38,7 @@ import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
 import BackOffice from 'pages/BackOffice/BackOffice';
+import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 const routes = createBrowserRouter([
@@ -109,13 +110,19 @@ const routes = createBrowserRouter([
     element: <BackOfficeEmployeeLoginPage />,
   },
   {
-    path: BACK_OFFICE_CREATE_EMPLOYEE,
-    element: <BackOffice />,
-  },
-  {
     path: TO_BACK_OFFICE_VERIFICATION,
     element: <BackOfficeVerificationPage />,
     errorElement: <BackOfficeVerificationErrorPage />,
+  },
+  {
+    path: TO_BACK_OFFICE,
+    element: <BackOffice />,
+    children: [
+      {
+        path: 'create-employee',
+        element: <CreateEmployee />,
+      },
+    ],
   },
 ]);
 
