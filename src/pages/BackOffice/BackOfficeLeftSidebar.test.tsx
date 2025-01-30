@@ -1,83 +1,82 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-
+import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BackOfficeLeftSidebar from './BackOfficeLeftSidebar';
 
-const mockLocation = (pathname: string) => ({
-  pathname,
-  state: null,
-  search: '',
-  hash: '',
-  key: 'test-key',
-});
+jest.mock('../../assets/icons/PlusIcon.svg', () => ({
+  ReactComponent: () => <svg data-testid="PlusIcon" />,
+}));
+jest.mock('../../assets/icons/ViewClientsIcon.svg', () => ({
+  ReactComponent: () => <svg data-testid="ViewClientsIcon" />,
+}));
+jest.mock('../../assets/icons/ViewEmployeesIcon.svg', () => ({
+  ReactComponent: () => <svg data-testid="ViewEmployeesIcon" />,
+}));
+jest.mock('../../assets/icons/WalletIcon.svg', () => ({
+  ReactComponent: () => <svg data-testid="WalletIcon" />,
+}));
+jest.mock('components/atoms/Logo/Logo.styled', () => ({
+  StyledIcon: () => <div data-testid="StyledIcon" />,
+  StyledLogo: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="StyledLogo">{children}</div>
+  ),
+}));
+jest.mock('components/atoms/LogoutButton/LogoutButton', () => () => (
+  <button data-testid="LogoutButton">Logout</button>
+));
+jest.mock('components/atoms/SettingsButton/SettingsButton', () => () => (
+  <button data-testid="SettingsButton">Settings</button>
+));
+jest.mock(
+  'components/molecules/BackOfficeNavigationLinks/BackOfficeNavigationLink',
+  () => ({
+    __esModule: true,
+    default: ({
+      svg: SvgIcon,
+      text,
+      link,
+    }: {
+      svg: any;
+      text: string;
+      link: string;
+    }) => (
+      <div data-testid="BackOfficeNavigationLink">
+        <SvgIcon />
+        <span>{text}</span>
+      </div>
+    ),
+  }),
+);
 
 describe('BackOfficeLeftSidebar', () => {
-  it('matches the snapshot', () => {
+  it('renders correctly and matches snapshot', () => {
     const { asFragment } = render(
-      <MemoryRouter>
-        <BackOfficeLeftSidebar
-          location={mockLocation('/back-office/create-employee')}
-        />
-      </MemoryRouter>,
+      <Router>
+        <BackOfficeLeftSidebar />
+      </Router>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('renders the Millennium Bank title and logo', () => {
-    render(
-      <MemoryRouter>
-        <BackOfficeLeftSidebar
-          location={mockLocation('/back-office/create-employee')}
-        />
-      </MemoryRouter>,
+  it('renders all expected components', () => {
+    const { getByTestId, getAllByTestId, getByText } = render(
+      <Router>
+        <BackOfficeLeftSidebar />
+      </Router>,
     );
 
-    expect(screen.getByText('Millennium Bank')).toBeInTheDocument();
-    expect(screen.getByText('Logo.svg')).toBeInTheDocument();
-  });
+    expect(getByText('Millennium Bank')).toBeInTheDocument();
+    expect(getByTestId('StyledLogo')).toBeInTheDocument();
 
-  test('highlights the Employees text and link when active', () => {
-    render(
-      <MemoryRouter>
-        <BackOfficeLeftSidebar
-          location={mockLocation('/back-office/create-employee')}
-        />
-      </MemoryRouter>,
-    );
+    const navLinks = getAllByTestId('BackOfficeNavigationLink');
+    expect(navLinks.length).toBe(6);
 
-    const employeesText = screen.getByText('Employees');
-    expect(employeesText).toHaveStyle('color: white');
+    expect(getAllByTestId('PlusIcon').length).toBe(3);
+    expect(getByTestId('WalletIcon')).toBeInTheDocument();
+    expect(getByTestId('ViewEmployeesIcon')).toBeInTheDocument();
+    expect(getByTestId('ViewClientsIcon')).toBeInTheDocument();
 
-    const link = screen.getByText('Add a new employee');
-    expect(link).toHaveStyle('color: white');
-  });
-
-  test('renders inactive Employees text and link when not active', () => {
-    render(
-      <MemoryRouter>
-        <BackOfficeLeftSidebar location={mockLocation('/some-other-path')} />
-      </MemoryRouter>,
-    );
-
-    const employeesText = screen.getByText('Employees');
-    expect(employeesText).toHaveStyle('color: #A8ADBA');
-
-    const link = screen.getByText('Add a new employee');
-    expect(link).toHaveStyle('color: #A8ADBA');
-  });
-
-  test('renders the link with the correct href', () => {
-    render(
-      <MemoryRouter>
-        <BackOfficeLeftSidebar location={mockLocation('/')} />
-      </MemoryRouter>,
-    );
-
-    const link = screen.getByText('Add a new employee');
-    expect(link.closest('a')).toHaveAttribute(
-      'href',
-      '/back-office/create-employee',
-    );
+    expect(getByTestId('LogoutButton')).toBeInTheDocument();
+    expect(getByTestId('SettingsButton')).toBeInTheDocument();
   });
 });
