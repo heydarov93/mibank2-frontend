@@ -40,6 +40,7 @@ import { App } from 'App';
 import BackOffice from 'pages/BackOffice/BackOffice';
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
+import Homepage from 'pages/Homepage/Homepage';
 
 const routes = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <UnderDevPage />,
+        element: <Homepage />,
       },
       {
         path: TO_PAYMENTS,
