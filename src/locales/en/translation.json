@@ -265,6 +265,10 @@
       "clientHeader": "Clients",
       "addClient": "Add a New Client",
       "viewClients": "View All Clients"
+    },
+    "ConfirmationWindow": {
+      "confirmationTitle": "Product Created Successfully",
+      "secondaryText": "Your Card has been created and is now ready for use."
     }
   }
 }
