@@ -29,6 +29,7 @@ const enum FieldName {
   documentNumber = 'documentNumber',
   verificationCode = 'verificationCode',
   dateAdded = 'dateAdded',
+  productName = 'productName',
 }
 
 interface InputFieldProps<T extends FieldValues> {

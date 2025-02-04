@@ -17,6 +17,7 @@ import {
   BACK_OFFICE_EMPLOYEE_SIGN_IN,
   TO_BACK_OFFICE_VERIFICATION,
   TO_BACK_OFFICE,
+  TO_BACK_OFFICE_CREATE_PRODUCT,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -37,6 +38,7 @@ import {
 import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
+import ChooseProductForm from 'components/organisms/ChooseProductForm/ChooseProductForm';
 import BackOffice from 'pages/BackOffice/BackOffice';
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
@@ -122,6 +124,10 @@ const routes = createBrowserRouter([
       {
         path: 'create-employee',
         element: <CreateEmployee />,
+      },
+      {
+        path: TO_BACK_OFFICE_CREATE_PRODUCT,
+        element: <ChooseProductForm />,
       },
     ],
   },
