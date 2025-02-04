@@ -322,6 +322,25 @@
       "atleastOne": "Must be atleast 1 month",
       "positive": "Must be positive",
       "earlyWithdrawalVal": "Required when early withdrawal is enabled"
+    },
+    "VisaCard": {
+      "visaElectronCard": "“Visa Electron” Card",
+      "cardIssuer": "Card Issuer",
+      "cardType": "Card Type",
+      "cashbackRate": "Cashback Rate",
+      "enterHere": "Enter here",
+      "monthlyFee": "Monthly Fee",
+      "dailyOperationalLimit": "Daily Operational Limit",
+      "foreignTransactionLimit": "Foreign Transaction Limit",
+      "cancel": "Cancel",
+      "create": "Create",
+      "required": "This field is required",
+      "decimal": "Max two decimal Places",
+      "number": "Must be a number",
+      "visa": "Visa",
+      "masterCard": "Mastercard",
+      "digital": "Digital",
+      "plastic": "Plastic"
     }
   }
 }
