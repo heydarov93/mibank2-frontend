@@ -18,6 +18,7 @@ import {
   TO_BACK_OFFICE_VERIFICATION,
   TO_BACK_OFFICE,
   TO_BACK_OFFICE_CREATE_PRODUCT,
+  TO_BACK_OFFICE_CREATE_EMPLOYEE,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -122,7 +123,7 @@ const routes = createBrowserRouter([
     element: <BackOffice />,
     children: [
       {
-        path: 'create-employee',
+        path: TO_BACK_OFFICE_CREATE_EMPLOYEE,
         element: <CreateEmployee />,
       },
       {

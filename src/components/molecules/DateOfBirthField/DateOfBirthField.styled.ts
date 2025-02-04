@@ -5,15 +5,9 @@ export const StyledDatePicker = styled(DatePicker, {
   shouldForwardProp: (prop) => prop !== 'hasError',
 })<{ hasError: boolean }>(({ theme: { palette }, hasError }) => ({
   '& .MuiOutlinedInput-root': {
-    borderRadius: 10,
-    '& .MuiOutlinedInput-root:hover': {
-      borderRadius: 10,
-      border: '3px solid red',
-      outline: `1px solid ${hasError ? palette.error.main : palette.grey[300]}`,
-    },
-    '&.MuiOutlinedInput-notchedOutline': {
-      borderRadius: 10,
-      border: `1px solid ${palette.grey[300]}`,
+    borderRadius: 8,
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: `1px solid ${hasError ? palette.error.main : palette.grey[300]}`,
     },
 
     '&.Mui-focused': {
@@ -21,21 +15,16 @@ export const StyledDatePicker = styled(DatePicker, {
         borderColor: 'secondary.main',
       },
     },
-    input: {
-      WebkitTextFillColor: palette.common.black,
-      WebkitAppearance: 'none',
-    },
-
-    '&.Mui-disabled': {
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: palette.grey[300],
-      },
-    },
 
     '&:hover:not(.Mui-focused):not(.Mui-disabled)': {
       '& .MuiOutlinedInput-notchedOutline': {
-        border: `2px solid ${hasError ? palette.error.main : palette.grey[700]}`,
+        border: `2px solid ${hasError ? palette.error.main : palette.grey[400]}`,
       },
+    },
+
+    input: {
+      WebkitTextFillColor: palette.common.black,
+      WebkitAppearance: 'none',
     },
   },
   '& label': {
@@ -43,7 +32,6 @@ export const StyledDatePicker = styled(DatePicker, {
     fontWeight: 300,
   },
   width: '100%',
-  color: palette.grey[300],
   fontSize: '14px',
   outline: 'none',
   border: 'none',

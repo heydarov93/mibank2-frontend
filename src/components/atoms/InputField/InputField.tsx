@@ -29,6 +29,13 @@ const enum FieldName {
   documentNumber = 'documentNumber',
   verificationCode = 'verificationCode',
   dateAdded = 'dateAdded',
+  minimumDepositSum = 'minimumDepositSum',
+  maximumDepositSum = 'maximumDepositSum',
+  depositTerm = 'depositTerm',
+  depositInterestRate = 'depositInterestRate',
+  depositCapitalizationRate = 'depositCapitalizationRate',
+  earlyWithdrawalLimit = 'earlyWithdrawalLimit',
+  withdrawalFee = 'withdrawalFee',
   productName = 'productName',
 }
 
