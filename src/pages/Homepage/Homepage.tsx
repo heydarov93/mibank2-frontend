@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box, Button, useTheme } from '@mui/material';
 
 import MiCarousel from 'components/molecules/Carousel/MiCarousel';
 
@@ -18,36 +18,54 @@ const Homepage = () => {
       </Box>
       <Box width={'80%'}>
         <Box padding={5}>
-          <MiCarousel
-            indicatorIconButtonStyles={{
-              color: theme.palette.grey[200],
-            }}
-            activeIndicatorIconButtonStyles={{
-              color: theme.palette.primary.main,
-            }}
-            navButtonStyles={{
-              backgroundColor: 'transparent',
-              color: theme.palette.common.white,
-              marginTop: '-15px',
-            }}
-          >
-            {images.map((image, index) => (
-              <Box
-                key={index}
-                component="img"
-                src={image}
-                alt={`Product Offers ${index + 1}`}
-                sx={{
-                  width: '100%',
-                  height: '197px',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              />
-            ))}
-          </MiCarousel>
+          <Box sx={{ position: 'relative' }}>
+            <MiCarousel
+              indicatorIconButtonStyles={{
+                color: theme.palette.grey[200],
+              }}
+              activeIndicatorIconButtonStyles={{
+                color: theme.palette.primary.main,
+              }}
+              navButtonStyles={{
+                backgroundColor: 'transparent',
+                color: theme.palette.common.white,
+                marginTop: '-15px',
+              }}
+            >
+              {images.map((image, index) => (
+                <Box
+                  key={index}
+                  component="img"
+                  src={image}
+                  alt={`Product Offers ${index + 1}`}
+                  sx={{
+                    width: '100%',
+                    height: '197px',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 0,
+                  }}
+                />
+              ))}
+            </MiCarousel>
+            <Button
+              color="inherit"
+              size="large"
+              sx={{
+                position: 'absolute',
+                bottom: 75,
+                left: 75,
+                borderRadius: '8px',
+                backgroundColor: theme.palette.common.white,
+                zIndex: 1,
+                padding: '8px 24px',
+              }}
+            >
+              Learn more
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>
