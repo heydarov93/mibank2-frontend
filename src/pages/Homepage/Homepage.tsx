@@ -16,11 +16,14 @@ const Homepage = () => {
         My cards
       </Box>
       <Box width={'80%'}>
-        <Box padding={5}>
-          <Box sx={{ position: 'relative' }}>
+        <Box marginTop={5}>
+          <Box sx={{ position: 'relative', width: '974px', height: '197px' }}>
             <MiCarousel
               indicatorIconButtonStyles={{
                 color: theme.palette.grey[200],
+                width: '10px',
+                height: '10px',
+                margin: '0 5px',
               }}
               activeIndicatorIconButtonStyles={{
                 color: theme.palette.primary.main,
@@ -38,7 +41,7 @@ const Homepage = () => {
                   src={image}
                   alt={`Product Offers ${index + 1}`}
                   sx={{
-                    width: '100%',
+                    width: '974px',
                     height: '197px',
                     borderRadius: '8px',
                     display: 'flex',
@@ -54,12 +57,14 @@ const Homepage = () => {
               size="large"
               sx={{
                 position: 'absolute',
-                bottom: 75,
+                bottom: 50,
                 left: 75,
                 borderRadius: '8px',
                 backgroundColor: theme.palette.common.white,
                 zIndex: 1,
                 padding: '8px 24px',
+                height: '48px',
+                fontSize: '14px',
               }}
             >
               Learn more
