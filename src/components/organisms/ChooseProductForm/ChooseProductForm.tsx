@@ -13,10 +13,14 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import SelectField from 'components/molecules/SelectField/SelectField';
+import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { useAppDispatch } from 'hooks';
+import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { productFormSchema } from 'validation/validationProductFormSchema';
 
 const ChooseProductForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const dispatch = useAppDispatch();
 
   const productOptions = [t('CreateProduct.deposit'), t('CreateProduct.card')];
   const depositOptions = [
@@ -43,6 +47,7 @@ const ChooseProductForm = () => {
 
   const {
     control,
+    handleSubmit,
     formState: { errors, isValid },
     watch,
   } = useForm<formData>({
@@ -59,9 +64,18 @@ const ChooseProductForm = () => {
 
   const selectedProduct = watch('product');
 
+  const onSubmit = (formData: formData) => {
+    if (formData.product === 'Deposit') {
+      dispatch(setProductStep(EProductFormStepper.DEPOSIT_INFO));
+    } else {
+      dispatch(setProductStep(EProductFormStepper.CARD_INFO));
+    }
+  };
+
   return (
     <MainContainer>
       <form
+        onSubmit={handleSubmit(onSubmit)}
         style={{
           width: '420px',
           display: 'flex',

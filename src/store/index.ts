@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 
 import AuthReducer from './reducers/AuthSlice';
 import BankContactReducer from './reducers/BankContactsSlice';
+import ProductStepperReducer from './reducers/ProductStepperSlice';
 import RegistrationReducer from './reducers/RegistrationSlice';
 import StepperReducer from './reducers/StepperSlice';
 
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   contacts: BankContactReducer,
   registration: RegistrationReducer,
   stepper: StepperReducer,
+  productStepper: ProductStepperReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userInfoApi.reducerPath]: userInfoApi.reducer,
   [contactInfoApi.reducerPath]: contactInfoApi.reducer,
