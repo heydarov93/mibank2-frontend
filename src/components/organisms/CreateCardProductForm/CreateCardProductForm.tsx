@@ -6,9 +6,12 @@ import { useTranslation } from 'react-i18next';
 
 import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled';
 
-import { InputField } from 'components/atoms';
+import { BackArrow, InputField } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
+import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { useAppDispatch } from 'hooks';
+import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { productCardValidation } from 'validation/productCardValidation';
 
 interface FormData {
@@ -22,6 +25,7 @@ interface FormData {
 
 const CreateCardProductForm: React.FC = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const dispatch = useAppDispatch();
 
   const cardIssuerOptions = [t('VisaCard.visa'), t('VisaCard.masterCard')];
   const cardTypeOptions = [t('VisaCard.digital'), t('VisaCard.plastic')];
@@ -29,6 +33,7 @@ const CreateCardProductForm: React.FC = () => {
   const {
     control,
     formState: { errors, isValid },
+    handleSubmit,
   } = useForm<FormData>({
     resolver: yupResolver(productCardValidation),
     mode: 'all',
@@ -42,6 +47,10 @@ const CreateCardProductForm: React.FC = () => {
     },
   });
 
+  const onSubmit = () => {
+    dispatch(setProductStep(EProductFormStepper.FINISHED));
+  };
+
   return (
     <Box
       width="75%"
@@ -52,11 +61,17 @@ const CreateCardProductForm: React.FC = () => {
       minHeight="100vh"
       height="auto"
       padding={5}
+      position="relative"
     >
+      <BackArrow
+        onBackClick={() =>
+          dispatch(setProductStep(EProductFormStepper.PRODUCT_INFO))
+        }
+      />
       <Typography textAlign="center" fontSize={32} mb={3} fontWeight="bold">
         {t('VisaCard.visaElectronCard')}
       </Typography>
-      <form style={{ width: '420px' }}>
+      <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>
           <Box>
             <Typography fontWeight="bold" fontSize={14}>

@@ -12,18 +12,23 @@ import { useTranslation } from 'react-i18next';
 
 import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled';
 
-import { InputField } from 'components/atoms';
+import { BackArrow, InputField } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
+import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { useAppDispatch } from 'hooks';
+import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { lastDepositValidation } from 'validation/lastResortDepositValidation';
 
 const CreateDepositProductForm: React.FC = () => {
   const theme = useTheme();
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const dispatch = useAppDispatch();
 
   const {
     control,
     watch,
     formState: { errors, isValid },
+    handleSubmit,
   } = useForm({
     resolver: yupResolver(lastDepositValidation),
     mode: 'all',
@@ -43,6 +48,10 @@ const CreateDepositProductForm: React.FC = () => {
 
   const earlyWithdrawalEnabled = watch('earlyWithdrawal');
 
+  const onSubmit = () => {
+    dispatch(setProductStep(EProductFormStepper.FINISHED));
+  };
+
   return (
     <Box
       width="75%"
@@ -53,11 +62,17 @@ const CreateDepositProductForm: React.FC = () => {
       minHeight={'100vh'}
       height={'auto'}
       padding={5}
+      position="relative"
     >
+      <BackArrow
+        onBackClick={() =>
+          dispatch(setProductStep(EProductFormStepper.PRODUCT_INFO))
+        }
+      />
       <Typography textAlign={'center'} fontSize={32} mb={3} fontWeight={'bold'}>
         “{t('LastResortDeposit.lastResortDeposit')}”
       </Typography>
-      <form style={{ width: '420px' }}>
+      <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>
           <Box>
             <Typography fontWeight={'bold'} fontSize={14}>

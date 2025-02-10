@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChooseProductForm should match snapshot 1`] = `
+exports[`ChooseProductForm renders correctly and matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiBox-root css-1mv69se"
@@ -315,57 +315,4 @@ exports[`ChooseProductForm should match snapshot 1`] = `
     </form>
   </div>
 </DocumentFragment>
-`;
-
-exports[`ChooseProductForm should render dropdowns 1`] = `
-Array [
-  <div
-    aria-controls=":ra:"
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    aria-labelledby="mui-component-select-product"
-    class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-    id="mui-component-select-product"
-    role="combobox"
-    tabindex="0"
-  >
-    <span
-      class="notranslate"
-    >
-      ​
-    </span>
-  </div>,
-  <div
-    aria-controls=":rb:"
-    aria-disabled="true"
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    aria-labelledby="mui-component-select-subType"
-    class="MuiSelect-select MuiSelect-outlined Mui-disabled MuiInputBase-input MuiOutlinedInput-input Mui-disabled css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-    id="mui-component-select-subType"
-    role="combobox"
-  >
-    <span
-      class="notranslate"
-    >
-      ​
-    </span>
-  </div>,
-  <div
-    aria-controls=":rc:"
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    aria-labelledby="mui-component-select-currency"
-    class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-    id="mui-component-select-currency"
-    role="combobox"
-    tabindex="0"
-  >
-    <span
-      class="notranslate"
-    >
-      ​
-    </span>
-  </div>,
-]
 `;

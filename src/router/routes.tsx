@@ -39,7 +39,7 @@ import {
 import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
-import ChooseProductForm from 'components/organisms/ChooseProductForm/ChooseProductForm';
+import ChooseProductFormWrapper from 'components/organisms/ChooseProductFormWrapper/ChooseProductFormWrapper';
 import BackOffice from 'pages/BackOffice/BackOffice';
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
@@ -128,7 +128,7 @@ const routes = createBrowserRouter([
       },
       {
         path: TO_BACK_OFFICE_CREATE_PRODUCT,
-        element: <ChooseProductForm />,
+        element: <ChooseProductFormWrapper />,
       },
     ],
   },
