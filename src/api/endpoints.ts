@@ -18,4 +18,10 @@ export const endpoints = {
     version: '/is/contact/version',
     contacts: '/is/contact',
   },
+  employeeAccountManagement: {
+    employees: {
+      authenticatorSetup: '/emg/api/employee/2fa-setup',
+      validateOtp: '/emg/api/employee/validate-otp',
+    },
+  },
 };
