@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 import {
   MainContainer,
@@ -8,12 +9,31 @@ import {
   Header,
   StepDescription,
   StepBox,
+  ImageContainer,
 } from './BackOfficeVerificationPage.styled';
 
+import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
 import { OneTimePasscodeForm } from 'components/organisms/OneTimePasscodeForm';
+import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 export const BackOfficeVerificationPage = () => {
   const { t } = useTranslation('translation');
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+
+  const queryParam = useQuery();
+  const token = queryParam.get('token');
+
+  const { data, error, isLoading } = useGetAuthenticateEmployeeQuery({ token });
+
+  const email = data?.email || null;
+  const imgUrl = data?.qrCodeBaseUrl || null;
+
+  if (error) {
+    return <BackOfficeVerificationErrorPage />;
+  }
 
   return (
     <MainContainer data-testid="main-container">
@@ -42,16 +62,16 @@ export const BackOfficeVerificationPage = () => {
           <StepDescription data-testid="qr-code-title">
             {t('OTPVerificationPage.qrCodeText')}
           </StepDescription>
-          {/* TODO MLB-1588 - remove temporary svg and replace with qr code once BE is ready */}
-          <svg
-            width="240"
-            height="240"
-            viewBox="0 0 240 240"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M240 0H0V240H240V0Z" fill="black" />
-          </svg>
+          {isLoading || !imgUrl ? (
+            <CircularProgress />
+          ) : (
+            <ImageContainer
+              src={`data:image/png;base64,${imgUrl}`}
+              alt="QR Code"
+              width="200"
+              height="200"
+            />
+          )}
         </Box>
       </StepBox>
       <StepBox>
@@ -79,7 +99,11 @@ export const BackOfficeVerificationPage = () => {
           <StepDescription data-testid="step-two-text">
             {t('OTPVerificationPage.verificationText')}
           </StepDescription>
-          <OneTimePasscodeForm />
+          {isLoading || !email ? (
+            <CircularProgress />
+          ) : (
+            <OneTimePasscodeForm email={email} />
+          )}
         </Box>
       </StepBox>
     </MainContainer>

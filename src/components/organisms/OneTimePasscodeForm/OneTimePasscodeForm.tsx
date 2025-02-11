@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import OneTimePasscode from './OneTimePasscode';
 import {
@@ -8,13 +9,25 @@ import {
   StyledCancelContainer,
 } from './OneTimePasscodeForm.styled';
 
+import { useValidateOtpMutation } from 'api/validateOtpApi';
 import { SubmitButton } from 'components/atoms';
+import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
+import { theme } from 'theme/theme';
+interface OneTimePasscodeFormProps {
+  email: string | null;
+}
 
-export const OneTimePasscodeForm = () => {
+export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
   const { t } = useTranslation('translation');
 
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isError, setIsError] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
+
+  const [validateOtp, { isLoading }] = useValidateOtpMutation();
+  const navigate = useNavigate();
+
   const handleChange = (value: string, index: number) => {
     if (!/^\d*$/.test(value)) return;
     const newOtp = [...otp];
@@ -45,8 +58,31 @@ export const OneTimePasscodeForm = () => {
     inputRefs.current[0]?.focus();
   };
 
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email) return;
+
+    try {
+      const response = await validateOtp({
+        email: email,
+        code: otp.join(''),
+      }).unwrap();
+      if (response) {
+        navigate(BACK_OFFICE_EMPLOYEE_SIGN_IN);
+      }
+    } catch (e) {
+      setIsError(true);
+      const error = e as { data: { exceptionMessage: string } };
+      setErrorMessage(
+        error?.data?.exceptionMessage ||
+          t('OTPVerificationPage.error.errorCommon'),
+      );
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Box
         sx={{
           display: 'flex',
@@ -58,7 +94,13 @@ export const OneTimePasscodeForm = () => {
           handleChange={handleChange}
           handleKeyDown={handleKeyDown}
           inputRefs={inputRefs}
+          hasError={isError}
         />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {isError && (
+          <p style={{ color: theme.palette.error.main }}>{errorMessage}</p>
+        )}
       </Box>
       <Box
         sx={{
@@ -78,6 +120,13 @@ export const OneTimePasscodeForm = () => {
           isDisabled={otp.join('').length < 6}
         />
       </Box>
+      {isLoading && (
+        <Box
+          sx={{ display: 'flex', justifyContent: 'center', marginTop: '12px' }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
     </form>
   );
 };

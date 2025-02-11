@@ -252,7 +252,10 @@
     "cancelButtonText": "Cancel",
     "confirmButtonText": "Confirm",
     "QRCodeExpired": "QR Code has expired",
-    "RefreshPage": "Refresh the page to generate a new one"
+    "RefreshPage": "Refresh the page to generate a new one",
+    "errors": {
+      "errorCommon": "The action can't be completed, Please try again later"
+    }
   },
   "BackOffice": {
     "SideBar": {

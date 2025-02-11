@@ -12,6 +12,7 @@ interface OneTimePasscodeProps {
     index: number,
   ) => void;
   inputRefs: React.MutableRefObject<(HTMLInputElement | null)[]>;
+  hasError: boolean;
 }
 
 const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
@@ -19,7 +20,18 @@ const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
   handleChange,
   handleKeyDown,
   inputRefs,
+  hasError,
 }) => {
+  const getBackgroundColor = (value: string) => {
+    if (hasError) return theme.palette.error.light;
+    if (value) return theme.palette.primary.light;
+    return 'transparent';
+  };
+  const getBorderColor = (value: string) => {
+    if (hasError) return theme.palette.error.main;
+    if (value) return theme.palette.primary.dark;
+    return '';
+  };
   return (
     <>
       {otp.map((value, index) => (
@@ -35,10 +47,8 @@ const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
             (inputRefs.current[index] = element)
           }
           sx={{
-            backgroundColor: value
-              ? theme.palette.primary.light
-              : 'transparent',
-            borderColor: value ? theme.palette.primary.dark : '',
+            backgroundColor: getBackgroundColor(value),
+            borderColor: getBorderColor(value),
           }}
         />
       ))}

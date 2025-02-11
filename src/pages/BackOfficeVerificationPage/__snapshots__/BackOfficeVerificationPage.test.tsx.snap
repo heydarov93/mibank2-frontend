@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BackOfficeVerificationPage matches the snapshot 1`] = `
-<DocumentFragment>
+exports[`BackOfficeVerificationPage visual snapshots renders loaded data state snapshot 1`] = `
+<div>
   <div
     class="MuiBox-root css-1r7hsju"
     data-testid="main-container"
@@ -33,18 +33,13 @@ exports[`BackOfficeVerificationPage matches the snapshot 1`] = `
         >
           OTPVerificationPage.qrCodeText
         </p>
-        <svg
-          fill="none"
-          height="240"
-          viewBox="0 0 240 240"
-          width="240"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M240 0H0V240H240V0Z"
-            fill="black"
-          />
-        </svg>
+        <img
+          alt="QR Code"
+          class="css-11ye3yv"
+          height="200"
+          src="data:image/png;base64,mock-base64-string"
+          width="200"
+        />
       </div>
     </div>
     <div
@@ -74,11 +69,77 @@ exports[`BackOfficeVerificationPage matches the snapshot 1`] = `
         >
           OTPVerificationPage.verificationText
         </p>
-        <div>
-          One Time Passcode Form
-        </div>
+        <form>
+          <div
+            class="MuiBox-root css-1i27l4i"
+          >
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+            <input
+              class="css-er1hfh"
+              maxlength="1"
+              value=""
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1l4w6pd"
+          />
+          <div
+            class="MuiBox-root css-1th99vh"
+          >
+            <div
+              class="MuiBox-root css-mytjhh"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1ko6kpi-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                OTPVerificationPage.cancelButtonText
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-mytjhh"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+                disabled=""
+                tabindex="-1"
+                type="submit"
+              >
+                OTPVerificationPage.confirmButtonText
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;

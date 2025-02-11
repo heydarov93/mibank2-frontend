@@ -18,6 +18,7 @@ import RegistrationReducer from './reducers/RegistrationSlice';
 import StepperReducer from './reducers/StepperSlice';
 
 import { authApi } from 'api/authApi';
+import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
@@ -27,6 +28,7 @@ import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
 import { registerNewUserApi } from 'api/registerNewUserApi';
 import { userInfoApi } from 'api/userInfoApi';
+import { validateOtpApi } from 'api/validateOtpApi';
 import registrationDataMiddleware from 'middleware/dateFormatterMiddleware';
 
 const rootReducer = combineReducers({
@@ -46,6 +48,8 @@ const rootReducer = combineReducers({
     getCodeForForgotPasswordApi.reducer,
   [confirmForgotPasswordApi.reducerPath]: confirmForgotPasswordApi.reducer,
   [refreshToken.reducerPath]: refreshToken.reducer,
+  [authenticateEmployeeApi.reducerPath]: authenticateEmployeeApi.reducer,
+  [validateOtpApi.reducerPath]: validateOtpApi.reducer,
 });
 
 const persistConfig = {
@@ -63,6 +67,8 @@ const persistConfig = {
     getCodeForForgotPasswordApi.reducerPath,
     confirmForgotPasswordApi.reducerPath,
     refreshToken.reducerPath,
+    authenticateEmployeeApi.reducerPath,
+    validateOtpApi.reducerPath,
   ],
 };
 
@@ -87,6 +93,8 @@ const store = configureStore({
       getCodeForForgotPasswordApi.middleware,
       confirmForgotPasswordApi.middleware,
       refreshToken.middleware,
+      authenticateEmployeeApi.middleware,
+      validateOtpApi.middleware,
     ]),
 });
 

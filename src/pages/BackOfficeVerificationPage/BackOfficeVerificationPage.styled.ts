@@ -41,3 +41,10 @@ export const StepBox = styled(Box)(() => ({
   flexDirection: 'column',
   alignItems: 'center',
 }));
+
+export const ImageContainer = styled('img')(() => ({
+  height: '240px',
+  width: '240px',
+  border: '1px solid #E2E4E9',
+  borderRadius: '8px',
+}));

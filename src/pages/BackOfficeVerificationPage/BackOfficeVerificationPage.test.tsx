@@ -1,43 +1,57 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { BackOfficeVerificationPage } from './BackOfficeVerificationPage';
+import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
+import { useLocation } from 'react-router-dom';
 
-jest.mock('components/organisms/OneTimePasscodeForm', () => ({
-  OneTimePasscodeForm: () => <div>One Time Passcode Form</div>,
+jest.mock('api/validateOtpApi', () => ({
+  useValidateOtpMutation: () => [jest.fn(), { isLoading: false }],
 }));
 
-describe('BackOfficeVerificationPage', () => {
-  it('renders Step 1 correctly', () => {
-    render(<BackOfficeVerificationPage />);
+jest.mock('api/authenticateEmployeeApi', () => ({
+  useGetAuthenticateEmployeeQuery: jest.fn(),
+}));
 
-    const step1Header = screen.getByTestId('step-one');
-    const step1Description = screen.getByTestId('qr-code-title');
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: jest.fn(),
+}));
 
-    expect(step1Header).toBeInTheDocument();
-    expect(step1Description).toBeInTheDocument();
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+describe('BackOfficeVerificationPage visual snapshots', () => {
+  beforeEach(() => {
+    (useLocation as jest.Mock).mockReturnValue({
+      search: '?token=test-token',
+    });
   });
 
-  it('renders Step 2 correctly', () => {
-    render(<BackOfficeVerificationPage />);
-
-    const step2Header = screen.getByTestId('step-two');
-    const step2Description = screen.getByTestId('step-two-text');
-
-    expect(step2Header).toBeInTheDocument();
-    expect(step2Description).toBeInTheDocument();
-
-    const formElement = screen.getByText(/One Time Passcode Form/i);
-    expect(formElement).toBeInTheDocument();
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('renders the main layout container', () => {
-    render(<BackOfficeVerificationPage />);
+  it('renders loaded data state snapshot', () => {
+    (useGetAuthenticateEmployeeQuery as jest.Mock).mockReturnValue({
+      data: {
+        email: 'test@example.com',
+        qrCodeBaseUrl: 'mock-base64-string',
+      },
+      isLoading: false,
+      error: null,
+    });
 
-    const mainContainer = screen.getByTestId('main-container');
-    expect(mainContainer).toBeInTheDocument();
-  });
+    const { container } = render(
+      <MemoryRouter>
+        <BackOfficeVerificationPage />
+      </MemoryRouter>,
+    );
 
-  it('matches the snapshot', () => {
-    const { asFragment } = render(<BackOfficeVerificationPage />);
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByAltText('QR Code')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });
