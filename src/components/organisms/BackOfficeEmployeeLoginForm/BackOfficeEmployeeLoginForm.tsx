@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box } from '@mui/material';
+import { Alert, Box } from '@mui/material';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -11,11 +12,18 @@ import {
   StyledLabel,
 } from './BackOfficeEmployeeLoginForm.styled';
 
+import { useValidateEmailMutation } from 'api/employeeController';
 import { InputField, SubmitButton } from 'components/atoms';
+import {
+  BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
+  TO_BACK_OFFICE,
+} from 'constants/routesName';
 import { IBackOfficeEmployeeLogin } from 'models/IAuth';
 import { validationBackOfficeEmployeeLoginSchema } from 'validation';
 
 export const BackOfficeEmployeeLoginForm = () => {
+  const [validateEmail, { isLoading }] = useValidateEmailMutation();
+  const [errorMessage, setErrorMessage] = useState('');
   const { t } = useTranslation('translation', {
     keyPrefix: 'EmployeeLoginPage',
   });
@@ -40,7 +48,22 @@ export const BackOfficeEmployeeLoginForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async () => {
-    navigate('/back-office/verify');
+    try {
+      setErrorMessage('');
+      const res = await validateEmail({
+        email: control._formValues.email,
+      }).unwrap();
+      if (res?.message) {
+        navigate(BACK_OFFICE_EMPLOYEE_VERIFY_CODE, {
+          replace: true,
+          state: { email: control._formValues.email, from: TO_BACK_OFFICE },
+        });
+      } else {
+        setErrorMessage(t('invalidEmailMessage'));
+      }
+    } catch (error) {
+      setErrorMessage(t('invalidEmailMessage'));
+    }
   };
 
   return (
@@ -58,13 +81,14 @@ export const BackOfficeEmployeeLoginForm = () => {
               error={errors.email}
               placeholder="example@gmail.com"
             />
+            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
           </Box>
         </StyledFormContent>
 
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={t('submitButton')}
-          isDisabled={!isValid}
+          isDisabled={!isValid || isLoading}
         />
       </StyledForm>
     </>
