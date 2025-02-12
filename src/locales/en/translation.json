@@ -240,7 +240,8 @@
     "formTitle": "Log in",
     "email": "Email",
     "emailRequired": "The email is required",
-    "submitButton": "Continue"
+    "submitButton": "Continue", 
+    "invalidEmailMessage": "Invalid email"
   },
   "OTPVerificationPage": {
     "stepOne": "Step 1",

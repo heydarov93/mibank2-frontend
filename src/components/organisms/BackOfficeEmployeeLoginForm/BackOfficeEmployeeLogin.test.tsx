@@ -3,11 +3,28 @@ import userEvent from '@testing-library/user-event';
 
 import { BackOfficeEmployeeLoginForm } from './BackOfficeEmployeeLoginForm';
 
+import { useValidateEmailMutation } from 'api/employeeController';
+
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
+jest.mock('api/employeeController', () => ({
+  useValidateEmailMutation: jest.fn(),
+}));
+
 describe('BackOfficeEmployeeLoginForm', () => {
+  let mockValidateEmail: jest.Mock;
+
+  beforeEach(() => {
+    mockValidateEmail = jest
+      .fn()
+      .mockResolvedValue({ message: 'The email provided is valid' });
+    (useValidateEmailMutation as jest.Mock).mockReturnValue([
+      mockValidateEmail,
+      { isLoading: false },
+    ]);
+  });
   it('should render the form and check the elements', () => {
     render(<BackOfficeEmployeeLoginForm />);
     expect(screen.getByText('Log in')).toBeInTheDocument();
