@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreateEmployee Component matches the snapshot 1`] = `
-<DocumentFragment>
+exports[`CreateEmployee Component should render correctly and match snapshot 1`] = `
+<div>
   <div
     class="MuiBox-root css-q70a6d"
   >
@@ -21,37 +21,13 @@ exports[`CreateEmployee Component matches the snapshot 1`] = `
         >
           First Name
         </p>
-        <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1r44fng-MuiFormControl-root-MuiTextField-root"
-        >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
-          >
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-              id="firstName"
-              name="firstName"
-              placeholder="Enter the First Name"
-              type="text"
-              value=""
-            />
-            <fieldset
-              aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-            >
-              <legend
-                class="css-ihdtdm"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-          </div>
-        </div>
+        <input
+          control="[object Object]"
+          helpertext=""
+          id="firstName"
+          name="firstName"
+          placeholder="Enter the First Name"
+        />
       </div>
       <div
         class="MuiBox-root css-i3pbo"
@@ -61,37 +37,13 @@ exports[`CreateEmployee Component matches the snapshot 1`] = `
         >
           Last Name
         </p>
-        <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1r44fng-MuiFormControl-root-MuiTextField-root"
-        >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
-          >
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-              id="lastName"
-              name="lastName"
-              placeholder="Enter the Last Name"
-              type="text"
-              value=""
-            />
-            <fieldset
-              aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-            >
-              <legend
-                class="css-ihdtdm"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-          </div>
-        </div>
+        <input
+          control="[object Object]"
+          helpertext=""
+          id="lastName"
+          name="lastName"
+          placeholder="Enter the Last Name"
+        />
       </div>
       <div
         class="MuiBox-root css-i3pbo"
@@ -101,37 +53,13 @@ exports[`CreateEmployee Component matches the snapshot 1`] = `
         >
           Email
         </p>
-        <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1r44fng-MuiFormControl-root-MuiTextField-root"
-        >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
-          >
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-              id="email"
-              name="email"
-              placeholder="example@gmail.com"
-              type="text"
-              value=""
-            />
-            <fieldset
-              aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-            >
-              <legend
-                class="css-ihdtdm"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-          </div>
-        </div>
+        <input
+          control="[object Object]"
+          helpertext=""
+          id="email"
+          name="email"
+          placeholder="example@gmail.com"
+        />
       </div>
       <div
         class="MuiBox-root css-i3pbo"
@@ -157,7 +85,7 @@ exports[`CreateEmployee Component matches the snapshot 1`] = `
                 autocapitalize="none"
                 autocomplete="off"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r3:"
+                id=":r0:"
                 placeholder="Choose here"
                 role="combobox"
                 spellcheck="false"
@@ -216,79 +144,21 @@ exports[`CreateEmployee Component matches the snapshot 1`] = `
         >
           Date Added
         </p>
-        <div
-          class="MuiFormControl-root MuiTextField-root css-c3s7tt-MuiFormControl-root-MuiTextField-root"
-        >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root"
-          >
-            <input
-              aria-invalid="false"
-              autocomplete="off"
-              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-              disabled=""
-              id="dateAdded"
-              inputmode="text"
-              name="dateAdded"
-              placeholder="Date Added"
-              type="text"
-              value=""
-            />
-            <div
-              class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
-            >
-              <button
-                aria-label="Choose date"
-                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                  data-testid="CalendarTodayOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 18H4V10h16zm0-13H4V5h16z"
-                  />
-                </svg>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <fieldset
-              aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-            >
-              <legend
-                class="css-ihdtdm"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-          </div>
-        </div>
+        <input
+          class=""
+          control="[object Object]"
+          errors="[object Object]"
+          id="dateAdded"
+          maxdate="[object Object]"
+          name="dateAdded"
+          placeholder="Date Added"
+          type="date"
+        />
       </div>
-      <div
-        class="MuiBox-root css-mytjhh"
-      >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
-          disabled=""
-          tabindex="-1"
-          type="submit"
-        >
-          Save
-        </button>
-      </div>
+      <button>
+        Save
+      </button>
     </form>
   </div>
-</DocumentFragment>
+</div>
 `;

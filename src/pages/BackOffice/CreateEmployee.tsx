@@ -1,11 +1,22 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Typography, Autocomplete, TextField } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Autocomplete,
+  TextField,
+  CircularProgress,
+  Alert,
+} from '@mui/material';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
+import { useRegisterEmployeeMutation } from 'api/registerEmployee';
 import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
+import { IErrorData } from 'models/IError';
+import { theme } from 'theme/theme';
 import {
   employeeRoles,
   employeeValidationSchema,
@@ -20,9 +31,16 @@ type FormData = {
 };
 
 const CreateEmployee: React.FC = () => {
+  const { t } = useTranslation('translation');
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [responseMessage, setResponseMessage] = useState<string>('');
+
   const {
     control,
     setValue,
+    handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver(employeeValidationSchema),
@@ -35,6 +53,39 @@ const CreateEmployee: React.FC = () => {
       dateAdded: '',
     },
   });
+
+  const [registerEmployee, { isLoading }] = useRegisterEmployeeMutation();
+
+  const onSubmit = async (data: FormData) => {
+    const formattedData = {
+      ...data,
+      role: data.role.toUpperCase(),
+      dateAdded: dayjs(data.dateAdded).format('YYYY-MM-DD'),
+    };
+
+    try {
+      const response = await registerEmployee(formattedData).unwrap();
+      setResponseMessage(response.message);
+      setErrorMessage('');
+      reset(data);
+    } catch (e: unknown) {
+      let errorMsg = '';
+      if (e instanceof Error) {
+        errorMsg = e.message;
+      } else if (
+        typeof e === 'object' &&
+        e !== null &&
+        'data' in e &&
+        (e as IErrorData).data.exceptionMessage
+      ) {
+        errorMsg = (e as IErrorData).data.exceptionMessage;
+      } else {
+        errorMsg = t('OTPVerificationPage.errors.errorCommon');
+      }
+      setErrorMessage(errorMsg);
+      setResponseMessage('');
+    }
+  };
 
   return (
     <Box
@@ -50,7 +101,7 @@ const CreateEmployee: React.FC = () => {
       <Typography fontSize={32} mb={3} fontWeight={'bold'}>
         Add new employee
       </Typography>
-      <form style={{ width: '420px' }}>
+      <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box mb={3}>
           <Typography fontWeight={'bold'} fontSize={14}>
             First Name
@@ -131,9 +182,17 @@ const CreateEmployee: React.FC = () => {
             maxDate={dayjs()}
           />
         </Box>
-
+        {errorMessage && (
+          <Typography
+            sx={{ color: theme.palette.error.main, textAlign: 'center' }}
+          >
+            {errorMessage}
+          </Typography>
+        )}
+        {responseMessage && <Alert>{responseMessage}</Alert>}
         <SubmitButton isDisabled={!isValid} buttonContent="Save" />
       </form>
+      {isLoading && <CircularProgress sx={{ marginTop: '10px' }} />}
     </Box>
   );
 };
