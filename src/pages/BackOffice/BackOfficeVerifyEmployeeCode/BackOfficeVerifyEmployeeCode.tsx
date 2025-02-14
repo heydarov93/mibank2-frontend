@@ -1,4 +1,4 @@
-import { Alert, Box, CircularProgress } from '@mui/material';
+import { Alert, Box, CircularProgress, Typography } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -93,6 +93,7 @@ const BackOfficeVerifyEmployeeCode = () => {
         onSubmit={onSubmit}
       >
         <Logo size={ELogoSize.MEDIUM} />
+        <Typography>{t('OTPVerificationPage.verifyCodeMessage')}</Typography>
         <Box
           sx={{
             display: 'flex',
