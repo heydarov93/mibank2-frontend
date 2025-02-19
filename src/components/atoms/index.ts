@@ -10,3 +10,4 @@ export { SubmitButton } from './SubmitButton/SubmitButton';
 export { SecondaryButton } from './SecondaryButton/SecondaryButton';
 export { ValidationTag } from './ValidationTag/ValidationTag';
 export { NavigationWarningModal } from './NavigationWarningModal/NavigationWarningModal';
+export { MagnifyingGlass } from './MagnifyingGlassIcon/MagnifyingGlass';
