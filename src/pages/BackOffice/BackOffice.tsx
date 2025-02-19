@@ -10,7 +10,9 @@ const BackOffice = () => {
       <Box width="25%" bgcolor={'#1847C1'} padding={5}>
         <BackOfficeLeftSidebar />
       </Box>
-      <Outlet />
+      <Box sx={{ width: '75%' }}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };

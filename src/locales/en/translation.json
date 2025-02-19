@@ -280,6 +280,9 @@
       "targetDeposit": "Target Deposit",
       "product": "Product",
       "subType": "Subtype",
+      "productSubtype": "Product Subtype",
+      "addedDate": "Added Date",
+      "productStatus": "Product Status",
       "currency": "Currency",
       "productName": "Product Name",
       "productDescription": "Product Description",
@@ -296,7 +299,8 @@
       "errorNameRequired": "Product Name is required",
       "errorDescription": "Product Description must be at least 10 characters",
       "errorDescriptionRequired": "Product Description is required",
-      "buttonContent": "Continue"
+      "buttonContent": "Continue",
+      "cCard": "Credit Card"
     },
     "ConfirmationWindow": {
       "confirmationTitle": "Product Created Successfully",
@@ -325,7 +329,9 @@
       "naturalNum": "Must be a natural number",
       "atleastOne": "Must be atleast 1 month",
       "positive": "Must be positive",
-      "earlyWithdrawalVal": "Required when early withdrawal is enabled"
+      "earlyWithdrawalVal": "Required when early withdrawal is enabled",
+      "edit": "Edit",
+      "delete": "Delete"
     },
     "VisaCard": {
       "visaElectronCard": "“Visa Electron” Card",
@@ -345,6 +351,11 @@
       "masterCard": "Mastercard",
       "digital": "Digital",
       "plastic": "Plastic"
+    },
+    "header": {
+      "finProducts": "Financial Products",
+      "viewProducts": "View All Financial Products",
+      "searchProducts": "Search for a product"
     }
   }
 }

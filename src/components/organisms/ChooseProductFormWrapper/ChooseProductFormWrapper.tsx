@@ -27,7 +27,13 @@ const ChooseProductFormWrapper = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+      }}
+    >
       {renderFormStep()}
     </Box>
   );

@@ -19,6 +19,7 @@ import {
   TO_BACK_OFFICE,
   TO_BACK_OFFICE_CREATE_PRODUCT,
   TO_BACK_OFFICE_CREATE_EMPLOYEE,
+  TO_BACK_OFFICE_VIEW_PRODUCTS,
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
 } from '../constants/routesName';
 import {
@@ -45,6 +46,7 @@ import BackOffice from 'pages/BackOffice/BackOffice';
 import BackOfficeVerifyEmployeeCode from 'pages/BackOffice/BackOfficeVerifyEmployeeCode/BackOfficeVerifyEmployeeCode';
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
+import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
 import Homepage from 'pages/Homepage/Homepage';
 
 const routes = createBrowserRouter([
@@ -135,6 +137,10 @@ const routes = createBrowserRouter([
       {
         path: TO_BACK_OFFICE_CREATE_PRODUCT,
         element: <ChooseProductFormWrapper />,
+      },
+      {
+        path: TO_BACK_OFFICE_VIEW_PRODUCTS,
+        element: <BackOfficeViewProductsPage />,
       },
     ],
   },
