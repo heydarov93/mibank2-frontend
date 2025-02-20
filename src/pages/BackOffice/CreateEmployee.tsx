@@ -89,7 +89,7 @@ const CreateEmployee: React.FC = () => {
 
   return (
     <Box
-      width="75%"
+      width="100%"
       display="flex"
       flexDirection="column"
       justifyContent="center"

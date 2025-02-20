@@ -240,7 +240,7 @@
     "formTitle": "Log in",
     "email": "Email",
     "emailRequired": "The email is required",
-    "submitButton": "Continue", 
+    "submitButton": "Continue",
     "invalidEmailMessage": "Invalid email"
   },
   "OTPVerificationPage": {
@@ -356,6 +356,18 @@
       "finProducts": "Financial Products",
       "viewProducts": "View All Financial Products",
       "searchProducts": "Search for a product"
+    },
+    "addNewEmployee": {
+      "errorLetters": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
+      "errorCapitalLetter": "First letter must be capital",
+      "errorFirstNameMin": "First Name should be more than 3 characters",
+      "errorFirstNameMax": "First Name should not exceed 40 characters",
+      "errorFieldRequired": "This field is required",
+      "errorOnlyCapitalLetter": "Only the first letter must be capital",
+      "errorLastNameMin": "Last Name should be more than 3 characters",
+      "errorLastNameMax": "Last Name should not exceed 40 characters",
+      "errorEmail": "Please enter your email in format: example@gmail.com",
+      "errorFirstLetter": "First letter must be capital"
     }
   }
 }
