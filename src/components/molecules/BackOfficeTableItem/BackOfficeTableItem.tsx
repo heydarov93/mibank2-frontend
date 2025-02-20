@@ -28,7 +28,7 @@ const BackOfficeTableItem = ({
         <RaddioButton isActive={isActive} setIsActive={setIsActive} />
       </StyledTableCell>
       <StyledTableCell>
-        <BackOfficeButtonGroup isDisabled={!isActive} />
+        <BackOfficeButtonGroup isDisabled={isActive} />
       </StyledTableCell>
     </>
   );

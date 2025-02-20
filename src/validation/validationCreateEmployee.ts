@@ -10,10 +10,10 @@ export const employeeValidationSchema = yup.object().shape({
   firstName: yup
     .string()
     .trim()
-    .required(i18n.t(`This field is required`))
+    .required(i18n.t(`BackOffice.addNewEmployee.errorFieldRequired`))
     .test(
       'only-one-capital-letter',
-      i18n.t(`Only the first letter must be capital`),
+      i18n.t(`BackOffice.addNewEmployee.errorOnlyCapitalLetter`),
       (value) => {
         if (!value) return true;
         return !REG_EXP.onlyOneCapitalizeLetter.test(value);
@@ -21,18 +21,21 @@ export const employeeValidationSchema = yup.object().shape({
     )
     .matches(
       REG_EXP.nameRegExp,
-      i18n.t(`Only Latin/Cyrillic letters, space and hyphen are acceptable`),
+      i18n.t(`BackOffice.addNewEmployee.errorLetters`),
     )
-    .matches(REG_EXP.capitalizeLetters, i18n.t(`First letter must be capital`))
-    .min(3, i18n.t(`First Name should be more than 3 characters`))
-    .max(40, i18n.t(`First Name should not exceed 40 characters`)),
+    .matches(
+      REG_EXP.capitalizeLetters,
+      i18n.t(`BackOffice.addNewEmployee.errorFirstLetter`),
+    )
+    .min(3, i18n.t(`BackOffice.addNewEmployee.errorFirstNameMin`))
+    .max(40, i18n.t(`BackOffice.addNewEmployee.errorFirstNameMax`)),
   lastName: yup
     .string()
     .trim()
-    .required(i18n.t(`This field is required`))
+    .required(i18n.t(`BackOffice.addNewEmployee.errorFieldRequired`))
     .test(
       'only-one-capital-letter',
-      i18n.t(`Only the first letter must be capital`),
+      i18n.t(`BackOffice.addNewEmployee.errorOnlyCapitalLetter`),
       (value) => {
         if (!value) return true;
         return !REG_EXP.onlyOneCapitalizeLetter.test(value);
@@ -40,19 +43,27 @@ export const employeeValidationSchema = yup.object().shape({
     )
     .matches(
       REG_EXP.nameRegExp,
-      i18n.t(`Only Latin/Cyrillic letters, space and hyphen are acceptable`),
+      i18n.t(`BackOffice.addNewEmployee.errorLetters`),
     )
-    .matches(REG_EXP.capitalizeLetters, i18n.t(`First letter must be capital`))
-    .min(3, i18n.t(`Last Name should be more than 3 characters`))
-    .max(40, i18n.t(`Last Name should not exceed 40 characters`)),
+    .matches(
+      REG_EXP.capitalizeLetters,
+      i18n.t(`BackOffice.addNewEmployee.errorFirstLetter`),
+    )
+    .min(3, i18n.t(`BackOffice.addNewEmployee.errorLastNameMin`))
+    .max(40, i18n.t(`BackOffice.addNewEmployee.errorLastNameMax`)),
   email: yup
     .string()
     .trim()
-    .required(i18n.t(`This field is required`))
+    .required(i18n.t(`BackOffice.addNewEmployee.errorFieldRequired`))
     .matches(
       REG_EXP.emailRegExp,
-      i18n.t(`Please enter your email in format: example@gmail.com`),
+      i18n.t(`BackOffice.addNewEmployee.errorEmail`),
     ),
-  role: yup.string().required(i18n.t(`This field is required`)),
-  dateAdded: yup.string().trim().required(i18n.t(`This field is required`)),
+  role: yup
+    .string()
+    .required(i18n.t(`BackOffice.addNewEmployee.errorFieldRequired`)),
+  dateAdded: yup
+    .string()
+    .trim()
+    .required(i18n.t(`BackOffice.addNewEmployee.errorFieldRequired`)),
 });

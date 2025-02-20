@@ -3,7 +3,7 @@
 exports[`CreateEmployee Component should render correctly and match snapshot 1`] = `
 <div>
   <div
-    class="MuiBox-root css-q70a6d"
+    class="MuiBox-root css-vq8apk"
   >
     <p
       class="MuiTypography-root MuiTypography-body1 css-1592clr-MuiTypography-root"
