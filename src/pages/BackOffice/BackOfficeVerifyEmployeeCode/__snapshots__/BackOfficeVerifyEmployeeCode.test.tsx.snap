@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  <form
+    style="display: flex; flex-direction: column; align-items: center; gap: 12px; justify-content: center; height: 100vh;"
+  >
+    <div
+      class="MuiBox-root css-w0slhu"
+      data-testid="logo"
+    >
+      <div
+        class="MuiBox-root css-yruxu8"
+      >
+        <svg
+          class="css-1w10xs4"
+        >
+          Logo.svg
+        </svg>
+      </div>
+      <div
+        class="MuiBox-root css-hl2cc3"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        >
+          logoTitle
+        </p>
+      </div>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      OTPVerificationPage.verificationText
+    </p>
+    <div
+      class="MuiBox-root css-1i27l4i"
+    >
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+      <input
+        class="css-er1hfh"
+        maxlength="1"
+        value=""
+      />
+    </div>
+    <div
+      class="MuiBox-root css-1l4w6pd"
+    />
+    <div
+      class="MuiBox-root css-1th99vh"
+    >
+      <div
+        class="MuiBox-root css-mytjhh"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1ko6kpi-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          OTPVerificationPage.cancelButtonText
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiBox-root css-mytjhh"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+          disabled=""
+          tabindex="-1"
+          type="submit"
+        >
+          OTPVerificationPage.confirmButtonText
+        </button>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
