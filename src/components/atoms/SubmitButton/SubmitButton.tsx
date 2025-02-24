@@ -4,12 +4,14 @@ type SubmitButtonProps = {
   onClick?: () => void;
   buttonContent: React.ReactNode;
   isDisabled?: boolean;
+  startIcon?: React.ReactNode;
 };
 
 export const SubmitButton = ({
   onClick,
   buttonContent,
   isDisabled,
+  startIcon,
 }: SubmitButtonProps) => {
   return (
     <StyledButtonContainer>
@@ -20,6 +22,7 @@ export const SubmitButton = ({
         type="submit"
         onClick={onClick}
         disabled={isDisabled}
+        startIcon={startIcon}
       >
         {buttonContent}
       </StyledButton>

@@ -358,6 +358,10 @@
       "viewProducts": "View All Financial Products",
       "searchProducts": "Search for a product"
     },
+    "ErrorPage": {
+      "serviceUnavailable": "The service is temporarily unavailable",
+      "refresh": "Please refresh the page"
+    },
     "addNewEmployee": {
       "errorLetters": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
       "errorCapitalLetter": "First letter must be capital",

@@ -31,7 +31,7 @@ const BackOfficeButtonGroup = ({
         }}
         disabled={isDisabled}
       >
-        <PenIcon />
+        <PenIcon sx={{ color: isDisabled ? theme.palette.grey[300] : '' }} />
         {t('LastResortDeposit.edit')}
       </StyledButton>
       <StyledButton
@@ -42,7 +42,7 @@ const BackOfficeButtonGroup = ({
         }}
         disabled={isDisabled}
       >
-        <TrashIcon />
+        <TrashIcon sx={{ color: isDisabled ? theme.palette.grey[300] : '' }} />
         {t('LastResortDeposit.delete')}
       </StyledButton>
     </Box>

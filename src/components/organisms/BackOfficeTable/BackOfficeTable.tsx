@@ -8,6 +8,7 @@ import {
 } from './BackOfficeTable.styled';
 
 import BackOfficeTableItem from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagination/BackOfficeTablePagination';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
 interface TableBodyType {
@@ -47,8 +48,14 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
               />
             </StyledTableRow>
           ))}
+          {Array.from({
+            length: Math.max(10 - (tableBody?.length || 0), 0),
+          }).map((_, index) => (
+            <StyledTableRow key={`empty-${index}`} sx={{ height: '70.9px' }} />
+          ))}
         </TableBody>
       </Table>
+      <BackOfficeTablePagination />
     </TableContainer>
   );
 };
