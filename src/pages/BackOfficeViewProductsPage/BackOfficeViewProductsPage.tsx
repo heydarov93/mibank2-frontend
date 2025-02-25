@@ -83,6 +83,7 @@ const BackOfficeViewProductsPage = () => {
       productName: 'Deposit',
       productSubtype: 'Team Deposit',
       dateAdded: '12/02/2024',
+      productStatus: 'Completed',
     },
   ];
 

@@ -15,6 +15,7 @@ interface TableBodyType {
   id: number | string;
   productName?: string;
   productSubtype?: string;
+  productStatus?: string;
   dateAdded?: string;
   firstName?: string;
   lastName?: string;
@@ -49,6 +50,7 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
               <BackOfficeTableItem
                 depositName={item?.productName}
                 depositSubtype={item?.productSubtype}
+                productStatus={item?.productStatus}
                 addedDate={item?.dateAdded}
                 firstName={item?.firstName}
                 lastName={item?.lastName}

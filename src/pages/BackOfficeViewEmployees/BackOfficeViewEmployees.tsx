@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { useViewEmployeeQuery } from 'api/employeeController';
 import { SubmitButton } from 'components/atoms';
 import {
   PrimaryHeader,
@@ -15,20 +15,11 @@ import {
   MainContainer,
 } from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage.styled';
 
-const tableData = [
-  {
-    id: 23,
-    firstName: 'Guji',
-    lastName: 'Guji',
-    role: 'ADMINISTRATOR',
-    email: 'gujeksa355@gmail.com',
-    dateAdded: '2025-02-12',
-  },
-];
-
 const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
+  const { data } = useViewEmployeeQuery({});
+  const tableData = data?.content;
 
   const tableHead = [
     t('employeeList.firstName'),

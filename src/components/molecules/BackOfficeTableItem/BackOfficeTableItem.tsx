@@ -9,6 +9,7 @@ import RaddioButton from 'components/atoms/SwitchButton/SwitchButton';
 interface BackOfficeTableItemProps {
   depositName?: string;
   depositSubtype?: string;
+  productStatus?: string;
   addedDate?: string;
   firstName?: string;
   lastName?: string;
@@ -20,6 +21,7 @@ interface BackOfficeTableItemProps {
 const BackOfficeTableItem = ({
   depositName,
   depositSubtype,
+  productStatus,
   addedDate,
   firstName,
   lastName,
@@ -32,13 +34,13 @@ const BackOfficeTableItem = ({
   return (
     <>
       {depositName && <StyledTableCell>{depositName}</StyledTableCell>}
-
       {depositSubtype && <StyledTableCell>{depositSubtype}</StyledTableCell>}
       {firstName && <StyledTableCell>{firstName}</StyledTableCell>}
       {lastName && <StyledTableCell>{lastName}</StyledTableCell>}
       {role && <StyledTableCell>{role}</StyledTableCell>}
       {email && <StyledTableCell>{email}</StyledTableCell>}
       {addedDate && <StyledTableCell>{addedDate}</StyledTableCell>}
+      {productStatus && <StyledTableCell>{productStatus}</StyledTableCell>}
       {showRadioButtonCell && (
         <StyledTableCell>
           <RaddioButton isActive={isActive} setIsActive={setIsActive} />
