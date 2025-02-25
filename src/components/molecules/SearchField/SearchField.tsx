@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller, FieldValues } from 'react-hook-form';
 
 import { StyledSearchField } from './SearchField.styled';
 
@@ -12,8 +12,7 @@ const SearchField = ({
 }: {
   name: string;
   placeholder: string;
-  control?: any;
-  [key: string]: any;
+  control?: Control<FieldValues>;
 }) => {
   return (
     <Controller
