@@ -12,6 +12,7 @@ import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagin
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
 interface TableBodyType {
+  id: number | string;
   productName?: string;
   productSubtype?: string;
   dateAdded?: string;
@@ -43,16 +44,16 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {tableBody?.map((item, index) => (
-            <StyledTableRow key={index}>
+          {tableBody?.map((item) => (
+            <StyledTableRow key={item?.id}>
               <BackOfficeTableItem
-                depositName={item.productName}
-                depositSubtype={item.productSubtype}
-                addedDate={item.dateAdded}
-                firstName={item.firstName}
-                lastName={item.lastName}
-                role={item.role}
-                email={item.email}
+                depositName={item?.productName}
+                depositSubtype={item?.productSubtype}
+                addedDate={item?.dateAdded}
+                firstName={item?.firstName}
+                lastName={item?.lastName}
+                role={item?.role}
+                email={item?.email}
               />
             </StyledTableRow>
           ))}

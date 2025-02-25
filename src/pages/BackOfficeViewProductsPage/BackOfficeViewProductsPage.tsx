@@ -79,6 +79,7 @@ const BackOfficeViewProductsPage = () => {
   //TODO: Once Be Is ready need to add API integration to fetch tableData
   const tableData = [
     {
+      id: 1,
       productName: 'Deposit',
       productSubtype: 'Team Deposit',
       dateAdded: '12/02/2024',
