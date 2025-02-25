@@ -362,6 +362,10 @@
       "employeesInfo": "View all of your employees information",
       "addEmployee": "Add employee"
     },
+    "ErrorPage": {
+      "serviceUnavailable": "The service is temporarily unavailable",
+      "refresh": "Please refresh the page"
+    },
     "addNewEmployee": {
       "errorLetters": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
       "errorCapitalLetter": "First letter must be capital",

@@ -46,6 +46,7 @@ import ChooseProductFormWrapper from 'components/organisms/ChooseProductFormWrap
 import BackOffice from 'pages/BackOffice/BackOffice';
 import BackOfficeVerifyEmployeeCode from 'pages/BackOffice/BackOfficeVerifyEmployeeCode/BackOfficeVerifyEmployeeCode';
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
+import BackOfficeErrorPage from 'pages/BackOfficeErrorPage/BackOfficeErrorPage';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 import BackOfficeViewEmployees from 'pages/BackOfficeViewEmployees/BackOfficeViewEmployees';
 import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
@@ -131,6 +132,7 @@ const routes = createBrowserRouter([
   {
     path: TO_BACK_OFFICE,
     element: <BackOffice />,
+    errorElement: <BackOfficeErrorPage />,
     children: [
       {
         path: TO_BACK_OFFICE_CREATE_EMPLOYEE,
