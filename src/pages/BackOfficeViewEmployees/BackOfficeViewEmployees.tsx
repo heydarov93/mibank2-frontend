@@ -3,14 +3,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import ViewEmployeeTable from './ViewEmployeeTable';
-
 import { SubmitButton } from 'components/atoms';
 import {
   PrimaryHeader,
   SecondaryHeader,
 } from 'components/molecules/BackOfficeViewProductsHeader/BackOfficeViewProductsHeader.styled';
 import SearchField from 'components/molecules/SearchField/SearchField';
+import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 import {
   HeaderContainer,
   MainContainer,
@@ -64,7 +63,7 @@ const BackOfficeViewEmployees = () => {
           />
         </Box>
       </HeaderContainer>
-      <ViewEmployeeTable tableHead={tableHead} tableBody={tableData} />
+      <BackOfficeTable tableHead={tableHead} tableBody={tableData} />
     </MainContainer>
   );
 };

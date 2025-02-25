@@ -12,9 +12,13 @@ import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagin
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
 interface TableBodyType {
-  productName: string;
-  productSubtype: string;
-  dateAdded: string;
+  productName?: string;
+  productSubtype?: string;
+  dateAdded?: string;
+  firstName?: string;
+  lastName?: string;
+  role?: string;
+  email?: string;
 }
 
 interface BackOfficeTableProps {
@@ -45,6 +49,10 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
                 depositName={item.productName}
                 depositSubtype={item.productSubtype}
                 addedDate={item.dateAdded}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                role={item.role}
+                email={item.email}
               />
             </StyledTableRow>
           ))}
