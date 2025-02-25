@@ -5,8 +5,8 @@ import { Control, Controller, FieldValues } from 'react-hook-form';
 import { StyledSearchField } from './SearchField.styled';
 
 const SearchField = ({
-  name = 'search',
-  placeholder = 'Search...',
+  name,
+  placeholder,
   control,
   ...props
 }: {
