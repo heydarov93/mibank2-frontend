@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -15,6 +16,7 @@ import { FilterGroup } from 'models/IFilterInfo';
 
 const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const { control } = useForm();
 
   const initialProductSubtypes: FilterGroup[] = [
     {
@@ -122,7 +124,11 @@ const BackOfficeViewProductsPage = () => {
       <BackOfficeViewProductsHeader />
       <HeaderContainer>
         <Box sx={{ width: '400px', height: '100%' }}>
-          <SearchField />
+          <SearchField
+            name="productSearch"
+            control={control}
+            placeholder={t('header.searchProducts')}
+          />
         </Box>
         <FilterBox
           title="Products"

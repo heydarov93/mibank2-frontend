@@ -1,29 +1,36 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { Controller } from 'react-hook-form';
 
 import { StyledSearchField } from './SearchField.styled';
 
-const SearchField = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
-  const { control } = useForm();
-
+const SearchField = ({
+  name = 'search',
+  placeholder = 'Search...',
+  control,
+  ...props
+}: {
+  name: string;
+  placeholder: string;
+  control?: any;
+  [key: string]: any;
+}) => {
   return (
     <Controller
-      name="productSearch"
+      name={name}
       control={control}
       defaultValue=""
       render={({ field }) => (
         <StyledSearchField
           {...field}
-          id="productSearch"
-          placeholder={t('header.searchProducts')}
-          variant="outlined"
+          id={name}
+          placeholder={placeholder}
+          variant={'outlined'}
           fullWidth
           InputProps={{
             startAdornment: <SearchIcon style={{ marginRight: 8 }} />,
           }}
+          {...props}
         />
       )}
     />
