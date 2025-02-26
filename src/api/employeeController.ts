@@ -16,7 +16,14 @@ export const employeeControllerApi = createApi({
         params: { email },
       }),
     }),
+    viewEmployee: builder.query({
+      query: () => ({
+        url: endpoints.employeeAccountManagement.employees.viewEmployee,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useValidateEmailMutation } = employeeControllerApi;
+export const { useValidateEmailMutation, useViewEmployeeQuery } =
+  employeeControllerApi;
