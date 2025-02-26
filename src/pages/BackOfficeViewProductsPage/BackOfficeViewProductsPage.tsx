@@ -88,10 +88,10 @@ const BackOfficeViewProductsPage = () => {
   ];
 
   const tableHead = [
-    t('CreateProduct.productName'),
-    t('CreateProduct.productSubtype'),
-    t('CreateProduct.addedDate'),
-    t('CreateProduct.productStatus'),
+    { label: t('CreateProduct.productName'), key: 'productName' },
+    { label: t('CreateProduct.productSubtype'), key: 'productSubtype' },
+    { label: t('CreateProduct.addedDate'), key: 'dateAdded' },
+    { label: t('CreateProduct.productStatus'), key: 'productStatus' },
   ];
 
   const handleFilterChange = (

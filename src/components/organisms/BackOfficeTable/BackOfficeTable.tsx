@@ -23,8 +23,13 @@ interface TableBody {
 
 type PartialTableBody = Partial<TableBody> & { id: number };
 
+interface TableHeadItem {
+  label: string;
+  key: string;
+}
+
 interface BackOfficeTableProps {
-  tableHead: string[];
+  tableHead: TableHeadItem[];
   tableBody: PartialTableBody[];
 }
 
@@ -38,7 +43,7 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
           <TableRow>
             {tableHead.map((title, index) => (
               <StyledTableCell key={index}>
-                <BackOfficeTableTitle title={title} />
+                <BackOfficeTableTitle title={title.label} />
               </StyledTableCell>
             ))}
             <StyledTableCell />
@@ -48,7 +53,7 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
           {tableBody.length > 0 &&
             tableBody.map(({ id, ...data }) => (
               <StyledTableRow key={id}>
-                <BackOfficeTableItem tableData={data} />
+                <BackOfficeTableItem tableData={data} tableHead={tableHead} />
               </StyledTableRow>
             ))}
           {Array.from({

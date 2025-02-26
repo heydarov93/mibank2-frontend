@@ -19,14 +19,18 @@ const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
   const { data } = useViewEmployeeQuery({});
-  const tableData = data?.content || [];
+  const tableData =
+    data?.content?.map((item: { dateAdded: string | number | Date }) => ({
+      ...item,
+      dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
+    })) || [];
 
   const tableHead = [
-    t('employeeList.firstName'),
-    t('employeeList.lastName'),
-    t('employeeList.role'),
-    t('employeeList.email'),
-    t('employeeList.addedDate'),
+    { label: t('employeeList.firstName'), key: 'firstName' },
+    { label: t('employeeList.lastName'), key: 'lastName' },
+    { label: t('employeeList.role'), key: 'role' },
+    { label: t('employeeList.email'), key: 'email' },
+    { label: t('employeeList.addedDate'), key: 'dateAdded' },
   ];
 
   return (

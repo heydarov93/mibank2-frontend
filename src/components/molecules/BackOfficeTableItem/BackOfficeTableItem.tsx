@@ -17,22 +17,31 @@ interface TableData {
   email: string;
 }
 
+interface TableHeadItem {
+  label: string;
+  key: string;
+}
+
 interface BackOfficeTableItemProps {
   tableData: Partial<TableData>;
+  tableHead: TableHeadItem[];
   showRadioButtonCell?: boolean;
 }
 
 const BackOfficeTableItem = ({
   tableData,
-  showRadioButtonCell,
+  tableHead,
+  showRadioButtonCell = false,
 }: BackOfficeTableItemProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   return (
     <>
-      {Object.entries(tableData).map(([key, value]) =>
-        value ? <StyledTableCell key={key}>{value}</StyledTableCell> : null,
-      )}
+      {tableHead.map(({ key }) => (
+        <StyledTableCell key={key}>
+          {tableData[key as keyof TableData] || ''}
+        </StyledTableCell>
+      ))}
 
       {showRadioButtonCell && (
         <StyledTableCell>
