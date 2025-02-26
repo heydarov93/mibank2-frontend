@@ -19,7 +19,7 @@ const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
   const { data } = useViewEmployeeQuery({});
-  const tableData = data?.content;
+  const tableData = data?.content || [];
 
   const tableHead = [
     t('employeeList.firstName'),

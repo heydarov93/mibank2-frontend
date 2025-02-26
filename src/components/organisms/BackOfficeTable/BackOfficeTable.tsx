@@ -1,5 +1,4 @@
 import { Table, TableBody, TableContainer, TableRow } from '@mui/material';
-import React from 'react';
 
 import {
   StyledTableCell,
@@ -46,9 +45,12 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {tableBody.map(({ id, ...data }) => (
-            <BackOfficeTableItem key={id} tableData={data} />
-          ))}
+          {tableBody.length > 0 &&
+            tableBody.map(({ id, ...data }) => (
+              <StyledTableRow key={id}>
+                <BackOfficeTableItem tableData={data} />
+              </StyledTableRow>
+            ))}
           {Array.from({
             length: Math.max(10 - tableBody.length, 0),
           }).map((_, index) => (

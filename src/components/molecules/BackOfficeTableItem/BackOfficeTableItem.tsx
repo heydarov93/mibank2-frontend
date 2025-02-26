@@ -24,7 +24,7 @@ interface BackOfficeTableItemProps {
 
 const BackOfficeTableItem = ({
   tableData,
-  showRadioButtonCell = false,
+  showRadioButtonCell,
 }: BackOfficeTableItemProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
