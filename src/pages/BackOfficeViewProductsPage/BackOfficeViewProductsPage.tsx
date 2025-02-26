@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -15,6 +16,7 @@ import { FilterGroup } from 'models/IFilterInfo';
 
 const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const { control } = useForm();
 
   const initialProductSubtypes: FilterGroup[] = [
     {
@@ -77,17 +79,19 @@ const BackOfficeViewProductsPage = () => {
   //TODO: Once Be Is ready need to add API integration to fetch tableData
   const tableData = [
     {
+      id: 1,
       productName: 'Deposit',
       productSubtype: 'Team Deposit',
       dateAdded: '12/02/2024',
+      productStatus: 'Completed',
     },
   ];
 
   const tableHead = [
-    t('CreateProduct.productName'),
-    t('CreateProduct.productSubtype'),
-    t('CreateProduct.addedDate'),
-    t('CreateProduct.productStatus'),
+    { label: t('CreateProduct.productName'), key: 'productName' },
+    { label: t('CreateProduct.productSubtype'), key: 'productSubtype' },
+    { label: t('CreateProduct.addedDate'), key: 'dateAdded' },
+    { label: t('CreateProduct.productStatus'), key: 'productStatus' },
   ];
 
   const handleFilterChange = (
@@ -122,7 +126,11 @@ const BackOfficeViewProductsPage = () => {
       <BackOfficeViewProductsHeader />
       <HeaderContainer>
         <Box sx={{ width: '400px', height: '100%' }}>
-          <SearchField />
+          <SearchField
+            name="productSearch"
+            control={control}
+            placeholder={t('header.searchProducts')}
+          />
         </Box>
         <FilterBox
           title="Products"

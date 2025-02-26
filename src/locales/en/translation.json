@@ -356,7 +356,11 @@
     "header": {
       "finProducts": "Financial Products",
       "viewProducts": "View All Financial Products",
-      "searchProducts": "Search for a product"
+      "searchProducts": "Search for a product",
+      "searchEmployees": "Search for employees",
+      "employeesList": "Employees List",
+      "employeesInfo": "View all of your employees information",
+      "addEmployee": "Add employee"
     },
     "ErrorPage": {
       "serviceUnavailable": "The service is temporarily unavailable",
@@ -373,6 +377,13 @@
       "errorLastNameMax": "Last Name should not exceed 40 characters",
       "errorEmail": "Please enter your email in format: example@gmail.com",
       "errorFirstLetter": "First letter must be capital"
+    },
+    "employeeList": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "role": "Role",
+      "email": "Email",
+      "addedDate": "Added Date"
     }
   }
 }

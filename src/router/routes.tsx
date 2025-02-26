@@ -21,6 +21,7 @@ import {
   TO_BACK_OFFICE_CREATE_EMPLOYEE,
   TO_BACK_OFFICE_VIEW_PRODUCTS,
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
+  TO_BACK_OFFICE_VIEW_EMPLOYEES,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -47,6 +48,7 @@ import BackOfficeVerifyEmployeeCode from 'pages/BackOffice/BackOfficeVerifyEmplo
 import CreateEmployee from 'pages/BackOffice/CreateEmployee';
 import BackOfficeErrorPage from 'pages/BackOfficeErrorPage/BackOfficeErrorPage';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
+import BackOfficeViewEmployees from 'pages/BackOfficeViewEmployees/BackOfficeViewEmployees';
 import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
 import Homepage from 'pages/Homepage/Homepage';
 
@@ -135,6 +137,10 @@ const routes = createBrowserRouter([
       {
         path: TO_BACK_OFFICE_CREATE_EMPLOYEE,
         element: <CreateEmployee />,
+      },
+      {
+        path: TO_BACK_OFFICE_VIEW_EMPLOYEES,
+        element: <BackOfficeViewEmployees />,
       },
       {
         path: TO_BACK_OFFICE_CREATE_PRODUCT,
