@@ -6,46 +6,40 @@ import { StyledTableCell } from './BackOfficeTableItem.styled';
 
 import RaddioButton from 'components/atoms/SwitchButton/SwitchButton';
 
+interface TableData {
+  productName: string;
+  productSubtype: string;
+  productStatus: string;
+  dateAdded: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  email: string;
+}
+
 interface BackOfficeTableItemProps {
-  depositName?: string;
-  depositSubtype?: string;
-  productStatus?: string;
-  addedDate?: string;
-  firstName?: string;
-  lastName?: string;
-  role?: string;
-  email?: string;
+  tableData: Partial<TableData>;
   showRadioButtonCell?: boolean;
 }
 
 const BackOfficeTableItem = ({
-  depositName,
-  depositSubtype,
-  productStatus,
-  addedDate,
-  firstName,
-  lastName,
-  role,
-  email,
+  tableData,
   showRadioButtonCell = false,
 }: BackOfficeTableItemProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   return (
     <>
-      {depositName && <StyledTableCell>{depositName}</StyledTableCell>}
-      {depositSubtype && <StyledTableCell>{depositSubtype}</StyledTableCell>}
-      {firstName && <StyledTableCell>{firstName}</StyledTableCell>}
-      {lastName && <StyledTableCell>{lastName}</StyledTableCell>}
-      {role && <StyledTableCell>{role}</StyledTableCell>}
-      {email && <StyledTableCell>{email}</StyledTableCell>}
-      {addedDate && <StyledTableCell>{addedDate}</StyledTableCell>}
-      {productStatus && <StyledTableCell>{productStatus}</StyledTableCell>}
+      {Object.entries(tableData).map(([key, value]) =>
+        value ? <StyledTableCell key={key}>{value}</StyledTableCell> : null,
+      )}
+
       {showRadioButtonCell && (
         <StyledTableCell>
           <RaddioButton isActive={isActive} setIsActive={setIsActive} />
         </StyledTableCell>
       )}
+
       <StyledTableCell>
         <BackOfficeButtonGroup isDisabled={isActive} />
       </StyledTableCell>

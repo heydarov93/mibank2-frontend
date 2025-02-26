@@ -11,21 +11,22 @@ import BackOfficeTableItem from 'components/molecules/BackOfficeTableItem/BackOf
 import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagination/BackOfficeTablePagination';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
-interface TableBodyType {
-  id: number | string;
-  productName?: string;
-  productSubtype?: string;
-  productStatus?: string;
-  dateAdded?: string;
-  firstName?: string;
-  lastName?: string;
-  role?: string;
-  email?: string;
+interface TableBody {
+  productName: string;
+  productSubtype: string;
+  productStatus: string;
+  dateAdded: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  email: string;
 }
 
+type PartialTableBody = Partial<TableBody> & { id: number };
+
 interface BackOfficeTableProps {
-  tableHead?: string[];
-  tableBody?: TableBodyType[];
+  tableHead: string[];
+  tableBody: PartialTableBody[];
 }
 
 const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
@@ -36,31 +37,20 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
       <Table>
         <StyledTableHead>
           <TableRow>
-            {tableHead?.map((title, index) => (
+            {tableHead.map((title, index) => (
               <StyledTableCell key={index}>
                 <BackOfficeTableTitle title={title} />
               </StyledTableCell>
             ))}
-            <StyledTableCell></StyledTableCell>
+            <StyledTableCell />
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {tableBody?.map((item) => (
-            <StyledTableRow key={item?.id}>
-              <BackOfficeTableItem
-                depositName={item?.productName}
-                depositSubtype={item?.productSubtype}
-                productStatus={item?.productStatus}
-                addedDate={item?.dateAdded}
-                firstName={item?.firstName}
-                lastName={item?.lastName}
-                role={item?.role}
-                email={item?.email}
-              />
-            </StyledTableRow>
+          {tableBody.map(({ id, ...data }) => (
+            <BackOfficeTableItem key={id} tableData={data} />
           ))}
           {Array.from({
-            length: Math.max(10 - (tableBody?.length || 0), 0),
+            length: Math.max(10 - tableBody.length, 0),
           }).map((_, index) => (
             <StyledTableRow key={`empty-${index}`} sx={{ height: '70.9px' }} />
           ))}

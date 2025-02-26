@@ -19,7 +19,16 @@ const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
   const { data } = useViewEmployeeQuery({});
-  const tableData = data?.content;
+  const tableData = [
+    {
+      id: 23,
+      firstName: 'Guji',
+      lastName: 'Guji',
+      role: 'ADMINISTRATOR',
+      email: 'gujeksa355@gmail.com',
+      dateAdded: '2025-02-12',
+    },
+  ];
 
   const tableHead = [
     t('employeeList.firstName'),
