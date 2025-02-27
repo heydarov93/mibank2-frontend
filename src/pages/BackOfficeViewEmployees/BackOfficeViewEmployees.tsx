@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useViewEmployeeQuery } from 'api/employeeController';
 import { SubmitButton } from 'components/atoms';
+import ButtonPlusIcon from 'components/atoms/ButtonPlusIcon/ButtonPlusIcon';
 import {
   PrimaryHeader,
   SecondaryHeader,
@@ -47,7 +48,10 @@ const BackOfficeViewEmployees = () => {
           <PrimaryHeader>{t('header.employeesList')}</PrimaryHeader>
           <SecondaryHeader>{t('header.employeesInfo')}</SecondaryHeader>
         </Box>
-        <SubmitButton buttonContent={t('header.addEmployee')} />
+        <SubmitButton
+          startIcon={<ButtonPlusIcon />}
+          buttonContent={t('header.addEmployee')}
+        />
       </Box>
       <HeaderContainer>
         <Box sx={{ width: '400px', height: '100%' }}>
