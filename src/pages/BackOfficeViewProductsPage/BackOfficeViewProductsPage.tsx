@@ -147,7 +147,11 @@ const BackOfficeViewProductsPage = () => {
           }
         />
       </HeaderContainer>
-      <BackOfficeTable tableHead={tableHead} tableBody={filteredTableBody} />
+      <BackOfficeTable
+        tableHead={tableHead}
+        tableBody={filteredTableBody}
+        showRadioButtonCell
+      />
     </MainContainer>
   );
 };
