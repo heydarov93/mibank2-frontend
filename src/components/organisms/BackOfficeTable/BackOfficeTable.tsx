@@ -31,9 +31,14 @@ interface TableHeadItem {
 interface BackOfficeTableProps {
   tableHead: TableHeadItem[];
   tableBody: PartialTableBody[];
+  showRadioButtonCell?: boolean;
 }
 
-const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
+const BackOfficeTable = ({
+  tableHead,
+  tableBody,
+  showRadioButtonCell,
+}: BackOfficeTableProps) => {
   return (
     <TableContainer
       sx={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}
@@ -53,7 +58,11 @@ const BackOfficeTable = ({ tableHead, tableBody }: BackOfficeTableProps) => {
           {tableBody.length > 0 &&
             tableBody.map(({ id, ...data }) => (
               <StyledTableRow key={id}>
-                <BackOfficeTableItem tableData={data} tableHead={tableHead} />
+                <BackOfficeTableItem
+                  tableData={data}
+                  tableHead={tableHead}
+                  showRadioButtonCell={showRadioButtonCell}
+                />
               </StyledTableRow>
             ))}
           {Array.from({

@@ -39,16 +39,13 @@ const BackOfficeTableItem = ({
     <>
       {tableHead.map(({ key }) => (
         <StyledTableCell key={key}>
-          {tableData[key as keyof TableData] || ''}
+          {key === 'productStatus' && showRadioButtonCell ? (
+            <RaddioButton isActive={isActive} setIsActive={setIsActive} />
+          ) : (
+            tableData[key as keyof TableData] || ''
+          )}
         </StyledTableCell>
       ))}
-
-      {showRadioButtonCell && (
-        <StyledTableCell>
-          <RaddioButton isActive={isActive} setIsActive={setIsActive} />
-        </StyledTableCell>
-      )}
-
       <StyledTableCell>
         <BackOfficeButtonGroup isDisabled={isActive} />
       </StyledTableCell>
