@@ -207,7 +207,6 @@ const BackOfficeViewProductsPage = () => {
           tableBody={filteredTableBody}
           onDeleteClick={handleDelete}
           onEditClick={handleEdit}
-          showRadioButtonCell
         />
         {isDeleteVisible && (
           <BackOfficeWarningWindow

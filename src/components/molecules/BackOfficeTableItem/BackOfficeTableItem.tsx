@@ -39,7 +39,6 @@ interface TableHeadItem {
 interface BackOfficeTableItemProps {
   tableData: Partial<TableData>;
   tableHead: TableHeadItem[];
-  showRadioButtonCell?: boolean;
   onDeleteClick?: (product: Partial<TableData>) => void;
   onEditClick?: (product: Partial<TableData>) => void;
 }
@@ -47,7 +46,6 @@ interface BackOfficeTableItemProps {
 const BackOfficeTableItem = ({
   tableData,
   tableHead,
-  showRadioButtonCell,
   onDeleteClick,
   onEditClick,
 }: BackOfficeTableItemProps) => {
@@ -57,7 +55,7 @@ const BackOfficeTableItem = ({
     <>
       {tableHead.map(({ key }) => (
         <StyledTableCell key={key}>
-          {key === 'productStatus' && showRadioButtonCell ? (
+          {key === 'productStatus' ? (
             <RaddioButton isActive={isActive} setIsActive={setIsActive} />
           ) : (
             tableData[key as keyof TableData] || ''

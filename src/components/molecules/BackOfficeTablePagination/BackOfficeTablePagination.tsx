@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import { SelectChangeEvent } from '@mui/material';
+import React from 'react';
 
 import CustomTablePagination from './CustomTablePagination';
 
-const BackOfficeTablePagination: React.FC = () => {
-  //TODO: Once the backend is ready I need to integrate the actual API
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
-  const count = 500;
+interface BackOfficeTablePaginationProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => void;
+  onRowsPerPageChange: (event: SelectChangeEvent<number>) => void;
+}
 
-  return (
-    <CustomTablePagination
-      count={count}
-      page={page}
-      rowsPerPage={rowsPerPage}
-      onPageChange={(event, newPage) => setPage(newPage)}
-      onRowsPerPageChange={(event) => {
-        setRowsPerPage(Number(event.target.value));
-        setPage(0);
-      }}
-    />
-  );
-};
+const BackOfficeTablePagination: React.FC<BackOfficeTablePaginationProps> = ({
+  count,
+  page,
+  rowsPerPage,
+  onPageChange,
+  onRowsPerPageChange,
+}) => (
+  <CustomTablePagination
+    count={count}
+    page={page}
+    rowsPerPage={rowsPerPage}
+    onPageChange={onPageChange}
+    onRowsPerPageChange={onRowsPerPageChange}
+  />
+);
 
 export default BackOfficeTablePagination;
