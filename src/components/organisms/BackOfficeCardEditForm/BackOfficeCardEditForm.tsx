@@ -1,0 +1,195 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Button } from '@mui/material';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  FormLabel,
+  MainContainer,
+  MainHeader,
+} from './BackOfficeCardEditForm.styled';
+
+import { InputField } from 'components/atoms';
+import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
+import currencies from 'constants/currencies';
+import { cardEditFormSchema } from 'validation/cardEditFormValidation';
+
+interface FormValues {
+  cardName: string;
+  cardDescription: string;
+  cardCurrency: string;
+  cardCashbackRate: string;
+  monthlyFee: string;
+  dailyOperationalLimit: string;
+  foreignTransactionLimit: string;
+}
+
+interface BackOfficeCardEditFormProps {
+  handleClose: () => void;
+  formData?: Partial<TableData>;
+}
+
+const BackOfficeCardEditForm = ({
+  handleClose,
+  formData,
+}: BackOfficeCardEditFormProps) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormValues>({
+    resolver: yupResolver(cardEditFormSchema),
+    mode: 'all',
+    defaultValues: {
+      cardName: formData?.productName,
+      cardDescription: formData?.cardDescription,
+      cardCurrency: formData?.cardCurrency,
+      cardCashbackRate: formData?.cardCashbackRate,
+      monthlyFee: formData?.montlyFee,
+      dailyOperationalLimit: formData?.dailyOperationalLimit,
+      foreignTransactionLimit: formData?.foreignTransactionLimit,
+    },
+  });
+
+  const onSubmit = () => {
+    handleClose();
+  };
+
+  return (
+    <MainContainer>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <MainHeader>{t('cardEditForm.editCard')}</MainHeader>
+        <CloseButtonX onClick={handleClose} />
+      </Box>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+        }}
+      >
+        <Box sx={{ width: '100%' }}>
+          <FormLabel>{t('cardEditForm.cardName')}</FormLabel>
+          <InputField
+            name="cardName"
+            id="productName"
+            control={control}
+            placeholder={t('cardEditForm.cardName')}
+            error={errors.cardName}
+            helperText={errors.cardName?.message}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.cardDescription')}</FormLabel>
+          <InputField
+            name="cardDescription"
+            id="cardDescription"
+            control={control}
+            placeholder={t('cardEditForm.cardDescription')}
+            error={errors.cardDescription}
+            helperText={errors.cardDescription?.message}
+            multiline
+            rows={4}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.cardCurrency')}</FormLabel>
+          <Controller
+            name="cardCurrency"
+            control={control}
+            render={({ field }) => (
+              <MiAutoComplete
+                options={currencies}
+                value={field.value}
+                onChange={(_, value) => field.onChange(value)}
+                error={!!errors.cardCurrency}
+                helperText={errors.cardCurrency?.message}
+              />
+            )}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.cashbackRate')}</FormLabel>
+          <InputField
+            name="cardCashbackRate"
+            id="cashbackRate"
+            control={control}
+            placeholder={t('cardEditForm.cashbackRate')}
+            error={errors.cardCashbackRate}
+            helperText={errors.cardCashbackRate?.message}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.monthlyFee')}</FormLabel>
+          <InputField
+            name="monthlyFee"
+            id="monthlyFee"
+            control={control}
+            placeholder={t('cardEditForm.monthlyFee')}
+            error={errors.monthlyFee}
+            helperText={errors.monthlyFee?.message}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.dailyOperationalLimit')}</FormLabel>
+          <InputField
+            name="dailyOperationalLimit"
+            id="dailyOperationalLimit"
+            control={control}
+            placeholder={t('cardEditForm.dailyOperationalLimit')}
+            error={errors.dailyOperationalLimit}
+            helperText={errors.dailyOperationalLimit?.message}
+          />
+        </Box>
+
+        <Box>
+          <FormLabel>{t('cardEditForm.foreignTransactionLimit')}</FormLabel>
+          <InputField
+            name="foreignTransactionLimit"
+            id="foreignTransactionLimit"
+            control={control}
+            placeholder={t('cardEditForm.foreignTransactionLimit')}
+            error={errors.foreignTransactionLimit}
+            helperText={errors.foreignTransactionLimit?.message}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            gap: '24px',
+            height: '56px',
+          }}
+        >
+          <Button variant="outlined" onClick={handleClose}>
+            {t('cardEditForm.cancel')}
+          </Button>
+          <Button type="submit" variant="contained" disabled={!isValid}>
+            {t('cardEditForm.saveChanges')}
+          </Button>
+        </Box>
+      </form>
+    </MainContainer>
+  );
+};
+
+export default BackOfficeCardEditForm;

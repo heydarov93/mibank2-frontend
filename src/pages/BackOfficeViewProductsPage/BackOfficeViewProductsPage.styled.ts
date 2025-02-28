@@ -1,11 +1,14 @@
 import { Box, styled } from '@mui/material';
 
-export const MainContainer = styled(Box)(({ theme: { spacing } }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: spacing(3),
-  padding: spacing(4, 5, 2.5, 2.5),
-}));
+export const MainContainer = styled(Box)<{ blur?: boolean }>(
+  ({ blur, theme: { spacing } }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: spacing(3),
+    padding: spacing(4, 5, 2.5, 2.5),
+    filter: blur ? 'blur(4px)' : 'none',
+  }),
+);
 
 export const HeaderContainer = styled(Box)(() => ({
   display: 'flex',

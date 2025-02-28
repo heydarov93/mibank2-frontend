@@ -8,15 +8,26 @@ import {
   MainContainer,
 } from './BackOfficeViewProductsPage.styled';
 
+import { BackOfficeWarningWindow } from 'components/molecules';
+import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeViewProductsHeader from 'components/molecules/BackOfficeViewProductsHeader/BackOfficeViewProductsHeader';
 import FilterBox from 'components/molecules/FilterBox/FilterBox';
 import SearchField from 'components/molecules/SearchField/SearchField';
+import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
+import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 import { FilterGroup } from 'models/IFilterInfo';
 
 const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
+
+  const [isDeleteVisible, setIsDeleteVisible] = useState<boolean>(false);
+  const [productName, setProductName] = useState<string | undefined>('');
+  const [isEditFormVisible, setIsFormVisible] = useState<boolean>(false);
+  const [isDepositFormVisible, setIsDepositFormVisible] =
+    useState<boolean>(false);
+  const [formData, setFormData] = useState<Partial<TableData>>({});
 
   const initialProductSubtypes: FilterGroup[] = [
     {
@@ -83,7 +94,27 @@ const BackOfficeViewProductsPage = () => {
       productName: 'Deposit',
       productSubtype: 'Team Deposit',
       dateAdded: '12/02/2024',
-      productStatus: 'Completed',
+      cardDescription: 'Whatever',
+      cardCurrency: 'EUR',
+      minimumDepositSum: '1',
+      maximumDepositSum: '12',
+      depositTerm: '12',
+      depositInterestRate: '12',
+      depositCapitalizationRate: '10',
+      earlyWithdrawalLimit: '2',
+      withdrawalFee: '12',
+    },
+    {
+      id: 2,
+      productName: 'Card',
+      productSubtype: 'Debit Card',
+      dateAdded: '12/02/2024',
+      cardDescription: 'string',
+      cardCurrency: 'USD',
+      montlyFee: 'string',
+      dailyOperationalLimit: 'string',
+      foreignTransactionLimit: 'string',
+      cardCashbackRate: 'string',
     },
   ];
 
@@ -121,38 +152,78 @@ const BackOfficeViewProductsPage = () => {
     );
   });
 
+  const handleDelete = (product: Partial<TableData>) => {
+    setProductName(product.productName);
+    setIsDeleteVisible(true);
+  };
+  const handleEdit = (product: Partial<TableData>) => {
+    if (product.productName === 'Card') {
+      setFormData(product);
+      setIsFormVisible(true);
+    } else {
+      setIsDepositFormVisible(true);
+      setFormData(product);
+    }
+  };
+
+  const handleClose = () => {
+    setIsFormVisible(false);
+    setIsDepositFormVisible(false);
+  };
+
   return (
-    <MainContainer>
-      <BackOfficeViewProductsHeader />
-      <HeaderContainer>
-        <Box sx={{ width: '400px', height: '100%' }}>
-          <SearchField
-            name="productSearch"
-            control={control}
-            placeholder={t('header.searchProducts')}
+    <Box
+      sx={{
+        position: 'relative',
+      }}
+    >
+      <MainContainer blur={isEditFormVisible || isDepositFormVisible}>
+        <BackOfficeViewProductsHeader />
+        <HeaderContainer>
+          <Box sx={{ width: '400px', height: '100%' }}>
+            <SearchField
+              name="productSearch"
+              control={control}
+              placeholder={t('header.searchProducts')}
+            />
+          </Box>
+          <FilterBox
+            title={t('header.products')}
+            groups={productTypes}
+            onFilterChange={(updatedGroups) =>
+              handleFilterChange(updatedGroups, setProductTypes)
+            }
           />
-        </Box>
-        <FilterBox
-          title="Products"
-          groups={productTypes}
-          onFilterChange={(updatedGroups) =>
-            handleFilterChange(updatedGroups, setProductTypes)
-          }
+          <FilterBox
+            title={t('header.productSubtypes')}
+            groups={productSubtypes}
+            onFilterChange={(updatedGroups) =>
+              handleFilterChange(updatedGroups, setProductSubtypes)
+            }
+          />
+        </HeaderContainer>
+        <BackOfficeTable
+          tableHead={tableHead}
+          tableBody={filteredTableBody}
+          onDeleteClick={handleDelete}
+          onEditClick={handleEdit}
+          showRadioButtonCell
         />
-        <FilterBox
-          title="Product Subtypes"
-          groups={productSubtypes}
-          onFilterChange={(updatedGroups) =>
-            handleFilterChange(updatedGroups, setProductSubtypes)
-          }
-        />
-      </HeaderContainer>
-      <BackOfficeTable
-        tableHead={tableHead}
-        tableBody={filteredTableBody}
-        showRadioButtonCell
-      />
-    </MainContainer>
+        {isDeleteVisible && (
+          <BackOfficeWarningWindow
+            sx={{ top: '352px', left: '454px' }}
+            productName={productName}
+            onCancelClick={() => setIsDeleteVisible(false)}
+          />
+        )}
+      </MainContainer>
+      {isEditFormVisible && (
+        <BackOfficeCardEditForm handleClose={handleClose} formData={formData} />
+      )}
+      {isDepositFormVisible && (
+        <BackOfficeDepositEditForm onClose={handleClose} formData={formData} />
+      )}
+    </Box>
   );
 };
 

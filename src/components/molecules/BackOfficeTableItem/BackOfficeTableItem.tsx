@@ -6,7 +6,8 @@ import { StyledTableCell } from './BackOfficeTableItem.styled';
 
 import RaddioButton from 'components/atoms/SwitchButton/SwitchButton';
 
-interface TableData {
+export interface TableData {
+  id: number;
   productName: string;
   productSubtype: string;
   productStatus: string;
@@ -15,6 +16,19 @@ interface TableData {
   lastName: string;
   role: string;
   email: string;
+  cardDescription: string;
+  cardCurrency: string;
+  montlyFee: string;
+  dailyOperationalLimit: string;
+  foreignTransactionLimit: string;
+  cardCashbackRate: string;
+  minimumDepositSum: string;
+  maximumDepositSum: string;
+  depositTerm: string;
+  depositInterestRate: string;
+  depositCapitalizationRate: string;
+  earlyWithdrawalLimit: string;
+  withdrawalFee: string;
 }
 
 interface TableHeadItem {
@@ -26,12 +40,16 @@ interface BackOfficeTableItemProps {
   tableData: Partial<TableData>;
   tableHead: TableHeadItem[];
   showRadioButtonCell?: boolean;
+  onDeleteClick?: (product: Partial<TableData>) => void;
+  onEditClick?: (product: Partial<TableData>) => void;
 }
 
 const BackOfficeTableItem = ({
   tableData,
   tableHead,
   showRadioButtonCell,
+  onDeleteClick,
+  onEditClick,
 }: BackOfficeTableItemProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -47,7 +65,12 @@ const BackOfficeTableItem = ({
         </StyledTableCell>
       ))}
       <StyledTableCell>
-        <BackOfficeButtonGroup isDisabled={isActive} />
+        <BackOfficeButtonGroup
+          isDisabled={isActive}
+          product={tableData}
+          onEditClick={onEditClick}
+          onDeleteClick={onDeleteClick}
+        />
       </StyledTableCell>
     </>
   );

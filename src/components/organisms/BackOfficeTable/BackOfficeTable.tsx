@@ -6,7 +6,9 @@ import {
   StyledTableRow,
 } from './BackOfficeTable.styled';
 
-import BackOfficeTableItem from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import BackOfficeTableItem, {
+  TableData,
+} from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagination/BackOfficeTablePagination';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
@@ -32,12 +34,16 @@ interface BackOfficeTableProps {
   tableHead: TableHeadItem[];
   tableBody: PartialTableBody[];
   showRadioButtonCell?: boolean;
+  onDeleteClick?: (product: Partial<TableData>) => void;
+  onEditClick?: (product: Partial<TableData>) => void;
 }
 
 const BackOfficeTable = ({
   tableHead,
   tableBody,
   showRadioButtonCell,
+  onDeleteClick,
+  onEditClick,
 }: BackOfficeTableProps) => {
   return (
     <TableContainer
@@ -56,12 +62,14 @@ const BackOfficeTable = ({
         </StyledTableHead>
         <TableBody>
           {tableBody.length > 0 &&
-            tableBody.map(({ id, ...data }) => (
-              <StyledTableRow key={id}>
+            tableBody.map((item) => (
+              <StyledTableRow key={item.id}>
                 <BackOfficeTableItem
-                  tableData={data}
+                  tableData={item}
                   tableHead={tableHead}
                   showRadioButtonCell={showRadioButtonCell}
+                  onDeleteClick={onDeleteClick}
+                  onEditClick={onEditClick}
                 />
               </StyledTableRow>
             ))}
