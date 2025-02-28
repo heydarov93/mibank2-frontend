@@ -2,6 +2,8 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { TableData } from '../BackOfficeTableItem/BackOfficeTableItem';
+
 import { StyledButton } from './BackOfficeButtonGroup.styled';
 
 import PenIcon from 'components/atoms/PenIcon/PenIcon';
@@ -10,21 +12,35 @@ import { theme } from 'theme/theme';
 
 interface BackOfficeButtonGroupProps {
   isDisabled: boolean;
-  onDeleteClick?: () => void;
-  onEditClick?: () => void;
+  onDeleteClick?: (product: Partial<TableData>) => void;
+  onEditClick?: (product: Partial<TableData>) => void;
+  product: Partial<TableData>;
 }
 
 const BackOfficeButtonGroup = ({
   isDisabled,
   onDeleteClick,
   onEditClick,
+  product,
 }: BackOfficeButtonGroupProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+
+  const handleEditClick = () => {
+    if (onEditClick && product) {
+      onEditClick(product);
+    }
+  };
+
+  const handleDeleteClick = () => {
+    if (onDeleteClick && product) {
+      onDeleteClick(product);
+    }
+  };
 
   return (
     <Box sx={{ display: 'flex', gap: '8px' }}>
       <StyledButton
-        onClick={onEditClick}
+        onClick={handleEditClick}
         sx={{
           color: theme.palette.primary.main,
           backgroundColor: theme.palette.primary.light,
@@ -35,7 +51,7 @@ const BackOfficeButtonGroup = ({
         {t('LastResortDeposit.edit')}
       </StyledButton>
       <StyledButton
-        onClick={onDeleteClick}
+        onClick={handleDeleteClick}
         sx={{
           color: theme.palette.error.main,
           backgroundColor: theme.palette.error.light,

@@ -305,7 +305,11 @@
     },
     "ConfirmationWindow": {
       "confirmationTitle": "Product Created Successfully",
-      "secondaryText": "Your Card has been created and is now ready for use."
+      "secondaryText": "Your Card has been created and is now ready for use.",
+      "cancelBtn": "Cancel",
+      "deleteBtn": "Delete",
+      "deleteText": "Deletion is irreversible. Are you sure you want to delete",
+      "deleteCard": "Delete Card?"
     },
     "LastResortDeposit": {
       "lastResortDeposit": "Last Resort Deposit",
@@ -360,7 +364,9 @@
       "searchEmployees": "Search for employees",
       "employeesList": "Employees List",
       "employeesInfo": "View all of your employees information",
-      "addEmployee": "Add employee"
+      "addEmployee": "Add employee",
+      "products": "Products",
+      "productSubtypes": "Product Subtypes"
     },
     "ErrorPage": {
       "serviceUnavailable": "The service is temporarily unavailable",
@@ -384,6 +390,87 @@
       "role": "Role",
       "email": "Email",
       "addedDate": "Added Date"
+    },
+    "cardEditForm": {
+      "editCard": "Edit Card",
+      "cardName": "Card Name",
+      "cardNumber": "Card Number",
+      "cardType": "Card Type",
+      "cardIssuer": "Card Issuer",
+      "cashbackRate": "Card Cashback Rate",
+      "monthlyFee": "Monthly Fee",
+      "dailyOperationalLimit": "Daily Operational Limit",
+      "foreignTransactionLimit": "Foreign Transaction Limit",
+      "cancel": "Cancel",
+      "cardDescription": "Card Description",
+      "cardCurrency": "Card Currency",
+      "saveChanges": "Save Changes"
+    },
+    "cardEditFormErrors": {
+      "cardName": "Card Name must be at least 3 characters",
+      "capitalLetter": "Card Name must start with a capital letter",
+      "description": "Card Description must be at least 10 characters",
+      "provideDescription": "Please provide a description for card",
+      "cashback": "Cashback Rate is required",
+      "cashbackRate": "Card Cashback Rate must be a valid number",
+      "fee": "Monthly Fee is required",
+      "feeNumber": "Monthly Fee must be a valid number",
+      "opLimit": "Daily Operational Limit is required",
+      "opLimitNumber": "Daily Operational Limit must be a valid number",
+      "foreignTransaction": "Foreign Transaction Limit is required",
+      "foreignNum": "Foreign Transaction Limit must be a valid number",
+      "cardNameReq": "Card Name is Required",
+      "cardCurrencyReq": "Card Currency is Required"
+    },
+    "depositEditFormErrors": {
+      "depNameReq": "Deposit name is required",
+      "depNameChars": "Deposit name must be at least 3 characters",
+      "depNameMax": "Deposit name cannot exceed 30 characters",
+      "depNameMatch": "Deposit name must start with a capital letter",
+      "descReq": "Description is required",
+      "descMin": "Description must be at least 10 characters",
+      "descMax": "Description cannot exceed 1000 characters",
+      "currencyReq": "Currency is required",
+      "minSum": "Minimum deposit sum is required",
+      "sumValid": "Must be a valid number",
+      "minDepositPositive": "Minimum deposit must be positive",
+      "minDepositSum": "Minimum deposit must be at least 1",
+      "minMoreThanMax": "Minimum deposit must be less than maximum deposit",
+      "maxReq": "Maximum deposit must be greater than minimum deposit",
+      "depTermReq": "Deposit term is required",
+      "depTermWhole": "Must be a whole number",
+      "depTermPos": "Deposit term must be positive",
+      "depTermMin": "Minimum term is 1 month",
+      "depTermMax": "Maximum term is 30 years",
+      "depInterestRate": "Interest rate is required",
+      "depInterestRatePos": "Interest rate must be positive",
+      "depInterestRateMin": "Minimum interest rate is 0.01%",
+      "depInterestRateMax": "Maximum interest rate is 100%",
+      "depCapRate": "Capitalization rate is required",
+      "depCapRatePos": "Capitalization rate must be positive",
+      "depCapRateMin": "Minimum capitalization rate is 0.1",
+      "depCapRateMax": "Maximum capitalization rate is 12",
+      "earlyWdReq": "Early Withdrawal is Required",
+      "earlyWdLimit": "Early withdrawal limit is required",
+      "earlyWdLimitNeg": "Early withdrawal limit cannot be negative",
+      "wdFeeReq": "Withdrawal fee is required",
+      "wdFeeNeg": "Withdrawal fee cannot be negative",
+      "validNum": "Must be a valid number"
+    },
+    "depositEditForm": {
+      "editDep": "Edit Deposit",
+      "depName": "Deposit Name",
+      "depDesc": "Deposit Description",
+      "depCurr": "Deposit Currency",
+      "minDep": "Minimum Deposit Sum",
+      "maxDep": "Maximum Deposit Sum",
+      "depTerm": "Deposit Term (in months)",
+      "depInt": "Deposit Interest Rate (in Percent)",
+      "depCap": "Deposit Capitalization Rate",
+      "earlyWd": "Early Withdrawal Limit",
+      "wdFee": "Withdrawal Fee",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes"
     }
   }
 }

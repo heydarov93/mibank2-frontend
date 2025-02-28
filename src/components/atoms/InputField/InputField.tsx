@@ -42,6 +42,7 @@ const enum FieldName {
   earlyWithdrawalLimit = 'earlyWithdrawalLimit',
   withdrawalFee = 'withdrawalFee',
   productName = 'productName',
+  cardDescription = 'cardDescription',
 }
 
 interface InputFieldProps<T extends FieldValues> {
@@ -58,6 +59,8 @@ interface InputFieldProps<T extends FieldValues> {
     endAdornment: JSX.Element;
   };
   maxLength?: number;
+  multiline?: boolean;
+  rows?: number;
   onCut?: (e: SyntheticEvent) => void;
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -86,6 +89,8 @@ export const InputField = <T extends FieldValues>({
   onChange,
   InputProps,
   maxLength,
+  multiline,
+  rows,
 }: InputFieldProps<T>) => (
   <Controller
     name={name}
@@ -113,6 +118,8 @@ export const InputField = <T extends FieldValues>({
             onChange: onChange,
           },
         }}
+        multiline={multiline}
+        rows={rows}
         {...field}
       />
     )}
