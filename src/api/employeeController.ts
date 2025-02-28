@@ -17,9 +17,10 @@ export const employeeControllerApi = createApi({
       }),
     }),
     viewEmployee: builder.query({
-      query: () => ({
+      query: ({ page, size }) => ({
         url: endpoints.employeeAccountManagement.employees.viewEmployee,
         method: 'GET',
+        params: { page, size },
       }),
     }),
   }),

@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,12 @@ import {
 const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
-  const { data } = useViewEmployeeQuery({});
+
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+
+  const { data } = useViewEmployeeQuery({ page, size: pageSize });
+
   const tableData =
     data?.content?.map((item: { dateAdded: string | number | Date }) => ({
       ...item,
@@ -62,7 +68,15 @@ const BackOfficeViewEmployees = () => {
           />
         </Box>
       </HeaderContainer>
-      <BackOfficeTable tableHead={tableHead} tableBody={tableData} />
+      <BackOfficeTable
+        tableHead={tableHead}
+        tableBody={tableData}
+        totalItems={data?.totalElements || 0}
+        page={page}
+        pageSize={pageSize}
+        onPageChange={setPage}
+        onPageSizeChange={setPageSize}
+      />
     </MainContainer>
   );
 };

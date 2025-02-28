@@ -33,7 +33,11 @@ interface TableHeadItem {
 interface BackOfficeTableProps {
   tableHead: TableHeadItem[];
   tableBody: PartialTableBody[];
-  showRadioButtonCell?: boolean;
+  totalItems?: number;
+  page?: number;
+  pageSize?: number;
+  onPageChange?: (page: number) => void;
+  onPageSizeChange?: (size: number) => void;
   onDeleteClick?: (product: Partial<TableData>) => void;
   onEditClick?: (product: Partial<TableData>) => void;
 }
@@ -41,7 +45,11 @@ interface BackOfficeTableProps {
 const BackOfficeTable = ({
   tableHead,
   tableBody,
-  showRadioButtonCell,
+  totalItems,
+  page,
+  pageSize,
+  onPageChange,
+  onPageSizeChange,
   onDeleteClick,
   onEditClick,
 }: BackOfficeTableProps) => {
@@ -67,7 +75,6 @@ const BackOfficeTable = ({
                 <BackOfficeTableItem
                   tableData={item}
                   tableHead={tableHead}
-                  showRadioButtonCell={showRadioButtonCell}
                   onDeleteClick={onDeleteClick}
                   onEditClick={onEditClick}
                 />
@@ -80,7 +87,15 @@ const BackOfficeTable = ({
           ))}
         </TableBody>
       </Table>
-      <BackOfficeTablePagination />
+      <BackOfficeTablePagination
+        count={totalItems || 0}
+        page={page || 0}
+        rowsPerPage={pageSize || 10}
+        onPageChange={(_event, newPage) => onPageChange?.(newPage)}
+        onRowsPerPageChange={(event) =>
+          onPageSizeChange?.(Number(event.target.value))
+        }
+      />
     </TableContainer>
   );
 };
