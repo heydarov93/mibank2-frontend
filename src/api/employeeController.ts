@@ -1,13 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
+
+import { baseQueryCreator } from 'store/baseQueryCreator';
 
 export const employeeControllerApi = createApi({
   reducerPath: 'employeeControllerApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL(),
-  }),
+  baseQuery: baseQueryCreator(),
   endpoints: (builder) => ({
     validateEmail: builder.mutation({
       query: ({ email }) => ({
