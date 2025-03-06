@@ -31,7 +31,7 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
     <p
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
     >
-      OTPVerificationPage.verificationText
+      OTPVerificationPage.verifyCodeMessage
     </p>
     <div
       class="MuiBox-root css-1i27l4i"
