@@ -92,7 +92,7 @@ describe('BackOfficeVerifyEmployeeCode', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test.only('renders the form and submits correctly', () => {
+  test('renders the form and submits correctly', () => {
     render(<BackOfficeVerifyEmployeeCode />);
     screen.debug();
     expect(screen.getByTestId('logo')).toBeInTheDocument();
