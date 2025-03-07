@@ -18,7 +18,7 @@ export interface TableData {
   email: string;
   cardDescription: string;
   cardCurrency: string;
-  montlyFee: string;
+  monthlyFee: string;
   dailyOperationalLimit: string;
   foreignTransactionLimit: string;
   cardCashbackRate: string;

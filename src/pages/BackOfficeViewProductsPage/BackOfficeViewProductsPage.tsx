@@ -109,12 +109,12 @@ const BackOfficeViewProductsPage = () => {
       productName: 'Card',
       productSubtype: 'Debit Card',
       dateAdded: '12/02/2024',
-      cardDescription: 'string',
+      cardDescription: 'Valid Description for Card',
       cardCurrency: 'USD',
-      montlyFee: 'string',
-      dailyOperationalLimit: 'string',
-      foreignTransactionLimit: 'string',
-      cardCashbackRate: 'string',
+      monthlyFee: '10',
+      dailyOperationalLimit: '3',
+      foreignTransactionLimit: '12',
+      cardCashbackRate: '12',
     },
   ];
 
