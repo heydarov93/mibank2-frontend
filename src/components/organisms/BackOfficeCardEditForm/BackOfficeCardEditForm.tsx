@@ -50,7 +50,7 @@ const BackOfficeCardEditForm = ({
       cardDescription: formData?.cardDescription,
       cardCurrency: formData?.cardCurrency,
       cardCashbackRate: formData?.cardCashbackRate,
-      monthlyFee: formData?.montlyFee,
+      monthlyFee: formData?.monthlyFee,
       dailyOperationalLimit: formData?.dailyOperationalLimit,
       foreignTransactionLimit: formData?.foreignTransactionLimit,
     },
@@ -81,7 +81,7 @@ const BackOfficeCardEditForm = ({
           gap: '32px',
         }}
       >
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%' }} data-testid="cardName">
           <FormLabel>{t('cardEditForm.cardName')}</FormLabel>
           <InputField
             name="cardName"
@@ -183,7 +183,12 @@ const BackOfficeCardEditForm = ({
           <Button variant="outlined" onClick={handleClose}>
             {t('cardEditForm.cancel')}
           </Button>
-          <Button type="submit" variant="contained" disabled={!isValid}>
+          <Button
+            data-testid="submitBtn"
+            type="submit"
+            variant="contained"
+            disabled={!isValid}
+          >
             {t('cardEditForm.saveChanges')}
           </Button>
         </Box>
