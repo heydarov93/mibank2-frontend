@@ -39,6 +39,7 @@ import {
   BackOfficeVerificationPage,
 } from '../pages';
 
+import BackOfficePrivateRoutes from './BackOfficePrivateRoutes';
 import { PrivateRoute } from './PrivateRoute';
 
 import { App } from 'App';
@@ -131,7 +132,11 @@ const routes = createBrowserRouter([
   },
   {
     path: TO_BACK_OFFICE,
-    element: <BackOffice />,
+    element: (
+      <BackOfficePrivateRoutes>
+        <BackOffice />
+      </BackOfficePrivateRoutes>
+    ),
     errorElement: <BackOfficeErrorPage />,
     children: [
       {

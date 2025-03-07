@@ -7,32 +7,39 @@ import {
 } from '@testing-library/react';
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 import BackOfficeVerifyEmployeeCode from './BackOfficeVerifyEmployeeCode';
+import { useLogInMutation } from 'api/employeeLogInApi';
 
-import { useValidateOtpMutation } from 'api/validateOtpApi';
-
-jest.mock('api/validateOtpApi', () => ({
-  useValidateOtpMutation: jest.fn(),
+jest.mock('api/employeeLogInApi', () => ({
+  useLogInMutation: jest.fn(),
 }));
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
   useLocation: jest.fn(),
 }));
+jest.mock('utils/storageAuthHandler', () => ({
+  setEmployeeAuthData: jest.fn(),
+}));
+jest.mock('utils/getEmailFromToken', () => ({
+  getEmailRoleFromToken: jest.fn(),
+}));
+
 describe('BackOfficeVerifyEmployeeCode', () => {
-  let mockValidateOtp: jest.Mock;
+  let mockLogIn: jest.Mock;
   const mockNavigate = jest.fn();
-  const mockLocation = { state: { email: 'test-email' } };
+  const mockLocation = { state: { email: 'test-email@example.com' } };
+
   beforeEach(() => {
     jest.clearAllMocks();
-    mockValidateOtp = jest.fn();
-    (useValidateOtpMutation as jest.Mock).mockReturnValue([
-      mockValidateOtp,
+    mockLogIn = jest.fn();
+    (useLogInMutation as jest.Mock).mockReturnValue([
+      mockLogIn,
       { isLoading: false },
     ]);
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
     (useLocation as jest.Mock).mockReturnValue(mockLocation);
   });
+
   it('should update OTP state and focus next input when valid numeric value entered', () => {
     const { result } = renderHook(() => {
       const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
@@ -87,17 +94,25 @@ describe('BackOfficeVerifyEmployeeCode', () => {
 
     expect(result.current.otp).toEqual(initialOtp);
   });
+
   it('renders correctly and matches snapshot', () => {
     const { asFragment } = render(<BackOfficeVerifyEmployeeCode />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('renders the form and submits correctly', () => {
-    render(<BackOfficeVerifyEmployeeCode />);
-    screen.debug();
-    expect(screen.getByTestId('logo')).toBeInTheDocument();
+  it('renders the form and submits correctly', async () => {
+    const mockTokenResponse = { accessToken: 'mock-token' };
+    mockLogIn.mockResolvedValue({ data: mockTokenResponse });
+    const { getEmailRoleFromToken } = require('utils/getEmailFromToken');
+    const { setEmployeeAuthData } = require('utils/storageAuthHandler');
+    getEmailRoleFromToken.mockReturnValue({
+      email: 'test-email@example.com',
+      role: 'admin',
+    });
 
-    expect(screen.getByText('logoTitle')).toBeInTheDocument();
+    render(<BackOfficeVerifyEmployeeCode />);
+
+    expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(
       screen.getByText('OTPVerificationPage.verifyCodeMessage'),
     ).toBeInTheDocument();
@@ -115,16 +130,36 @@ describe('BackOfficeVerifyEmployeeCode', () => {
     });
     expect(cancelButton).toBeInTheDocument();
 
-    otpInputs.forEach((input, index) => {
-      fireEvent.change(input, { target: { value: String(index + 1) } });
+    await act(async () => {
+      otpInputs.forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(index + 1) } });
+      });
     });
 
     expect(confirmButton).not.toBeDisabled();
 
     fireEvent.click(cancelButton);
 
-    fireEvent.click(confirmButton);
+    await act(async () => {
+      otpInputs.forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(index + 1) } });
+      });
+    });
+
+    await act(async () => {
+      fireEvent.click(confirmButton);
+    });
+
+    expect(mockLogIn).toHaveBeenCalledWith({
+      email: 'test-email@example.com',
+      code: '123456',
+    });
+
+    await screen.findByRole('button', {
+      name: 'OTPVerificationPage.confirmButtonText',
+    });
   });
+
   it('should handle backspace key correctly', () => {
     render(<BackOfficeVerifyEmployeeCode />);
     const otpInputs = screen.getAllByRole('textbox');
@@ -160,14 +195,12 @@ describe('BackOfficeVerifyEmployeeCode', () => {
     expect(document.activeElement).toBe(otpInputs[0]);
   });
 
-  it('should show loading indicator when submitting OTP', async () => {
-    (useValidateOtpMutation as jest.Mock).mockReturnValue([
-      jest.fn(),
+  it('should show loading indicator when submitting OTP', () => {
+    (useLogInMutation as jest.Mock).mockReturnValue([
+      mockLogIn,
       { isLoading: true },
     ]);
-
     render(<BackOfficeVerifyEmployeeCode />);
-
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 
@@ -184,16 +217,25 @@ describe('BackOfficeVerifyEmployeeCode', () => {
     expect(confirmButton).toBeDisabled();
   });
 
-  it('should not submit if email is missing from location state', () => {
+  it('should not submit if email is missing from location state', async () => {
     (useLocation as jest.Mock).mockReturnValue({ state: null });
-
     render(<BackOfficeVerifyEmployeeCode />);
     const confirmButton = screen.getByRole('button', {
       name: 'OTPVerificationPage.confirmButtonText',
     });
 
-    fireEvent.click(confirmButton);
+    const otpInputs = screen.getAllByRole('textbox');
+    await act(async () => {
+      otpInputs.forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(index + 1) } });
+      });
+    });
 
+    await act(async () => {
+      fireEvent.click(confirmButton);
+    });
+
+    expect(mockLogIn).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
   });
 });

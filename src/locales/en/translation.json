@@ -370,7 +370,8 @@
     },
     "ErrorPage": {
       "serviceUnavailable": "The service is temporarily unavailable",
-      "refresh": "Please refresh the page"
+      "refresh": "Please refresh the page",
+      "noEmailOrRole": "Can't find email or role"
     },
     "addNewEmployee": {
       "errorLetters": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
