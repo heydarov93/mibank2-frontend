@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useValidateOtpMutation } from 'api/validateOtpApi';
+import { useLogInMutation } from 'api/employeeLogInApi';
 import { ELogoSize, Logo, SubmitButton } from 'components/atoms';
 import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/OneTimePasscode';
 import {
@@ -11,6 +11,8 @@ import {
   StyledCancelContainer,
 } from 'components/organisms/OneTimePasscodeForm/OneTimePasscodeForm.styled';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
+import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
+import { setEmployeeAuthData } from 'utils/storageAuthHandler';
 
 const BackOfficeVerifyEmployeeCode = () => {
   const { t } = useTranslation('translation');
@@ -20,7 +22,7 @@ const BackOfficeVerifyEmployeeCode = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
 
-  const [validateOtp, { isLoading }] = useValidateOtpMutation();
+  const [logIn, { isLoading }] = useLogInMutation();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -62,11 +64,13 @@ const BackOfficeVerifyEmployeeCode = () => {
     if (!email) return;
 
     try {
-      const response = await validateOtp({
+      const response = await logIn({
         email: email,
         code: otp.join(''),
       }).unwrap();
       if (response) {
+        const res = getEmailRoleFromToken(response.accessToken);
+        setEmployeeAuthData(true, res?.email, res?.role);
         navigate(TO_BACK_OFFICE_VIEW_EMPLOYEES);
       }
     } catch (e) {
@@ -74,7 +78,7 @@ const BackOfficeVerifyEmployeeCode = () => {
       const error = e as { data: { exceptionMessage: string } };
       setErrorMessage(
         error?.data?.exceptionMessage ||
-          t('OTPVerificationPage.error.errorCommon'),
+          t('OTPVerificationPage.errors.errorCommon'),
       );
     }
   };

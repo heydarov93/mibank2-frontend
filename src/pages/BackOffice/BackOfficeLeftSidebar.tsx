@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as PlusIcon } from '../../assets/icons/PlusIcon.svg';
 import { ReactComponent as ViewClientsIcon } from '../../assets/icons/ViewClientsIcon.svg';
@@ -22,10 +23,18 @@ import {
   TO_BACK_OFFICE_VIEW_EMPLOYEES,
   TO_BACK_OFFICE_CREATE_PRODUCT,
   TO_BACK_OFFICE_VIEW_PRODUCTS,
+  BACK_OFFICE_EMPLOYEE_SIGN_IN,
 } from 'constants/routesName';
+import { removeEmployeeAuthData } from 'utils/storageAuthHandler';
 
 const BackOfficeLeftSidebar = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    removeEmployeeAuthData();
+    navigate(BACK_OFFICE_EMPLOYEE_SIGN_IN);
+  };
 
   return (
     <Box
@@ -108,7 +117,7 @@ const BackOfficeLeftSidebar = () => {
       </Box>
       <Box sx={{ display: 'flex', gap: '8px', justifyContent: 'end' }}>
         <SettingsButton />
-        <LogoutButton />
+        <LogoutButton onClick={handleLogoutClick} />
       </Box>
     </Box>
   );

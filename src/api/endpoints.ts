@@ -24,7 +24,8 @@ export const endpoints = {
       validateOtp: '/emg/api/employee/validate-otp',
       validateEmail: '/emg/api/employee/email',
       registerEmployee: '/emg/api/employee/register-employee',
-      viewEmployee: '/emg/api/employee/list',	
+      viewEmployee: '/emg/api/employee/list',
+      authenticateEmployee: '/emg/api/employee/authenticate',
     },
   },
 };
