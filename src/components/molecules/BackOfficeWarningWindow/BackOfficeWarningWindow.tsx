@@ -13,10 +13,12 @@ import {
 import { BackOfficeWarningIcon } from 'components/atoms';
 
 interface BackOfficeWarningWindowProps {
-  productName: string | undefined;
+  productName?: string;
   sx?: SxProps<Theme>;
   onDeleteClick?: () => void;
   onCancelClick: () => void;
+  title?: string;
+  text?: string;
 }
 
 export const BackOfficeWarningWindow = ({
@@ -24,6 +26,8 @@ export const BackOfficeWarningWindow = ({
   sx,
   onDeleteClick,
   onCancelClick,
+  title,
+  text,
 }: BackOfficeWarningWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
@@ -34,10 +38,10 @@ export const BackOfficeWarningWindow = ({
           <BackOfficeWarningIcon />
         </StyledBox>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <MainHeader>{t('ConfirmationWindow.deleteCard')}</MainHeader>
+          <MainHeader>{title}</MainHeader>
           <SecondaryHeader>
-            {t('ConfirmationWindow.deleteText')}{' '}
-            <ProductName>“{productName}”?</ProductName>
+            {text}
+            {productName && <ProductName>“{productName}”?</ProductName>}
           </SecondaryHeader>
         </Box>
       </Box>

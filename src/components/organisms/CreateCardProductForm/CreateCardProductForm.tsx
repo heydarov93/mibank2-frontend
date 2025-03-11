@@ -10,8 +10,10 @@ import { BackArrow, InputField } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setCardFormData } from 'store/reducers/CreateCardSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
+import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { productCardValidation } from 'validation/productCardValidation';
 
 interface FormData {
@@ -26,6 +28,7 @@ interface FormData {
 const CreateCardProductForm: React.FC = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const dispatch = useAppDispatch();
+  const selector = useAppSelector(getProductForm);
 
   const cardIssuerOptions = [t('VisaCard.visa'), t('VisaCard.masterCard')];
   const cardTypeOptions = [t('VisaCard.digital'), t('VisaCard.plastic')];
@@ -47,7 +50,8 @@ const CreateCardProductForm: React.FC = () => {
     },
   });
 
-  const onSubmit = () => {
+  const onSubmit = (formData: FormData) => {
+    dispatch(setCardFormData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };
 
@@ -69,7 +73,7 @@ const CreateCardProductForm: React.FC = () => {
         }
       />
       <Typography textAlign="center" fontSize={32} mb={3} fontWeight="bold">
-        {t('VisaCard.visaElectronCard')}
+        &quot;{selector.name}&quot; Card
       </Typography>
       <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>

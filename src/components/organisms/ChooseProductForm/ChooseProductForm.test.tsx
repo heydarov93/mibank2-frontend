@@ -1,27 +1,63 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18n';
 import ChooseProductForm from './ChooseProductForm';
 import productStepperReducer from 'store/reducers/ProductStepperSlice';
+import chooseProductReducer from 'store/reducers/ChooseProductSlice';
 
-const setupStore = (): EnhancedStore => {
+interface ProductStepperState {
+  step: number;
+}
+
+interface ChooseProductState {
+  product: string;
+  type: string;
+  currency: string;
+  name: string;
+  description: string;
+}
+
+interface RootState {
+  productStepper: ProductStepperState;
+  chooseProduct: ChooseProductState;
+}
+
+const setupStore = (
+  preloadedState: Partial<RootState> = {},
+): EnhancedStore<RootState> => {
   return configureStore({
-    reducer: { productStepper: productStepperReducer },
+    reducer: {
+      productStepper: productStepperReducer,
+      chooseProduct: chooseProductReducer,
+    },
+    preloadedState: {
+      productStepper: {
+        step: 0,
+        ...preloadedState.productStepper,
+      },
+      chooseProduct: {
+        product: '',
+        type: '',
+        currency: '',
+        name: '',
+        description: '',
+        ...preloadedState.chooseProduct,
+      },
+    } as RootState,
   });
 };
 
-describe('ChooseProductForm', () => {
-  let store: ReturnType<typeof setupStore>;
+describe('ChooseProductForm - Visual Rendering', () => {
+  let store: EnhancedStore<RootState>;
 
   beforeEach(() => {
     store = setupStore();
-    jest.spyOn(store, 'dispatch');
   });
 
-  it('renders correctly and matches snapshot', () => {
+  it('renders correctly and matches snapshot with default empty state', () => {
     const { asFragment } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
@@ -32,16 +68,23 @@ describe('ChooseProductForm', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('renders the form and submits correctly', () => {
-    render(
+  it('renders correctly and matches snapshot with prefilled values', () => {
+    store = setupStore({
+      chooseProduct: {
+        product: 'Deposit',
+        type: 'Team Deposit',
+        currency: 'PLN',
+        name: 'Team Savings',
+        description: 'A deposit for team savings.',
+      },
+    });
+    const { asFragment } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
           <ChooseProductForm />
         </I18nextProvider>
       </Provider>,
     );
-
-    const form = screen.getByTestId('main-form');
-    expect(form).toBeInTheDocument();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

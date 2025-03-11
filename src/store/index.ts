@@ -13,6 +13,9 @@ import storage from 'redux-persist/lib/storage';
 
 import AuthReducer from './reducers/AuthSlice';
 import BankContactReducer from './reducers/BankContactsSlice';
+import ChooseProductReducer from './reducers/ChooseProductSlice';
+import CreateCardReducer from './reducers/CreateCardSlice';
+import CreateDepositReducer from './reducers/CreateDepositSlice';
 import ProductStepperReducer from './reducers/ProductStepperSlice';
 import RegistrationReducer from './reducers/RegistrationSlice';
 import StepperReducer from './reducers/StepperSlice';
@@ -22,6 +25,7 @@ import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
+import { createDepositApi } from 'api/createDeposit';
 import { employeeControllerApi } from 'api/employeeController';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
 import { getPostcode } from 'api/getPostcode';
@@ -39,6 +43,9 @@ const rootReducer = combineReducers({
   registration: RegistrationReducer,
   stepper: StepperReducer,
   productStepper: ProductStepperReducer,
+  productForm: ChooseProductReducer,
+  createDeposit: CreateDepositReducer,
+  createCard: CreateCardReducer,
   [authApi.reducerPath]: authApi.reducer,
   [userInfoApi.reducerPath]: userInfoApi.reducer,
   [contactInfoApi.reducerPath]: contactInfoApi.reducer,
@@ -54,6 +61,7 @@ const rootReducer = combineReducers({
   [validateOtpApi.reducerPath]: validateOtpApi.reducer,
   [employeeControllerApi.reducerPath]: employeeControllerApi.reducer,
   [registerEmployeeApi.reducerPath]: registerEmployeeApi.reducer,
+  [createDepositApi.reducerPath]: createDepositApi.reducer,
 });
 
 const persistConfig = {
@@ -75,6 +83,7 @@ const persistConfig = {
     validateOtpApi.reducerPath,
     employeeControllerApi.reducerPath,
     registerEmployeeApi.reducerPath,
+    createDepositApi.reducerPath,
   ],
 };
 
@@ -103,6 +112,7 @@ const store = configureStore({
       validateOtpApi.middleware,
       employeeControllerApi.middleware,
       registerEmployeeApi.middleware,
+      createDepositApi.middleware,
     ]),
 });
 

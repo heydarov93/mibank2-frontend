@@ -1,16 +1,33 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ChooseProductForm from '../ChooseProductForm/ChooseProductForm';
 import CreateCardProductForm from '../CreateCardProductForm/CreateCardProductForm';
 import CreateDepositProductForm from '../CreateDepositProductForm/CreateDepositProductForm';
 
+import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
+import BackOfficeProductWindow from 'components/molecules/BackOfficeProductWindow/BackOfficeProductWindow';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { getProductForm } from 'store/selectors/ChooseProductSelector';
+import { getCardFormData } from 'store/selectors/CreateCardSelector';
+import { getDepositForm } from 'store/selectors/CreateDepositSelector';
 import { getProductStep } from 'store/selectors/ProductStepperSelector';
 
 const ChooseProductFormWrapper = () => {
+  const [isProductCreated, setIsProductCreated] = useState<boolean>(false);
+
   const productStep = useSelector(getProductStep);
+  const productTypeData = useSelector(getProductForm);
+  const creditTypeData = useSelector(getCardFormData);
+  const depositTypeData = useSelector(getDepositForm);
+
+  const handleProductCreation = () => {
+    setIsProductCreated(true);
+  };
+  const handleProductCancel = () => {
+    setIsProductCreated(false);
+  };
 
   const renderFormStep = () => {
     switch (productStep) {
@@ -21,21 +38,35 @@ const ChooseProductFormWrapper = () => {
       case EProductFormStepper.CARD_INFO:
         return <CreateCardProductForm />;
       case EProductFormStepper.FINISHED:
-        //TODO: Add a full form with form data which was submitted in previous steps
-        return <div>Finished</div>;
+        return (
+          <BackOfficeProductWindow
+            productTypeData={productTypeData}
+            cardData={creditTypeData}
+            depositData={depositTypeData}
+            onProductCreated={handleProductCreation}
+          />
+        );
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%',
-      }}
-    >
-      {renderFormStep()}
-    </Box>
+    <>
+      {isProductCreated && (
+        <BackOfficeConfirmationWindow
+          onClose={handleProductCancel}
+          sx={{ top: '40px', right: '40px' }}
+        />
+      )}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        {renderFormStep()}
+      </Box>
+    </>
   );
 };
 
