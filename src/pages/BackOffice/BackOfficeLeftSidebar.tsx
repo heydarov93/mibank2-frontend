@@ -62,6 +62,7 @@ const BackOfficeLeftSidebar = () => {
               svg={PlusIcon}
               text={t('SideBar.createProduct')}
               link={TO_BACK_OFFICE_CREATE_PRODUCT}
+              isFillBasedIcon
             />
             <BackOfficeNavigationLink
               svg={WalletIcon}
@@ -84,6 +85,7 @@ const BackOfficeLeftSidebar = () => {
               svg={PlusIcon}
               text={t('SideBar.addEmployee')}
               link={TO_BACK_OFFICE_CREATE_EMPLOYEE}
+              isFillBasedIcon
             />
             <BackOfficeNavigationLink
               svg={ViewEmployeesIcon}
@@ -106,6 +108,7 @@ const BackOfficeLeftSidebar = () => {
               svg={PlusIcon}
               text={t('SideBar.addClient')}
               link={TO_BACK_OFFICE_CREATE_CLIENT}
+              isFillBasedIcon
             />
             <BackOfficeNavigationLink
               svg={ViewClientsIcon}
