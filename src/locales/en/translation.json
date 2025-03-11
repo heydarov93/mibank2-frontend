@@ -45,6 +45,9 @@
     "haveAccountMsg": "Already have an account?",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
+  "GeneralErrors": {
+    "errorCommon": "Unknown error occured, please try again later"
+  },
   "LoginPage": {
     "email": {
       "errorMaxLen": "Email should not exceed 320 characters",
@@ -305,11 +308,17 @@
     },
     "ConfirmationWindow": {
       "confirmationTitle": "Product Created Successfully",
-      "secondaryText": "Your Card has been created and is now ready for use.",
+      "secondaryText": "Your Product has been created and is now ready for use.",
       "cancelBtn": "Cancel",
       "deleteBtn": "Delete",
       "deleteText": "Deletion is irreversible. Are you sure you want to delete",
       "deleteCard": "Delete Card?"
+    },
+    "WarningWindow": {
+      "mainTitle": "Cancel Product Creation?",
+      "secondaryTitle": "All entered details will be discarded. Are you sure you want to proceed?",
+      "goBack": "Go Back",
+      "cancel": "Cancel"
     },
     "LastResortDeposit": {
       "lastResortDeposit": "Last Resort Deposit",
@@ -335,6 +344,7 @@
       "atleastOne": "Must be atleast 1 month",
       "positive": "Must be positive",
       "earlyWithdrawalVal": "Required when early withdrawal is enabled",
+      "confirmInformation": "Confirm Information",
       "edit": "Edit",
       "delete": "Delete"
     },
@@ -472,6 +482,12 @@
       "wdFee": "Withdrawal Fee",
       "cancel": "Cancel",
       "saveChanges": "Save Changes"
+    },
+    "warningWindow": {
+      "deleteDeposit": "Delete Deposit",
+      "deleteDepositText": "Deletion is irreversible. Are you sure you want to delete",
+      "cancelProduct": "Cancel Product Creation?",
+      "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?"
     }
   }
 }

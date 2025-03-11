@@ -14,13 +14,22 @@ import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import SelectField from 'components/molecules/SelectField/SelectField';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setProductForm } from 'store/reducers/ChooseProductSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
+import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { productFormSchema } from 'validation/validationProductFormSchema';
 
 const ChooseProductForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const dispatch = useAppDispatch();
+  const selector = useAppSelector(getProductForm) || {
+    product: '',
+    type: '',
+    currency: '',
+    name: '',
+    description: '',
+  };
 
   const productOptions = [t('CreateProduct.deposit'), t('CreateProduct.card')];
   const depositOptions = [
@@ -39,10 +48,10 @@ const ChooseProductForm = () => {
 
   type formData = {
     product: string;
-    subType: string;
+    type: string;
     currency: string;
-    productName: string;
-    productDescription: string;
+    name: string;
+    description: string;
   };
 
   const {
@@ -54,11 +63,11 @@ const ChooseProductForm = () => {
     resolver: yupResolver(productFormSchema),
     mode: 'onBlur',
     defaultValues: {
-      product: '',
-      subType: '',
-      currency: '',
-      productName: '',
-      productDescription: '',
+      product: selector.product,
+      type: selector.type,
+      currency: selector.currency,
+      name: selector.name,
+      description: selector.description,
     },
   });
 
@@ -70,6 +79,7 @@ const ChooseProductForm = () => {
     } else {
       dispatch(setProductStep(EProductFormStepper.CARD_INFO));
     }
+    dispatch(setProductForm(formData));
   };
 
   return (
@@ -97,14 +107,14 @@ const ChooseProductForm = () => {
         <Box>
           <InputLabel>{t('CreateProduct.subType')}</InputLabel>
           <SelectField<formData>
-            name="subType"
+            name="type"
             control={control}
             options={
               selectedProduct === t('CreateProduct.deposit')
                 ? depositOptions
                 : cardOptions
             }
-            error={errors.subType}
+            error={errors.type}
             disabled={!selectedProduct}
           />
         </Box>
@@ -120,18 +130,18 @@ const ChooseProductForm = () => {
         <Box>
           <InputLabel>{t('CreateProduct.productName')}</InputLabel>
           <InputField
-            name="productName"
+            name="name"
             id="productName"
             control={control}
             placeholder="Name"
-            error={errors.productName}
-            helperText={errors.productName?.message}
+            error={errors.name}
+            helperText={errors.name?.message}
           />
         </Box>
         <Box>
           <InputLabel>{t('CreateProduct.productDescription')}</InputLabel>
           <Controller
-            name="productDescription"
+            name="description"
             control={control}
             render={({ field }) => (
               <TextField
@@ -139,8 +149,8 @@ const ChooseProductForm = () => {
                 placeholder="Description"
                 multiline
                 rows={4}
-                error={!!errors.productDescription}
-                helperText={errors.productDescription?.message}
+                error={!!errors.description}
+                helperText={errors.description?.message}
                 sx={{ width: '100%' }}
               />
             )}

@@ -6,6 +6,8 @@ export const MainContainer = styled(Box)(({ theme: { palette } }) => ({
   border: `1px solid ${palette.success.main}`,
   borderRadius: '8px',
   gap: '12px',
+  backgroundColor: palette.common.white,
+  zIndex: '10',
 }));
 
 export const StyledHeader = styled(Typography)(({ theme: { typography } }) => ({

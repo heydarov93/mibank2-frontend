@@ -28,4 +28,9 @@ export const endpoints = {
       authenticateEmployee: '/emg/api/employee/authenticate',
     },
   },
+  productManagement: {
+    deposits: {
+      createDeposit: '/ds/api/deposits',
+    },
+  },
 };

@@ -172,11 +172,7 @@ const BackOfficeViewProductsPage = () => {
   };
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-      }}
-    >
+    <Box sx={{ position: 'relative' }}>
       <MainContainer blur={isEditFormVisible || isDepositFormVisible}>
         <BackOfficeViewProductsHeader />
         <HeaderContainer>
@@ -210,9 +206,11 @@ const BackOfficeViewProductsPage = () => {
         />
         {isDeleteVisible && (
           <BackOfficeWarningWindow
-            sx={{ top: '352px', left: '454px' }}
+            sx={{ top: '290px', left: '100px' }}
             productName={productName}
             onCancelClick={() => setIsDeleteVisible(false)}
+            title={t('warningWindow.deleteDeposit')}
+            text={t('warningWindow.deleteDepositText')}
           />
         )}
       </MainContainer>

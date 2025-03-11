@@ -15,40 +15,45 @@ import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled'
 import { BackArrow, InputField } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { DepositFormData } from 'models/IProductInfo';
+import { setDepositData } from 'store/reducers/CreateDepositSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
+import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { lastDepositValidation } from 'validation/lastResortDepositValidation';
 
 const CreateDepositProductForm: React.FC = () => {
   const theme = useTheme();
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const dispatch = useAppDispatch();
+  const selector = useAppSelector(getProductForm);
 
   const {
     control,
     watch,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm({
+  } = useForm<DepositFormData>({
     resolver: yupResolver(lastDepositValidation),
     mode: 'all',
     defaultValues: {
-      minimumDepositSum: undefined,
-      maximumDepositSum: undefined,
-      depositTerm: undefined,
-      depositInterestRate: undefined,
-      depositCapitalizationRate: undefined,
+      min: undefined,
+      max: undefined,
+      term: undefined,
+      interestRate: undefined,
+      capitalization: undefined,
       earlyWithdrawal: false,
       earlyWithdrawalLimit: undefined,
       withdrawalFee: undefined,
       autoRenewable: false,
-      addOn: false,
+      augmentable: false,
     },
   });
 
   const earlyWithdrawalEnabled = watch('earlyWithdrawal');
 
-  const onSubmit = () => {
+  const onSubmit = (formData: DepositFormData) => {
+    dispatch(setDepositData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };
 
@@ -65,12 +70,12 @@ const CreateDepositProductForm: React.FC = () => {
       position="relative"
     >
       <BackArrow
-        onBackClick={() =>
-          dispatch(setProductStep(EProductFormStepper.PRODUCT_INFO))
-        }
+        onBackClick={() => {
+          dispatch(setProductStep(EProductFormStepper.PRODUCT_INFO));
+        }}
       />
       <Typography textAlign={'center'} fontSize={32} mb={3} fontWeight={'bold'}>
-        “{t('LastResortDeposit.lastResortDeposit')}”
+        &quot;{selector.name}&quot; Deposit
       </Typography>
       <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>
@@ -79,12 +84,12 @@ const CreateDepositProductForm: React.FC = () => {
               {t('LastResortDeposit.minimumDepositSum')}
             </Typography>
             <InputField
-              name="minimumDepositSum"
+              name="min"
               control={control}
               id="minimumDepositSum"
               placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.minimumDepositSum}
-              helperText={errors.minimumDepositSum?.message || ''}
+              error={errors.min}
+              helperText={errors.min?.message || ''}
             />
           </Box>
           <Box>
@@ -92,11 +97,11 @@ const CreateDepositProductForm: React.FC = () => {
               {t('LastResortDeposit.maximumDepositSum')}
             </Typography>
             <InputField
-              name="maximumDepositSum"
+              name="max"
               id="maximumDepositSum"
               control={control}
               placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.maximumDepositSum}
+              error={errors.max}
             />
           </Box>
           <Box>
@@ -104,11 +109,11 @@ const CreateDepositProductForm: React.FC = () => {
               {t('LastResortDeposit.depositTerm')}
             </Typography>
             <InputField
-              name="depositTerm"
+              name="term"
               id="depositTerm"
               control={control}
               placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.depositTerm}
+              error={errors.term}
             />
           </Box>
           <Box>
@@ -116,11 +121,11 @@ const CreateDepositProductForm: React.FC = () => {
               {t('LastResortDeposit.depositInterestRate')}
             </Typography>
             <InputField
-              name="depositInterestRate"
+              name="interestRate"
               id="depositInterestRate"
               control={control}
               placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.depositInterestRate}
+              error={errors.interestRate}
             />
           </Box>
           <Box>
@@ -128,11 +133,11 @@ const CreateDepositProductForm: React.FC = () => {
               {t('LastResortDeposit.depositCapitalizationRate')}
             </Typography>
             <InputField
-              name="depositCapitalizationRate"
+              name="capitalization"
               id="depositCapitalizationRate"
               control={control}
               placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.depositCapitalizationRate}
+              error={errors.capitalization}
             />
             <Box display={'flex'} alignItems={'center'} justifyContent={'end'}>
               <Controller
@@ -211,7 +216,7 @@ const CreateDepositProductForm: React.FC = () => {
               )}
             />
             <Controller
-              name="addOn"
+              name="augmentable"
               control={control}
               render={({ field }) => (
                 <FormControlLabel

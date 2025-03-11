@@ -17,8 +17,11 @@ const ProductStepperSlice = createSlice({
     setProductStep(state, action: PayloadAction<EProductFormStepper>) {
       state.step = action.payload;
     },
+    resetProductStep() {
+      return initialState;
+    },
   },
 });
 
-export const { setProductStep } = ProductStepperSlice.actions;
+export const { setProductStep, resetProductStep } = ProductStepperSlice.actions;
 export default ProductStepperSlice.reducer;

@@ -5,7 +5,7 @@ import i18n from 'i18n';
 const lastResortDeposit = 'BackOffice.LastResortDeposit';
 
 export const lastDepositValidation = yup.object().shape({
-  minimumDepositSum: yup
+  min: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .min(0, i18n.t(`${lastResortDeposit}.zero`))
@@ -16,13 +16,10 @@ export const lastDepositValidation = yup.object().shape({
         value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
     )
     .required(i18n.t(`${lastResortDeposit}.required`)),
-  maximumDepositSum: yup
+  max: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(
-      yup.ref('minimumDepositSum'),
-      i18n.t(`${lastResortDeposit}.grThDeposit`),
-    )
+    .min(yup.ref('min'), i18n.t(`${lastResortDeposit}.grThDeposit`))
     .test(
       'decimal-places',
       i18n.t(`${lastResortDeposit}.decimal`),
@@ -30,7 +27,7 @@ export const lastDepositValidation = yup.object().shape({
         value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
     )
     .required(i18n.t(`${lastResortDeposit}.required`)),
-  depositTerm: yup
+  term: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .integer(i18n.t(`${lastResortDeposit}.naturalNum`))
@@ -41,7 +38,7 @@ export const lastDepositValidation = yup.object().shape({
       otherwise: (schema) =>
         schema.required(i18n.t(`${lastResortDeposit}.required`)),
     }),
-  depositInterestRate: yup
+  interestRate: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .min(0, i18n.t(`${lastResortDeposit}.positive`))
@@ -52,7 +49,7 @@ export const lastDepositValidation = yup.object().shape({
         value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
     )
     .required(i18n.t(`${lastResortDeposit}.required`)),
-  depositCapitalizationRate: yup
+  capitalization: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .min(0, i18n.t(`${lastResortDeposit}.positive`))
@@ -97,5 +94,5 @@ export const lastDepositValidation = yup.object().shape({
       otherwise: (schema) => schema.notRequired(),
     }),
   autoRenewable: yup.boolean(),
-  addOn: yup.boolean(),
+  augmentable: yup.boolean(),
 });
