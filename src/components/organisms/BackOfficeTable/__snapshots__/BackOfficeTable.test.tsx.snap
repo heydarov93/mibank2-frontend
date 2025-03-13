@@ -3,7 +3,7 @@
 exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
 <div>
   <div
-    class="MuiTableContainer-root css-1al9ami-MuiTableContainer-root"
+    class="MuiTableContainer-root css-x226ax-MuiTableContainer-root"
   >
     <table
       class="MuiTable-root css-rqglhn-MuiTable-root"

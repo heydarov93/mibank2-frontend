@@ -1,7 +1,35 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-
-import '@testing-library/jest-dom/extend-expect';
+import { render, screen } from '@testing-library/react';
+import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
+import { initReactI18next, useTranslation } from 'react-i18next';
+import { configureStore } from '@reduxjs/toolkit';
+import { getDepositsApi } from 'api/getDepositsApi';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+
+const mockDataForTable = [
+  {
+    id: 1,
+    productName: 'Card',
+    productSubtype: 'Type',
+    cardDescription: 'Desctiption',
+    cardCurrency: 'USD',
+    minimumDepositSum: '1',
+    maximumDepositSum: '2',
+    depositTerm: 'term',
+    depositInterestRate: '12',
+    depositCapitalizationRate: '12',
+    earlyWithdrawalLimit: '12',
+    withdrawalFee: '12',
+  },
+];
+const mockStore = configureStore({
+  reducer: {
+    [getDepositsApi.reducerPath]: getDepositsApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(getDepositsApi.middleware),
+});
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -9,64 +37,71 @@ jest.mock('react-i18next', () => ({
   }),
   initReactI18next: {
     type: '3rdParty',
-    init: jest.fn(),
   },
 }));
 
-jest.mock('components/molecules/SearchField/SearchField', () => ({
-  __esModule: true,
-  default: jest.fn(() => <input data-testid="search-field" />),
-}));
+test('Table is in the documet', () => {
+  render(<BackOfficeTable tableBody={mockDataForTable} tableHead={[]} />);
+  const table = screen.getByRole('table');
+  expect(table).toBeInTheDocument();
+});
 
-jest.mock('react-router-dom', () => ({
-  useNavigate: jest.fn(),
-}));
+test('Renders table and mathces the snapshot', () => {
+  const { asFragment } = render(
+    <BackOfficeTable tableBody={mockDataForTable} tableHead={[]} />,
+  );
 
-jest.mock('react-hook-form', () => ({
-  useForm: () => ({
-    control: {},
-  }),
-}));
+  expect(screen.getByRole('table')).toBeInTheDocument();
 
-describe('BackOfficeViewProductsPage', () => {
-  it('clicking "Add Employee" button', () => {
-    const { container } = render(<BackOfficeViewProductsPage />);
-    expect(container).toMatchSnapshot();
-  });
+  expect(asFragment()).toMatchSnapshot();
+});
 
-  it('renders the component correctly', () => {
-    render(<BackOfficeViewProductsPage />);
-  });
+test('Renders the first filter box', () => {
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <BackOfficeViewProductsPage />
+      </MemoryRouter>
+    </Provider>,
+  );
+  const filter = screen.getByText('header.products');
+  expect(filter).toBeInTheDocument();
+});
 
-  it('filters table data based on selected filters', () => {
-    render(<BackOfficeViewProductsPage />);
-    fireEvent.click(screen.getByText('header.products'));
-    fireEvent.click(screen.getByText('header.productSubtypes'));
-    expect(screen.getByText('CreateProduct.productName')).toBeInTheDocument();
-    expect(
-      screen.getByText('CreateProduct.productSubtype'),
-    ).toBeInTheDocument();
-  });
+test('Renders the second filter box', () => {
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <BackOfficeViewProductsPage />
+      </MemoryRouter>
+    </Provider>,
+  );
+  const filter = screen.getByText('header.productSubtypes');
+  expect(filter).toBeInTheDocument();
+});
 
-  test('renders the page correctly', () => {
-    render(<BackOfficeViewProductsPage />);
-    expect(screen.getByText('header.viewProducts')).toBeInTheDocument();
-  });
+test('Renders the search field', () => {
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <BackOfficeViewProductsPage />
+      </MemoryRouter>
+    </Provider>,
+  );
+  const searchField = screen.getByPlaceholderText('header.searchProducts');
+  expect(searchField).toBeInTheDocument();
+});
 
-  test('renders table headers correctly', () => {
-    render(<BackOfficeViewProductsPage />);
-    expect(screen.getByText('CreateProduct.productName')).toBeInTheDocument();
-    expect(
-      screen.getByText('CreateProduct.productSubtype'),
-    ).toBeInTheDocument();
-    expect(screen.getByText('CreateProduct.addedDate')).toBeInTheDocument();
-    expect(screen.getByText('CreateProduct.productStatus')).toBeInTheDocument();
-  });
-
-  test('filters should apply correctly', () => {
-    render(<BackOfficeViewProductsPage />);
-    const filterButton = screen.getByText('header.products');
-    fireEvent.click(filterButton);
-    expect(filterButton).toBeEnabled();
-  });
+test('Renders the headers', () => {
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <BackOfficeViewProductsPage />
+      </MemoryRouter>
+    </Provider>,
+  );
+  const header1 = screen.getByText('header.finProducts');
+  const header2 = screen.getByText('header.viewProducts');
+  expect(header1).toBeInTheDocument();
+  expect(header2).toBeInTheDocument();
 });

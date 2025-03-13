@@ -6,3 +6,11 @@ export const localTokenHandler = {
   getToken: (tokenType: TokenType) => localStorage.getItem(tokenType),
   clearToken: (tokenType: TokenType) => localStorage.removeItem(tokenType),
 };
+
+export const sessionTokenHandler = {
+  storeToken: (token: string | null, tokenType: TokenType) => {
+    token && sessionStorage.setItem(token, tokenType);
+  },
+  getToken: (tokenType: TokenType) => sessionStorage.getItem(tokenType),
+  clearToken: (tokenType: TokenType) => sessionStorage.removeItem(tokenType),
+};
