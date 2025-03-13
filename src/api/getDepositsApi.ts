@@ -6,17 +6,17 @@ import { endpoints } from './endpoints';
 import { TokenType } from 'models/IAuth';
 import { sessionTokenHandler } from 'utils/tokenHandler';
 
-export const createDepositApi = createApi({
-  reducerPath: 'createDepositApi',
+export const getDepositsApi = createApi({
+  reducerPath: 'getDepositsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
   endpoints: (builder) => ({
-    createDeposit: builder.mutation({
-      query: (data) => ({
-        url: endpoints.productManagement.deposits.createDeposit,
-        method: 'POST',
-        body: data,
+    getDeposits: builder.query({
+      query: ({ page, size }) => ({
+        url: endpoints.productManagement.deposits.getDeposits,
+        method: 'GET',
+        params: { page, size },
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${sessionTokenHandler.getToken(TokenType.ACCESS)}`,
@@ -26,4 +26,4 @@ export const createDepositApi = createApi({
   }),
 });
 
-export const { useCreateDepositMutation } = createDepositApi;
+export const { useGetDepositsQuery } = getDepositsApi;

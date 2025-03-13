@@ -8,6 +8,7 @@ import {
   MainContainer,
 } from './BackOfficeViewProductsPage.styled';
 
+import { useGetDepositsQuery } from 'api/getDepositsApi';
 import { BackOfficeWarningWindow } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeViewProductsHeader from 'components/molecules/BackOfficeViewProductsHeader/BackOfficeViewProductsHeader';
@@ -17,6 +18,7 @@ import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/
 import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 import { FilterGroup } from 'models/IFilterInfo';
+import { DepositBackendData } from 'models/IProductInfo';
 
 const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -25,9 +27,33 @@ const BackOfficeViewProductsPage = () => {
   const [isDeleteVisible, setIsDeleteVisible] = useState<boolean>(false);
   const [productName, setProductName] = useState<string | undefined>('');
   const [isEditFormVisible, setIsFormVisible] = useState<boolean>(false);
+
   const [isDepositFormVisible, setIsDepositFormVisible] =
     useState<boolean>(false);
-  const [formData, setFormData] = useState<Partial<TableData>>({});
+  const [formData, setFormData] = useState({});
+
+  const [page, setPage] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(10);
+
+  const { data, isLoading } = useGetDepositsQuery({ page, size: pageSize });
+
+  const mappedData =
+    data?.content?.map((item: DepositBackendData) => ({
+      id: item.id,
+      productName: item.term
+        ? t('CreateProduct.deposit')
+        : t('CreateProduct.card'),
+      productSubtype: item.type,
+      cardDescription: item.description,
+      cardCurrency: item.currency,
+      minimumDepositSum: item.min?.toString(),
+      maximumDepositSum: item.max?.toString(),
+      depositTerm: item.term?.toString(),
+      depositInterestRate: item.interestRate?.toString(),
+      depositCapitalizationRate: item.capitalization?.toString(),
+      earlyWithdrawalLimit: item.earlyWithdrawalLimit?.toString(),
+      withdrawalFee: item.earlyWithdrawalFee?.toString(),
+    })) || [];
 
   const initialProductSubtypes: FilterGroup[] = [
     {
@@ -38,11 +64,7 @@ const BackOfficeViewProductsPage = () => {
           label: t('CreateProduct.debitCard'),
           checked: true,
         },
-        {
-          name: 'creditCard',
-          label: t('CreateProduct.cCard'),
-          checked: true,
-        },
+        { name: 'creditCard', label: t('CreateProduct.cCard'), checked: true },
       ],
     },
     {
@@ -87,41 +109,9 @@ const BackOfficeViewProductsPage = () => {
   const [productTypes, setProductTypes] =
     useState<FilterGroup[]>(initialProductTypes);
 
-  //TODO: Once Be Is ready need to add API integration to fetch tableData
-  const tableData = [
-    {
-      id: 1,
-      productName: 'Deposit',
-      productSubtype: 'Team Deposit',
-      dateAdded: '12/02/2024',
-      cardDescription: 'Whatever',
-      cardCurrency: 'EUR',
-      minimumDepositSum: '1',
-      maximumDepositSum: '12',
-      depositTerm: '12',
-      depositInterestRate: '12',
-      depositCapitalizationRate: '10',
-      earlyWithdrawalLimit: '2',
-      withdrawalFee: '12',
-    },
-    {
-      id: 2,
-      productName: 'Card',
-      productSubtype: 'Debit Card',
-      dateAdded: '12/02/2024',
-      cardDescription: 'Valid Description for Card',
-      cardCurrency: 'USD',
-      monthlyFee: '10',
-      dailyOperationalLimit: '3',
-      foreignTransactionLimit: '12',
-      cardCashbackRate: '12',
-    },
-  ];
-
   const tableHead = [
     { label: t('CreateProduct.productName'), key: 'productName' },
     { label: t('CreateProduct.productSubtype'), key: 'productSubtype' },
-    { label: t('CreateProduct.addedDate'), key: 'dateAdded' },
     { label: t('CreateProduct.productStatus'), key: 'productStatus' },
   ];
 
@@ -142,20 +132,21 @@ const BackOfficeViewProductsPage = () => {
       .map((option) => option.label),
   );
 
-  const filteredTableBody = tableData.filter((item) => {
-    return (
-      ((selectedProductTypes.includes('deposits') &&
+  const filteredTableBody = mappedData.filter((item: Partial<TableData>) => {
+    const isProductTypeMatch =
+      (selectedProductTypes.includes('deposits') &&
         item.productName === 'Deposit') ||
-        (selectedProductTypes.includes('cards') &&
-          item.productName === 'Card')) &&
-      selectedSubtypes.includes(item.productSubtype)
-    );
+      (selectedProductTypes.includes('cards') && item.productName === 'Card');
+
+    const isSubtypeMatch = selectedSubtypes.includes(item.productSubtype || '');
+    return isProductTypeMatch && isSubtypeMatch;
   });
 
   const handleDelete = (product: Partial<TableData>) => {
     setProductName(product.productName);
     setIsDeleteVisible(true);
   };
+
   const handleEdit = (product: Partial<TableData>) => {
     if (product.productName === 'Card') {
       setFormData(product);
@@ -169,6 +160,15 @@ const BackOfficeViewProductsPage = () => {
   const handleClose = () => {
     setIsFormVisible(false);
     setIsDepositFormVisible(false);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handlePageSizeChange = (newSize: number) => {
+    setPageSize(newSize);
+    setPage(0);
   };
 
   return (
@@ -201,8 +201,14 @@ const BackOfficeViewProductsPage = () => {
         <BackOfficeTable
           tableHead={tableHead}
           tableBody={filteredTableBody}
+          totalItems={data?.page.totalElements || 0}
+          page={page}
+          pageSize={pageSize}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
           onDeleteClick={handleDelete}
           onEditClick={handleEdit}
+          isLoading={isLoading}
         />
         {isDeleteVisible && (
           <BackOfficeWarningWindow

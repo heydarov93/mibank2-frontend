@@ -31,6 +31,7 @@ export const endpoints = {
   productManagement: {
     deposits: {
       createDeposit: '/ds/api/deposits',
+      getDeposits: '/ds/api/deposits',
     },
   },
 };

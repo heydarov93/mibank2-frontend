@@ -1,4 +1,10 @@
-import { Table, TableBody, TableContainer, TableRow } from '@mui/material';
+import {
+  CircularProgress,
+  Table,
+  TableBody,
+  TableContainer,
+  TableRow,
+} from '@mui/material';
 
 import {
   StyledTableCell,
@@ -13,6 +19,7 @@ import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagin
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
 interface TableBody {
+  id: number;
   productName: string;
   productSubtype: string;
   productStatus: string;
@@ -23,7 +30,7 @@ interface TableBody {
   email: string;
 }
 
-type PartialTableBody = Partial<TableBody> & { id: number };
+type PartialTableBody = Partial<TableBody>;
 
 interface TableHeadItem {
   label: string;
@@ -40,6 +47,7 @@ interface BackOfficeTableProps {
   onPageSizeChange?: (size: number) => void;
   onDeleteClick?: (product: Partial<TableData>) => void;
   onEditClick?: (product: Partial<TableData>) => void;
+  isLoading?: boolean;
 }
 
 const BackOfficeTable = ({
@@ -52,10 +60,15 @@ const BackOfficeTable = ({
   onPageSizeChange,
   onDeleteClick,
   onEditClick,
+  isLoading,
 }: BackOfficeTableProps) => {
   return (
     <TableContainer
-      sx={{ borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}
+      sx={{
+        borderTopLeftRadius: '8px',
+        borderTopRightRadius: '8px',
+        maxHeight: '738px',
+      }}
     >
       <Table>
         <StyledTableHead>
@@ -69,7 +82,14 @@ const BackOfficeTable = ({
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {tableBody.length > 0 &&
+          {isLoading ? (
+            <StyledTableRow>
+              <StyledTableCell colSpan={tableHead.length + 1} align="center">
+                <CircularProgress />
+              </StyledTableCell>
+            </StyledTableRow>
+          ) : (
+            tableBody.length > 0 &&
             tableBody.map((item) => (
               <StyledTableRow key={item.id}>
                 <BackOfficeTableItem
@@ -79,7 +99,8 @@ const BackOfficeTable = ({
                   onEditClick={onEditClick}
                 />
               </StyledTableRow>
-            ))}
+            ))
+          )}
           {Array.from({
             length: Math.max(10 - tableBody.length, 0),
           }).map((_, index) => (

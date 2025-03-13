@@ -27,3 +27,18 @@ export interface DepositFormData {
   autoRenewable?: boolean | undefined;
   augmentable?: boolean | undefined;
 }
+
+export interface DepositBackendData {
+  id: number;
+  name: string;
+  type: string;
+  description: string;
+  currency: string;
+  min: number;
+  max: number;
+  term: number;
+  interestRate: number;
+  capitalization: number;
+  earlyWithdrawalLimit: number;
+  earlyWithdrawalFee: number;
+}
