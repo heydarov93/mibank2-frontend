@@ -18,6 +18,9 @@ export const endpoints = {
     version: '/is/contact/version',
     contacts: '/is/contact',
   },
+  exchangeRates: {
+    getRates: '/api/exchangerates/tables/C',
+  },
   employeeAccountManagement: {
     employees: {
       authenticatorSetup: '/emg/api/employee/2fa-setup',
