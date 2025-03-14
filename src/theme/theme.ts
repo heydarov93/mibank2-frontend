@@ -60,6 +60,15 @@ export const theme = createTheme({
       100: '#E0E0E0',
       50: '#EDEDED',
     },
+    border: {
+      lightBlue: '#DDE6F7',
+    },
+    bg: {
+      lightBlue: '#F4F9FF',
+    },
+    shadow: {
+      shadowLight: 'rgba(109, 114, 120, 0.1)',
+    },
   },
   animations: {
     shake: shakeAnimation,

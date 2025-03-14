@@ -41,3 +41,29 @@ declare module '@mui/material/styles' {
     };
   }
 }
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    border: {
+      lightBlue: string;
+    };
+    bg: {
+      lightBlue: string;
+    };
+    shadow: {
+      shadowLight: string;
+    };
+  }
+
+  interface PaletteOptions {
+    border: {
+      lightBlue: string;
+    };
+    bg: {
+      lightBlue: string;
+    };
+    shadow: {
+      shadowLight: string;
+    };
+  }
+}
