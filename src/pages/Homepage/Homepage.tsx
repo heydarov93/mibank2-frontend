@@ -1,6 +1,8 @@
 import { Box, Button, useTheme } from '@mui/material';
 
 import MiCarousel from 'components/molecules/Carousel/MiCarousel';
+import { RatesTable } from 'components/organisms/CurrencyExchange/Rates/RatesTable';
+import { Title } from 'components/organisms/CurrencyExchange/Title/Title';
 
 const images = [
   'https://i.ibb.co/xXmd9Xn/image-1916.png',
@@ -69,6 +71,13 @@ const Homepage = () => {
             >
               Learn more
             </Button>
+          </Box>
+        </Box>
+        <Box marginTop={5} paddingBottom={3} width={"90%"}>
+          <Title />
+          <Box display={'flex'} width={'100%'} marginTop={3}>
+            <Box width={'50%'}></Box>
+            <RatesTable />
           </Box>
         </Box>
       </Box>
