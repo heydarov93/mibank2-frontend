@@ -45,16 +45,24 @@ const flagIcons: Record<string, React.FC> = {
 export const RatesTable = () => {
   const { t } = useTranslation('translation');
   const theme = useTheme();
+  const previousDate = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
   const currentDate = dayjs().format('YYYY-MM-DD');
-  const { data, isLoading } = useGetExchangeRatesQuery(currentDate);
+  const { data: currentData, isLoading: isLoadingCurrent } =
+    useGetExchangeRatesQuery(currentDate);
+  const { data: previousData, isLoading: isLoadingPrevious } =
+    useGetExchangeRatesQuery(previousDate);
   const requiredCurrencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY'];
 
-  if (isLoading) return <SpinningArrowButton />;
+  if (isLoadingCurrent || isLoadingPrevious) return <SpinningArrowButton />;
 
   const filteredCurrencies =
-    data[0]?.rates.filter((rate: Rate) =>
+    currentData[0]?.rates.filter((rate: Rate) =>
       requiredCurrencies.includes(rate.code),
     ) || [];
+
+  const previousRatesMap = new Map<string, Rate>(
+    previousData[0]?.rates.map((rate: Rate) => [rate.code, rate]),
+  );
 
   return (
     <Box width={'50%'}>
@@ -79,6 +87,15 @@ export const RatesTable = () => {
           <TableBody>
             {filteredCurrencies?.map((rate: Rate, index: number) => {
               const FlagIcon = flagIcons[rate.code];
+              const previousRate = previousRatesMap.get(rate.code) as Rate;
+              const isBidIncreased =
+                previousRate && rate.bid > previousRate.bid;
+              const isBidDecreased =
+                previousRate && rate.bid < previousRate.bid;
+              const isAskIncreased =
+                previousRate && rate.ask > previousRate.ask;
+              const isAskDecreased =
+                previousRate && rate.ask < previousRate.ask;
 
               return (
                 <TableRow
@@ -94,10 +111,7 @@ export const RatesTable = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <FlagIcon />
                       <StyledCellText
-                        sx={{
-                          fontWeight: 500,
-                          marginLeft: '12px',
-                        }}
+                        sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >
                         {rate.code === 'JPY'
                           ? `100 ${rate.code}`
@@ -107,27 +121,53 @@ export const RatesTable = () => {
                   </TableCell>
                   <TableCell sx={{ border: 'none' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <TrendingUpRoundedIcon
-                        sx={{
-                          marginRight: '8px',
-                          width: '18px',
-                          height: '18px',
-                          color: theme.palette.success.main,
-                        }}
-                      />
+                      {isBidIncreased ? (
+                        <TrendingUpRoundedIcon
+                          sx={{
+                            marginRight: '8px',
+                            width: '18px',
+                            height: '18px',
+                            color: theme.palette.success.main,
+                          }}
+                        />
+                      ) : isBidDecreased ? (
+                        <TrendingDownRoundedIcon
+                          sx={{
+                            marginRight: '8px',
+                            width: '18px',
+                            height: '18px',
+                            color: theme.palette.error.main,
+                          }}
+                        />
+                      ) : (
+                        ''
+                      )}
                       <StyledCellText>{rate.bid.toFixed(4)}</StyledCellText>
                     </Box>
                   </TableCell>
                   <TableCell sx={{ border: 'none' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <TrendingDownRoundedIcon
-                        sx={{
-                          marginRight: '8px',
-                          width: '18px',
-                          height: '18px',
-                          color: theme.palette.error.main,
-                        }}
-                      />
+                      {isAskIncreased ? (
+                        <TrendingUpRoundedIcon
+                          sx={{
+                            marginRight: '8px',
+                            width: '18px',
+                            height: '18px',
+                            color: theme.palette.success.main,
+                          }}
+                        />
+                      ) : isAskDecreased ? (
+                        <TrendingDownRoundedIcon
+                          sx={{
+                            marginRight: '8px',
+                            width: '18px',
+                            height: '18px',
+                            color: theme.palette.error.main,
+                          }}
+                        />
+                      ) : (
+                        ''
+                      )}
                       <StyledCellText>{rate.ask.toFixed(4)}</StyledCellText>
                     </Box>
                   </TableCell>
