@@ -29,6 +29,7 @@ import { createDepositApi } from 'api/createDeposit';
 import { employeeControllerApi } from 'api/employeeController';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
 import { getDepositsApi } from 'api/getDepositsApi';
+import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
 import { getPostcode } from 'api/getPostcode';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
@@ -62,6 +63,7 @@ const rootReducer = combineReducers({
   [validateOtpApi.reducerPath]: validateOtpApi.reducer,
   [employeeControllerApi.reducerPath]: employeeControllerApi.reducer,
   [registerEmployeeApi.reducerPath]: registerEmployeeApi.reducer,
+  [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
   [createDepositApi.reducerPath]: createDepositApi.reducer,
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
 });
@@ -85,6 +87,7 @@ const persistConfig = {
     validateOtpApi.reducerPath,
     employeeControllerApi.reducerPath,
     registerEmployeeApi.reducerPath,
+    getExchangeRatesApi.reducerPath,
     createDepositApi.reducerPath,
     getDepositsApi.reducerPath,
   ],
@@ -115,6 +118,7 @@ const store = configureStore({
       validateOtpApi.middleware,
       employeeControllerApi.middleware,
       registerEmployeeApi.middleware,
+      getExchangeRatesApi.middleware,
       createDepositApi.middleware,
       getDepositsApi.middleware,
     ]),
