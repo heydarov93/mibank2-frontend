@@ -5,20 +5,22 @@ import {
   MenuItem,
   IconButton,
   Typography,
+  Alert,
   useTheme,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 
 import {
   currenciesWithLabel,
+  currentDate,
   formatAmount,
   MAX_DIGITS,
-  STATIC_RATES,
-} from './currencyUtils';
+} from '../../../utils/currencyUtils';
+import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 
+import { useGetExchangeRatesQuery } from 'api/getExchangeRatesApi';
+import { ReactComponent as SpinningArrowButton } from 'assets/icons/Reload.svg';
 import { REG_EXP } from 'validation/regExp';
 
 const CurrencyCalculator = () => {
@@ -29,14 +31,35 @@ const CurrencyCalculator = () => {
     from: { currency: 'USD', amount: '' },
     to: { currency: 'EUR', amount: '' },
   });
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredCurrency = currenciesWithLabel
-    .filter((option) => option.code !== exchange.to.currency)
-    .map((option) => (
-      <MenuItem key={option.code} value={option.code}>
-        {option.label}
-      </MenuItem>
-    ));
+  const {
+    data: currentData,
+    isLoading: isLoadingCurrent,
+    error: queryError,
+  } = useGetExchangeRatesQuery(currentDate);
+
+  useEffect(() => {
+    if (queryError) {
+      setError(t('CurCal.error'));
+    }
+  }, [queryError]);
+
+  const rates =
+    currentData &&
+    currentData?.[0]?.rates?.reduce(
+      (
+        acc: { [x: string]: { buy: number; sell: number } },
+        rate: { code: string | number; bid: number; ask: number },
+      ) => {
+        acc[rate.code] = {
+          buy: rate.bid,
+          sell: rate.ask,
+        };
+        return acc;
+      },
+      {},
+    );
 
   const calculateExchange = (
     value: string,
@@ -60,54 +83,42 @@ const CurrencyCalculator = () => {
     const numValue = parseFloat(cleanValue);
     if (isNaN(numValue)) return;
 
-    if (isFromAmount) {
-      const fromBuyRate = STATIC_RATES[fromCurrency]?.buy;
-      const toSellRate = STATIC_RATES[toCurrency]?.sell;
-      const result = (numValue * fromBuyRate) / toSellRate;
-
-      setExchange((prev) => ({
-        ...prev,
-        from: { ...prev.from, amount: cleanValue },
-        to: { ...prev.to, amount: formatAmount(result) },
-      }));
-    } else {
-      const fromBuyRate = STATIC_RATES[fromCurrency]?.buy;
-      const toSellRate = STATIC_RATES[toCurrency]?.sell;
-      const result = (numValue * toSellRate) / fromBuyRate;
-
-      setExchange((prev) => ({
-        ...prev,
-        to: { ...prev.to, amount: cleanValue },
-        from: { ...prev.from, amount: formatAmount(result) },
-      }));
+    if (rates && rates[fromCurrency] && rates[toCurrency]) {
+      if (isFromAmount) {
+        const result =
+          (numValue * rates[fromCurrency].buy) / rates[toCurrency].sell;
+        setExchange((prev) => ({
+          ...prev,
+          from: { ...prev.from, amount: cleanValue },
+          to: { ...prev.to, amount: formatAmount(result) },
+        }));
+      } else {
+        const result =
+          (numValue * rates[toCurrency].sell) / rates[fromCurrency].buy;
+        setExchange((prev) => ({
+          ...prev,
+          to: { ...prev.to, amount: cleanValue },
+          from: { ...prev.from, amount: formatAmount(result) },
+        }));
+      }
     }
   };
 
   const handleAmountChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement>,
     isFromAmount: boolean,
   ) => {
     const value = e.target.value;
-    if (isFromAmount) {
-      calculateExchange(
-        value,
-        exchange.from.currency,
-        exchange.to.currency,
-        true,
-      );
-    } else {
-      calculateExchange(
-        value,
-        exchange.from.currency,
-        exchange.to.currency,
-        false,
-      );
-    }
+    calculateExchange(
+      value,
+      exchange.from.currency,
+      exchange.to.currency,
+      isFromAmount,
+    );
   };
 
   const handleCurrencyChange = (isFromCurrency: boolean, currency: string) => {
     setExchange((prev) => ({
-      ...prev,
       from: isFromCurrency ? { ...prev.from, currency } : prev.from,
       to: !isFromCurrency ? { ...prev.to, currency } : prev.to,
     }));
@@ -127,9 +138,18 @@ const CurrencyCalculator = () => {
     }));
   };
 
+  if (isLoadingCurrent) return <SpinningArrowButton />;
+
   return (
     <Box sx={{ maxWidth: '479px' }}>
       <StyledTableTitle>{t('CurCal.cal')}</StyledTableTitle>
+
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+
       <Box
         border={2}
         borderRadius={2}
@@ -148,7 +168,15 @@ const CurrencyCalculator = () => {
             size="small"
             sx={{ width: '30%' }}
           >
-            {filteredCurrency}
+            {currenciesWithLabel.map((option) => (
+              <MenuItem
+                key={option.code}
+                value={option.code}
+                disabled={option.code === exchange.to.currency}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             value={exchange.from.amount}
@@ -199,13 +227,15 @@ const CurrencyCalculator = () => {
             size="small"
             sx={{ width: '30%' }}
           >
-            {currenciesWithLabel
-              .filter((option) => option.code !== exchange.from.currency)
-              .map((option) => (
-                <MenuItem key={option.code} value={option.code}>
-                  {option.label}
-                </MenuItem>
-              ))}
+            {currenciesWithLabel.map((option) => (
+              <MenuItem
+                key={option.code}
+                value={option.code}
+                disabled={option.code === exchange.from.currency}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             value={exchange.to.amount}
@@ -222,13 +252,14 @@ const CurrencyCalculator = () => {
         </Box>
       </Box>
 
-      {STATIC_RATES[exchange.from.currency] &&
-        STATIC_RATES[exchange.to.currency] && (
-          <Typography marginTop={0.5} variant="body2" color="textSecondary">
+      {rates &&
+        rates[exchange.from.currency] &&
+        rates[exchange.to.currency] && (
+          <Typography mt={1} variant="body2" color="textSecondary">
             {t('CurCal.rate')}: 1 {exchange.from.currency} ={' '}
             {(
-              STATIC_RATES[exchange.from.currency].buy /
-              STATIC_RATES[exchange.to.currency].sell
+              rates[exchange.from.currency].buy /
+              rates[exchange.to.currency].sell
             ).toFixed(4)}{' '}
             {exchange.to.currency}
           </Typography>

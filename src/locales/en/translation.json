@@ -509,7 +509,8 @@
       "cal": "Calculator",
       "give": "Give",
       "get": "Get",
-      "rate": "Rate"
+      "rate": "Rate",
+      "error": "Exchange rates are currently unavailable. Please try again later."
     }
   }
 }
