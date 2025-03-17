@@ -19,7 +19,7 @@ import { productCardValidation } from 'validation/productCardValidation';
 interface FormData {
   cashbackRate: number;
   monthlyFee: number;
-  dailyOperationalLimit: number;
+  dailyLimit: number;
   foreignTransactionLimit: number;
   cardIssuer: string;
   cardType: string;
@@ -43,7 +43,7 @@ const CreateCardProductForm: React.FC = () => {
     defaultValues: {
       cashbackRate: undefined,
       monthlyFee: undefined,
-      dailyOperationalLimit: undefined,
+      dailyLimit: undefined,
       foreignTransactionLimit: undefined,
       cardIssuer: '',
       cardType: '',
@@ -144,12 +144,12 @@ const CreateCardProductForm: React.FC = () => {
               {t('VisaCard.dailyOperationalLimit')}
             </Typography>
             <InputField
-              name="dailyOperationalLimit"
+              name="dailyLimit"
               control={control}
               id="dailyOperationalLimit"
               placeholder={t('VisaCard.enterHere')}
-              error={errors.dailyOperationalLimit}
-              helperText={errors.dailyOperationalLimit?.message || ''}
+              error={errors.dailyLimit}
+              helperText={errors.dailyLimit?.message || ''}
             />
           </Box>
           <Box>

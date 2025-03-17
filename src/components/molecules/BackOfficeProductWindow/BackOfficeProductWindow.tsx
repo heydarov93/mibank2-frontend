@@ -12,9 +12,10 @@ import {
   StyledTitle,
 } from './BackOfficeProductWindow.styled';
 
+import { useCreateCardMutation } from 'api/createCardApi';
 import { useCreateDepositMutation } from 'api/createDeposit';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
-import { ProductType } from 'enums/EProductType';
+import { ProductStatus, ProductType } from 'enums/EProductType';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import {
   CardFormData,
@@ -66,14 +67,22 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
 }) => {
   const { t } = useTranslation('translation');
   const productFormType = useAppSelector(getProductForm);
-
   const dispatch = useAppDispatch();
   const productData =
     productFormType.product === ProductType.DEPOSIT ? depositData : cardData;
 
   const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
-  const [createDeposit, { isLoading, isError }] = useCreateDepositMutation();
+  const [
+    createDeposit,
+    { isLoading: isDepositLoading, isError: isDepositError },
+  ] = useCreateDepositMutation();
+  const [createCard, { isLoading: isCardLoading, isError: isCardError }] =
+    useCreateCardMutation();
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const isLoading = isDepositLoading || isCardLoading;
+  const isError = isDepositError || isCardError;
+
   const handleWindowClick = () => setIsWindowOpen((prev) => !prev);
 
   const backendDepositInfo = Object.fromEntries(
@@ -81,13 +90,22 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
       return [key, value === undefined ? 0 : value];
     }),
   );
-  const finalBackendObj = {
+  const depositObject = {
     name: productFormType.name,
     description: productFormType.description,
     currency: productFormType.currency,
     type: productFormType.type,
     ...backendDepositInfo,
   };
+
+  const cardObject = {
+    cardName: productFormType.name,
+    cardCurrency: productFormType.currency,
+    cardType: productFormType.type,
+    cardStatus: ProductStatus.ACTIVE,
+    ...productData,
+  };
+
   const handleReset = () => {
     handleWindowClick();
     dispatch(resetProductForm());
@@ -95,9 +113,14 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
     dispatch(resetDepositData());
     dispatch(resetProductStep());
   };
+
   const handleSubmit = async () => {
     try {
-      await createDeposit(finalBackendObj).unwrap();
+      if (productFormType.product === ProductType.DEPOSIT) {
+        await createDeposit(depositObject).unwrap();
+      } else {
+        await createCard(cardObject).unwrap();
+      }
       handleReset();
       onProductCreated();
     } catch (e) {
@@ -106,6 +129,7 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
       );
     }
   };
+
   return (
     <Box
       sx={{

@@ -23,7 +23,7 @@ export const productCardValidation = yup.object().shape({
       (value) =>
         value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
     ),
-  dailyOperationalLimit: yup
+  dailyLimit: yup
     .number()
     .required(i18n.t('BackOffice.VisaCard.required'))
     .typeError(i18n.t(`BackOffice.VisaCard.number`))

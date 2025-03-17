@@ -25,6 +25,7 @@ import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
+import { createCardApi } from 'api/createCardApi';
 import { createDepositApi } from 'api/createDeposit';
 import { employeeControllerApi } from 'api/employeeController';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
@@ -66,6 +67,7 @@ const rootReducer = combineReducers({
   [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
   [createDepositApi.reducerPath]: createDepositApi.reducer,
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
+  [createCardApi.reducerPath]: createCardApi.reducer,
 });
 
 const persistConfig = {
@@ -90,6 +92,7 @@ const persistConfig = {
     getExchangeRatesApi.reducerPath,
     createDepositApi.reducerPath,
     getDepositsApi.reducerPath,
+    createCardApi.reducerPath,
   ],
 };
 
@@ -121,6 +124,7 @@ const store = configureStore({
       getExchangeRatesApi.middleware,
       createDepositApi.middleware,
       getDepositsApi.middleware,
+      createCardApi.middleware,
     ]),
 });
 
