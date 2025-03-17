@@ -9,7 +9,7 @@ export interface ProductFormData {
 export interface CardFormData {
   cashbackRate: number | null;
   monthlyFee: number | null;
-  dailyOperationalLimit: number | null;
+  dailyLimit: number | null;
   foreignTransactionLimit: number | null;
   cardIssuer: string | null;
   cardType: string | null;
