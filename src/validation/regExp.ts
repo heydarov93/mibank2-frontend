@@ -11,4 +11,6 @@ export const REG_EXP: { [field: string]: RegExp } = {
   DigitsRegExp: /^[\d-]+$/,
   capitalizeLetters: /^[A-ZА-ЯЁ][a-zа-яё]*(?:[-\s][a-zа-яё]+)*$/,
   onlyOneCapitalizeLetter: /[A-ZА-ЯЁ].*[A-ZА-ЯЁ]/,
+  invalidCharacter: /[^0-9,]/g,
+  extraComma: /,(?=.*?,)/g,
 };
