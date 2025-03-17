@@ -1,6 +1,7 @@
 import { Box, Button, useTheme } from '@mui/material';
 
 import MiCarousel from 'components/molecules/Carousel/MiCarousel';
+import CurrencyCalculator from 'components/organisms/CurrencyCalculator/CurrencyCalculator';
 import { RatesTable } from 'components/organisms/CurrencyExchange/Rates/RatesTable';
 import { Title } from 'components/organisms/CurrencyExchange/Title/Title';
 
@@ -73,10 +74,12 @@ const Homepage = () => {
             </Button>
           </Box>
         </Box>
-        <Box marginTop={5} paddingBottom={3} width={"90%"}>
+        <Box marginTop={5} paddingBottom={3} width={'90%'}>
           <Title />
           <Box display={'flex'} width={'100%'} marginTop={3}>
-            <Box width={'50%'}></Box>
+            <Box width={'50%'}>
+              <CurrencyCalculator />
+            </Box>
             <RatesTable />
           </Box>
         </Box>

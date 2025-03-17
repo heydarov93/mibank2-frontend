@@ -503,5 +503,13 @@
       "cancelProduct": "Cancel Product Creation?",
       "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?"
     }
+  },
+  "Homepage": {
+    "CurCal": {
+      "cal": "Calculator",
+      "give": "Give",
+      "get": "Get",
+      "rate": "Rate"
+    }
   }
 }
