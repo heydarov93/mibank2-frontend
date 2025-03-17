@@ -10,6 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -45,23 +46,55 @@ const flagIcons: Record<string, React.FC> = {
 export const RatesTable = () => {
   const { t } = useTranslation('translation');
   const theme = useTheme();
-  const previousDate = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
-  const currentDate = dayjs().format('YYYY-MM-DD');
-  const { data: currentData, isLoading: isLoadingCurrent } =
-    useGetExchangeRatesQuery(currentDate);
-  const { data: previousData, isLoading: isLoadingPrevious } =
-    useGetExchangeRatesQuery(previousDate);
   const requiredCurrencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY'];
+  const [currentDate, setCurrentDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const [previousDate, setPreviousDate] = useState(
+    dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+  );
 
-  if (isLoadingCurrent || isLoadingPrevious) return <SpinningArrowButton />;
+  const {
+    data: currentData,
+    isLoading: isLoadingCurrent,
+    isError: isCurrentDateError,
+  } = useGetExchangeRatesQuery(currentDate);
 
-  const filteredCurrencies =
-    currentData[0]?.rates.filter((rate: Rate) =>
-      requiredCurrencies.includes(rate.code),
-    ) || [];
+  const {
+    data: previousData,
+    isLoading: isLoadingPrevious,
+    isError: isPreviousDateError,
+  } = useGetExchangeRatesQuery(previousDate);
+
+  useEffect(() => {
+    if (isCurrentDateError) {
+      setCurrentDate(
+        dayjs(currentDate).subtract(1, 'day').format('YYYY-MM-DD'),
+      );
+    }
+    if (isPreviousDateError) {
+      setPreviousDate(
+        dayjs(previousDate).subtract(1, 'day').format('YYYY-MM-DD'),
+      );
+    }
+  }, [isCurrentDateError, isPreviousDateError, currentDate, previousDate]);
+
+  const isRatesDataLoading =
+    !currentData?.[0]?.rates ||
+    !previousData?.[0]?.rates ||
+    isCurrentDateError ||
+    isPreviousDateError ||
+    isLoadingCurrent ||
+    isLoadingPrevious;
+
+  if (isRatesDataLoading) {
+    return <SpinningArrowButton />;
+  }
+
+  const filteredCurrencies = currentData[0].rates.filter((rate: Rate) =>
+    requiredCurrencies.includes(rate.code),
+  );
 
   const previousRatesMap = new Map<string, Rate>(
-    previousData[0]?.rates.map((rate: Rate) => [rate.code, rate]),
+    previousData[0].rates.map((rate: Rate) => [rate.code, rate]),
   );
 
   return (
@@ -85,9 +118,10 @@ export const RatesTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredCurrencies?.map((rate: Rate, index: number) => {
+            {filteredCurrencies.map((rate: Rate, index: number) => {
               const FlagIcon = flagIcons[rate.code];
-              const previousRate = previousRatesMap.get(rate.code) as Rate;
+              const previousRate = previousRatesMap.get(rate.code);
+
               const isBidIncreased =
                 previousRate && rate.bid > previousRate.bid;
               const isBidDecreased =
@@ -140,7 +174,7 @@ export const RatesTable = () => {
                           }}
                         />
                       ) : (
-                        ''
+                        '-'
                       )}
                       <StyledCellText>{rate.bid.toFixed(4)}</StyledCellText>
                     </Box>
@@ -166,7 +200,7 @@ export const RatesTable = () => {
                           }}
                         />
                       ) : (
-                        ''
+                        '-'
                       )}
                       <StyledCellText>{rate.ask.toFixed(4)}</StyledCellText>
                     </Box>
