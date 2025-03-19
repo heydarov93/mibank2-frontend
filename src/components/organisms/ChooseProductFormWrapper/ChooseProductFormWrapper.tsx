@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import ChooseProductForm from '../ChooseProductForm/ChooseProductForm';
@@ -15,6 +16,7 @@ import { getDepositForm } from 'store/selectors/CreateDepositSelector';
 import { getProductStep } from 'store/selectors/ProductStepperSelector';
 
 const ChooseProductFormWrapper = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const [isProductCreated, setIsProductCreated] = useState<boolean>(false);
 
   const productStep = useSelector(getProductStep);
@@ -55,6 +57,8 @@ const ChooseProductFormWrapper = () => {
         <BackOfficeConfirmationWindow
           onClose={handleProductCancel}
           sx={{ top: '40px', right: '40px' }}
+          title={t('ConfirmationWindow.confirmationTitle')}
+          body={t('ConfirmationWindow.secondaryText')}
         />
       )}
       <Box

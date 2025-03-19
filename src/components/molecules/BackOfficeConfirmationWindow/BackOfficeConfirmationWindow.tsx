@@ -1,6 +1,5 @@
 import { Box, SxProps, Theme } from '@mui/material';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 import {
   MainContainer,
@@ -14,24 +13,22 @@ import SuccessfulCreationIcon from 'components/atoms/SuccessfulCreationIcon/Succ
 interface BackOfficeConfirmationWindowProps {
   onClose: () => void;
   sx?: SxProps<Theme>;
+  title?: string;
+  body?: string;
 }
 
 const BackOfficeConfirmationWindow = ({
   onClose,
   sx,
+  title,
+  body,
 }: BackOfficeConfirmationWindowProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
-
   return (
     <MainContainer sx={{ position: 'absolute', ...sx }}>
       <SuccessfulCreationIcon />
       <Box>
-        <StyledHeader data-testid="confirmation-title">
-          {t('ConfirmationWindow.confirmationTitle')}
-        </StyledHeader>
-        <SecondaryText data-testid="secondary-text">
-          {t('ConfirmationWindow.secondaryText')}
-        </SecondaryText>
+        <StyledHeader data-testid="confirmation-title">{title}</StyledHeader>
+        <SecondaryText data-testid="secondary-text">{body}</SecondaryText>
       </Box>
       <CloseButtonX onClick={onClose} />
     </MainContainer>
