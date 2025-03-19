@@ -2,6 +2,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import BackOfficeDepositEditForm from './BackOfficeDepositEditForm';
+import { configureStore } from '@reduxjs/toolkit';
+import { updateDepositApi } from 'api/updateDepositApi';
+import { Provider } from 'react-redux';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -11,6 +14,15 @@ jest.mock('react-i18next', () => ({
     type: '3rdParty',
   },
 }));
+
+const mockStore = configureStore({
+  reducer: {
+    [updateDepositApi.reducerPath]: updateDepositApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(updateDepositApi.middleware);
+  },
+});
 
 const validFormData: Partial<TableData> = {
   productName: 'Deposit',
@@ -26,7 +38,11 @@ const validFormData: Partial<TableData> = {
 };
 
 test('renders component without crashing', () => {
-  render(<BackOfficeDepositEditForm onClose={() => {}} />);
+  render(
+    <Provider store={mockStore}>
+      <BackOfficeDepositEditForm onClose={() => {}} onError={() => {}} />
+    </Provider>,
+  );
   expect(screen.getByText('depositEditForm.editDep')).toBeInTheDocument();
   expect(screen.getByText('depositEditForm.depName')).toBeInTheDocument();
   expect(
@@ -78,7 +94,11 @@ test('renders component without crashing', () => {
 });
 
 test('Submit button is disabled when the form data is invalid', () => {
-  render(<BackOfficeDepositEditForm onClose={() => {}} />);
+  render(
+    <Provider store={mockStore}>
+      <BackOfficeDepositEditForm onClose={() => {}} onError={() => {}} />
+    </Provider>,
+  );
   const submitButton = screen.getByRole('button', {
     name: 'depositEditForm.saveChanges',
   });
@@ -87,7 +107,13 @@ test('Submit button is disabled when the form data is invalid', () => {
 
 test('Submit button is enabled with valid form data', () => {
   render(
-    <BackOfficeDepositEditForm onClose={() => {}} formData={validFormData} />,
+    <Provider store={mockStore}>
+      <BackOfficeDepositEditForm
+        onClose={() => {}}
+        onError={() => {}}
+        formData={validFormData}
+      />
+    </Provider>,
   );
   const submitButton = screen.getByRole('button', {
     name: 'depositEditForm.saveChanges',
@@ -99,7 +125,11 @@ test('Submit button is enabled with valid form data', () => {
 
 test('Calls handleClose when cancel button is clicked', () => {
   const handleClose = jest.fn();
-  render(<BackOfficeDepositEditForm onClose={handleClose} />);
+  render(
+    <Provider store={mockStore}>
+      <BackOfficeDepositEditForm onClose={handleClose} onError={() => {}} />
+    </Provider>,
+  );
   const cancelButton = screen.getByRole('button', {
     name: 'depositEditForm.cancel',
   });
@@ -109,7 +139,13 @@ test('Calls handleClose when cancel button is clicked', () => {
 
 test('Prefills form with the provided data', () => {
   render(
-    <BackOfficeDepositEditForm onClose={() => {}} formData={validFormData} />,
+    <Provider store={mockStore}>
+      <BackOfficeDepositEditForm
+        onClose={() => {}}
+        onError={() => {}}
+        formData={validFormData}
+      />
+    </Provider>,
   );
   expect(screen.getByPlaceholderText('depositEditForm.depName')).toHaveValue(
     'Deposit',

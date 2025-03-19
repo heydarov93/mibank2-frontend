@@ -23,7 +23,7 @@ export interface DepositFormData {
   capitalization: number;
   earlyWithdrawal?: boolean | undefined;
   earlyWithdrawalLimit?: number | undefined;
-  withdrawalFee?: number | undefined;
+  earlyWithdrawalFee?: number | undefined;
   autoRenewable?: boolean | undefined;
   augmentable?: boolean | undefined;
 }

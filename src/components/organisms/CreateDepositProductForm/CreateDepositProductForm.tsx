@@ -44,7 +44,7 @@ const CreateDepositProductForm: React.FC = () => {
       capitalization: undefined,
       earlyWithdrawal: false,
       earlyWithdrawalLimit: undefined,
-      withdrawalFee: undefined,
+      earlyWithdrawalFee: undefined,
       autoRenewable: false,
       augmentable: false,
     },
@@ -189,11 +189,11 @@ const CreateDepositProductForm: React.FC = () => {
                 {t('LastResortDeposit.withdrawalFee')}
               </Typography>
               <InputField
-                name="withdrawalFee"
+                name="earlyWithdrawalFee"
                 id="withdrawalFee"
                 control={control}
                 placeholder={t('LastResortDeposit.enterHere')}
-                error={errors.withdrawalFee}
+                error={errors.earlyWithdrawalFee}
                 disabled={!earlyWithdrawalEnabled}
               />
             </Box>

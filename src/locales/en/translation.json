@@ -281,7 +281,8 @@
       "errorUnauthorized": "You are not authorized to complete this action",
       "serverError": "Unknown Server Error, Please try again later",
       "notFound": "Deposit not found, please select different deposit",
-      "generalError": "Unknown error occured, please try again later"
+      "generalError": "Unknown error occured, please try again later",
+      "deleteFailed": "Failed to delete!"
     },
     "SideBar": {
       "productHeader": "Products",
@@ -298,7 +299,7 @@
       "productHeader": "Choose the product",
       "deposit": "Deposit",
       "card": "Card",
-      "teamDeposit": "Team Deposit",
+      "teamDeposit": "Term Deposit",
       "demandDeposit": "Demand Deposit",
       "savingDeposit": "Saving Deposit",
       "targetDeposit": "Target Deposit",
@@ -334,7 +335,9 @@
       "deleteText": "Deletion is irreversible. Are you sure you want to delete",
       "deleteCard": "Delete Card?",
       "deleteTitle": "Deleted Successfully!",
-      "deleteBody": "The deposit information was deleted"
+      "deleteBody": "The deposit information was deleted",
+      "updateTitle": "Updated Successfully!",
+      "updateBody": "The deposit information was updated and saved."
     },
     "WarningWindow": {
       "mainTitle": "Cancel Product Creation?",

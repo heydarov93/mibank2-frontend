@@ -36,6 +36,7 @@ export const endpoints = {
       createDeposit: '/ds/api/deposits',
       getDeposits: '/ds/api/deposits',
       deleteDeposit: '/ds/api/deposits',
+      updateDeposit: 'ds/api/deposits',
     },
     cards: {
       createCard: '/cs/api/card/create-card',
