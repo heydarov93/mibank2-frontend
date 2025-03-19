@@ -77,7 +77,7 @@ export const lastDepositValidation = yup.object().shape({
         schema.required(i18n.t(`${lastResortDeposit}.earlyWithdrawalVal`)),
       otherwise: (schema) => schema.notRequired(),
     }),
-  withdrawalFee: yup
+  earlyWithdrawalFee: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .min(0, i18n.t(`${lastResortDeposit}.positive`))

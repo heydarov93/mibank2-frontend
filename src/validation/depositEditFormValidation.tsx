@@ -3,25 +3,25 @@ import * as Yup from 'yup';
 import i18n from 'i18n';
 
 const depositEditValidationSchema = Yup.object().shape({
-  depositName: Yup.string()
+  name: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.depNameReq'))
     .min(3, i18n.t('BackOffice.depositEditFormErrors.depNameChars'))
     .max(30, i18n.t('BackOffice.depositEditFormErrors.depNameMax'))
     .matches(/^[A-Z]/, i18n.t('BackOffice.depositEditFormErrors.depNameMatch')),
 
-  depositDescription: Yup.string()
+  description: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.descReq'))
     .min(10, i18n.t('BackOffice.depositEditFormErrors.descMin'))
     .max(1000, i18n.t('BackOffice.depositEditFormErrors.descMax')),
 
-  depositCurrency: Yup.string()
+  currency: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.currencyReq'))
     .oneOf(
-      ['PLN', 'EUR', 'CHF', 'GBP', 'JPY'],
+      ['PLN', 'EUR', 'CHF', 'GBP', 'JPY', 'USD'],
       i18n.t('BackOffice.depositEditFormErrors.currencyReq'),
     ),
 
-  minimumDepositSum: Yup.string()
+  min: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.minSum'))
     .matches(/^\d*\.?\d+$/, i18n.t('BackOffice.depositEditFormErrors.sumValid'))
     .test(
@@ -44,9 +44,9 @@ const depositEditValidationSchema = Yup.object().shape({
       },
     ),
 
-  maximumDepositSum: Yup.string()
+  max: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.maxReq'))
-    .matches(/^\d*\.?\d+$/, 'Must be a valid number')
+    .matches(/^\d*\.?\d+$/, i18n.t('BackOffice.depositEditFormErrors.validNum'))
     .test(
       'is-positive',
       i18n.t('BackOffice.depositEditFormErrors.depTermReq'),
@@ -62,7 +62,7 @@ const depositEditValidationSchema = Yup.object().shape({
       },
     ),
 
-  depositTermMonths: Yup.string()
+  term: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.depTermReq'))
     .matches(/^\d+$/, i18n.t('BackOffice.depositEditFormErrors.depTermWhole'))
     .test(
@@ -74,14 +74,8 @@ const depositEditValidationSchema = Yup.object().shape({
       'min-value',
       i18n.t('BackOffice.depositEditFormErrors.depTermMin'),
       (value) => value !== undefined && parseInt(value) >= 1,
-    )
-    .test(
-      'max-value',
-      i18n.t('BackOffice.depositEditFormErrors.depTermMax'),
-      (value) => value !== undefined && parseInt(value) <= 360,
     ),
-
-  depositInterestRate: Yup.string()
+  interestRate: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.depInterestRate'))
     .matches(/^\d*\.?\d+$/, 'Must be a valid number')
     .test(
@@ -93,14 +87,9 @@ const depositEditValidationSchema = Yup.object().shape({
       'min-value',
       i18n.t('BackOffice.depositEditFormErrors.depInterestRateMin'),
       (value) => value !== undefined && parseFloat(value) >= 0.01,
-    )
-    .test(
-      'max-value',
-      i18n.t('BackOffice.depositEditFormErrors.depInterestRateMax'),
-      (value) => value !== undefined && parseFloat(value) <= 100,
     ),
 
-  depositCapitalizationRate: Yup.string()
+  capitalization: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.depCapRate'))
     .matches(/^\d+$/, i18n.t('BackOffice.depositEditFormErrors.depTermWhole'))
     .test(
@@ -112,11 +101,6 @@ const depositEditValidationSchema = Yup.object().shape({
       'min-value',
       i18n.t('BackOffice.depositEditFormErrors.depCapRateMin'),
       (value) => value !== undefined && parseInt(value) >= 0.1,
-    )
-    .test(
-      'max-value',
-      i18n.t('BackOffice.depositEditFormErrors.depCapRateMax'),
-      (value) => value !== undefined && parseInt(value) <= 12,
     ),
 
   earlyWithdrawalLimit: Yup.string()
@@ -128,7 +112,7 @@ const depositEditValidationSchema = Yup.object().shape({
       (value) => value !== undefined && parseFloat(value) >= 0,
     ),
 
-  withdrawalFee: Yup.string()
+  earlyWithdrawalFee: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.wdFeeReq'))
     .matches(/^\d*\.?\d+$/, i18n.t('BackOffice.depositEditFormErrors.validNum'))
     .test(

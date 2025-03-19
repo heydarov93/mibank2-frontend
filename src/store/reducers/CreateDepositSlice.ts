@@ -10,7 +10,7 @@ const initialState: DepositFormData = {
   capitalization: 0,
   earlyWithdrawal: false,
   earlyWithdrawalLimit: 0,
-  withdrawalFee: 0,
+  earlyWithdrawalFee: 0,
   autoRenewable: false,
   augmentable: false,
 };
@@ -22,7 +22,7 @@ const CreateDepositSlice = createSlice({
     setDepositData(state, action: PayloadAction<DepositFormData>) {
       state.autoRenewable = action.payload.augmentable;
       state.autoRenewable = action.payload.autoRenewable;
-      state.withdrawalFee = action.payload.withdrawalFee;
+      state.earlyWithdrawalFee = action.payload.earlyWithdrawalFee;
       state.earlyWithdrawalLimit = action.payload.earlyWithdrawalLimit;
       state.earlyWithdrawal = action.payload.earlyWithdrawal;
       state.capitalization = action.payload.capitalization;

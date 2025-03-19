@@ -32,6 +32,10 @@ const BackOfficeViewProductsPage = () => {
   const [selectedProduct, setSelectedProduct] = useState<Partial<TableData>>(
     {},
   );
+  const [confirmationTitle, setConfirmationTitle] = useState<string>('');
+  const [confirmationBody, setConfirmationBody] = useState<string>('');
+  const [warningTitle, setWarningTitle] = useState<string>('');
+  const [warningBody, setWarningBody] = useState<string>('');
   const [isConfirmationWindowVisible, setIsConfirmationWindowVisible] =
     useState<boolean>(false);
   const [isEditFormVisible, setIsFormVisible] = useState<boolean>(false);
@@ -155,6 +159,8 @@ const BackOfficeViewProductsPage = () => {
 
   const handleDelete = (product: Partial<TableData>) => {
     setSelectedProduct(product);
+    setWarningTitle(t('warningWindow.deleteDeposit'));
+    setWarningBody(t('warningWindow.deleteDepositText'));
     setIsDeleteVisible(true);
   };
 
@@ -164,6 +170,8 @@ const BackOfficeViewProductsPage = () => {
         await deleteDeposit(product.id).unwrap();
         setIsDeleteVisible(false);
         setIsConfirmationWindowVisible(true);
+        setConfirmationTitle(t('ConfirmationWindow.deleteTitle'));
+        setConfirmationBody(t('ConfirmationWindow.deleteBody'));
       } catch (e) {
         const error = e as IBackOfficeErrorData;
         if (error.originalStatus && typeof error.originalStatus === 'number') {
@@ -197,6 +205,19 @@ const BackOfficeViewProductsPage = () => {
     }
   };
 
+  const handleSuccessfulUpdate = () => {
+    setIsConfirmationWindowVisible(true);
+    setIsDepositFormVisible(false);
+    setConfirmationTitle(t('ConfirmationWindow.updateTitle'));
+    setConfirmationBody(t('ConfirmationWindow.updateBody'));
+  };
+
+  const handleError = (errorMessage: string) => {
+    setIsDepositFormVisible(false);
+    setIsDeleteVisible(true);
+    setWarningBody(errorMessage);
+    setWarningTitle(t('GeneralErrors.deleteFailed'));
+  };
   const handleClose = () => {
     setIsFormVisible(false);
     setIsDepositFormVisible(false);
@@ -256,8 +277,8 @@ const BackOfficeViewProductsPage = () => {
             product={selectedProduct}
             onCancelClick={() => setIsDeleteVisible(false)}
             onDeleteClick={handleDeleteApi}
-            title={t('warningWindow.deleteDeposit')}
-            text={t('warningWindow.deleteDepositText')}
+            title={warningTitle}
+            text={warningBody}
             isLoading={isDeleteLoading}
             isError={isError}
             errorMessage={errorMessage}
@@ -268,14 +289,19 @@ const BackOfficeViewProductsPage = () => {
         <BackOfficeCardEditForm handleClose={handleClose} formData={formData} />
       )}
       {isDepositFormVisible && (
-        <BackOfficeDepositEditForm onClose={handleClose} formData={formData} />
+        <BackOfficeDepositEditForm
+          onClose={handleClose}
+          formData={formData}
+          onSuccess={handleSuccessfulUpdate}
+          onError={handleError}
+        />
       )}
       {isConfirmationWindowVisible && (
         <BackOfficeConfirmationWindow
           sx={{ top: '40PX', left: '200px' }}
           onClose={() => setIsConfirmationWindowVisible(false)}
-          title={t('ConfirmationWindow.deleteTitle')}
-          body={t('ConfirmationWindow.deleteBody')}
+          title={confirmationTitle}
+          body={confirmationBody}
         />
       )}
     </Box>

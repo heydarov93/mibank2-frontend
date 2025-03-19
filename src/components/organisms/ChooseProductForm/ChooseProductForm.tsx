@@ -13,6 +13,7 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import SelectField from 'components/molecules/SelectField/SelectField';
+import currencies from 'constants/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setProductForm } from 'store/reducers/ChooseProductSlice';
@@ -44,7 +45,7 @@ const ChooseProductForm = () => {
     t('CreateProduct.creditCard'),
   ];
 
-  const currencyOptions = ['PLN', 'EUR', 'CHF', 'GBP', 'JPY'];
+  const currencyOptions = currencies;
 
   type formData = {
     product: string;

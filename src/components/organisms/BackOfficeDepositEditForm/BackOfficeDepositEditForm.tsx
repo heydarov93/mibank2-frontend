@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -10,56 +10,94 @@ import {
   StyledLabel,
 } from './BackOfficeDepositEditForm.styled';
 
+import { useUpdateDepositMutation } from 'api/updateDepositApi';
 import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import currencies from 'constants/currencies';
+import { ErrorStatus } from 'enums';
+import { IBackOfficeErrorData } from 'models/IError';
 import depositEditValidationSchema from 'validation/depositEditFormValidation';
 
 interface FormState {
-  depositName: string;
-  depositDescription: string;
-  depositCurrency: string;
-  minimumDepositSum: string;
-  maximumDepositSum: string;
-  depositTermMonths: string;
-  depositInterestRate: string;
-  depositCapitalizationRate: string;
+  name: string;
+  description: string;
+  currency: string;
+  min: string;
+  max: string;
+  term: string;
+  interestRate: string;
+  capitalization: string;
   earlyWithdrawalLimit: string;
-  withdrawalFee: string;
+  earlyWithdrawalFee: string;
 }
 
 interface BackOfficeDepositFormProps {
   formData?: Partial<TableData>;
   onClose: () => void;
+  onSuccess?: () => void;
+  onError: (errorMessage: string) => void;
 }
 
 const BackOfficeDepositEditForm = ({
   formData,
   onClose,
+  onSuccess,
+  onError,
 }: BackOfficeDepositFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
   const {
     control,
     formState: { errors, isValid },
+    handleSubmit,
   } = useForm<FormState>({
     resolver: yupResolver(depositEditValidationSchema),
     mode: 'all',
     defaultValues: {
-      depositName: formData?.productName || '',
-      depositDescription: formData?.cardDescription || '',
-      depositCurrency: formData?.cardCurrency || '',
-      minimumDepositSum: formData?.minimumDepositSum || '',
-      maximumDepositSum: formData?.maximumDepositSum || '',
-      depositTermMonths: formData?.depositTerm || '',
-      depositInterestRate: formData?.depositInterestRate || '',
-      depositCapitalizationRate: formData?.depositCapitalizationRate || '',
+      name: formData?.productName || '',
+      description: formData?.cardDescription || '',
+      currency: formData?.cardCurrency || '',
+      min: formData?.minimumDepositSum || '',
+      max: formData?.maximumDepositSum || '',
+      term: formData?.depositTerm || '',
+      interestRate: formData?.depositInterestRate || '',
+      capitalization: formData?.depositCapitalizationRate || '',
       earlyWithdrawalLimit: formData?.earlyWithdrawalLimit || '',
-      withdrawalFee: formData?.withdrawalFee || '',
+      earlyWithdrawalFee: formData?.withdrawalFee || '',
     },
   });
+
+  const [updateDeposit, { isLoading }] = useUpdateDepositMutation();
+
+  const onSubmit = async (data: Partial<TableData>) => {
+    try {
+      await updateDeposit({ id: formData?.id, ...data }).unwrap();
+      if (onSuccess) {
+        onSuccess();
+      }
+    } catch (e) {
+      const error = e as IBackOfficeErrorData;
+      if (error.originalStatus && typeof error.originalStatus === 'number') {
+        switch (error.originalStatus) {
+          case ErrorStatus.UNAUTHORIZED:
+            onError(t('GeneralErrors.errorUnauthorized'));
+            break;
+          case ErrorStatus.SERVER_ERROR:
+            onError(t('GeneralErrors.serverError'));
+            break;
+          case ErrorStatus.NOT_FOUND:
+            onError(t('GeneralErrors.notFound'));
+            break;
+          default:
+            onError(t('GeneralErrors.generalError'));
+        }
+      } else {
+        onError(t('GeneralErrors.generalError'));
+      }
+    }
+  };
 
   return (
     <StyledContainer>
@@ -67,27 +105,30 @@ const BackOfficeDepositEditForm = ({
         <StyledHeader>{t('depositEditForm.editDep')}</StyledHeader>
         <CloseButtonX onClick={onClose} />
       </Box>
-      <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <form
+        style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Box>
           <StyledLabel>{t('depositEditForm.depName')}</StyledLabel>
           <InputField
-            name="depositName"
+            name="name"
             id="productName"
             control={control}
             placeholder={t('depositEditForm.depName')}
-            error={errors.depositName}
-            helperText={errors.depositName?.message}
+            error={errors.name}
+            helperText={errors.name?.message}
           />
         </Box>
         <Box>
           <StyledLabel>{t('depositEditForm.depDesc')}</StyledLabel>
           <InputField
-            name="depositDescription"
+            name="description"
             id="cardDescription"
             control={control}
             placeholder={t('depositEditForm.depDesc')}
-            error={errors.depositDescription}
-            helperText={errors.depositDescription?.message}
+            error={errors.description}
+            helperText={errors.description?.message}
             multiline
             rows={4}
           />
@@ -95,7 +136,7 @@ const BackOfficeDepositEditForm = ({
         <Box>
           <StyledLabel>{t('depositEditForm.depCurr')}</StyledLabel>
           <Controller
-            name="depositCurrency"
+            name="currency"
             control={control}
             render={({ field }) => (
               <MiAutoComplete
@@ -103,8 +144,8 @@ const BackOfficeDepositEditForm = ({
                 options={currencies}
                 onChange={(_, value) => field.onChange(value)}
                 value={field.value}
-                error={!!errors.depositCurrency}
-                helperText={errors.depositCurrency?.message}
+                error={!!errors.currency}
+                helperText={errors.currency?.message}
               />
             )}
           />
@@ -112,56 +153,56 @@ const BackOfficeDepositEditForm = ({
         <Box>
           <StyledLabel>{t('depositEditForm.minDep')}</StyledLabel>
           <InputField
-            name="minimumDepositSum"
+            name="min"
             id="minimumDepositSum"
             control={control}
             placeholder={t('depositEditForm.minDep')}
-            error={errors.minimumDepositSum}
-            helperText={errors.minimumDepositSum?.message}
+            error={errors.min}
+            helperText={errors.min?.message}
           />
         </Box>
         <Box>
           <StyledLabel>{t('depositEditForm.maxDep')}</StyledLabel>
           <InputField
-            name="maximumDepositSum"
+            name="max"
             id="maximumDepositSum"
             control={control}
             placeholder={t('depositEditForm.maxDep')}
-            error={errors.maximumDepositSum}
-            helperText={errors.maximumDepositSum?.message}
+            error={errors.max}
+            helperText={errors.max?.message}
           />
         </Box>
         <Box>
           <StyledLabel>{t('depositEditForm.depTerm')}</StyledLabel>
           <InputField
-            name="depositTermMonths"
+            name="term"
             id="depositTerm"
             control={control}
             placeholder={t('depositEditForm.depTerm')}
-            error={errors.depositTermMonths}
-            helperText={errors.depositTermMonths?.message}
+            error={errors.term}
+            helperText={errors.term?.message}
           />
         </Box>
         <Box>
           <StyledLabel>{t('depositEditForm.depInt')}</StyledLabel>
           <InputField
-            name="depositInterestRate"
+            name="interestRate"
             id="depositInterestRate"
             control={control}
             placeholder={t('depositEditForm.depInt')}
-            error={errors.depositInterestRate}
-            helperText={errors.depositInterestRate?.message}
+            error={errors.interestRate}
+            helperText={errors.interestRate?.message}
           />
         </Box>
         <Box>
           <StyledLabel>{t('depositEditForm.depCap')}</StyledLabel>
           <InputField
-            name="depositCapitalizationRate"
+            name="capitalization"
             id="depositCapitalizationRate"
             control={control}
             placeholder={t('depositEditForm.depCap')}
-            error={errors.depositCapitalizationRate}
-            helperText={errors.depositCapitalizationRate?.message}
+            error={errors.capitalization}
+            helperText={errors.capitalization?.message}
           />
         </Box>
         <Box>
@@ -178,12 +219,12 @@ const BackOfficeDepositEditForm = ({
         <Box>
           <StyledLabel>{t('depositEditForm.wdFee')}</StyledLabel>
           <InputField
-            name="withdrawalFee"
+            name="earlyWithdrawalFee"
             id="withdrawalFee"
             control={control}
             placeholder={t('depositEditForm.wdFee')}
-            error={errors.withdrawalFee}
-            helperText={errors.withdrawalFee?.message}
+            error={errors.earlyWithdrawalFee}
+            helperText={errors.earlyWithdrawalFee?.message}
           />
         </Box>
         <Box
@@ -194,6 +235,7 @@ const BackOfficeDepositEditForm = ({
             height: '56px',
           }}
         >
+          {isLoading && <CircularProgress sx={{ alignSelf: 'center' }} />}
           <Button variant="outlined" type="button" onClick={onClose}>
             {t('depositEditForm.cancel')}
           </Button>

@@ -37,6 +37,7 @@ import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
 import { registerEmployeeApi } from 'api/registerEmployee';
 import { registerNewUserApi } from 'api/registerNewUserApi';
+import { updateDepositApi } from 'api/updateDepositApi';
 import { userInfoApi } from 'api/userInfoApi';
 import { validateOtpApi } from 'api/validateOtpApi';
 import registrationDataMiddleware from 'middleware/dateFormatterMiddleware';
@@ -70,6 +71,7 @@ const rootReducer = combineReducers({
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
   [createCardApi.reducerPath]: createCardApi.reducer,
   [deleteDepositApi.reducerPath]: deleteDepositApi.reducer,
+  [updateDepositApi.reducerPath]: updateDepositApi.reducer,
 });
 
 const persistConfig = {
@@ -96,6 +98,7 @@ const persistConfig = {
     getDepositsApi.reducerPath,
     createCardApi.reducerPath,
     deleteDepositApi.reducerPath,
+    updateDepositApi.reducerPath,
   ],
 };
 
@@ -129,6 +132,7 @@ const store = configureStore({
       getDepositsApi.middleware,
       createCardApi.middleware,
       deleteDepositApi.middleware,
+      updateDepositApi.middleware,
     ]),
 });
 
