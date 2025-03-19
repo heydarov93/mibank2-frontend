@@ -1,6 +1,15 @@
-import { Box, Button, SxProps, Theme } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { TableData } from '../BackOfficeTableItem/BackOfficeTableItem';
 
 import {
   MainContainer,
@@ -11,25 +20,38 @@ import {
 } from './BackOfficeWarningWindow.styled';
 
 import { BackOfficeWarningIcon } from 'components/atoms';
+import { theme } from 'theme/theme';
 
 interface BackOfficeWarningWindowProps {
-  productName?: string;
+  product?: Partial<TableData>;
   sx?: SxProps<Theme>;
-  onDeleteClick?: () => void;
+  onDeleteClick?: (product: Partial<TableData> | undefined) => void;
   onCancelClick: () => void;
   title?: string;
   text?: string;
+  isLoading?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
 }
 
 export const BackOfficeWarningWindow = ({
-  productName,
+  product,
   sx,
   onDeleteClick,
   onCancelClick,
   title,
   text,
+  isLoading,
+  isError,
+  errorMessage,
 }: BackOfficeWarningWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+
+  const handleDeleteClick = () => {
+    if (onDeleteClick) {
+      onDeleteClick(product);
+    }
+  };
 
   return (
     <MainContainer sx={{ position: 'absolute', ...sx }}>
@@ -41,7 +63,9 @@ export const BackOfficeWarningWindow = ({
           <MainHeader>{title}</MainHeader>
           <SecondaryHeader>
             {text}
-            {productName && <ProductName>“{productName}”?</ProductName>}
+            {product?.productSubtype && (
+              <ProductName>“{product.productSubtype}”?</ProductName>
+            )}
           </SecondaryHeader>
         </Box>
       </Box>
@@ -52,13 +76,21 @@ export const BackOfficeWarningWindow = ({
           gap: '8px',
         }}
       >
+        {isLoading && <CircularProgress />}
         <Button variant="outlined" onClick={onCancelClick}>
           {t('ConfirmationWindow.cancelBtn')}
         </Button>
-        <Button variant="contained" color="error" onClick={onDeleteClick}>
+        <Button variant="contained" color="error" onClick={handleDeleteClick}>
           {t('ConfirmationWindow.deleteBtn')}
         </Button>
       </Box>
+      {isError && (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography sx={{ color: theme.palette.error.main }}>
+            {errorMessage}
+          </Typography>
+        </Box>
+      )}
     </MainContainer>
   );
 };

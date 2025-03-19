@@ -8,8 +8,10 @@ import {
   MainContainer,
 } from './BackOfficeViewProductsPage.styled';
 
+import { useDeleteDepositMutation } from 'api/deleteDepositApi';
 import { useGetDepositsQuery } from 'api/getDepositsApi';
 import { BackOfficeWarningWindow } from 'components/molecules';
+import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeViewProductsHeader from 'components/molecules/BackOfficeViewProductsHeader/BackOfficeViewProductsHeader';
 import FilterBox from 'components/molecules/FilterBox/FilterBox';
@@ -17,6 +19,8 @@ import SearchField from 'components/molecules/SearchField/SearchField';
 import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
 import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
+import { ErrorStatus } from 'enums';
+import { IBackOfficeErrorData } from 'models/IError';
 import { FilterGroup } from 'models/IFilterInfo';
 import { DepositBackendData } from 'models/IProductInfo';
 
@@ -25,7 +29,11 @@ const BackOfficeViewProductsPage = () => {
   const { control } = useForm();
 
   const [isDeleteVisible, setIsDeleteVisible] = useState<boolean>(false);
-  const [productName, setProductName] = useState<string | undefined>('');
+  const [selectedProduct, setSelectedProduct] = useState<Partial<TableData>>(
+    {},
+  );
+  const [isConfirmationWindowVisible, setIsConfirmationWindowVisible] =
+    useState<boolean>(false);
   const [isEditFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   const [isDepositFormVisible, setIsDepositFormVisible] =
@@ -36,6 +44,9 @@ const BackOfficeViewProductsPage = () => {
   const [pageSize, setPageSize] = useState<number>(10);
 
   const { data, isLoading } = useGetDepositsQuery({ page, size: pageSize });
+  const [deleteDeposit, { isLoading: isDeleteLoading, isError }] =
+    useDeleteDepositMutation();
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const mappedData =
     data?.content?.map((item: DepositBackendData) => ({
@@ -143,8 +154,37 @@ const BackOfficeViewProductsPage = () => {
   });
 
   const handleDelete = (product: Partial<TableData>) => {
-    setProductName(product.productName);
+    setSelectedProduct(product);
     setIsDeleteVisible(true);
+  };
+
+  const handleDeleteApi = async (product: Partial<TableData> | undefined) => {
+    if (product?.productName === 'Deposit') {
+      try {
+        await deleteDeposit(product.id).unwrap();
+        setIsDeleteVisible(false);
+        setIsConfirmationWindowVisible(true);
+      } catch (e) {
+        const error = e as IBackOfficeErrorData;
+        if (error.originalStatus && typeof error.originalStatus === 'number') {
+          switch (error.originalStatus) {
+            case ErrorStatus.UNAUTHORIZED:
+              setErrorMessage(t('GeneralErrors.errorUnauthorized'));
+              break;
+            case ErrorStatus.SERVER_ERROR:
+              setErrorMessage(t('GeneralErrors.serverError'));
+              break;
+            case ErrorStatus.NOT_FOUND:
+              setErrorMessage(t('GeneralErrors.notFound'));
+              break;
+            default:
+              setErrorMessage(t('GeneralErrors.generalError'));
+          }
+        } else {
+          setErrorMessage(t('GeneralErrors.generalError'));
+        }
+      }
+    }
   };
 
   const handleEdit = (product: Partial<TableData>) => {
@@ -213,10 +253,14 @@ const BackOfficeViewProductsPage = () => {
         {isDeleteVisible && (
           <BackOfficeWarningWindow
             sx={{ top: '290px', left: '100px' }}
-            productName={productName}
+            product={selectedProduct}
             onCancelClick={() => setIsDeleteVisible(false)}
+            onDeleteClick={handleDeleteApi}
             title={t('warningWindow.deleteDeposit')}
             text={t('warningWindow.deleteDepositText')}
+            isLoading={isDeleteLoading}
+            isError={isError}
+            errorMessage={errorMessage}
           />
         )}
       </MainContainer>
@@ -225,6 +269,14 @@ const BackOfficeViewProductsPage = () => {
       )}
       {isDepositFormVisible && (
         <BackOfficeDepositEditForm onClose={handleClose} formData={formData} />
+      )}
+      {isConfirmationWindowVisible && (
+        <BackOfficeConfirmationWindow
+          sx={{ top: '40PX', left: '200px' }}
+          onClose={() => setIsConfirmationWindowVisible(false)}
+          title={t('ConfirmationWindow.deleteTitle')}
+          body={t('ConfirmationWindow.deleteBody')}
+        />
       )}
     </Box>
   );

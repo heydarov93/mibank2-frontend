@@ -6,26 +6,25 @@ import { endpoints } from './endpoints';
 import { TokenType } from 'models/IAuth';
 import { sessionTokenHandler } from 'utils/tokenHandler';
 
-export const getDepositsApi = createApi({
-  reducerPath: 'getDepositsApi',
+export const deleteDepositApi = createApi({
+  reducerPath: 'deleteDepositApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
   tagTypes: ['Deposits'],
   endpoints: (builder) => ({
-    getDeposits: builder.query({
-      query: ({ page, size }) => ({
-        url: endpoints.productManagement.deposits.getDeposits,
-        method: 'GET',
-        params: { page, size },
+    deleteDeposit: builder.mutation({
+      query: (id) => ({
+        url: endpoints.productManagement.deposits.deleteDeposit,
+        params: { id },
+        method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${sessionTokenHandler.getToken(TokenType.ACCESS)}`,
         },
       }),
-      providesTags: ['Deposits'],
+      invalidatesTags: ['Deposits'],
     }),
   }),
 });
 
-export const { useGetDepositsQuery } = getDepositsApi;
+export const { useDeleteDepositMutation } = deleteDepositApi;

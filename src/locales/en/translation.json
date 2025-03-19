@@ -277,6 +277,12 @@
     }
   },
   "BackOffice": {
+    "GeneralErrors": {
+      "errorUnauthorized": "You are not authorized to complete this action",
+      "serverError": "Unknown Server Error, Please try again later",
+      "notFound": "Deposit not found, please select different deposit",
+      "generalError": "Unknown error occured, please try again later"
+    },
     "SideBar": {
       "productHeader": "Products",
       "createProduct": "Create New Product",
@@ -326,7 +332,9 @@
       "cancelBtn": "Cancel",
       "deleteBtn": "Delete",
       "deleteText": "Deletion is irreversible. Are you sure you want to delete",
-      "deleteCard": "Delete Card?"
+      "deleteCard": "Delete Card?",
+      "deleteTitle": "Deleted Successfully!",
+      "deleteBody": "The deposit information was deleted"
     },
     "WarningWindow": {
       "mainTitle": "Cancel Product Creation?",

@@ -14,15 +14,11 @@ exports[`BackOfficeConfirmationWindow matches snapshot 1`] = `
       <p
         class="MuiTypography-root MuiTypography-body1 css-z0zpi2-MuiTypography-root"
         data-testid="confirmation-title"
-      >
-        ConfirmationWindow.confirmationTitle
-      </p>
+      />
       <p
         class="MuiTypography-root MuiTypography-body1 css-6zo98n-MuiTypography-root"
         data-testid="secondary-text"
-      >
-        ConfirmationWindow.secondaryText
-      </p>
+      />
     </div>
     <svg
       data-testid="close-button"
