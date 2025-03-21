@@ -2,17 +2,38 @@ import * as Yup from 'yup';
 
 import i18n from 'i18n';
 
+const minNameChars = 3;
+const maxNameChars = 150;
+const minDescChars = 10;
+const maxDescChars = 500;
+
 const depositEditValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.depNameReq'))
-    .min(3, i18n.t('BackOffice.depositEditFormErrors.depNameChars'))
-    .max(30, i18n.t('BackOffice.depositEditFormErrors.depNameMax'))
+    .min(
+      minNameChars,
+      i18n.t('BackOffice.depositEditFormErrors.depNameChars', {
+        min: minNameChars,
+      }),
+    )
+    .max(
+      maxNameChars,
+      i18n.t('BackOffice.depositEditFormErrors.depNameMax', {
+        max: maxNameChars,
+      }),
+    )
     .matches(/^[A-Z]/, i18n.t('BackOffice.depositEditFormErrors.depNameMatch')),
 
   description: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.descReq'))
-    .min(10, i18n.t('BackOffice.depositEditFormErrors.descMin'))
-    .max(1000, i18n.t('BackOffice.depositEditFormErrors.descMax')),
+    .min(
+      minDescChars,
+      i18n.t('BackOffice.depositEditFormErrors.descMin', { min: minDescChars }),
+    )
+    .max(
+      maxDescChars,
+      i18n.t('BackOffice.depositEditFormErrors.descMax', { max: maxDescChars }),
+    ),
 
   currency: Yup.string()
     .required(i18n.t('BackOffice.depositEditFormErrors.currencyReq'))

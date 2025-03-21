@@ -2,6 +2,11 @@ import * as Yup from 'yup';
 
 import i18n from 'i18n';
 
+const minNameChars = 3;
+const maxNameChars = 150;
+const minDescChars = 10;
+const maxDescChars = 500;
+
 export const productFormSchema = Yup.object({
   product: Yup.string().required(
     i18n.t('BackOffice.CreateProduct.errorProductRequired'),
@@ -13,10 +18,28 @@ export const productFormSchema = Yup.object({
     i18n.t('BackOffice.CreateProduct.errorCurrencyRequired'),
   ),
   name: Yup.string()
-    .min(3, i18n.t('BackOffice.CreateProduct.errorProductName'))
+    .min(
+      minNameChars,
+      i18n.t('BackOffice.CreateProduct.errorProductName', {
+        min: minNameChars,
+      }),
+    )
     .matches(/^[A-Z]/, i18n.t('BackOffice.CreateProduct.errorCapitalName'))
-    .required(i18n.t('BackOffice.CreateProduct.errorNameRequired')),
+    .required(i18n.t('BackOffice.CreateProduct.errorNameRequired'))
+    .max(
+      maxNameChars,
+      i18n.t('BackOffice.CreateProduct.errorMaxName', { max: maxNameChars }),
+    ),
   description: Yup.string()
-    .min(10, i18n.t('BackOffice.CreateProduct.errorDescription'))
-    .required(i18n.t('BackOffice.CreateProduct.errorDescriptionRequired')),
+    .min(
+      minDescChars,
+      i18n.t('BackOffice.CreateProduct.errorDescription', {
+        min: minDescChars,
+      }),
+    )
+    .required(i18n.t('BackOffice.CreateProduct.errorDescriptionRequired'))
+    .max(
+      maxDescChars,
+      i18n.t('BackOffice.CreateProduct.errorMaxDesc', { max: maxDescChars }),
+    ),
 });
