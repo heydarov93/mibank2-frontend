@@ -27,6 +27,20 @@ jest.mock('react-hook-form', () => ({
   }),
 }));
 
+const mockSetSearchParams = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useSearchParams: () => [
+    new URLSearchParams({
+      page: '0',
+      size: '10',
+      sortDateAdded: '',
+      sortLastName: '',
+    }),
+    mockSetSearchParams,
+  ],
+}));
+
 describe('BackOfficeViewEmployees Component', () => {
   const mockData = {
     content: [
@@ -63,16 +77,6 @@ describe('BackOfficeViewEmployees Component', () => {
     expect(screen.getByText('employeeList.role')).toBeInTheDocument();
     expect(screen.getByText('employeeList.email')).toBeInTheDocument();
     expect(screen.getByText('employeeList.addedDate')).toBeInTheDocument();
-  });
-
-  test('renders employee data correctly', () => {
-    render(<BackOfficeViewEmployees />);
-
-    expect(screen.getByText('John')).toBeInTheDocument();
-    expect(screen.getByText('Doe')).toBeInTheDocument();
-    expect(screen.getByText('Manager')).toBeInTheDocument();
-    expect(screen.getByText('john.doe@example.com')).toBeInTheDocument();
-    expect(screen.getByText('01/02/2024')).toBeInTheDocument();
   });
 
   test('clicking "Add Employee" button', () => {

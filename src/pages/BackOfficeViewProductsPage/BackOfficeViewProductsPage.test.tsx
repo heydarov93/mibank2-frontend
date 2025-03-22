@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
-import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
-import { initReactI18next, useTranslation } from 'react-i18next';
 import { configureStore } from '@reduxjs/toolkit';
-import { getDepositsApi } from 'api/getDepositsApi';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+
+import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
+
+import { getDepositsApi } from 'api/getDepositsApi';
+import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 
 const mockDataForTable = [
   {

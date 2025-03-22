@@ -75,33 +75,6 @@ exports[`Renders table and mathces the snapshot 1`] = `
             </div>
           </td>
         </tr>
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
       </tbody>
     </table>
     <div

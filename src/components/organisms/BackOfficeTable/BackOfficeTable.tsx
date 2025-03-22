@@ -18,6 +18,14 @@ import BackOfficeTableItem, {
 import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagination/BackOfficeTablePagination';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 
+interface TableHeadItem {
+  label: string;
+  key: string;
+  sortable?: boolean | undefined;
+  order?: string;
+  onSort?: () => void;
+}
+
 interface TableBody {
   id: number;
   productName: string;
@@ -31,11 +39,6 @@ interface TableBody {
 }
 
 type PartialTableBody = Partial<TableBody>;
-
-interface TableHeadItem {
-  label: string;
-  key: string;
-}
 
 interface BackOfficeTableProps {
   tableHead: TableHeadItem[];
@@ -75,7 +78,12 @@ const BackOfficeTable = ({
           <TableRow>
             {tableHead.map((title, index) => (
               <StyledTableCell key={index}>
-                <BackOfficeTableTitle title={title.label} />
+                <BackOfficeTableTitle
+                  title={title.label}
+                  sortable={title.sortable || false}
+                  order={title.order || ''}
+                  onSort={title.onSort}
+                />
               </StyledTableCell>
             ))}
             <StyledTableCell />
@@ -101,11 +109,6 @@ const BackOfficeTable = ({
               </StyledTableRow>
             ))
           )}
-          {Array.from({
-            length: Math.max(10 - tableBody.length, 0),
-          }).map((_, index) => (
-            <StyledTableRow key={`empty-${index}`} sx={{ height: '70.9px' }} />
-          ))}
         </TableBody>
       </Table>
       <BackOfficeTablePagination
