@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 import {
   currenciesWithLabel,
   currentDate,
-  formatAmount,
   MAX_DIGITS,
+  removeExtraDot,
 } from '../../../utils/currencyUtils';
 import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 
@@ -47,18 +47,20 @@ const CurrencyCalculator = () => {
 
   const rates =
     currentData &&
-    currentData?.[0]?.rates?.reduce(
+    currentData[0]?.rates?.reduce(
       (
-        acc: { [x: string]: { buy: number; sell: number } },
-        rate: { code: string | number; bid: number; ask: number },
+        acc: { [key: string]: { buy: number; sell: number } },
+        rate: { code: string; bid: number; ask: number },
       ) => {
-        acc[rate.code] = {
+        acc[rate.code.toUpperCase()] = {
           buy: rate.bid,
           sell: rate.ask,
         };
         return acc;
       },
-      {},
+      {
+        PLN: { buy: 1, sell: 1 },
+      },
     );
 
   const calculateExchange = (
@@ -80,25 +82,32 @@ const CurrencyCalculator = () => {
       .replace(REG_EXP.extraComma, '');
     if (cleanValue.length > MAX_DIGITS) return;
 
-    const numValue = parseFloat(cleanValue);
+    const adjustedValue =
+      cleanValue.length === 12 && cleanValue[11] === '.'
+        ? cleanValue.slice(0, 11) + cleanValue.slice(12)
+        : cleanValue;
+
+    const numValue = parseFloat(adjustedValue);
     if (isNaN(numValue)) return;
 
     if (rates && rates[fromCurrency] && rates[toCurrency]) {
       if (isFromAmount) {
         const result =
           (numValue * rates[fromCurrency].buy) / rates[toCurrency].sell;
+        const formattedResult = removeExtraDot(`${result}`);
         setExchange((prev) => ({
           ...prev,
-          from: { ...prev.from, amount: cleanValue },
-          to: { ...prev.to, amount: formatAmount(result) },
+          from: { ...prev.from, amount: adjustedValue },
+          to: { ...prev.to, amount: formattedResult },
         }));
       } else {
         const result =
           (numValue * rates[toCurrency].sell) / rates[fromCurrency].buy;
+        const formattedResult = removeExtraDot(`${result}`);
         setExchange((prev) => ({
           ...prev,
-          to: { ...prev.to, amount: cleanValue },
-          from: { ...prev.from, amount: formatAmount(result) },
+          to: { ...prev.to, amount: adjustedValue },
+          from: { ...prev.from, amount: formattedResult },
         }));
       }
     }
