@@ -19,23 +19,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             scope="col"
           >
             <div
-              class="MuiBox-root css-axw7ok"
+              class="MuiBox-root css-vvn7zl"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Product Name
               </p>
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 10 18"
-              >
-                <svg>
-                  TableFilterIcon.svg
-                </svg>
-              </svg>
             </div>
           </th>
           <th
@@ -43,23 +33,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             scope="col"
           >
             <div
-              class="MuiBox-root css-axw7ok"
+              class="MuiBox-root css-vvn7zl"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Status
               </p>
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 10 18"
-              >
-                <svg>
-                  TableFilterIcon.svg
-                </svg>
-              </svg>
             </div>
           </th>
           <th
@@ -67,23 +47,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             scope="col"
           >
             <div
-              class="MuiBox-root css-axw7ok"
+              class="MuiBox-root css-vvn7zl"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Date Added
               </p>
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 10 18"
-              >
-                <svg>
-                  TableFilterIcon.svg
-                </svg>
-              </svg>
             </div>
           </th>
           <th
@@ -287,30 +257,6 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             </div>
           </td>
         </tr>
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
-        <tr
-          class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-        />
       </tbody>
     </table>
     <div

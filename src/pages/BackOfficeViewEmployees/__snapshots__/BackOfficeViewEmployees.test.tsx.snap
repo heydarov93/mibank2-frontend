@@ -75,23 +75,13 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-axw7ok"
+                class="MuiBox-root css-vvn7zl"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
                   employeeList.firstName
                 </p>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 10 18"
-                >
-                  <svg>
-                    TableFilterIcon.svg
-                  </svg>
-                </svg>
               </div>
             </th>
             <th
@@ -99,7 +89,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-axw7ok"
+                class="MuiBox-root css-p3zgxo"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
@@ -123,23 +113,13 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-axw7ok"
+                class="MuiBox-root css-vvn7zl"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
                   employeeList.role
                 </p>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 10 18"
-                >
-                  <svg>
-                    TableFilterIcon.svg
-                  </svg>
-                </svg>
               </div>
             </th>
             <th
@@ -147,23 +127,13 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-axw7ok"
+                class="MuiBox-root css-vvn7zl"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
                   employeeList.email
                 </p>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 10 18"
-                >
-                  <svg>
-                    TableFilterIcon.svg
-                  </svg>
-                </svg>
               </div>
             </th>
             <th
@@ -171,7 +141,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-axw7ok"
+                class="MuiBox-root css-p3zgxo"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
@@ -198,112 +168,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
         </thead>
         <tbody
           class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
-        >
-          <tr
-            class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
-          >
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              John
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              Doe
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              Manager
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              john.doe@example.com
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              01/02/2024
-            </td>
-            <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-            >
-              <div
-                class="MuiBox-root css-1i27l4i"
-              >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 12 12"
-                  >
-                    <svg>
-                      EditIcon.svg
-                    </svg>
-                  </svg>
-                  LastResortDeposit.edit
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 12 12"
-                  >
-                    <svg>
-                      TrashIcon.svg
-                    </svg>
-                  </svg>
-                  LastResortDeposit.delete
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-          <tr
-            class="MuiTableRow-root css-165jajx-MuiTableRow-root"
-          />
-        </tbody>
+        />
       </table>
       <div
         class="MuiBox-root css-tj50lq"

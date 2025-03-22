@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
 import { useViewEmployeeQuery } from 'api/employeeController';
 import { SubmitButton } from 'components/atoms';
@@ -16,28 +16,57 @@ import {
   HeaderContainer,
   MainContainer,
 } from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage.styled';
+import { getNextSortOrder } from 'utils/sortUtils';
 
 const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control } = useForm();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const page = Number(searchParams.get('page')) || 0;
+  const size = Number(searchParams.get('size')) || 10;
+  const sortDateAdded = searchParams.get('sortDateAdded') || '';
+  const sortLastName = searchParams.get('sortLastName') || '';
 
-  const { data } = useViewEmployeeQuery({ page, size: pageSize });
+  const { data } = useViewEmployeeQuery({
+    page,
+    size,
+    sortDateAdded,
+    sortLastName,
+  });
 
   const tableData =
-    data?.content?.map((item: { dateAdded: string | number | Date }) => ({
+    data?.data?.map((item: { dateAdded: string | number | Date }) => ({
       ...item,
       dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
     })) || [];
 
+  const handleSortChange = (field: 'sortDateAdded' | 'sortLastName') => {
+    const newSort = getNextSortOrder(searchParams.get(field) || '');
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      [field]: newSort || '',
+    });
+  };
+
   const tableHead = [
     { label: t('employeeList.firstName'), key: 'firstName' },
-    { label: t('employeeList.lastName'), key: 'lastName' },
+    {
+      label: t('employeeList.lastName'),
+      key: 'lastName',
+      sortable: true,
+      order: sortLastName,
+      onSort: () => handleSortChange('sortLastName'),
+    },
     { label: t('employeeList.role'), key: 'role' },
     { label: t('employeeList.email'), key: 'email' },
-    { label: t('employeeList.addedDate'), key: 'dateAdded' },
+    {
+      label: t('employeeList.addedDate'),
+      key: 'dateAdded',
+      sortable: true,
+      order: sortDateAdded,
+      onSort: () => handleSortChange('sortDateAdded'),
+    },
   ];
 
   return (
@@ -73,9 +102,19 @@ const BackOfficeViewEmployees = () => {
         tableBody={tableData}
         totalItems={data?.totalElements || 0}
         page={page}
-        pageSize={pageSize}
-        onPageChange={setPage}
-        onPageSizeChange={setPageSize}
+        pageSize={size}
+        onPageChange={(newPage) =>
+          setSearchParams({
+            ...Object.fromEntries(searchParams),
+            page: newPage.toString(),
+          })
+        }
+        onPageSizeChange={(newSize) =>
+          setSearchParams({
+            ...Object.fromEntries(searchParams),
+            size: newSize.toString(),
+          })
+        }
       />
     </MainContainer>
   );

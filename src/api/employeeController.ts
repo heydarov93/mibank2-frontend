@@ -16,10 +16,10 @@ export const employeeControllerApi = createApi({
       }),
     }),
     viewEmployee: builder.query({
-      query: ({ page, size }) => ({
+      query: ({ page, size, sortDateAdded, sortLastName }) => ({
         url: endpoints.employeeAccountManagement.employees.viewEmployee,
         method: 'GET',
-        params: { page, size },
+        params: { page, count: size, sortDateAdded, sortLastName },
       }),
     }),
   }),
