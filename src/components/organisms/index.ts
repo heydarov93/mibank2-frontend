@@ -16,3 +16,4 @@ export { MiBankStepper } from './MiBankStepper/MiBankStepper';
 export { DocumentInfoWrapper } from './RegistrationForm/DocumentInfoWrapper/DocumentInfoWrapper';
 export { CreateForgotPasswordForm } from './CreateForgotPasswordForm/CreateForgotPasswordForm';
 export { ForgotPassword } from './ForgotPassword/ForgotPassword';
+export { AvailableDepositsWindow } from './AvailableDepositsWindow/AvailableDepositsWindow';

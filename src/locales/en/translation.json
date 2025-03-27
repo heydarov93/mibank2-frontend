@@ -26,6 +26,15 @@
       }
     }
   },
+  "DepositWindow": {
+    "availableDeposits": "Available Deposits",
+    "openDeposit": "Open Deposit",
+    "learnMore": "Learn more",
+    "currency": "Currency",
+    "rate": "Rate",
+    "duration": "Duration",
+    "months": "{{months}} Months"
+  },
   "SignupPage": {
     "formTitle": "Registration",
     "email": {
