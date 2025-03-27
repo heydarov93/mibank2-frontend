@@ -1,6 +1,8 @@
 import { Box, Button, useTheme } from '@mui/material';
+import { useState } from 'react';
 
 import MiCarousel from 'components/molecules/Carousel/MiCarousel';
+import { AvailableDepositsWindow } from 'components/organisms';
 import CurrencyCalculator from 'components/organisms/CurrencyCalculator/CurrencyCalculator';
 import { RatesTable } from 'components/organisms/CurrencyExchange/Rates/RatesTable';
 import { Title } from 'components/organisms/CurrencyExchange/Title/Title';
@@ -13,6 +15,12 @@ const images = [
 
 const Homepage = () => {
   const theme = useTheme();
+  const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
+
+  const handleWindowClose = () => {
+    setIsWindowOpen(false);
+  };
+
   return (
     <Box display={'flex'} width={'100%'}>
       <Box width={'20%'} padding={5}>
@@ -83,6 +91,10 @@ const Homepage = () => {
             <RatesTable />
           </Box>
         </Box>
+        <AvailableDepositsWindow
+          onClose={handleWindowClose}
+          isOpen={isWindowOpen}
+        />
       </Box>
     </Box>
   );

@@ -56,7 +56,7 @@ exports[`SignupFormEmail snapshot should match 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-mytjhh"
+      class="MuiBox-root css-0"
     >
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"

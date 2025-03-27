@@ -1,4 +1,6 @@
-import { StyledButton, StyledButtonContainer } from './SubmitButton.styled';
+import { Box } from '@mui/material';
+
+import { StyledButton } from './SubmitButton.styled';
 
 type SubmitButtonProps = {
   onClick?: () => void;
@@ -14,7 +16,7 @@ export const SubmitButton = ({
   startIcon,
 }: SubmitButtonProps) => {
   return (
-    <StyledButtonContainer>
+    <Box>
       <StyledButton
         size="large"
         variant="contained"
@@ -26,6 +28,6 @@ export const SubmitButton = ({
       >
         {buttonContent}
       </StyledButton>
-    </StyledButtonContainer>
+    </Box>
   );
 };

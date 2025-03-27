@@ -11,3 +11,4 @@ export { CountrySelectField } from './CountrySelectField/CountrySelectField';
 export { CitySelectField } from './CitySelectField/CitySelectField';
 export { VerificationCodeInputField } from './VerificationCodeInputField/VerificationCodeInputField';
 export { BackOfficeWarningWindow } from './BackOfficeWarningWindow/BackOfficeWarningWindow';
+export { DepositBox } from './DepositBox/DepositBox';
