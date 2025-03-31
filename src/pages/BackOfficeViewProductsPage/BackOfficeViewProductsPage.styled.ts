@@ -7,6 +7,7 @@ export const MainContainer = styled(Box)<{ blur?: boolean }>(
     gap: spacing(3),
     padding: spacing(4, 5, 2.5, 2.5),
     filter: blur ? 'blur(4px)' : 'none',
+    position: 'relative',
   }),
 );
 
