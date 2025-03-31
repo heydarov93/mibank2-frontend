@@ -427,7 +427,16 @@
       "lastName": "Last Name",
       "role": "Role",
       "email": "Email",
-      "addedDate": "Added Date"
+      "addedDate": "Added Date",
+      "dateAdded": "Date Added",
+      "editEmployee": "Edit Employee",
+      "save": "Save",
+      "placeholder": {
+        "firstName": "Enter the First Name",
+        "lastName": "Enter the Last Name",
+        "email": "example@gmail.com",
+        "role": "Choose here"
+      }
     },
     "cardEditForm": {
       "editCard": "Edit Card",

@@ -11,8 +11,9 @@ export const MainContainer = styled(Box)(({ theme: { spacing, palette } }) => ({
   top: '96px',
   left: '270px',
   minWidth: '500px',
-  overflowY: 'scroll',
+  overflowY: 'auto',
   maxHeight: '800px',
+  border: `1px solid ${palette.grey[100]}`,
 }));
 
 export const MainHeader = styled(Typography)(
