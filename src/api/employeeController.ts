@@ -22,8 +22,25 @@ export const employeeControllerApi = createApi({
         params: { page, count: size, sortDateAdded, sortLastName },
       }),
     }),
+    updateEmployee: builder.mutation({
+      query: (data) => ({
+        url: `${endpoints.employeeAccountManagement.employees.updateEmployee}/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
+    deleteEmployee: builder.mutation({
+      query: (data) => ({
+        url: `${endpoints.employeeAccountManagement.employees.deleteEmployee}/${data.id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useValidateEmailMutation, useViewEmployeeQuery } =
-  employeeControllerApi;
+export const {
+  useValidateEmailMutation,
+  useViewEmployeeQuery,
+  useUpdateEmployeeMutation,
+  useDeleteEmployeeMutation,
+} = employeeControllerApi;

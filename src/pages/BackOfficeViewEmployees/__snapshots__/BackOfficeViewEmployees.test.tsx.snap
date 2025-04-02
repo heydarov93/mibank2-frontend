@@ -6,21 +6,17 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
     class="MuiBox-root css-aku07q"
   >
     <div
-      class="MuiBox-root css-147x205"
+      class="MuiBox-root css-69i1ev"
     >
       <div
         class="MuiBox-root css-1821gv5"
       >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-11adnp0-MuiTypography-root"
-        >
+        <h1>
           header.employeesList
-        </p>
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-q1y5co-MuiTypography-root"
-        >
+        </h1>
+        <h2>
           header.employeesInfo
-        </p>
+        </h2>
       </div>
       <div
         class="MuiBox-root css-0"
@@ -168,7 +164,85 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
         </thead>
         <tbody
           class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
-        />
+        >
+          <tr
+            class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              John
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              Doe
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              Manager
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              john.doe@example.com
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              01/02/2024
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-1i27l4i"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 12 12"
+                  >
+                    <svg>
+                      EditIcon.svg
+                    </svg>
+                  </svg>
+                  LastResortDeposit.edit
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 12 12"
+                  >
+                    <svg>
+                      TrashIcon.svg
+                    </svg>
+                  </svg>
+                  LastResortDeposit.delete
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <div
         class="MuiBox-root css-tj50lq"
