@@ -1,5 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Autocomplete, Box, TextField, Typography } from '@mui/material';
+import {
+  Autocomplete,
+  Box,
+  TextField,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -29,12 +35,18 @@ type EmployeeFormData = {
 interface Props {
   handleClose: () => void;
   formData?: Partial<TableData>;
+  handleUpdate?: (employee: Partial<TableData>) => Promise<void>;
 }
 
-const BackOfficeEditEmployee = ({ handleClose, formData }: Props) => {
+const BackOfficeEditEmployee = ({
+  handleClose,
+  formData,
+  handleUpdate,
+}: Props) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'BackOffice.employeeList',
   });
+  const theme = useTheme();
   const {
     control,
     setValue,
@@ -53,7 +65,13 @@ const BackOfficeEditEmployee = ({ handleClose, formData }: Props) => {
         new Date(formData?.dateAdded || '').toLocaleDateString('en-GB'),
     },
   });
-  const onSubmit = () => {
+  const onSubmit = async (data: EmployeeFormData) => {
+    const formattedData = {
+      ...data,
+      id: formData?.id,
+      dateAdded: dayjs(data.dateAdded).format('YYYY-MM-DD'),
+    };
+    handleUpdate?.(formattedData);
     handleClose();
   };
   return (
@@ -125,7 +143,7 @@ const BackOfficeEditEmployee = ({ handleClose, formData }: Props) => {
                 borderRadius: '10px',
                 '&:hover:not(.Mui-focused)': {
                   '& .MuiOutlinedInput-notchedOutline': {
-                    border: `2px solid grey`,
+                    border: `2px solid ${theme.palette.grey[200]}`,
                   },
                 },
               },

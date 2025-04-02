@@ -2,12 +2,18 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import BackOfficeViewEmployees from './BackOfficeViewEmployees';
 
-import { useViewEmployeeQuery } from 'api/employeeController';
+import {
+  useDeleteEmployeeMutation,
+  useUpdateEmployeeMutation,
+  useViewEmployeeQuery,
+} from 'api/employeeController';
 
 import '@testing-library/jest-dom';
 
 jest.mock('api/employeeController', () => ({
   useViewEmployeeQuery: jest.fn(),
+  useUpdateEmployeeMutation: jest.fn(() => [jest.fn()]),
+  useDeleteEmployeeMutation: jest.fn(() => [jest.fn()]),
 }));
 
 jest.mock('components/molecules/SearchField/SearchField', () => ({
@@ -19,6 +25,9 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 jest.mock('react-hook-form', () => ({
@@ -58,6 +67,8 @@ describe('BackOfficeViewEmployees Component', () => {
 
   beforeEach(() => {
     (useViewEmployeeQuery as jest.Mock).mockReturnValue({ data: mockData });
+    (useUpdateEmployeeMutation as jest.Mock).mockReturnValue([jest.fn()]);
+    (useDeleteEmployeeMutation as jest.Mock).mockReturnValue([jest.fn()]);
   });
 
   test('clicking "Add Employee" button', () => {

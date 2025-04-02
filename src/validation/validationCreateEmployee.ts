@@ -4,7 +4,10 @@ import { REG_EXP } from './regExp';
 
 import i18n from 'i18n';
 
-export const employeeRoles = ['Administrator', 'Employee'];
+export const employeeRoles = [
+  i18n.t('BackOffice.addNewEmployee.admin'),
+  i18n.t('BackOffice.addNewEmployee.employee'),
+];
 
 export const employeeValidationSchema = yup.object().shape({
   firstName: yup
