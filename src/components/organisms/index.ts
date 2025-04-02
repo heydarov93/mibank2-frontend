@@ -17,3 +17,5 @@ export { DocumentInfoWrapper } from './RegistrationForm/DocumentInfoWrapper/Docu
 export { CreateForgotPasswordForm } from './CreateForgotPasswordForm/CreateForgotPasswordForm';
 export { ForgotPassword } from './ForgotPassword/ForgotPassword';
 export { AvailableDepositsWindow } from './AvailableDepositsWindow/AvailableDepositsWindow';
+export { AboutDepositCard } from './AboutDepositCard/AboutDepositCard';
+export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';

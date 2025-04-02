@@ -22,6 +22,7 @@ import {
   TO_BACK_OFFICE_VIEW_PRODUCTS,
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE_VIEW_EMPLOYEES,
+  TO_DEPOSIT_LEARN_MORE,
 } from '../constants/routesName';
 import {
   ErrorPage,
@@ -37,6 +38,7 @@ import {
   ForgotPasswordPage,
   BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
+  DepositLearnMorePage,
 } from '../pages';
 
 import BackOfficePrivateRoutes from './BackOfficePrivateRoutes';
@@ -78,6 +80,10 @@ const routes = createBrowserRouter([
       {
         path: TO_HISTORY,
         element: <UnderDevPage />,
+      },
+      {
+        path: TO_DEPOSIT_LEARN_MORE,
+        element: <DepositLearnMorePage />,
       },
     ],
   },

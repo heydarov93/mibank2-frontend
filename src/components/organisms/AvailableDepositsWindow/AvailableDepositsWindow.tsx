@@ -22,6 +22,26 @@ export const AvailableDepositsWindow = ({
     return null;
   }
 
+  const mockData = [
+    {
+      name: 'The Best Deposit',
+      id: 1,
+      type: 'Term Deposit',
+      currency: 'USD',
+      min: 1,
+      max: 2,
+      description: 'Valid Description Valid',
+      term: 12,
+      interestRate: 1,
+      capitalization: 3,
+      earlyWithdrawalLimit: 2,
+      earlyWithdrawalFee: 3,
+      earlyWithdrawal: true,
+      augmentable: true,
+      autoRenewable: true,
+    },
+  ];
+
   return (
     <MainContainer>
       <Box
@@ -36,7 +56,17 @@ export const AvailableDepositsWindow = ({
         <CloseButtonX onClick={onClose} />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <DepositBox />
+        {mockData.map((item) => (
+          <DepositBox
+            key={item.id}
+            depositCurrency={item.currency}
+            depositDescription={item.description}
+            depositDuration={item.term}
+            depositName={item.name}
+            depositRate={item.interestRate}
+            redirect={`/deposits/learn-more/${item.id}`}
+          />
+        ))}
       </Box>
     </MainContainer>
   );

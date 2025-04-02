@@ -16,7 +16,7 @@ export const StyledContentContainer = styled(Box)(({ theme: { spacing } }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   padding: spacing(5, 0),
-  maxWidth: '313px',
+  minWidth: '313px',
   height: '256px',
 }));
 
@@ -44,5 +44,6 @@ export const StyledDescription = styled(Typography)(
     color: palette.grey[400],
     fontWeight: 400,
     fontSize: spacing(2),
+    maxWidth: '313px',
   }),
 );
