@@ -12,3 +12,6 @@ export { CitySelectField } from './CitySelectField/CitySelectField';
 export { VerificationCodeInputField } from './VerificationCodeInputField/VerificationCodeInputField';
 export { BackOfficeWarningWindow } from './BackOfficeWarningWindow/BackOfficeWarningWindow';
 export { DepositBox } from './DepositBox/DepositBox';
+export { AboutDepositText } from './AboutDepositText/AboutDepositText';
+export { InvestmentBox } from './InvestmentBox/InvestmentBox';
+export { DepositBenefitsBox } from './DepositBenefitsBox/DepositBenefitsBox';

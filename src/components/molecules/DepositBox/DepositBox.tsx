@@ -20,6 +20,7 @@ interface DepositBoxProps {
   depositRate: number;
   depositDuration: number;
   depositCurrency: string;
+  redirect: string;
 }
 
 export const DepositBox = ({
@@ -28,8 +29,9 @@ export const DepositBox = ({
   depositDuration,
   depositName,
   depositRate,
+  redirect,
   //TODO: Once backend is ready this will not be partial and all the info will be required
-}: Partial<DepositBoxProps>) => {
+}: DepositBoxProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
 
   return (
@@ -39,18 +41,22 @@ export const DepositBox = ({
         <Box sx={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <SubmitButton buttonContent={t('openDeposit')} />
           {/* TODO: Add proper routing logic once backend is ready */}
-          <Link to="/" style={{ color: theme.palette.primary.main }}>
+          <Link to={redirect} style={{ color: theme.palette.primary.main }}>
             {t('learnMore')}
           </Link>
         </Box>
       </StyledContentContainer>
       <StyledContentContainer>
         <StyledDescription>{depositDescription}</StyledDescription>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: '67px',
+          }}
+        >
           <Box>
-            <StyledSecondaryName>
-              {depositRate?.toFixed(2)}%
-            </StyledSecondaryName>
+            <StyledSecondaryName>{depositRate}%</StyledSecondaryName>
             <StyledDescription>{t('rate')}</StyledDescription>
           </Box>
           <Box>
