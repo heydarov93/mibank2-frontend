@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = `
+exports[`renders BackOfficeViewEmployees correctly 1`] = `
 <div>
   <div
     class="MuiBox-root css-kgct6v"
@@ -12,10 +12,10 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
         class="MuiBox-root css-1821gv5"
       >
         <h1>
-          header.employeesList
+          Employees List
         </h1>
         <h2>
-          header.employeesInfo
+          Employee Information
         </h2>
       </div>
       <div
@@ -40,7 +40,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               </svg>
             </svg>
           </span>
-          header.addEmployee
+          Add Employee
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
@@ -52,7 +52,51 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
     >
       <div
         class="MuiBox-root css-10ug5gj"
-      />
+      >
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-75lrgp-MuiFormControl-root-MuiTextField-root"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="SearchIcon"
+              focusable="false"
+              style="margin-right: 8px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"
+              />
+            </svg>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input"
+              id="searchEmployee"
+              name="searchEmployee"
+              placeholder="header.searchEmployees"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-ihdtdm"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="MuiTableContainer-root css-x226ax-MuiTableContainer-root"
@@ -76,45 +120,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
-                  employeeList.firstName
-                </p>
-              </div>
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
-              scope="col"
-            >
-              <div
-                class="MuiBox-root css-p3zgxo"
-              >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
-                >
-                  employeeList.lastName
-                </p>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 10 18"
-                >
-                  <svg>
-                    TableFilterIcon.svg
-                  </svg>
-                </svg>
-              </div>
-            </th>
-            <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
-              scope="col"
-            >
-              <div
-                class="MuiBox-root css-vvn7zl"
-              >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
-                >
-                  employeeList.role
+                  First Name
                 </p>
               </div>
             </th>
@@ -128,7 +134,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
-                  employeeList.email
+                  Last Name
                 </p>
               </div>
             </th>
@@ -137,23 +143,41 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
               scope="col"
             >
               <div
-                class="MuiBox-root css-p3zgxo"
+                class="MuiBox-root css-vvn7zl"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
-                  employeeList.addedDate
+                  Role
                 </p>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-ja98u0-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 10 18"
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
                 >
-                  <svg>
-                    TableFilterIcon.svg
-                  </svg>
-                </svg>
+                  Email
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                >
+                  Date Added
+                </p>
               </div>
             </th>
             <th
@@ -167,6 +191,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
         >
           <tr
             class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
+            data-testid="table-row"
           >
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
@@ -181,7 +206,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
             >
-              Manager
+              Admin
             </td>
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
@@ -191,7 +216,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
             >
-              01/02/2024
+              2024-04-01
             </td>
             <td
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
@@ -214,7 +239,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
                       EditIcon.svg
                     </svg>
                   </svg>
-                  LastResortDeposit.edit
+                  Edit
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
@@ -234,7 +259,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
                       TrashIcon.svg
                     </svg>
                   </svg>
-                  LastResortDeposit.delete
+                  Delete
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
@@ -259,7 +284,7 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-ntsdmc-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
-              aria-controls=":r0:"
+              aria-controls=":r1:"
               aria-expanded="false"
               aria-haspopup="listbox"
               class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
@@ -426,6 +451,126 @@ exports[`BackOfficeViewEmployees Component clicking "Add Employee" button 1`] = 
             </button>
           </div>
         </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-y0cj4i"
+    >
+      <div
+        class="MuiBox-root css-6lzzp6"
+      >
+        <div
+          class="MuiBox-root css-vsj3pz"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 20 20"
+          >
+            <svg>
+              BackOfficeWarningIcon.svg
+            </svg>
+          </svg>
+        </div>
+        <div
+          class="MuiBox-root css-1821gv5"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-vxz123-MuiTypography-root"
+          >
+            Delete Employee
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-enn6w2-MuiTypography-root"
+          >
+            Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-ch27pp"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Cancel
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError css-1sszw6i-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          ConfirmationWindow.deleteBtn
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-165xhxi"
+    >
+      <div
+        class="MuiBox-root css-6lzzp6"
+      >
+        <div
+          class="MuiBox-root css-vsj3pz"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 20 20"
+          >
+            <svg>
+              BackOfficeWarningIcon.svg
+            </svg>
+          </svg>
+        </div>
+        <div
+          class="MuiBox-root css-1821gv5"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-vxz123-MuiTypography-root"
+          >
+            Delete Employee
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-enn6w2-MuiTypography-root"
+          >
+            Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-ch27pp"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Cancel
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError css-1sszw6i-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          ConfirmationWindow.deleteBtn
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
       </div>
     </div>
   </div>

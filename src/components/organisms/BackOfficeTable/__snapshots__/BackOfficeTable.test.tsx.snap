@@ -67,6 +67,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
       >
         <tr
           class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
+          data-testid="table-row"
         >
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
@@ -163,6 +164,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
         </tr>
         <tr
           class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
+          data-testid="table-row"
         >
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"

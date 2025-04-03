@@ -143,7 +143,21 @@ const BackOfficeViewEmployees = () => {
             }))
           }
           title={state.actionMsg}
-          body={state.actionBodyMsg}
+          body={state.actionMsgBody}
+        />
+      )}
+
+      {state.showDelModal && (
+        <BackOfficeWarningWindow
+          onCancelClick={() =>
+            setState((prev) => ({ ...prev, showDelModal: false }))
+          }
+          title={t('warningWindow.deleteEmployee')}
+          text={t('warningWindow.deleteEmployeeText', {
+            firstName: state.selectedEmp.firstName,
+            lastName: state.selectedEmp.lastName,
+          })}
+          onDeleteClick={handleDelete}
         />
       )}
     </MainContainer>

@@ -99,7 +99,7 @@ const BackOfficeTable = ({
           ) : (
             tableBody.length > 0 &&
             tableBody.map((item) => (
-              <StyledTableRow key={item.id}>
+              <StyledTableRow data-testid="table-row" key={item.id}>
                 <BackOfficeTableItem
                   tableData={item}
                   tableHead={tableHead}
