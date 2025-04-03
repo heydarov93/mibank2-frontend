@@ -101,7 +101,6 @@ const BackOfficeViewEmployees = () => {
           title={t('warningWindow.deleteEmployee')}
           text={t('warningWindow.deleteEmployeeText')}
           onDeleteClick={handleDelete}
-          employee={state.selectedEmp}
         />
       )}
 
@@ -127,7 +126,6 @@ const BackOfficeViewEmployees = () => {
             }))
           }
           title={state.actionMsg}
-          body={state.actionBodyMsg}
         />
       )}
 
