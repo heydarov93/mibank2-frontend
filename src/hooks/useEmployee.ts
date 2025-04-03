@@ -74,6 +74,7 @@ const useEmployees = () => {
         setState((prev) => ({
           ...prev,
           actionMsg: t('ConfirmationWindow.updateTitle'),
+          actionBodyMsg: t('ConfirmationWindow.employeeUpdateBody'),
           successMsgModal: true,
         }));
         await refetch();
@@ -82,6 +83,8 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.updateFailed'),
+        actionBodyMsg: t('GeneralErrors.wentWrongError'),
+        failMsgModal: true,
       }));
     }
   };

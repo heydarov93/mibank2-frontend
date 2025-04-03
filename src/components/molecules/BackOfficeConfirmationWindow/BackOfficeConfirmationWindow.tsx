@@ -1,10 +1,9 @@
 import { Box, SxProps, Theme } from '@mui/material';
-import React from 'react';
 
 import {
   MainContainer,
-  StyledHeader,
   SecondaryText,
+  StyledHeader,
 } from './BackOfficeConfirmationWindow.styled';
 
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';

@@ -34,6 +34,7 @@ interface BackOfficeWarningWindowProps {
   isLoading?: boolean;
   isError?: boolean;
   errorMessage?: string;
+  isFailed?: boolean;
 }
 
 export const BackOfficeWarningWindow = ({

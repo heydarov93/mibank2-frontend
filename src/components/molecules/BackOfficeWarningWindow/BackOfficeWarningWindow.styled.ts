@@ -29,7 +29,7 @@ export const MainHeader = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: '24px',
     color: palette.common.black,
-    fontWeight: '600',
+    fontWeight: 600,
     lineHeight: '28px',
   }),
 );
@@ -39,7 +39,7 @@ export const SecondaryHeader = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: typography.mediumLogo?.fontSize,
     color: palette.grey[400],
-    fontWeight: '400',
+    fontWeight: 400,
     lineHeight: '24px',
   }),
 );
@@ -49,7 +49,7 @@ export const ProductName = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: typography.mediumLogo?.fontSize,
     color: palette.grey[400],
-    fontWeight: '500',
+    fontWeight: 500,
     lineHeight: '18px',
   }),
 );
