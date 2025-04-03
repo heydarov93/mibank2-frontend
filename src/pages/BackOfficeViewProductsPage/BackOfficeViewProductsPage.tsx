@@ -132,7 +132,7 @@ const BackOfficeViewProductsPage = () => {
         />
         {state.isDeleteVisible && (
           <BackOfficeWarningWindow
-            sx={{ top: '290px', left: '100px' }}
+            sx={{ top: '300px', left: '490px' }}
             product={state.selectedProduct}
             onCancelClick={closeDeleteWindow}
             onDeleteClick={handleDeleteApi}
@@ -160,7 +160,7 @@ const BackOfficeViewProductsPage = () => {
       )}
       {state.isConfirmationWindowVisible && (
         <BackOfficeConfirmationWindow
-          sx={{ top: '40px', left: '200px' }}
+          sx={{ top: '50px', left: '520px' }}
           onClose={closeConfirmationWindow}
           title={state.confirmationTitle}
           body={state.confirmationBody}

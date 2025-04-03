@@ -1,5 +1,18 @@
 import { Box, styled, Typography } from '@mui/material';
 
+export const Overlay = styled(Box)(({ theme: { palette } }) => ({
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: "25%",
+  backgroundColor: palette.shadow.shadowMedium,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  zIndex: 1000,
+}));
+
 export const StyledBox = styled(Box)(({ theme: { palette, spacing } }) => ({
   height: spacing(6),
   width: spacing(6),
@@ -27,7 +40,7 @@ export const SecondaryHeader = styled(Typography)(
     fontSize: typography.mediumLogo?.fontSize,
     color: palette.grey[400],
     fontWeight: '400',
-    lineHeight: '18px',
+    lineHeight: '24px',
   }),
 );
 
@@ -49,7 +62,7 @@ export const MainContainer = styled(Box)(({ theme: { palette, spacing } }) => ({
   padding: spacing(4),
   display: 'flex',
   flexDirection: 'column',
-  gap: spacing(3),
   backgroundColor: palette.common.white,
   justifyContent: 'space-between',
+  zIndex: 1101,
 }));

@@ -1,12 +1,15 @@
-import { SvgIcon } from '@mui/material';
-import React from 'react';
+import { SvgIcon, SxProps, Theme } from '@mui/material';
 
 import { ReactComponent as SuccessfulCreation } from 'assets/icons/SuccessfulCreation.svg';
 
-const SuccessfulCreationIcon = () => {
+interface SuccessfulCreationIconProps {
+  sx?: SxProps<Theme>;
+}
+
+const SuccessfulCreationIcon = ({ sx }: SuccessfulCreationIconProps) => {
   return (
-    <SvgIcon>
-      <SuccessfulCreation />
+    <SvgIcon sx={{ ...sx }}>
+      <SuccessfulCreation width="100%" height="100%" />
     </SvgIcon>
   );
 };

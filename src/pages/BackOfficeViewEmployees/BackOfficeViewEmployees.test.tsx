@@ -10,6 +10,8 @@ import {
 
 import '@testing-library/jest-dom';
 
+import { MemoryRouter } from 'react-router-dom';
+
 jest.mock('api/employeeController', () => ({
   useViewEmployeeQuery: jest.fn(),
   useUpdateEmployeeMutation: jest.fn(() => [jest.fn()]),
@@ -72,12 +74,20 @@ describe('BackOfficeViewEmployees Component', () => {
   });
 
   test('clicking "Add Employee" button', () => {
-    const { container } = render(<BackOfficeViewEmployees />);
+    const { container } = render(
+      <MemoryRouter>
+        <BackOfficeViewEmployees />
+      </MemoryRouter>,
+    );
     expect(container).toMatchSnapshot();
   });
 
   test('renders headers and table structure correctly', () => {
-    render(<BackOfficeViewEmployees />);
+    render(
+      <MemoryRouter>
+        <BackOfficeViewEmployees />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText('header.employeesList')).toBeInTheDocument();
     expect(screen.getByText('header.employeesInfo')).toBeInTheDocument();
@@ -91,7 +101,11 @@ describe('BackOfficeViewEmployees Component', () => {
   });
 
   test('clicking "Add Employee" button', () => {
-    render(<BackOfficeViewEmployees />);
+    render(
+      <MemoryRouter>
+        <BackOfficeViewEmployees />
+      </MemoryRouter>,
+    );
     const addButton = screen.getByText('header.addEmployee');
 
     fireEvent.click(addButton);
