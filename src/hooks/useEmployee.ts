@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const useEmployees = () => {
     showEditForm: false,
     showDelModal: false,
     actionMsg: '',
-    actionBodyMsg: '',
+    actionMsgBody: '',
     successMsgModal: false,
     failMsgModal: false,
   });
@@ -74,7 +74,7 @@ const useEmployees = () => {
         setState((prev) => ({
           ...prev,
           actionMsg: t('ConfirmationWindow.updateTitle'),
-          actionBodyMsg: t('ConfirmationWindow.employeeUpdateBody'),
+          actionMsgBody: t('ConfirmationWindow.updateEmployeeBody'),
           successMsgModal: true,
         }));
         await refetch();
@@ -106,7 +106,7 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.deleteTitle'),
-        actionBodyMsg: t('ConfirmationWindow.employeeDeleteBody'),
+        actionMsgBody: t('ConfirmationWindow.deleteEmployeeBody'),
         successMsgModal: true,
       }));
       await refetch();
@@ -139,6 +139,28 @@ const useEmployees = () => {
       onSort: () => handleSortChange('sortDateAdded'),
     },
   ];
+
+  useEffect(() => {
+    if (state.successMsgModal) {
+      setTimeout(() => {
+        setState((prev) => ({
+          ...prev,
+          successMsgModal: false,
+        }));
+      }, 3000);
+    }
+  }, [state.successMsgModal]);
+
+  useEffect(() => {
+    if (state.showDelModal) {
+      setTimeout(() => {
+        setState((prev) => ({
+          ...prev,
+          showDelModal: false,
+        }));
+      }, 3000);
+    }
+  }, [state.showDelModal]);
 
   return {
     tableData,
