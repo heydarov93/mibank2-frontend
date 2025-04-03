@@ -3,22 +3,30 @@
 exports[`BackOfficeConfirmationWindow matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-roswyx"
+    class="MuiBox-root css-1o0wvyj"
   >
     <div
-      data-testid="success-icon"
-    />
-    <div
-      class="MuiBox-root css-0"
+      class="MuiBox-root css-gojse6"
     >
-      <p
-        class="MuiTypography-root MuiTypography-body1 css-z0zpi2-MuiTypography-root"
-        data-testid="confirmation-title"
-      />
-      <p
-        class="MuiTypography-root MuiTypography-body1 css-6zo98n-MuiTypography-root"
-        data-testid="secondary-text"
-      />
+      <div
+        class="MuiBox-root css-j2ly44"
+      >
+        <div
+          data-testid="success-icon"
+        />
+      </div>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-13y3qc6-MuiTypography-root"
+          data-testid="confirmation-title"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-6zo98n-MuiTypography-root"
+          data-testid="secondary-text"
+        />
+      </div>
     </div>
     <svg
       data-testid="close-button"

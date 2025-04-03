@@ -327,6 +327,7 @@
       "serverError": "Unknown Server Error, Please try again later",
       "notFound": "Deposit not found, please select different deposit",
       "generalError": "Unknown error occured, please try again later",
+      "wentWrongError": "Something went wrong. Please try again.",
       "deleteFailed": "Failed to delete!"
     },
     "SideBar": {
@@ -383,10 +384,11 @@
       "deleteCard": "Delete Card?",
       "deleteTitle": "Deleted Successfully!",
       "deleteBody": "The deposit information was deleted",
+      "employeeDeleteBody": "The employee information was deleted.",
       "updateTitle": "Updated Successfully!",
       "updateBody": "The deposit information was updated and saved.",
       "updateFailed": "Update failed! Please try again.",
-      "deleteFailed": "Delete failed! Please try again."
+      "deleteFailed": "Failed to delete!"
     },
     "WarningWindow": {
       "mainTitle": "Cancel Product Creation?",
@@ -573,8 +575,8 @@
       "deleteDepositText": "Deletion is irreversible. Are you sure you want to delete",
       "cancelProduct": "Cancel Product Creation?",
       "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?",
-      "deleteEmployee": "Delete Employee",
-      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?"
+      "deleteEmployee": "Delete Employee?",
+      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete"
     }
   },
   "Homepage": {

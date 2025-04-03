@@ -68,6 +68,7 @@ export const theme = createTheme({
     },
     shadow: {
       shadowLight: 'rgba(109, 114, 120, 0.1)',
+      shadowMedium: 'rgba(0, 0, 0, 0.3)',
     },
   },
   animations: {

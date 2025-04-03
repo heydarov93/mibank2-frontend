@@ -1,9 +1,14 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+
 import BackOfficeConfirmationWindow from './BackOfficeConfirmationWindow';
 
 jest.mock(
   'components/atoms/SuccessfulCreationIcon/SuccessfulCreationIcon',
-  () => () => <div data-testid="success-icon"></div>,
+  () => {
+    const MockedComponent = () => <div data-testid="success-icon"></div>;
+    MockedComponent.displayName = 'SuccessfulCreationIcon';
+    return MockedComponent;
+  },
 );
 
 describe('BackOfficeConfirmationWindow', () => {

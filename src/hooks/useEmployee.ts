@@ -25,7 +25,9 @@ const useEmployees = () => {
     showEditForm: false,
     showDelModal: false,
     actionMsg: '',
+    actionBodyMsg: '',
     successMsgModal: false,
+    failMsgModal: false,
   });
 
   const { data, refetch } = useViewEmployeeQuery({
@@ -101,6 +103,7 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.deleteTitle'),
+        actionBodyMsg: t('ConfirmationWindow.employeeDeleteBody'),
         successMsgModal: true,
       }));
       await refetch();
@@ -108,6 +111,8 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.deleteFailed'),
+        actionBodyMsg: t('GeneralErrors.wentWrongError'),
+        failMsgModal: true,
       }));
     }
   };

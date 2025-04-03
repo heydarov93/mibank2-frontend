@@ -52,6 +52,7 @@ declare module '@mui/material/styles' {
     };
     shadow: {
       shadowLight: string;
+      shadowMedium: string;
     };
   }
 
@@ -64,6 +65,7 @@ declare module '@mui/material/styles' {
     };
     shadow: {
       shadowLight: string;
+      shadowMedium: string;
     };
   }
 }

@@ -24,11 +24,28 @@ const BackOfficeConfirmationWindow = ({
   body,
 }: BackOfficeConfirmationWindowProps) => {
   return (
-    <MainContainer sx={{ position: 'absolute', ...sx }}>
-      <SuccessfulCreationIcon />
-      <Box>
-        <StyledHeader data-testid="confirmation-title">{title}</StyledHeader>
-        <SecondaryText data-testid="secondary-text">{body}</SecondaryText>
+    <MainContainer sx={{ position: 'fixed', ...sx }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '12px',
+        }}
+      >
+        <Box
+          sx={{
+            width: '48px',
+            height: '48px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <SuccessfulCreationIcon sx={{ width: '48px', height: '48px' }} />
+        </Box>
+        <Box>
+          <StyledHeader data-testid="confirmation-title">{title}</StyledHeader>
+          <SecondaryText data-testid="secondary-text">{body}</SecondaryText>
+        </Box>
       </Box>
       <CloseButtonX onClick={onClose} />
     </MainContainer>
