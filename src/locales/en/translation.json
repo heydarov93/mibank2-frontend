@@ -385,9 +385,10 @@
       "deleteTitle": "Deleted Successfully!",
       "deleteBody": "The deposit information was deleted",
       "employeeDeleteBody": "The employee information was deleted.",
+      "employeeUpdateBody": "The employee information was updated and saved.",
       "updateTitle": "Updated Successfully!",
       "updateBody": "The deposit information was updated and saved.",
-      "updateFailed": "Update failed! Please try again.",
+      "updateFailed": "Update failed!",
       "deleteFailed": "Failed to delete!"
     },
     "WarningWindow": {

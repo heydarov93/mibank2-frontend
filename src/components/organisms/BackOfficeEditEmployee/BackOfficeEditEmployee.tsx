@@ -19,6 +19,7 @@ import { InputField, SubmitButton } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import { Overlay } from 'components/molecules/BackOfficeWarningWindow/BackOfficeWarningWindow.styled';
 import {
   employeeRoles,
   employeeValidationSchema,
@@ -75,102 +76,106 @@ const BackOfficeEditEmployee = ({
     handleClose();
   };
   return (
-    <MainContainer>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
+    <Overlay>
+      <MainContainer
+        sx={{ position: 'fixed', left: '500px', top: '50px', height: '620px' }}
       >
-        <MainHeader>{t('editEmployee')}</MainHeader>
-        <CloseButtonX onClick={handleClose} />
-      </Box>
-      <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
-        <Box mb={3}>
-          <Typography fontWeight={'bold'} fontSize={14}>
-            {t('firstName')}
-          </Typography>
-          <InputField
-            name="firstName"
-            control={control}
-            id="firstName"
-            placeholder={t('placeholder.firstName')}
-            error={errors.firstName}
-            helperText={errors.firstName?.message || ''}
-          />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <MainHeader>{t('editEmployee')}</MainHeader>
+          <CloseButtonX onClick={handleClose} />
         </Box>
+        <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
+          <Box mb={3}>
+            <Typography fontWeight={'bold'} fontSize={14}>
+              {t('firstName')}
+            </Typography>
+            <InputField
+              name="firstName"
+              control={control}
+              id="firstName"
+              placeholder={t('placeholder.firstName')}
+              error={errors.firstName}
+              helperText={errors.firstName?.message || ''}
+            />
+          </Box>
 
-        <Box mb={3}>
-          <Typography fontWeight={'bold'} fontSize={14}>
-            {t('lastName')}
-          </Typography>
-          <InputField
-            name="lastName"
-            control={control}
-            id="lastName"
-            placeholder={t('placeholder.lastName')}
-            error={errors.lastName}
-            helperText={errors.lastName?.message || ''}
-          />
-        </Box>
+          <Box mb={3}>
+            <Typography fontWeight={'bold'} fontSize={14}>
+              {t('lastName')}
+            </Typography>
+            <InputField
+              name="lastName"
+              control={control}
+              id="lastName"
+              placeholder={t('placeholder.lastName')}
+              error={errors.lastName}
+              helperText={errors.lastName?.message || ''}
+            />
+          </Box>
 
-        <Box mb={3}>
-          <Typography fontWeight={'bold'} fontSize={14}>
-            {t('email')}
-          </Typography>
-          <InputField
-            name="email"
-            control={control}
-            id="email"
-            placeholder={t('placeholder.email')}
-            error={errors.email}
-            helperText={errors.email?.message || ''}
-          />
-        </Box>
-        <Box mb={3}>
-          <Typography fontWeight={'bold'} fontSize={14}>
-            {t('role')}
-          </Typography>
-          <Autocomplete
-            options={employeeRoles}
-            defaultValue={formData?.role}
-            getOptionLabel={(option) => option}
-            onChange={(_, value) => setValue('role', value || '')}
-            sx={{
-              borderRadius: '10px',
-              '& .MuiOutlinedInput-root': {
+          <Box mb={3}>
+            <Typography fontWeight={'bold'} fontSize={14}>
+              {t('email')}
+            </Typography>
+            <InputField
+              name="email"
+              control={control}
+              id="email"
+              placeholder={t('placeholder.email')}
+              error={errors.email}
+              helperText={errors.email?.message || ''}
+            />
+          </Box>
+          <Box mb={3}>
+            <Typography fontWeight={'bold'} fontSize={14}>
+              {t('role')}
+            </Typography>
+            <Autocomplete
+              options={employeeRoles}
+              defaultValue={formData?.role}
+              getOptionLabel={(option) => option}
+              onChange={(_, value) => setValue('role', value || '')}
+              sx={{
                 borderRadius: '10px',
-                '&:hover:not(.Mui-focused)': {
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    border: `2px solid ${theme.palette.grey[200]}`,
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '10px',
+                  '&:hover:not(.Mui-focused)': {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: `2px solid ${theme.palette.grey[200]}`,
+                    },
                   },
                 },
-              },
-            }}
-            renderInput={(params) => (
-              <TextField {...params} placeholder={t('placeholder.role')} />
-            )}
-          />
-        </Box>
+              }}
+              renderInput={(params) => (
+                <TextField {...params} placeholder={t('placeholder.role')} />
+              )}
+            />
+          </Box>
 
-        <Box mb={3}>
-          <Typography fontWeight={'bold'} fontSize={14}>
-            {t('dateAdded')}
-          </Typography>
-          <DocumentDatePicker
-            name="dateAdded"
-            placeholder={t('dateAdded')}
-            control={control}
-            errors={errors}
-            className={errors.dateAdded ? 'shake' : ''}
-            id={'dateAdded'}
-            maxDate={dayjs()}
-          />
-        </Box>
-        <SubmitButton isDisabled={!isValid} buttonContent={t('save')} />
-      </form>
-    </MainContainer>
+          <Box mb={3}>
+            <Typography fontWeight={'bold'} fontSize={14}>
+              {t('dateAdded')}
+            </Typography>
+            <DocumentDatePicker
+              name="dateAdded"
+              placeholder={t('dateAdded')}
+              control={control}
+              errors={errors}
+              className={errors.dateAdded ? 'shake' : ''}
+              id={'dateAdded'}
+              maxDate={dayjs()}
+            />
+          </Box>
+          <SubmitButton isDisabled={!isValid} buttonContent={t('save')} />
+        </form>
+      </MainContainer>
+    </Overlay>
   );
 };
 
