@@ -28,6 +28,7 @@ const BackOfficeViewEmployees = () => {
     tableHead,
     page,
     size,
+    totalItems,
     searchParams,
     setSearchParams,
     state,
@@ -73,7 +74,7 @@ const BackOfficeViewEmployees = () => {
       <BackOfficeTable
         tableHead={tableHead}
         tableBody={tableData}
-        totalItems={tableData.length}
+        totalItems={totalItems}
         page={page}
         pageSize={size}
         onPageChange={(newPage) =>
@@ -91,19 +92,6 @@ const BackOfficeViewEmployees = () => {
         onEditClick={handleEdit}
         onDeleteClick={handleDeleteModal}
       />
-
-      {state.showDelModal && (
-        <BackOfficeWarningWindow
-          sx={{ top: '300px', left: '490px' }}
-          onCancelClick={() =>
-            setState((prev) => ({ ...prev, showDelModal: false }))
-          }
-          title={t('warningWindow.deleteEmployee')}
-          text={t('warningWindow.deleteEmployeeText')}
-          onDeleteClick={handleDelete}
-        />
-      )}
-
       {state.showEditForm && (
         <BackOfficeEditEmployee
           formData={state.selectedEmp}
