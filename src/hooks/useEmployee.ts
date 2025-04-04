@@ -41,11 +41,11 @@ const useEmployees = () => {
   const [deleteEmployee] = useDeleteEmployeeMutation();
 
   const tableData =
-    data?.content?.map((item: { dateAdded: string | number | Date }) => ({
+    data?.data?.map((item: { dateAdded: string | number | Date }) => ({
       ...item,
       dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
     })) || [];
-
+  const totalItems = data?.totalItems
   const handleSortChange = (field: string) => {
     const newSort = getNextSortOrder(searchParams.get(field) || '');
     setSearchParams({
@@ -58,6 +58,7 @@ const useEmployees = () => {
     setState((prev) => ({
       ...prev,
       showEditForm: true,
+      showDelModal: false,
       selectedEmp: {
         ...item,
         dateAdded: dayjs(item.dateAdded).format('YYYY-MM-DD'),
@@ -93,6 +94,7 @@ const useEmployees = () => {
     setState((prev) => ({
       ...prev,
       showDelModal: true,
+      showEditForm: false,
       selectedEmp: item,
     }));
   };
@@ -151,22 +153,12 @@ const useEmployees = () => {
     }
   }, [state.successMsgModal]);
 
-  useEffect(() => {
-    if (state.showDelModal) {
-      setTimeout(() => {
-        setState((prev) => ({
-          ...prev,
-          showDelModal: false,
-        }));
-      }, 3000);
-    }
-  }, [state.showDelModal]);
-
   return {
     tableData,
     tableHead,
     page,
     size,
+    totalItems,
     searchParams,
     setSearchParams,
     state,

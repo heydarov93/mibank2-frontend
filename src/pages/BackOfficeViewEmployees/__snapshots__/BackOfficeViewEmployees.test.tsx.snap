@@ -335,10 +335,10 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
           >
             1
              - 
-            1
+            0
              
             of 
-            1
+            0
              items
           </p>
         </div>
@@ -404,7 +404,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
             >
               of 
-              1
+              0
             </p>
           </div>
           <div
@@ -451,66 +451,6 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             </button>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      class="MuiBox-root css-y0cj4i"
-    >
-      <div
-        class="MuiBox-root css-6lzzp6"
-      >
-        <div
-          class="MuiBox-root css-vsj3pz"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 20 20"
-          >
-            <svg>
-              BackOfficeWarningIcon.svg
-            </svg>
-          </svg>
-        </div>
-        <div
-          class="MuiBox-root css-1821gv5"
-        >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-vxz123-MuiTypography-root"
-          >
-            Delete Employee
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-enn6w2-MuiTypography-root"
-          >
-            Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?
-          </p>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-ch27pp"
-      >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Cancel
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError css-1sszw6i-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          ConfirmationWindow.deleteBtn
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
       </div>
     </div>
     <div

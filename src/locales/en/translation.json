@@ -579,7 +579,7 @@
       "cancelProduct": "Cancel Product Creation?",
       "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?",
       "deleteEmployee": "Delete Employee?",
-      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete"
+      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?"
     }
   },
   "Homepage": {
