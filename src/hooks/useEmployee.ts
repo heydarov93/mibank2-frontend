@@ -45,7 +45,7 @@ const useEmployees = () => {
       ...item,
       dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
     })) || [];
-  const totalItems = data?.totalItems
+  const totalItems = data?.totalElements;
   const handleSortChange = (field: string) => {
     const newSort = getNextSortOrder(searchParams.get(field) || '');
     setSearchParams({
