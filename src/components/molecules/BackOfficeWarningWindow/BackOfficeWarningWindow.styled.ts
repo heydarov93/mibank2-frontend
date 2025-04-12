@@ -31,7 +31,7 @@ export const MainHeader = styled(Typography)(
     color: palette.common.black,
     fontWeight: 600,
     lineHeight: '28px',
-  }),
+  })
 );
 
 export const SecondaryHeader = styled(Typography)(
