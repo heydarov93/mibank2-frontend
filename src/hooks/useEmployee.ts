@@ -30,7 +30,7 @@ const useEmployees = () => {
     failMsgModal: false,
   });
 
-  const { data, refetch } = useViewEmployeeQuery({
+  const { data: employees, refetch } = useViewEmployeeQuery({
     page,
     size,
     sortDateAdded,
@@ -41,11 +41,12 @@ const useEmployees = () => {
   const [deleteEmployee] = useDeleteEmployeeMutation();
 
   const tableData =
-    data?.data?.map((item: { dateAdded: string | number | Date }) => ({
+    employees?.data?.map((item: { dateAdded: string | number | Date }) => ({
       ...item,
       dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
     })) || [];
-  const totalItems = data?.totalElements;
+  const totalItems = employees?.totalElements;
+
   const handleSortChange = (field: string) => {
     const newSort = getNextSortOrder(searchParams.get(field) || '');
     setSearchParams({
@@ -84,7 +85,7 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.updateFailed'),
-        actionBodyMsg: t('GeneralErrors.wentWrongError'),
+        actionMsgBody: t('GeneralErrors.wentWrongError'),
         failMsgModal: true,
       }));
     }
@@ -116,7 +117,7 @@ const useEmployees = () => {
       setState((prev) => ({
         ...prev,
         actionMsg: t('ConfirmationWindow.deleteFailed'),
-        actionBodyMsg: t('GeneralErrors.wentWrongError'),
+        actionMsgBody: t('GeneralErrors.wentWrongError'),
         failMsgModal: true,
       }));
     }
@@ -149,9 +150,20 @@ const useEmployees = () => {
           ...prev,
           successMsgModal: false,
         }));
-      }, 3000);
+      }, 4000);
     }
   }, [state.successMsgModal]);
+
+  useEffect(() => {
+    if (state.failMsgModal) {
+      setTimeout(() => {
+        setState((prev) => ({
+          ...prev,
+          failMsgModal: false,
+        }));
+      }, 4000);
+    }
+  }, [state.failMsgModal]);
 
   return {
     tableData,

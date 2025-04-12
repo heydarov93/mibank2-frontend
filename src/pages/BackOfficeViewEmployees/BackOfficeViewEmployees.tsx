@@ -110,10 +110,11 @@ const BackOfficeViewEmployees = () => {
               ...prev,
               failMsgModal: false,
               actionMsg: '',
-              actionBodyMsg: '',
+              actionMsgBody: '',
             }))
           }
           title={state.actionMsg}
+          body={state.actionMsgBody}
         />
       )}
 
@@ -125,7 +126,7 @@ const BackOfficeViewEmployees = () => {
               ...prev,
               successMsgModal: false,
               actionMsg: '',
-              actionBodyMsg: '',
+              actionMsgBody: '',
             }))
           }
           title={state.actionMsg}
