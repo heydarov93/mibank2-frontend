@@ -10,6 +10,13 @@
       "settings": "Settings",
       "logOut": "Log Out"
     },
+    "topNavMenu": {
+      "personal": "Personal",
+      "business": "Business",
+      "aboutUs": "About us",
+      "contacts": "Contacts",
+      "language": "ENG"
+    },
     "greetings": "Hello"
   },
   "MainPage": {

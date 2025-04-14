@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -6,6 +7,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Header } from './Header';
 
 import { useGetUserInfoQuery } from 'api/userInfoApi';
+import { theme } from 'theme/theme';
 
 const initialValues = {
   auth: {
@@ -51,11 +53,13 @@ jest.mock('api/userInfoApi', () => ({
 
 const renderHeader = () =>
   render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>
-    </Provider>,
+    <ThemeProvider theme={theme}>
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <Header />
+        </MemoryRouter>
+      </Provider>
+    </ThemeProvider>,
   );
 
 describe('Header component', () => {
