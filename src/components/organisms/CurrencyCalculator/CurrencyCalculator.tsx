@@ -19,7 +19,7 @@ import {
 } from '../../../utils/currencyUtils';
 import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 
-import { useGetExchangeRatesQuery } from 'api/getExchangeRatesApi';
+import { useGetCurrencyRatesQuery } from 'api/getCurrencyRatesApi';
 import { ReactComponent as SpinningArrowButton } from 'assets/icons/Reload.svg';
 import { REG_EXP } from 'validation/regExp';
 
@@ -37,7 +37,7 @@ const CurrencyCalculator = () => {
     data: currentData,
     isLoading: isLoadingCurrent,
     error: queryError,
-  } = useGetExchangeRatesQuery(currentDate);
+  } = useGetCurrencyRatesQuery(currentDate);
 
   useEffect(() => {
     if (queryError) {

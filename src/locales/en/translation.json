@@ -24,13 +24,11 @@
       "title": "Currency exchange",
       "subTitle": "Millenium Bank provides a comprehensive suite of trading tools that enable efficient buying, selling, and exchanging of currencies and opportunities to earn passive income"
     },
-    "rates": {
+    "ratesTable": {
       "title": "Rates",
-      "table": {
-        "currencyColumnLabel": "Currency",
-        "buyRateColumnLabel": "Buy Rate",
-        "sellRateColumnLabel": "Sell Rate"
-      }
+      "currencyColumnLabel": "Currency",
+      "buyRateColumnLabel": "Buy Rate",
+      "sellRateColumnLabel": "Sell Rate"
     }
   },
   "DepositWindow": {
