@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import CurrencyCalculator from './CurrencyCalculator';
 
-import { useGetExchangeRatesQuery } from 'api/getExchangeRatesApi';
+import { useGetCurrencyRatesQuery } from 'api/getCurrencyRatesApi';
 
-jest.mock('api/getExchangeRatesApi', () => ({
-  useGetExchangeRatesQuery: jest.fn(),
+jest.mock('api/getCurrencyRatesApi', () => ({
+  useGetCurrencyRatesQuery: jest.fn(),
 }));
 
 jest.mock('react-i18next', () => ({
@@ -32,7 +32,7 @@ describe('CurrencyCalculator', () => {
       t: (key: string) => key,
     });
 
-    (useGetExchangeRatesQuery as jest.Mock).mockReturnValue({
+    (useGetCurrencyRatesQuery as jest.Mock).mockReturnValue({
       data: [{ rates: mockRates }],
       isLoading: false,
       error: null,
@@ -82,7 +82,7 @@ describe('CurrencyCalculator', () => {
   });
 
   test('displays loading spinner', async () => {
-    (useGetExchangeRatesQuery as jest.Mock).mockReturnValue({
+    (useGetCurrencyRatesQuery as jest.Mock).mockReturnValue({
       data: null,
       isLoading: true,
       error: null,
@@ -95,7 +95,7 @@ describe('CurrencyCalculator', () => {
   });
 
   test('displays error message when API call fails', async () => {
-    (useGetExchangeRatesQuery as jest.Mock).mockReturnValue({
+    (useGetCurrencyRatesQuery as jest.Mock).mockReturnValue({
       data: null,
       isLoading: false,
       error: true,

@@ -1,18 +1,28 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
 export const getExchangeRatesApi = createApi({
-  reducerPath: 'getExchangeRates',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.nbp.pl/' }),
+  reducerPath: 'getExchangeRatesApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASE_URL(),
+  }),
   endpoints: (builder) => ({
-    getExchangeRates: builder.query({
-      query: (currentDate: string) => ({
-        url: `${endpoints.exchangeRates.getRates}/${currentDate}`,
+    getCurrentRates: builder.query({
+      query: () => ({
+        url: endpoints.exchangeRates.getCurrentRates,
+        method: 'GET',
+      }),
+    }),
+    getPreviousRates: builder.query({
+      query: () => ({
+        url: endpoints.exchangeRates.getPreviousRates,
         method: 'GET',
       }),
     }),
   }),
 });
 
-export const { useGetExchangeRatesQuery } = getExchangeRatesApi;
+export const { useGetCurrentRatesQuery, useGetPreviousRatesQuery } =
+  getExchangeRatesApi;

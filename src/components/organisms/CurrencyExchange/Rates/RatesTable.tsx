@@ -1,7 +1,6 @@
-import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
-import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
 import {
   Box,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -9,24 +8,28 @@ import {
   TableRow,
   useTheme,
 } from '@mui/material';
-import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  CellBox,
+  StyledCellText,
   StyledHeadCell,
   StyledTableContainer,
-  StyledCellText,
   StyledTableTitle,
+  TrendingDownIcon,
+  TrendingUpIcon,
 } from './Rates.styled';
 
-import { useGetExchangeRatesQuery } from 'api/getExchangeRatesApi';
+import {
+  useGetCurrentRatesQuery,
+  useGetPreviousRatesQuery,
+} from 'api/getExchangeRatesApi';
 import { ReactComponent as ChfIcon } from 'assets/icons/ChfFlag.svg';
 import { ReactComponent as EurIcon } from 'assets/icons/EurFlag.svg';
 import { ReactComponent as GbpIcon } from 'assets/icons/GbpFlag.svg';
 import { ReactComponent as JpyIcon } from 'assets/icons/JpyFlag.svg';
-import { ReactComponent as SpinningArrowButton } from 'assets/icons/Reload.svg';
 import { ReactComponent as UsaIcon } from 'assets/icons/UsaFlag.svg';
+import currencies from 'constants/currencies';
 
 interface Rate {
   currency: string;
@@ -44,76 +47,56 @@ const flagIcons: Record<string, React.FC> = {
 };
 
 export const RatesTable = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { keyPrefix: 'MainPage' });
   const theme = useTheme();
-  const requiredCurrencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY'];
-  const [currentDate, setCurrentDate] = useState(dayjs().format('YYYY-MM-DD'));
-  const [previousDate, setPreviousDate] = useState(
-    dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
-  );
 
   const {
-    data: currentData,
+    data: currentRates,
     isLoading: isLoadingCurrent,
-    isError: isCurrentDateError,
-  } = useGetExchangeRatesQuery(currentDate);
+    isError: isCurrentRatesError,
+  } = useGetCurrentRatesQuery(null);
 
   const {
-    data: previousData,
+    data: previousRates,
     isLoading: isLoadingPrevious,
-    isError: isPreviousDateError,
-  } = useGetExchangeRatesQuery(previousDate);
-
-  useEffect(() => {
-    if (isCurrentDateError) {
-      setCurrentDate(
-        dayjs(currentDate).subtract(1, 'day').format('YYYY-MM-DD'),
-      );
-    }
-    if (isPreviousDateError) {
-      setPreviousDate(
-        dayjs(previousDate).subtract(1, 'day').format('YYYY-MM-DD'),
-      );
-    }
-  }, [isCurrentDateError, isPreviousDateError, currentDate, previousDate]);
+    isError: isPreviousRatesError,
+  } = useGetPreviousRatesQuery(null);
 
   const isRatesDataLoading =
-    !currentData?.[0]?.rates ||
-    !previousData?.[0]?.rates ||
-    isCurrentDateError ||
-    isPreviousDateError ||
+    !currentRates?.[0].rates ||
+    !previousRates?.[0].rates ||
+    isCurrentRatesError ||
+    isPreviousRatesError ||
     isLoadingCurrent ||
     isLoadingPrevious;
 
   if (isRatesDataLoading) {
-    return <SpinningArrowButton />;
+    return <CircularProgress />;
   }
 
-  const filteredCurrencies = currentData[0].rates.filter((rate: Rate) =>
-    requiredCurrencies.includes(rate.code),
+  const filteredCurrencies = currentRates[0].rates.filter((rate: Rate) =>
+    currencies.includes(rate.code),
   );
 
   const previousRatesMap = new Map<string, Rate>(
-    previousData[0].rates.map((rate: Rate) => [rate.code, rate]),
+    previousRates[0].rates.map((rate: Rate) => [rate.code, rate]),
   );
 
   return (
     <Box width={'50%'}>
-      <StyledTableTitle marginBottom="14px">
-        {t('MainPage.rates.title')}
-      </StyledTableTitle>
+      <StyledTableTitle>{t('ratesTable.title')}</StyledTableTitle>
       <StyledTableContainer>
         <Table>
           <TableHead>
             <TableRow>
               <StyledHeadCell>
-                {t('MainPage.rates.table.currencyColumnLabel')}
+                {t('ratesTable.currencyColumnLabel')}
               </StyledHeadCell>
               <StyledHeadCell>
-                {t('MainPage.rates.table.buyRateColumnLabel')}
+                {t('ratesTable.buyRateColumnLabel')}
               </StyledHeadCell>
               <StyledHeadCell>
-                {t('MainPage.rates.table.sellRateColumnLabel')}
+                {t('ratesTable.sellRateColumnLabel')}
               </StyledHeadCell>
             </TableRow>
           </TableHead>
@@ -142,68 +125,38 @@ export const RatesTable = () => {
                   }}
                 >
                   <TableCell sx={{ border: 'none' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <CellBox>
                       <FlagIcon />
                       <StyledCellText
                         sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >
-                        {rate.code === 'JPY'
-                          ? `100 ${rate.code}`
-                          : `1 ${rate.code}`}
+                        {rate.code}
                       </StyledCellText>
-                    </Box>
+                    </CellBox>
                   </TableCell>
                   <TableCell sx={{ border: 'none' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <CellBox>
                       {isBidIncreased ? (
-                        <TrendingUpRoundedIcon
-                          sx={{
-                            marginRight: '8px',
-                            width: '18px',
-                            height: '18px',
-                            color: theme.palette.success.main,
-                          }}
-                        />
+                        <TrendingUpIcon />
                       ) : isBidDecreased ? (
-                        <TrendingDownRoundedIcon
-                          sx={{
-                            marginRight: '8px',
-                            width: '18px',
-                            height: '18px',
-                            color: theme.palette.error.main,
-                          }}
-                        />
+                        <TrendingDownIcon />
                       ) : (
                         '-'
                       )}
                       <StyledCellText>{rate.bid.toFixed(4)}</StyledCellText>
-                    </Box>
+                    </CellBox>
                   </TableCell>
                   <TableCell sx={{ border: 'none' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <CellBox>
                       {isAskIncreased ? (
-                        <TrendingUpRoundedIcon
-                          sx={{
-                            marginRight: '8px',
-                            width: '18px',
-                            height: '18px',
-                            color: theme.palette.success.main,
-                          }}
-                        />
+                        <TrendingUpIcon />
                       ) : isAskDecreased ? (
-                        <TrendingDownRoundedIcon
-                          sx={{
-                            marginRight: '8px',
-                            width: '18px',
-                            height: '18px',
-                            color: theme.palette.error.main,
-                          }}
-                        />
+                        <TrendingDownIcon />
                       ) : (
                         '-'
                       )}
                       <StyledCellText>{rate.ask.toFixed(4)}</StyledCellText>
-                    </Box>
+                    </CellBox>
                   </TableCell>
                 </TableRow>
               );

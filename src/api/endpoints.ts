@@ -20,6 +20,8 @@ export const endpoints = {
   },
   exchangeRates: {
     getRates: '/api/exchangerates/tables/C',
+    getCurrentRates: 'as/api/exchange-rates',
+    getPreviousRates: 'as/api/exchange-rates/previous',
   },
   employeeAccountManagement: {
     employees: {

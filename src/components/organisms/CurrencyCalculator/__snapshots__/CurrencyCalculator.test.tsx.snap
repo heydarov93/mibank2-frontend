@@ -6,7 +6,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
     class="MuiBox-root css-1u9znth"
   >
     <p
-      class="MuiTypography-root MuiTypography-body1 css-1s545yb-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-body1 css-aef8tf-MuiTypography-root"
     >
       CurCal.cal
     </p>
