@@ -137,25 +137,29 @@ export const RatesTable = () => {
                   <TableCell sx={{ border: 'none' }}>
                     <CellBox>
                       {isBidIncreased ? (
-                        <TrendingUpIcon />
+                        <TrendingUpIcon data-testid={'TrendingUpIcon'} />
                       ) : isBidDecreased ? (
-                        <TrendingDownIcon />
+                        <TrendingDownIcon data-testid={'TrendingDownIcon'}/>
                       ) : (
                         '-'
                       )}
-                      <StyledCellText>{rate.bid.toFixed(4)}</StyledCellText>
+                      <StyledCellText data-testid={`bid-${rate.code}`}>
+                        {rate.bid.toFixed(4)}
+                      </StyledCellText>
                     </CellBox>
                   </TableCell>
                   <TableCell sx={{ border: 'none' }}>
                     <CellBox>
                       {isAskIncreased ? (
-                        <TrendingUpIcon />
+                        <TrendingUpIcon data-testid={'TrendingUpIcon'} />
                       ) : isAskDecreased ? (
-                        <TrendingDownIcon />
+                        <TrendingDownIcon data-testid={'TrendingDownIcon'}/>
                       ) : (
                         '-'
                       )}
-                      <StyledCellText>{rate.ask.toFixed(4)}</StyledCellText>
+                      <StyledCellText data-testid={`ask-${rate.code}`}>
+                        {rate.ask.toFixed(4)}
+                      </StyledCellText>
                     </CellBox>
                   </TableCell>
                 </TableRow>

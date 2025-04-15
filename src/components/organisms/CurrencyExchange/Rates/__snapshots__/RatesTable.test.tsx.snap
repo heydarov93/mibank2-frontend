@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-11ze7cv"
+  >
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-ulnjw5-MuiTypography-root"
+    >
+      ratesTable.title
+    </p>
+    <div
+      class="MuiTableContainer-root css-2boffn-MuiTableContainer-root"
+    >
+      <table
+        class="MuiTable-root css-rqglhn-MuiTable-root"
+      >
+        <thead
+          class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-head css-u7li8u-MuiTableRow-root"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
+              scope="col"
+            >
+              ratesTable.currencyColumnLabel
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
+              scope="col"
+            >
+              ratesTable.buyRateColumnLabel
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
+              scope="col"
+            >
+              ratesTable.sellRateColumnLabel
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+        >
+          <tr
+            class="MuiTableRow-root css-1mfdg29-MuiTableRow-root"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg>
+                  UsaFlag.svg
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-fc2ix7-MuiTypography-root"
+                >
+                  USD
+                </p>
+              </div>
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-cx7ojt-MuiSvgIcon-root"
+                  data-testid="TrendingUpIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m16.85 6.85 1.44 1.44-4.88 4.88-3.29-3.29a.9959.9959 0 0 0-1.41 0l-6 6.01c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L9.41 12l3.29 3.29c.39.39 1.02.39 1.41 0l5.59-5.58 1.44 1.44c.31.31.85.09.85-.35V6.5c.01-.28-.21-.5-.49-.5h-4.29c-.45 0-.67.54-.36.85"
+                  />
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
+                  data-testid="bid-USD"
+                >
+                  1.0000
+                </p>
+              </div>
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-cx7ojt-MuiSvgIcon-root"
+                  data-testid="TrendingUpIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m16.85 6.85 1.44 1.44-4.88 4.88-3.29-3.29a.9959.9959 0 0 0-1.41 0l-6 6.01c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L9.41 12l3.29 3.29c.39.39 1.02.39 1.41 0l5.59-5.58 1.44 1.44c.31.31.85.09.85-.35V6.5c.01-.28-.21-.5-.49-.5h-4.29c-.45 0-.67.54-.36.85"
+                  />
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
+                  data-testid="ask-USD"
+                >
+                  1.1000
+                </p>
+              </div>
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root css-pdfq21-MuiTableRow-root"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg>
+                  EurFlag.svg
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-fc2ix7-MuiTypography-root"
+                >
+                  EUR
+                </p>
+              </div>
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-gvvqcp-MuiSvgIcon-root"
+                  data-testid="TrendingDownIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m16.85 17.15 1.44-1.44-4.88-4.88-3.29 3.29c-.39.39-1.02.39-1.41 0l-6-6.01a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L9.41 12l3.29-3.29c.39-.39 1.02-.39 1.41 0l5.59 5.58 1.44-1.44c.31-.31.85-.09.85.35v4.29c0 .28-.22.5-.5.5H17.2c-.44.01-.66-.53-.35-.84"
+                  />
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
+                  data-testid="bid-EUR"
+                >
+                  0.9000
+                </p>
+              </div>
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-96k1qc-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-yeouz0"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-cx7ojt-MuiSvgIcon-root"
+                  data-testid="TrendingUpIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m16.85 6.85 1.44 1.44-4.88 4.88-3.29-3.29a.9959.9959 0 0 0-1.41 0l-6 6.01c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L9.41 12l3.29 3.29c.39.39 1.02.39 1.41 0l5.59-5.58 1.44 1.44c.31.31.85.09.85-.35V6.5c.01-.28-.21-.5-.49-.5h-4.29c-.45 0-.67.54-.36.85"
+                  />
+                </svg>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
+                  data-testid="ask-EUR"
+                >
+                  1.0000
+                </p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
