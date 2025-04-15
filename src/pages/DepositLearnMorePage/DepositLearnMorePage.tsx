@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
-import React from 'react';
 
 import { StyledContainer } from './DepositLearnMorePage.styled';
 
 import { DepositBox, InvestmentBox } from 'components/molecules';
 import { AboutDepositCard, DepositBenefitsGrid } from 'components/organisms';
+import { OpenDepositForm } from 'components/organisms/OpenDepositForm/OpenDepositForm';
 
 export const DepositLearnMorePage = () => {
   //TODO: Wait until backend is ready to replace the mock data
@@ -50,6 +50,7 @@ export const DepositLearnMorePage = () => {
         <InvestmentBox interestRate={mockData.interestRate} />
       </Box>
       <DepositBenefitsGrid />
+      <OpenDepositForm />
     </StyledContainer>
   );
 };
