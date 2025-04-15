@@ -19,3 +19,4 @@ export { ForgotPassword } from './ForgotPassword/ForgotPassword';
 export { AvailableDepositsWindow } from './AvailableDepositsWindow/AvailableDepositsWindow';
 export { AboutDepositCard } from './AboutDepositCard/AboutDepositCard';
 export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';
+export { OpenDepositForm } from './OpenDepositForm/OpenDepositForm';
