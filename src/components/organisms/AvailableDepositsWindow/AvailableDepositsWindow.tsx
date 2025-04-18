@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { MainContainer, StyledHeader } from './AvailableDepositsWindow.styled';
@@ -17,7 +17,7 @@ export const AvailableDepositsWindow = ({
   isOpen,
 }: AvailableDepositsWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
-
+  const [openDeposit, setOpenDeposit] = useState<boolean>(false);
   if (!isOpen) {
     return null;
   }
@@ -65,6 +65,8 @@ export const AvailableDepositsWindow = ({
             depositName={item.name}
             depositRate={item.interestRate}
             redirect={`/deposits/learn-more/${item.id}`}
+            openDeposit={openDeposit}
+            setOpenDeposit={setOpenDeposit}
           />
         ))}
       </Box>

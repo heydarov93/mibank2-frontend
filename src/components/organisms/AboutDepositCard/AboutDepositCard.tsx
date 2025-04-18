@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AboutDepositText } from 'components/molecules';
@@ -8,6 +7,7 @@ import { theme } from 'theme/theme';
 interface AboutDepositCardProps {
   depositName: string;
   interestRate: number;
+  minDeposit: number;
   months: number;
   wdLimit: number;
   wdFee: number;
@@ -21,6 +21,7 @@ export const AboutDepositCard = ({
   wdFee,
   wdLimit,
   capitalizationRate,
+  minDeposit,
 }: AboutDepositCardProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
   const offersText = [
@@ -33,7 +34,9 @@ export const AboutDepositCard = ({
     },
     {
       mainText: t('minimumDepositText'),
-      secondaryText: t('minimumDeposit'),
+      secondaryText: t('minimumDeposit', {
+        minDeposit: minDeposit,
+      }),
     },
     {
       mainText: t('easySetup'),

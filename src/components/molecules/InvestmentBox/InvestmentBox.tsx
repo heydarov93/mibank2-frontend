@@ -15,9 +15,13 @@ import { calculateInterest, calculateProfit } from 'utils/interestRateUtils';
 
 interface InvestmentBoxProps {
   interestRate: number;
+  setOpenDeposit: (openDeposit: boolean) => void;
 }
 
-export const InvestmentBox = ({ interestRate }: InvestmentBoxProps) => {
+export const InvestmentBox = ({
+  interestRate,
+  setOpenDeposit,
+}: InvestmentBoxProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
   return (
@@ -75,7 +79,10 @@ export const InvestmentBox = ({ interestRate }: InvestmentBoxProps) => {
           </Box>
         </Box>
       </StyledContainer>
-      <SubmitButton buttonContent={t('openDeposit')} />
+      <SubmitButton
+        buttonContent={t('openDeposit')}
+        onClick={() => setOpenDeposit(true)}
+      />
     </Box>
   );
 };

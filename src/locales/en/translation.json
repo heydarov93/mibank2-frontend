@@ -35,6 +35,7 @@
     "availableDeposits": "Available Deposits",
     "openDeposit": "Open Deposit",
     "learnMore": "Learn more",
+    "viewAllDeposits": "View All Deposits",
     "currency": "Currency",
     "rate": "Rate",
     "duration": "Duration",
@@ -42,7 +43,7 @@
     "excitingRates": "Exciting interest rates: ",
     "interestRate": "{{procent}}% per year for {{months}} months.",
     "minimumDepositText": "Minimum Deposit",
-    "minimumDeposit": "Start with just $260.",
+    "minimumDeposit": "Start with just ${{minDeposit}}.",
     "easySetup": "Easy setup:",
     "easySetupText": "Easily open your deposit on our website.",
     "balanceReview": "Balance review date:",
@@ -53,7 +54,14 @@
     "earlyWdLimitText": "{{procent}}% of the deposit amount.",
     "wdFee": "Withdrawal Fee:",
     "wdFeeText": "{{procent}}% of the withdrawn amount.",
-    "aboutDepositName": "About {{depositName}}"
+    "aboutDepositName": "About {{depositName}}",
+    "validation": {
+      "depositAmountRequired": "Deposit amount is required.",
+      "depositMinAmount": "Deposit amount must be at least 1.",
+      "depositTypeError": "Deposit amount must be a valid number.",
+      "accountRequired": "Please select an account.",
+      "termsRequiredCheckbox": "You must accept the terms and conditions."
+    }
   },
   "LearnMorePage": {
     "willGive": "Will Give",
@@ -62,6 +70,7 @@
     "interestRate": "Rate of Interest",
     "interestAmount": "Interest Amount",
     "openDeposit": "Open Deposit",
+    "cancelDeposit": "Cancel",
     "openDepositFormSubTitle": "Calculate your earnings and open deposit in 1 easy step",
     "attractiveInterestRate": "Attractive Interest Rate",
     "interestRateText": "Earn a competitive 5.00% annual interest to grow your savings.",
@@ -91,7 +100,14 @@
     "confirmationText": " I confirm that I have reviewed and accepted the terms of the deposit agreement, including interest rates, withdrawal limits, early withdrawal fees, and other charges.",
     "termsLinkText": "Deposit Terms and Conditions",
     "account1": "Account 1",
-    "account2": "Account 2"
+    "account2": "Account 2",
+    "formValidation": {
+      "depositAmountRequired": "Deposit amount is required",
+      "depositMinAmount": "Deposit amount must be at least 1",
+      "depositTypeError": "Deposit amount must be a valid number",
+      "accountRequired": "Account is required",
+      "termsRequiredCheckbox": "You must accept the terms and conditions"
+    }
   },
   "SignupPage": {
     "formTitle": "Registration",

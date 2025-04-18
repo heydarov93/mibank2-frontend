@@ -1,3 +1,4 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Autocomplete,
@@ -6,17 +7,17 @@ import {
   Switch,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
+  FormActionBtn,
   FormContainer,
   FormHeader,
   FormInterestBox,
   FormInterestLabel,
   FormInterestText,
   FormLabel,
-  FormOpenDepositBtn,
   FormOpenDepositBtnBox,
   FormSubTitle,
   FormTermsLink,
@@ -25,14 +26,33 @@ import {
   FormTitle,
 } from './DepositCreationForm.styled';
 
+import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
+
 interface DepositCreationFormProps {
   accounts: string[];
+  modal?: boolean;
+  onCloseModal?: () => void;
 }
 
-export const DepositCreationForm = ({ accounts }: DepositCreationFormProps) => {
+export const DepositCreationForm = ({
+  accounts,
+  modal,
+  onCloseModal,
+}: DepositCreationFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const isFormComplete = termsAccepted;
+
+  const {
+    control,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(openDepositValidationSchema),
+    mode: 'all',
+    defaultValues: {
+      amount: undefined,
+      account: '',
+      checkbox: false,
+    },
+  });
 
   return (
     <FormContainer>
@@ -41,65 +61,103 @@ export const DepositCreationForm = ({ accounts }: DepositCreationFormProps) => {
         <FormTitle>{t('openDeposit')}</FormTitle>
       </FormHeader>
       <FormSubTitle>{t('openDepositFormSubTitle')}</FormSubTitle>
-
-      <Box sx={{ marginBottom: '24px' }}>
-        <FormLabel>{t('depositAmountLabel')}</FormLabel>
-        <TextField
-          fullWidth
-          value=""
-          type="number"
-          placeholder={t('depositAmountPlaceholder')}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                {t('depositCurrencyLabel')}
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            borderRadius: '8px',
-          }}
-        />
-      </Box>
-
-      <Box sx={{ marginBottom: '24px' }}>
-        <FormLabel>{t('selectAccountLabel')}</FormLabel>
-        <Autocomplete
-          options={accounts}
-          defaultValue=""
-          getOptionLabel={(option) => option}
-          renderInput={(params) => (
-            <TextField {...params} placeholder={t('selectAccountLabel')} />
-          )}
-          sx={{
-            borderRadius: '8px',
-          }}
-        />
-      </Box>
-
-      <FormInterestBox>
-        <FormInterestText>{t('calculationInfo')}</FormInterestText>
-        <FormInterestLabel>{t('calculationResult')}</FormInterestLabel>
-      </FormInterestBox>
-
-      <FormTermsRow
-        control={
-          <Switch
-            checked={termsAccepted}
-            onChange={(e) => setTermsAccepted(e.target.checked)}
-            size="medium"
+      <form>
+        <Box sx={{ marginBottom: '24px' }}>
+          <FormLabel>{t('depositAmountLabel')}</FormLabel>
+          <Controller
+            name="amount"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                type="number"
+                inputProps={{ min: 0, pattern: 'd*' }}
+                placeholder={t('depositAmountPlaceholder')}
+                onBlur={field.onBlur}
+                onChange={(e) => field.onChange(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {t('depositCurrencyLabel')}
+                    </InputAdornment>
+                  ),
+                }}
+                error={!!errors.amount}
+                helperText={errors.amount?.message}
+                sx={{ borderRadius: '8px' }}
+              />
+            )}
           />
-        }
-        label={<FormTermsText>{t('confirmationText')}</FormTermsText>}
-      />
+        </Box>
 
-      <FormTermsLink>{t('termsLinkText')}</FormTermsLink>
+        <Box sx={{ marginBottom: '24px' }}>
+          <FormLabel>{t('selectAccountLabel')}</FormLabel>
+          <Controller
+            name="account"
+            control={control}
+            render={({ field }) => (
+              <Autocomplete
+                options={accounts}
+                value={field.value}
+                onChange={(_, value) => field.onChange(value || '')}
+                getOptionLabel={(option) => option}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder={t('selectAccountLabel')}
+                    error={!!errors.account}
+                    helperText={errors.account?.message}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    onBlur={field.onBlur}
+                  />
+                )}
+                sx={{ borderRadius: '8px' }}
+              />
+            )}
+          />
+        </Box>
 
-      <FormOpenDepositBtnBox>
-        <FormOpenDepositBtn variant="contained" disabled={!isFormComplete}>
-          {t('openDeposit')}
-        </FormOpenDepositBtn>
-      </FormOpenDepositBtnBox>
+        <FormInterestBox>
+          <FormInterestText>{t('calculationInfo')}</FormInterestText>
+          <FormInterestLabel>{t('calculationResult')}</FormInterestLabel>
+        </FormInterestBox>
+
+        <Controller
+          name="checkbox"
+          control={control}
+          render={({ field }) => (
+            <FormTermsRow
+              control={
+                <Switch
+                  {...field}
+                  checked={field.value}
+                  onChange={(e) => field.onChange(e.target.checked)}
+                  size="medium"
+                />
+              }
+              label={<FormTermsText>{t('confirmationText')}</FormTermsText>}
+            />
+          )}
+        />
+
+        <FormTermsLink>{t('termsLinkText')}</FormTermsLink>
+
+        <FormOpenDepositBtnBox>
+          {modal && (
+            <FormActionBtn
+              variant="outlined"
+              sx={{ marginRight: '25px' }}
+              onClick={onCloseModal}
+            >
+              {t('cancelDeposit')}
+            </FormActionBtn>
+          )}
+          <FormActionBtn variant="contained" disabled={!isValid}>
+            {t('openDeposit')}
+          </FormActionBtn>
+        </FormOpenDepositBtnBox>
+      </form>
     </FormContainer>
   );
 };
