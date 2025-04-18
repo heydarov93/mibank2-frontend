@@ -6,23 +6,24 @@ import { useTranslation } from 'react-i18next';
 
 import {
   DropDownBox,
-  LeftTab,
-  LeftTabs,
+  StyledTab,
+  StyledTabs,
   RightSection,
-  TopNavbarContainer,
-} from './TopNavbar.styled';
+  StyledContainer,
+} from './WelcomeHeader.styled';
 
-export const TopNavbar = () => {
-  const [value, setValue] = useState(0);
+export const WelcomeHeader = ({
+  activeTab,
+  onSetActiveTab,
+}: {
+  activeTab: number;
+  onSetActiveTab: (event: React.SyntheticEvent, value: number) => void;
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation('translation', {
     keyPrefix: 'header.topNavMenu',
   });
-
-  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,12 +39,17 @@ export const TopNavbar = () => {
   };
 
   return (
-    <TopNavbarContainer>
-      <LeftTabs value={value} onChange={handleTabChange}>
-        <LeftTab label={t('personal')} />
-        <LeftTab label={t('business')} />
-        <LeftTab label={t('aboutUs')} />
-      </LeftTabs>
+    <StyledContainer>
+      <StyledTabs value={activeTab} onChange={onSetActiveTab}>
+        {[t('personal'), t('business'), t('aboutUs')].map((tab, index) => (
+          <StyledTab
+            key={tab}
+            label={tab}
+            id={`tab-${index}`}
+            aria-controls={`tabpanel-${index}`}
+          />
+        ))}
+      </StyledTabs>
 
       <RightSection>
         <IconButton>
@@ -80,6 +86,6 @@ export const TopNavbar = () => {
           <MenuItem onClick={handleMenuClose}>ENG</MenuItem>
         </Menu>
       </RightSection>
-    </TopNavbarContainer>
+    </StyledContainer>
   );
 };

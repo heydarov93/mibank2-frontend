@@ -3,6 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { TO_WELCOME } from 'constants/routesName';
 import { useAppSelector } from 'hooks';
 import { getLoading } from 'store/selectors';
 import { getAuthStatus } from 'utils';
@@ -14,7 +15,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!isAuth) {
-      navigate('/signin');
+      navigate(TO_WELCOME);
     }
   }, [isAuth, loading, navigate]);
 

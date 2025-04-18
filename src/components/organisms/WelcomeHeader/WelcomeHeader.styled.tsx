@@ -1,6 +1,6 @@
 import { Box, styled, Tab, Tabs } from '@mui/material';
 
-export const TopNavbarContainer = styled(Box)(({ theme: { palette } }) => ({
+export const StyledContainer = styled(Box)(({ theme: { palette } }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -10,7 +10,7 @@ export const TopNavbarContainer = styled(Box)(({ theme: { palette } }) => ({
   boxShadow: `0px 3px 4px 0px ${palette.shadow.shadowCoolLight}`,
 }));
 
-export const LeftTabs = styled(Tabs)(({ theme: { palette } }) => ({
+export const StyledTabs = styled(Tabs)(({ theme: { palette } }) => ({
   '& .Mui-selected': {
     color: `${palette.common.black} !important`,
     fontWeight: 600,
@@ -22,7 +22,7 @@ export const LeftTabs = styled(Tabs)(({ theme: { palette } }) => ({
   },
 }));
 
-export const LeftTab = styled(Tab)(({ theme: { palette, typography } }) => ({
+export const StyledTab = styled(Tab)(({ theme: { palette, typography } }) => ({
   fontFamily: typography.mediumLogo?.fontFamily,
   fontSize: typography.mediumLogo?.fontSize,
   fontWeight: 500,
