@@ -1,4 +1,5 @@
 export const TO_HOME = '/';
+export const TO_WELCOME = '/welcome';
 export const TO_PAYMENTS = '/payments';
 export const TO_TRANSFERS = '/transfers';
 export const TO_HISTORY = '/history';

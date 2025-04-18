@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import {
   TO_HOME,
+  TO_WELCOME,
   TO_PAYMENTS,
   TO_TRANSFERS,
   TO_HISTORY,
@@ -25,6 +26,7 @@ import {
   TO_DEPOSIT_LEARN_MORE,
 } from '../constants/routesName';
 import {
+  WelcomePage,
   ErrorPage,
   LoginPage,
   UnderDevPage,
@@ -86,6 +88,10 @@ const routes = createBrowserRouter([
         element: <DepositLearnMorePage />,
       },
     ],
+  },
+  {
+    path: TO_WELCOME,
+    element: <WelcomePage />,
   },
   {
     path: TO_SIGN_IN,

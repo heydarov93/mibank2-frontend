@@ -10,6 +10,17 @@
       "settings": "Settings",
       "logOut": "Log Out"
     },
+    "welcomeNavMenu" : {
+      "cards": "Cards",
+      "deposits": "Deposits",
+      "loans": "Loans",
+      "services": "Services",
+      "currency": "Currency",
+      "personalSignIn": "Log in", 
+      "personalSignUp": "Sign up", 
+      "businessSignIn": "Log in", 
+      "businessSignUp": "Sign up"
+    },
     "topNavMenu": {
       "personal": "Personal",
       "business": "Business",
