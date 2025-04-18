@@ -512,6 +512,11 @@
         "lastName": "Enter the Last Name",
         "email": "example@gmail.com",
         "role": "Choose here"
+      },
+      "noMatchesFound": {
+        "notFound": "No matches were found.",
+        "tryAgain": "Please try again.",
+        "viewAll": "View all Employees"
       }
     },
     "cardEditForm": {
@@ -601,7 +606,7 @@
       "cancelProduct": "Cancel Product Creation?",
       "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?",
       "deleteEmployee": "Delete Employee?",
-      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?"
+      "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete"
     }
   },
   "Homepage": {

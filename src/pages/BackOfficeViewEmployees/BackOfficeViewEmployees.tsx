@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +7,7 @@ import ButtonPlusIcon from 'components/atoms/ButtonPlusIcon/ButtonPlusIcon';
 import { BackOfficeWarningWindow } from 'components/molecules';
 import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 import BackOfficeFailWindow from 'components/molecules/BackOfficeFailWindow/BackOfficeFailWindow';
+import NoMatchesFound from 'components/molecules/NoMatchesFound/NoMatchesFound';
 import SearchField from 'components/molecules/SearchField/SearchField';
 import BackOfficeEditEmployee from 'components/organisms/BackOfficeEditEmployee/BackOfficeEditEmployee';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
@@ -20,7 +20,6 @@ import {
 
 const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
-  const { control } = useForm();
   const navigate = useNavigate();
 
   const {
@@ -28,8 +27,10 @@ const BackOfficeViewEmployees = () => {
     tableHead,
     page,
     size,
-    totalItems,
+    searchValue,
     searchParams,
+    totalItems,
+    control,
     setSearchParams,
     state,
     setState,
@@ -37,6 +38,8 @@ const BackOfficeViewEmployees = () => {
     handleUpdate,
     handleDeleteModal,
     handleDelete,
+    handleViewAll,
+    handleSearchChange,
   } = useEmployees();
 
   return (
@@ -67,7 +70,11 @@ const BackOfficeViewEmployees = () => {
             placeholder={t('header.searchEmployees')}
             name="searchEmployee"
             control={control}
+            onSearchChange={handleSearchChange}
           />
+          {searchValue && tableData.length === 0 && (
+            <NoMatchesFound onViewAll={handleViewAll} />
+          )}
         </Box>
       </HeaderContainer>
 
@@ -92,6 +99,19 @@ const BackOfficeViewEmployees = () => {
         onEditClick={handleEdit}
         onDeleteClick={handleDeleteModal}
       />
+
+      {state.showDelModal && (
+        <BackOfficeWarningWindow
+          onCancelClick={() =>
+            setState((prev) => ({ ...prev, showDelModal: false }))
+          }
+          title={t('warningWindow.deleteEmployee')}
+          text={t('warningWindow.deleteEmployeeText')}
+          onDeleteClick={handleDelete}
+          employee={state.selectedEmp}
+        />
+      )}
+
       {state.showEditForm && (
         <BackOfficeEditEmployee
           formData={state.selectedEmp}
@@ -131,20 +151,6 @@ const BackOfficeViewEmployees = () => {
           }
           title={state.actionMsg}
           body={state.actionMsgBody}
-        />
-      )}
-
-      {state.showDelModal && (
-        <BackOfficeWarningWindow
-          onCancelClick={() =>
-            setState((prev) => ({ ...prev, showDelModal: false }))
-          }
-          title={t('warningWindow.deleteEmployee')}
-          text={t('warningWindow.deleteEmployeeText', {
-            firstName: state.selectedEmp.firstName,
-            lastName: state.selectedEmp.lastName,
-          })}
-          onDeleteClick={handleDelete}
         />
       )}
     </MainContainer>

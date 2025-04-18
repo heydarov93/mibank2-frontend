@@ -1,5 +1,7 @@
+import { debounce } from '@mui/material/utils';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
@@ -14,11 +16,16 @@ import { getNextSortOrder } from 'utils/sortUtils';
 const useEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const [searchParams, setSearchParams] = useSearchParams();
+  const [inputSearchValue, setInputSearchValue] = useState('');
+  const [debouncedSearchValue, setDebouncedSearchValue] = useState('');
+  const { setValue, control } = useForm();
 
   const page = Number(searchParams.get('page')) || 0;
   const size = Number(searchParams.get('size')) || 10;
   const sortDateAdded = searchParams.get('sortDateAdded') || '';
   const sortLastName = searchParams.get('sortLastName') || '';
+  const firstName = searchParams.get('firstName') || '';
+  const lastName = searchParams.get('lastName') || '';
 
   const [state, setState] = useState({
     selectedEmp: {} as Partial<TableData>,
@@ -35,17 +42,19 @@ const useEmployees = () => {
     size,
     sortDateAdded,
     sortLastName,
+    firstName,
+    lastName,
   });
 
   const [updateEmployee] = useUpdateEmployeeMutation();
   const [deleteEmployee] = useDeleteEmployeeMutation();
 
+  const totalItems = employees?.totalElements;
   const tableData =
     employees?.data?.map((item: { dateAdded: string | number | Date }) => ({
       ...item,
       dateAdded: new Date(item.dateAdded).toLocaleDateString('en-GB'),
     })) || [];
-  const totalItems = employees?.totalElements;
 
   const handleSortChange = (field: string) => {
     const newSort = getNextSortOrder(searchParams.get(field) || '');
@@ -54,6 +63,27 @@ const useEmployees = () => {
       [field]: newSort || '',
     });
   };
+
+  const debouncedChangeHandler = debounce((value: string) => {
+    setDebouncedSearchValue(value);
+  }, 400);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setValue('searchEmployee', inputValue);
+    setInputSearchValue(inputValue);
+    debouncedChangeHandler(inputValue);
+  };
+
+  useEffect(() => {
+    const [firstN, lastN] = debouncedSearchValue.trim().split(' ');
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      firstName: firstN || '',
+      lastName: lastN || '',
+      search: debouncedSearchValue,
+    });
+  }, [debouncedSearchValue, searchParams, setSearchParams]);
 
   const handleEdit = (item: Partial<TableData>) => {
     setState((prev) => ({
@@ -123,6 +153,21 @@ const useEmployees = () => {
     }
   };
 
+  const handleViewAll = () => {
+    setValue('searchEmployee', '');
+    setInputSearchValue('');
+    setDebouncedSearchValue('');
+    setSearchParams({
+      page: String(page),
+      size: String(size),
+      sortDateAdded: '',
+      sortLastName: '',
+      firstName: '',
+      lastName: '',
+      search: '',
+    });
+  };
+
   const tableHead = [
     { label: t('employeeList.firstName'), key: 'firstName' },
     {
@@ -170,8 +215,10 @@ const useEmployees = () => {
     tableHead,
     page,
     size,
-    totalItems,
+    searchValue: inputSearchValue,
     searchParams,
+    totalItems,
+    control,
     setSearchParams,
     state,
     setState,
@@ -179,6 +226,8 @@ const useEmployees = () => {
     handleUpdate,
     handleDeleteModal,
     handleDelete,
+    handleSearchChange,
+    handleViewAll,
   };
 };
 

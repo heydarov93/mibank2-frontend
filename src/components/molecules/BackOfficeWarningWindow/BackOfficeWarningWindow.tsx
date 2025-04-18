@@ -23,6 +23,7 @@ import { theme } from 'theme/theme';
 
 interface BackOfficeWarningWindowProps {
   product?: Partial<TableData>;
+  employee?: Partial<TableData>;
   sx?: SxProps<Theme>;
   onDeleteClick?: (product: Partial<TableData> | undefined) => void;
   onCancelClick: () => void;
@@ -35,6 +36,7 @@ interface BackOfficeWarningWindowProps {
 
 export const BackOfficeWarningWindow = ({
   product,
+  employee,
   sx,
   onDeleteClick,
   onCancelClick,
@@ -64,6 +66,11 @@ export const BackOfficeWarningWindow = ({
             {text}
             {product?.productSubtype && (
               <ProductName>“{product.productSubtype}”?</ProductName>
+            )}
+            {employee?.firstName && employee?.lastName && (
+              <ProductName>
+                “{employee?.firstName} {employee?.lastName}”?
+              </ProductName>
             )}
           </SecondaryHeader>
         </Box>

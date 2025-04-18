@@ -14,7 +14,7 @@ export const StyledSearchField = styled(TextField)(
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
     },
-    boxShadow: `0px 1px 10px 0px ${palette.primary.main}33`,
+    boxShadow: `2px 2px 8px 0px ${palette.primary.main}33`,
     borderRadius: '4px',
   }),
 );
