@@ -54,7 +54,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
         class="MuiBox-root css-10ug5gj"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-75lrgp-MuiFormControl-root-MuiTextField-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-116knv-MuiFormControl-root-MuiTextField-root"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root"
@@ -76,7 +76,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input"
               id="searchEmployee"
               name="searchEmployee"
-              placeholder="header.searchEmployees"
+              placeholder="Search for employees"
               type="text"
               value=""
             />
@@ -485,6 +485,15 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             class="MuiTypography-root MuiTypography-body1 css-enn6w2-MuiTypography-root"
           >
             Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-108vkqb-MuiTypography-root"
+            >
+              “
+              John
+               
+              Doe
+              ”?
+            </p>
           </p>
         </div>
       </div>

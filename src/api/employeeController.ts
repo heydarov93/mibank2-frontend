@@ -16,10 +16,24 @@ export const employeeControllerApi = createApi({
       }),
     }),
     viewEmployee: builder.query({
-      query: ({ page, size, sortDateAdded, sortLastName }) => ({
+      query: ({
+        page,
+        size,
+        sortDateAdded,
+        sortLastName,
+        firstName,
+        lastName,
+      }) => ({
         url: endpoints.employeeAccountManagement.employees.viewEmployee,
         method: 'GET',
-        params: { page, count: size, sortDateAdded, sortLastName },
+        params: {
+          page,
+          count: size,
+          sortDateAdded,
+          sortLastName,
+          firstName,
+          lastName,
+        },
       }),
     }),
     updateEmployee: builder.mutation({
