@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Button, styled, Typography } from '@mui/material';
 
 export const DepositContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
@@ -17,7 +17,6 @@ export const StyledContentContainer = styled(Box)(({ theme: { spacing } }) => ({
   justifyContent: 'space-between',
   padding: spacing(5, 0),
   minWidth: '313px',
-  height: '256px',
 }));
 
 export const StyledDepositName = styled(Typography)(
@@ -47,3 +46,15 @@ export const StyledDescription = styled(Typography)(
     maxWidth: '313px',
   }),
 );
+
+export const StyledViewAllButton = styled(Button)(() => ({
+  width: '170px',
+  height: '56px',
+  borderRadius: '8px',
+  padding: '8px 24px',
+}));
+
+export const StyledDepositIllustration = styled('img')(() => ({
+  width: '316px',
+  height: '316px',
+}));

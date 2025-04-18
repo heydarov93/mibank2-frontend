@@ -52,7 +52,7 @@ export const FormLabel = styled(InputLabel)(
 
 export const FormContainer = styled(Box)(({ theme: { palette } }) => ({
   backgroundColor: palette.common.white,
-  maxWidth: '500px',
+  maxWidth: 500,
   padding: '40px',
   borderRadius: '8px',
   boxShadow: `0 4px 12px ${palette.shadow.shadowLight}`,
@@ -138,7 +138,7 @@ export const FormOpenDepositBtnBox = styled(Box)(() => ({
   marginTop: '32px',
 }));
 
-export const FormOpenDepositBtn = styled(Button)(
+export const FormActionBtn = styled(Button)(
   ({ theme: { typography } }) => ({
     width: '145px',
     height: '55px',

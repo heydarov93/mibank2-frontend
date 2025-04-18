@@ -1,12 +1,16 @@
 import { Box } from '@mui/material';
+import { useState } from 'react';
 
-import { StyledContainer } from './DepositLearnMorePage.styled';
+import {
+  StyledContainer
+} from './DepositLearnMorePage.styled';
 
 import { DepositBox, InvestmentBox } from 'components/molecules';
 import { AboutDepositCard, DepositBenefitsGrid } from 'components/organisms';
 import { OpenDepositForm } from 'components/organisms/OpenDepositForm/OpenDepositForm';
 
 export const DepositLearnMorePage = () => {
+  const [openDeposit, setOpenDeposit] = useState<boolean>(false);
   //TODO: Wait until backend is ready to replace the mock data
   const mockData = {
     name: 'The Best Deposit',
@@ -17,6 +21,7 @@ export const DepositLearnMorePage = () => {
     max: 2,
     description: 'Valid Description Valid',
     term: 12,
+    minDeposit: 100,
     interestRate: 3,
     capitalization: 3,
     earlyWithdrawalLimit: 2,
@@ -35,7 +40,8 @@ export const DepositLearnMorePage = () => {
           depositDuration={mockData.term}
           depositName={mockData.name}
           depositRate={mockData.interestRate}
-          redirect="/"
+          openDeposit={openDeposit}
+          setOpenDeposit={setOpenDeposit}
         />
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -46,8 +52,12 @@ export const DepositLearnMorePage = () => {
           months={mockData.term}
           wdFee={mockData.earlyWithdrawalFee}
           wdLimit={mockData.earlyWithdrawalLimit}
+          minDeposit={mockData.minDeposit}
         />
-        <InvestmentBox interestRate={mockData.interestRate} />
+        <InvestmentBox
+          interestRate={mockData.interestRate}
+          setOpenDeposit={setOpenDeposit}
+        />
       </Box>
       <DepositBenefitsGrid />
       <OpenDepositForm />
