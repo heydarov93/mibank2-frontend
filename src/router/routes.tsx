@@ -56,6 +56,7 @@ import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPa
 import BackOfficeViewEmployees from 'pages/BackOfficeViewEmployees/BackOfficeViewEmployees';
 import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
 import Homepage from 'pages/Homepage/Homepage';
+import TransfersPage from 'pages/TransfersPage/TransfersPage';
 
 const routes = createBrowserRouter([
   {
@@ -77,7 +78,7 @@ const routes = createBrowserRouter([
       },
       {
         path: TO_TRANSFERS,
-        element: <UnderDevPage />,
+        element: <TransfersPage />,
       },
       {
         path: TO_HISTORY,
