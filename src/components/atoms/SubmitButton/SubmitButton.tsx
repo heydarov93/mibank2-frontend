@@ -25,6 +25,7 @@ export const SubmitButton = ({
         onClick={onClick}
         disabled={isDisabled}
         startIcon={startIcon}
+        data-testid="save-button"
       >
         {buttonContent}
       </StyledButton>

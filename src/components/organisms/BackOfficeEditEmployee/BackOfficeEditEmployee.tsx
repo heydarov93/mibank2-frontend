@@ -2,7 +2,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Autocomplete,
   Box,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  SxProps,
   TextField,
+  Theme,
   Typography,
   useTheme,
 } from '@mui/material';
@@ -10,16 +15,12 @@ import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  MainContainer,
-  MainHeader,
-} from '../BackOfficeCardEditForm/BackOfficeCardEditForm.styled';
+import { MainHeader } from '../BackOfficeCardEditForm/BackOfficeCardEditForm.styled';
 
 import { InputField, SubmitButton } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { Overlay } from 'components/molecules/BackOfficeWarningWindow/BackOfficeWarningWindow.styled';
 import {
   employeeRoles,
   employeeValidationSchema,
@@ -33,17 +34,21 @@ type EmployeeFormData = {
   dateAdded: string;
 };
 
-interface Props {
+interface BackOfficeEditEmployeeProps {
+  open?: boolean;
+  sx?: SxProps<Theme>;
   handleClose: () => void;
   formData?: Partial<TableData>;
   handleUpdate?: (employee: Partial<TableData>) => Promise<void>;
 }
 
 const BackOfficeEditEmployee = ({
+  open,
+  sx,
   handleClose,
   formData,
   handleUpdate,
-}: Props) => {
+}: BackOfficeEditEmployeeProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'BackOffice.employeeList',
   });
@@ -66,6 +71,7 @@ const BackOfficeEditEmployee = ({
         new Date(formData?.dateAdded || '').toLocaleDateString('en-GB'),
     },
   });
+
   const onSubmit = async (data: EmployeeFormData) => {
     const formattedData = {
       ...data,
@@ -75,11 +81,30 @@ const BackOfficeEditEmployee = ({
     handleUpdate?.(formattedData);
     handleClose();
   };
+
   return (
-    <Overlay>
-      <MainContainer
-        sx={{ position: 'fixed', left: '500px', top: '50px', height: '620px' }}
-      >
+    <Dialog
+      open={open as boolean}
+      onClose={handleClose}
+      BackdropProps={{
+        sx: {
+          backgroundColor: theme.palette.shadow.shadowMedium,
+        },
+      }}
+      PaperProps={{
+        sx: {
+          width: 535,
+          height: 600,
+          padding: 4,
+          borderRadius: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          ...sx,
+        },
+      }}
+    >
+      <DialogTitle sx={{ padding: 0, mb: 2 }}>
         <Box
           sx={{
             display: 'flex',
@@ -90,6 +115,8 @@ const BackOfficeEditEmployee = ({
           <MainHeader>{t('editEmployee')}</MainHeader>
           <CloseButtonX onClick={handleClose} />
         </Box>
+      </DialogTitle>
+      <DialogActions>
         <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
           <Box mb={3}>
             <Typography fontWeight={'bold'} fontSize={14}>
@@ -172,10 +199,13 @@ const BackOfficeEditEmployee = ({
               maxDate={dayjs()}
             />
           </Box>
-          <SubmitButton isDisabled={!isValid} buttonContent={t('save')} />
+          <SubmitButton
+            isDisabled={!isValid}
+            buttonContent={t('save')}
+          />
         </form>
-      </MainContainer>
-    </Overlay>
+      </DialogActions>
+    </Dialog>
   );
 };
 

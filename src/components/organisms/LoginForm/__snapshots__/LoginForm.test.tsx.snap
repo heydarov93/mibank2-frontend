@@ -201,6 +201,7 @@ exports[`LoginForm snapshot should match 1`] = `
     >
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+        data-testid="save-button"
         tabindex="0"
         type="submit"
       >

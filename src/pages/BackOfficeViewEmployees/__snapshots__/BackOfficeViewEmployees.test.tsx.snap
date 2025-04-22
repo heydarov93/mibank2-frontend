@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders BackOfficeViewEmployees correctly 1`] = `
-<div>
+<div
+  aria-hidden="true"
+>
   <div
     class="MuiBox-root css-kgct6v"
   >
@@ -22,7 +24,8 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
         class="MuiBox-root css-0"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-169kbkp-MuiButtonBase-root-MuiButton-root"
+          data-testid="save-button"
           tabindex="0"
           type="submit"
         >
@@ -54,10 +57,10 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
         class="MuiBox-root css-10ug5gj"
       >
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-116knv-MuiFormControl-root-MuiTextField-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1f8rytt-MuiFormControl-root-MuiTextField-root"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-8j6b76-MuiInputBase-root-MuiOutlinedInput-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-er8hls-MuiInputBase-root-MuiOutlinedInput-root"
           >
             <svg
               aria-hidden="true"
@@ -105,10 +108,10 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
         class="MuiTable-root css-rqglhn-MuiTable-root"
       >
         <thead
-          class="MuiTableHead-root css-kgizm6-MuiTableHead-root"
+          class="MuiTableHead-root css-13pymb6-MuiTableHead-root"
         >
           <tr
-            class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+            class="MuiTableRow-root MuiTableRow-head css-u7li8u-MuiTableRow-root"
           >
             <th
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
@@ -118,7 +121,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                 class="MuiBox-root css-vvn7zl"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
                 >
                   First Name
                 </p>
@@ -132,7 +135,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                 class="MuiBox-root css-vvn7zl"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
                 >
                   Last Name
                 </p>
@@ -146,7 +149,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                 class="MuiBox-root css-vvn7zl"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
                 >
                   Role
                 </p>
@@ -160,7 +163,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                 class="MuiBox-root css-vvn7zl"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
                 >
                   Email
                 </p>
@@ -174,7 +177,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                 class="MuiBox-root css-vvn7zl"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
                 >
                   Date Added
                 </p>
@@ -190,42 +193,42 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
           class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
         >
           <tr
-            class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
+            class="MuiTableRow-root css-mwyjpb-MuiTableRow-root"
             data-testid="table-row"
           >
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               John
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               Doe
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               Admin
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               john.doe@example.com
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               2024-04-01
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
             >
               <div
                 class="MuiBox-root css-1i27l4i"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-78yeon-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -245,7 +248,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
                   />
                 </button>
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1gk7myn-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -270,18 +273,18 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
         </tbody>
       </table>
       <div
-        class="MuiBox-root css-tj50lq"
+        class="MuiBox-root css-5xhpq3"
       >
         <div
           class="MuiBox-root css-axw7ok"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
           >
             Items per page
           </p>
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-ntsdmc-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-1d4vgu-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
               aria-controls=":r1:"
@@ -292,7 +295,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               tabindex="0"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
               >
                 10
               </p>
@@ -331,7 +334,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             </fieldset>
           </div>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
           >
             1
              - 
@@ -383,7 +386,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               </svg>
             </button>
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1vinusq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
             >
               Previous
             </p>
@@ -392,16 +395,16 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             class="MuiBox-root css-axw7ok"
           >
             <div
-              class="MuiBox-root css-v3ih39"
+              class="MuiBox-root css-rewt5a"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
               >
                 1
               </p>
             </div>
             <p
-              class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
             >
               of 
               0
@@ -411,7 +414,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             class="MuiBox-root css-70qvj9"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-nb8uog-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-bhz8bd-MuiTypography-root"
             >
               Next
             </p>
@@ -451,75 +454,6 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             </button>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      class="MuiBox-root css-165xhxi"
-    >
-      <div
-        class="MuiBox-root css-6lzzp6"
-      >
-        <div
-          class="MuiBox-root css-vsj3pz"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 20 20"
-          >
-            <svg>
-              BackOfficeWarningIcon.svg
-            </svg>
-          </svg>
-        </div>
-        <div
-          class="MuiBox-root css-1821gv5"
-        >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-vxz123-MuiTypography-root"
-          >
-            Delete Employee
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-enn6w2-MuiTypography-root"
-          >
-            Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-108vkqb-MuiTypography-root"
-            >
-              “
-              John
-               
-              Doe
-              ”?
-            </p>
-          </p>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-ch27pp"
-      >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Cancel
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError css-1sszw6i-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          ConfirmationWindow.deleteBtn
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
       </div>
     </div>
   </div>
