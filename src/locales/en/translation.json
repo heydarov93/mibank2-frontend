@@ -120,6 +120,13 @@
       "termsRequiredCheckbox": "You must accept the terms and conditions"
     }
   },
+  "TransfersPage" :{
+    "title": "Transfers",
+    "byIBAN": "By Recipient's IBAN",
+    "byCardNumber": "By Card Number",
+    "betweenOwnCards": "Between Own Cards",
+    "goBack": "Go back"
+  },
   "SignupPage": {
     "formTitle": "Registration",
     "email": {
