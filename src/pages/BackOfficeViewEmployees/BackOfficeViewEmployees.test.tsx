@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { ThemeProvider } from '@mui/material';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { MemoryRouter } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { MemoryRouter } from 'react-router-dom';
 import BackOfficeViewEmployees from './BackOfficeViewEmployees';
 
 import useEmployees from 'hooks/useEmployee';
+import { theme } from 'theme/theme';
 
 jest.mock('hooks/useEmployee');
 
@@ -30,6 +32,7 @@ jest.mock('react-i18next', () => ({
         'warningWindow.deleteEmployeeText':
           'Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?',
         'ConfirmationWindow.cancelBtn': 'Cancel',
+        'ConfirmationWindow.save': 'Save',
       };
       return translations[key] || key;
     },
@@ -68,10 +71,8 @@ const mockEmployeesData = {
   },
   setState: jest.fn(),
   handleEdit: jest.fn(),
-  handleUpdate: jest.fn(),
   handleDeleteModal: jest.fn(),
   handleDelete: jest.fn(),
-  handleViewAll: jest.fn(),
 };
 
 beforeEach(() => {
@@ -86,9 +87,11 @@ const renderWithProviders = (ui: React.ReactElement) => {
   }) => {
     const methods = useForm();
     return (
-      <FormProvider {...methods}>
-        <MemoryRouter>{children}</MemoryRouter>
-      </FormProvider>
+      <ThemeProvider theme={theme}>
+        <FormProvider {...methods}>
+          <MemoryRouter>{children}</MemoryRouter>
+        </FormProvider>
+      </ThemeProvider>
     );
   };
 
@@ -97,6 +100,7 @@ const renderWithProviders = (ui: React.ReactElement) => {
 
 test('renders BackOfficeViewEmployees correctly', () => {
   const { container } = renderWithProviders(<BackOfficeViewEmployees />);
+
   expect(container).toMatchSnapshot();
 });
 
@@ -142,16 +146,44 @@ test('confirms delete employee and triggers handleDelete', async () => {
   const employeesBeforeDelete = screen.getAllByTestId('table-row');
   expect(employeesBeforeDelete).toHaveLength(1);
 
-  const deleteButton = screen.getAllByRole('button', { name: 'Delete' })[0];
+  const deleteButton = screen.getByText('Delete');
   fireEvent.click(deleteButton);
 
   expect(mockEmployeesData.handleDeleteModal).toHaveBeenCalled();
 
-  await waitFor(() => screen.debug());
-
   const modalTitle = screen.getAllByText(/Delete Employee/i)[0];
   expect(modalTitle).toBeInTheDocument();
 
-  const confirmDeleteButton = screen.getByRole('button', { name: 'Delete' });
+  const confirmDeleteButton = screen.getByText('Delete');
   fireEvent.click(confirmDeleteButton);
+});
+
+test('cancels delete employee', () => {
+  renderWithProviders(<BackOfficeViewEmployees />);
+
+  const employeesBeforeDelete = screen.getAllByTestId('table-row');
+  expect(employeesBeforeDelete).toHaveLength(1);
+
+  const deleteButton = screen.getByText('Delete');
+  fireEvent.click(deleteButton);
+
+  const cancelButton = screen.getByText('Cancel');
+  fireEvent.click(cancelButton);
+
+  expect(mockEmployeesData.handleDeleteModal).toHaveBeenCalled();
+});
+
+test('confirms edit employee and triggers handleEdit', async () => {
+  renderWithProviders(<BackOfficeViewEmployees />);
+
+  const employeesBeforeEdit = screen.getAllByTestId('table-row');
+  expect(employeesBeforeEdit).toHaveLength(1);
+
+  const editButton = screen.getByText('Edit');
+  fireEvent.click(editButton);
+
+  expect(mockEmployeesData.handleEdit).toHaveBeenCalled();
+
+  const confirmEditButton = await screen.findByTestId('save-button');
+  fireEvent.click(confirmEditButton);
 });

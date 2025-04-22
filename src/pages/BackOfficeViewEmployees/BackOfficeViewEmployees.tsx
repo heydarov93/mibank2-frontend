@@ -100,31 +100,19 @@ const BackOfficeViewEmployees = () => {
         onDeleteClick={handleDeleteModal}
       />
 
-      {state.showDelModal && (
-        <BackOfficeWarningWindow
-          onCancelClick={() =>
-            setState((prev) => ({ ...prev, showDelModal: false }))
-          }
-          title={t('warningWindow.deleteEmployee')}
-          text={t('warningWindow.deleteEmployeeText')}
-          onDeleteClick={handleDelete}
-          employee={state.selectedEmp}
-        />
-      )}
-
       {state.showEditForm && (
         <BackOfficeEditEmployee
-          formData={state.selectedEmp}
           handleClose={() =>
             setState((prev) => ({ ...prev, showEditForm: false }))
           }
+          formData={state.selectedEmp}
           handleUpdate={handleUpdate}
+          open={state.showEditForm}
         />
       )}
 
       {state.failMsgModal && (
         <BackOfficeFailWindow
-          sx={{ top: '50px', left: '520px' }}
           onClose={() =>
             setState((prev) => ({
               ...prev,
@@ -135,12 +123,12 @@ const BackOfficeViewEmployees = () => {
           }
           title={state.actionMsg}
           body={state.actionMsgBody}
+          sx={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
         />
       )}
 
       {state.successMsgModal && (
         <BackOfficeConfirmationWindow
-          sx={{ top: '50px', left: '520px' }}
           onClose={() =>
             setState((prev) => ({
               ...prev,
@@ -151,6 +139,20 @@ const BackOfficeViewEmployees = () => {
           }
           title={state.actionMsg}
           body={state.actionMsgBody}
+          sx={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+        />
+      )}
+
+      {state.showDelModal && (
+        <BackOfficeWarningWindow
+          onCancelClick={() =>
+            setState((prev) => ({ ...prev, showDelModal: false }))
+          }
+          title={t('warningWindow.deleteEmployee')}
+          text={t('warningWindow.deleteEmployeeText')}
+          onDeleteClick={handleDelete}
+          employee={state.selectedEmp}
+          open={state.showDelModal}
         />
       )}
     </MainContainer>

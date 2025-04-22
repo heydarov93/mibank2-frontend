@@ -376,8 +376,7 @@
       "serverError": "Unknown Server Error, Please try again later",
       "notFound": "Deposit not found, please select different deposit",
       "generalError": "Unknown error occured, please try again later",
-      "wentWrongError": "Something went wrong. Please try again.",
-      "deleteFailed": "Failed to delete!"
+      "wentWrongError": "Something went wrong. Please try again."
     },
     "SideBar": {
       "productHeader": "Products",
@@ -433,12 +432,10 @@
       "deleteCard": "Delete Card?",
       "deleteTitle": "Deleted Successfully!",
       "deleteBody": "The deposit information was deleted",
-      "employeeDeleteBody": "The employee information was deleted.",
-      "employeeUpdateBody": "The employee information was updated and saved.",
       "updateTitle": "Updated Successfully!",
       "updateBody": "The deposit information was updated and saved.",
-      "updateFailed": "Update failed! Please try again.",
-      "deleteFailed": "Delete failed! Please try again.",
+      "updateFailed": "Update failed!",
+      "deleteFailed": "Delete failed!",
       "updateEmployeeBody": "The employee information was updated and saved.",
       "deleteEmployeeBody": "The employee information was deleted."
     },
