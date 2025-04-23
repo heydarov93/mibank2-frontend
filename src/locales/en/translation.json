@@ -10,15 +10,15 @@
       "settings": "Settings",
       "logOut": "Log Out"
     },
-    "welcomeNavMenu" : {
+    "welcomeNavMenu": {
       "cards": "Cards",
       "deposits": "Deposits",
       "loans": "Loans",
       "services": "Services",
       "currency": "Currency",
-      "personalSignIn": "Log in", 
-      "personalSignUp": "Sign up", 
-      "businessSignIn": "Log in", 
+      "personalSignIn": "Log in",
+      "personalSignUp": "Sign up",
+      "businessSignIn": "Log in",
       "businessSignUp": "Sign up"
     },
     "topNavMenu": {
@@ -120,7 +120,7 @@
       "termsRequiredCheckbox": "You must accept the terms and conditions"
     }
   },
-  "TransfersPage" :{
+  "TransfersPage": {
     "title": "Transfers",
     "byIBAN": "By Recipient's IBAN",
     "byCardNumber": "By Card Number",
@@ -192,7 +192,7 @@
     "formSubTitle": "Do you have an account?",
     "formBtnSignUp": "Sign Up",
     "termsText": "I have read and agree to Millennium Bank's",
-    "requiredField": "The field is required",
+    "requiredField": "This field is required",
     "infoHintSpecial": "Allowed special characters:",
     "infoHintSpecialCharacters": "~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \"\" '. , : ;",
     "hide": "Hide",
