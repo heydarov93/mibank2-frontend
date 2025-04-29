@@ -13,12 +13,18 @@ import {
 } from './TransfersPage.styled';
 
 import { TransferButton } from 'components/molecules/TransferButton/TransferButton';
+import { TransferForm } from 'components/organisms/TransferForm/TransferForm';
+import { ETransferMethod } from 'components/organisms/TransferForm/enums/ETransferMethod';
+import { TransferMethodMenu } from 'components/organisms/TransferMethodMenu/TransferMethodMenu';
 
-enum ETransferMethod {
-  IBAN = 'IBAN',
-  CARD = 'CARD',
-  OWNCARDS = 'OWNCARDS',
-}
+const Icon = ({ item }: { item: ETransferMethod }) =>
+  item === ETransferMethod.IBAN ? (
+    <AccountBalanceIcon />
+  ) : item === ETransferMethod.CARD ? (
+    <CreditCardIcon />
+  ) : (
+    <LoopIcon />
+  );
 
 export default function TransfersPage() {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
@@ -40,32 +46,56 @@ export default function TransfersPage() {
           {t('goBack')}
         </StyledBackButton>
       )}
+
       <StyledContainer>
-        <Typography
-          variant="h1"
-          fontSize={26}
-          fontWeight={600}
-          color="common.black"
-        >
-          {t('title')}
-        </Typography>
-        <StyledButtonsContainer>
-          <TransferButton
-            onClick={handleTransfer(ETransferMethod.IBAN)}
-            label={t('byIBAN')}
-            icon={<AccountBalanceIcon />}
-          />
-          <TransferButton
-            onClick={handleTransfer(ETransferMethod.CARD)}
-            label={t('byCardNumber')}
-            icon={<CreditCardIcon />}
-          />
-          <TransferButton
-            onClick={handleTransfer(ETransferMethod.OWNCARDS)}
-            label={t('betweenOwnCards')}
-            icon={<LoopIcon />}
-          />
-        </StyledButtonsContainer>
+        {!transferMethod && (
+          <>
+            <Typography
+              variant="h1"
+              fontSize={26}
+              fontWeight={600}
+              color="common.black"
+            >
+              {t('title')}
+            </Typography>
+
+            <StyledButtonsContainer>
+              {(Object.values(ETransferMethod) as ETransferMethod[]).map(
+                (item) => (
+                  <TransferButton
+                    key={item}
+                    onClick={handleTransfer(item)}
+                    label={t(item)}
+                    icon={<Icon item={item} />}
+                  />
+                ),
+              )}
+            </StyledButtonsContainer>
+          </>
+        )}
+
+        {transferMethod && (
+          <>
+            <Box display="flex" gap={1}>
+              <Typography
+                variant="h1"
+                fontSize={26}
+                fontWeight={600}
+                color="common.black"
+              >
+                {t('formTitle')}
+              </Typography>
+              <TransferMethodMenu
+                transferMethod={transferMethod}
+                onSetMethod={setTransferMethod}
+              />
+            </Box>
+            <TransferForm
+              key={transferMethod}
+              transferMethod={transferMethod}
+            />
+          </>
+        )}
       </StyledContainer>
     </Box>
   );

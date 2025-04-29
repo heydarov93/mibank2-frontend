@@ -10,15 +10,15 @@
       "settings": "Settings",
       "logOut": "Log Out"
     },
-    "welcomeNavMenu" : {
+    "welcomeNavMenu": {
       "cards": "Cards",
       "deposits": "Deposits",
       "loans": "Loans",
       "services": "Services",
       "currency": "Currency",
-      "personalSignIn": "Log in", 
-      "personalSignUp": "Sign up", 
-      "businessSignIn": "Log in", 
+      "personalSignIn": "Log in",
+      "personalSignUp": "Sign up",
+      "businessSignIn": "Log in",
       "businessSignUp": "Sign up"
     },
     "topNavMenu": {
@@ -120,12 +120,48 @@
       "termsRequiredCheckbox": "You must accept the terms and conditions"
     }
   },
-  "TransfersPage" :{
+  "TransfersPage": {
     "title": "Transfers",
-    "byIBAN": "By Recipient's IBAN",
-    "byCardNumber": "By Card Number",
-    "betweenOwnCards": "Between Own Cards",
-    "goBack": "Go back"
+    "IBAN": "By Recipient's IBAN",
+    "CARD": "By Card Number",
+    "OWNCARDS": "Between Own Cards",
+    "goBack": "Go back",
+    "formTitle": "Transfer",
+    "saved": "Saved",
+
+    "card_fromFieldLabel": "From Card",
+    "card_fromFieldPlaceholder": "0000 0000 0000 0000",
+    "card_toFieldLabel": "To Card",
+    "card_toFieldPlaceholder": "1111 1111 1111 1111",
+
+    "iban_fromFieldLabel": "From account",
+    "iban_fromFieldPlaceholder": "PL00 0000 0000 0000 0000 0000 000",
+    "iban_toFieldLabel": "To recipient's IBAN",
+    "iban_toFieldPlaceholder": "PL00 0000 0000 0000 0000 0000 000",
+
+    "owncards_fromFieldLabel": "From Card",
+    "owncards_fromFieldPlaceholder": "0000 0000 0000 0000",
+    "owncards_toFieldLabel": "To Card",
+    "owncards_toFieldPlaceholder": "1111 1111 1111 1111",
+
+    "amountFieldLabel": "Amount",
+    "amountFieldPlaceholder": "Amount",
+    "messageFieldLabel": "Message (optional)",
+    "messageFieldPlaceholder": "Thank you",
+
+    "cancel": "Cancel",
+    "submit": "Send",
+
+    "error": {
+      "accountFieldRequired": "Specify an account/card number",
+      "ibanFieldPattern": "Invalid IBAN format. Please enter a valid Polish IBAN (PL + 26 digits)",
+      "cardFieldPattern": "Invalid card number format. Please enter a valid number (16 digits)",
+      "amountMinimum": "The minimal amount for transfer is",
+      "amountPattern": "Please set correct value",
+      "amountRequired": "Please specify transfer amount",
+      "messageMaxCharacters": "Character limit of 150 exceeded",
+      "messagePattern": "Message can only contain latin letters, numbers and special characters"
+    }
   },
   "SignupPage": {
     "formTitle": "Registration",
