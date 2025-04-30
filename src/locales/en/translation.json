@@ -39,7 +39,8 @@
       "title": "Rates",
       "currencyColumnLabel": "Currency",
       "buyRateColumnLabel": "Buy Rate",
-      "sellRateColumnLabel": "Sell Rate"
+      "sellRateColumnLabel": "Sell Rate",
+      "errorMessage": "Table is currently unavailable. Please try again later!"
     }
   },
   "DepositWindow": {
@@ -691,7 +692,8 @@
       "give": "Give",
       "get": "Get",
       "rate": "Rate",
-      "error": "Exchange rates are currently unavailable. Please try again later."
+      "errorMessage": "Exchange rates are currently unavailable. Please try again later!",
+      "convertError": "An error occurred during currency conversion. Please try again!"
     }
   }
 }

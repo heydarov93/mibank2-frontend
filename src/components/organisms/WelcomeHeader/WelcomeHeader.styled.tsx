@@ -1,4 +1,4 @@
-import { Box, styled, Tab, Tabs } from '@mui/material';
+import { Box, styled, Tab, Tabs, Typography } from '@mui/material';
 
 export const StyledContainer = styled(Box)(({ theme: { palette } }) => ({
   display: 'flex',
@@ -33,18 +33,42 @@ export const StyledTab = styled(Tab)(({ theme: { palette, typography } }) => ({
   letterSpacing: 0,
 }));
 
-export const RightSection = styled(Box)(() => ({
+export const StyledRightSection = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'row',
   gap: '24px',
 }));
 
+export const StyledContactsText = styled(Typography)(
+  ({ theme: { palette, typography } }) => ({
+    color: palette.grey[400],
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontWeight: 400,
+    fontSize: typography.mediumLogo?.fontSize,
+    lineHeight: '100%',
+    padding: '12px 10px',
+    cursor: 'pointer',
+    letterSpacing: 0,
+  }),
+);
+
+export const StyledLangText = styled(Typography)(
+  ({ theme: { palette, typography } }) => ({
+    color: palette.grey[400],
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontWeight: 400,
+    fontSize: typography.mediumLogo?.fontSize,
+    lineHeight: '100%',
+    letterSpacing: 0,
+  }),
+);
+
 export const DropDownBox = styled(Box)(
   ({ theme: { palette, typography } }) => ({
     display: 'flex',
     alignItems: 'center',
-    padding: '12px 5px',
+    padding: '12px 10px',
     gap: '8px',
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,

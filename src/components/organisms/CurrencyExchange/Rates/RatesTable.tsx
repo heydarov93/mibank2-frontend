@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   CircularProgress,
   Table,
@@ -30,6 +31,8 @@ import { ReactComponent as GbpIcon } from 'assets/icons/GbpFlag.svg';
 import { ReactComponent as JpyIcon } from 'assets/icons/JpyFlag.svg';
 import { ReactComponent as UsaIcon } from 'assets/icons/UsaFlag.svg';
 import currencies from 'constants/currencies';
+
+type TableError = string | null;
 
 interface Rate {
   currency: string;
@@ -70,6 +73,11 @@ export const RatesTable = () => {
     isLoadingCurrent ||
     isLoadingPrevious;
 
+  const isRatesError = isCurrentRatesError || isPreviousRatesError;
+  const errorMessage: TableError = isRatesError
+    ? t('ratesTable.errorMessage')
+    : null;
+
   if (isRatesDataLoading) {
     return <CircularProgress />;
   }
@@ -85,6 +93,13 @@ export const RatesTable = () => {
   return (
     <Box width={'50%'}>
       <StyledTableTitle>{t('ratesTable.title')}</StyledTableTitle>
+
+      {isRatesError && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {errorMessage}
+        </Alert>
+      )}
+
       <StyledTableContainer>
         <Table>
           <TableHead>
@@ -130,7 +145,9 @@ export const RatesTable = () => {
                       <StyledCellText
                         sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >
-                        {rate.code}
+                        {rate.code == currencies.at(-1)
+                          ? `100 ${rate.code}`
+                          : `1 ${rate.code}`}
                       </StyledCellText>
                     </CellBox>
                   </TableCell>
@@ -139,12 +156,10 @@ export const RatesTable = () => {
                       {isBidIncreased ? (
                         <TrendingUpIcon data-testid={'TrendingUpIcon'} />
                       ) : isBidDecreased ? (
-                        <TrendingDownIcon data-testid={'TrendingDownIcon'}/>
-                      ) : (
-                        '-'
-                      )}
+                        <TrendingDownIcon data-testid={'TrendingDownIcon'} />
+                      ) : null}
                       <StyledCellText data-testid={`bid-${rate.code}`}>
-                        {rate.bid.toFixed(4)}
+                        {rate.bid}
                       </StyledCellText>
                     </CellBox>
                   </TableCell>
@@ -153,12 +168,10 @@ export const RatesTable = () => {
                       {isAskIncreased ? (
                         <TrendingUpIcon data-testid={'TrendingUpIcon'} />
                       ) : isAskDecreased ? (
-                        <TrendingDownIcon data-testid={'TrendingDownIcon'}/>
-                      ) : (
-                        '-'
-                      )}
+                        <TrendingDownIcon data-testid={'TrendingDownIcon'} />
+                      ) : null}
                       <StyledCellText data-testid={`ask-${rate.code}`}>
-                        {rate.ask.toFixed(4)}
+                        {rate.ask}
                       </StyledCellText>
                     </CellBox>
                   </TableCell>
