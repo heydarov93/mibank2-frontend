@@ -22,6 +22,7 @@ export const endpoints = {
     getRates: '/api/exchangerates/tables/C',
     getCurrentRates: 'as/api/exchange-rates',
     getPreviousRates: 'as/api/exchange-rates/previous',
+    convertCurrency: "as/api/exchange-rates/convert-currency"
   },
   employeeAccountManagement: {
     employees: {

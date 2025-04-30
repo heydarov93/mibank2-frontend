@@ -25,12 +25,12 @@ import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
 import { checkEmailApi } from 'api/checkEmailApi';
 import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
+import { convertCurrencyApi } from 'api/convertCurrencyApi';
 import { createCardApi } from 'api/createCardApi';
 import { createDepositApi } from 'api/createDeposit';
 import { deleteDepositApi } from 'api/deleteDepositApi';
 import { employeeControllerApi } from 'api/employeeController';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
-import { getCurrencyRatesApi } from 'api/getCurrencyRatesApi';
 import { getDepositsApi } from 'api/getDepositsApi';
 import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
 import { getPostcode } from 'api/getPostcode';
@@ -67,13 +67,13 @@ const rootReducer = combineReducers({
   [validateOtpApi.reducerPath]: validateOtpApi.reducer,
   [employeeControllerApi.reducerPath]: employeeControllerApi.reducer,
   [registerEmployeeApi.reducerPath]: registerEmployeeApi.reducer,
-  [getCurrencyRatesApi.reducerPath]: getCurrencyRatesApi.reducer,
-  [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
   [createDepositApi.reducerPath]: createDepositApi.reducer,
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
   [createCardApi.reducerPath]: createCardApi.reducer,
   [deleteDepositApi.reducerPath]: deleteDepositApi.reducer,
   [updateDepositApi.reducerPath]: updateDepositApi.reducer,
+  [convertCurrencyApi.reducerPath]: convertCurrencyApi.reducer,
+  [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
 });
 
 const persistConfig = {
@@ -95,13 +95,13 @@ const persistConfig = {
     validateOtpApi.reducerPath,
     employeeControllerApi.reducerPath,
     registerEmployeeApi.reducerPath,
-    getCurrencyRatesApi.reducerPath,
-    getExchangeRatesApi.reducerPath,
     createDepositApi.reducerPath,
     getDepositsApi.reducerPath,
     createCardApi.reducerPath,
     deleteDepositApi.reducerPath,
     updateDepositApi.reducerPath,
+    getExchangeRatesApi.reducerPath,
+    convertCurrencyApi.reducerPath,
   ],
 };
 
@@ -130,13 +130,13 @@ const store = configureStore({
       validateOtpApi.middleware,
       employeeControllerApi.middleware,
       registerEmployeeApi.middleware,
-      getCurrencyRatesApi.middleware,
-      getExchangeRatesApi.middleware,
       createDepositApi.middleware,
       getDepositsApi.middleware,
       createCardApi.middleware,
       deleteDepositApi.middleware,
       updateDepositApi.middleware,
+      getExchangeRatesApi.middleware,
+      convertCurrencyApi.middleware,
     ]),
 });
 

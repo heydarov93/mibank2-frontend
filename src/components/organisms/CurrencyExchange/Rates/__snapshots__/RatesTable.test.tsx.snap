@@ -60,7 +60,7 @@ exports[`matches snapshot 1`] = `
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-fc2ix7-MuiTypography-root"
                 >
-                  USD
+                  1 USD
                 </p>
               </div>
             </td>
@@ -85,7 +85,7 @@ exports[`matches snapshot 1`] = `
                   class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
                   data-testid="bid-USD"
                 >
-                  1.0000
+                  1
                 </p>
               </div>
             </td>
@@ -110,7 +110,7 @@ exports[`matches snapshot 1`] = `
                   class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
                   data-testid="ask-USD"
                 >
-                  1.1000
+                  1.1
                 </p>
               </div>
             </td>
@@ -130,7 +130,7 @@ exports[`matches snapshot 1`] = `
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-fc2ix7-MuiTypography-root"
                 >
-                  EUR
+                  1 EUR
                 </p>
               </div>
             </td>
@@ -155,7 +155,7 @@ exports[`matches snapshot 1`] = `
                   class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
                   data-testid="bid-EUR"
                 >
-                  0.9000
+                  0.9
                 </p>
               </div>
             </td>
@@ -180,7 +180,7 @@ exports[`matches snapshot 1`] = `
                   class="MuiTypography-root MuiTypography-body1 css-jh6xkz-MuiTypography-root"
                   data-testid="ask-EUR"
                 >
-                  1.0000
+                  1
                 </p>
               </div>
             </td>

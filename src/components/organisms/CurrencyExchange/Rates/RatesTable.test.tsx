@@ -148,12 +148,13 @@ describe('RatesTable component', () => {
       screen.getByText('ratesTable.sellRateColumnLabel'),
     ).toBeInTheDocument();
 
-    expect(screen.getByText('USD')).toBeInTheDocument();
-    expect(screen.getByText('EUR')).toBeInTheDocument();
+    expect(screen.getByText('1 USD')).toBeInTheDocument();
+    expect(screen.getByText('1 EUR')).toBeInTheDocument();
 
-    expect(screen.getAllByText('1.0000').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('1.1000').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('0.9000').length).toBeGreaterThan(0);
+    expect(screen.getByTestId('bid-USD')).toHaveTextContent('1');
+    expect(screen.getByTestId('ask-USD')).toHaveTextContent('1.1');
+    expect(screen.getByTestId('bid-EUR')).toHaveTextContent('0.9');
+    expect(screen.getByTestId('ask-EUR')).toHaveTextContent('1');
 
     expect(screen.getAllByTestId('TrendingUpIcon').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('TrendingDownIcon').length).toBeGreaterThan(0);
