@@ -1,11 +1,10 @@
-import CloseIcon from '@mui/icons-material/Close';
-import { Box, List } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import { DepositBenefitItem } from './DepositBenefitItem';
 import {
+  StyledBenefitList,
   StyledCardContainer,
-  StyledCloseButton,
   StyledDepositIllustration,
   StyledInfoCardColumn,
   StyledInfoCardDesc,
@@ -13,27 +12,20 @@ import {
   StyledInfoCardTitle,
 } from './DepositInfoCard.styled';
 
+import { Deposit } from 'api/getDepositsApi';
 import DepositCardSvg from 'assets/icons/DepositCardImg.svg';
 
-interface DepositInfoCardProps {
-  id: number;
-  title: string;
-  description: string;
-  minDeposit: number;
-  months: number;
-  capitalizationRate: number;
-  interestRate: number;
-  onCloseModal: () => void;
-}
+type DepositInfoCardProps = Deposit;
 
 const DepositInfoCard = ({
-  title,
+  name,
   description,
-  minDeposit,
-  months,
+  min,
+  term,
   interestRate,
-  capitalizationRate,
-  onCloseModal,
+  capitalization,
+  earlyWithdrawalFee,
+  earlyWithdrawalLimit,
 }: DepositInfoCardProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
   const benefitsText = [
@@ -41,26 +33,39 @@ const DepositInfoCard = ({
       mainText: t('excitingRates'),
       secondaryText: t('interestRate', {
         procent: interestRate,
-        months: months,
+        months: term,
       }),
     },
     {
       mainText: t('minimumDepositText'),
       secondaryText: t('minimumDeposit', {
-        minDeposit: minDeposit,
+        minDeposit: min,
       }),
     },
-    {
-      mainText: t('easySetup'),
-      secondaryText: t('easySetupText'),
-    },
+    // TODO - Add data from API when it's available.
     {
       mainText: t('balanceReview'),
       secondaryText: '27.01.2025',
     },
     {
+      mainText: t('moneyAddOn'),
+      secondaryText: t('moneyAddOnText'),
+    },
+    {
       mainText: t('capitalizationRate'),
-      secondaryText: `${capitalizationRate}%`,
+      secondaryText: `${capitalization}%`,
+    },
+    {
+      mainText: t('earlyWdLimit'),
+      secondaryText: t('earlyWdLimitText', {
+        procent: earlyWithdrawalLimit,
+      }),
+    },
+    {
+      mainText: t('wdFee'),
+      secondaryText: t('wdFeeText', {
+        procent: earlyWithdrawalFee,
+      }),
     },
   ];
 
@@ -72,20 +77,18 @@ const DepositInfoCard = ({
           justifyContent: 'space-between',
         }}
       >
-        <StyledInfoCardTitle>{title}</StyledInfoCardTitle>
-        <StyledCloseButton onClick={onCloseModal}>
-          <CloseIcon />
-        </StyledCloseButton>
+        <StyledInfoCardTitle>{name}</StyledInfoCardTitle>
       </Box>
 
-      <StyledInfoCardColumn>
-        <StyledInfoCardDesc>{description}</StyledInfoCardDesc>
-        <StyledInfoCardSubTitle>You will get:</StyledInfoCardSubTitle>
-      </StyledInfoCardColumn>
+      <Stack sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+        <StyledInfoCardColumn>
+          <StyledInfoCardDesc>{description}</StyledInfoCardDesc>
+          <StyledInfoCardSubTitle>You will get:</StyledInfoCardSubTitle>
+        </StyledInfoCardColumn>
+        <StyledDepositIllustration src={DepositCardSvg} />
+      </Stack>
 
-      <StyledDepositIllustration src={DepositCardSvg} />
-
-      <List sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <StyledBenefitList>
         {benefitsText.map((text, index) => (
           <DepositBenefitItem
             mainText={text.mainText}
@@ -93,7 +96,7 @@ const DepositInfoCard = ({
             key={index}
           />
         ))}
-      </List>
+      </StyledBenefitList>
     </StyledCardContainer>
   );
 };

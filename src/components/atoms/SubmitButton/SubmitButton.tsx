@@ -1,5 +1,3 @@
-import { Box } from '@mui/material';
-
 import { StyledButton } from './SubmitButton.styled';
 
 type SubmitButtonProps = {
@@ -7,28 +5,28 @@ type SubmitButtonProps = {
   buttonContent: React.ReactNode;
   isDisabled?: boolean;
   startIcon?: React.ReactNode;
-};
+} & React.ComponentProps<typeof StyledButton>;
 
 export const SubmitButton = ({
   onClick,
   buttonContent,
   isDisabled,
   startIcon,
+  ...props
 }: SubmitButtonProps) => {
   return (
-    <Box>
-      <StyledButton
-        size="large"
-        variant="contained"
-        fullWidth
-        type="submit"
-        onClick={onClick}
-        disabled={isDisabled}
-        startIcon={startIcon}
-        data-testid="save-button"
-      >
-        {buttonContent}
-      </StyledButton>
-    </Box>
+    <StyledButton
+      size="large"
+      variant="contained"
+      fullWidth
+      type="submit"
+      onClick={onClick}
+      disabled={isDisabled}
+      startIcon={startIcon}
+      data-testid="save-button"
+      {...props}
+    >
+      {buttonContent}
+    </StyledButton>
   );
 };

@@ -1,9 +1,9 @@
-import { Box, IconButton, styled, Typography } from '@mui/material';
+import { Box, IconButton, List, styled, Typography } from '@mui/material';
 
 export const StyledCardContainer = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
     position: 'relative',
-    maxWidth: '500px',
+    minWidth: '500px',
     padding: spacing(5),
     backgroundColor: palette.bg.lightBlue,
   }),
@@ -36,6 +36,7 @@ export const StyledInfoCardDesc = styled(Typography)(
     letterSpacing: 0,
     color: palette.grey[400],
     marginBottom: '30px',
+    minHeight: '150px',
   }),
 );
 
@@ -71,17 +72,11 @@ export const StyledInfoCardSecondaryText = styled(Typography)(
   }),
 );
 
-export const StyledBlueTickIcon = styled(Typography)(
-  ({ theme: { palette } }) => ({
-    color: palette.primary.dark,
-    position: 'absolute',
-    width: '18px',
-    height: '18px',
-  }),
-);
-
 export const StyledCloseButton = styled(IconButton)(
   ({ theme: { spacing, palette } }) => ({
+    position: 'absolute',
+    right: spacing(5),
+    top: spacing(5),
     backgroundColor: 'transparent',
     color: palette.grey[400],
     padding: spacing(1),
@@ -91,6 +86,12 @@ export const StyledCloseButton = styled(IconButton)(
     },
   }),
 );
+
+export const StyledBenefitList = styled(List)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+}));
 
 export const StyledDepositIllustration = styled('img')(() => ({
   position: 'absolute',

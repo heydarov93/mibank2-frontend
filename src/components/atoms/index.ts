@@ -19,3 +19,4 @@ export { ShieldIcon } from './ShieldIcon/ShieldIcon';
 export { BankIcon } from './BankIcon/BankIcon';
 export { SmileyFaceIcon } from './SmileyFaceIcon/SmileyFaceIcon';
 export { ShieldCheckIcon } from './ShieldCheckIcon/ShieldCheckIcon';
+export { DepositErrorMessage } from './DepositErrorMessage/DepositErrorMessage';

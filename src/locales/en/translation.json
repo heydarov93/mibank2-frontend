@@ -10,15 +10,15 @@
       "settings": "Settings",
       "logOut": "Log Out"
     },
-    "welcomeNavMenu" : {
+    "welcomeNavMenu": {
       "cards": "Cards",
       "deposits": "Deposits",
       "loans": "Loans",
       "services": "Services",
       "currency": "Currency",
-      "personalSignIn": "Log in", 
-      "personalSignUp": "Sign up", 
-      "businessSignIn": "Log in", 
+      "personalSignIn": "Log in",
+      "personalSignUp": "Sign up",
+      "businessSignIn": "Log in",
       "businessSignUp": "Sign up"
     },
     "topNavMenu": {
@@ -44,13 +44,13 @@
   },
   "DepositWindow": {
     "availableDeposits": "Available Deposits",
-    "openDeposit": "Open Deposit",
+    "openDeposit": "Open deposit",
     "learnMore": "Learn more",
-    "viewAllDeposits": "View All Deposits",
+    "viewAllDeposits": "View all deposits",
     "currency": "Currency",
     "rate": "Rate",
     "duration": "Duration",
-    "months": "{{months}} Months",
+    "months": "{{months}} months",
     "excitingRates": "Exciting interest rates: ",
     "interestRate": "{{procent}}% per year for {{months}} months.",
     "minimumDepositText": "Minimum Deposit",
@@ -81,6 +81,8 @@
     "interestRate": "Rate of Interest",
     "interestAmount": "Interest Amount",
     "openDeposit": "Open Deposit",
+    "viewAllDeposits": "View all deposits",
+    "back": "Back",
     "cancelDeposit": "Cancel",
     "openDepositFormSubTitle": "Calculate your earnings and open deposit in 1 easy step",
     "attractiveInterestRate": "Attractive Interest Rate",
@@ -120,7 +122,7 @@
       "termsRequiredCheckbox": "You must accept the terms and conditions"
     }
   },
-  "TransfersPage" :{
+  "TransfersPage": {
     "title": "Transfers",
     "byIBAN": "By Recipient's IBAN",
     "byCardNumber": "By Card Number",

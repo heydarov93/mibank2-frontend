@@ -1,0 +1,973 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DepositLearnMorePage renders correctly 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-79elbk"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-12qv34f-MuiButtonBase-root-MuiButton-root"
+      data-testid="back-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-o6ihsd-MuiSvgIcon-root"
+          data-testid="ArrowBackIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"
+          />
+        </svg>
+      </span>
+      back
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+  <div
+    class="MuiBox-root css-1b3wpzg"
+  >
+    <div
+      class="MuiBox-root css-0"
+    >
+      <div
+        class="MuiBox-root css-9u218"
+      >
+        <div
+          class="MuiBox-root css-1koq44g"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-13iruyf-MuiTypography-root"
+          >
+            Test Deposit
+          </p>
+          <div
+            class="MuiBox-root css-yzkv41"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-542jr8-MuiButtonBase-root-MuiButton-root"
+              data-testid="open-current-deposit-button"
+              tabindex="0"
+              type="submit"
+            >
+              openDeposit
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-13n1u8s-MuiButtonBase-root-MuiButton-root"
+              data-testid="open-all-deposits-button"
+              tabindex="0"
+              type="button"
+            >
+              viewAllDeposits
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <img
+          class="css-16k8u7m"
+          src="DepositCardImg-1.svg"
+        />
+        <div
+          class="MuiBox-root css-1koq44g"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+          >
+            Test Description
+          </p>
+          <div
+            class="MuiBox-root css-mw6895"
+          >
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+              >
+                5
+                %
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+              >
+                rate
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+              >
+                months
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+              >
+                duration
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+              >
+                currency
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-6r2fzw"
+      >
+        <div
+          class="MuiBox-root css-0"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1p89594-MuiTypography-root"
+          >
+            aboutDepositName
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-1v8my8o"
+        >
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              excitingRates
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              interestRate
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              minimumDepositText
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              minimumDeposit
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              easySetup
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              easySetupText
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              balanceReview
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              27.01.2025
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              capitalizationRate
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              undefined%
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              moneyAddOn
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              moneyAddOnText
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              earlyWdLimit
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              earlyWdLimit
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-pa6t9d-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 40 40"
+            >
+              <svg>
+                BlueTick.svg
+              </svg>
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-c633zr-MuiTypography-root"
+            >
+              wdFee
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1oblsnm-MuiTypography-root"
+            >
+              wdFeeText
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1vpal1o"
+      >
+        <div
+          class="MuiBox-root css-11of0jq"
+        >
+          <div
+            class="MuiBox-root css-gg4vpm"
+          >
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                willGive
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-13qn4wn-MuiTypography-root"
+              >
+                $
+                10,000
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                willTake
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-13qn4wn-MuiTypography-root"
+              >
+                $
+                10,500
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-1l4w6pd"
+          >
+            <img
+              src="CoinInvesting.webp"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1hdbc19"
+          >
+            <div
+              class="MuiBox-root css-gg4vpm"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                depositAmount
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                USD
+                 
+                10,000
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-gg4vpm"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                interestRate
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                5.00
+                %
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-gg4vpm"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-18a6a6f-MuiTypography-root"
+              >
+                interestAmount
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-13qn4wn-MuiTypography-root"
+              >
+                USD
+                 
+                500
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-169kbkp-MuiButtonBase-root-MuiButton-root"
+          data-testid="save-button"
+          tabindex="0"
+          type="submit"
+        >
+          openDeposit
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-4o5y4c"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-14crh7j-MuiTypography-root"
+      >
+        depositBenefits
+      </p>
+      <div
+        class="MuiBox-root css-rbjnah"
+      >
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              MoneyBag.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            attractiveInterestRate
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            interestRateText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              ClockIcon.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            shortTermGrowth
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            shortTermGrowthText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              ShieldIcon.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            secureRiskFree
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            secureRiskFreeText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              BankIcon.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            flexibleOptions
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            flexibleOptionsText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              SmileyIcon.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            hassleFree
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            hassleFreeText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-p8w5nr"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-103t5j3-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 48 48"
+          >
+            <svg>
+              ShieldCheckIcon.svg
+            </svg>
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kaax19-MuiTypography-root"
+          >
+            guaranteedPayout
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-cry7pb-MuiTypography-root"
+          >
+            guaranteedPayoutText
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-fyp73w"
+    >
+      <div
+        class="MuiBox-root css-1i0b1l5"
+      >
+        <div
+          class="MuiBox-root css-o3jqye"
+        >
+          howToOpenDeposit
+        </div>
+        <div
+          class="MuiBox-root css-1y9sv62"
+        >
+          <div
+            class="MuiBox-root css-9ck2up"
+          >
+            <div
+              class="MuiStack-root css-v4dpor-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-xxa07y"
+              >
+                1
+              </div>
+              <div
+                class="MuiBox-root css-1a23kl0"
+              />
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-dldr7x-MuiTypography-root"
+            >
+              chooseAmountStep
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-9ck2up"
+          >
+            <div
+              class="MuiStack-root css-v4dpor-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-xxa07y"
+              >
+                2
+              </div>
+              <div
+                class="MuiBox-root css-1a23kl0"
+              />
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-dldr7x-MuiTypography-root"
+            >
+              selectAccountStep
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-9ck2up"
+          >
+            <div
+              class="MuiStack-root css-v4dpor-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-xxa07y"
+              >
+                3
+              </div>
+              <div
+                class="MuiBox-root css-1a23kl0"
+              />
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-dldr7x-MuiTypography-root"
+            >
+              acceptTermsStep
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-9ck2up"
+          >
+            <div
+              class="MuiStack-root css-v4dpor-MuiStack-root"
+            >
+              <div
+                class="MuiBox-root css-xxa07y"
+              >
+                4
+              </div>
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-dldr7x-MuiTypography-root"
+            >
+              openDepositStep
+            </p>
+          </div>
+        </div>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-gjhprn-MuiTypography-root"
+        >
+          completionMessage
+        </p>
+      </div>
+      <div
+        class="MuiBox-root css-1y11h2a"
+        data-testid="deposit-creation-form"
+      >
+        <div
+          class="MuiBox-root css-1gabtxx"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1lsjknf-MuiSvgIcon-root"
+            data-testid="ArrowBackIosIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+            />
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-33baa6-MuiTypography-root"
+          >
+            openDeposit
+          </p>
+        </div>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-15xvp0w-MuiTypography-root"
+        >
+          openDepositFormSubTitle
+        </p>
+        <form>
+          <div
+            class="MuiBox-root css-i3pbo"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-1t78t9u-MuiFormLabel-root-MuiInputLabel-root"
+            >
+              depositAmountLabel
+            </label>
+            <div
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1inh339-MuiFormControl-root-MuiTextField-root"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd css-1gazmot-MuiInputBase-root-MuiOutlinedInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                  id=":r0:"
+                  min="0"
+                  name="amount"
+                  pattern="d*"
+                  placeholder="depositAmountPlaceholder"
+                  type="number"
+                  value=""
+                />
+                <div
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+                  >
+                    depositCurrencyLabel
+                  </p>
+                </div>
+                <fieldset
+                  aria-hidden="true"
+                  class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="css-ihdtdm"
+                  >
+                    <span
+                      class="notranslate"
+                    >
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-i3pbo"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-1t78t9u-MuiFormLabel-root-MuiInputLabel-root"
+            >
+              selectAccountLabel
+            </label>
+            <div
+              class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-bv0ulo-MuiAutocomplete-root"
+              data-testid="account-select"
+            >
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
+              >
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1gazmot-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-invalid="false"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r1:"
+                    placeholder="selectAccountLabel"
+                    role="combobox"
+                    spellcheck="false"
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
+                  >
+                    <button
+                      aria-label="Clear"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-1glvl0p-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-clearIndicator"
+                      tabindex="-1"
+                      title="Clear"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                        data-testid="CloseIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                    <button
+                      aria-label="Open"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                      tabindex="-1"
+                      title="Open"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="ArrowDropDownIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-ihdtdm"
+                    >
+                      <span
+                        class="notranslate"
+                      >
+                        ​
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-t0v1up"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1sg77p6-MuiTypography-root"
+            >
+              calculationInfo
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1ofg2tb-MuiTypography-root"
+            >
+              calculationResult
+            </p>
+          </div>
+          <label
+            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-6pz7h4-MuiFormControlLabel-root"
+          >
+            <span
+              class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+            >
+              <span
+                class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-28dt7-MuiButtonBase-root-MuiSwitch-switchBase"
+              >
+                <input
+                  class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
+                  name="checkbox"
+                  type="checkbox"
+                  value="false"
+                />
+                <span
+                  class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                />
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </span>
+              <span
+                class="MuiSwitch-track css-1cybg8v-MuiSwitch-track"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-bhlcrt-MuiTypography-root"
+              >
+                confirmationText
+              </p>
+            </span>
+          </label>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-18jfzmq-MuiTypography-root"
+          >
+            termsLinkText
+          </p>
+          <div
+            class="MuiBox-root css-8amux6"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-135tgde-MuiButtonBase-root-MuiButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              openDeposit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

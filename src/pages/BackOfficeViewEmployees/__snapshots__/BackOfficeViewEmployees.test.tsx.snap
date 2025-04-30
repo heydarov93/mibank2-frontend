@@ -20,35 +20,31 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
           Employee Information
         </h2>
       </div>
-      <div
-        class="MuiBox-root css-0"
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-169kbkp-MuiButtonBase-root-MuiButton-root"
+        data-testid="save-button"
+        tabindex="0"
+        type="submit"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-169kbkp-MuiButtonBase-root-MuiButton-root"
-          data-testid="save-button"
-          tabindex="0"
-          type="submit"
+        <span
+          class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeLarge css-htszrh-MuiButton-startIcon"
         >
-          <span
-            class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeLarge css-htszrh-MuiButton-startIcon"
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 15 16"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 15 16"
-            >
-              <svg>
-                ButtonPlusIcon.svg
-              </svg>
+            <svg>
+              ButtonPlusIcon.svg
             </svg>
-          </span>
-          Add Employee
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
-      </div>
+          </svg>
+        </span>
+        Add Employee
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
     </div>
     <div
       class="MuiBox-root css-zfu7na"

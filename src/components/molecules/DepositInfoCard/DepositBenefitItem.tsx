@@ -1,10 +1,11 @@
 import { Box } from '@mui/material';
 
 import {
-  StyledBlueTickIcon,
   StyledInfoCardMainText,
   StyledInfoCardSecondaryText,
 } from './DepositInfoCard.styled';
+
+import { ReactComponent as CheckIcon } from 'assets/icons/CheckIcon.svg';
 
 interface DepositBenefitItemProps {
   mainText: string;
@@ -17,7 +18,7 @@ export const DepositBenefitItem = ({
 }: DepositBenefitItemProps) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <StyledBlueTickIcon />
+      <CheckIcon />
       <StyledInfoCardMainText>{mainText}</StyledInfoCardMainText>
       <StyledInfoCardSecondaryText>{secondaryText}</StyledInfoCardSecondaryText>
     </Box>

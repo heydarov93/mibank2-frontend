@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 
 export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
@@ -21,15 +21,13 @@ export const StyledBackBoxContainer = styled(Box)(({ theme: { spacing } }) => ({
   padding: '14px 24px',
 }));
 
-export const StyledBackText = styled(Typography)(
-  ({ theme: { typography } }) => ({
-    fontFamily: typography.mediumLogo?.fontFamily,
-    fontWeight: 400,
-    fontSize: '16px',
-    lineHeight: '100%',
-    letterSpacing: 0,
-  }),
-);
+export const StyledBackButton = styled(Button)(({ theme: { palette } }) => ({
+  position: 'absolute',
+  top: '8px',
+  left: '72px',
+  paddingInline: '16px',
+  color: palette.common.black,
+}));
 
 export const StyledBackArrowIcon = styled(ArrowBackIcon)(
   ({ theme: { palette } }) => ({

@@ -138,16 +138,13 @@ export const FormOpenDepositBtnBox = styled(Box)(() => ({
   marginTop: '32px',
 }));
 
-export const FormActionBtn = styled(Button)(
-  ({ theme: { typography } }) => ({
-    width: '145px',
-    height: '55px',
-    borderRadius: '8px',
-    padding: '19px 24px',
-    fontFamily: typography.mediumLogo?.fontFamily,
-    fontWeight: 500,
-    fontSize: '16px',
-    lineHeight: '100%',
-    letterSpacing: 0,
-  }),
-);
+export const FormActionBtn = styled(Button)(({ theme: { typography } }) => ({
+  height: '55px',
+  borderRadius: '8px',
+  padding: '19px 24px',
+  fontFamily: typography.mediumLogo?.fontFamily,
+  fontWeight: 500,
+  fontSize: '16px',
+  lineHeight: '100%',
+  letterSpacing: 0,
+}));

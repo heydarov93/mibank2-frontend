@@ -1,66 +1,152 @@
-import { Box } from '@mui/material';
-import { useState } from 'react';
+import { Box, Button, CircularProgress } from '@mui/material';
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
-  StyledContainer
+  StyledBackArrowIcon,
+  StyledBackButton,
+  StyledContainer,
 } from './DepositLearnMorePage.styled';
 
+import { Deposit, useGetDepositsQuery } from 'api/getDepositsApi';
+import { DepositErrorMessage } from 'components/atoms';
 import { DepositBox, InvestmentBox } from 'components/molecules';
-import { AboutDepositCard, DepositBenefitsGrid } from 'components/organisms';
+import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
+import {
+  AboutDepositCard,
+  AvailableDepositsWindow,
+  DepositBenefitsGrid,
+} from 'components/organisms';
 import { OpenDepositForm } from 'components/organisms/OpenDepositForm/OpenDepositForm';
+import { OpenDepositModal } from 'components/organisms/OpenDepositModal/OpenDepositModal';
+import useDisclosure from 'hooks/useDisclosure';
 
 export const DepositLearnMorePage = () => {
-  const [openDeposit, setOpenDeposit] = useState<boolean>(false);
-  //TODO: Wait until backend is ready to replace the mock data
-  const mockData = {
-    name: 'The Best Deposit',
-    id: 1,
-    type: 'Term Deposit',
-    currency: 'USD',
-    min: 1,
-    max: 2,
-    description: 'Valid Description Valid',
-    term: 12,
-    minDeposit: 100,
-    interestRate: 3,
-    capitalization: 3,
-    earlyWithdrawalLimit: 2,
-    earlyWithdrawalFee: 3,
-    earlyWithdrawal: true,
-    augmentable: true,
-    autoRenewable: true,
+  const params = useParams();
+  const depositIdFromParams = Number(params.id);
+  const navigate = useNavigate();
+  const { isOpen, close, open } = useDisclosure();
+  const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
+  const {
+    data: deposits,
+    isLoading,
+    isError: isDepositError,
+  } = useGetDepositsQuery({ page: 0, size: 5 });
+
+  const depositIndex =
+    deposits?.content?.findIndex(
+      (deposit) => deposit.id === depositIdFromParams,
+    ) ?? 0;
+  const depositInfo = deposits?.content?.[depositIndex] ?? null;
+  const isLoadingDeposits = isLoading || !depositInfo;
+  const [selectedDeposit, setSelectedDeposit] = useState<Deposit | null>(null);
+  const isViewingAllDepositsRef = useRef(false);
+
+  const handleNavigateBack = () => {
+    navigate(-1);
   };
 
+  const handleDepositBack = () => {
+    if (isViewingAllDepositsRef.current) {
+      open();
+    }
+
+    setSelectedDeposit(null);
+  };
+
+  function handleOpenAllDeposits() {
+    isViewingAllDepositsRef.current = true;
+    open();
+  }
+
+  function handleOpenDepositForm() {
+    isViewingAllDepositsRef.current = false;
+    setSelectedDeposit(depositInfo);
+  }
+
+  if (isDepositError) {
+    return <DepositErrorMessage />;
+  }
+
+  if (isLoadingDeposits) {
+    return <CircularProgress />;
+  }
+
   return (
-    <StyledContainer>
-      <Box>
-        <DepositBox
-          depositCurrency={mockData.currency}
-          depositDescription={mockData.description}
-          depositDuration={mockData.term}
-          depositName={mockData.name}
-          depositRate={mockData.interestRate}
-          openDeposit={openDeposit}
-          setOpenDeposit={setOpenDeposit}
-        />
+    <>
+      <Box position="relative">
+        <StyledBackButton
+          data-testid="back-button"
+          onClick={handleNavigateBack}
+          variant="text"
+          startIcon={<StyledBackArrowIcon />}
+        >
+          {t('back')}
+        </StyledBackButton>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <AboutDepositCard
-          capitalizationRate={mockData.capitalization}
-          depositName={mockData.name}
-          interestRate={mockData.interestRate}
-          months={mockData.term}
-          wdFee={mockData.earlyWithdrawalFee}
-          wdLimit={mockData.earlyWithdrawalLimit}
-          minDeposit={mockData.minDeposit}
-        />
-        <InvestmentBox
-          interestRate={mockData.interestRate}
-          setOpenDeposit={setOpenDeposit}
-        />
-      </Box>
-      <DepositBenefitsGrid />
-      <OpenDepositForm />
-    </StyledContainer>
+      <StyledContainer>
+        <Box>
+          <DepositBox
+            depositCurrency={depositInfo.currency}
+            depositDescription={depositInfo.description}
+            depositDuration={depositInfo.term}
+            depositName={depositInfo.name}
+            depositRate={depositInfo.interestRate}
+            depositImgSrc={
+              depositBoxImages[depositIndex % depositBoxImages.length]
+            }
+            secondaryButton={
+              <Button
+                onClick={handleOpenAllDeposits}
+                variant="outlined"
+                sx={{
+                  alignSelf: 'stretch',
+                  borderRadius: '8px',
+                  flex: '1 0 100%',
+                  maxWidth: '170px',
+                }}
+                data-testid="open-all-deposits-button"
+              >
+                {t('viewAllDeposits')}
+              </Button>
+            }
+            onOpenDepositForm={handleOpenDepositForm}
+          />
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <AboutDepositCard
+            capitalizationRate={depositInfo.capitalization}
+            depositName={depositInfo.name}
+            interestRate={depositInfo.interestRate}
+            months={depositInfo.term}
+            wdFee={depositInfo.earlyWithdrawalFee}
+            wdLimit={depositInfo.earlyWithdrawalLimit}
+            minDeposit={depositInfo.min}
+          />
+          <InvestmentBox
+            interestRate={depositInfo.interestRate}
+            setOpenDeposit={() => setSelectedDeposit(depositInfo)}
+          />
+        </Box>
+        <DepositBenefitsGrid />
+        <OpenDepositForm onBack={handleDepositBack} />
+      </StyledContainer>
+      <AvailableDepositsWindow
+        open={isOpen}
+        onClose={close}
+        onSetDeposit={(deposit) => {
+          setSelectedDeposit(deposit);
+          close();
+        }}
+      />
+      <OpenDepositModal
+        deposit={selectedDeposit}
+        onClose={() => {
+          setSelectedDeposit(null);
+        }}
+        onBack={handleDepositBack}
+      />
+    </>
   );
 };
