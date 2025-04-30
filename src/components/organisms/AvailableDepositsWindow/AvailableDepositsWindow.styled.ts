@@ -1,10 +1,8 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, List, styled, Typography } from '@mui/material';
 
 export const MainContainer = styled(Box)(({ theme: { palette, spacing } }) => ({
   backgroundColor: palette.primary.light,
-  borderRadius: spacing(1),
-  minWidth: '1054px',
-  padding: spacing(5),
+  padding: spacing(4),
 }));
 
 export const StyledHeader = styled(Typography)(
@@ -15,3 +13,12 @@ export const StyledHeader = styled(Typography)(
     fontSize: spacing(4),
   }),
 );
+
+export const StyledDepositList = styled(List)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '24px',
+  height: 'min-content',
+  padding: 0,
+  overflow: 'auto',
+}));

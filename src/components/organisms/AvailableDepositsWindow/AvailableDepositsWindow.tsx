@@ -1,75 +1,103 @@
-import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, CircularProgress, Drawer, ListItem } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import { MainContainer, StyledHeader } from './AvailableDepositsWindow.styled';
+import {
+  MainContainer,
+  StyledDepositList,
+  StyledHeader,
+} from './AvailableDepositsWindow.styled';
 
+import { Deposit, useGetDepositsQuery } from 'api/getDepositsApi';
+import { DepositErrorMessage } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositBox } from 'components/molecules';
+import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
+import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
+import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
+  open: boolean;
+  onSetDeposit: (deposit: Deposit) => void;
   onClose: () => void;
-  isOpen: boolean;
 }
 
 export const AvailableDepositsWindow = ({
+  open,
   onClose,
-  isOpen,
+  onSetDeposit,
 }: AvailableDepositsWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
-  const [openDeposit, setOpenDeposit] = useState<boolean>(false);
-  if (!isOpen) {
-    return null;
-  }
-
-  const mockData = [
-    {
-      name: 'The Best Deposit',
-      id: 1,
-      type: 'Term Deposit',
-      currency: 'USD',
-      min: 1,
-      max: 2,
-      description: 'Valid Description Valid',
-      term: 12,
-      interestRate: 1,
-      capitalization: 3,
-      earlyWithdrawalLimit: 2,
-      earlyWithdrawalFee: 3,
-      earlyWithdrawal: true,
-      augmentable: true,
-      autoRenewable: true,
-    },
-  ];
+  const {
+    data: deposits,
+    isLoading: isLoadingDeposits,
+    isError: isDepositsError,
+  } = useGetDepositsQuery({ page: 0, size: 5 });
 
   return (
-    <MainContainer>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '30px',
-        }}
-      >
-        <StyledHeader>{t('availableDeposits')}</StyledHeader>
-        <CloseButtonX onClick={onClose} />
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {mockData.map((item) => (
-          <DepositBox
-            key={item.id}
-            depositCurrency={item.currency}
-            depositDescription={item.description}
-            depositDuration={item.term}
-            depositName={item.name}
-            depositRate={item.interestRate}
-            redirect={`/deposits/learn-more/${item.id}`}
-            openDeposit={openDeposit}
-            setOpenDeposit={setOpenDeposit}
-          />
-        ))}
-      </Box>
-    </MainContainer>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={onClose}
+      PaperProps={{
+        sx: {
+          height: `calc(100vh - ${DRAWER_HEIGHT_CALC_SIZE}px)`,
+          maxHeight: 'min-content',
+          top: '60px',
+          borderTopLeftRadius: '8px',
+          borderBottomLeftRadius: '8px',
+        },
+      }}
+    >
+      <MainContainer data-testid="available-deposits-window">
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          marginBottom={2}
+        >
+          <StyledHeader>{t('availableDeposits')}</StyledHeader>
+          <CloseButtonX onClick={onClose} />
+        </Box>
+        <StyledDepositList>
+          {isDepositsError ? (
+            <DepositErrorMessage />
+          ) : isLoadingDeposits ? (
+            <CircularProgress />
+          ) : (
+            deposits?.content?.map((item, i) => {
+              const { id, currency, description, term, name, interestRate } = item;
+
+              return (
+                <ListItem sx={{ padding: 0 }} key={id}>
+                  <DepositBox
+                    depositCurrency={currency}
+                    depositDescription={description}
+                    depositDuration={term}
+                    depositName={name}
+                    depositRate={interestRate}
+                    depositImgSrc={
+                      depositBoxImages[i % depositBoxImages.length]
+                    }
+                    secondaryButton={
+                      <Link
+                        to={`/deposits/learn-more/${id}`}
+                        style={{ color: theme.palette.primary.main }}
+                        onClick={onClose}
+                      >
+                        {t('learnMore')}
+                      </Link>
+                    }
+                    onOpenDepositForm={() => {
+                      onSetDeposit(item);
+                    }}
+                  />
+                </ListItem>
+              );
+            })
+          )}
+        </StyledDepositList>
+      </MainContainer>
+    </Drawer>
   );
 };

@@ -1,11 +1,15 @@
-import { Box, Button, useTheme } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Stack, useTheme } from '@mui/material';
 import { useState } from 'react';
 
+import { Deposit } from 'api/getDepositsApi';
 import MiCarousel from 'components/molecules/Carousel/MiCarousel';
 import { AvailableDepositsWindow } from 'components/organisms';
 import CurrencyCalculator from 'components/organisms/CurrencyCalculator/CurrencyCalculator';
 import { RatesTable } from 'components/organisms/CurrencyExchange/Rates/RatesTable';
 import { Title } from 'components/organisms/CurrencyExchange/Title/Title';
+import { OpenDepositModal } from 'components/organisms/OpenDepositModal/OpenDepositModal';
+import useDisclosure from 'hooks/useDisclosure';
 
 const images = [
   'https://i.ibb.co/xXmd9Xn/image-1916.png',
@@ -15,17 +19,42 @@ const images = [
 
 const Homepage = () => {
   const theme = useTheme();
-  const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
+  const [deposit, setDeposit] = useState<Deposit | null>(null);
+  const { isOpen, open, close } = useDisclosure();
 
-  const handleWindowClose = () => {
-    setIsWindowOpen(false);
-  };
+  function handleSetDeposit(deposit: Deposit) {
+    setDeposit(deposit);
+    close();
+  }
+
+  function handleCloseDepositModal() {
+    setDeposit(null);
+  }
+
+  function handleBack() {
+    handleCloseDepositModal();
+    open();
+  }
 
   return (
     <Box display={'flex'} width={'100%'}>
-      <Box width={'20%'} padding={5}>
-        My cards
-      </Box>
+      <Stack padding={4}>
+        <Box>My cards</Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <span>My deposits</span>
+          <Button
+            variant="contained"
+            onClick={open}
+            sx={{
+              borderRadius: '50%',
+              minWidth: 0,
+              padding: 0.5,
+            }}
+          >
+            <AddIcon />
+          </Button>
+        </Box>
+      </Stack>
       <Box width={'80%'}>
         <Box marginTop={5}>
           <Box sx={{ position: 'relative', width: '974px', height: '197px' }}>
@@ -92,8 +121,14 @@ const Homepage = () => {
           </Box>
         </Box>
         <AvailableDepositsWindow
-          onClose={handleWindowClose}
-          isOpen={isWindowOpen}
+          open={isOpen}
+          onClose={close}
+          onSetDeposit={handleSetDeposit}
+        />
+        <OpenDepositModal
+          deposit={deposit}
+          onClose={handleCloseDepositModal}
+          onBack={handleBack}
         />
       </Box>
     </Box>

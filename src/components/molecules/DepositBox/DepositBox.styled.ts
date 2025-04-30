@@ -33,7 +33,7 @@ export const StyledSecondaryName = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     color: palette.common.black,
     fontWeight: 500,
-    fontSize: spacing(2),
+    fontSize: spacing(3),
   }),
 );
 
@@ -46,6 +46,12 @@ export const StyledDescription = styled(Typography)(
     maxWidth: '313px',
   }),
 );
+
+export const StyledDescriptionItems = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  gap: '68px',
+}));
 
 export const StyledViewAllButton = styled(Button)(() => ({
   width: '170px',

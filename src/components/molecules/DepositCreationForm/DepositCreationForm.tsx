@@ -32,12 +32,14 @@ interface DepositCreationFormProps {
   accounts: string[];
   modal?: boolean;
   onCloseModal?: () => void;
+  onBack: () => void;
 }
 
 export const DepositCreationForm = ({
   accounts,
   modal,
   onCloseModal,
+  onBack,
 }: DepositCreationFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
@@ -55,9 +57,17 @@ export const DepositCreationForm = ({
   });
 
   return (
-    <FormContainer>
+    <FormContainer data-testid="deposit-creation-form">
       <FormHeader>
-        <ArrowBackIosIcon sx={{ width: '24px', height: '24px' }} />
+        <ArrowBackIosIcon
+          onClick={onBack}
+          sx={(theme) => ({
+            width: '24px',
+            height: '24px',
+            color: theme.palette.grey[400],
+            cursor: 'pointer',
+          })}
+        />
         <FormTitle>{t('openDeposit')}</FormTitle>
       </FormHeader>
       <FormSubTitle>{t('openDepositFormSubTitle')}</FormSubTitle>
@@ -98,6 +108,7 @@ export const DepositCreationForm = ({
             control={control}
             render={({ field }) => (
               <Autocomplete
+                data-testid="account-select"
                 options={accounts}
                 value={field.value}
                 onChange={(_, value) => field.onChange(value || '')}
@@ -147,7 +158,7 @@ export const DepositCreationForm = ({
           {modal && (
             <FormActionBtn
               variant="outlined"
-              sx={{ marginRight: '25px' }}
+              sx={{ marginRight: '25px', width: '113px' }}
               onClick={onCloseModal}
             >
               {t('cancelDeposit')}

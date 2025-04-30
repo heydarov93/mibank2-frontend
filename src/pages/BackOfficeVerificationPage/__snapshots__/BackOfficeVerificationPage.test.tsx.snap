@@ -124,19 +124,15 @@ exports[`BackOfficeVerificationPage visual snapshots renders loaded data state s
                 />
               </button>
             </div>
-            <div
-              class="MuiBox-root css-0"
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+              data-testid="save-button"
+              disabled=""
+              tabindex="-1"
+              type="submit"
             >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
-                data-testid="save-button"
-                disabled=""
-                tabindex="-1"
-                type="submit"
-              >
-                OTPVerificationPage.confirmButtonText
-              </button>
-            </div>
+              OTPVerificationPage.confirmButtonText
+            </button>
           </div>
         </form>
       </div>

@@ -5,7 +5,11 @@ import { DepositContainer } from './OpenDepositForm.styled';
 import { DepositCreationForm } from 'components/molecules/DepositCreationForm/DepositCreationForm';
 import { DepositSteps } from 'components/molecules/DepositSteps/DepositSteps';
 
-export const OpenDepositForm = () => {
+interface OpenDepositFormProps {
+  onBack: () => void;
+}
+
+export const OpenDepositForm = ({ onBack }: OpenDepositFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
   const accounts = [t('account1'), t('account2')];
   const steps = [
@@ -30,7 +34,7 @@ export const OpenDepositForm = () => {
   return (
     <DepositContainer>
       <DepositSteps steps={steps} />
-      <DepositCreationForm accounts={accounts} />
+      <DepositCreationForm accounts={accounts} onBack={onBack} />
     </DepositContainer>
   );
 };
