@@ -37,6 +37,7 @@ export const WelcomePage = () => {
           <UnderDevPage />
         </TabPanel>
       </Box>
+
       <Footer />
     </>
   );

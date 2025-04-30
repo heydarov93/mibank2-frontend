@@ -20,3 +20,4 @@ export { AvailableDepositsWindow } from './AvailableDepositsWindow/AvailableDepo
 export { AboutDepositCard } from './AboutDepositCard/AboutDepositCard';
 export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';
 export { OpenDepositForm } from './OpenDepositForm/OpenDepositForm';
+export { TransferFailedAlert } from './TransferFailedAlert/TransferFailedAlert';
