@@ -151,7 +151,16 @@
 
     "cancel": "Cancel",
     "submit": "Send",
-
+    "failedAlert": {
+      "title": "Transfer Failed",
+      "defaultErrorText": "Something went wrong. This might be due to a connection hiccup. Please try again."
+    },
+    "successModal": {
+      "title": "Transfer Successful! 🎉",
+      "defaultSuccessText": "Your transfer was completed successfully. You can view the receipt or make a new transfer.",
+      "newTransfer": "New Transfer",
+      "viewReceipt": "View Receipt"
+    },
     "error": {
       "accountFieldRequired": "Specify an account/card number",
       "ibanFieldPattern": "Invalid IBAN format. Please enter a valid Polish IBAN (PL + 26 digits)",
