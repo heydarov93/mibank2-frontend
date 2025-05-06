@@ -697,5 +697,15 @@
       "errorMessage": "Exchange rates are currently unavailable. Please try again later!",
       "convertError": "An error occurred during currency conversion. Please try again!"
     }
+  },
+  "common": {
+    "error": {
+      "title": "Something went wrong",
+      "message": "Unknown error occured"
+    },
+    "success": {
+      "title": "Success",
+      "message": "Operation completed successfully!"
+    }
   }
 }
