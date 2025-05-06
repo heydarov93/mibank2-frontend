@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoAlert should render the correct alert for error type 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginTopCenter css-ma0a3y-MuiSnackbar-root"
+    role="presentation"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-standardError MuiAlert-standard css-16epq0y-MuiPaper-root-MuiAlert-root"
+      direction="down"
+      role="alert"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          data-testid="error-icon"
+        >
+          ExclamationIcon.svg
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1h4uwij-MuiTypography-root"
+        >
+          Something went wrong
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-hx0cec-MuiTypography-root"
+        >
+          Unknown error occured
+        </p>
+      </div>
+      <div
+        class="MuiAlert-action css-ki1hdl-MuiAlert-action"
+      >
+        <button
+          aria-label="Close"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-1e0d89p-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          title="Close"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="CloseIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`InfoAlert should render the correct alert for success type 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginTopCenter css-ma0a3y-MuiSnackbar-root"
+    role="presentation"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorSuccess MuiAlert-standardSuccess MuiAlert-standard css-1ikbo6x-MuiPaper-root-MuiAlert-root"
+      direction="down"
+      role="alert"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          data-testid="success-icon"
+        >
+          SuccessfulCreation.svg
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1h4uwij-MuiTypography-root"
+        >
+          Success
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-hx0cec-MuiTypography-root"
+        >
+          Operation completed successfully!
+        </p>
+      </div>
+      <div
+        class="MuiAlert-action css-ki1hdl-MuiAlert-action"
+      >
+        <button
+          aria-label="Close"
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-1e0d89p-MuiButtonBase-root-MuiIconButton-root"
+          tabindex="0"
+          title="Close"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+            data-testid="CloseIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
