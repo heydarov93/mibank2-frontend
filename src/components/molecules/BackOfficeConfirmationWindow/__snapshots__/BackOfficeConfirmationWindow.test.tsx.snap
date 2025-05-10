@@ -29,10 +29,17 @@ exports[`BackOfficeConfirmationWindow matches snapshot 1`] = `
       </div>
     </div>
     <svg
-      data-testid="close-button"
-      style="cursor: pointer;"
+      aria-hidden="true"
+      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+      focusable="false"
+      viewBox="0 0 24 24"
     >
-      CloseIcon.svg
+      <svg
+        data-testid="close-button"
+        style="cursor: pointer;"
+      >
+        CloseIcon.svg
+      </svg>
     </svg>
   </div>
 </DocumentFragment>
