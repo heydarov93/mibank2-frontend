@@ -71,8 +71,62 @@ export const theme = createTheme({
       shadowCoolLight: 'rgba(211, 217, 233, 0.12)',
       shadowMedium: 'rgba(0, 0, 0, 0.3)',
     },
+    disabled: {
+      blue: '#6b9af4',
+    },
   },
   animations: {
     shake: shakeAnimation,
   },
 });
+
+theme.components = {
+  MuiButton: {
+    defaultProps: {
+      sx: {
+        borderRadius: '8px',
+      },
+    },
+    variants: [
+      {
+        props: { boxShadow: true },
+        style: {
+          boxShadow:
+            '0 2px 4px -1px rgba(28, 100, 238, 0.2), 0 1px 10px 0 rgba(28, 100, 238, 0.12);',
+        },
+      },
+      {
+        props: { disabled: true, variant: 'contained' },
+        style: {
+          '&&': {
+            background: `${theme.palette.primary.main}A6`, // opacity 0.65
+            color: theme.palette.common.white,
+          },
+        },
+      },
+      {
+        props: { disabled: true, variant: 'outlined' },
+        style: {
+          '&&': {
+            color: theme.palette.disabled.blue,
+            borderColor: theme.palette.disabled.blue,
+          },
+        },
+      },
+      {
+        props: { disabled: true, variant: 'text' },
+        style: {
+          '&&': {
+            color: theme.palette.grey[300],
+          },
+        },
+      },
+    ],
+    styleOverrides: {
+      containedPrimary: {
+        boxShadow: 'none',
+        '&:hover': { boxShadow: 'none' },
+      },
+    },
+  },
+};

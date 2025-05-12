@@ -33,6 +33,7 @@ import { employeeControllerApi } from 'api/employeeController';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
 import { getDepositsApi } from 'api/getDepositsApi';
 import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
+import { getOffersApi } from 'api/getOffersApi';
 import { getPostcode } from 'api/getPostcode';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
@@ -74,6 +75,7 @@ const rootReducer = combineReducers({
   [updateDepositApi.reducerPath]: updateDepositApi.reducer,
   [convertCurrencyApi.reducerPath]: convertCurrencyApi.reducer,
   [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
+  [getOffersApi.reducerPath]: getOffersApi.reducer,
 });
 
 const persistConfig = {
@@ -102,6 +104,7 @@ const persistConfig = {
     updateDepositApi.reducerPath,
     getExchangeRatesApi.reducerPath,
     convertCurrencyApi.reducerPath,
+    getOffersApi.reducerPath,
   ],
 };
 
@@ -137,6 +140,7 @@ const store = configureStore({
       updateDepositApi.middleware,
       getExchangeRatesApi.middleware,
       convertCurrencyApi.middleware,
+      getOffersApi.middleware,
     ]),
 });
 

@@ -22,7 +22,7 @@ export const endpoints = {
     getRates: '/api/exchangerates/tables/C',
     getCurrentRates: 'as/api/exchange-rates',
     getPreviousRates: 'as/api/exchange-rates/previous',
-    convertCurrency: "as/api/exchange-rates/convert-currency"
+    convertCurrency: 'as/api/exchange-rates/convert-currency',
   },
   employeeAccountManagement: {
     employees: {
@@ -46,5 +46,9 @@ export const endpoints = {
     cards: {
       createCard: '/cs/api/card/create-card',
     },
+  },
+  offers: {
+    getOffer: '/os/api/offer/retrieve/page',
+    getOfferImages: '/os/api/offer',
   },
 };
