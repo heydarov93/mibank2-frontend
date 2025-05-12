@@ -155,6 +155,20 @@
     "messageFieldPlaceholder": "Thank you",
     "cancel": "Cancel",
     "submit": "Send",
+    "paymentReceiptModal": {
+      "title": "Transfer Sent",
+      "payer": "Payer",
+      "from": "From Account",
+      "to": "To IBAN",
+      "service": "Service",
+      "amount": "Amount",
+      "fee": "Fee",
+      "total": "Total to pay",
+      "status": "Status",
+      "confirmed": "Confirmed",
+      "download": "Download",
+      "share": "Share"
+    },
     "failedAlert": {
       "title": "Transfer Failed",
       "defaultErrorText": "Something went wrong. This might be due to a connection hiccup. Please try again."
