@@ -55,6 +55,9 @@ declare module '@mui/material/styles' {
       shadowCoolLight: string;
       shadowMedium: string;
     };
+    disabled: {
+      blue: string;
+    };
   }
 
   interface PaletteOptions {
@@ -69,5 +72,14 @@ declare module '@mui/material/styles' {
       shadowCoolLight: string;
       shadowMedium: string;
     };
+    disabled: {
+      blue: string;
+    };
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonOwnProps {
+    boxShadow?: true;
   }
 }

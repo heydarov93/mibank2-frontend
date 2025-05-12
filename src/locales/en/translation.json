@@ -41,6 +41,12 @@
       "buyRateColumnLabel": "Buy Rate",
       "sellRateColumnLabel": "Sell Rate",
       "errorMessage": "Table is currently unavailable. Please try again later!"
+    },
+    "viewOffers": {
+      "learnMore": "Learn more"
+    },
+    "offersSlider": {
+      "error": "An error occurred while loading available offers"
     }
   },
   "DepositWindow": {
