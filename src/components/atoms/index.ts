@@ -20,3 +20,5 @@ export { BankIcon } from './BankIcon/BankIcon';
 export { SmileyFaceIcon } from './SmileyFaceIcon/SmileyFaceIcon';
 export { ShieldCheckIcon } from './ShieldCheckIcon/ShieldCheckIcon';
 export { DepositErrorMessage } from './DepositErrorMessage/DepositErrorMessage';
+export { DownloadIcon } from './DownloadIcon/DownloadIcon';
+export { ShareIcon } from './ShareIcon/ShareIcon';

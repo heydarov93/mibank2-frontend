@@ -27,4 +27,8 @@ export const removeExtraDot = (value: string): string => {
   return formattedValue;
 };
 
+export const formatCurrency = (currency: string, amount: number): string => {
+  return `${currency} ${formatAmount(amount).replace('.', ',')}`;
+};
+
 export const currentDate = dayjs().format('YYYY-MM-DD');

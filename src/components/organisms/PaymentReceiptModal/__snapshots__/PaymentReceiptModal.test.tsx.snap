@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaymentReceiptModal renders correctly 1`] = `
+<div
+  class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
+  data-testid="payment-receipt-modal"
+  role="presentation"
+>
+  <div
+    aria-hidden="true"
+    class="MuiBackdrop-root MuiModal-backdrop css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
+    style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+  />
+  <div
+    data-testid="sentinelStart"
+    tabindex="0"
+  />
+  <div
+    class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
+    role="presentation"
+    style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    tabindex="-1"
+  >
+    <div
+      aria-labelledby=":r0:"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth css-1vw73at-MuiPaper-root-MuiDialog-paper"
+      role="dialog"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-1go7xlg-MuiTypography-root-MuiDialogTitle-root"
+        id=":r0:"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+        >
+          TransfersPage.paymentReceiptModal.title
+        </p>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1iimdd3-MuiButtonBase-root-MuiIconButton-root"
+          data-testid="payment-receipt-close-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+            data-testid="CloseIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </h2>
+      <div
+        class="MuiBox-root css-ec4hu"
+      >
+        <div
+          class="MuiStack-root css-1or57tr-MuiStack-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1jaymit-MuiTypography-root"
+          >
+            10.12.2024
+          </p>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.payer
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Grzegorz Brzeczyszczykiewicz
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.from
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              EU12 1116 6660 0000 0001 2345 678
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.to
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              DE44 1234 1234 1234 1234 00
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.service
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              Service Name
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.amount
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              USD 100,00
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.fee
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              USD 5,00
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-nwcpw9-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.total
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-lk13c9-MuiTypography-root"
+            >
+              USD 105,00
+            </p>
+          </div>
+          <div
+            class="MuiStack-root css-17i0r5w-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.status
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ikjp1c-MuiTypography-root"
+            >
+              TransfersPage.paymentReceiptModal.confirmed
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiStack-root css-k616ae-MuiStack-root"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-io9a6m-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <svg>
+                  Download.svg
+                </svg>
+              </svg>
+            </span>
+            TransfersPage.paymentReceiptModal.download
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-io9a6m-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <svg>
+                  Share.svg
+                </svg>
+              </svg>
+            </span>
+            TransfersPage.paymentReceiptModal.share
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-k6j2ft"
+      >
+        <svg>
+          PaymentCheckBottom.svg
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    data-testid="sentinelEnd"
+    tabindex="0"
+  />
+</div>
+`;

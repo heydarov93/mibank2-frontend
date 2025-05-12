@@ -22,3 +22,4 @@ export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';
 export { OpenDepositForm } from './OpenDepositForm/OpenDepositForm';
 export { TransferFailedAlert } from './TransferFailedAlert/TransferFailedAlert';
 export { OffersCarousel } from './OffersCarousel/OffersCarousel';
+export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';

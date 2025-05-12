@@ -15,3 +15,7 @@ export { DepositBox } from './DepositBox/DepositBox';
 export { AboutDepositText } from './AboutDepositText/AboutDepositText';
 export { InvestmentBox } from './InvestmentBox/InvestmentBox';
 export { DepositBenefitsBox } from './DepositBenefitsBox/DepositBenefitsBox';
+export { PaymentReceiptActions } from './PaymentReceiptActions/PaymentReceiptActions';
+export { PaymentReceiptRow } from './PaymentReceiptRow/PaymentReceiptRow';
+export { PaymentReceiptTitle } from './PaymentReceiptTitle/PaymentReceiptTitle';
+export { PaymentReceiptInfo } from './PaymentReceiptInfo/PaymentReceiptInfo';
