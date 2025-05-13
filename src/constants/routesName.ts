@@ -14,6 +14,7 @@ export const TO_BUSINESS_SIGN_UP = '/business-signup';
 export const TO_BUSINESS_CREATE_PASSWORD = '/business-create-password';
 export const TO_VERIFY_EMAIL = '/verify-email';
 export const TO_VERIFICATION = '/verification';
+export const TO_LEGAL_ENTITY_VERIFICATION = '/legal-entity-verification';
 export const TO_REGISTRATION = '/registration';
 export const TO_CREATE_FORGOT_PASSWORD = '/create-forgot-password';
 export const TO_CREATE_FORGOT_PASSWORD_FINISHED =

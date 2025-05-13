@@ -11,6 +11,7 @@ export { ForgotPasswordPageFinished } from './CreateForgotPasswordPage/ForgotPas
 export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
 export { BackOfficeEmployeeLoginPage } from './BackOfficeEmployeeSignInPage/BackOfficeEmployeeSigninPage';
 export { BackOfficeVerificationPage } from './BackOfficeVerificationPage/BackOfficeVerificationPage';
+export { LegalEntityVerificationPage } from './LegalEntityVerificationPage/LegalEntityVerificationPage';
 export { DepositLearnMorePage } from './DepositLearnMorePage/DepositLearnMorePage';
 export { BusinessSignUpPage } from './BusinessSignUpPage/BusinessSignUpPage';
 export { BusinessCreatePasswordPage } from './BusinessCreatePasswordPage/BusinessCreatePasswordPage';

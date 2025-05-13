@@ -26,3 +26,4 @@ export { BusinessSignUpForm } from './BusinessSignUpForm/BusinessSignUpForm';
 export { CreatePasswordForm } from './CreatePasswordForm/CreatePasswordForm';
 export { OffersCarousel } from './OffersCarousel/OffersCarousel';
 export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';
+export { LegalEntityVerificationContent } from './LegalEntityVerificationContent/LegalEntityVerificationContent';

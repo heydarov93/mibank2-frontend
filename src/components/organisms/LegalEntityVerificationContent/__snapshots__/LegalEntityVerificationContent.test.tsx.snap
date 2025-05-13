@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LegalEntityVerificationContent matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-6glu07"
+  >
+    <div
+      data-size="medium"
+      data-testid="logo"
+    />
+    <div
+      class="MuiBox-root css-q3m4km"
+    >
+      <div
+        class="MuiBox-root css-khyofv"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h2 css-g318o3-MuiTypography-root"
+        >
+          Verify your email
+        </h2>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-8vnvwj-MuiTypography-root"
+        >
+          We’ve sent an email to user@gmail.com.
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body2 css-dvwchh-MuiTypography-root"
+      >
+        Didn’t receive email?
+        <a
+          class="css-gmii0u"
+          data-testid="router-link"
+          href="/"
+        >
+          Send another link
+        </a>
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body2 css-dvwchh-MuiTypography-root"
+      >
+        Already confirmed an account?
+        <a
+          class="css-gmii0u"
+          data-testid="router-link"
+          href="/"
+        >
+          Log in
+        </a>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

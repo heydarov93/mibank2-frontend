@@ -26,6 +26,7 @@ import {
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE_VIEW_EMPLOYEES,
   TO_DEPOSIT_LEARN_MORE,
+  TO_LEGAL_ENTITY_VERIFICATION,
 } from '../constants/routesName';
 import {
   WelcomePage,
@@ -45,6 +46,7 @@ import {
   BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
   DepositLearnMorePage,
+  LegalEntityVerificationPage,
 } from '../pages';
 
 import BackOfficePrivateRoutes from './BackOfficePrivateRoutes';
@@ -125,6 +127,10 @@ const routes = createBrowserRouter([
   {
     path: TO_VERIFICATION,
     element: <VerificationPage />,
+  },
+  {
+    path: TO_LEGAL_ENTITY_VERIFICATION,
+    element: <LegalEntityVerificationPage />,
   },
   {
     path: TO_REGISTRATION,
