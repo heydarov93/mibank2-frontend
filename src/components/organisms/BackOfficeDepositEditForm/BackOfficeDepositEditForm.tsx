@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, CircularProgress } from '@mui/material';
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -10,6 +9,7 @@ import {
   StyledLabel,
 } from './BackOfficeDepositEditForm.styled';
 
+import { useGetProductsQuery } from 'api/getProductsApi';
 import { useUpdateDepositMutation } from 'api/updateDepositApi';
 import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
@@ -33,11 +33,14 @@ interface FormState {
   earlyWithdrawalFee: string;
 }
 
+type RefetchProductsFn = ReturnType<typeof useGetProductsQuery>['refetch'];
+
 interface BackOfficeDepositFormProps {
   formData?: Partial<TableData>;
   onClose: () => void;
-  onSuccess?: () => void;
   onError: (errorMessage: string) => void;
+  onSuccess?: () => void;
+  refetchProducts?: RefetchProductsFn;
 }
 
 const BackOfficeDepositEditForm = ({
@@ -45,6 +48,7 @@ const BackOfficeDepositEditForm = ({
   onClose,
   onSuccess,
   onError,
+  refetchProducts,
 }: BackOfficeDepositFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
@@ -75,6 +79,7 @@ const BackOfficeDepositEditForm = ({
     try {
       await updateDeposit({ id: formData?.id, ...data }).unwrap();
       if (onSuccess) {
+        refetchProducts?.();
         onSuccess();
       }
     } catch (e) {

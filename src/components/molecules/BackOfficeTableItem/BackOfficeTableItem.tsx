@@ -8,6 +8,7 @@ import RaddioButton from 'components/atoms/SwitchButton/SwitchButton';
 
 export interface TableData {
   id: number;
+  productType: string;
   productName: string;
   productSubtype: string;
   productStatus: string;

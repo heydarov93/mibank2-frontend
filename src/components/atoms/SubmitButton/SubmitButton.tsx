@@ -1,6 +1,9 @@
+import { SxProps, Theme } from '@mui/material';
+
 import { StyledButton } from './SubmitButton.styled';
 
 type SubmitButtonProps = {
+  sx?: SxProps<Theme>;
   onClick?: () => void;
   buttonContent: React.ReactNode;
   isDisabled?: boolean;

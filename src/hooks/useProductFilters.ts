@@ -5,6 +5,7 @@ import {
   initialProductSubtypes,
   initialProductTypes,
 } from 'constants/productTableHead';
+import { ProductType } from 'enums/EProductType';
 import { FilterGroup } from 'models/IFilterInfo';
 
 export const useProductFilters = (mappedData: Partial<TableData>[]) => {
@@ -42,8 +43,9 @@ export const useProductFilters = (mappedData: Partial<TableData>[]) => {
     return mappedData.filter((item: Partial<TableData>) => {
       const isProductTypeMatch =
         (selectedProductTypes.includes('deposits') &&
-          item.productName === 'Deposit') ||
-        (selectedProductTypes.includes('cards') && item.productName === 'Card');
+          item.productType === ProductType.DEPOSIT) ||
+        (selectedProductTypes.includes('cards') &&
+          item.productType === ProductType.CARD);
       const isSubtypeMatch = selectedSubtypes.includes(
         item.productSubtype || '',
       );

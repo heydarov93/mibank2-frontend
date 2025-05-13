@@ -1,256 +1,438 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders table and mathces the snapshot 1`] = `
+exports[`BackOfficeViewProductsPage matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiTableContainer-root css-x226ax-MuiTableContainer-root"
+    class="MuiBox-root css-79elbk"
   >
-    <table
-      class="MuiTable-root css-rqglhn-MuiTable-root"
-    >
-      <thead
-        class="MuiTableHead-root css-kgizm6-MuiTableHead-root"
-      >
-        <tr
-          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
-        >
-          <th
-            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
-            scope="col"
-          />
-        </tr>
-      </thead>
-      <tbody
-        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
-      >
-        <tr
-          class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
-          data-testid="table-row"
-        >
-          <td
-            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-          >
-            <div
-              class="MuiBox-root css-1i27l4i"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    EditIcon.svg
-                  </svg>
-                </svg>
-                LastResortDeposit.edit
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    TrashIcon.svg
-                  </svg>
-                </svg>
-                LastResortDeposit.delete
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
     <div
-      class="MuiBox-root css-tj50lq"
+      class="MuiBox-root css-kgct6v"
     >
       <div
-        class="MuiBox-root css-axw7ok"
+        class="MuiBox-root css-147x205"
       >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
-        >
-          Items per page
-        </p>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-ntsdmc-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          class="MuiBox-root css-1821gv5"
         >
-          <div
-            aria-controls=":r1:"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-            role="combobox"
-            tabindex="0"
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1h1bz7i-MuiTypography-root"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
-            >
-              10
-            </p>
-          </div>
-          <input
-            aria-hidden="true"
-            aria-invalid="false"
-            class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-            tabindex="-1"
-            value="10"
-          />
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-            data-testid="ArrowDropDownIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
+            header.finProducts
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1p9swwr-MuiTypography-root"
           >
-            <path
-              d="M7 10l5 5 5-5z"
-            />
-          </svg>
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-ihdtdm"
-            >
-              <span
-                class="notranslate"
-              >
-                ​
-              </span>
-            </legend>
-          </fieldset>
+            header.viewProducts
+          </p>
         </div>
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-11vgfrh-MuiButtonBase-root-MuiButton-root"
+          data-testid="save-button"
+          tabindex="0"
+          type="submit"
         >
-          1 - 0 of 0 items
-        </p>
+          <span
+            class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeLarge css-vpap0f-MuiButton-startIcon"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 15 16"
+            >
+              <svg>
+                ButtonPlusIcon.svg
+              </svg>
+            </svg>
+          </span>
+          header.createBtnContent
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
       </div>
       <div
-        class="MuiBox-root css-k5rr6j"
+        class="MuiBox-root css-zfu7na"
       >
         <div
-          class="MuiBox-root css-70qvj9"
-        >
-          <button
-            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-            disabled=""
-            tabindex="-1"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 16 20"
-            >
-              <svg>
-                LeftArrowEnd.svg
-              </svg>
-            </svg>
-          </button>
-          <button
-            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-            disabled=""
-            tabindex="-1"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 12 20"
-            >
-              <svg>
-                LeftArrow.svg
-              </svg>
-            </svg>
-          </button>
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-1vinusq-MuiTypography-root"
-          >
-            Previous
-          </p>
-        </div>
-        <div
-          class="MuiBox-root css-axw7ok"
+          class="MuiBox-root css-10ug5gj"
         >
           <div
-            class="MuiBox-root css-v3ih39"
+            class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1f8rytt-MuiFormControl-root-MuiTextField-root"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-er8hls-MuiInputBase-root-MuiOutlinedInput-root"
             >
-              1
-            </p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="SearchIcon"
+                focusable="false"
+                style="margin-right: 8px;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"
+                />
+              </svg>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input"
+                id="productSearch"
+                maxlength="12"
+                name="productSearch"
+                placeholder="header.searchProducts"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-ihdtdm"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
           </div>
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
-          >
-            of 0
-          </p>
         </div>
         <div
-          class="MuiBox-root css-70qvj9"
+          class="MuiBox-root css-0"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-nb8uog-MuiTypography-root"
-          >
-            Next
-          </p>
           <button
-            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-            disabled=""
-            tabindex="-1"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-kxunle-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
             type="button"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 12 20"
-            >
-              <svg>
-                RightArrow.svg
-              </svg>
-            </svg>
-          </button>
-          <button
-            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-            disabled=""
-            tabindex="-1"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1keaqgs-MuiSvgIcon-root"
               focusable="false"
               viewBox="0 0 24 24"
             >
-              <svg>
-                RightArrowEnd.svg
+              <svg
+                fill="currentColor"
+              >
+                FilterIcon.svg
               </svg>
+              ;
             </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-cn4ht9-MuiTypography-root"
+            >
+              header.products
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
           </button>
+        </div>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-kxunle-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1keaqgs-MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <svg
+                fill="currentColor"
+              >
+                FilterIcon.svg
+              </svg>
+              ;
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-cn4ht9-MuiTypography-root"
+            >
+              header.productSubtypes
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiTableContainer-root css-x226ax-MuiTableContainer-root"
+      >
+        <table
+          class="MuiTable-root css-rqglhn-MuiTable-root"
+        >
+          <thead
+            class="MuiTableHead-root css-13pymb6-MuiTableHead-root"
+          >
+            <tr
+              class="MuiTableRow-root MuiTableRow-head css-u7li8u-MuiTableRow-root"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+                scope="col"
+              >
+                <div
+                  class="MuiBox-root css-vvn7zl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                  >
+                    Product Name
+                  </p>
+                </div>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+                scope="col"
+              >
+                <div
+                  class="MuiBox-root css-vvn7zl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                  >
+                    Product Subtype
+                  </p>
+                </div>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+                scope="col"
+              >
+                <div
+                  class="MuiBox-root css-vvn7zl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                  >
+                    Product Status
+                  </p>
+                </div>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+                scope="col"
+              />
+            </tr>
+          </thead>
+          <tbody
+            class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+          >
+            <tr
+              class="MuiTableRow-root css-mwyjpb-MuiTableRow-root"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1czw0eb-MuiTableCell-root"
+                colspan="4"
+              >
+                <span
+                  class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-1fynq1r-MuiCircularProgress-root"
+                  role="progressbar"
+                  style="width: 40px; height: 40px;"
+                >
+                  <svg
+                    class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                    viewBox="22 22 44 44"
+                  >
+                    <circle
+                      class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                      cx="44"
+                      cy="44"
+                      fill="none"
+                      r="20.2"
+                      stroke-width="3.6"
+                    />
+                  </svg>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div
+          class="MuiBox-root css-5xhpq3"
+        >
+          <div
+            class="MuiBox-root css-axw7ok"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+            >
+              Items per page
+            </p>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-1d4vgu-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            >
+              <div
+                aria-controls=":rj:"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                role="combobox"
+                tabindex="0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+                >
+                  10
+                </p>
+              </div>
+              <input
+                aria-hidden="true"
+                aria-invalid="false"
+                class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                tabindex="-1"
+                value="10"
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-ihdtdm"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+            >
+              1 - 0 of 0 items
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-k5rr6j"
+          >
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <button
+                class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 16 20"
+                >
+                  <svg>
+                    LeftArrowEnd.svg
+                  </svg>
+                </svg>
+              </button>
+              <button
+                class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 12 20"
+                >
+                  <svg>
+                    LeftArrow.svg
+                  </svg>
+                </svg>
+              </button>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
+              >
+                Previous
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-axw7ok"
+            >
+              <div
+                class="MuiBox-root css-rewt5a"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+                >
+                  1
+                </p>
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+              >
+                of 0
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-70qvj9"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-bhz8bd-MuiTypography-root"
+              >
+                Next
+              </p>
+              <button
+                class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 12 20"
+                >
+                  <svg>
+                    RightArrow.svg
+                  </svg>
+                </svg>
+              </button>
+              <button
+                class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <svg>
+                    RightArrowEnd.svg
+                  </svg>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

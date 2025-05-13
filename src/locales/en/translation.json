@@ -569,6 +569,7 @@
       "plastic": "Plastic"
     },
     "header": {
+      "createBtnContent": "Create Product",
       "finProducts": "Financial Products",
       "viewProducts": "View All Financial Products",
       "searchProducts": "Search for a product",
@@ -612,12 +613,13 @@
         "lastName": "Enter the Last Name",
         "email": "example@gmail.com",
         "role": "Choose here"
-      },
-      "noMatchesFound": {
-        "notFound": "No matches were found.",
-        "tryAgain": "Please try again.",
-        "viewAll": "View all Employees"
       }
+    },
+    "noMatchesFound": {
+      "notFound": "No matches were found.",
+      "tryAgain": "Please try again.",
+      "viewAllEmployees": "View all Employees",
+      "viewAllProducts": "View all Products"
     },
     "cardEditForm": {
       "editCard": "Edit Card",

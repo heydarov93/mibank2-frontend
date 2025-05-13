@@ -4,18 +4,20 @@ import { Control, Controller, FieldValues } from 'react-hook-form';
 
 import { StyledSearchField } from './SearchField.styled';
 
+import { SEARCH_FIELD_MAX_LENGTH } from 'constants/searchInputValues';
+
 interface SearchFieldProps {
   name: string;
   placeholder: string;
   control?: Control<FieldValues>;
-  onSearchChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const SearchField = ({
   name,
   placeholder,
   control,
-  onSearchChange,
+  onKeyDown,
   ...props
 }: SearchFieldProps) => {
   return (
@@ -29,10 +31,14 @@ const SearchField = ({
           id={name}
           placeholder={placeholder}
           variant={'outlined'}
-          onChange={onSearchChange}
+          onChange={(e) => field.onChange(e.target.value)}
+          onKeyDown={onKeyDown}
           fullWidth
           InputProps={{
             startAdornment: <SearchIcon style={{ marginRight: 8 }} />,
+            inputProps: {
+              maxLength: SEARCH_FIELD_MAX_LENGTH,
+            },
           }}
           {...props}
         />

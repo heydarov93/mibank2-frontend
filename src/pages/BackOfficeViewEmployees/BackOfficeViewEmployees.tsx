@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
-import { SubmitButton } from 'components/atoms';
-import ButtonPlusIcon from 'components/atoms/ButtonPlusIcon/ButtonPlusIcon';
-import { BackOfficeWarningWindow } from 'components/molecules';
+import {
+  BackOfficeViewHeader,
+  BackOfficeWarningWindow,
+  NoMatchesFound,
+} from 'components/molecules';
 import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 import BackOfficeFailWindow from 'components/molecules/BackOfficeFailWindow/BackOfficeFailWindow';
-import NoMatchesFound from 'components/molecules/NoMatchesFound/NoMatchesFound';
 import SearchField from 'components/molecules/SearchField/SearchField';
 import BackOfficeEditEmployee from 'components/organisms/BackOfficeEditEmployee/BackOfficeEditEmployee';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
@@ -20,7 +20,6 @@ import {
 
 const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
-  const navigate = useNavigate();
 
   const {
     tableData,
@@ -39,41 +38,33 @@ const BackOfficeViewEmployees = () => {
     handleDeleteModal,
     handleDelete,
     handleViewAll,
-    handleSearchChange,
+    handleSearchEnter,
   } = useEmployees();
 
   return (
     <MainContainer>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <h1>{t('header.employeesList')}</h1>
-          <h2>{t('header.employeesInfo')}</h2>
-        </Box>
-        <SubmitButton
-          startIcon={<ButtonPlusIcon />}
-          buttonContent={t('header.addEmployee')}
-          onClick={() => {
-            navigate(TO_BACK_OFFICE_CREATE_EMPLOYEE);
-          }}
-        />
-      </Box>
+      <BackOfficeViewHeader
+        path={TO_BACK_OFFICE_CREATE_EMPLOYEE}
+        primaryHeader={t('header.employeesList')}
+        secondaryHeader={t('header.employeesInfo')}
+        btnContent={t('header.addEmployee')}
+      />
 
       <HeaderContainer>
         <Box sx={{ width: '400px', height: '100%' }}>
           <SearchField
-            placeholder={t('header.searchEmployees')}
             name="searchEmployee"
             control={control}
-            onSearchChange={handleSearchChange}
+            placeholder={t('header.searchEmployees')}
+            onKeyDown={handleSearchEnter}
           />
           {searchValue && tableData.length === 0 && (
-            <NoMatchesFound onViewAll={handleViewAll} />
+            <NoMatchesFound
+              onViewAll={handleViewAll}
+              errorTitle={t('noMatchesFound.notFound')}
+              errorSubTitle={t('noMatchesFound.tryAgain')}
+              viewAllText={t('noMatchesFound.viewAllEmployees')}
+            />
           )}
         </Box>
       </HeaderContainer>

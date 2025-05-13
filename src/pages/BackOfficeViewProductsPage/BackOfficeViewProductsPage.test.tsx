@@ -1,35 +1,21 @@
+import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
 import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
 
-import { getDepositsApi } from 'api/getDepositsApi';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
+import { getProductsApi } from 'api/getProductsApi';
+import { theme } from 'theme/theme';
 
-const mockDataForTable = [
-  {
-    id: 1,
-    productName: 'Card',
-    productSubtype: 'Type',
-    cardDescription: 'Desctiption',
-    cardCurrency: 'USD',
-    minimumDepositSum: '1',
-    maximumDepositSum: '2',
-    depositTerm: 'term',
-    depositInterestRate: '12',
-    depositCapitalizationRate: '12',
-    earlyWithdrawalLimit: '12',
-    withdrawalFee: '12',
-  },
-];
 const mockStore = configureStore({
   reducer: {
-    [getDepositsApi.reducerPath]: getDepositsApi.reducer,
+    [getProductsApi.reducerPath]: getProductsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(getDepositsApi.middleware),
+    getDefaultMiddleware().concat(getProductsApi.middleware),
 });
 
 jest.mock('react-i18next', () => ({
@@ -41,68 +27,62 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-test('Table is in the documet', () => {
-  render(<BackOfficeTable tableBody={mockDataForTable} tableHead={[]} />);
-  const table = screen.getByRole('table');
-  expect(table).toBeInTheDocument();
-});
-
-test('Renders table and mathces the snapshot', () => {
-  const { asFragment } = render(
-    <BackOfficeTable tableBody={mockDataForTable} tableHead={[]} />,
-  );
-
-  expect(screen.getByRole('table')).toBeInTheDocument();
-
-  expect(asFragment()).toMatchSnapshot();
-});
-
-test('Renders the first filter box', () => {
+const renderComponent = () =>
   render(
     <Provider store={mockStore}>
-      <MemoryRouter>
-        <BackOfficeViewProductsPage />
-      </MemoryRouter>
+      <ThemeProvider theme={theme}>
+        <MemoryRouter>
+          <BackOfficeViewProductsPage />
+        </MemoryRouter>
+      </ThemeProvider>
     </Provider>,
   );
-  const filter = screen.getByText('header.products');
-  expect(filter).toBeInTheDocument();
-});
 
-test('Renders the second filter box', () => {
-  render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <BackOfficeViewProductsPage />
-      </MemoryRouter>
-    </Provider>,
-  );
-  const filter = screen.getByText('header.productSubtypes');
-  expect(filter).toBeInTheDocument();
-});
+describe('BackOfficeViewProductsPage', () => {
+  beforeEach(() => {
+    renderComponent();
+  });
 
-test('Renders the search field', () => {
-  render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <BackOfficeViewProductsPage />
-      </MemoryRouter>
-    </Provider>,
-  );
-  const searchField = screen.getByPlaceholderText('header.searchProducts');
-  expect(searchField).toBeInTheDocument();
-});
+  test('renders search input', () => {
+    const input = screen.getByPlaceholderText('header.searchProducts');
+    expect(input).toBeInTheDocument();
+  });
 
-test('Renders the headers', () => {
-  render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <BackOfficeViewProductsPage />
-      </MemoryRouter>
-    </Provider>,
-  );
-  const header1 = screen.getByText('header.finProducts');
-  const header2 = screen.getByText('header.viewProducts');
-  expect(header1).toBeInTheDocument();
-  expect(header2).toBeInTheDocument();
+  test('typing and pressing enter in search triggers debounce logic', async () => {
+    const input = screen.getByPlaceholderText('header.searchProducts');
+
+    await userEvent.type(input, 'Gold Product');
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+    await waitFor(() => {
+      expect(
+        screen.getByPlaceholderText('header.searchProducts'),
+      ).toBeInTheDocument();
+    });
+  });
+
+  test('shows filter boxes', () => {
+    expect(screen.getByText('header.products')).toBeInTheDocument();
+    expect(screen.getByText('header.productSubtypes')).toBeInTheDocument();
+  });
+
+  test('renders primary and secondary headers', () => {
+    expect(screen.getByText('header.finProducts')).toBeInTheDocument();
+    expect(screen.getByText('header.viewProducts')).toBeInTheDocument();
+  });
+
+  test('shows "NoMatchesFound" component when no products and query exists', async () => {
+    const input = screen.getByPlaceholderText('header.searchProducts');
+    await userEvent.type(input, 'NonMatchingProduct');
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+
+    await waitFor(() => {
+      expect(screen.getByText('noMatchesFound.viewAllProducts')).toBeInTheDocument();
+    });
+  });
+
+  test('matches snapshot', () => {
+    const { asFragment } = renderComponent();
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
