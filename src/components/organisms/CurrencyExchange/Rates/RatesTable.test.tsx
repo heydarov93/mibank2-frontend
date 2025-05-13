@@ -20,42 +20,6 @@ jest.mock('react-i18next', () => ({
   }),
 }));
 
-test('matches snapshot', () => {
-  (useGetCurrentRatesQuery as jest.Mock).mockReturnValue({
-    data: [
-      {
-        rates: [
-          { currency: 'US Dollar', code: 'USD', bid: 1.0, ask: 1.1 },
-          { currency: 'Euro', code: 'EUR', bid: 0.9, ask: 1.0 },
-        ],
-      },
-    ],
-    isLoading: false,
-    isError: false,
-  });
-
-  (useGetPreviousRatesQuery as jest.Mock).mockReturnValue({
-    data: [
-      {
-        rates: [
-          { currency: 'US Dollar', code: 'USD', bid: 0.95, ask: 1.05 },
-          { currency: 'Euro', code: 'EUR', bid: 0.91, ask: 0.99 },
-        ],
-      },
-    ],
-    isLoading: false,
-    isError: false,
-  });
-
-  const { container } = render(
-    <ThemeProvider theme={theme}>
-      <RatesTable />
-    </ThemeProvider>,
-  );
-
-  expect(container).toMatchSnapshot();
-});
-
 describe('RatesTable component', () => {
   const mockCurrentRates = [
     {
@@ -77,6 +41,42 @@ describe('RatesTable component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  test('matches snapshot', () => {
+    (useGetCurrentRatesQuery as jest.Mock).mockReturnValue({
+      data: [
+        {
+          rates: [
+            { currency: 'US Dollar', code: 'USD', bid: 1.0, ask: 1.1 },
+            { currency: 'Euro', code: 'EUR', bid: 0.9, ask: 1.0 },
+          ],
+        },
+      ],
+      isLoading: false,
+      isError: false,
+    });
+
+    (useGetPreviousRatesQuery as jest.Mock).mockReturnValue({
+      data: [
+        {
+          rates: [
+            { currency: 'US Dollar', code: 'USD', bid: 0.95, ask: 1.05 },
+            { currency: 'Euro', code: 'EUR', bid: 0.91, ask: 0.99 },
+          ],
+        },
+      ],
+      isLoading: false,
+      isError: false,
+    });
+
+    const { asFragment } = render(
+      <ThemeProvider theme={theme}>
+        <RatesTable />
+      </ThemeProvider>,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test('renders loading spinner if data is loading', () => {

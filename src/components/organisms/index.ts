@@ -24,5 +24,6 @@ export { TransferFailedAlert } from './TransferFailedAlert/TransferFailedAlert';
 export { AuthPageWrapper } from './AuthPageWrapper/AuthPageWrapper';
 export { BusinessSignUpForm } from './BusinessSignUpForm/BusinessSignUpForm';
 export { CreatePasswordForm } from './CreatePasswordForm/CreatePasswordForm';
+export { ConfirmTransferModal } from './ConfirmTransferModal/ConfirmTransferModal';
 export { OffersCarousel } from './OffersCarousel/OffersCarousel';
 export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';

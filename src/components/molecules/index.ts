@@ -17,6 +17,8 @@ export { InvestmentBox } from './InvestmentBox/InvestmentBox';
 export { DepositBenefitsBox } from './DepositBenefitsBox/DepositBenefitsBox';
 export { BackOfficeViewHeader } from './BackOfficeViewHeader/BackOfficeViewHeader';
 export { NoMatchesFound } from './NoMatchesFound/NoMatchesFound';
+export { TransferDetailRow } from './TransferDetailRow/TransferDetailRow';
+export { SavePaymentWrapper } from './SavePaymentWrapper/SavePaymentWrapper';
 export { PaymentReceiptActions } from './PaymentReceiptActions/PaymentReceiptActions';
 export { PaymentReceiptRow } from './PaymentReceiptRow/PaymentReceiptRow';
 export { PaymentReceiptTitle } from './PaymentReceiptTitle/PaymentReceiptTitle';

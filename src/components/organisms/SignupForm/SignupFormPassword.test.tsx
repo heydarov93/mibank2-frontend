@@ -12,6 +12,15 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
+}));
+
 jest.mock('utils', () => {
   return {
     generateRandomParam: jest.fn().mockReturnValue(''),
@@ -50,9 +59,9 @@ describe('SignupFormPassword', () => {
 
   it('should enable the submit button only when the form is valid', async () => {
 
-    const passwordInput = screen.getByLabelText('Password');
-    const confirmPasswordInput = screen.getByLabelText('Confirm Password');
-    const submitButton = screen.getByText('Sign Up');
+    const passwordInput = screen.getByLabelText('password.label');
+    const confirmPasswordInput = screen.getByLabelText('confirmPassword.label');
+    const submitButton = screen.getByText('buttonLabelSignup');
 
     expect(submitButton).toBeDisabled();
 

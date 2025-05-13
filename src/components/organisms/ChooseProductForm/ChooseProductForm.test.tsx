@@ -1,12 +1,13 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
+import { render } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
-import i18n from 'i18n';
+import { Provider } from 'react-redux';
+
 import ChooseProductForm from './ChooseProductForm';
-import productStepperReducer from 'store/reducers/ProductStepperSlice';
+
+import i18n from 'i18n';
 import chooseProductReducer from 'store/reducers/ChooseProductSlice';
+import productStepperReducer from 'store/reducers/ProductStepperSlice';
 
 interface ProductStepperState {
   step: number;

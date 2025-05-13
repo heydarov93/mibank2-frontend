@@ -143,6 +143,7 @@
     "card_toFieldPlaceholder": "1111 1111 1111 1111",
     "iban_fromFieldLabel": "From account",
     "iban_fromFieldPlaceholder": "PL00 0000 0000 0000 0000 0000 000",
+    "iban_toFieldName": "To IBAN",
     "iban_toFieldLabel": "To recipient's IBAN",
     "iban_toFieldPlaceholder": "PL00 0000 0000 0000 0000 0000 000",
     "owncards_fromFieldLabel": "From Card",
@@ -155,6 +156,21 @@
     "messageFieldPlaceholder": "Thank you",
     "cancel": "Cancel",
     "submit": "Send",
+    "confirm": "Confirm",
+    "transferModal": {
+      "title": "Confirm Transfer",
+      "amountText": "Amount",
+      "feeText": "Fee",
+      "totalText": "Total to pay",
+      "saveToPaymentLabel": "Save to my payments",
+      "paymentNameLabel": "Payment Name",
+      "paymentInputPlaceholder": "Type here",
+      "validation": {
+        "onlyLatin": "Only Latin letters, numbers, and spaces allowed",
+        "maxLength": "Maximum 50 characters allowed",
+        "required": "Payment name is required"
+      }
+    },
     "paymentReceiptModal": {
       "title": "Transfer Sent",
       "payer": "Payer",
