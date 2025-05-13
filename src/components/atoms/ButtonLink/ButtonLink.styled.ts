@@ -1,4 +1,5 @@
-import { styled, Box, Link } from '@mui/material';
+import { styled, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const StyledButtonLinkContainer = styled(Box)(
   ({ theme: { breakpoints, palette } }) => ({

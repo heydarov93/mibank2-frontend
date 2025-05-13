@@ -1,0 +1,133 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Box } from '@mui/material';
+import { FieldError, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+
+import { AccountInput } from '../TransferForm/molecules/AccountInput';
+import { InputField as NIPField } from '../TransferForm/molecules/InputField';
+
+import {
+  StyledForm,
+  StyledFormTitle,
+  StyledLabel,
+} from './BusinessSignUpForm.styled';
+
+import { InputField, SubmitButton } from 'components/atoms';
+import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/routesName';
+import { businessSignUpFormSchema } from 'validation';
+
+interface IBusinessSignUpForm {
+  companyName: string;
+  companyEmail: string;
+  nip: string;
+  ownerName: string;
+}
+
+export const BusinessSignUpForm = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'BusinessSignUpPage',
+  });
+
+  const {
+    control,
+    handleSubmit,
+    reset: resetForm,
+    formState: { errors, isValid },
+  } = useForm<IBusinessSignUpForm>({
+    resolver: yupResolver(businessSignUpFormSchema),
+    mode: 'onChange',
+    defaultValues: {
+      companyName: '',
+      companyEmail: '',
+      nip: 'PL-NIP-',
+      ownerName: '',
+    },
+  });
+  // TODO: substitute with real submit when BE is ready
+  const onSubmit = async (data: IBusinessSignUpForm) => {
+    try {
+      navigate(TO_BUSINESS_CREATE_PASSWORD, {
+        state: { email: data.companyEmail },
+      });
+      resetForm();
+    } catch (e) {
+      //
+    }
+  };
+
+  const addShake = (error?: FieldError) => (error ? 'shake' : '');
+
+  return (
+    <>
+      <StyledFormTitle>{t('form.title')}</StyledFormTitle>
+      <StyledForm
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
+      >
+        <Box>
+          <StyledLabel htmlFor="companyName">
+            {t('form.fields.companyName')}
+          </StyledLabel>
+          <InputField
+            name="companyName"
+            id="companyName"
+            control={control}
+            className={addShake(errors.companyName)}
+            error={errors.companyName}
+            placeholder="Company LLC"
+          />
+        </Box>
+        <Box>
+          <StyledLabel htmlFor="nip">{t('form.fields.nip')}</StyledLabel>
+          <NIPField
+            name="nip"
+            control={control}
+            inputComponent={AccountInput as never}
+            error={errors.nip}
+            textFieldProps={{
+              placeholder: 'PL-NIP-0000000000',
+              inputProps: {
+                format: 'PL-NIP-##########',
+              },
+              sx: (theme) => ({
+                animation: errors.nip ? `${theme.animations?.shake} 0.25s` : '',
+              }),
+            }}
+          />
+        </Box>
+        <Box>
+          <StyledLabel htmlFor="companyEmail">
+            {t('form.fields.companyEmail')}
+          </StyledLabel>
+          <InputField
+            name="companyEmail"
+            id="companyEmail"
+            control={control}
+            className={addShake(errors.companyEmail)}
+            error={errors.companyEmail}
+            placeholder="example@company.com"
+          />
+        </Box>
+        <Box>
+          <StyledLabel htmlFor="ownerName">
+            {t('form.fields.ownerName')}
+          </StyledLabel>
+          <InputField
+            name="ownerName"
+            id="ownerName"
+            control={control}
+            className={addShake(errors.ownerName)}
+            error={errors.ownerName}
+            placeholder="John Doe"
+          />
+        </Box>
+        <SubmitButton
+          buttonContent={t('form.submitLabel')}
+          isDisabled={!isValid}
+        />
+      </StyledForm>
+    </>
+  );
+};

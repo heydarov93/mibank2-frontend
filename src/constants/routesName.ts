@@ -7,9 +7,12 @@ export const TO_DEPOSIT_LEARN_MORE = '/deposits/learn-more/:id';
 
 //Auth and registration
 export const TO_SIGN_IN = '/signin';
-export const TO_SIGN_UP_START = '/signup-start';
-export const TO_SIGN_UP_END = '/signup-end';
-export const TO_SIGN_UP_FINISHED = '/signup-finished';
+export const TO_SIGN_UP = '/signup';
+export const TO_CREATE_PASSWORD = '/create-password';
+export const TO_BUSINESS_SIGN_IN = '/business-signin';
+export const TO_BUSINESS_SIGN_UP = '/business-signup';
+export const TO_BUSINESS_CREATE_PASSWORD = '/business-create-password';
+export const TO_VERIFY_EMAIL = '/verify-email';
 export const TO_VERIFICATION = '/verification';
 export const TO_REGISTRATION = '/registration';
 export const TO_CREATE_FORGOT_PASSWORD = '/create-forgot-password';

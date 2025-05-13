@@ -74,7 +74,7 @@ exports[`matches snapshot 1`] = `
       </a>
       <a
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1v7ub7h-MuiButtonBase-root-MuiButton-root"
-        href="/signup-start"
+        href="/signup"
         tabindex="0"
       >
         personalSignUp

@@ -74,7 +74,7 @@ exports[`SignupFormEmail snapshot should match 1`] = `
       Already have an account?
     </p>
     <a
-      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1e58s9j-MuiTypography-root-MuiLink-root"
+      class="css-han3l6"
       href="/signin"
     >
       Log in

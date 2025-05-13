@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BusinessSignUpForm snapshot should match 1`] = `
+<DocumentFragment>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-uzpedj-MuiTypography-root"
+  >
+    Registration
+  </p>
+  <form
+    class="css-1l9pyge"
+    style="display: flex; flex-direction: column; gap: 16px;"
+  >
+    <div
+      class="MuiBox-root css-0"
+    >
+      <label
+        class="css-2ogreq"
+        for="companyName"
+      >
+        Company Name
+      </label>
+      <div
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1r44fng-MuiFormControl-root-MuiTextField-root"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+            id="companyName"
+            name="companyName"
+            placeholder="Company LLC"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-ihdtdm"
+            >
+              <span
+                class="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <label
+        class="css-2ogreq"
+        for="nip"
+      >
+        NIP
+      </label>
+      <div
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1tm15a9-MuiFormControl-root-MuiTextField-root"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1mb9pu-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+            id="nip"
+            inputmode="numeric"
+            name="nip"
+            placeholder="PL-NIP-0000000000"
+            type="text"
+            value="PL-NIP-          "
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-ihdtdm"
+            >
+              <span
+                class="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <label
+        class="css-2ogreq"
+        for="companyEmail"
+      >
+        Company Email
+      </label>
+      <div
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1r44fng-MuiFormControl-root-MuiTextField-root"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+            id="companyEmail"
+            name="companyEmail"
+            placeholder="example@company.com"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-ihdtdm"
+            >
+              <span
+                class="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-0"
+    >
+      <label
+        class="css-2ogreq"
+        for="ownerName"
+      >
+        Owner's full name
+      </label>
+      <div
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1r44fng-MuiFormControl-root-MuiTextField-root"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+            id="ownerName"
+            name="ownerName"
+            placeholder="John Doe"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-ihdtdm"
+            >
+              <span
+                class="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+      data-testid="save-button"
+      disabled=""
+      tabindex="-1"
+      type="submit"
+    >
+      Continue
+    </button>
+  </form>
+</DocumentFragment>
+`;

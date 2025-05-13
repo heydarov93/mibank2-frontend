@@ -1,6 +1,6 @@
 import { AuthWrapper, Footer, SignupFormEmail } from 'components/organisms';
 
-export const SignupPageEmail = () => {
+export const SignUpPage = () => {
   return (
     <>
       <AuthWrapper>

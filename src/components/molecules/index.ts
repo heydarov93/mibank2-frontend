@@ -1,4 +1,4 @@
-export { CheckboxWithLabel } from './CheckboxWithLabel/CheckboxWithLabel';
+export { TOSCheckbox } from './TOSCheckbox/TOSCheckbox';
 export { PasswordField } from './PasswordField/PasswordField';
 export { PasswordTooltip } from './PasswordTooltip/PasswordTooltip';
 export { UserCard } from './UserCard/UserCard';

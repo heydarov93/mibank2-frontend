@@ -21,5 +21,8 @@ export { AboutDepositCard } from './AboutDepositCard/AboutDepositCard';
 export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';
 export { OpenDepositForm } from './OpenDepositForm/OpenDepositForm';
 export { TransferFailedAlert } from './TransferFailedAlert/TransferFailedAlert';
+export { AuthPageWrapper } from './AuthPageWrapper/AuthPageWrapper';
+export { BusinessSignUpForm } from './BusinessSignUpForm/BusinessSignUpForm';
+export { CreatePasswordForm } from './CreatePasswordForm/CreatePasswordForm';
 export { OffersCarousel } from './OffersCarousel/OffersCarousel';
 export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';

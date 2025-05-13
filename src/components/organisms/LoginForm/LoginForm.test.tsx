@@ -1,22 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 
-import { LoginForm } from './';
+import { LoginForm } from './LoginForm';
 
-const initialValues = {
-  auth: {
-    isAuth: false,
-    user: null,
-    error: null,
-    loading: false,
-  },
-};
-
-const mockStore = configureStore({
-  reducer: () => initialValues,
-});
+import store from 'store';
 
 jest.mock('utils', () => {
   return {
@@ -30,28 +19,34 @@ jest.mock('utils', () => {
 });
 
 const mockNavigate = jest.fn();
-jest.mock('react-router', () => {
-  return {
-    useNavigate: () => mockNavigate,
-  };
-});
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
 
 describe('LoginForm', () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <LoginForm />
+        </MemoryRouter>
+      </Provider>,
+    );
+  });
+
   it('snapshot should match', () => {
     const { asFragment } = render(
-      <Provider store={mockStore}>
-        <LoginForm />
+      <Provider store={store}>
+        <MemoryRouter>
+          <LoginForm />
+        </MemoryRouter>
       </Provider>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('show error email message', async () => {
-    render(
-      <Provider store={mockStore}>
-        <LoginForm />
-      </Provider>,
-    );
     const emailInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
     const button = screen.getByText('Log In');
@@ -73,11 +68,6 @@ describe('LoginForm', () => {
   });
 
   it('should navigate to forgot password page', async () => {
-    render(
-      <Provider store={mockStore}>
-        <LoginForm />
-      </Provider>,
-    );
     const forgotPasswordLink = screen.getByRole('link', {
       name: 'Forgot password?',
     });

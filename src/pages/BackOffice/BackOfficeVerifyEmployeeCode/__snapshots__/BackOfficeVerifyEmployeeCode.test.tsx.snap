@@ -19,10 +19,10 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
         </svg>
       </div>
       <div
-        class="MuiBox-root css-hl2cc3"
+        class="MuiBox-root css-1atcn2a"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-pwumes-MuiTypography-root"
         >
           logoTitle
         </p>
@@ -37,32 +37,32 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
       class="MuiBox-root css-1i27l4i"
     >
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
       <input
-        class="css-er1hfh"
+        class="css-1yxwk67"
         maxlength="1"
         value=""
       />
@@ -77,7 +77,7 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
         class="MuiBox-root css-mytjhh"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1ko6kpi-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-yqo7qf-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
@@ -88,7 +88,7 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
         </button>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1fxmk07-MuiButtonBase-root-MuiButton-root"
         data-testid="save-button"
         disabled=""
         tabindex="-1"

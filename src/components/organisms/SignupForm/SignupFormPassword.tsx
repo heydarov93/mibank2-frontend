@@ -14,8 +14,8 @@ import {
 
 import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
-import { CheckboxWithLabel, PasswordField } from 'components/molecules';
-import { TO_SIGN_UP_FINISHED } from 'constants/routesName';
+import { TOSCheckbox, PasswordField } from 'components/molecules';
+import { TO_VERIFY_EMAIL } from 'constants/routesName';
 import { ValidationKey } from 'enums';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
@@ -69,7 +69,9 @@ export const SignupFormPassword = () => {
         dispatch(setError(t('serverError')));
       }
     }
-    navigate(TO_SIGN_UP_FINISHED);
+    navigate(TO_VERIFY_EMAIL, {
+      state: { email: localStorage.getItem('email'), from: location.pathname },
+    });
     resetForm();
   };
 
@@ -119,7 +121,7 @@ export const SignupFormPassword = () => {
             />
           </Box>
         </StyledFormContent>
-        <CheckboxWithLabel name="checkbox" control={control} errors={errors} />
+        <TOSCheckbox name="checkbox" control={control} errors={errors} />
         <SubmitButton
           buttonContent={t('buttonLabelSignup')}
           isDisabled={!isValid}

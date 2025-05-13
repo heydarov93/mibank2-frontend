@@ -43,6 +43,10 @@ const enum FieldName {
   withdrawalFee = 'withdrawalFee',
   productName = 'productName',
   cardDescription = 'cardDescription',
+  companyEmail = 'companyEmail',
+  companyName = 'companyName',
+  ownerName = 'ownerName',
+  nip = 'nip',
 }
 
 interface InputFieldProps<T extends FieldValues> {

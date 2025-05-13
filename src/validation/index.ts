@@ -11,3 +11,4 @@ export { passwordValidationRules } from './passwordValidationRules';
 export { validationAddressSchema } from './validationAddressSchema';
 export { validationForgotPasswordSchema } from './validationForgotPasswordSchema';
 export { validationBackOfficeEmployeeLoginSchema } from './validationBackOfficeEmployeeLoginSchema';
+export { businessSignUpFormSchema } from './businessSignUpFormSchema';

@@ -19,7 +19,7 @@ import {
   SubmitButton,
   ValidationTag,
 } from 'components/atoms';
-import { CheckboxWithLabel, PasswordField, Timer } from 'components/molecules';
+import { TOSCheckbox, PasswordField, Timer } from 'components/molecules';
 import { ErrorStatus, ValidationKey } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
@@ -215,7 +215,7 @@ export const LoginForm = () => {
               ))}
           </Box>
         </StyledFormContent>
-        <CheckboxWithLabel
+        <TOSCheckbox
           name="checkbox"
           control={control}
           errors={errors}
