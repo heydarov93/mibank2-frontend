@@ -378,6 +378,14 @@
     "errorBadRequest": "Something wrong with your request. Please, try again later or contact us"
   },
   "VerificationPage": {
+    "legalEntityVerification": {
+      "title": "Verify your email",
+      "body": "We’ve sent a verification link via email to {{email}}",
+      "isReceiveEmail": "Didn’t receive email?",
+      "sendLink": "Send another link",
+      "isAlreadyConfirmed": "Already confirmed an account?",
+      "loginLink": "Log in"
+    },
     "verificationTitle": "Enter verification code",
     "verificationText": "Enter the verification code we sent via email",
     "resendCode": "Resend code",
