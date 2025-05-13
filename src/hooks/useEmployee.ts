@@ -1,6 +1,6 @@
 import { debounce } from '@mui/material/utils';
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
@@ -11,14 +11,17 @@ import {
   useViewEmployeeQuery,
 } from 'api/employeeController';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import {
+  SEARCH_LOWEST_LIMIT,
+  SEARCH_VALUE_ZERO,
+} from 'constants/searchInputValues';
 import { getNextSortOrder } from 'utils/sortUtils';
 
 const useEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [inputSearchValue, setInputSearchValue] = useState('');
-  const [debouncedSearchValue, setDebouncedSearchValue] = useState('');
-  const { setValue, control } = useForm();
+  const { setValue, control, watch } = useForm();
+  const searchInput = watch('searchEmployee');
 
   const page = Number(searchParams.get('page')) || 0;
   const size = Number(searchParams.get('size')) || 10;
@@ -37,7 +40,7 @@ const useEmployees = () => {
     failMsgModal: false,
   });
 
-  const { data: employees, refetch } = useViewEmployeeQuery({
+  const { data: employees, refetch: refetchEmployees } = useViewEmployeeQuery({
     page,
     size,
     sortDateAdded,
@@ -64,27 +67,6 @@ const useEmployees = () => {
     });
   };
 
-  const debouncedChangeHandler = debounce((value: string) => {
-    setDebouncedSearchValue(value);
-  }, 400);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setValue('searchEmployee', inputValue);
-    setInputSearchValue(inputValue);
-    debouncedChangeHandler(inputValue);
-  };
-
-  useEffect(() => {
-    const [firstN, lastN] = debouncedSearchValue.trim().split(' ');
-    setSearchParams({
-      ...Object.fromEntries(searchParams),
-      firstName: firstN || '',
-      lastName: lastN || '',
-      search: debouncedSearchValue,
-    });
-  }, [debouncedSearchValue, searchParams, setSearchParams]);
-
   const handleEdit = (item: Partial<TableData>) => {
     setState((prev) => ({
       ...prev,
@@ -109,7 +91,7 @@ const useEmployees = () => {
           actionMsgBody: t('ConfirmationWindow.updateEmployeeBody'),
           successMsgModal: true,
         }));
-        await refetch();
+        await refetchEmployees();
       }
     } catch (error) {
       setState((prev) => ({
@@ -142,7 +124,7 @@ const useEmployees = () => {
         actionMsgBody: t('ConfirmationWindow.deleteEmployeeBody'),
         successMsgModal: true,
       }));
-      await refetch();
+      await refetchEmployees();
     } catch (error) {
       setState((prev) => ({
         ...prev,
@@ -153,10 +135,42 @@ const useEmployees = () => {
     }
   };
 
+  const updateSearchParams = (inputValue: string) => {
+    if (inputValue.length === SEARCH_VALUE_ZERO) {
+      setSearchParams({
+        page: String(page),
+        size: String(size),
+        sortDateAdded: '',
+        sortLastName: '',
+        firstName: '',
+        lastName: '',
+      });
+    } else if (inputValue.length >= SEARCH_LOWEST_LIMIT) {
+      const [firstName, lastName] = inputValue.split(' ');
+      setSearchParams({
+        ...Object.fromEntries(searchParams),
+        page: String(page),
+        size: String(size),
+        firstName: firstName || '',
+        lastName: lastName || '',
+      });
+    }
+  };
+
+  const debouncedSearchEnter = useMemo(
+    () => debounce(updateSearchParams, 400),
+    [searchParams, setSearchParams, size, page],
+  );
+
+  const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const inputValue = searchInput?.trim() || '';
+      debouncedSearchEnter(inputValue);
+    }
+  };
+
   const handleViewAll = () => {
     setValue('searchEmployee', '');
-    setInputSearchValue('');
-    setDebouncedSearchValue('');
     setSearchParams({
       page: String(page),
       size: String(size),
@@ -164,8 +178,8 @@ const useEmployees = () => {
       sortLastName: '',
       firstName: '',
       lastName: '',
-      search: '',
     });
+    refetchEmployees();
   };
 
   const tableHead = [
@@ -215,7 +229,7 @@ const useEmployees = () => {
     tableHead,
     page,
     size,
-    searchValue: inputSearchValue,
+    searchValue: searchInput,
     searchParams,
     totalItems,
     control,
@@ -226,8 +240,8 @@ const useEmployees = () => {
     handleUpdate,
     handleDeleteModal,
     handleDelete,
-    handleSearchChange,
     handleViewAll,
+    handleSearchEnter,
   };
 };
 

@@ -73,7 +73,7 @@ const BackOfficeVerifyEmployeeCode = () => {
       if (response) {
         const res = getEmailRoleFromToken(response.accessToken);
         setEmployeeAuthData(true, res?.email, res?.role);
-        sessionTokenHandler.storeToken(TokenType.ACCESS, response.accessToken);
+        sessionTokenHandler.storeToken(response.accessToken, TokenType.ACCESS);
         navigate(TO_BACK_OFFICE_VIEW_EMPLOYEES);
       }
     } catch (e) {

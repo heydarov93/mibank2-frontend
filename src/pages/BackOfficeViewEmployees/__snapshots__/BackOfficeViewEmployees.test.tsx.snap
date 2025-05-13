@@ -8,20 +8,24 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
     class="MuiBox-root css-kgct6v"
   >
     <div
-      class="MuiBox-root css-69i1ev"
+      class="MuiBox-root css-147x205"
     >
       <div
         class="MuiBox-root css-1821gv5"
       >
-        <h1>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1h1bz7i-MuiTypography-root"
+        >
           Employees List
-        </h1>
-        <h2>
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1p9swwr-MuiTypography-root"
+        >
           Employee Information
-        </h2>
+        </p>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1b1waof-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-11vgfrh-MuiButtonBase-root-MuiButton-root"
         data-testid="save-button"
         tabindex="0"
         type="submit"
@@ -74,6 +78,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input"
               id="searchEmployee"
+              maxlength="12"
               name="searchEmployee"
               placeholder="Search for employees"
               type="text"

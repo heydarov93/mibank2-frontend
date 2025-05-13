@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { Box, debounce } from '@mui/material';
+import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -9,17 +9,26 @@ import {
 } from './BackOfficeViewProductsPage.styled';
 
 import { useDeleteDepositMutation } from 'api/deleteDepositApi';
-import { useGetDepositsQuery } from 'api/getDepositsApi';
-import { BackOfficeWarningWindow } from 'components/molecules';
+import { useGetProductsQuery } from 'api/getProductsApi';
+import {
+  BackOfficeViewHeader,
+  BackOfficeWarningWindow,
+  NoMatchesFound,
+} from 'components/molecules';
 import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import BackOfficeViewProductsHeader from 'components/molecules/BackOfficeViewProductsHeader/BackOfficeViewProductsHeader';
 import FilterBox from 'components/molecules/FilterBox/FilterBox';
 import SearchField from 'components/molecules/SearchField/SearchField';
 import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
 import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
 import { tableHead } from 'constants/productTableHead';
+import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/routesName';
+import {
+  SEARCH_LOWEST_LIMIT,
+  SEARCH_VALUE_ZERO,
+} from 'constants/searchInputValues';
+import { ProductType } from 'enums/EProductType';
 import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
 import { IBackOfficeErrorData } from 'models/IError';
@@ -27,7 +36,9 @@ import { DepositBackendData } from 'models/IProductInfo';
 
 const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
-  const { control } = useForm();
+  const { control, setValue, watch } = useForm();
+  const searchValue = watch('productSearch');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const {
     state,
     handleDelete,
@@ -43,20 +54,30 @@ const BackOfficeViewProductsPage = () => {
     closeConfirmationWindow,
   } = useProductManage();
 
-  const { data, isLoading } = useGetDepositsQuery({
+  const {
+    data: products,
+    isLoading: isProductsLoading,
+    refetch: refetchProducts,
+  } = useGetProductsQuery({
     page: state.page,
     size: state.pageSize,
+    search: searchQuery,
   });
 
-  const [deleteDeposit, { isLoading: isDeleteLoading, isError }] =
-    useDeleteDepositMutation();
+  const allProducts = Object.values(
+    products ?? {},
+  ).flat() as DepositBackendData[];
+
+  const [
+    deleteDeposit,
+    { isLoading: isDeleteLoading, isError: isDeleteError },
+  ] = useDeleteDepositMutation();
 
   const mappedData =
-    data?.content?.map((item: DepositBackendData) => ({
+    allProducts?.map((item: DepositBackendData) => ({
       id: item.id,
-      productName: item.term
-        ? t('CreateProduct.deposit')
-        : t('CreateProduct.card'),
+      productType: item.type.split(' ').at(1),
+      productName: item.name,
       productSubtype: item.type,
       cardDescription: item.description,
       cardCurrency: item.currency,
@@ -78,10 +99,13 @@ const BackOfficeViewProductsPage = () => {
     filteredTableBody,
   } = useProductFilters(mappedData);
 
-  const handleDeleteApi = async (product: Partial<TableData> | undefined) => {
-    if (product?.productName === 'Deposit') {
+  const handleDeleteDeposit = async (
+    product: Partial<TableData> | undefined,
+  ) => {
+    if (product?.productName === ProductType.DEPOSIT) {
       try {
         await deleteDeposit(product.id).unwrap();
+        refetchProducts();
         handleDeleteSuccess();
       } catch (e) {
         handleDeleteError(e as IBackOfficeErrorData);
@@ -89,19 +113,60 @@ const BackOfficeViewProductsPage = () => {
     }
   };
 
+  const updateSearchValue = (inputValue: string) => {
+    if (inputValue.length === SEARCH_VALUE_ZERO) {
+      handleViewAll();
+    } else if (inputValue.length >= SEARCH_LOWEST_LIMIT) {
+      setSearchQuery(inputValue);
+      setValue('productSearch', inputValue);
+    }
+  };
+
+  const debouncedSearchEnter = useMemo(
+    () => debounce(updateSearchValue, 400),
+    [setSearchQuery, setValue],
+  );
+
+  const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const inputValue = searchValue?.trim() || '';
+      debouncedSearchEnter(inputValue);
+    }
+  };
+
+  const handleViewAll = () => {
+    setSearchQuery('');
+    setValue('productSearch', '');
+    refetchProducts();
+  };
+
+  const isVisible = state.isEditFormVisible || state.isDepositFormVisible;
+
   return (
     <Box sx={{ position: 'relative' }}>
-      <MainContainer
-        blur={state.isEditFormVisible || state.isDepositFormVisible}
-      >
-        <BackOfficeViewProductsHeader />
+      <MainContainer blur={isVisible}>
+        <BackOfficeViewHeader
+          path={TO_BACK_OFFICE_CREATE_PRODUCT}
+          primaryHeader={t('header.finProducts')}
+          secondaryHeader={t('header.viewProducts')}
+          btnContent={t('header.createBtnContent')}
+        />
         <HeaderContainer>
           <Box sx={{ width: '400px', height: '100%' }}>
             <SearchField
               name="productSearch"
               control={control}
               placeholder={t('header.searchProducts')}
+              onKeyDown={handleSearchEnter}
             />
+            {searchQuery && allProducts.length === 0 && (
+              <NoMatchesFound
+                onViewAll={handleViewAll}
+                errorTitle={t('noMatchesFound.notFound')}
+                errorSubTitle={t('noMatchesFound.tryAgain')}
+                viewAllText={t('noMatchesFound.viewAllProducts')}
+              />
+            )}
           </Box>
           <FilterBox
             title={t('header.products')}
@@ -121,28 +186,27 @@ const BackOfficeViewProductsPage = () => {
         <BackOfficeTable
           tableHead={tableHead}
           tableBody={filteredTableBody()}
-          totalItems={data?.page.totalElements || 0}
+          totalItems={allProducts.length || 0}
           page={state.page}
           pageSize={state.pageSize}
           onPageChange={handlePageChange}
           onPageSizeChange={handlePageSizeChange}
           onDeleteClick={handleDelete}
           onEditClick={handleEdit}
-          isLoading={isLoading}
+          isLoading={isProductsLoading}
         />
-        {state.isDeleteVisible && (
-          <BackOfficeWarningWindow
-            sx={{ top: '300px', left: '490px' }}
-            product={state.selectedProduct}
-            onCancelClick={closeDeleteWindow}
-            onDeleteClick={handleDeleteApi}
-            title={state.warningTitle}
-            text={state.warningBody}
-            isLoading={isDeleteLoading}
-            isError={isError}
-            errorMessage={state.errorMessage}
-          />
-        )}
+        <BackOfficeWarningWindow
+          sx={{ left: '150px' }}
+          product={state.selectedProduct}
+          onCancelClick={closeDeleteWindow}
+          onDeleteClick={handleDeleteDeposit}
+          title={state.warningTitle}
+          text={state.warningBody}
+          isLoading={isDeleteLoading}
+          isError={isDeleteError}
+          errorMessage={state.errorMessage}
+          open={state.isDeleteVisible}
+        />
       </MainContainer>
       {state.isEditFormVisible && (
         <BackOfficeCardEditForm
@@ -156,6 +220,7 @@ const BackOfficeViewProductsPage = () => {
           formData={state.formData}
           onSuccess={handleSuccessfulUpdate}
           onError={handleError}
+          refetchProducts={refetchProducts}
         />
       )}
       {state.isConfirmationWindowVisible && (

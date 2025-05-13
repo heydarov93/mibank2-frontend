@@ -1,6 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useTheme } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 
 import {
   StyledMessageTypography,
@@ -11,16 +10,23 @@ import {
 
 interface NoMatchesFoundProps {
   onViewAll: () => void;
+  viewAllText: string;
+  errorTitle: string;
+  errorSubTitle: string;
 }
 
-const NoMatchesFound = ({ onViewAll }: NoMatchesFoundProps) => {
+export const NoMatchesFound = ({
+  onViewAll,
+  viewAllText,
+  errorSubTitle,
+  errorTitle,
+}: NoMatchesFoundProps) => {
   const theme = useTheme();
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice.employeeList' });
 
   return (
     <StyledWhiteBox>
       <StyledMessageTypography>
-        {t('noMatchesFound.notFound')} <br /> {t('noMatchesFound.tryAgain')}
+        {errorTitle} <br /> {errorSubTitle}
       </StyledMessageTypography>
       <StyledViewAllBox onClick={onViewAll}>
         <SearchIcon
@@ -30,10 +36,8 @@ const NoMatchesFound = ({ onViewAll }: NoMatchesFoundProps) => {
             height: '24px',
           }}
         />
-        <StyledViewAllTypography>{t('noMatchesFound.viewAll')}</StyledViewAllTypography>
+        <StyledViewAllTypography>{viewAllText}</StyledViewAllTypography>
       </StyledViewAllBox>
     </StyledWhiteBox>
   );
 };
-
-export default NoMatchesFound;

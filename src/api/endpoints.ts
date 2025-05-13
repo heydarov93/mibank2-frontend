@@ -46,6 +46,9 @@ export const endpoints = {
     cards: {
       createCard: '/cs/api/card/create-card',
     },
+    products: {
+      getProducts: '/ds/api/product/products',
+    },
   },
   offers: {
     getOffer: '/os/api/offer/retrieve/page',
