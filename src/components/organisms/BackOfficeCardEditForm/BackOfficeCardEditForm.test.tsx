@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
 import BackOfficeCardEditForm from './BackOfficeCardEditForm';
+
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { initReactI18next } from 'react-i18next';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

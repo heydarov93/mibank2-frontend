@@ -12,3 +12,4 @@ export { validationAddressSchema } from './validationAddressSchema';
 export { validationForgotPasswordSchema } from './validationForgotPasswordSchema';
 export { validationBackOfficeEmployeeLoginSchema } from './validationBackOfficeEmployeeLoginSchema';
 export { businessSignUpFormSchema } from './businessSignUpFormSchema';
+export { savePaymentSchema } from './validationSavePaymentSchema';

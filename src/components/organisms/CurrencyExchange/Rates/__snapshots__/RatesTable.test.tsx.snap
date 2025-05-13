@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<div>
+exports[`RatesTable component matches snapshot 1`] = `
+<DocumentFragment>
   <div
     class="MuiBox-root css-11ze7cv"
   >
@@ -189,5 +189,5 @@ exports[`matches snapshot 1`] = `
       </table>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -7,6 +7,8 @@ import { LoginForm } from './LoginForm';
 
 import store from 'store';
 
+const mockNavigate = jest.fn();
+
 jest.mock('utils', () => {
   return {
     generateRandomParam: jest.fn().mockReturnValue(''),
@@ -18,7 +20,6 @@ jest.mock('utils', () => {
   };
 });
 
-const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
@@ -68,9 +69,7 @@ describe('LoginForm', () => {
   });
 
   it('should navigate to forgot password page', async () => {
-    const forgotPasswordLink = screen.getByRole('link', {
-      name: 'Forgot password?',
-    });
+    const forgotPasswordLink = screen.getByText('Forgot password?');
     expect(forgotPasswordLink).toHaveAttribute('href', '/forgot-password');
   });
 });

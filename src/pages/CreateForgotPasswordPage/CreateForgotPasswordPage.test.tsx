@@ -48,6 +48,15 @@ const mockStore = configureStore({
     ]),
 });
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
+}));
+
 jest.mock('utils', () => {
   return {
     generateRandomParam: jest.fn().mockReturnValue(''),
@@ -87,7 +96,7 @@ describe('Forgot password Finished should match snapshot', () => {
         </MemoryRouter>
       </Provider>,
     );
-    const backButton = screen.getByRole('button', { name: 'Back' });
+    const backButton = screen.getByRole('button', { name: 'RegistrationPage.buttonBackArrow' });
     fireEvent.click(backButton);
     expect(mockNavigate).toHaveBeenCalledWith(-1);
   });

@@ -29,6 +29,15 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
+}));
+
 jest.mock('hooks', () => ({
   useAppDispatch: jest.fn(),
 }));
@@ -79,8 +88,8 @@ describe('Forgot Password should match snapshot', () => {
         </MemoryRouter>
       </Provider>,
     );
-    const emailInput = screen.getByLabelText('Email');
-    const button = screen.getByRole('button', { name: 'Send code' });
+    const emailInput = screen.getByLabelText('LoginPage.email.label');
+    const button = screen.getByRole('button', { name: 'ForgotPassword.EmailPageButton' });
 
     waitFor(() => {
       userEvent.type(emailInput, 'BAD_EMAIL');
@@ -106,8 +115,8 @@ describe('Forgot Password should match snapshot', () => {
       </Provider>,
     );
 
-    const emailInput = screen.getByLabelText('Email');
-    const submitButton = screen.getByRole('button', { name: 'Send code' });
+    const emailInput = screen.getByLabelText('LoginPage.email.label');
+    const submitButton = screen.getByRole('button', { name: 'ForgotPassword.EmailPageButton' });
 
     waitFor(() => {
       userEvent.type(emailInput, 'test@example.com');

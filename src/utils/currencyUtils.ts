@@ -27,6 +27,9 @@ export const removeExtraDot = (value: string): string => {
   return formattedValue;
 };
 
+export const formatTransferValue = (currency: string, value: number) =>
+  `${currency} ${value.toFixed(2).replace('.', ',')}`;
+
 export const formatCurrency = (currency: string, amount: number): string => {
   return `${currency} ${formatAmount(amount).replace('.', ',')}`;
 };
