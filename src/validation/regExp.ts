@@ -5,6 +5,8 @@ export const REG_EXP: { [field: string]: RegExp } = {
     /^(?=.{1,64}$)(?!^\.|\.$)[a-zA-Z0-9!#$%&'\\"*+\-/=?^_`.{|}~]*(?:[a-zA-Z0-9]|(?<!\.)\.)(?:[a-zA-Z0-9]|(?<!\.)\.)*[a-zA-Z0-9]*@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9]\.){1,253}(?:[a-zA-Z]{2,}|xn--[a-zA-Z0-9]+)$/,
   nonAlphabeticCharactersRegExp: /[^A-Za-z]/g,
   nameRegExp: /^[A-Za-zА-Яа-яЁё\s-]+$/,
+  fullPolishNameWithAtLeastTwoWords:
+    /^[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ'-]{2,}(?:\s+[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ'-]{2,})+$/,
   streetRegExp: /^[A-Za-zА-Яа-яЁё0-9 -]+$/g,
   latinLettersAndDigitsRegExp: /^[A-Za-z0-9]+$/g,
   latinLettersDigitsSpecialRegExp: /^(?!\s)[a-zA-Z0-9\s!@#$%^&*()]*$/g,

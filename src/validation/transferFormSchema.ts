@@ -7,29 +7,43 @@ import i18n from 'i18n';
 
 const key = 'TransfersPage';
 
+function validateIBAN(
+  schema: yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+) {
+  return schema.matches(/^PL\d{26}$/, i18n.t(`${key}.error.ibanFieldPattern`));
+}
+
+function validateCard(
+  schema: yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+) {
+  return schema.matches(/^\d{16}$/, i18n.t(`${key}.error.cardFieldPattern`));
+}
+
+function isModeIBAN(mode: string) {
+  return () => mode === 'IBAN';
+}
+
 export const schema = (mode: string) =>
   yup.object().shape({
     fromAccount: yup
       .string()
+      .transform((value) => value?.replace(/\s+/g, ''))
       .trim()
       .required(i18n.t(`${key}.error.accountFieldRequired`))
       .when([], {
-        is: () => mode === 'IBAN',
-        then: (schema) =>
-          schema.matches(/^PL\d{26}$/, i18n.t(`${key}.error.ibanFieldPattern`)),
-        otherwise: (schema) =>
-          schema.matches(/^\d{16}$/, i18n.t(`${key}.error.cardFieldPattern`)),
+        is: isModeIBAN(mode),
+        then: validateIBAN,
+        otherwise: validateCard,
       }),
     toAccount: yup
       .string()
+      .transform((value) => value?.replace(/\s+/g, ''))
       .trim()
       .required(i18n.t(`${key}.error.accountFieldRequired`))
       .when([], {
-        is: () => mode === 'IBAN',
-        then: (schema) =>
-          schema.matches(/^PL\d{26}$/, i18n.t(`${key}.error.ibanFieldPattern`)),
-        otherwise: (schema) =>
-          schema.matches(/^\d{16}$/, i18n.t(`${key}.error.cardFieldPattern`)),
+        is: isModeIBAN(mode),
+        then: validateIBAN,
+        otherwise: validateCard,
       }),
     amount: yup
       .string()

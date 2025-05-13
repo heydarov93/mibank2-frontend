@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import {
   act,
   fireEvent,
@@ -11,11 +12,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import BackOfficeVerifyEmployeeCode from './BackOfficeVerifyEmployeeCode';
 
 import { useLogInMutation } from 'api/employeeLogInApi';
+import { theme } from 'theme/theme';
+import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
+
+const mockedGetEmailRoleFromToken = getEmailRoleFromToken as jest.Mock;
 
 jest.mock('api/employeeLogInApi', () => ({
   useLogInMutation: jest.fn(),
 }));
 jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useNavigate: jest.fn(),
   useLocation: jest.fn(),
 }));
@@ -40,6 +46,12 @@ describe('BackOfficeVerifyEmployeeCode', () => {
     ]);
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
     (useLocation as jest.Mock).mockReturnValue(mockLocation);
+
+    render(
+      <ThemeProvider theme={theme}>
+        <BackOfficeVerifyEmployeeCode />
+      </ThemeProvider>,
+    );
   });
 
   it('should update OTP state and focus next input when valid numeric value entered', () => {
@@ -98,21 +110,21 @@ describe('BackOfficeVerifyEmployeeCode', () => {
   });
 
   it('renders correctly and matches snapshot', () => {
-    const { asFragment } = render(<BackOfficeVerifyEmployeeCode />);
+    const { asFragment } = render(
+      <ThemeProvider theme={theme}>
+        <BackOfficeVerifyEmployeeCode />
+      </ThemeProvider>,
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders the form and submits correctly', async () => {
     const mockTokenResponse = { accessToken: 'mock-token' };
     mockLogIn.mockResolvedValue({ data: mockTokenResponse });
-    const { getEmailRoleFromToken } = require('utils/getEmailFromToken');
-    const { setEmployeeAuthData } = require('utils/storageAuthHandler');
-    getEmailRoleFromToken.mockReturnValue({
+    mockedGetEmailRoleFromToken.mockReturnValue({
       email: 'test-email@example.com',
       role: 'admin',
     });
-
-    render(<BackOfficeVerifyEmployeeCode />);
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(
@@ -163,7 +175,6 @@ describe('BackOfficeVerifyEmployeeCode', () => {
   });
 
   it('should handle backspace key correctly', () => {
-    render(<BackOfficeVerifyEmployeeCode />);
     const otpInputs = screen.getAllByRole('textbox');
 
     otpInputs.forEach((input, index) => {
@@ -178,7 +189,6 @@ describe('BackOfficeVerifyEmployeeCode', () => {
   });
 
   it('should call the cancel button handler and reset OTP inputs', () => {
-    render(<BackOfficeVerifyEmployeeCode />);
     const otpInputs = screen.getAllByRole('textbox');
     const cancelButton = screen.getByRole('button', {
       name: 'OTPVerificationPage.cancelButtonText',
@@ -199,15 +209,20 @@ describe('BackOfficeVerifyEmployeeCode', () => {
 
   it('should show loading indicator when submitting OTP', () => {
     (useLogInMutation as jest.Mock).mockReturnValue([
-      mockLogIn,
+      jest.fn(),
       { isLoading: true },
     ]);
-    render(<BackOfficeVerifyEmployeeCode />);
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+
+    render(
+      <ThemeProvider theme={theme}>
+        <BackOfficeVerifyEmployeeCode />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByTestId('progress-indicator')).toBeInTheDocument();
   });
 
   it('should disable confirm button when OTP is incomplete', () => {
-    render(<BackOfficeVerifyEmployeeCode />);
     const confirmButton = screen.getByRole('button', {
       name: 'OTPVerificationPage.confirmButtonText',
     });
@@ -221,7 +236,6 @@ describe('BackOfficeVerifyEmployeeCode', () => {
 
   it('should not submit if email is missing from location state', async () => {
     (useLocation as jest.Mock).mockReturnValue({ state: null });
-    render(<BackOfficeVerifyEmployeeCode />);
     const confirmButton = screen.getByRole('button', {
       name: 'OTPVerificationPage.confirmButtonText',
     });

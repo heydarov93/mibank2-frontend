@@ -9,7 +9,12 @@ import {
   StyledNavContainer,
 } from './WelcomeNav.styled';
 
-import { TO_SIGN_IN, TO_SIGN_UP_START } from 'constants/routesName';
+import {
+  TO_SIGN_IN,
+  TO_SIGN_UP,
+  TO_BUSINESS_SIGN_IN,
+  TO_BUSINESS_SIGN_UP,
+} from 'constants/routesName';
 import { navMenuLinks } from 'constants/welcomeNavigation';
 
 enum EPanel {
@@ -26,11 +31,11 @@ export const WelcomeNav = ({ activePanel }: { activePanel: EPanel }) => {
   const isPersonal = activePanel === EPanel.Personal;
   const signIn = {
     label: isPersonal ? t('personalSignIn') : t('businessSignIn'),
-    route: isPersonal ? TO_SIGN_IN : '/business_sign_in',
+    route: isPersonal ? TO_SIGN_IN : TO_BUSINESS_SIGN_IN,
   };
   const signUp = {
     label: isPersonal ? t('personalSignUp') : t('businessSignUp'),
-    route: isPersonal ? TO_SIGN_UP_START : '/business_sign_up',
+    route: isPersonal ? TO_SIGN_UP : TO_BUSINESS_SIGN_UP,
   };
 
   return (

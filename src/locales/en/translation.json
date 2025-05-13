@@ -229,6 +229,27 @@
     "haveAccountMsg": "Already have an account?",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
   },
+  "BusinessSignUpPage": {
+    "form": {
+      "title": "Registration",
+      "fields": {
+        "companyName": "Company Name",
+        "nip": "NIP",
+        "companyEmail": "Company Email",
+        "ownerName": "Owner's full name"
+      },
+      "submitLabel": "Continue",
+      "error": {
+        "required": "This field is required",
+        "invalidPattern": "Invalid company name",
+        "nipPattern": "Invalid NIP format. Please enter a valid Polish NIP (\"PL-NIP-\" + 10 digits)",
+        "emailPattern": "Please enter your email in format: example@company.com",
+        "ownerNamePattern": "Invalid full name format. At least two words required",
+        "maxLen": "Maximum 100 characters",
+        "emailMaxLen": "Maximum 320 characters"
+      }
+    }
+  },
   "GeneralErrors": {
     "errorCommon": "Unknown error occured, please try again later"
   },
@@ -348,6 +369,12 @@
     "errorPattern": "Only digits can be entered into the field. \nPlease, try again",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us",
     "lostConnection": "The action can't be completed because of the connection loss or some system issue. Please, check your internet connection and try again later. If the problem continues, contact us"
+  },
+  "VerifyEmailPage": {
+    "title": "Verify your email",
+    "emailSent": "We've sent a verification link via email to",
+    "notReceived": "Didn't receive email?",
+    "resend": "Resend link"
   },
   "ForgotPassword": {
     "EmailPageTitle": "Forgot password",
@@ -729,6 +756,29 @@
     "success": {
       "title": "Success",
       "message": "Operation completed successfully!"
+    },
+    "form": {
+      "createPassword": {
+        "title": "Registration",
+        "mainFieldLabel": "Password",
+        "confirmFieldLabel": "Confirm Password",
+        "submitLabel": "Sign Up",
+        "doesAccountExist": "Already have an account?",
+        "logIn": "Log in",
+        "error": {
+          "errorIsBlocked": "Account is blocked. Please, contact us",
+          "errorMaxLen": "Password should not exceed 50 characters",
+          "errorMinLen": "Password should be at least 8 character long",
+          "errorPattern": "Format is not correct. Please click ⓘ sign to see requirements",
+          "minimumChar": "Minimum 8 characters",
+          "latinLetters": "Latin letters only",
+          "oneUpperCase": "One letter in uppercase",
+          "oneLowerCase": "One letter in lowercase",
+          "oneDigit": "One digit",
+          "specialChar": "One special character",
+          "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us"
+        }
+      }
     }
   }
 }

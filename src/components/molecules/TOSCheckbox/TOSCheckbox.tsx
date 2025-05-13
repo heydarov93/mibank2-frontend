@@ -8,28 +8,25 @@ import {
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  AgreementContainer,
-  CheckboxStyledContainer,
-} from './CheckboxWithLabel.styled';
+import { AgreementContainer, StyledContainer } from './TOSCheckbox.styled';
 
 import { termsLink, policyLink } from 'components/organisms/Footer/constants';
 import { ILoginFormInput } from 'models/IAuth';
 import { generateRandomParam } from 'utils';
 
-interface CheckboxWithLabelProps<T extends FieldValues> {
+interface TOSCheckboxProps<T extends FieldValues> {
   control?: Control<T>;
   name: Path<T>;
   errors: FieldErrors<ILoginFormInput>;
   isFormDisabled?: boolean;
 }
 
-export const CheckboxWithLabel = <T extends FieldValues>({
+export const TOSCheckbox = <T extends FieldValues>({
   control,
   errors,
   name,
   isFormDisabled,
-}: CheckboxWithLabelProps<T>) => {
+}: TOSCheckboxProps<T>) => {
   const { t } = useTranslation('translation');
   const theme = useTheme();
 
@@ -37,7 +34,7 @@ export const CheckboxWithLabel = <T extends FieldValues>({
   const urlPolicy = `${policyLink}${generateRandomParam()}`;
 
   return (
-    <CheckboxStyledContainer className={errors.checkbox ? 'shake' : ''}>
+    <StyledContainer className={errors.checkbox ? 'shake' : ''}>
       <Controller
         name={name}
         control={control}
@@ -97,6 +94,6 @@ export const CheckboxWithLabel = <T extends FieldValues>({
           </Link>
         </>
       </AgreementContainer>
-    </CheckboxStyledContainer>
+    </StyledContainer>
   );
 };

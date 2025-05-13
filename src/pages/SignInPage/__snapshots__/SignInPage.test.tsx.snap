@@ -166,7 +166,7 @@ exports[`LoginPage snapshot should match 1`] = `
           </div>
         </div>
         <div
-          class=" MuiBox-root css-356ou8"
+          class=" MuiBox-root css-pffs8i"
         >
           <span
             class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall css-1k5us2r-MuiButtonBase-root-MuiCheckbox-root"
@@ -219,7 +219,7 @@ exports[`LoginPage snapshot should match 1`] = `
             class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
           />
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-anuv2a-MuiTypography-root-MuiLink-root"
+            class="css-ljkarr"
             href="/forgot-password"
           >
             Forgot password?
@@ -246,7 +246,7 @@ exports[`LoginPage snapshot should match 1`] = `
           Don't have an account?
         </p>
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-anuv2a-MuiTypography-root-MuiLink-root"
+          class="css-ljkarr"
           href="/signup-start"
         >
           Sign Up

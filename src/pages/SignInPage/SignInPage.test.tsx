@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import { LoginPage } from './LoginPage';
+import { SignInPage } from './SignInPage';
 
 import { authApi } from 'api/authApi';
 import { contactInfoApi } from 'api/contactInfoApi';
@@ -70,7 +70,7 @@ describe('LoginPage', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <LoginPage />
+          <SignInPage />
         </MemoryRouter>
       </Provider>,
     );

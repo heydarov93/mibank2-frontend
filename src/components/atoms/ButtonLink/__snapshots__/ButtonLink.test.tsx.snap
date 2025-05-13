@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonLink matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1p2id0w"
+  >
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+    >
+      test.message
+    </p>
+    <a
+      class="css-3uyoza"
+      href="https://example.com"
+    >
+      test.linkText
+    </a>
+  </div>
+</DocumentFragment>
+`;

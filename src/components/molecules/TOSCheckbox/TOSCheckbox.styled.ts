@@ -1,16 +1,13 @@
 import { styled, Typography, Box } from '@mui/material';
 
-export const CheckboxStyledContainer = styled(Box)(
-  ({ theme: { spacing, animations } }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    paddingTop: spacing(2),
+export const StyledContainer = styled(Box)(({ theme: { animations } }) => ({
+  display: 'flex',
+  alignItems: 'center',
 
-    '&.shake': {
-      animation: `${animations?.shake} 0.25s`,
-    },
-  }),
-);
+  '&.shake': {
+    animation: `${animations?.shake} 0.25s`,
+  },
+}));
 
 export const AgreementContainer = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',

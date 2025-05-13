@@ -2,7 +2,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FieldErrors, useForm } from 'react-hook-form';
 
-import { CheckboxWithLabel } from './CheckboxWithLabel';
+import { TOSCheckbox } from './TOSCheckbox';
 
 import { ILoginFormInput } from 'models/IAuth';
 
@@ -23,7 +23,7 @@ const WrapperComponent = ({
 
   return (
     <ThemeProvider theme={createTheme()}>
-      <CheckboxWithLabel
+      <TOSCheckbox
         name="checkbox"
         control={control}
         errors={errors}
@@ -33,7 +33,7 @@ const WrapperComponent = ({
   );
 };
 
-describe('CheckboxWithLabel Component', () => {
+describe('TOSCheckbox Component', () => {
   it('renders checkbox with correct default state', () => {
     render(<WrapperComponent />);
 

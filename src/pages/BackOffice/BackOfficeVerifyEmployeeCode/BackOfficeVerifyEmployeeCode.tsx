@@ -144,7 +144,7 @@ const BackOfficeVerifyEmployeeCode = () => {
               marginTop: '12px',
             }}
           >
-            <CircularProgress />
+            <CircularProgress data-testid="progress-indicator"/>
           </Box>
         )}
       </form>

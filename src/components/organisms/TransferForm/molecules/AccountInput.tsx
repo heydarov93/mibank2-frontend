@@ -13,13 +13,14 @@ export const AccountInput = forwardRef<PatternFormatProps, CustomProps>(
     return (
       <PatternFormat
         {...other}
+        allowEmptyFormatting // for default non number value
         format={format}
         getInputRef={ref}
         onValueChange={({ formattedValue }) => {
           onChange({
             target: {
               name: props.name,
-              value: `PL${formattedValue.replace(/\s/g, '')}`,
+              value: formattedValue.replace(/\s+/g, ''),
             },
           });
         }}

@@ -5,7 +5,7 @@ import { AuthWrapper, Footer, LoginForm } from 'components/organisms';
 import { TokenType } from 'models/IAuth';
 import { localTokenHandler } from 'utils';
 
-export const LoginPage = () => {
+export const SignInPage = () => {
   const navigate = useNavigate();
 
   const hasAccessToken = localTokenHandler.getToken(TokenType.ACCESS);

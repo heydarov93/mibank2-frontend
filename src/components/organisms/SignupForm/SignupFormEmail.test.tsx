@@ -1,21 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 
 import { SignupFormEmail } from './SignupFormEmail';
 
-const initialValues = {
-  auth: {
-    isAuth: false,
-    user: null,
-    error: null,
-    loading: false,
-  },
-};
+import store from 'store';
 
-const mockStore = configureStore({
-  reducer: () => initialValues,
-});
 
 jest.mock('utils', () => {
   return {
@@ -32,28 +22,34 @@ jest.mock('utils', () => {
 });
 
 const mockNavigate = jest.fn();
-jest.mock('react-router', () => {
-  return {
-    useNavigate: () => mockNavigate,
-  };
-});
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
 
 describe('SignupFormEmail', () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <SignupFormEmail />
+        </MemoryRouter>
+      </Provider>,
+    );
+  });
+
   it('snapshot should match', () => {
     const { asFragment } = render(
-      <Provider store={mockStore}>
-        <SignupFormEmail />
+      <Provider store={store}>
+        <MemoryRouter>
+          <SignupFormEmail />
+        </MemoryRouter>
       </Provider>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should enable the submit button only when the form is valid', async () => {
-    render(
-      <Provider store={mockStore}>
-        <SignupFormEmail />
-      </Provider>,
-    );
 
     const emailInput = screen.getByLabelText('Email');
     const continueButton = screen.getByText('Continue');

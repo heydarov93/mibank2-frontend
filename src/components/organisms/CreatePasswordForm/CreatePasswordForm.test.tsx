@@ -1,55 +1,30 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
 
-import { SignupFormPassword } from './SignupFormPassword';
+import { CreatePasswordForm } from './CreatePasswordForm';
 
-import store from 'store';
-
-const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate,
+  useNavigate: jest.fn(),
+  useLocation: jest.fn(),
 }));
 
 jest.mock('utils', () => {
   return {
     generateRandomParam: jest.fn().mockReturnValue(''),
-    handleNotFoundError: jest.fn(),
-    handleLockedError: jest.fn(),
-    useErrorHandlers: jest.fn,
-    formatErrorMessage: jest.fn(),
-    useFormatErrorMessage: jest.fn,
-    localTokenHandler: {
-      getToken: jest.fn(),
-    },
   };
 });
 
-describe('SignupFormPassword', () => {
+describe('CreatePasswordForm', () => {
   beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <SignupFormPassword />
-        </MemoryRouter>
-      </Provider>,
-    );
+    render(<CreatePasswordForm />);
   });
 
   it('snapshot should match', () => {
-    const { asFragment } = render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <SignupFormPassword />
-        </MemoryRouter>
-      </Provider>,
-    );
+    const { asFragment } = render(<CreatePasswordForm />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should enable the submit button only when the form is valid', async () => {
-
     const passwordInput = screen.getByLabelText('Password');
     const confirmPasswordInput = screen.getByLabelText('Confirm Password');
     const submitButton = screen.getByText('Sign Up');
