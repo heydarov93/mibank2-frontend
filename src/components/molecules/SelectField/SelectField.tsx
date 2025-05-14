@@ -1,21 +1,36 @@
-import { FormControl, Select, MenuItem, Typography } from '@mui/material';
-import React from 'react';
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  Typography,
+  Stack,
+} from '@mui/material';
 import { Controller, Control, FieldValues, Path } from 'react-hook-form';
+
+import { ReactComponent as DoneIcon } from 'assets/icons/DoneIcon.svg';
+
+export type SelectFieldOption = {
+  value: string;
+  label?: string;
+  secondaryLabel?: string;
+};
 
 interface SelectFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
-  options: string[];
+  options: SelectFieldOption[];
   error?: { message?: string };
   disabled?: boolean;
+  placeholder?: string;
 }
 
-const SelectField = <T extends FieldValues>({
+export const SelectField = <T extends FieldValues>({
   name,
   control,
   options,
   error,
   disabled = false,
+  placeholder,
 }: SelectFieldProps<T>) => {
   return (
     <FormControl fullWidth error={!!error}>
@@ -23,10 +38,75 @@ const SelectField = <T extends FieldValues>({
         name={name}
         control={control}
         render={({ field }) => (
-          <Select {...field} displayEmpty disabled={disabled}>
+          <Select
+            {...field}
+            displayEmpty
+            disabled={disabled}
+            renderValue={(value) => {
+              if (placeholder && !value) {
+                return (
+                  <Typography
+                    sx={(theme) => ({
+                      color: theme.palette.grey[300],
+                      fontSize: 'inherit',
+                    })}
+                  >
+                    {placeholder}
+                  </Typography>
+                );
+              }
+
+              const option = options.find((o) => o.value === value);
+
+              return (
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography sx={{ fontSize: 14 }}>
+                    {option?.label ?? option?.value}
+                  </Typography>
+                  {option?.secondaryLabel && (
+                    <Typography
+                      sx={(theme) => ({
+                        color: theme.palette.grey[400],
+                        fontSize: 14,
+                        mr: '4px',
+                      })}
+                    >
+                      {option.secondaryLabel}
+                    </Typography>
+                  )}
+                </Stack>
+              );
+            }}
+          >
             {options.map((option, index) => (
-              <MenuItem key={index} value={option}>
-                {option}
+              <MenuItem key={index} value={option.value}>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{ width: '100%' }}
+                >
+                  <Typography sx={{ fontSize: 14 }}>
+                    {option.label ?? option.value}
+                  </Typography>
+                  <Typography
+                    sx={(theme) => ({
+                      color:
+                        option.value === field.value
+                          ? theme.palette.primary.main
+                          : theme.palette.grey[400],
+                      fontSize: 14,
+                    })}
+                  >
+                    {option.secondaryLabel}
+                  </Typography>
+                </Stack>
+                {option.value === field.value && <DoneIcon />}
               </MenuItem>
             ))}
           </Select>
@@ -40,5 +120,3 @@ const SelectField = <T extends FieldValues>({
     </FormControl>
   );
 };
-
-export default SelectField;

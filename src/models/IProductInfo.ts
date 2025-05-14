@@ -42,3 +42,14 @@ export interface DepositBackendData {
   earlyWithdrawalLimit: number;
   earlyWithdrawalFee: number;
 }
+
+export interface IssuanceCardData extends CardFormData {
+  id: number;
+  name: string;
+  fee: number;
+  feeCurrency: string;
+  background: string;
+  currency: string;
+  issueType: string;
+  cardIssuer: 'visa' | 'mastercard';
+}

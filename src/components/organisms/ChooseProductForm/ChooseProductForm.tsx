@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField, Box } from '@mui/material';
-import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +11,7 @@ import {
 
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
-import SelectField from 'components/molecules/SelectField/SelectField';
+import { SelectField } from 'components/molecules';
 import currencies from 'constants/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -32,20 +31,23 @@ const ChooseProductForm = () => {
     description: '',
   };
 
-  const productOptions = [t('CreateProduct.deposit'), t('CreateProduct.card')];
+  const productOptions = [
+    t('CreateProduct.deposit'),
+    t('CreateProduct.card'),
+  ].map((value) => ({ value }));
   const depositOptions = [
     t('CreateProduct.teamDeposit'),
     t('CreateProduct.demandDeposit'),
     t('CreateProduct.savingDeposit'),
     t('CreateProduct.targetDeposit'),
-  ];
+  ].map((value) => ({ value }));
 
   const cardOptions = [
     t('CreateProduct.debitCard'),
     t('CreateProduct.creditCard'),
-  ];
+  ].map((value) => ({ value }));
 
-  const currencyOptions = currencies;
+  const currencyOptions = currencies.map((value) => ({ value }));
 
   type formData = {
     product: string;

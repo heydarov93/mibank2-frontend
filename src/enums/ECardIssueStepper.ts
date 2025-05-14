@@ -1,0 +1,6 @@
+export enum ECardIssueStepper {
+  DATA_SELECTION,
+  CARD_SELECTION,
+  CARD_SELECTED,
+  CONFIRMATION,
+}
