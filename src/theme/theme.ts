@@ -1,5 +1,7 @@
 import { createTheme, keyframes } from '@mui/material';
 
+import { ExpandMoreIcon } from 'components/atoms';
+
 const shakeAnimation = keyframes`
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -53,6 +55,7 @@ export const theme = createTheme({
       light: '#FCEEEE',
     },
     grey: {
+      600: '#383733',
       500: '#27282B',
       400: '#60636B',
       300: '#A8ADBA',
@@ -82,11 +85,6 @@ export const theme = createTheme({
 
 theme.components = {
   MuiButton: {
-    defaultProps: {
-      sx: {
-        borderRadius: '8px',
-      },
-    },
     variants: [
       {
         props: { boxShadow: true },
@@ -123,10 +121,120 @@ theme.components = {
       },
     ],
     styleOverrides: {
+      root: {
+        borderRadius: '8px',
+        fontSize: 16,
+      },
       containedPrimary: {
         boxShadow: 'none',
         '&:hover': { boxShadow: 'none' },
       },
     },
+  },
+  MuiSelect: {
+    defaultProps: {
+      IconComponent: ExpandMoreIcon,
+      MenuProps: {
+        slotProps: {
+          paper: {
+            sx: {
+              borderRadius: '8px',
+              boxShadow: `0 4px 24px 0 ${theme.palette.shadow.shadowLight};`,
+              background: theme.palette.common.white,
+              border: `1px solid ${theme.palette.grey[200]}`,
+              mt: '4px',
+
+              '.MuiMenuItem-root': {
+                fontSize: '14px',
+                height: '40px',
+              },
+
+              '.MuiList-root': {
+                p: 0,
+              },
+
+              '.Mui-selected': {
+                color: theme.palette.primary.main,
+                background: theme.palette.primary.light,
+              },
+            },
+          },
+        },
+      },
+    },
+    styleOverrides: {
+      root: {
+        borderRadius: '8px',
+        fontSize: '14px',
+
+        '&, &:hover': {
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.grey[400],
+          },
+        },
+
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderWidth: '1px',
+        },
+
+        '& .MuiList-root': {
+          borderRadius: '8px',
+        },
+      },
+      icon: {
+        right: '10px',
+      },
+    },
+  },
+  MuiSwitch: {
+    styleOverrides: {
+      root: {
+        padding: 0,
+        width: '36px',
+        height: '20px',
+      },
+      switchBase: {
+        padding: 0,
+
+        '&.Mui-checked': {
+          transform: 'translateX(16px)',
+
+          '.MuiSwitch-thumb': {
+            background: theme.palette.common.white,
+          },
+          '+ .MuiSwitch-track': {
+            opacity: 1,
+          },
+        },
+      },
+      thumb: {
+        width: '18px',
+        height: '18px',
+        boxShadow: 'none',
+        marginTop: '1px',
+        marginLeft: '1px',
+        background: theme.palette.grey[300],
+      },
+      track: {
+        borderRadius: '10px',
+        background: theme.palette.grey[400],
+        opacity: 1,
+      },
+    },
+    variants: [
+      {
+        props: { disabled: true },
+        style: {
+          cursor: 'not-allowed',
+          '&& span.MuiSwitch-thumb': {
+            background: theme.palette.grey[300],
+          },
+          '&& span.MuiSwitch-track': {
+            background: theme.palette.grey[400],
+            opacity: 1,
+          },
+        },
+      },
+    ],
   },
 };

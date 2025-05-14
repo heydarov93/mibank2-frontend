@@ -10,11 +10,12 @@ import {
   StyledInputLabel,
 } from './SavePaymentWrapper.styled';
 
-import { savePaymentSchema } from 'validation';
+import { savePaymentSchema } from 'validation/validationSavePaymentSchema';
 
 export const SavePaymentWrapper = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
-  const [isSavePaymentChecked, setIsSavePaymentChecked] = useState<boolean>(false);
+  const [isSavePaymentChecked, setIsSavePaymentChecked] =
+    useState<boolean>(false);
   const {
     control,
     formState: { errors },

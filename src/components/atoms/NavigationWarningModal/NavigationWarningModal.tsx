@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton } from '@mui/material';
+import { IconButton, SxProps, Theme } from '@mui/material';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -11,36 +11,47 @@ import { StyledNavigationWarningModal } from './NavigationWarningModal.styled';
 
 interface NavigationWarningModalProps {
   open: boolean;
+  title?: string;
+  description?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  sx?: SxProps<Theme>;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
 export const NavigationWarningModal = ({
   open,
+  title,
+  description,
+  confirmLabel,
+  cancelLabel,
+  sx,
   onConfirm,
   onCancel,
 }: NavigationWarningModalProps) => {
   const { t } = useTranslation('translation');
 
   return (
-    <StyledNavigationWarningModal open={open} onClose={onCancel}>
+    <StyledNavigationWarningModal open={open} onClose={onCancel} sx={sx}>
       <DialogTitle>
-        {t('RegistrationPage.navigationWarningModal.title')}
+        {title || t('RegistrationPage.navigationWarningModal.title')}
         <IconButton onClick={onCancel}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {t('RegistrationPage.navigationWarningModal.contentText')}
+          {description ||
+            t('RegistrationPage.navigationWarningModal.contentText')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel} className="cancelButton">
-          {t('RegistrationPage.navigationWarningModal.cancel')}
+          {cancelLabel || t('RegistrationPage.navigationWarningModal.cancel')}
         </Button>
         <Button onClick={onConfirm} className="confirmButton">
-          {t('RegistrationPage.navigationWarningModal.confirm')}
+          {confirmLabel || t('RegistrationPage.navigationWarningModal.confirm')}
         </Button>
       </DialogActions>
     </StyledNavigationWarningModal>

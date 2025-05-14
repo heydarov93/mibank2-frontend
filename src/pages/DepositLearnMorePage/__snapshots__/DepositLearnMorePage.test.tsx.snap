@@ -6,7 +6,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
     class="MuiBox-root css-79elbk"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-mtbz0n-MuiButtonBase-root-MuiButton-root"
+      class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1o5wyhm-MuiButtonBase-root-MuiButton-root"
       data-testid="back-button"
       tabindex="0"
       type="button"
@@ -53,7 +53,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
             class="MuiBox-root css-yzkv41"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1pjoizz-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1qowome-MuiButtonBase-root-MuiButton-root"
               data-testid="open-current-deposit-button"
               tabindex="0"
               type="submit"
@@ -64,7 +64,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
               />
             </button>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-3kt16u-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1hm4clp-MuiButtonBase-root-MuiButton-root"
               data-testid="open-all-deposits-button"
               tabindex="0"
               type="button"
@@ -448,7 +448,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
           </div>
         </div>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1b1waof-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1n5q2b-MuiButtonBase-root-MuiButton-root"
           data-testid="save-button"
           tabindex="0"
           type="submit"
@@ -916,10 +916,10 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
             class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-6pz7h4-MuiFormControlLabel-root"
           >
             <span
-              class="MuiSwitch-root MuiSwitch-sizeMedium css-julti5-MuiSwitch-root"
+              class="MuiSwitch-root MuiSwitch-sizeMedium css-pyjta9-MuiSwitch-root"
             >
               <span
-                class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-28dt7-MuiButtonBase-root-MuiSwitch-switchBase"
+                class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-o2tbpg-MuiButtonBase-root-MuiSwitch-switchBase"
               >
                 <input
                   class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
@@ -928,14 +928,14 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
                   value="false"
                 />
                 <span
-                  class="MuiSwitch-thumb css-jsexje-MuiSwitch-thumb"
+                  class="MuiSwitch-thumb css-qptv4j-MuiSwitch-thumb"
                 />
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </span>
               <span
-                class="MuiSwitch-track css-1cybg8v-MuiSwitch-track"
+                class="MuiSwitch-track css-180yklv-MuiSwitch-track"
               />
             </span>
             <span
@@ -957,7 +957,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
             class="MuiBox-root css-8amux6"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1mns9qj-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-arzagt-MuiButtonBase-root-MuiButton-root"
               disabled=""
               tabindex="-1"
               type="button"

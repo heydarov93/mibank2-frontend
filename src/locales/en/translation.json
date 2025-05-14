@@ -804,5 +804,37 @@
         }
       }
     }
+  },
+  "IssueCardModal": {
+    "issueCard": "Issue a Card",
+    "choose": "Choose here",
+    "selectAcc": "Select Account",
+    "selectCard": "Select a Card",
+    "currency": "Currency",
+    "cardType": "Card Type",
+    "issueType": "Issue Type",
+    "issuer": "Card Issuer",
+    "bottomAlert": "Select all the parameters to see the list of available cards.",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "confirm": "Confirm and Pay",
+    "openNewAcc": "Open New Account",
+    "cardSelected": "Card Selected",
+    "confirmation": "I confirm that I have reviewed and accepted the terms of the card agreement, limits, as well as the issuance and maintenance fees",
+    "cardTermsLink": "Card Terms and Transaction Limits",
+    "monthlyFee": "Monthly fee",
+    "transactionLimit": "Foreign transaction limit",
+    "cashbackAmount": "Cashback amount",
+    "confirmationModal": {
+      "title": "Leaving issuing a card?",
+      "description": "If you leave, the progress won’t be saved.",
+      "goBack": "Go back",
+      "leave": "Leave anyway"
+    }
+  },
+  "IssuanceCard": {
+    "issuanceFee": "Issuance Fee",
+    "cardCurrency": "Card Currency",
+    "type": "Type"
   }
 }
