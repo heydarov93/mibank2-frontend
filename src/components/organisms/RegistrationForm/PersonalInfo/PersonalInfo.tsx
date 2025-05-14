@@ -138,7 +138,8 @@ export const PersonalInfo = () => {
           onClick={handleSubmit(onSubmit)}
           isDisabled={!isValidForm}
           buttonContent={t('SignupPage.buttonLabelContinue')}
-        ></SubmitButton>
+          fullWidth={false}
+        />
       </StyledForm>
     </StyledBoxContainer>
   );

@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { StyledActionsWrapper } from '../RegistrationForm.styled';
+
 import {
   StyledFormTitle,
   StyledForm,
@@ -154,7 +156,9 @@ export const Address = () => {
   };
   const postcodeInputMask = (value: SyntheticEvent): void => {
     const target = value.target as HTMLInputElement;
-    const formatted = target.value.replace(regExpPostcodeMask, '$1-$2');
+    const formatted = target.value
+      .replace(/\D/g, '')
+      .replace(regExpPostcodeMask, '$1-$2');
     target.value = formatted;
   };
 
@@ -320,7 +324,7 @@ export const Address = () => {
             />
           </Box>
         </StyledFormContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <StyledActionsWrapper>
           <SecondaryButton
             onClick={onPreviousForm}
             buttonContent={t('RegistrationPage.buttonBackArrow')}
@@ -329,8 +333,9 @@ export const Address = () => {
             isDisabled={!isValid}
             onClick={handleSubmit(onSubmit)}
             buttonContent={t('RegistrationPage.buttonLabelSaveAndProceed')}
+            fullWidth={false}
           />
-        </Box>
+        </StyledActionsWrapper>
       </StyledForm>
     </StyledBoxContainer>
   );
