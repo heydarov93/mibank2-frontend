@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { StyledActionsWrapper } from '../RegistrationForm.styled';
+
 import {
   StyledFormTitle,
   StyledForm,
@@ -126,7 +128,7 @@ export const DocumentInfo = () => {
             />
           </Box>
         </StyledFormContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <StyledActionsWrapper>
           <SecondaryButton
             onClick={onPreviousForm}
             buttonContent={t('RegistrationPage.buttonBackArrow')}
@@ -135,8 +137,9 @@ export const DocumentInfo = () => {
             isDisabled={!isValidForm}
             onClick={handleSubmit(onSubmit)}
             buttonContent={t('SignupPage.buttonLabelContinue')}
+            fullWidth={false}
           />
-        </Box>
+        </StyledActionsWrapper>
       </StyledForm>
     </StyledBoxContainer>
   );
