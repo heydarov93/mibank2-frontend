@@ -768,8 +768,7 @@
       "give": "Give",
       "get": "Get",
       "rate": "Rate",
-      "errorMessage": "Exchange rates are currently unavailable. Please try again later!",
-      "convertError": "An error occurred during currency conversion. Please try again!"
+      "errorMessage": "Exchange rates are currently unavailable, sorry for inconvenience"
     }
   },
   "common": {

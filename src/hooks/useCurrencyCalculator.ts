@@ -89,7 +89,7 @@ export const useCurrencyCalculator = () => {
       .then((result: ConvertedCurrency) =>
         updateConvertedAmount(result.convertedAmount, isFromAmount),
       )
-      .catch(() => setErrorMessage(t('CurCal.convertError')));
+      .catch(() => setErrorMessage(t('CurCal.errorMessage')));
   };
 
   const handleCurrencyChange = (isFromCurrency: boolean, currency: string) => {
@@ -124,7 +124,7 @@ export const useCurrencyCalculator = () => {
 
   useEffect(() => {
     if (isConvertCurrencyError) {
-      setErrorMessage(t('CurCal.convertError'));
+      setErrorMessage(t('CurCal.errorMessage'));
     }
   }, [isConvertCurrencyError]);
 
