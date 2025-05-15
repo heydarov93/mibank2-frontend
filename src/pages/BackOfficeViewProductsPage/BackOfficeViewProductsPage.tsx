@@ -76,7 +76,7 @@ const BackOfficeViewProductsPage = () => {
   const mappedData =
     allProducts?.map((item: DepositBackendData) => ({
       id: item.id,
-      productType: item.type.split(' ').at(1),
+      productType: item?.type?.split(' ').at(1),
       productName: item.name,
       productSubtype: item.type,
       cardDescription: item.description,
