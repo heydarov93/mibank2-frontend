@@ -1,15 +1,14 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { StyledActionsWrapper } from '../RegistrationForm.styled';
+import {
+  StyledActionsWrapper,
+  StyledContentContainer,
+} from '../RegistrationForm.styled';
 
 import {
   StyledFormTitle,
-  StyledForm,
   StyledFormContent,
   StyledBoxContainer,
   StyledLabel,
@@ -18,62 +17,21 @@ import {
 import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { CountrySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
-import { countries } from 'constants/countries';
-import { EStepper } from 'enums/EStepper';
-import { ILegalStatus } from 'models/IRegistration';
-import { RootState } from 'store';
-import { setLegalStatusData } from 'store/reducers/RegistrationSlice';
-import { setEU, setStep } from 'store/reducers/StepperSlice';
-import { validationLegalStatusSchema } from 'validation';
+import { FormStepProps, ILegalStatus } from 'models/IRegistration';
 
-export const LegalStatus = () => {
+export const LegalStatus = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
-  const dispatch = useDispatch();
-  const legalStatusData: ILegalStatus = useSelector(
-    (state: RootState) => state.registration.legalStatus as ILegalStatus,
-  );
-  const checkEUStatus = (countryLabel: string) => {
-    return countries.some(
-      (country) => country.label === countryLabel && country.isInEurope,
-    );
-  };
   const {
     formState: { errors, isValid },
     control,
-    handleSubmit,
-    getValues,
-    reset,
-  } = useForm<ILegalStatus>({
-    resolver: yupResolver(validationLegalStatusSchema),
-    mode: 'all',
-    defaultValues: {
-      citizenship: '',
-      taxResidenceCountry: '',
-      peselNumber: '',
-    },
-  });
-  const onPreviousForm = () => {
-    dispatch(setStep(EStepper.PERSONAL_INFO));
-  };
-  useEffect(() => {
-    reset({
-      citizenship: legalStatusData.citizenship,
-      taxResidenceCountry: legalStatusData.taxResidenceCountry,
-      peselNumber: legalStatusData.peselNumber,
-    });
-  }, [legalStatusData, reset]);
-  const onSubmit = (data: ILegalStatus) => {
-    dispatch(setEU(checkEUStatus(getValues('citizenship'))));
-    dispatch(setLegalStatusData(data));
-    dispatch(setStep(2));
-  };
-  const isValidForm = isValid;
+  } = useFormContext<ILegalStatus>();
+
   return (
     <StyledBoxContainer>
       <StyledFormTitle>
         {t('RegistrationPage.legalStatusTitle')}
       </StyledFormTitle>
-      <StyledForm>
+      <StyledContentContainer>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="pesel">
@@ -135,17 +93,16 @@ export const LegalStatus = () => {
         </StyledFormContent>
         <StyledActionsWrapper>
           <SecondaryButton
-            onClick={onPreviousForm}
+            onClick={onBack}
             buttonContent={t('RegistrationPage.buttonBackArrow')}
           />
           <SubmitButton
-            isDisabled={!isValidForm}
-            onClick={handleSubmit(onSubmit)}
+            isDisabled={!isValid}
             buttonContent={t('SignupPage.buttonLabelContinue')}
             fullWidth={false}
           />
         </StyledActionsWrapper>
-      </StyledForm>
+      </StyledContentContainer>
     </StyledBoxContainer>
   );
 };

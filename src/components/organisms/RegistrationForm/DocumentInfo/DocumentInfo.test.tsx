@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import i18n from 'i18next';
+import { FormProvider, useForm } from 'react-hook-form';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -25,16 +26,30 @@ i18n.use(initReactI18next).init({
   },
 });
 
-describe('DocumentInfo Component', () => {
-  it('renders the component correctly', () => {
-    render(
+const renderWithProviders = () => {
+  const Wrapper = () => {
+    const methods = useForm();
+
+    return (
       <Provider store={store}>
         <MemoryRouter>
-          <DocumentInfo />
+          <FormProvider {...methods}>
+            <DocumentInfo onBack={jest.fn()} />
+          </FormProvider>
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
+  };
 
+  render(<Wrapper />);
+};
+
+describe('DocumentInfo Component', () => {
+  beforeEach(() => {
+    renderWithProviders();
+  });
+
+  it('renders the component correctly', () => {
     expect(screen.getByTestId('document-info-title')).toBeInTheDocument();
 
     expect(
@@ -53,14 +68,6 @@ describe('DocumentInfo Component', () => {
   });
 
   it('validates form fields and calls dispatch on submit', () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <DocumentInfo />
-        </MemoryRouter>
-      </Provider>,
-    );
-
     const submitButton = screen.getByText('SignupPage.buttonLabelContinue');
     expect(submitButton).toBeDisabled();
     const documentNumberInput = screen.getByPlaceholderText(

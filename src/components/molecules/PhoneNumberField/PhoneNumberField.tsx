@@ -5,6 +5,7 @@ import {
   Path,
   FieldErrors,
 } from 'react-hook-form';
+import { PhoneInputProps } from 'react-phone-input-2';
 
 import {
   ShakeWrapper,
@@ -19,6 +20,7 @@ interface PhoneNumberFieldProps<T extends FieldValues> {
   control: Control<T>;
   errors: FieldErrors<IPersonalInfo>;
   className?: string;
+  onChange?: PhoneInputProps['onChange'];
 }
 
 export const PhoneNumberField = <T extends FieldValues>({
@@ -26,6 +28,7 @@ export const PhoneNumberField = <T extends FieldValues>({
   control,
   errors,
   className,
+  onChange,
 }: PhoneNumberFieldProps<T>) => {
   const hasError = !!errors.phoneNumber;
 
@@ -42,6 +45,10 @@ export const PhoneNumberField = <T extends FieldValues>({
             value={field.value}
             onBlur={field.onBlur}
             hasError={hasError}
+            onChange={(value, data, event, formattedValue) => {
+              field.onChange(value);
+              onChange?.(value, data, event, formattedValue);
+            }}
           />
           <StyledErrorText>
             {errors.phoneNumber && (

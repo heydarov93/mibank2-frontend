@@ -17,8 +17,6 @@ import ChooseProductReducer from './reducers/ChooseProductSlice';
 import CreateCardReducer from './reducers/CreateCardSlice';
 import CreateDepositReducer from './reducers/CreateDepositSlice';
 import ProductStepperReducer from './reducers/ProductStepperSlice';
-import RegistrationReducer from './reducers/RegistrationSlice';
-import StepperReducer from './reducers/StepperSlice';
 
 import { authApi } from 'api/authApi';
 import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
@@ -43,13 +41,10 @@ import { registerNewUserApi } from 'api/registerNewUserApi';
 import { updateDepositApi } from 'api/updateDepositApi';
 import { userInfoApi } from 'api/userInfoApi';
 import { validateOtpApi } from 'api/validateOtpApi';
-import registrationDataMiddleware from 'middleware/dateFormatterMiddleware';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
   contacts: BankContactReducer,
-  registration: RegistrationReducer,
-  stepper: StepperReducer,
   productStepper: ProductStepperReducer,
   productForm: ChooseProductReducer,
   createDeposit: CreateDepositReducer,
@@ -128,7 +123,6 @@ const store = configureStore({
       checkEmailApi.middleware,
       registerNewUserApi.middleware,
       postRegistrationInfoApi.middleware,
-      registrationDataMiddleware,
       getCodeForForgotPasswordApi.middleware,
       confirmForgotPasswordApi.middleware,
       refreshToken.middleware,

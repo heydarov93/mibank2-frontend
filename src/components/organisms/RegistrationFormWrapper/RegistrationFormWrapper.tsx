@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { FormProvider } from 'react-hook-form';
 
 import { MiBankStepper } from '../MiBankStepper/MiBankStepper';
 import { Address } from '../RegistrationForm/Address/Address';
@@ -13,38 +11,28 @@ import { StyledBoxContainer } from './RegistrationFormWrapper.styled';
 import { NavigationWarningModal } from 'components/atoms';
 import { BackArrow } from 'components/atoms';
 import { EStepper } from 'enums/EStepper';
-import { getStep } from 'store/selectors/StepperSelectors';
+import { useRegFormFlow } from 'hooks/useRegFormFlow';
 
 export const RegistrationFormWrapper = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const step = useSelector(getStep);
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    setModalOpen(true);
-  };
-
-  const handleConfirm = () => {
-    setModalOpen(false);
-    localStorage.clear();
-    navigate('/signin');
-  };
-
-  const handleCancel = () => {
-    setModalOpen(false);
-  };
+  const {
+    step,
+    leaveModal,
+    submitForm,
+    handleConfirm,
+    handleBack,
+    formMethods,
+  } = useRegFormFlow();
 
   const renderFormStep = () => {
     switch (step) {
       case EStepper.PERSONAL_INFO:
         return <PersonalInfo />;
       case EStepper.LEGAL_STATUS:
-        return <LegalStatus />;
+        return <LegalStatus onBack={handleBack} />;
       case EStepper.DOCUMENT_INFO:
-        return <DocumentInfoWrapper />;
+        return <DocumentInfoWrapper onBack={handleBack} />;
       case EStepper.ADDRESS:
-        return <Address />;
+        return <Address onBack={handleBack} />;
       default:
         return <PersonalInfo />;
     }
@@ -52,14 +40,16 @@ export const RegistrationFormWrapper = () => {
 
   return (
     <StyledBoxContainer>
-      <BackArrow onBackClick={handleBackClick} />
+      <BackArrow onBackClick={leaveModal.open} />
       <NavigationWarningModal
-        open={isModalOpen}
+        open={leaveModal.isOpen}
         onConfirm={handleConfirm}
-        onCancel={handleCancel}
+        onCancel={leaveModal.close}
       />
-      <MiBankStepper />
-      {renderFormStep()}
+      <MiBankStepper step={step} />
+      <FormProvider {...formMethods}>
+        <form onSubmit={submitForm}>{renderFormStep()}</form>
+      </FormProvider>
     </StyledBoxContainer>
   );
 };
