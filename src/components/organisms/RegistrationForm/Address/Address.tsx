@@ -1,46 +1,29 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import dayjs from 'dayjs';
-import { SyntheticEvent, useRef, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { SyntheticEvent } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { StyledActionsWrapper } from '../RegistrationForm.styled';
+import {
+  StyledActionsWrapper,
+  StyledContentContainer,
+} from '../RegistrationForm.styled';
 
 import {
   StyledFormTitle,
-  StyledForm,
   StyledFormContent,
   StyledBoxContainer,
   StyledLabel,
 } from './Address.styled';
 
 import { useGetPostcodeMutation } from 'api/getPostcode';
-import { usePostRegistrationInfoMutation } from 'api/postRegistrationInfoApi';
 import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
-import { TO_HOME } from 'constants/routesName';
 import { ErrorStatus } from 'enums';
-import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
-import { IAddress } from 'models/IRegistration';
-import { IRegistrationForApi } from 'models/IRegistrationForApi';
+import { FormStepProps, IAddress } from 'models/IRegistration';
 import { setError } from 'store/reducers';
-import { setAddressData } from 'store/reducers/RegistrationSlice';
-import { setStep } from 'store/reducers/StepperSlice';
-import {
-  getAddressData,
-  getDocumentInfoData,
-  getEUDocumentInfoData,
-  getLegalStatusData,
-  getPersonalInfoData,
-  getPhoneCode,
-} from 'store/selectors/RegistrationSelectors';
-import { getEU } from 'store/selectors/StepperSelectors';
-import { validationAddressSchema } from 'validation';
 
 interface IPostCodeAddress {
   postcode: string;
@@ -48,59 +31,21 @@ interface IPostCodeAddress {
 interface IPostCodeResponse {
   address: IPostCodeAddress | undefined;
 }
-export const Address = () => {
+export const Address = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const [getPost] = useGetPostcodeMutation();
-  const isEU = useSelector(getEU) ? 'EU' : 'NON_EU';
-  const personalInfoData = useSelector(getPersonalInfoData);
-  const legalInfoData = useSelector(getLegalStatusData);
-  const addressData = useSelector(getAddressData);
-  const [postRegistrationInfo] = usePostRegistrationInfoMutation();
-  const navigate = useNavigate();
-
-  const codePhone = useSelector(getPhoneCode);
-  const documentInfoData = useSelector(getEU)
-    ? useSelector(getEUDocumentInfoData)
-    : useSelector(getDocumentInfoData);
 
   const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
   const regExpPreventSpecialAndSpace = /^[a-zA-Z0-9]+$/;
+
   const {
     formState: { errors, isValid },
     control,
-    handleSubmit,
     getValues,
     setValue,
-    reset,
-  } = useForm<IAddress>({
-    resolver: yupResolver(validationAddressSchema),
-    mode: 'all',
-    defaultValues: {
-      city: '',
-      street: '',
-      building: '',
-      apartment: '',
-      postcode: '',
-    },
-  });
-
-  const formatPostalCode = (postalCode: string): string => {
-    return postalCode?.slice(0, 2) + '-' + postalCode.slice(2);
-  };
-
-  useEffect(() => {
-    reset({
-      city: addressData.city,
-      street: addressData.street,
-      building: addressData.building,
-      apartment: addressData.apartment,
-      postcode: addressData.postcode
-        ? formatPostalCode(addressData.postcode)
-        : '',
-    });
-  }, [addressData, reset]);
+  } = useFormContext<IAddress>();
 
   const getPostCode = async () => {
     const [city, street, building, apartment] = getValues([
@@ -135,25 +80,6 @@ export const Address = () => {
     }
   };
 
-  const onPreviousForm = async () => {
-    const [city, street, building, apartment, postcode] = getValues([
-      'city',
-      'street',
-      'building',
-      'apartment',
-      'postcode',
-    ]);
-    await dispatch(
-      setAddressData({
-        city: city,
-        street: street,
-        building: building,
-        apartment: apartment,
-        postcode: postcode,
-      }),
-    );
-    dispatch(setStep(EStepper.DOCUMENT_INFO));
-  };
   const postcodeInputMask = (value: SyntheticEvent): void => {
     const target = value.target as HTMLInputElement;
     const formatted = target.value
@@ -162,81 +88,10 @@ export const Address = () => {
     target.value = formatted;
   };
 
-  const createDataForApi = () => {
-    const data: IRegistrationForApi = {
-      personalInfo: {
-        firstName: personalInfoData.name,
-        lastName: personalInfoData.surname,
-        citizenship: legalInfoData.citizenship,
-        phoneNumber: String(personalInfoData.phoneNumber), //unique
-        phoneCode: codePhone,
-        taxResidenceCountry: legalInfoData.taxResidenceCountry,
-        pesel: legalInfoData.peselNumber, // unuque
-        birthDate: personalInfoData.dateOfBirth,
-      },
-      address: {
-        city: addressData.city,
-        street: addressData.street,
-        building: addressData.building,
-        apartment: addressData.apartment,
-        postCode: addressData.postcode,
-      },
-
-      document: {
-        number: documentInfoData.documentNumber, //unique
-        issueDate: documentInfoData.issueDate,
-        expiryDate: documentInfoData.expirationDate,
-        documentType: isEU,
-      },
-      registrationDate: dayjs().format('YYYY-MM-DD'),
-      email: localStorage.getItem('email') || '',
-      accessToken: localStorage.getItem('accessToken') || '',
-    };
-    return data;
-  };
-
-  const postRegistrationInfoFunction = async (data: IRegistrationForApi) => {
-    try {
-      if (data) {
-        await postRegistrationInfo(data);
-      } else {
-        throw new Error("You don't have data");
-      }
-    } catch (e) {
-      const error = e as IErrorData;
-      switch (error.status) {
-        case ErrorStatus.SERVER_ERROR:
-          dispatch(setError(t('RegistrationPage.errorServerUnacceptable')));
-          break;
-        case ErrorStatus.BAD_REQUEST:
-          dispatch(setError(t('RegistrationPage.errorBadRequest')));
-          break;
-        default:
-          dispatch(setError(t('LoginPage.serverError')));
-          break;
-      }
-    }
-  };
-
-  const formSubmitted = useRef(false);
-
-  const onSubmit = async (data: IAddress) => {
-    formSubmitted.current = true;
-    await dispatch(setAddressData(data));
-  };
-
-  useEffect(() => {
-    if (formSubmitted.current && addressData) {
-      const apiData = createDataForApi();
-      postRegistrationInfoFunction(apiData);
-      navigate(TO_HOME);
-    }
-  }, [addressData]);
-
   return (
     <StyledBoxContainer>
       <StyledFormTitle>{t('RegistrationPage.addressTitle')}</StyledFormTitle>
-      <StyledForm>
+      <StyledContentContainer>
         <StyledFormContent onBlur={getPostCode}>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="city">
@@ -326,17 +181,16 @@ export const Address = () => {
         </StyledFormContent>
         <StyledActionsWrapper>
           <SecondaryButton
-            onClick={onPreviousForm}
+            onClick={onBack}
             buttonContent={t('RegistrationPage.buttonBackArrow')}
           />
           <SubmitButton
             isDisabled={!isValid}
-            onClick={handleSubmit(onSubmit)}
             buttonContent={t('RegistrationPage.buttonLabelSaveAndProceed')}
             fullWidth={false}
           />
         </StyledActionsWrapper>
-      </StyledForm>
+      </StyledContentContainer>
     </StyledBoxContainer>
   );
 };

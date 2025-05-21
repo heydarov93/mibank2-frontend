@@ -3,8 +3,6 @@ export interface IRegistrationForApi {
   address: IAddress;
   document: IDocumentInfo;
   registrationDate: string;
-  email: string;
-  accessToken: string;
 }
 
 interface IPersonalInfo {

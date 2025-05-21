@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
-
 import { ProgressStepper } from '../ProgressStepper/ProgressStepper';
 
-import { getStep } from 'store/selectors/StepperSelectors';
+import { EStepper } from 'enums/EStepper';
 
 const steps = [1, 2, 3, 4];
 
-export const MiBankStepper = () => {
-  const step = useSelector(getStep);
+interface MiBankStepperProps {
+  step: EStepper;
+}
+
+export const MiBankStepper = ({ step }: MiBankStepperProps) => {
   return <ProgressStepper steps={steps} activeStep={step} />;
 };

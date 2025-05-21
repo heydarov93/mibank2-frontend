@@ -3,6 +3,7 @@ export interface IPersonalInfo {
   surname: string;
   dateOfBirth: string;
   phoneNumber: string;
+  phoneCode: string;
 }
 
 export interface ILegalStatus {
@@ -29,4 +30,8 @@ export interface IAddress {
   building: string;
   apartment: string;
   postcode: string;
+}
+
+export interface FormStepProps {
+  onBack: () => void;
 }

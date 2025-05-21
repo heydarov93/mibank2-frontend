@@ -1,14 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  StyledActionsWrapper,
+  StyledContentContainer,
+} from '../RegistrationForm.styled';
 
 import {
   StyledFormTitle,
-  StyledForm,
   StyledFormContent,
   StyledBoxContainer,
   StyledLabel,
@@ -17,19 +18,11 @@ import {
 import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
-import { EStepper } from 'enums/EStepper';
-import { IEUDocumentInfo } from 'models/IRegistration';
-import { RootState } from 'store';
-import { setEUDocumentInfoData } from 'store/reducers/RegistrationSlice';
-import { setStep } from 'store/reducers/StepperSlice';
-import { validationEUDocumentInfoSchema } from 'validation';
+import { FormStepProps, IEUDocumentInfo } from 'models/IRegistration';
 
-export const EUDocumentInfo = () => {
+export const EUDocumentInfo = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
-  const dispatch = useDispatch();
-  const euDocumentInfo: IEUDocumentInfo = useSelector(
-    (state: RootState) => state.registration.euDocumentInfo as IEUDocumentInfo,
-  );
+
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -40,39 +33,16 @@ export const EUDocumentInfo = () => {
   const {
     formState: { errors, isValid },
     control,
-    handleSubmit,
-    reset,
-  } = useForm<IEUDocumentInfo>({
-    resolver: yupResolver(validationEUDocumentInfoSchema),
-    mode: 'onBlur',
-    defaultValues: {
-      documentNumber: '',
-      issueDate: '',
-      expirationDate: '',
-    },
-  });
-  useEffect(() => {
-    reset({
-      documentNumber: euDocumentInfo.documentNumber,
-      issueDate: euDocumentInfo.issueDate,
-      expirationDate: euDocumentInfo.expirationDate,
-    });
-  }, [euDocumentInfo, reset]);
-  const onSubmit = (data: IEUDocumentInfo) => {
-    dispatch(setEUDocumentInfoData(data));
-    dispatch(setStep(EStepper.ADDRESS));
-  };
+  } = useFormContext<IEUDocumentInfo>();
+
   const idCardRegExp = /^[A-Z0-9]+$/;
-  const isValidForm = isValid;
-  const onPreviousForm = () => {
-    dispatch(setStep(EStepper.LEGAL_STATUS));
-  };
+
   return (
     <StyledBoxContainer>
       <StyledFormTitle>
         {t('RegistrationPage.documentInfoTitle')}
       </StyledFormTitle>
-      <StyledForm>
+      <StyledContentContainer>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="passportNumber">
@@ -124,18 +94,18 @@ export const EUDocumentInfo = () => {
             />
           </Box>
         </StyledFormContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <StyledActionsWrapper>
           <SecondaryButton
-            onClick={onPreviousForm}
+            onClick={onBack}
             buttonContent={t('RegistrationPage.buttonBackArrow')}
           />
           <SubmitButton
-            isDisabled={!isValidForm}
-            onClick={handleSubmit(onSubmit)}
+            fullWidth={false}
+            isDisabled={!isValid}
             buttonContent={t('SignupPage.buttonLabelContinue')}
-          ></SubmitButton>
-        </Box>
-      </StyledForm>
+          />
+        </StyledActionsWrapper>
+      </StyledContentContainer>
     </StyledBoxContainer>
   );
 };

@@ -1,13 +1,12 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { PhoneInputProps } from 'react-phone-input-2';
+
+import { StyledContentContainer } from '../RegistrationForm.styled';
 
 import {
   StyledFormTitle,
-  StyledForm,
   StyledFormContent,
   StyledBoxContainer,
   StyledLabel,
@@ -16,76 +15,29 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import { DateOfBirthField, PhoneNumberField } from 'components/molecules';
-import { EStepper } from 'enums/EStepper';
 import { IPersonalInfo } from 'models/IRegistration';
-import { RootState } from 'store';
-import {
-  setPersonalInfoData,
-  setPhoneCode,
-} from 'store/reducers/RegistrationSlice';
-import { setStep } from 'store/reducers/StepperSlice';
-import { validationRegistrationSchema } from 'validation';
 
 export const PersonalInfo = () => {
   const { t } = useTranslation('translation');
-  const dispatch = useDispatch();
-  const personalData: IPersonalInfo = useSelector(
-    (state: RootState) => state.registration.personalData as IPersonalInfo,
-  );
 
   const {
-    formState: { errors, isValid, touchedFields },
+    formState: { errors, isValid },
     control,
-    handleSubmit,
-    reset,
-  } = useForm<IPersonalInfo>({
-    resolver: yupResolver(validationRegistrationSchema),
-    mode: 'all',
-    defaultValues: {
-      name: '',
-      surname: '',
-      dateOfBirth: '',
-      phoneNumber: '',
-    },
-  });
-  useEffect(() => {
-    reset({
-      name: personalData.name,
-      surname: personalData.surname,
-      dateOfBirth: personalData.dateOfBirth,
-      phoneNumber: String(personalData.phoneNumber),
-    });
-  }, [personalData, reset]);
+    setValue,
+  } = useFormContext<IPersonalInfo>();
 
-  const getPhoneCode = () => {
-    const codeCountry = document
-      .querySelector('.selected-flag')
-      ?.getAttribute('title');
-
-    if (codeCountry && codeCountry.includes('+')) {
-      const parts = codeCountry.split('+');
-      const countryCode = parts[1].trim();
-      return countryCode;
+  const updatePhoneCode: PhoneInputProps['onChange'] = (value, data) => {
+    if ('dialCode' in data) {
+      setValue('phoneCode', data.dialCode);
     }
-
-    return null;
   };
-  const onSubmit = (data: IPersonalInfo) => {
-    dispatch(setPersonalInfoData(data));
-    dispatch(setPhoneCode(getPhoneCode()));
-    dispatch(setStep(EStepper.LEGAL_STATUS));
-  };
-
-  const isValidForm = personalData
-    ? isValid
-    : isValid && Object.keys(touchedFields).length > 2;
 
   return (
     <StyledBoxContainer>
       <StyledFormTitle>
         {t('RegistrationPage.personalInfoTitle')}
       </StyledFormTitle>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledContentContainer>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
             <StyledLabel htmlFor="name">
@@ -125,22 +77,24 @@ export const PersonalInfo = () => {
             />
           </Box>
           <Box sx={{ width: '100%' }}>
-            <StyledLabel htmlFor="phone">{'Phone number'}</StyledLabel>
+            <StyledLabel htmlFor="phone">
+              {t('RegistrationPage.phoneNumber.label')}
+            </StyledLabel>
             <PhoneNumberField
               className={errors.phoneNumber ? 'shake' : ''}
               control={control}
               name="phoneNumber"
               errors={errors}
+              onChange={updatePhoneCode}
             />
           </Box>
         </StyledFormContent>
         <SubmitButton
-          onClick={handleSubmit(onSubmit)}
-          isDisabled={!isValidForm}
+          isDisabled={!isValid}
           buttonContent={t('SignupPage.buttonLabelContinue')}
-          fullWidth={false}
+          sx={{ mt: '21px' }}
         />
-      </StyledForm>
+      </StyledContentContainer>
     </StyledBoxContainer>
   );
 };
