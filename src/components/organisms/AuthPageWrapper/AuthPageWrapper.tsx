@@ -20,6 +20,7 @@ import {
   TO_VERIFY_EMAIL,
   TO_WELCOME,
 } from 'constants/routesName';
+import { EWelcomeTab } from 'enums/EWelcomeTab';
 
 export function AuthPageWrapper({ children }: { children: ReactNode }) {
   const { t } = useTranslation('translation', {
@@ -32,14 +33,14 @@ export function AuthPageWrapper({ children }: { children: ReactNode }) {
 
   const handleBackClick = () => {
     if (onVerifyEmail) {
-      navigate(TO_WELCOME);
+      navigate(`${TO_WELCOME}?tab=${EWelcomeTab.Business}`);
     } else {
       setModalOpen(true);
     }
   };
 
   const handleNavigateBack = () => {
-    navigate(-1);
+    navigate(`${TO_WELCOME}?tab=${EWelcomeTab.Business}`);
     setModalOpen(false);
   };
 
