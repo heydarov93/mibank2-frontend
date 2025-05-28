@@ -126,6 +126,7 @@ export const BusinessSignUpForm = () => {
         <SubmitButton
           buttonContent={t('form.submitLabel')}
           isDisabled={!isValid}
+          sx={{ marginBottom: 3 }}
         />
       </StyledForm>
     </>

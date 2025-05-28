@@ -137,10 +137,10 @@ exports[`LoginForm snapshot should match 1`] = `
       </div>
     </div>
     <div
-      class=" MuiBox-root css-pffs8i"
+      class=" MuiBox-root css-fu6xrm"
     >
       <span
-        class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall css-1k5us2r-MuiButtonBase-root-MuiCheckbox-root"
+        class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeSmall css-f4894q-MuiButtonBase-root-MuiCheckbox-root"
       >
         <input
           checked=""
@@ -163,7 +163,7 @@ exports[`LoginForm snapshot should match 1`] = `
         </svg>
       </span>
       <p
-        class="MuiTypography-root MuiTypography-body2 css-alflwa-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body2 css-dqn2qs-MuiTypography-root"
       >
         I have read and agree to Millennium Bank's 
         <a
