@@ -66,7 +66,7 @@ exports[`SignupFormEmail snapshot should match 1`] = `
     </button>
   </form>
   <div
-    class="MuiBox-root css-12190x1"
+    class="MuiBox-root css-1qk7tqe"
   >
     <p
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -74,8 +74,9 @@ exports[`SignupFormEmail snapshot should match 1`] = `
       Already have an account?
     </p>
     <a
-      class="css-han3l6"
+      class="css-liesmu"
       href="/signin"
+      sx="[object Object]"
     >
       Log in
     </a>

@@ -20,6 +20,7 @@ import {
   ValidationTag,
 } from 'components/atoms';
 import { TOSCheckbox, PasswordField, Timer } from 'components/molecules';
+import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
 import { ErrorStatus, ValidationKey } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
@@ -224,19 +225,19 @@ export const LoginForm = () => {
         <ButtonLink
           message=""
           linkText="LoginPage.formBtnForgotPassword"
-          href="/forgot-password"
+          href={TO_FORGOT_PASSWORD}
         />
-
         <SubmitButton
           onClick={handleCleanField}
           buttonContent={buttonContent}
           isDisabled={isFormDisabled}
+          sx={{ marginTop: 1, marginBottom: 3 }}
         />
       </StyledForm>
       <ButtonLink
         message="LoginPage.signUpLink"
         linkText="LoginPage.formBtnSignUp"
-        href="/signup-start"
+        href={TO_SIGN_UP}
       />
     </>
   );

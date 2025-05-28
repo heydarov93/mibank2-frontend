@@ -3,7 +3,7 @@
 exports[`ButtonLink matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-1p2id0w"
+    class="MuiBox-root css-oxd44t"
   >
     <p
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -11,8 +11,9 @@ exports[`ButtonLink matches snapshot 1`] = `
       test.message
     </p>
     <a
-      class="css-3uyoza"
+      class="css-47gqvx"
       href="https://example.com"
+      sx="[object Object]"
     >
       test.linkText
     </a>

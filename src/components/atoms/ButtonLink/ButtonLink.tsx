@@ -26,7 +26,12 @@ export const ButtonLink = ({
   return (
     <StyledButtonLinkContainer>
       <Typography>{t(message)}</Typography>
-      <StyledButtonLink to={href} delay={delay} shake={shake}>
+      <StyledButtonLink
+        to={href}
+        delay={delay}
+        shake={shake}
+        sx={{ marginLeft: message ? 1 : 0 }}
+      >
         {t(linkText)}
       </StyledButtonLink>
     </StyledButtonLinkContainer>
