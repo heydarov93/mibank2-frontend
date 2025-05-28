@@ -1,19 +1,22 @@
 import { styled, Typography, Box } from '@mui/material';
 
-export const StyledContainer = styled(Box)(({ theme: { animations } }) => ({
-  display: 'flex',
-  alignItems: 'center',
+export const StyledContainer = styled(Box)(
+  ({ theme: { animations, spacing } }) => ({
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: spacing(1),
+    padding: spacing(1.5, 1.5, 1.5, 0),
 
-  '&.shake': {
-    animation: `${animations?.shake} 0.25s`,
-  },
-}));
+    '&.shake': {
+      animation: `${animations?.shake} 0.25s`,
+    },
+  }),
+);
 
 export const AgreementContainer = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'disabled' && prop !== 'hasError',
 })<{ disabled: boolean; hasError: boolean }>(
   ({ theme, disabled, hasError }) => ({
-    paddingTop: theme.spacing(2),
     lineHeight: '16px',
     letterSpacing: 0.5,
     fontWeight: 400,

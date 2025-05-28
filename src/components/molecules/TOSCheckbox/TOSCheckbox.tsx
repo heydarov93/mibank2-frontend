@@ -48,12 +48,18 @@ export const TOSCheckbox = <T extends FieldValues>({
                 color: errors.checkbox
                   ? theme.palette.error.main
                   : theme.palette.grey[300],
-                padding: '12px 8px 12px 0px',
+                padding: 0,
                 '&.Mui-checked': {
                   color: 'primary',
                 },
                 '&.Mui-disabled': {
                   color: theme.palette.grey[300],
+                },
+                '&.Mui-SvgIcon-root': {
+                  transformOrigin: 'center top',
+                  transform: 'scale(1.3)',
+                  width: '16px',
+                  height: '16px',
                 },
               }}
               disabled={isFormDisabled}

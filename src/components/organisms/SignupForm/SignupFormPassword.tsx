@@ -125,6 +125,7 @@ export const SignupFormPassword = () => {
         <SubmitButton
           buttonContent={t('buttonLabelSignup')}
           isDisabled={!isValid}
+          sx={{ marginBottom: 3 }}
         />
       </StyledForm>
       <ButtonLink
