@@ -184,20 +184,21 @@ exports[`LoginForm snapshot should match 1`] = `
       </p>
     </div>
     <div
-      class="MuiBox-root css-12190x1"
+      class="MuiBox-root css-1qk7tqe"
     >
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
       />
       <a
-        class="css-ljkarr"
+        class="css-mej8ck"
         href="/forgot-password"
+        sx="[object Object]"
       >
         Forgot password?
       </a>
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-rnkzl7-MuiButtonBase-root-MuiButton-root"
       data-testid="save-button"
       tabindex="0"
       type="submit"
@@ -209,7 +210,7 @@ exports[`LoginForm snapshot should match 1`] = `
     </button>
   </form>
   <div
-    class="MuiBox-root css-12190x1"
+    class="MuiBox-root css-1qk7tqe"
   >
     <p
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -217,8 +218,9 @@ exports[`LoginForm snapshot should match 1`] = `
       Don't have an account?
     </p>
     <a
-      class="css-ljkarr"
-      href="/signup-start"
+      class="css-5ujym"
+      href="/signup"
+      sx="[object Object]"
     >
       Sign Up
     </a>
