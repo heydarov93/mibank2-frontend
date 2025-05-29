@@ -109,6 +109,7 @@ export const SignupFormEmail = () => {
           onClick={handleCleanField}
           buttonContent={t('SignupPage.buttonLabelContinue')}
           isDisabled={!isValidEmail}
+          sx={{ mt: 2 }}
         />
       </StyledForm>
       <ButtonLink
