@@ -69,6 +69,7 @@ describe('VerificationCode Component', () => {
       otp: filledOtp,
       inputRefs: mockInputRefs,
       resetField: mockResetField,
+      focusInput: mockFocusInput,
     });
 
     setup({ shouldClearFields: true });
@@ -80,6 +81,7 @@ describe('VerificationCode Component', () => {
     useOtpMock.mockReturnValue({
       otp: filledOtp,
       inputRefs: mockInputRefs,
+      focusInput: mockFocusInput,
     });
 
     setup();

@@ -179,6 +179,7 @@ export const VerificationCode = ({
       const timer = setTimeout(() => {
         resetField();
         onResetCodeWrong();
+        queueMicrotask(() => focusInput(0));
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -194,6 +195,12 @@ export const VerificationCode = ({
       resetField();
     }
   }, [shouldClearFields]);
+
+  useEffect(() => {
+    if (!isFormDisabled) {
+      focusInput(0);
+    }
+  }, [isFormDisabled]);
 
   return (
     <StyledBoxContainer>
