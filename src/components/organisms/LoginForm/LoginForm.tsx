@@ -20,7 +20,11 @@ import {
   ValidationTag,
 } from 'components/atoms';
 import { TOSCheckbox, PasswordField, Timer } from 'components/molecules';
-import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
+import {
+  TO_FORGOT_PASSWORD,
+  TO_SIGN_UP,
+  TO_VERIFICATION,
+} from 'constants/routesName';
 import { ErrorStatus, ValidationKey } from 'enums';
 import { useAppDispatch, useErrorHandlers } from 'hooks';
 import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
@@ -98,6 +102,7 @@ export const LoginForm = () => {
         switch (error.status) {
           case ErrorStatus.TOO_MANY_REQUESTS:
             dispatch(setVerifyingTimer(error.data.expiredTimer));
+            isError = false;
             break;
           case ErrorStatus.LOCKED:
             dispatch(setVerifyingTimer(error.data.blockTimeRemaining));
@@ -110,7 +115,7 @@ export const LoginForm = () => {
             break;
         }
       } finally {
-        navigate('/verification', { state: { isError } });
+        navigate(TO_VERIFICATION, { state: { isError } });
       }
 
       resetForm();
