@@ -27,3 +27,4 @@ export { DownloadIcon } from './DownloadIcon/DownloadIcon';
 export { ShareIcon } from './ShareIcon/ShareIcon';
 export { IssueCardModalBottomAlert } from './IssueCardModalBottomAlert/IssueCardModalBottomAlert';
 export { IssuanceCardInfo } from './IssuanceCardInfo/IssuanceCardInfo';
+export { MiBlueLogoIcon } from './MiBlueLogoIcon/MiBlueLogoIcon';

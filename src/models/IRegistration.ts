@@ -32,6 +32,20 @@ export interface IAddress {
   postcode: string;
 }
 
+export interface ILegalAddress {
+  country: string;
+  city: string;
+  street: string;
+  building: string;
+  office: string;
+  postcode: string;
+}
+
+export interface ISelectOption {
+  value: string;
+  label: string;
+}
+
 export interface FormStepProps {
   onBack: () => void;
 }

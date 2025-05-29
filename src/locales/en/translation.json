@@ -266,6 +266,40 @@
       }
     }
   },
+  "BusinessLoginPage": {
+    "logoTitle": "Millennium Bank",
+    "backButton": "Back",
+    "form": {
+      "title": "Legal Entity’s address",
+      "defaultCountryName": "Poland",
+      "fields": {
+        "country": "Country of registration",
+        "city": "City",
+        "cityPlaceholder": "Choose or type city",
+        "street": "Street",
+        "streetPlaceholder": "Enter street",
+        "building": "Building",
+        "buildingPlaceholder": "Enter building",
+        "office": "Office",
+        "officePlaceholder": "Enter office",
+        "postcode": "Postcode",
+        "postcodePlaceholder": "xx-xxx"
+      },
+      "submitButton": "Continue",
+      "validation": {
+        "required": "This field is required",
+        "streetFormat": "Please use letters (A-Z), numbers and symbols: - . ,",
+        "buildingFormat": "Please use letters (A-Z) and numbers",
+        "officeFormat": "Please use letters (A-Z) and numbers",
+        "postcodeFormat": "Please use 5 digits and a dash (XX-XXX)",
+        "cityNotFound": "No city found. Choose a different option."
+      }
+    },
+    "confirmationModal": {
+      "title": "Leaving registration?",
+      "description": "The progress won’t be saved."
+    }
+  },
   "GeneralErrors": {
     "errorCommon": "Unknown error occured, please try again later"
   },

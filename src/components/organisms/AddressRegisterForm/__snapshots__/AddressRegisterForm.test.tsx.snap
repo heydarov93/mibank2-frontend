@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressRegisterForm matches the snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-klvjwh-MuiButtonBase-root-MuiButton-root"
+    tabindex="0"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-14fiv90-MuiSvgIcon-root"
+      data-testid="KeyboardArrowLeftIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6z"
+      />
+    </svg>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-iv3zdd-MuiTypography-root"
+    >
+      backButton
+    </p>
+    <span
+      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+    />
+  </button>
+  <div
+    class="MuiBox-root css-1fyhjjn"
+  >
+    <div
+      class="MuiBox-root css-1lhk9bj"
+    >
+      <div
+        class="MuiBox-root css-1j160rq"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-kyc32j-MuiTypography-root"
+        >
+          form.title
+        </p>
+      </div>
+      <form
+        class="css-1v8my8o"
+      >
+        <input
+          aria-label="form.fields.country"
+          data-testid="formfield-country"
+          disabled=""
+        />
+        <input
+          aria-label="form.fields.city"
+          data-testid="city-field"
+          placeholder="form.fields.cityPlaceholder"
+        />
+        <input
+          aria-label="form.fields.street"
+          data-testid="formfield-street"
+          placeholder="form.fields.streetPlaceholder"
+        />
+        <div
+          class="MuiBox-root css-10egq61"
+        >
+          <input
+            aria-label="form.fields.building"
+            data-testid="formfield-building"
+            placeholder="form.fields.buildingPlaceholder"
+          />
+          <input
+            aria-label="form.fields.office"
+            data-testid="formfield-office"
+            placeholder="form.fields.officePlaceholder"
+          />
+        </div>
+        <input
+          aria-label="form.fields.postcode"
+          data-testid="formfield-postcode"
+          placeholder="form.fields.postcodePlaceholder"
+        />
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1772he7-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="submit"
+        >
+          form.submitButton
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

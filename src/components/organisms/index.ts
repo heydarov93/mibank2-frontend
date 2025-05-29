@@ -28,4 +28,6 @@ export { ConfirmTransferModal } from './ConfirmTransferModal/ConfirmTransferModa
 export { OffersCarousel } from './OffersCarousel/OffersCarousel';
 export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';
 export { LegalEntityVerificationContent } from './LegalEntityVerificationContent/LegalEntityVerificationContent';
+export { AddressRegisterForm } from './AddressRegisterForm/AddressRegisterForm';
+export { LeftLogoSidebar } from './LeftLogoSidebar/LeftLogoSidebar';
 export * from './IssueCardModal/IssueCardModal';

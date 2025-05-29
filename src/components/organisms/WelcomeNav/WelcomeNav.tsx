@@ -12,7 +12,7 @@ import {
 import {
   TO_SIGN_IN,
   TO_SIGN_UP,
-  TO_BUSINESS_SIGN_IN,
+  TO_BUSINESS_LOG_IN,
   TO_BUSINESS_SIGN_UP,
 } from 'constants/routesName';
 import { navMenuLinks } from 'constants/welcomeNavigation';
@@ -31,7 +31,7 @@ export const WelcomeNav = ({ activePanel }: { activePanel: EPanel }) => {
   const isPersonal = activePanel === EPanel.Personal;
   const signIn = {
     label: isPersonal ? t('personalSignIn') : t('businessSignIn'),
-    route: isPersonal ? TO_SIGN_IN : TO_BUSINESS_SIGN_IN,
+    route: isPersonal ? TO_SIGN_IN : TO_BUSINESS_LOG_IN,
   };
   const signUp = {
     label: isPersonal ? t('personalSignUp') : t('businessSignUp'),
