@@ -1,52 +1,53 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import {
-  TO_HOME,
-  TO_WELCOME,
-  TO_PAYMENTS,
-  TO_TRANSFERS,
-  TO_HISTORY,
-  TO_SIGN_IN,
-  TO_SIGN_UP,
-  TO_CREATE_PASSWORD,
-  TO_BUSINESS_SIGN_UP,
+  BACK_OFFICE_EMPLOYEE_SIGN_IN,
+  BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
+  TO_BACK_OFFICE,
+  TO_BACK_OFFICE_CREATE_EMPLOYEE,
+  TO_BACK_OFFICE_CREATE_PRODUCT,
+  TO_BACK_OFFICE_VERIFICATION,
+  TO_BACK_OFFICE_VIEW_EMPLOYEES,
+  TO_BACK_OFFICE_VIEW_PRODUCTS,
   TO_BUSINESS_CREATE_PASSWORD,
-  TO_VERIFY_EMAIL,
-  TO_VERIFICATION,
-  TO_REGISTRATION,
+  TO_BUSINESS_LOG_IN,
+  TO_BUSINESS_SIGN_UP,
   TO_CREATE_FORGOT_PASSWORD,
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
-  TO_FORGOT_PASSWORD,
-  BACK_OFFICE_EMPLOYEE_SIGN_IN,
-  TO_BACK_OFFICE_VERIFICATION,
-  TO_BACK_OFFICE,
-  TO_BACK_OFFICE_CREATE_PRODUCT,
-  TO_BACK_OFFICE_CREATE_EMPLOYEE,
-  TO_BACK_OFFICE_VIEW_PRODUCTS,
-  BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
-  TO_BACK_OFFICE_VIEW_EMPLOYEES,
+  TO_CREATE_PASSWORD,
   TO_DEPOSIT_LEARN_MORE,
+  TO_FORGOT_PASSWORD,
+  TO_HISTORY,
+  TO_HOME,
   TO_LEGAL_ENTITY_VERIFICATION,
+  TO_PAYMENTS,
+  TO_REGISTRATION,
+  TO_SIGN_IN,
+  TO_SIGN_UP,
+  TO_TRANSFERS,
+  TO_VERIFICATION,
+  TO_VERIFY_EMAIL,
+  TO_WELCOME
 } from '../constants/routesName';
 import {
-  WelcomePage,
-  ErrorPage,
-  SignInPage,
-  UnderDevPage,
-  VerificationPage,
-  SignUpPage,
-  CreatePasswordPage,
-  BusinessSignUpPage,
-  BusinessCreatePasswordPage,
-  VerifyEmailPage,
-  RegistrationPage,
-  CreateFogotPasswordPage,
-  ForgotPasswordPageFinished,
-  ForgotPasswordPage,
   BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
+  BusinessCreatePasswordPage,
+  BusinessSignUpPage,
+  CreateFogotPasswordPage,
+  CreatePasswordPage,
   DepositLearnMorePage,
+  ErrorPage,
+  ForgotPasswordPage,
+  ForgotPasswordPageFinished,
   LegalEntityVerificationPage,
+  RegistrationPage,
+  SignInPage,
+  SignUpPage,
+  UnderDevPage,
+  VerificationPage,
+  VerifyEmailPage,
+  WelcomePage,
 } from '../pages';
 
 import BackOfficePrivateRoutes from './BackOfficePrivateRoutes';
@@ -61,6 +62,7 @@ import BackOfficeErrorPage from 'pages/BackOfficeErrorPage/BackOfficeErrorPage';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 import BackOfficeViewEmployees from 'pages/BackOfficeViewEmployees/BackOfficeViewEmployees';
 import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
+import BusinessLoginPage from 'pages/BusinessLoginPage/BusinessLoginPage';
 import Homepage from 'pages/Homepage/Homepage';
 import TransfersPage from 'pages/TransfersPage/TransfersPage';
 
@@ -115,6 +117,10 @@ const routes = createBrowserRouter([
   {
     path: TO_BUSINESS_SIGN_UP,
     element: <BusinessSignUpPage />,
+  },
+  {
+    path: TO_BUSINESS_LOG_IN,
+    element: <BusinessLoginPage />,
   },
   {
     path: TO_BUSINESS_CREATE_PASSWORD,
@@ -191,3 +197,4 @@ const routes = createBrowserRouter([
 ]);
 
 export { routes };
+

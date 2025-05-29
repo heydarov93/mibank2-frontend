@@ -15,6 +15,7 @@ interface NavigationWarningModalProps {
   description?: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  testId?: string;
   sx?: SxProps<Theme>;
   onConfirm: () => void;
   onCancel: () => void;
@@ -26,6 +27,7 @@ export const NavigationWarningModal = ({
   description,
   confirmLabel,
   cancelLabel,
+  testId,
   sx,
   onConfirm,
   onCancel,
@@ -33,7 +35,12 @@ export const NavigationWarningModal = ({
   const { t } = useTranslation('translation');
 
   return (
-    <StyledNavigationWarningModal open={open} onClose={onCancel} sx={sx}>
+    <StyledNavigationWarningModal
+      open={open}
+      onClose={onCancel}
+      data-testid={testId}
+      sx={sx}
+    >
       <DialogTitle>
         {title || t('RegistrationPage.navigationWarningModal.title')}
         <IconButton onClick={onCancel}>
