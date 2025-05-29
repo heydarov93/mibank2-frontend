@@ -237,4 +237,12 @@ theme.components = {
       },
     ],
   },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        margin: 0,
+        marginTop: theme.spacing(0.5),
+      },
+    },
+  },
 };
