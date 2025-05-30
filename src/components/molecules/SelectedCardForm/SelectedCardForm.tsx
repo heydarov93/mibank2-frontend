@@ -1,14 +1,16 @@
-import { Box, Button, Link, Stack, Switch, Typography } from '@mui/material';
+import { Box, Button, Link, Stack, Typography } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { IssuanceCardProps } from '../IssuanceCard/IssuanceCard';
 
+import { SwitchWithLabel } from 'components/atoms';
 import { AccountSelect, IssuanceCard } from 'components/molecules';
 import { CardIssueFormValues } from 'components/organisms/IssueCardModal/IssueCardModal';
 import useDisclosure from 'hooks/useDisclosure';
 
 interface SelectedCardFormProps extends IssuanceCardProps {
+  fee: number;
   onCancel: () => void;
 }
 
@@ -37,39 +39,33 @@ export const SelectedCardForm = ({
         <IssuanceCard
           name={name}
           background={background}
-          fee={fee}
+          issuanceFee={fee}
           feeCurrency={feeCurrency}
           currency={currency}
           cardType={cardType}
           cardIssuer={cardIssuer}
         />
       </Box>
-      <Stack direction="row" justifyContent="space-between" mt="40px" gap="8px">
-        <Typography fontSize={14} fontWeight={500}>
-          {t('confirmation')}
-        </Typography>
-        <Switch
-          disabled={!isLinkVisited}
-          onChange={toggleConfirmation}
-          value={isAgreed}
-          data-testid="switch-confirmation"
-        />
-      </Stack>
-      <Link
-        // TODO: replace '#' with actual link
-        href="#"
-        target="_blank"
-        sx={{
-          mt: '8px',
-          display: 'inline-block',
-          fontSize: 14,
-          fontWeight: 500,
-        }}
-        onClick={markLinkAsVisited}
-        data-testid="agreement-link"
-      >
-        {t('cardTermsLink')}
-      </Link>
+      <Typography fontSize={14} mt={5}>
+        {t('confirmationInfo')}{' '}
+        <Link
+          // TODO: replace '#' with actual link
+          href="#"
+          target="_blank"
+          onClick={markLinkAsVisited}
+          data-testid="agreement-link"
+        >
+          {t('cardTermsLink')}
+        </Link>
+      </Typography>
+      <SwitchWithLabel
+        label={t('confirmation')}
+        disabled={!isLinkVisited}
+        onChange={toggleConfirmation}
+        checked={isAgreed}
+        data-testid="switch-confirmation"
+        sx={{ mt: 2 }}
+      />
       <Typography fontWeight={500} fontSize={32} textAlign="right" mt="32px">
         {fee.toFixed(2)} {currency}
       </Typography>

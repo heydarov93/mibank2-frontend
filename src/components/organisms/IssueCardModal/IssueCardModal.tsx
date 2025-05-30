@@ -1,8 +1,8 @@
+import { Box } from '@mui/material';
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { StyledDialog } from './IssueCardModal.styled';
-
+import { StyledDialog } from 'components/atoms';
 import {
   IssuanceCardInfo,
   ModalHeader,
@@ -105,11 +105,13 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
       onClose={confirmationModal.open}
       data-testid="issue-card-modal"
     >
-      <form
+      <Box
+        component="form"
         onSubmit={(e) => {
           // TODO: handle form submission when api is ready
           e.preventDefault();
         }}
+        sx={{ color: 'black' }}
       >
         <FormProvider {...formMethods}>
           <ModalHeader
@@ -125,7 +127,7 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
             />
           ) : (
             <>
-              <IssueCardModalSelects />
+              <IssueCardModalSelects sx={{ mt: 3 }} />
 
               {step === ECardIssueStepper.DATA_SELECTION && (
                 <IssueCardModalBottomAlert sx={{ mt: '36px' }} />
@@ -176,7 +178,7 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
             })}
           />
         </FormProvider>
-      </form>
+      </Box>
     </StyledDialog>
   );
 };

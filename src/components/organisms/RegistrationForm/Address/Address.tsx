@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { SyntheticEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -17,7 +16,12 @@ import {
 } from './Address.styled';
 
 import { useGetPostcodeMutation } from 'api/getPostcode';
-import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
+import {
+  InputField,
+  SubmitButton,
+  SecondaryButton,
+  PostcodeField,
+} from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
 import { ErrorStatus } from 'enums';
@@ -36,7 +40,6 @@ export const Address = ({ onBack }: FormStepProps) => {
   const dispatch = useDispatch();
   const [getPost] = useGetPostcodeMutation();
 
-  const regExpPostcodeMask = /^(\d{2})(\d+)/;
   const regExpCitySearch = /^[a-zA-Z]+$/;
   const regExpPreventSpecialAndSpace = /^[a-zA-Z0-9]+$/;
 
@@ -78,14 +81,6 @@ export const Address = ({ onBack }: FormStepProps) => {
           break;
       }
     }
-  };
-
-  const postcodeInputMask = (value: SyntheticEvent): void => {
-    const target = value.target as HTMLInputElement;
-    const formatted = target.value
-      .replace(/\D/g, '')
-      .replace(regExpPostcodeMask, '$1-$2');
-    target.value = formatted;
   };
 
   return (
@@ -167,15 +162,13 @@ export const Address = ({ onBack }: FormStepProps) => {
             <StyledLabel htmlFor="postcode">
               {t('RegistrationPage.inputName.labelPostcode')}
             </StyledLabel>
-            <InputField
+            <PostcodeField
               name="postcode"
               id="postcode"
               control={control}
               placeholder={t('RegistrationPage.placeholder.postcodeField')}
               error={errors.postcode}
               className={errors.postcode ? 'shake' : ''}
-              onChange={postcodeInputMask}
-              maxLength={6}
             />
           </Box>
         </StyledFormContent>

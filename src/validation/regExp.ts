@@ -1,4 +1,4 @@
-export const REG_EXP: { [field: string]: RegExp } = {
+export const REG_EXP = {
   passwordRegExp:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!?@#$%^&*_+\-\\(\\)\\[\]{}><\\/\\|"'.,:;`=])[a-zA-Z0-9~!?@#$%^&*_+\-\\(\\)\\[\]{}><\\/\\|"'.,:;`=]{8,}$/,
   emailRegExp:
@@ -15,4 +15,5 @@ export const REG_EXP: { [field: string]: RegExp } = {
   onlyOneCapitalizeLetter: /[A-ZА-ЯЁ].*[A-ZА-ЯЁ]/,
   invalidCharacter: /[^0-9,]/g,
   extraComma: /,(?=.*?,)/g,
-};
+  postcodeMask: /^(\d{2})(\d+)/,
+} satisfies { [field: string]: RegExp };

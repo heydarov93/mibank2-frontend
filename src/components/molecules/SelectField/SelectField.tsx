@@ -4,6 +4,7 @@ import {
   MenuItem,
   Typography,
   Stack,
+  SelectProps,
 } from '@mui/material';
 import { Controller, Control, FieldValues, Path } from 'react-hook-form';
 
@@ -15,14 +16,17 @@ export type SelectFieldOption = {
   secondaryLabel?: string;
 };
 
-interface SelectFieldProps<T extends FieldValues> {
+export type SelectFieldProps<T extends FieldValues> = Omit<
+  SelectProps<SelectFieldOption['value']>,
+  'error'
+> & {
   name: Path<T>;
   control: Control<T>;
   options: SelectFieldOption[];
   error?: { message?: string };
   disabled?: boolean;
   placeholder?: string;
-}
+};
 
 export const SelectField = <T extends FieldValues>({
   name,
@@ -31,6 +35,8 @@ export const SelectField = <T extends FieldValues>({
   error,
   disabled = false,
   placeholder,
+  onChange,
+  ...selectProps
 }: SelectFieldProps<T>) => {
   return (
     <FormControl fullWidth error={!!error}>
@@ -42,6 +48,10 @@ export const SelectField = <T extends FieldValues>({
             {...field}
             displayEmpty
             disabled={disabled}
+            onChange={(e, child) => {
+              field.onChange(e);
+              onChange?.(e, child);
+            }}
             renderValue={(value) => {
               if (placeholder && !value) {
                 return (
@@ -81,6 +91,7 @@ export const SelectField = <T extends FieldValues>({
                 </Stack>
               );
             }}
+            {...selectProps}
           >
             {options.map((option, index) => (
               <MenuItem key={index} value={option.value}>

@@ -11,9 +11,15 @@ interface ModalHeaderProps {
 
 export const ModalHeader = ({ title, onBack, onClose }: ModalHeaderProps) => {
   return (
-    <Stack direction="row" alignItems="center" mr="8px">
+    <Stack
+      direction="row"
+      alignItems="center"
+      mr="8px"
+      data-testid="modal-header"
+    >
       {onBack && (
         <ArrowBackIosIcon
+          data-testid="modal-header-back-button"
           onClick={onBack}
           sx={(theme) => ({
             color: theme.palette.grey[400],

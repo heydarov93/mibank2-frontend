@@ -1,3 +1,4 @@
+import { SxProps, Theme } from '@mui/material';
 import { SyntheticEvent, KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,
@@ -47,9 +48,10 @@ const enum FieldName {
   companyName = 'companyName',
   ownerName = 'ownerName',
   nip = 'nip',
+  office = 'office',
 }
 
-interface InputFieldProps<T extends FieldValues> {
+export interface InputFieldProps<T extends FieldValues> {
   name: Path<T>;
   id: `${FieldName}`;
   control: Control<T>;
@@ -65,6 +67,8 @@ interface InputFieldProps<T extends FieldValues> {
   maxLength?: number;
   multiline?: boolean;
   rows?: number;
+  sx?: SxProps<Theme>;
+  'data-testid'?: string;
   onCut?: (e: SyntheticEvent) => void;
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -95,15 +99,17 @@ export const InputField = <T extends FieldValues>({
   maxLength,
   multiline,
   rows,
+  sx,
+  'data-testid': testId,
 }: InputFieldProps<T>) => (
   <Controller
     name={name}
     control={control}
-    render={({ field }) => (
+    render={({ field, fieldState }) => (
       <StyledTextField
         fullWidth
         id={id}
-        helperText={helperText || error?.message}
+        helperText={helperText || error?.message || fieldState.error?.message}
         className={className}
         error={!!error}
         placeholder={placeholder}
@@ -124,6 +130,8 @@ export const InputField = <T extends FieldValues>({
         }}
         multiline={multiline}
         rows={rows}
+        sx={sx}
+        data-testid={testId}
         {...field}
       />
     )}

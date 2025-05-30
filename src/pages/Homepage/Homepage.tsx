@@ -7,6 +7,7 @@ import {
   AvailableDepositsWindow,
   OffersCarousel,
   IssueCardModal,
+  OpenBusinessAccountModal,
 } from 'components/organisms';
 import CurrencyCalculator from 'components/organisms/CurrencyCalculator/CurrencyCalculator';
 import { RatesTable } from 'components/organisms/CurrencyExchange/Rates/RatesTable';
@@ -16,20 +17,13 @@ import useDisclosure from 'hooks/useDisclosure';
 
 const Homepage = () => {
   const [deposit, setDeposit] = useState<Deposit | null>(null);
-  const {
-    isOpen: isAvailableDepositsModalOpen,
-    open: openAvailableDepositsModal,
-    close: closeAvailableDepositsModal,
-  } = useDisclosure();
-  const {
-    isOpen: isIssueCardModalOpen,
-    open: openIssueCardModal,
-    close: closeIssueCardModal,
-  } = useDisclosure();
+  const availableDepositsModal = useDisclosure();
+  const issueCardModal = useDisclosure();
+  const openBusinessAccountModal = useDisclosure();
 
   function handleSetDeposit(deposit: Deposit) {
     setDeposit(deposit);
-    closeAvailableDepositsModal();
+    availableDepositsModal.close();
   }
 
   function handleCloseDepositModal() {
@@ -38,7 +32,7 @@ const Homepage = () => {
 
   function handleBack() {
     handleCloseDepositModal();
-    openAvailableDepositsModal();
+    availableDepositsModal.open();
   }
 
   return (
@@ -48,7 +42,7 @@ const Homepage = () => {
           <span>My Cards</span>
           <Button
             variant="contained"
-            onClick={openIssueCardModal}
+            onClick={issueCardModal.open}
             sx={{
               borderRadius: '50%',
               minWidth: 0,
@@ -62,7 +56,21 @@ const Homepage = () => {
           <span>My deposits</span>
           <Button
             variant="contained"
-            onClick={openAvailableDepositsModal}
+            onClick={availableDepositsModal.open}
+            sx={{
+              borderRadius: '50%',
+              minWidth: 0,
+              padding: 0.5,
+            }}
+          >
+            <AddIcon />
+          </Button>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <span>Open business account</span>
+          <Button
+            variant="contained"
+            onClick={openBusinessAccountModal.open}
             sx={{
               borderRadius: '50%',
               minWidth: 0,
@@ -87,8 +95,8 @@ const Homepage = () => {
           </Box>
         </Box>
         <AvailableDepositsWindow
-          open={isAvailableDepositsModalOpen}
-          onClose={closeAvailableDepositsModal}
+          open={availableDepositsModal.isOpen}
+          onClose={availableDepositsModal.close}
           onSetDeposit={handleSetDeposit}
         />
         <OpenDepositModal
@@ -97,8 +105,12 @@ const Homepage = () => {
           onBack={handleBack}
         />
         <IssueCardModal
-          open={isIssueCardModalOpen}
-          onClose={closeIssueCardModal}
+          open={issueCardModal.isOpen}
+          onClose={issueCardModal.close}
+        />
+        <OpenBusinessAccountModal
+          open={openBusinessAccountModal.isOpen}
+          onClose={openBusinessAccountModal.close}
         />
       </Box>
     </Box>

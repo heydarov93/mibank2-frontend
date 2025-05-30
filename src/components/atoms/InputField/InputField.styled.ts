@@ -20,7 +20,7 @@ export const StyledTextField = styled(TextField)(
 
       '&.Mui-focused': {
         '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: 'secondary.main',
+          border: `2px solid ${palette.primary.main}`,
         },
       },
 

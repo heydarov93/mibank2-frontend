@@ -853,6 +853,7 @@
     "confirm": "Confirm and Pay",
     "openNewAcc": "Open New Account",
     "cardSelected": "Card Selected",
+    "confirmationInfo": "This option will unlock after you view",
     "confirmation": "I confirm that I have reviewed and accepted the terms of the card agreement, limits, as well as the issuance and maintenance fees",
     "cardTermsLink": "Card Terms and Transaction Limits",
     "monthlyFee": "Monthly fee",
@@ -867,7 +868,55 @@
   },
   "IssuanceCard": {
     "issuanceFee": "Issuance Fee",
+    "monthlyFee": "Monthly Fee",
     "cardCurrency": "Card Currency",
-    "type": "Type"
+    "type": "Type",
+    "cashback": "Cashback"
+  },
+  "OpenBusinessAccountModal": {
+    "title": "Open a Business Account",
+    "currency": "Currency",
+    "cardIssuer": "Card Issuer",
+    "cardType": "Card Type",
+    "cancel": "Cancel",
+    "openAcc": "Open Account",
+    "selectCurrency": "Select Currency",
+    "selectIssuer": "Select Issuer",
+    "selectCardType": "Select card type",
+    "deliveryAddress": "Address for card delivery",
+    "confirmationInfo": "This option will unlock after you view",
+    "cardTermsLink": "Card Terms and Transaction Limits",
+    "confirmation": "I confirm that I have reviewed and accepted the terms of the card agreement, limits, as well as the issuance and maintenance fees.",
+    "addressConfirmation": "I confirm the details of my address",
+    "editAddressTitle": "Edit Corporate Address",
+    "errors": {
+      "requiredField": "This field is required"
+    },
+    "confirmationModal": {
+      "title": "Leaving opening an account?",
+      "description": "If you leave, the progress won’t be saved.",
+      "goBack": "Go back",
+      "leave": "Leave anyway"
+    },
+    "editAddressForm": {
+      "country": "Country of registration",
+      "city": "City",
+      "street": "Street",
+      "building": "Building",
+      "office": "Office",
+      "postcode": "Postcode",
+      "alert": "Your address will be changed in your profile.",
+      "save": "Save",
+      "placeholders": {
+        "city": "Choose or type city",
+        "street": "Enter street",
+        "building": "Enter building",
+        "office": "Enter office",
+        "postcode": "xx-xxx"
+      }
+    }
+  },
+  "Address": {
+    "edit": "Edit"
   }
 }

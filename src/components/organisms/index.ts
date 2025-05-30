@@ -31,3 +31,4 @@ export { LegalEntityVerificationContent } from './LegalEntityVerificationContent
 export { AddressRegisterForm } from './AddressRegisterForm/AddressRegisterForm';
 export { LeftLogoSidebar } from './LeftLogoSidebar/LeftLogoSidebar';
 export * from './IssueCardModal/IssueCardModal';
+export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';
