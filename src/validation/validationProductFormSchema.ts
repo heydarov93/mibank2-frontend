@@ -8,10 +8,10 @@ const minDescChars = 10;
 const maxDescChars = 500;
 
 export const productFormSchema = Yup.object({
-  product: Yup.string().required(
+  productType: Yup.string().required(
     i18n.t('BackOffice.CreateProduct.errorProductRequired'),
   ),
-  type: Yup.string().required(
+  subtype: Yup.string().required(
     i18n.t('BackOffice.CreateProduct.errorSubtypeRequired'),
   ),
   currency: Yup.string().required(

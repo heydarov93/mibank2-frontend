@@ -12,14 +12,22 @@ export const PaymentReceiptActions = (props: StackProps) => {
       <Button
         variant="text"
         startIcon={<DownloadIcon />}
-        sx={(theme) => ({ color: theme.palette.primary.dark, fontWeight: 400 })}
+        sx={(theme) => ({
+          color: theme.palette.primary.dark,
+          fontWeight: 400,
+          paddingInline: theme.spacing(2),
+        })}
       >
         {t('TransfersPage.paymentReceiptModal.download')}
       </Button>
       <Button
         variant="text"
         startIcon={<ShareIcon />}
-        sx={(theme) => ({ color: theme.palette.primary.dark, fontWeight: 400 })}
+        sx={(theme) => ({
+          color: theme.palette.primary.dark,
+          fontWeight: 400,
+          paddingInline: theme.spacing(2),
+        })}
       >
         {t('TransfersPage.paymentReceiptModal.share')}
       </Button>

@@ -14,8 +14,8 @@ interface ProductStepperState {
 }
 
 interface ChooseProductState {
-  product: string;
-  type: string;
+  productType: string;
+  subtype: string;
   currency: string;
   name: string;
   description: string;
@@ -40,8 +40,8 @@ const setupStore = (
         ...preloadedState.productStepper,
       },
       chooseProduct: {
-        product: '',
-        type: '',
+        productType: '',
+        subtype: '',
         currency: '',
         name: '',
         description: '',
@@ -72,8 +72,8 @@ describe('ChooseProductForm - Visual Rendering', () => {
   it('renders correctly and matches snapshot with prefilled values', () => {
     store = setupStore({
       chooseProduct: {
-        product: 'Deposit',
-        type: 'Team Deposit',
+        productType: 'Deposit',
+        subtype: 'Team Deposit',
         currency: 'PLN',
         name: 'Team Savings',
         description: 'A deposit for team savings.',

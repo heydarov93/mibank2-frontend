@@ -1,4 +1,5 @@
 import { useTheme } from '@mui/material';
+import { ReactNode } from 'react';
 
 import {
   StyledLabelBoldText,
@@ -8,7 +9,7 @@ import {
 
 interface TransferDetailRowProps {
   label: string;
-  value: string;
+  value: string | ReactNode;
   isTotalRow?: boolean;
 }
 
@@ -23,7 +24,9 @@ export const TransferDetailRow = ({
       {isTotalRow ? (
         <>
           <StyledLabelBoldText>{label}</StyledLabelBoldText>
-          <StyledLabelBoldText sx={{ fontWeight: 600, fontSize: '24px' }}>
+          <StyledLabelBoldText
+            sx={{ fontWeight: 600, fontSize: '24px', textAlign: 'right' }}
+          >
             {value}
           </StyledLabelBoldText>
         </>
@@ -32,7 +35,9 @@ export const TransferDetailRow = ({
           <StyledLabelRowText sx={{ color: theme.palette.grey[400] }}>
             {label}
           </StyledLabelRowText>
-          <StyledLabelRowText sx={{ color: theme.palette.common.black }}>
+          <StyledLabelRowText
+            sx={{ color: theme.palette.common.black, textAlign: 'right' }}
+          >
             {value}
           </StyledLabelRowText>
         </>

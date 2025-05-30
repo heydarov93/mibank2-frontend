@@ -1,12 +1,13 @@
-import { Box, ButtonBase, Icon, styled } from '@mui/material';
+import { Box, Icon, styled } from '@mui/material';
 
-export const StyledForm = styled('form')(() => ({
-  marginTop: '32px',
+export const StyledForm = styled('form')(({ theme: { spacing } }) => ({
+  fontSize: '14px',
+  marginTop: spacing(4),
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   gridTemplateRows: 'repeat(4, min-content)',
-  rowGap: '12px',
-  columnGap: '40px',
+  rowGap: spacing(2),
+  columnGap: spacing(5),
 
   position: 'relative',
 
@@ -21,19 +22,19 @@ export const StyledLabel = styled('label')(() => ({
   minWidth: '200px',
 }));
 
-export const StyledButtonsContainer = styled(Box)(() => ({
+export const StyledButtonsContainer = styled(Box)(({ theme: { spacing } }) => ({
   justifySelf: 'end',
   display: 'flex',
-  marginTop: '16px',
-  gap: '16px',
+  marginTop: spacing(2),
+  gap: spacing(2),
 }));
 
-export const StyledArrowIcon = styled(Icon)(() => ({
+export const StyledArrowIcon = styled(Icon)(({ theme: { spacing } }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   alignSelf: 'end',
-  padding: '20px',
+  padding: spacing(2.5),
 
   position: 'absolute',
   top: 0,
@@ -42,20 +43,4 @@ export const StyledArrowIcon = styled(Icon)(() => ({
 
   gridColumn: 2,
   gridRow: 1,
-}));
-
-// AutocompleteField
-export const StyledOptionContainer = styled(Box)(() => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  width: '100%',
-}));
-
-export const StyledButton = styled(ButtonBase)(() => ({
-  display: 'flex',
-  gap: '5px',
-  alignItems: 'center',
-  padding: '8px',
-  paddingRight: 0,
 }));

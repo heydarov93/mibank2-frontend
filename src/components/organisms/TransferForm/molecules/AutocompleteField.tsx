@@ -3,37 +3,35 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {
   Autocomplete,
   autocompleteClasses,
+  AutocompleteProps,
+  Grow,
+  Paper,
   TextField,
   TextFieldProps,
+  Theme,
   Typography,
 } from '@mui/material';
-import { HTMLAttributes, useState } from 'react';
+import { useState } from 'react';
 import {
   Control,
   Controller,
-  FieldError,
   FieldValues,
   Path,
   PathValue,
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { AccountInput } from './AccountInput';
+import { PatternInput } from 'components/molecules';
 
 interface AutocompleteFieldProps<
   Options extends { id: string; label: string },
   TField extends FieldValues,
-> {
+> extends Partial<AutocompleteProps<Options, false, false, true>> {
   control: Control<TField>;
   name: Path<TField>;
   options: Options[];
   textFieldProps?: TextFieldProps;
-  format: string;
-  error?: FieldError | undefined;
-  renderOption?: (
-    props: HTMLAttributes<HTMLLIElement>,
-    option: Options,
-  ) => React.ReactNode;
+  pattern: string;
 }
 
 export function AutocompleteField<
@@ -42,11 +40,11 @@ export function AutocompleteField<
 >(props: AutocompleteFieldProps<Options, TField>) {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
   const [open, setOpen] = useState(false);
-  const { control, name, options, textFieldProps } = props;
+  const { control, name, options, textFieldProps, pattern } = props;
 
-  function handleOpenDropdown() {
-    setOpen(true);
-  }
+  // function handleOpenDropdown() {
+  //   setOpen(true);
+  // }
 
   function handleCloseDropdown() {
     setOpen(false);
@@ -75,66 +73,105 @@ export function AutocompleteField<
   const getValue = (value: PathValue<TField, Path<TField>>) =>
     value ? options.find((option) => option.number === value) ?? null : null;
 
+  function PopupIcon({
+    selectedValue,
+  }: {
+    selectedValue: PathValue<TField, Path<TField>>;
+  }) {
+    return (
+      <>
+        <Typography component="span" fontSize="15px">
+          {options.find((option) => option.number === selectedValue)?.label ??
+            t('saved')}
+        </Typography>
+        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      </>
+    );
+  }
+
+  const autocompleteSx = {
+    [`& .${autocompleteClasses.popupIndicator}`]: {
+      transform: 'none',
+      height: '100%',
+      borderRadius: 0,
+      ':hover': {
+        backgroundColor: 'transparent',
+      },
+    },
+  };
+
+  const paperSx = (theme: Theme) => ({
+    borderRadius: theme.spacing(1),
+    boxShadow: `0 4px 12px ${theme.palette.shadow.shadowLight}`,
+    border: `1px solid ${theme.palette.border.lightBlue}`,
+    marginTop: theme.spacing(0.5),
+    '& .MuiAutocomplete-option': {
+      paddingBlock: `${theme.spacing(1)} !important`,
+      '&:hover': {
+        backgroundColor: `${theme.palette.primary.light} !important`,
+      },
+      '&:active': {
+        backgroundColor: `${theme.palette.primary.main} !important`,
+        color: 'common.white',
+      },
+    },
+  });
+
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { onChange, value: formValue, ref, onBlur } }) => (
         <Autocomplete
+          PaperComponent={(props) => (
+            <Grow in style={{ transformOrigin: 'top center' }}>
+              <Paper {...props} sx={paperSx} />
+            </Grow>
+          )}
           id={name}
-          slotProps={{ popupIndicator: { onClick: handleToggleDropdown } }}
+          slotProps={{
+            popupIndicator: { onClick: handleToggleDropdown },
+          }}
+          ListboxProps={{ sx: { paddingBlock: 0 } }}
           popupIcon={
-            options.length > 0 ? (
-              <>
-                <Typography component="span" fontSize="15px">
-                  {options.find((option) => option.number === formValue)
-                    ?.label ?? t('saved')}
-                </Typography>
-                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-              </>
-            ) : null
+            options.length > 0 && <PopupIcon selectedValue={formValue} />
           }
           forcePopupIcon
-          renderOption={props.renderOption}
           value={getValue(formValue)}
           onChange={handleChangeFn(onChange)}
           onBlur={handleBlurFn(onBlur)}
+          renderOption={props.renderOption}
           getOptionLabel={getOptionLabel}
-          onFocus={handleOpenDropdown}
+          getOptionDisabled={props.getOptionDisabled}
+          // onFocus={handleOpenDropdown}
           open={open}
           options={options}
-          sx={{
-            [`& .${autocompleteClasses.popupIndicator}`]: {
-              transform: 'none',
-              height: '100%',
-              borderRadius: 0,
-              ':hover': {
-                backgroundColor: 'transparent',
-              },
-            },
-          }}
+          sx={autocompleteSx}
           freeSolo
           autoSelect
           handleHomeEndKeys
-          openOnFocus={true}
+          // openOnFocus={true}
           blurOnSelect={true}
           renderInput={(params) => (
             <TextField
               {...params}
               inputRef={ref}
-              error={!!props.error}
-              helperText={props.error?.message}
               {...textFieldProps}
               InputProps={{
                 ...params.InputProps,
                 ...textFieldProps?.InputProps,
-                sx: { borderRadius: '8px' },
-                inputComponent: AccountInput as never,
+                sx: { borderRadius: '8px', ...textFieldProps?.InputProps?.sx },
+                inputComponent: PatternInput as never,
               }}
               inputProps={{
                 ...params?.inputProps,
-                format: props.format,
+                format: pattern,
               }}
+              sx={(theme) => ({
+                fieldset: {
+                  border: `1px solid ${theme.palette.border.lightBlue}`,
+                },
+              })}
             />
           )}
         />

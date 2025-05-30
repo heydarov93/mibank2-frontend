@@ -18,7 +18,9 @@ export const PaymentReceiptRow = ({
   return (
     <Stack
       direction="row"
-      sx={{ gap: 1, justifyContent: 'space-between', alignItems: 'center' }}
+      gap={1}
+      justifyContent="space-between"
+      alignItems="center"
     >
       <StyledTypography sx={nameSx}>{name}</StyledTypography>
       <Typography sx={valueSx}>{value}</Typography>

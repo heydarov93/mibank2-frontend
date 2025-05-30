@@ -1,10 +1,12 @@
 import {
-  Box,
   IconButton,
   Modal,
   Paper,
   styled,
   Typography,
+  TextField,
+  FormControlLabel,
+  Backdrop,
 } from '@mui/material';
 
 export const StyledModal = styled(Modal)(({ theme: { palette } }) => ({
@@ -14,20 +16,11 @@ export const StyledModal = styled(Modal)(({ theme: { palette } }) => ({
   border: `1px solid ${palette.border.lightBlue}`,
 }));
 
-export const StyledModalContent = styled(Paper, {
-  shouldForwardProp: (prop) => prop !== 'isCard',
-})<{ isCard: boolean }>(({ theme, isCard }) => ({
-  padding: '40px',
-  width: isCard ? '365px' : '525px',
-  borderRadius: theme.spacing(1),
+export const StyledModalContent = styled(Paper)(({ theme: { spacing } }) => ({
+  width: '520px',
   position: 'relative',
-}));
-
-export const StyledDetailsBox = styled(Box)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '16px',
-  margin: '32px 0px',
+  padding: spacing(5),
+  borderRadius: spacing(1),
 }));
 
 export const StyledTitle = styled(Typography)(({ theme: { palette } }) => ({
@@ -39,19 +32,52 @@ export const StyledTitle = styled(Typography)(({ theme: { palette } }) => ({
 }));
 
 export const StyledCloseButton = styled(IconButton)(
-  ({ theme: { palette } }) => ({
+  ({ theme: { palette, spacing } }) => ({
     position: 'absolute',
-    top: '40px',
-    right: '40px',
+    top: spacing(5),
+    right: spacing(5),
     color: palette.grey[400],
     width: '28px',
     height: '28px',
   }),
 );
 
-export const StyledActions = styled(Box)({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  gap: '20px',
-  marginTop: '32px',
-});
+export const StyledFormControlLabel = styled(FormControlLabel)(
+  ({ theme: { typography, palette, spacing } }) => ({
+    marginTop: spacing(4),
+    '& .MuiFormControlLabel-label': {
+      fontFamily: typography.mediumLogo?.fontFamily,
+      color: palette.grey[400],
+      fontWeight: 400,
+      fontSize: '16px',
+      lineHeight: '100%',
+      letterSpacing: 0,
+    },
+  }),
+);
+
+export const StyledInputLabel = styled(Typography)(
+  ({ theme: { typography, palette, spacing } }) => ({
+    marginBottom: spacing(0.5),
+    fontFamily: typography.mediumLogo?.fontFamily,
+    color: palette.common.black,
+    fontWeight: 500,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0.1px',
+  }),
+);
+
+export const StyledInputField = styled(TextField)(
+  ({ theme: { palette, spacing } }) => ({
+    '& .MuiInputBase-input': {
+      height: '30px',
+      padding: spacing(1.5),
+      borderRadius: '8px',
+      border: `1px solid ${palette.border.lightBlue}`,
+      backgroundColor: palette.primary.light,
+    },
+  }),
+);
+
+export const StyledBackdrop = styled(Backdrop)(() => ({}));

@@ -2,6 +2,8 @@ import { render } from '@testing-library/react';
 
 import { PaymentReceiptModal } from './PaymentReceiptModal';
 
+import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
+
 const onCloseMock = jest.fn();
 
 jest.mock('react-i18next', () => ({
@@ -19,14 +21,17 @@ const renderModal = (open = true) =>
     <PaymentReceiptModal
       open={open}
       onClose={onCloseMock}
-      date="10.12.2024"
-      payer="Grzegorz Brzeczyszczykiewicz"
-      from="EU12 1116 6660 0000 0001 2345 678"
-      to="DE44 1234 1234 1234 1234 00"
-      service="Service Name"
-      amount={100}
-      fee={5}
-      currency="USD"
+      receiptInfo={{
+        payerName: 'string',
+        date: 'string',
+        fromAccount: '1234567890123456',
+        toAccount: '6543210987654321',
+        amount: '100',
+        currency: 'PLN' as TCurrency,
+        fee: 2.5,
+        totalAmount: 102.5,
+        transferMethod: 'card',
+      }}
     />,
   );
 

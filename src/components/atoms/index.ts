@@ -33,3 +33,5 @@ export { SwitchWithLabel } from './SwitchWithLabel/SwitchWithLabel';
 export { FieldWithLabel } from './FieldWithLabel/FieldWithLabel';
 export { PostcodeField } from './PostcodeField/PostcodeField';
 export { MiBlueLogoIcon } from './MiBlueLogoIcon/MiBlueLogoIcon';
+export { CurrencyFlagIcon } from './CurrencyFlagIcon/CurrencyFlagIcon';
+export { CardIssuerIcon } from './CardIssuerIcon/CardIssuerIcon';

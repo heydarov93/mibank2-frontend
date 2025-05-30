@@ -8,19 +8,18 @@ import {
   PaymentReceiptInfo,
   PaymentReceiptActions,
 } from 'components/molecules';
-import { PaymentReceiptInfoProps } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
-import { PaymentReceiptTitleProps } from 'components/molecules/PaymentReceiptTitle/PaymentReceiptTitle';
+import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 
-interface PaymentReceiptModalProps
-  extends PaymentReceiptInfoProps,
-    PaymentReceiptTitleProps {
+interface PaymentReceiptModalProps {
   open: boolean;
+  onClose: () => void;
+  receiptInfo: IPaymentReceipt;
 }
 
 export const PaymentReceiptModal = ({
-  open = true,
+  open,
   onClose,
-  ...receiptInfo
+  receiptInfo,
 }: PaymentReceiptModalProps) => {
   return (
     <Dialog
@@ -31,9 +30,9 @@ export const PaymentReceiptModal = ({
       data-testid="payment-receipt-modal"
     >
       <PaymentReceiptTitle onClose={onClose} />
-      <Box sx={{ p: '40px', overflow: 'auto' }}>
-        <PaymentReceiptInfo {...receiptInfo} />
-        <PaymentReceiptActions sx={{ mt: '40px' }} />
+      <Box sx={{ padding: 5, overflow: 'auto' }}>
+        <PaymentReceiptInfo data={receiptInfo} />
+        <PaymentReceiptActions sx={{ marginTop: 5 }} />
       </Box>
       <Box sx={{ position: 'absolute', bottom: '-21px', width: '100%' }}>
         <PaymentReceiptCheckBottom />

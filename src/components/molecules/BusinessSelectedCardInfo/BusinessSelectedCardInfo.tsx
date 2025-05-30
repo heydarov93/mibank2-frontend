@@ -27,7 +27,7 @@ const mockCardOptions: Record<string, IssuanceCardData> = {
     cashbackRate: 0.1,
     monthlyFee: 0,
     foreignTransactionLimit: 10000,
-    dailyLimit: 1000,
+    dailyOperationalLimit: 1000,
   },
   plastic: {
     id: 2,
@@ -42,7 +42,7 @@ const mockCardOptions: Record<string, IssuanceCardData> = {
     cashbackRate: 0.1,
     monthlyFee: 0,
     foreignTransactionLimit: 10000,
-    dailyLimit: 1000,
+    dailyOperationalLimit: 1000,
   },
 };
 

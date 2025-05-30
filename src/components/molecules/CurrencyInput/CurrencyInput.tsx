@@ -1,13 +1,13 @@
-import { MenuItem, TextField } from '@mui/material';
+import { SelectChangeEvent, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
+
+import { CurrencySelect } from '../CurrencySelect/CurrencySelect';
 
 import {
   StyledInputContainer,
   StyledInputLabel,
   StyledInputRow,
 } from './CurrencyInput.styled';
-
-import { currenciesWithLabel } from 'utils/currencyUtils';
 
 interface CurrencyInputProps {
   label: string;
@@ -27,35 +27,31 @@ export const CurrencyInput = ({
   onCurrencyChange,
   onAmountChange,
   disabled,
-}: CurrencyInputProps) => (
-  <StyledInputContainer>
-    <StyledInputLabel>{label}</StyledInputLabel>
-    <StyledInputRow>
-      <TextField
-        select
-        value={toCurrency}
-        onChange={(e) => onCurrencyChange(e.target.value)}
-        size="small"
-        sx={{ width: '30%' }}
-      >
-        {currenciesWithLabel.map((option) => (
-          <MenuItem
-            key={option.code}
-            value={option.code}
-            disabled={option.code === fromCurrency}
-          >
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField
-        value={amount}
-        onChange={onAmountChange}
-        size="small"
-        type="text"
-        sx={{ width: '65%' }}
-        disabled={disabled}
-      />
-    </StyledInputRow>
-  </StyledInputContainer>
-);
+}: CurrencyInputProps) => {
+  function handleCurrencySelectChange(e: SelectChangeEvent<unknown>) {
+    onCurrencyChange(e.target.value as string);
+  }
+
+  return (
+    <StyledInputContainer>
+      <StyledInputLabel>{label}</StyledInputLabel>
+      <StyledInputRow>
+        <CurrencySelect
+          value={toCurrency}
+          onChange={handleCurrencySelectChange}
+          disabledOptions={[fromCurrency ?? '']}
+        />
+        <TextField
+          value={amount}
+          onChange={onAmountChange}
+          size="small"
+          type="text"
+          sx={{ width: '60%' }}
+          inputProps={{ sx: { textAlign: 'right' } }}
+          InputProps={{ sx: { borderRadius: '8px' } }}
+          disabled={disabled}
+        />
+      </StyledInputRow>
+    </StyledInputContainer>
+  );
+};

@@ -1,4 +1,5 @@
-import { Box, Button, styled } from '@mui/material';
+import { Box, Button, ButtonProps, styled } from '@mui/material';
+import { LinkProps } from 'react-router-dom';
 
 export const StyledIconContainer = styled(Box)(({ theme: { palette } }) => ({
   display: 'flex',
@@ -11,14 +12,16 @@ export const StyledIconContainer = styled(Box)(({ theme: { palette } }) => ({
   boxShadow: `0px 3px 8px 0px ${palette.grey[100]}`,
 }));
 
-export const StyledContainer = styled(Button)(({ theme: { palette } }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'start',
-  alignItems: 'start',
-  gap: '8px',
-  padding: '16px',
-  border: `1px solid ${palette.grey[100]}`,
-  borderRadius: '8px',
-  boxShadow: `0px 3px 8px 0px ${palette.grey[100]}`,
-}));
+export const StyledContainer = styled(Button)<ButtonProps & LinkProps>(
+  ({ theme: { palette } }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    alignItems: 'start',
+    gap: '8px',
+    padding: '16px',
+    border: `1px solid ${palette.grey[100]}`,
+    borderRadius: '8px',
+    boxShadow: `0px 3px 8px 0px ${palette.grey[100]}`,
+  }),
+);

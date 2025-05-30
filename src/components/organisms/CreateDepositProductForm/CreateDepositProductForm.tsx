@@ -7,13 +7,14 @@ import {
   FormControlLabel,
 } from '@mui/material';
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldError } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled';
 
-import { BackArrow, InputField } from 'components/atoms';
+import { BackArrow } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
+import { InputFieldControlled, NumericInput } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { DepositFormData } from 'models/IProductInfo';
@@ -37,11 +38,11 @@ const CreateDepositProductForm: React.FC = () => {
     resolver: yupResolver(lastDepositValidation),
     mode: 'all',
     defaultValues: {
-      min: undefined,
-      max: undefined,
-      term: undefined,
-      interestRate: undefined,
-      capitalization: undefined,
+      minimumDepositSum: undefined,
+      maximumDepositSum: undefined,
+      depositTerm: undefined,
+      depositInterestRate: undefined,
+      depositCapitalizationRate: undefined,
       earlyWithdrawal: false,
       earlyWithdrawalLimit: undefined,
       earlyWithdrawalFee: undefined,
@@ -56,6 +57,8 @@ const CreateDepositProductForm: React.FC = () => {
     dispatch(setDepositData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };
+
+  const errorMessage = (error: FieldError | undefined) => error?.message ?? '';
 
   return (
     <Box
@@ -83,61 +86,86 @@ const CreateDepositProductForm: React.FC = () => {
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.minimumDepositSum')}
             </Typography>
-            <InputField
-              name="min"
+            <InputFieldControlled
+              name="minimumDepositSum"
               control={control}
-              id="minimumDepositSum"
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.min}
-              helperText={errors.min?.message || ''}
+              textFieldProps={{
+                error: !!errors.minimumDepositSum,
+                helperText: errorMessage(errors.minimumDepositSum),
+                placeholder: t('LastResortDeposit.enterHere'),
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+              }}
             />
           </Box>
           <Box>
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.maximumDepositSum')}
             </Typography>
-            <InputField
-              name="max"
-              id="maximumDepositSum"
+            <InputFieldControlled
+              name="maximumDepositSum"
               control={control}
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.max}
+              textFieldProps={{
+                error: !!errors.maximumDepositSum,
+                helperText: errorMessage(errors.maximumDepositSum),
+                placeholder: t('LastResortDeposit.enterHere'),
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+              }}
             />
           </Box>
           <Box>
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.depositTerm')}
             </Typography>
-            <InputField
-              name="term"
-              id="depositTerm"
+            <InputFieldControlled
+              name="depositTerm"
               control={control}
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.term}
+              textFieldProps={{
+                error: !!errors.depositTerm,
+                helperText: errorMessage(errors.depositTerm),
+                placeholder: t('LastResortDeposit.enterHere'),
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+                inputProps: { decimalScale: 0 },
+              }}
             />
           </Box>
           <Box>
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.depositInterestRate')}
             </Typography>
-            <InputField
-              name="interestRate"
-              id="depositInterestRate"
+            <InputFieldControlled
+              name="depositInterestRate"
               control={control}
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.interestRate}
+              textFieldProps={{
+                error: !!errors.depositInterestRate,
+                helperText: errorMessage(errors.depositInterestRate),
+                placeholder: t('LastResortDeposit.enterHere'),
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+              }}
             />
           </Box>
           <Box>
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.depositCapitalizationRate')}
             </Typography>
-            <InputField
-              name="capitalization"
-              id="depositCapitalizationRate"
+            <InputFieldControlled
+              name="depositCapitalizationRate"
               control={control}
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.capitalization}
+              textFieldProps={{
+                error: !!errors.depositCapitalizationRate,
+                helperText: errorMessage(errors.depositCapitalizationRate),
+                placeholder: t('LastResortDeposit.enterHere'),
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+              }}
             />
             <Box display={'flex'} alignItems={'center'} justifyContent={'end'}>
               <Controller
@@ -168,13 +196,18 @@ const CreateDepositProductForm: React.FC = () => {
             <Typography fontWeight={'bold'} fontSize={14}>
               {t('LastResortDeposit.earlyWithdrawalLimit')}
             </Typography>
-            <InputField
+            <InputFieldControlled
               name="earlyWithdrawalLimit"
-              id="earlyWithdrawalLimit"
               control={control}
-              placeholder={t('LastResortDeposit.enterHere')}
-              error={errors.earlyWithdrawalLimit}
-              disabled={!earlyWithdrawalEnabled}
+              textFieldProps={{
+                error: !!errors.earlyWithdrawalLimit,
+                helperText: errorMessage(errors.earlyWithdrawalLimit),
+                placeholder: t('LastResortDeposit.enterHere'),
+                disabled: !earlyWithdrawalEnabled,
+                InputProps: {
+                  inputComponent: NumericInput as never,
+                },
+              }}
             />
           </Box>
           <Box>
@@ -188,13 +221,18 @@ const CreateDepositProductForm: React.FC = () => {
               <Typography fontWeight={'bold'} fontSize={14}>
                 {t('LastResortDeposit.withdrawalFee')}
               </Typography>
-              <InputField
+              <InputFieldControlled
                 name="earlyWithdrawalFee"
-                id="withdrawalFee"
                 control={control}
-                placeholder={t('LastResortDeposit.enterHere')}
-                error={errors.earlyWithdrawalFee}
-                disabled={!earlyWithdrawalEnabled}
+                textFieldProps={{
+                  error: !!errors.earlyWithdrawalFee,
+                  helperText: errorMessage(errors.earlyWithdrawalFee),
+                  placeholder: t('LastResortDeposit.enterHere'),
+                  disabled: !earlyWithdrawalEnabled,
+                  InputProps: {
+                    inputComponent: NumericInput as never,
+                  },
+                }}
               />
             </Box>
           </Box>

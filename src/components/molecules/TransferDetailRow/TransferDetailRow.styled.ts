@@ -1,10 +1,11 @@
 import { Box, styled, Typography } from '@mui/material';
 
-export const StyledLabelRow = styled(Box)({
+export const StyledLabelRow = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-});
+  gap: spacing(2),
+}));
 
 export const StyledLabelRowText = styled(Typography)(
   ({ theme: { typography } }) => ({

@@ -69,7 +69,9 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
   const productFormType = useAppSelector(getProductForm);
   const dispatch = useAppDispatch();
   const productData =
-    productFormType.product === ProductType.DEPOSIT ? depositData : cardData;
+    productFormType.productType === ProductType.DEPOSIT
+      ? depositData
+      : cardData;
 
   const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
   const [
@@ -94,14 +96,14 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
     name: productFormType.name,
     description: productFormType.description,
     currency: productFormType.currency,
-    type: productFormType.type,
+    type: productFormType.subtype,
     ...backendDepositInfo,
   };
 
   const cardObject = {
     cardName: productFormType.name,
     cardCurrency: productFormType.currency,
-    cardType: productFormType.type,
+    cardType: productFormType.subtype,
     cardStatus: ProductStatus.ACTIVE,
     ...productData,
   };
@@ -116,7 +118,7 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
 
   const handleSubmit = async () => {
     try {
-      if (productFormType.product === ProductType.DEPOSIT) {
+      if (productFormType.productType === ProductType.DEPOSIT) {
         await createDeposit(depositObject).unwrap();
       } else {
         await createCard(cardObject).unwrap();

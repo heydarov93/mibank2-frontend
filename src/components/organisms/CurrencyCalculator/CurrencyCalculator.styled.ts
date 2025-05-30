@@ -1,36 +1,39 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, IconButton, styled, Typography } from '@mui/material';
 
 export const StyledContainer = styled(Box)(() => ({
   maxWidth: '480px',
 }));
 
-export const StyledInputsColumn = styled(Box)(() => ({
+export const StyledInputsColumn = styled(Box)(({ theme: { spacing } }) => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
-  gap: '30px',
+  gap: spacing(2),
 }));
 
 export const StyledCurrencyText = styled(Typography)(
-  ({ theme: { typography, palette } }) => ({
+  ({ theme: { typography, palette, spacing } }) => ({
     color: palette.grey[400],
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 400,
     fontSize: typography.mediumLogo?.fontSize,
-    lineHeight: '20px',
-    letterSpacing: '0px',
-    marginTop: '8px',
+    letterSpacing: 0,
+    marginTop: spacing(1),
   }),
 );
 
-export const StyledSwapIcon = styled(Box)(({ theme: { palette } }) => ({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '50px',
-  textAlign: 'center',
-  margin: 'auto',
-  borderRadius: '8px',
-  backgroundColor: palette.primary.main,
-}));
+export const StyledIconButton = styled(IconButton)(
+  ({ theme: { palette } }) => ({
+    position: 'absolute',
+    top: '50%',
+    left: 'min(50%, 160px)',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+    borderRadius: '8px',
+    backgroundColor: palette.primary.main,
+    color: palette.common.white,
+    '&:hover': {
+      backgroundColor: palette.primary.main,
+    },
+  }),
+);

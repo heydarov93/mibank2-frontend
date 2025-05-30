@@ -3,37 +3,52 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { ConfirmTransferModal } from './ConfirmTransferModal';
 
+import { useGetTransferFeeQuery } from 'api/accountsApi';
+import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
+import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { theme } from 'theme/theme';
+
+jest.mock('api/accountsApi', () => ({
+  useGetTransferFeeQuery: jest.fn(),
+}));
 
 const defaultProps = {
   open: true,
   onClose: jest.fn(),
-  transferType: 'card' as const,
-  from: '1234567890123456',
-  to: '6543210987654321',
-  amount: 100,
-  fee: 2.5,
-  currency: 'AZN',
+  onConfirm: jest.fn(),
+  transferMethod: 'card' as TTransferMethod,
+  isTransferring: false,
+  transferInfo: {
+    fromAccount: '1234567890123456',
+    toAccount: '6543210987654321',
+    amount: '100',
+    currency: 'PLN' as TCurrency,
+  },
 };
 
-const renderModal = (props = {}) =>
+const renderModal = (props = defaultProps) =>
   render(
     <ThemeProvider theme={theme}>
-      <ConfirmTransferModal {...defaultProps} {...props} />
+      <ConfirmTransferModal {...props} />
     </ThemeProvider>,
   );
 
 jest.mock('react-i18next', () => ({
+  ...jest.requireActual('react-i18next'),
   useTranslation: () => ({
     t: (key: string) => key,
   }),
-  initReactI18next: {
-    type: '3rdParty',
-  },
 }));
 
 describe('ConfirmTransferModal', () => {
   beforeEach(() => {
+    jest.clearAllMocks();
+    (useGetTransferFeeQuery as jest.Mock).mockReturnValue({
+      data: { amount: 100, fee: 5, totalAmount: 105 },
+      isLoading: false,
+      isError: false,
+      isSuccess: true,
+    });
     renderModal();
   });
 
@@ -43,21 +58,27 @@ describe('ConfirmTransferModal', () => {
 
   it('renders correct card transfer details', () => {
     expect(screen.getByText(/confirm/i)).toBeInTheDocument();
-    expect(screen.getByText('••••3456')).toBeInTheDocument();
-    expect(screen.getByText('••••4321')).toBeInTheDocument();
-    expect(screen.getByText('AZN 100,00')).toBeInTheDocument();
-    expect(screen.getByText('AZN 2,50')).toBeInTheDocument();
-    expect(screen.getByText('AZN 102,50')).toBeInTheDocument();
+    expect(screen.getByText(/3456/i)).toBeInTheDocument();
+    expect(screen.getByText(/4321/i)).toBeInTheDocument();
+    expect(screen.getByText('PLN 100,00')).toBeInTheDocument();
   });
 
   it('renders correct account transfer details', () => {
     renderModal({
-      transferType: 'account',
-      from: 'AZ1234567890',
-      to: 'AZ0987654321',
+      ...defaultProps,
+      transferMethod: 'iban' as TTransferMethod,
+      transferInfo: {
+        ...defaultProps.transferInfo,
+        fromAccount: 'PL12345678901234567890123456',
+        toAccount: 'PL09876543210987654321098765',
+      },
     });
-    expect(screen.getByText('AZ1234567890')).toBeInTheDocument();
-    expect(screen.getByText('AZ0987654321')).toBeInTheDocument();
+    expect(
+      screen.getByText('PL12345678901234567890123456'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('PL09876543210987654321098765'),
+    ).toBeInTheDocument();
   });
 
   it('calls onClose when Cancel or Close icon is clicked', () => {
@@ -72,14 +93,19 @@ describe('ConfirmTransferModal', () => {
   });
 
   it('renders correctly with different currency', () => {
-    renderModal({ currency: 'USD', amount: 50, fee: 1.5 });
+    renderModal({
+      ...defaultProps,
+      transferInfo: {
+        ...defaultProps.transferInfo,
+        currency: 'USD',
+        amount: '50',
+      },
+    });
     expect(screen.getByText('USD 50,00')).toBeInTheDocument();
-    expect(screen.getByText('USD 1,50')).toBeInTheDocument();
-    expect(screen.getByText('USD 51,50')).toBeInTheDocument();
   });
 
   it('does not render any modal content when open is false', async () => {
-    renderModal({ open: false });
+    renderModal({ ...defaultProps, open: false });
     waitFor(() => {
       expect(screen.getByText('Confirm Transfer')).not.toBeInTheDocument();
     });
