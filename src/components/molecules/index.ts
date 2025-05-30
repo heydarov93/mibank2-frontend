@@ -18,7 +18,6 @@ export { DepositBenefitsBox } from './DepositBenefitsBox/DepositBenefitsBox';
 export { BackOfficeViewHeader } from './BackOfficeViewHeader/BackOfficeViewHeader';
 export { NoMatchesFound } from './NoMatchesFound/NoMatchesFound';
 export { TransferDetailRow } from './TransferDetailRow/TransferDetailRow';
-export { SavePaymentWrapper } from './SavePaymentWrapper/SavePaymentWrapper';
 export { IssueCardModalSelects } from './IssueCardModalSelects/IssueCardModalSelects';
 export { SelectField, type SelectFieldOption } from './SelectField/SelectField';
 export { SmallIssuanceCard } from './SmallIssuanceCard/SmallIssuanceCard';
@@ -35,3 +34,7 @@ export { IssueCardModalActions } from './IssueCardModalActions/IssueCardModalAct
 export { OpenBusinessAccountSelects } from './OpenBusinessAccountSelects/OpenBusinessAccountSelects';
 export { OpenBusinessAccountActions } from './OpenBusinessAccountActions/OpenBusinessAccountActions';
 export { BusinessSelectedCardInfo } from './BusinessSelectedCardInfo/BusinessSelectedCardInfo';
+export { CurrencySelect } from './CurrencySelect/CurrencySelect';
+export { NumericInput } from './NumericInput/NumericInput';
+export { PatternInput } from './PatternInput/PatternInput';
+export { InputFieldControlled } from './InputFieldControlled/InputFieldControlled';

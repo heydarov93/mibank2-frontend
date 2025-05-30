@@ -18,6 +18,7 @@ import CreateCardReducer from './reducers/CreateCardSlice';
 import CreateDepositReducer from './reducers/CreateDepositSlice';
 import ProductStepperReducer from './reducers/ProductStepperSlice';
 
+import { accountsApi } from 'api/accountsApi';
 import { authApi } from 'api/authApi';
 import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
 import { checkEmailApi } from 'api/checkEmailApi';
@@ -34,6 +35,7 @@ import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
 import { getOffersApi } from 'api/getOffersApi';
 import { getPostcode } from 'api/getPostcode';
 import { getProductsApi } from 'api/getProductsApi';
+import { getUserIdApi } from 'api/getUserIdApi';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
 import { registerEmployeeApi } from 'api/registerEmployee';
@@ -67,6 +69,8 @@ const rootReducer = combineReducers({
   [createDepositApi.reducerPath]: createDepositApi.reducer,
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
   [createCardApi.reducerPath]: createCardApi.reducer,
+  [accountsApi.reducerPath]: accountsApi.reducer,
+  [getUserIdApi.reducerPath]: getUserIdApi.reducer,
   [deleteDepositApi.reducerPath]: deleteDepositApi.reducer,
   [updateDepositApi.reducerPath]: updateDepositApi.reducer,
   [convertCurrencyApi.reducerPath]: convertCurrencyApi.reducer,
@@ -97,6 +101,8 @@ const persistConfig = {
     createDepositApi.reducerPath,
     getDepositsApi.reducerPath,
     createCardApi.reducerPath,
+    accountsApi.reducerPath,
+    getUserIdApi.reducerPath,
     deleteDepositApi.reducerPath,
     updateDepositApi.reducerPath,
     getExchangeRatesApi.reducerPath,
@@ -133,6 +139,8 @@ const store = configureStore({
       createDepositApi.middleware,
       getDepositsApi.middleware,
       createCardApi.middleware,
+      accountsApi.middleware,
+      getUserIdApi.middleware,
       deleteDepositApi.middleware,
       updateDepositApi.middleware,
       getExchangeRatesApi.middleware,

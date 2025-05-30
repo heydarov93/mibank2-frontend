@@ -66,7 +66,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-1jaymit-MuiTypography-root"
           >
-            10.12.2024
+            Invalid Date
           </p>
           <div
             class="MuiStack-root css-17i0r5w-MuiStack-root"
@@ -79,7 +79,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              Grzegorz Brzeczyszczykiewicz
+              string
             </p>
           </div>
           <div
@@ -88,12 +88,12 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.from
+              cardFromFieldLabel
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              EU12 1116 6660 0000 0001 2345 678
+              1234567890123456
             </p>
           </div>
           <div
@@ -102,12 +102,12 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.to
+              cardToFieldLabel
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              DE44 1234 1234 1234 1234 00
+              6543210987654321
             </p>
           </div>
           <div
@@ -121,7 +121,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              Service Name
+              TransfersPage.paymentReceiptModal.serviceType
             </p>
           </div>
           <div
@@ -130,12 +130,12 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.amount
+              amountFieldLabel
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              USD 100,00
+              PLN 100,00
             </p>
           </div>
           <div
@@ -149,7 +149,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
-              USD 5,00
+              PLN 2,50
             </p>
           </div>
           <div
@@ -158,12 +158,12 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-nwcpw9-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.total
+              TransfersPage.paymentReceiptModal.totalAmount
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-lk13c9-MuiTypography-root"
             >
-              USD 105,00
+              PLN 102,50
             </p>
           </div>
           <div
@@ -185,7 +185,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
           class="MuiStack-root css-k616ae-MuiStack-root"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-io9a6m-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-nzksf6-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
@@ -209,7 +209,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             />
           </button>
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-io9a6m-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-nzksf6-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >

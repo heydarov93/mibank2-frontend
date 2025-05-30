@@ -1,14 +1,5 @@
 import dayjs from 'dayjs';
 
-export const currenciesWithLabel: { code: string; label: string }[] = [
-  { code: 'PLN', label: '🇵🇱 PLN' },
-  { code: 'USD', label: '🇺🇸 USD' },
-  { code: 'EUR', label: '🇪🇺 EUR' },
-  { code: 'GBP', label: '🇬🇧 GBP' },
-  { code: 'CHF', label: '🇨🇭 CHF' },
-  { code: 'JPY', label: '🇯🇵 JPY' },
-];
-
 export const MAX_DIGITS = 12;
 
 export const formatAmount = (value: string | number): string => {

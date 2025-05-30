@@ -25,29 +25,18 @@ import {
   useGetCurrentRatesQuery,
   useGetPreviousRatesQuery,
 } from 'api/getExchangeRatesApi';
-import { ReactComponent as ChfIcon } from 'assets/icons/ChfFlag.svg';
-import { ReactComponent as EurIcon } from 'assets/icons/EurFlag.svg';
-import { ReactComponent as GbpIcon } from 'assets/icons/GbpFlag.svg';
-import { ReactComponent as JpyIcon } from 'assets/icons/JpyFlag.svg';
-import { ReactComponent as UsaIcon } from 'assets/icons/UsaFlag.svg';
+import { CurrencyFlagIcon } from 'components/atoms';
+import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
 import currencies from 'constants/currencies';
 
 type TableError = string | null;
 
 interface Rate {
   currency: string;
-  code: string;
+  code: TCurrency;
   bid: number;
   ask: number;
 }
-
-const flagIcons: Record<string, React.FC> = {
-  USD: UsaIcon,
-  EUR: EurIcon,
-  GBP: GbpIcon,
-  CHF: ChfIcon,
-  JPY: JpyIcon,
-};
 
 export const RatesTable = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'MainPage' });
@@ -117,7 +106,6 @@ export const RatesTable = () => {
           </TableHead>
           <TableBody>
             {filteredCurrencies.map((rate: Rate, index: number) => {
-              const FlagIcon = flagIcons[rate.code];
               const previousRate = previousRatesMap.get(rate.code);
 
               const isBidIncreased =
@@ -141,7 +129,7 @@ export const RatesTable = () => {
                 >
                   <TableCell sx={{ border: 'none' }}>
                     <CellBox>
-                      <FlagIcon />
+                      <CurrencyFlagIcon currency={rate.code} />
                       <StyledCellText
                         sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >

@@ -38,7 +38,7 @@ const mockCardOptions: IssuanceCardData[] = [
     cashbackRate: 0.3,
     monthlyFee: 10,
     foreignTransactionLimit: 10000,
-    dailyLimit: 1000,
+    dailyOperationalLimit: 1000,
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ const mockCardOptions: IssuanceCardData[] = [
     cashbackRate: 0.5,
     monthlyFee: 20,
     foreignTransactionLimit: 10000,
-    dailyLimit: 1000,
+    dailyOperationalLimit: 1000,
   },
   {
     id: 3,
@@ -68,7 +68,7 @@ const mockCardOptions: IssuanceCardData[] = [
     cashbackRate: 0.1,
     monthlyFee: 0,
     foreignTransactionLimit: 30000,
-    dailyLimit: 5000,
+    dailyOperationalLimit: 5000,
   },
 ];
 

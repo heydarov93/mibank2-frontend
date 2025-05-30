@@ -1,21 +1,36 @@
-import { ButtonProps, Typography } from '@mui/material';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import LoopIcon from '@mui/icons-material/Loop';
+import { Typography } from '@mui/material';
 import { ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { StyledContainer, StyledIconContainer } from './TransferButton.styled';
 
-interface TransferButtonProps extends ButtonProps {
+import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+
+interface TransferButtonProps extends LinkProps {
   label: ReactNode;
-  icon: ReactNode;
+  transferMethod: TTransferMethod;
 }
 
 export function TransferButton({
   label,
-  icon,
-  ...buttonProps
+  to,
+  transferMethod,
 }: TransferButtonProps) {
+  const Icon = () =>
+    transferMethod === 'iban' ? (
+      <AccountBalanceIcon />
+    ) : transferMethod === 'card' ? (
+      <CreditCardIcon />
+    ) : (
+      <LoopIcon />
+    );
+
   return (
-    <StyledContainer {...buttonProps}>
-      <StyledIconContainer>{icon}</StyledIconContainer>
+    <StyledContainer to={to} component={Link}>
+      <StyledIconContainer>{<Icon />}</StyledIconContainer>
       <Typography
         variant="subtitle1"
         component="p"

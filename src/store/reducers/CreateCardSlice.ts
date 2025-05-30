@@ -5,7 +5,7 @@ import { CardFormData } from 'models/IProductInfo';
 const initialState: CardFormData = {
   cashbackRate: null,
   monthlyFee: null,
-  dailyLimit: null,
+  dailyOperationalLimit: null,
   foreignTransactionLimit: null,
   cardIssuer: '',
   cardType: '',
@@ -19,7 +19,7 @@ const CreateCardSlice = createSlice({
       state.cardIssuer = action.payload.cardIssuer;
       state.cardType = action.payload.cardType;
       state.cashbackRate = action.payload.cashbackRate;
-      state.dailyLimit = action.payload.dailyLimit;
+      state.dailyOperationalLimit = action.payload.dailyOperationalLimit;
       state.foreignTransactionLimit = action.payload.foreignTransactionLimit;
       state.monthlyFee = action.payload.monthlyFee;
     },

@@ -4,66 +4,57 @@ import { useTranslation } from 'react-i18next';
 import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentReceiptModal.styled';
 import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
+import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
+import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
 import { formatCurrency } from 'utils/currencyUtils';
 
-export interface PaymentReceiptInfoProps {
+export interface IPaymentReceipt {
+  payerName: string;
   date: string;
-  payer: string;
-  from: string;
-  to: string;
-  service: string;
-  amount: number;
+  fromAccount: string;
+  toAccount: string;
+  amount: string;
+  currency: TCurrency;
   fee: number;
-  currency: string;
+  totalAmount: number;
+  transferMethod: 'card' | 'iban';
 }
 
-export const PaymentReceiptInfo = ({
-  date,
-  payer,
-  from,
-  to,
-  service,
-  amount,
-  fee,
-  currency,
-}: PaymentReceiptInfoProps) => {
+export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
   const { t } = useTranslation('translation');
-  const total = amount + fee;
+  const translation = useTranslations(data.transferMethod);
+  const date = new Date(data.date);
 
   return (
-    <Stack
-      sx={{
-        gap: '20px',
-      }}
-    >
-      <StyledTypography mb="12px">{date}</StyledTypography>
+    <Stack gap="20px">
+      <StyledTypography mb="12px">{date.toLocaleDateString()}</StyledTypography>
       <PaymentReceiptRow
         name={t('TransfersPage.paymentReceiptModal.payer')}
-        value={payer}
+        value={data.payerName}
       />
       <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.from')}
-        value={from}
+        name={translation.fromAccount.label}
+        value={data.fromAccount}
       />
       <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.to')}
-        value={to}
+        name={translation.toAccount.label}
+        value={data.toAccount}
       />
       <PaymentReceiptRow
         name={t('TransfersPage.paymentReceiptModal.service')}
-        value={service}
+        value={t('TransfersPage.paymentReceiptModal.serviceType')}
       />
       <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.amount')}
-        value={formatCurrency(currency, amount)}
+        name={translation.amount.label}
+        value={formatCurrency(data.currency, Number(data.amount))}
       />
       <PaymentReceiptRow
         name={t('TransfersPage.paymentReceiptModal.fee')}
-        value={formatCurrency(currency, fee)}
+        value={formatCurrency(data.currency, data.fee)}
       />
       <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.total')}
-        value={formatCurrency(currency, total)}
+        name={t('TransfersPage.paymentReceiptModal.totalAmount')}
+        value={formatCurrency(data.currency, data.totalAmount)}
         nameSx={{ color: 'black', fontWeight: 500 }}
         valueSx={{ color: 'black', fontWeight: 600, fontSize: 24 }}
       />

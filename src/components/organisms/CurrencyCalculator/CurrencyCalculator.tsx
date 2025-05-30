@@ -1,5 +1,5 @@
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { Alert, CircularProgress, IconButton, useTheme } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,15 +8,14 @@ import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 import {
   StyledContainer,
   StyledCurrencyText,
+  StyledIconButton,
   StyledInputsColumn,
-  StyledSwapIcon,
 } from './CurrencyCalculator.styled';
 
 import { CurrencyInput } from 'components/molecules/CurrencyInput/CurrencyInput';
 import { useCurrencyCalculator } from 'hooks/useCurrencyCalculator';
 
 const CurrencyCalculator = () => {
-  const theme = useTheme();
   const { t } = useTranslation('translation', { keyPrefix: 'Homepage' });
   const {
     isConvertCurrencyError,
@@ -33,13 +32,20 @@ const CurrencyCalculator = () => {
   if (isLoadingCurrent)
     return <CircularProgress data-testid="loading-spinner" />;
 
+  const onCurrencyChange = (isFromCurrency: boolean) => (currency: string) =>
+    handleCurrencyChange(isFromCurrency, currency);
+
+  const onAmountChange =
+    (isFromCurrency: boolean) => (e: ChangeEvent<HTMLInputElement>) =>
+      handleAmountChange(e, isFromCurrency);
+
   return (
     <StyledContainer>
       <StyledTableTitle>{t('CurCal.cal')}</StyledTableTitle>
 
       {isConvertCurrencyError && (
         <Alert
-          sx={{ marginBottom: '5px' }}
+          sx={{ marginBottom: 1 }}
           severity="error"
           data-testid="error-message-box"
         >
@@ -53,34 +59,25 @@ const CurrencyCalculator = () => {
           fromCurrency={exchange.to.currency}
           toCurrency={exchange.from.currency}
           amount={exchange.from.amount}
-          onCurrencyChange={(currency: string) =>
-            handleCurrencyChange(true, currency)
-          }
-          onAmountChange={(e: ChangeEvent<HTMLInputElement>) =>
-            handleAmountChange(e, true)
-          }
+          onCurrencyChange={onCurrencyChange(true)}
+          onAmountChange={onAmountChange(true)}
         />
 
-        <StyledSwapIcon data-testid="swap-button">
-          <IconButton onClick={handleSwap}>
-            <SwapVertIcon
-              fontSize="large"
-              htmlColor={theme.palette.common.white}
-            />
-          </IconButton>
-        </StyledSwapIcon>
+        <StyledIconButton
+          onClick={handleSwap}
+          size="medium"
+          data-testid="swap-button"
+        >
+          <SwapVertIcon />
+        </StyledIconButton>
 
         <CurrencyInput
           label={t('CurCal.get')}
           fromCurrency={exchange.from.currency}
           toCurrency={exchange.to.currency}
           amount={exchange.to.amount}
-          onCurrencyChange={(currency: string) =>
-            handleCurrencyChange(false, currency)
-          }
-          onAmountChange={(e: ChangeEvent<HTMLInputElement>) =>
-            handleAmountChange(e, false)
-          }
+          onCurrencyChange={onCurrencyChange(false)}
+          onAmountChange={onAmountChange(false)}
           disabled={isConvertLoading}
         />
       </StyledInputsColumn>

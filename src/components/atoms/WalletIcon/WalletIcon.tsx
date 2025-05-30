@@ -8,12 +8,8 @@ interface WalletIconProps {
 
 const WalletIcon = ({ sx }: WalletIconProps) => {
   return (
-    <SvgIcon
-      sx={{
-        ...sx,
-      }}
-    >
-      <WalletSVG fill="currentColor" />;
+    <SvgIcon sx={{ ...sx }}>
+      <WalletSVG width="100%" height="100%" />;
     </SvgIcon>
   );
 };

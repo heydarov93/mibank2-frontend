@@ -4,9 +4,6 @@ import { FieldError, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { AccountInput } from '../TransferForm/molecules/AccountInput';
-import { InputField as NIPField } from '../TransferForm/molecules/InputField';
-
 import {
   StyledForm,
   StyledFormTitle,
@@ -14,6 +11,8 @@ import {
 } from './BusinessSignUpForm.styled';
 
 import { InputField, SubmitButton } from 'components/atoms';
+import { InputFieldControlled, PatternInput } from 'components/molecules';
+import { NIP_PATTERN } from 'constants/inputPatterns';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/routesName';
 import { businessSignUpFormSchema } from 'validation';
 
@@ -81,16 +80,19 @@ export const BusinessSignUpForm = () => {
         </Box>
         <Box>
           <StyledLabel htmlFor="nip">{t('form.fields.nip')}</StyledLabel>
-          <NIPField
+          <InputFieldControlled
             name="nip"
             control={control}
-            inputComponent={AccountInput as never}
-            error={errors.nip}
             textFieldProps={{
-              placeholder: 'PL-NIP-0000000000',
-              inputProps: {
-                format: 'PL-NIP-##########',
+              InputProps: {
+                inputComponent: PatternInput as never,
               },
+              inputProps: {
+                format: NIP_PATTERN,
+                allowEmptyFormatting: true,
+              },
+              error: !!errors.nip,
+              helperText: errors.nip?.message ?? '',
               sx: (theme) => ({
                 animation: errors.nip ? `${theme.animations?.shake} 0.25s` : '',
               }),

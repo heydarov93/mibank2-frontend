@@ -3,11 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DepositFormData } from 'models/IProductInfo';
 
 const initialState: DepositFormData = {
-  min: 0,
-  max: 0,
-  term: 0,
-  interestRate: 0,
-  capitalization: 0,
+  minimumDepositSum: 0,
+  maximumDepositSum: 0,
+  depositTerm: 0,
+  depositInterestRate: 0,
+  depositCapitalizationRate: 0,
   earlyWithdrawal: false,
   earlyWithdrawalLimit: 0,
   earlyWithdrawalFee: 0,
@@ -25,11 +25,12 @@ const CreateDepositSlice = createSlice({
       state.earlyWithdrawalFee = action.payload.earlyWithdrawalFee;
       state.earlyWithdrawalLimit = action.payload.earlyWithdrawalLimit;
       state.earlyWithdrawal = action.payload.earlyWithdrawal;
-      state.capitalization = action.payload.capitalization;
-      state.interestRate = action.payload.interestRate;
-      state.term = action.payload.term;
-      state.max = action.payload.max;
-      state.min = action.payload.min;
+      state.depositCapitalizationRate =
+        action.payload.depositCapitalizationRate;
+      state.depositInterestRate = action.payload.depositInterestRate;
+      state.depositTerm = action.payload.depositTerm;
+      state.maximumDepositSum = action.payload.maximumDepositSum;
+      state.minimumDepositSum = action.payload.minimumDepositSum;
     },
     resetDepositData() {
       return initialState;

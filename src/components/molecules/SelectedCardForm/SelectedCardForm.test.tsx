@@ -31,7 +31,7 @@ const cardData: IssuanceCardData = {
   cashbackRate: 0.3,
   monthlyFee: 10,
   foreignTransactionLimit: 10000,
-  dailyLimit: 1000,
+  dailyOperationalLimit: 1000,
 };
 
 const FormWrapper = (props: IssuanceCardData) => {

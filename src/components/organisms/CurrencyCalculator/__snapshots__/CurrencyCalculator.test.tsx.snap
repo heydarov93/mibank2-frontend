@@ -11,80 +11,93 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
       CurCal.cal
     </p>
     <div
-      class="MuiBox-root css-mqx063"
+      class="MuiBox-root css-1sv6umq"
     >
       <div
-        class="MuiBox-root css-1de3y8x"
+        class="MuiBox-root css-1e6l27x"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-15wbe5r-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1i2tn7e-MuiTypography-root"
         >
           CurCal.give
         </p>
         <div
-          class="MuiBox-root css-14onwxy"
+          class="MuiBox-root css-161lh0b"
         >
           <div
-            class="MuiFormControl-root MuiTextField-root css-1uif06f-MuiFormControl-root-MuiTextField-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-zj28j3-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-8tdha5-MuiInputBase-root-MuiOutlinedInput-root"
+              aria-controls=":r0:"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-zbhh1g-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              role="combobox"
+              tabindex="0"
             >
               <div
-                aria-controls=":r1:"
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                aria-labelledby=":r0:"
-                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1d3ddih-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r0:"
-                role="combobox"
-                tabindex="0"
+                class="MuiBox-root css-axw7ok"
               >
-                🇺🇸 USD
-              </div>
-              <input
-                aria-hidden="true"
-                aria-invalid="false"
-                class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                tabindex="-1"
-                value="USD"
-              />
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <svg>
-                  ExpandMoreIcon.svg
-                </svg>
-              </svg>
-              <fieldset
-                aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-              >
-                <legend
-                  class="css-ihdtdm"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
                 >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
-                </legend>
-              </fieldset>
+                  <svg>
+                    UsaFlag.svg
+                  </svg>
+                </svg>
+                <span
+                  style="font-weight: 500;"
+                >
+                  USD
+                </span>
+              </div>
             </div>
+            <input
+              aria-hidden="true"
+              aria-invalid="false"
+              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              tabindex="-1"
+              value="USD"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="KeyboardArrowDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-ihdtdm"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root css-1ufxv2r-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root css-11saer6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-8tdha5-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-l2lu5h-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <input
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r2:"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-14iqq93-MuiInputBase-input-MuiOutlinedInput-input"
+                id=":r1:"
                 type="text"
                 value=""
               />
@@ -106,104 +119,112 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
           </div>
         </div>
       </div>
-      <div
-        class="MuiBox-root css-158a0qw"
+      <button
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1bpf0au-MuiButtonBase-root-MuiIconButton-root"
         data-testid="swap-button"
+        tabindex="0"
+        type="button"
       >
-        <button
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-          tabindex="0"
-          type="button"
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="SwapVertIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
-            color="#FFFFFF"
-            data-testid="SwapVertIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99zM9 3 5 6.99h3V14h2V6.99h3z"
-            />
-          </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          <path
+            d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99zM9 3 5 6.99h3V14h2V6.99h3z"
           />
-        </button>
-      </div>
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
       <div
-        class="MuiBox-root css-1de3y8x"
+        class="MuiBox-root css-1e6l27x"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-15wbe5r-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1i2tn7e-MuiTypography-root"
         >
           CurCal.get
         </p>
         <div
-          class="MuiBox-root css-14onwxy"
+          class="MuiBox-root css-161lh0b"
         >
           <div
-            class="MuiFormControl-root MuiTextField-root css-1uif06f-MuiFormControl-root-MuiTextField-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-zj28j3-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-8tdha5-MuiInputBase-root-MuiOutlinedInput-root"
+              aria-controls=":r2:"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-zbhh1g-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              role="combobox"
+              tabindex="0"
             >
               <div
-                aria-controls=":r4:"
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                aria-labelledby=":r3:"
-                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1d3ddih-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r3:"
-                role="combobox"
-                tabindex="0"
+                class="MuiBox-root css-axw7ok"
               >
-                🇪🇺 EUR
-              </div>
-              <input
-                aria-hidden="true"
-                aria-invalid="false"
-                class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                tabindex="-1"
-                value="EUR"
-              />
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <svg>
-                  ExpandMoreIcon.svg
-                </svg>
-              </svg>
-              <fieldset
-                aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-              >
-                <legend
-                  class="css-ihdtdm"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
                 >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
-                </legend>
-              </fieldset>
+                  <svg>
+                    EurFlag.svg
+                  </svg>
+                </svg>
+                <span
+                  style="font-weight: 500;"
+                >
+                  EUR
+                </span>
+              </div>
             </div>
+            <input
+              aria-hidden="true"
+              aria-invalid="false"
+              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              tabindex="-1"
+              value="EUR"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="KeyboardArrowDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-ihdtdm"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root css-1ufxv2r-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root css-11saer6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-8tdha5-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-l2lu5h-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <input
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r5:"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-14iqq93-MuiInputBase-input-MuiOutlinedInput-input"
+                id=":r3:"
                 type="text"
                 value=""
               />
@@ -227,7 +248,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
       </div>
     </div>
     <p
-      class="MuiTypography-root MuiTypography-body1 css-upw7zk-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-body1 css-1y3y274-MuiTypography-root"
     >
       CurCal.rate
       : 1 

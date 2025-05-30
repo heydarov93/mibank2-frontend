@@ -12,6 +12,7 @@ export const endpoints = {
       forgotPassword: '/uas/api/user/forgot-password',
       confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
       refreshToken: 'uas/api/user/refresh-token',
+      userId: 'uas/api/user/id',
     },
   },
   contactInfo: {
@@ -53,5 +54,14 @@ export const endpoints = {
   offers: {
     getOffer: '/os/api/offer/retrieve/page',
     getOfferImages: '/os/api/offer',
+  },
+  accounts: {
+    transfer: {
+      toIBAN: '/as/api/account/transfer-iban',
+      toCard: '/as/api/account/transfer-card-number',
+      fee: '/as/api/account/transfer-fee',
+    },
+    iban: '/as/api/account/users',
+    card: '/as/api/card',
   },
 };

@@ -20,12 +20,14 @@ import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { productFormSchema } from 'validation/validationProductFormSchema';
 
+const currencyOptions = currencies.map((value) => ({ value }));
+
 const ChooseProductForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const dispatch = useAppDispatch();
   const selector = useAppSelector(getProductForm) || {
-    product: '',
-    type: '',
+    productType: '',
+    subtype: '',
     currency: '',
     name: '',
     description: '',
@@ -47,11 +49,9 @@ const ChooseProductForm = () => {
     t('CreateProduct.creditCard'),
   ].map((value) => ({ value }));
 
-  const currencyOptions = currencies.map((value) => ({ value }));
-
   type formData = {
-    product: string;
-    type: string;
+    productType: string;
+    subtype: string;
     currency: string;
     name: string;
     description: string;
@@ -66,18 +66,18 @@ const ChooseProductForm = () => {
     resolver: yupResolver(productFormSchema),
     mode: 'onBlur',
     defaultValues: {
-      product: selector.product,
-      type: selector.type,
+      productType: selector.productType,
+      subtype: selector.subtype,
       currency: selector.currency,
       name: selector.name,
       description: selector.description,
     },
   });
 
-  const selectedProduct = watch('product');
+  const selectedProduct = watch('productType');
 
   const onSubmit = (formData: formData) => {
-    if (formData.product === 'Deposit') {
+    if (formData.productType === 'Deposit') {
       dispatch(setProductStep(EProductFormStepper.DEPOSIT_INFO));
     } else {
       dispatch(setProductStep(EProductFormStepper.CARD_INFO));
@@ -101,23 +101,23 @@ const ChooseProductForm = () => {
         <Box>
           <InputLabel>{t('CreateProduct.product')}</InputLabel>
           <SelectField<formData>
-            name="product"
+            name="productType"
             control={control}
             options={productOptions}
-            error={errors.product}
+            error={errors.productType}
           />
         </Box>
         <Box>
           <InputLabel>{t('CreateProduct.subType')}</InputLabel>
           <SelectField<formData>
-            name="type"
+            name="subtype"
             control={control}
             options={
               selectedProduct === t('CreateProduct.deposit')
                 ? depositOptions
                 : cardOptions
             }
-            error={errors.type}
+            error={errors.subtype}
             disabled={!selectedProduct}
           />
         </Box>
@@ -126,7 +126,7 @@ const ChooseProductForm = () => {
           <SelectField<formData>
             name="currency"
             control={control}
-            options={currencyOptions}
+            options={[...currencyOptions]}
             error={errors.currency}
           />
         </Box>

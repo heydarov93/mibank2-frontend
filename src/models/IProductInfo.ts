@@ -1,6 +1,6 @@
 export interface ProductFormData {
-  product: string;
-  type: string;
+  productType: string;
+  subtype: string;
   currency: string;
   name: string;
   description: string;
@@ -9,18 +9,18 @@ export interface ProductFormData {
 export interface CardFormData {
   cashbackRate: number | null;
   monthlyFee: number | null;
-  dailyLimit: number | null;
+  dailyOperationalLimit: number | null;
   foreignTransactionLimit: number | null;
   cardIssuer: string | null;
   cardType: string | null;
 }
 
 export interface DepositFormData {
-  min: number;
-  max: number;
-  term?: number | undefined;
-  interestRate: number;
-  capitalization: number;
+  minimumDepositSum: number;
+  maximumDepositSum: number;
+  depositTerm?: number | undefined;
+  depositInterestRate: number;
+  depositCapitalizationRate: number;
   earlyWithdrawal?: boolean | undefined;
   earlyWithdrawalLimit?: number | undefined;
   earlyWithdrawalFee?: number | undefined;

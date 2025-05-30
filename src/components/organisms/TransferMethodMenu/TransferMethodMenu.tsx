@@ -2,18 +2,16 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Button, Fade, Menu, MenuItem } from '@mui/material';
 import { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
-import { ETransferMethod } from '../TransferForm/enums/ETransferMethod';
+import {
+  transferMethods,
+  TTransferMethod,
+} from 'pages/TransfersPage/TransfersPage';
 
-interface TransferMethodMenuProps {
-  transferMethod: ETransferMethod;
-  onSetMethod: (arg: ETransferMethod) => void;
-}
-
-export function TransferMethodMenu({
-  transferMethod,
-  onSetMethod,
-}: TransferMethodMenuProps) {
+export function TransferMethodMenu() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const transferMethod = searchParams.get('method') as TTransferMethod;
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -26,8 +24,8 @@ export function TransferMethodMenu({
     setAnchorEl(null);
   };
 
-  const handleSelect = (item: ETransferMethod) => () => {
-    onSetMethod(item);
+  const handleSelect = (item: TTransferMethod) => () => {
+    setSearchParams({ method: item });
     handleClose();
   };
 
@@ -49,13 +47,31 @@ export function TransferMethodMenu({
         {t(transferMethod)}
       </Button>
       <Menu
+        slotProps={{
+          paper: { sx: { borderRadius: '8px' } },
+        }}
+        MenuListProps={{ sx: { paddingBlock: 0 } }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        {(Object.values(ETransferMethod) as ETransferMethod[]).map((item) => (
-          <MenuItem onClick={handleSelect(item)} disableRipple key={item}>
+        {Object.values(transferMethods).map((item) => (
+          <MenuItem
+            sx={{
+              paddingBlock: 1,
+              '&:hover': {
+                backgroundColor: 'primary.light',
+              },
+              '&:active': {
+                backgroundColor: 'primary.main',
+                color: 'common.white',
+              },
+            }}
+            onClick={handleSelect(item)}
+            disableRipple
+            key={item}
+          >
             {t(item)}
           </MenuItem>
         ))}

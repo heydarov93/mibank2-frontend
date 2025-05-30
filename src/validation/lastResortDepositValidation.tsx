@@ -3,31 +3,42 @@ import * as yup from 'yup';
 import i18n from 'i18n';
 
 const lastResortDeposit = 'BackOffice.LastResortDeposit';
+const required = i18n.t(`${lastResortDeposit}.required`);
+const amountPattern = /^\d{1,15}(\.\d{1,2})?$/;
+const common = yup
+  .number()
+  .typeError(i18n.t(`${lastResortDeposit}.number`))
+  .test(
+    'decimal-places',
+    i18n.t(`${lastResortDeposit}.decimal`),
+    (value) => value === undefined || amountPattern.test(value.toString()),
+  );
+const earlyWithdrawal = common
+  .min(0, i18n.t(`${lastResortDeposit}.positive`))
+  .when('earlyWithdrawal', {
+    is: true,
+    then: (schema) =>
+      schema.required(i18n.t(`${lastResortDeposit}.earlyWithdrawalVal`)),
+    otherwise: (schema) => schema.notRequired(),
+  });
 
 export const lastDepositValidation = yup.object().shape({
-  min: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
+  minimumDepositSum: common
     .min(0, i18n.t(`${lastResortDeposit}.zero`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
+    .required(required),
+  maximumDepositSum: common
+    .min(
+      yup.ref('minimumDepositSum'),
+      i18n.t(`${lastResortDeposit}.grThDeposit`),
     )
-    .required(i18n.t(`${lastResortDeposit}.required`)),
-  max: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(yup.ref('min'), i18n.t(`${lastResortDeposit}.grThDeposit`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
-    )
-    .required(i18n.t(`${lastResortDeposit}.required`)),
-  term: yup
+    .required(required),
+  depositInterestRate: common
+    .min(0, i18n.t(`${lastResortDeposit}.zero`))
+    .required(required),
+  depositCapitalizationRate: common
+    .min(0, i18n.t(`${lastResortDeposit}.positive`))
+    .required(required),
+  depositTerm: yup
     .number()
     .typeError(i18n.t(`${lastResortDeposit}.number`))
     .integer(i18n.t(`${lastResortDeposit}.naturalNum`))
@@ -35,64 +46,11 @@ export const lastDepositValidation = yup.object().shape({
     .when('productSubtype', {
       is: 'Target deposit',
       then: (schema) => schema.notRequired(),
-      otherwise: (schema) =>
-        schema.required(i18n.t(`${lastResortDeposit}.required`)),
+      otherwise: (schema) => schema.required(required),
     }),
-  interestRate: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(0, i18n.t(`${lastResortDeposit}.positive`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
-    )
-    .required(i18n.t(`${lastResortDeposit}.required`)),
-  capitalization: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(0, i18n.t(`${lastResortDeposit}.positive`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
-    )
-    .required(i18n.t(`${lastResortDeposit}.required`)),
+  earlyWithdrawalLimit: earlyWithdrawal,
+  earlyWithdrawalFee: earlyWithdrawal,
   earlyWithdrawal: yup.boolean(),
-  earlyWithdrawalLimit: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(0, i18n.t(`${lastResortDeposit}.positive`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
-    )
-    .when('earlyWithdrawal', {
-      is: true,
-      then: (schema) =>
-        schema.required(i18n.t(`${lastResortDeposit}.earlyWithdrawalVal`)),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-  earlyWithdrawalFee: yup
-    .number()
-    .typeError(i18n.t(`${lastResortDeposit}.number`))
-    .min(0, i18n.t(`${lastResortDeposit}.positive`))
-    .test(
-      'decimal-places',
-      i18n.t(`${lastResortDeposit}.decimal`),
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
-    )
-    .when('earlyWithdrawal', {
-      is: true,
-      then: (schema) =>
-        schema.required(i18n.t(`${lastResortDeposit}.earlyWithdrawalVal`)),
-      otherwise: (schema) => schema.notRequired(),
-    }),
   autoRenewable: yup.boolean(),
   augmentable: yup.boolean(),
 });

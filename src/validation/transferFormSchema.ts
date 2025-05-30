@@ -1,50 +1,70 @@
+import { IBAN } from 'ibankit';
 import * as yup from 'yup';
 
+import { isValidCardNumber } from './isValidCardNumber';
 import { REG_EXP } from './regExp';
 
 import currencies from 'constants/currencies';
 import i18n from 'i18n';
+import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 
 const key = 'TransfersPage';
-
-function validateIBAN(
-  schema: yup.StringSchema<string, yup.AnyObject, undefined, ''>,
-) {
-  return schema.matches(/^PL\d{26}$/, i18n.t(`${key}.error.ibanFieldPattern`));
-}
 
 function validateCard(
   schema: yup.StringSchema<string, yup.AnyObject, undefined, ''>,
 ) {
-  return schema.matches(/^\d{16}$/, i18n.t(`${key}.error.cardFieldPattern`));
+  return schema.test(
+    'card',
+    i18n.t(`${key}.error.cardFieldPattern`),
+    (value) => {
+      return isValidCardNumber(value);
+    },
+  );
 }
 
-function isModeIBAN(mode: string) {
-  return () => mode === 'IBAN';
+function validateIBAN(
+  schema: yup.StringSchema<string, yup.AnyObject, undefined, ''>,
+) {
+  return schema.test(
+    'iban',
+    i18n.t(`${key}.error.ibanFieldPattern`),
+    (value) => {
+      return IBAN.isValid(value);
+    },
+  );
 }
 
-export const schema = (mode: string) =>
+function validateAccountNumber(mode: TTransferMethod) {
+  return yup
+    .string()
+    .transform((value) => value?.replace(/\s+/g, ''))
+    .trim()
+    .required(i18n.t(`${key}.error.accountFieldRequired`))
+    .when([], {
+      is: () => mode === 'iban',
+      then: validateIBAN,
+      otherwise: validateCard,
+    })
+    .test('source and target are same', (_, context) => isAccountSame(context));
+}
+
+function isAccountSame(context: yup.TestContext<yup.AnyObject>) {
+  const toAccount = context.parent.toAccount;
+  const fromAccount = context.parent.fromAccount;
+  if (fromAccount === toAccount) {
+    return context.createError({
+      path: context.path,
+      message: i18n.t(`${key}.error.accountsSame`),
+    });
+  }
+
+  return true;
+}
+
+export const schema = (mode: TTransferMethod) =>
   yup.object().shape({
-    fromAccount: yup
-      .string()
-      .transform((value) => value?.replace(/\s+/g, ''))
-      .trim()
-      .required(i18n.t(`${key}.error.accountFieldRequired`))
-      .when([], {
-        is: isModeIBAN(mode),
-        then: validateIBAN,
-        otherwise: validateCard,
-      }),
-    toAccount: yup
-      .string()
-      .transform((value) => value?.replace(/\s+/g, ''))
-      .trim()
-      .required(i18n.t(`${key}.error.accountFieldRequired`))
-      .when([], {
-        is: isModeIBAN(mode),
-        then: validateIBAN,
-        otherwise: validateCard,
-      }),
+    fromAccount: validateAccountNumber(mode),
+    toAccount: validateAccountNumber(mode),
     amount: yup
       .string()
       .matches(/^\d{1,10}(\.\d{1,2})?$/, i18n.t(`${key}.error.amountPattern`))

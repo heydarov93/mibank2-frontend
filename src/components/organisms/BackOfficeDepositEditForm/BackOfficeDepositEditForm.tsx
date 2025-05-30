@@ -146,7 +146,7 @@ const BackOfficeDepositEditForm = ({
             render={({ field }) => (
               <MiAutoComplete
                 {...field}
-                options={currencies}
+                options={[...currencies]}
                 onChange={(_, value) => field.onChange(value)}
                 value={field.value}
                 error={!!errors.currency}

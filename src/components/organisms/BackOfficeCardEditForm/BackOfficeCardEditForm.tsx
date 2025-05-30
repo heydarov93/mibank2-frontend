@@ -114,7 +114,7 @@ const BackOfficeCardEditForm = ({
             control={control}
             render={({ field }) => (
               <MiAutoComplete
-                options={currencies}
+                options={[...currencies]}
                 value={field.value}
                 onChange={(_, value) => field.onChange(value)}
                 error={!!errors.cardCurrency}
