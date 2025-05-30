@@ -1,7 +1,8 @@
-import { Stack, Typography } from '@mui/material';
+import { Stack, SxProps, Theme } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';
 import { CardIssueFormValues } from 'components/organisms/IssueCardModal/IssueCardModal';
 import currencies from 'constants/currencies';
@@ -17,61 +18,49 @@ const issueTypes = [{ value: 'Digital' }, { value: 'Plastic' }];
 
 const cardIssuers = [{ value: 'Visa' }, { value: 'MasterCard' }];
 
-export const IssueCardModalSelects = () => {
+interface IssueCardModalSelectsProps {
+  sx?: SxProps<Theme>;
+}
+
+export const IssueCardModalSelects = ({ sx }: IssueCardModalSelectsProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const { control } = useFormContext<CardIssueFormValues>();
 
   return (
-    <Stack spacing="20px" mt="24px">
+    <Stack gap={2.5} sx={sx}>
       <AccountSelect name="issuanceAccount" control={control} withNewAccount />
-
-      <Stack spacing="4px">
-        <Typography sx={{ fontWeight: 500, fontSize: 14 }}>
-          {t('currency')}
-        </Typography>
+      <FieldWithLabel label={t('currency')}>
         <SelectField
           options={currenciesOptions}
           name="currency"
           control={control}
           placeholder={t('choose')}
         />
-      </Stack>
-
-      <Stack spacing="4px">
-        <Typography sx={{ fontWeight: 500, fontSize: 14 }}>
-          {t('cardType')}
-        </Typography>
+      </FieldWithLabel>
+      <FieldWithLabel label={t('cardType')}>
         <SelectField
           options={cardTypes}
           name="cardType"
           control={control}
           placeholder={t('choose')}
         />
-      </Stack>
-
-      <Stack spacing="4px">
-        <Typography sx={{ fontWeight: 500, fontSize: 14 }}>
-          {t('issueType')}
-        </Typography>
+      </FieldWithLabel>
+      <FieldWithLabel label={t('issueType')}>
         <SelectField
           options={issueTypes}
           name="issueType"
           control={control}
           placeholder={t('choose')}
         />
-      </Stack>
-
-      <Stack spacing="4px">
-        <Typography sx={{ fontWeight: 500, fontSize: 14 }}>
-          {t('issuer')}
-        </Typography>
+      </FieldWithLabel>
+      <FieldWithLabel label={t('issuer')}>
         <SelectField
           options={cardIssuers}
           name="cardIssuer"
           control={control}
           placeholder={t('choose')}
         />
-      </Stack>
+      </FieldWithLabel>
     </Stack>
   );
 };

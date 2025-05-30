@@ -11,14 +11,13 @@ import { IssuanceCardData } from 'models/IProductInfo';
 
 export type IssuanceCardProps = Pick<
   IssuanceCardData,
-  | 'name'
-  | 'fee'
-  | 'feeCurrency'
-  | 'background'
-  | 'currency'
-  | 'cardType'
-  | 'cardIssuer'
->;
+  'name' | 'feeCurrency' | 'background' | 'currency' | 'cardIssuer'
+> & {
+  issuanceFee?: IssuanceCardData['fee'];
+  monthlyFee?: IssuanceCardData['monthlyFee'];
+  cashback?: IssuanceCardData['cashbackRate'];
+  cardType?: IssuanceCardData['cardType'];
+};
 
 const issuers: Record<IssuanceCardProps['cardIssuer'], ReactElement> = {
   visa: <SimpleVisaIcon />,
@@ -27,14 +26,18 @@ const issuers: Record<IssuanceCardProps['cardIssuer'], ReactElement> = {
 
 export const IssuanceCard = ({
   name,
-  fee,
+  issuanceFee,
+  monthlyFee,
   feeCurrency,
   background,
   currency,
   cardType,
   cardIssuer,
+  cashback,
 }: IssuanceCardProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssuanceCard' });
+  const fee = issuanceFee ?? monthlyFee;
+  const feeTitle = t(issuanceFee ? 'issuanceFee' : 'monthlyFee');
 
   return (
     <CardWrapper background={background}>
@@ -44,20 +47,31 @@ export const IssuanceCard = ({
             {name}
           </Typography>
           <Stack gap="8px" sx={(theme) => ({ color: theme.palette.grey[400] })}>
-            <Stack direction="row">
-              <StyledTypography>{t('issuanceFee')}:</StyledTypography>
-              <StyledTypography fontWeight={500}>
-                {fee.toFixed(2)} {feeCurrency}
-              </StyledTypography>
-            </Stack>
+            {typeof fee === 'number' && (
+              <Stack direction="row">
+                <StyledTypography>{feeTitle}:</StyledTypography>
+                <StyledTypography fontWeight={500}>
+                  {fee.toFixed(2)} {feeCurrency}
+                </StyledTypography>
+              </Stack>
+            )}
             <Stack direction="row">
               <StyledTypography>{t('cardCurrency')}:</StyledTypography>
               <StyledTypography fontWeight={500}>{currency}</StyledTypography>
             </Stack>
-            <Stack direction="row">
-              <StyledTypography>{t('type')}:</StyledTypography>
-              <StyledTypography fontWeight={500}>{cardType}</StyledTypography>
-            </Stack>
+            {typeof cashback === 'number' ? (
+              <Stack direction="row">
+                <StyledTypography>{t('cashback')}:</StyledTypography>
+                <StyledTypography fontWeight={500}>
+                  {cashback}%
+                </StyledTypography>
+              </Stack>
+            ) : (
+              <Stack direction="row">
+                <StyledTypography>{t('type')}:</StyledTypography>
+                <StyledTypography fontWeight={500}>{cardType}</StyledTypography>
+              </Stack>
+            )}
           </Stack>
         </Stack>
         <Stack justifyContent="space-between" alignItems="flex-end">

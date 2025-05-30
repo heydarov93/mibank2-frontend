@@ -167,7 +167,7 @@ theme.components = {
         borderRadius: '8px',
         fontSize: '14px',
 
-        '&, &:hover': {
+        '&, &:hover:not(.Mui-disabled)': {
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.grey[400],
           },

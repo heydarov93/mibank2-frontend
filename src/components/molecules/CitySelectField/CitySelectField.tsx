@@ -55,7 +55,7 @@ export const CitySelectField = <T extends FieldValues>({
     <Controller
       name={name}
       control={control}
-      render={({ field }) => {
+      render={({ field, fieldState }) => {
         return (
           <Autocomplete<CityOptionType>
             {...field}
@@ -83,7 +83,9 @@ export const CitySelectField = <T extends FieldValues>({
                 {...params}
                 placeholder={t('RegistrationPage.placeholder.selectField')}
                 error={!!error}
-                helperText={helperText || error?.message}
+                helperText={
+                  helperText || error?.message || fieldState.error?.message
+                }
                 className={className}
                 onKeyDown={onKeyDown}
               />
