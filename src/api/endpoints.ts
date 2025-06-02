@@ -12,6 +12,7 @@ export const endpoints = {
       forgotPassword: '/uas/api/user/forgot-password',
       confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
       refreshToken: 'uas/api/user/refresh-token',
+      getUserAccounts: '/as/api/account/by-token',
       userId: 'uas/api/user/id',
     },
   },
@@ -43,6 +44,10 @@ export const endpoints = {
       getDeposits: '/ds/api/deposits',
       deleteDeposit: '/ds/api/deposits',
       updateDeposit: 'ds/api/deposits',
+    },
+    userDeposits: {
+      createDeposit: '/ds/api/user-deposits',
+      getDeposit: (accountId: string) => `/ds/api/user-deposits/${accountId}`,
     },
     cards: {
       createCard: '/cs/api/card/create-card',

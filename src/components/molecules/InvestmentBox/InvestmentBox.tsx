@@ -10,7 +10,7 @@ import {
 
 import coinInvestingPicture from 'assets/webp/CoinInvesting.webp';
 import { SubmitButton } from 'components/atoms';
-import { investmentAmount } from 'constants/learnMorePage';
+import { INVESTMENT_AMOUNT } from 'constants/learnMorePage';
 import { calculateInterest, calculateProfit } from 'utils/interestRateUtils';
 
 interface InvestmentBoxProps {
@@ -38,14 +38,14 @@ export const InvestmentBox = ({
           <Box>
             <SecondaryText>{t('willGive')}</SecondaryText>
             <PrimaryText>
-              ${investmentAmount.toLocaleString('en-US', { useGrouping: true })}
+              ${INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
             </PrimaryText>
           </Box>
           <Box>
             <SecondaryText>{t('willTake')}</SecondaryText>
             <PrimaryText>
               $
-              {calculateProfit(investmentAmount, interestRate).toLocaleString(
+              {calculateProfit(INVESTMENT_AMOUNT, interestRate).toLocaleString(
                 'en-US',
                 { useGrouping: true },
               )}
@@ -60,7 +60,7 @@ export const InvestmentBox = ({
             <SecondaryText>{t('depositAmount')}</SecondaryText>
             <SecondaryText>
               USD{' '}
-              {investmentAmount.toLocaleString('en-US', { useGrouping: true })}
+              {INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
             </SecondaryText>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -71,7 +71,7 @@ export const InvestmentBox = ({
             <SecondaryText>{t('interestAmount')}</SecondaryText>
             <PrimaryText>
               USD{' '}
-              {calculateInterest(investmentAmount, interestRate).toLocaleString(
+              {calculateInterest(INVESTMENT_AMOUNT, interestRate).toLocaleString(
                 'en-US',
                 { useGrouping: true },
               )}

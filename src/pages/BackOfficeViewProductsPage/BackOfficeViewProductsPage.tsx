@@ -102,7 +102,7 @@ const BackOfficeViewProductsPage = () => {
   const handleDeleteDeposit = async (
     product: Partial<TableData> | undefined,
   ) => {
-    if (product?.productName === ProductType.DEPOSIT) {
+    if (product?.productType === ProductType.DEPOSIT) {
       try {
         await deleteDeposit(product.id).unwrap();
         refetchProducts();

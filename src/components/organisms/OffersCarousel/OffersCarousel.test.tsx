@@ -8,8 +8,11 @@ import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (str: string) => str,
+    t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 jest.mock('api/getOffersApi', () => ({

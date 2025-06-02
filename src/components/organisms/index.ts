@@ -19,7 +19,8 @@ export { ForgotPassword } from './ForgotPassword/ForgotPassword';
 export { AvailableDepositsWindow } from './AvailableDepositsWindow/AvailableDepositsWindow';
 export { AboutDepositCard } from './AboutDepositCard/AboutDepositCard';
 export { DepositBenefitsGrid } from './DepositBenefitsGrid/DepositBenefitsGrid';
-export { OpenDepositForm } from './OpenDepositForm/OpenDepositForm';
+export { OpenDepositRow } from './OpenDepositRow/OpenDepositRow';
+export { OpenDepositModal } from './OpenDepositModal/OpenDepositModal';
 export { AuthPageWrapper } from './AuthPageWrapper/AuthPageWrapper';
 export { BusinessSignUpForm } from './BusinessSignUpForm/BusinessSignUpForm';
 export { CreatePasswordForm } from './CreatePasswordForm/CreatePasswordForm';
@@ -29,5 +30,6 @@ export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';
 export { LegalEntityVerificationContent } from './LegalEntityVerificationContent/LegalEntityVerificationContent';
 export { AddressRegisterForm } from './AddressRegisterForm/AddressRegisterForm';
 export { LeftLogoSidebar } from './LeftLogoSidebar/LeftLogoSidebar';
+
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';

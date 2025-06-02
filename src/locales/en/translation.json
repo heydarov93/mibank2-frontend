@@ -115,8 +115,9 @@
     "depositAmountPlaceholder": "Deposit Amount",
     "depositCurrencyLabel": "USD",
     "selectAccountLabel": "Select Account",
-    "calculationInfo": "Fill in all the fields above to calculate interest amount",
-    "calculationResult": "N/A",
+    "calcResultPlaceholder": "N/A",
+    "calcInstruction": "Fill in all the fields above to calculate interest amount",
+    "calcDetails": "Interest amount for {{term}} months Rate {{interestRate}} %",
     "confirmationText": " I confirm that I have reviewed and accepted the terms of the deposit agreement, including interest rates, withdrawal limits, early withdrawal fees, and other charges.",
     "termsLinkText": "Deposit Terms and Conditions",
     "account1": "Account 1",
@@ -127,6 +128,19 @@
       "depositTypeError": "Deposit amount must be a valid number",
       "accountRequired": "Account is required",
       "termsRequiredCheckbox": "You must accept the terms and conditions"
+    },
+    "confirmationModals": {
+      "successTitle": "Opened successfully!",
+      "successBody": "Your {{depositName}} has been opened successfully. 🎉 You can now manage it in your account.",
+      "depositFailTitle": "Opening Deposit failed!",
+      "somethingWentWrong": "Something went wrong, please try again!",
+      "insufficientBalance": "The account has insufficient funds. Please check your balance and try again.",
+      "cancelDepositTitle": "Are you sure you want to cancel?",
+      "cancelDepositBody": "If you press Cancel, your progress in filling out the deposit form will not be saved.",
+      "cancel": "Cancel",
+      "goBack": "Go Back",
+      "backToHome": "Back to Home",
+      "viewDeposit": "View Deposit"
     }
   },
   "TransfersPage": {

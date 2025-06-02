@@ -9,12 +9,12 @@ interface CloseButtonProps {
 
 const CloseButtonX = ({ onClick, sx }: CloseButtonProps) => {
   return (
-    <SvgIcon sx={{ ...sx }}>
-      <CloseButton
-        data-testid="close-button"
-        style={{ cursor: 'pointer' }}
-        onClick={onClick}
-      />
+    <SvgIcon
+      sx={{
+        ...sx,
+      }}
+    >
+      <CloseButton data-testid="close-button" onClick={onClick} />
     </SvgIcon>
   );
 };

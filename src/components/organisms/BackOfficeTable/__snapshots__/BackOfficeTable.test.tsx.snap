@@ -134,7 +134,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                     EditIcon.svg
                   </svg>
                 </svg>
-                LastResortDeposit.edit
+                Edit
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -154,7 +154,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                     TrashIcon.svg
                   </svg>
                 </svg>
-                LastResortDeposit.delete
+                Delete
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -231,7 +231,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                     EditIcon.svg
                   </svg>
                 </svg>
-                LastResortDeposit.edit
+                Edit
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -251,7 +251,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                     TrashIcon.svg
                   </svg>
                 </svg>
-                LastResortDeposit.delete
+                Delete
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />

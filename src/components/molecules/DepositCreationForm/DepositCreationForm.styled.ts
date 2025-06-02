@@ -7,84 +7,88 @@ import {
   Typography,
 } from '@mui/material';
 
-export const FormHeader = styled(Box)(() => ({
+export const StyledHeader = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'row',
-  gap: '8px',
+  gap: spacing(1),
 }));
 
-export const FormTitle = styled(Typography)(
+export const StyledTitle = styled(Typography)(
   ({ theme: { palette, typography } }) => ({
+    color: palette.common.black,
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
     fontSize: '32px',
     lineHeight: '100%',
     letterSpacing: 0,
-    color: palette.common.black,
   }),
 );
 
-export const FormSubTitle = styled(Typography)(
-  ({ theme: { palette, typography } }) => ({
+export const StyledSubTitle = styled(Typography)(
+  ({ theme: { palette, typography, spacing } }) => ({
+    color: palette.grey[400],
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 400,
     fontSize: '16px',
     lineHeight: '24px',
     letterSpacing: 0,
-    color: palette.grey[400],
-    marginTop: '12px',
-    marginBottom: '32px',
+    marginTop: spacing(1.5),
+    marginBottom: spacing(4),
   }),
 );
 
-export const FormLabel = styled(InputLabel)(
-  ({ theme: { palette, typography } }) => ({
+export const StyledLabel = styled(InputLabel)(
+  ({ theme: { palette, typography, spacing } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
     fontSize: typography.mediumLogo?.fontSize,
     lineHeight: '20px',
     letterSpacing: '0.1px',
     color: palette.common.black,
-    marginBottom: '4px',
+    marginBottom: spacing(0.5),
   }),
 );
 
-export const FormContainer = styled(Box)(({ theme: { palette } }) => ({
-  backgroundColor: palette.common.white,
-  maxWidth: 500,
-  padding: '40px',
-  borderRadius: '8px',
-  boxShadow: `0 4px 12px ${palette.shadow.shadowLight}`,
-}));
+export const StyledContainer = styled(Box)(
+  ({ theme: { palette, spacing } }) => ({
+    maxWidth: '500px',
+    padding: spacing(5),
+    borderRadius: '8px',
+    backgroundColor: palette.common.white,
+    boxShadow: `0 4px 12px ${palette.shadow.shadowLight}`,
+  }),
+);
 
-export const FormInterestBox = styled(Box)(({ theme: { palette } }) => ({
-  backgroundColor: palette.bg.lightBlue,
-  border: `1px solid ${palette.grey[200]}`,
-  padding: '26px 14px',
-  borderRadius: '8px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  color: palette.common.black,
-  boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
-  height: '80px',
-  width: '100%',
-}));
+export const StyledInterestBox = styled(Box)(
+  ({ theme: { palette, spacing } }) => ({
+    backgroundColor: palette.bg.lightBlue,
+    color: palette.common.black,
+    border: `1px solid ${palette.grey[200]}`,
+    padding: spacing(3.25, 1.75),
+    borderRadius: '8px',
+    width: '100%',
+    height: '80px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
+  }),
+);
 
-export const FormInterestText = styled(Typography)(
+export const StyledInterestText = styled(Typography)(
   ({ theme: { palette, typography } }) => ({
+    color: palette.common.black,
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
     fontSize: typography.mediumLogo?.fontSize,
     lineHeight: '100%',
     letterSpacing: 0,
-    color: palette.common.black,
     width: '200px',
   }),
 );
 
-export const FormInterestLabel = styled(Typography)(
+export const StyledInterestLabel = styled(Typography)(
   ({ theme: { palette, typography } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 600,
@@ -95,56 +99,74 @@ export const FormInterestLabel = styled(Typography)(
   }),
 );
 
-export const FormTermsRow = styled(FormControlLabel)(() => ({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'row-reverse',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
-  margin: '20px 0px 8px 0px',
-}));
+export const StyledTermsRow = styled(FormControlLabel)(
+  ({ theme: { spacing } }) => ({
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: spacing(2),
+    margin: spacing(2.5, 0, 1, 0),
+  }),
+);
 
-export const FormTermsText = styled(Typography)(
+export const StyledTermsText = styled(Typography)(
   ({ theme: { palette, typography } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
     fontSize: typography.mediumLogo?.fontSize,
     lineHeight: '100%',
-    marginTop: '12px',
     color: palette.common.black,
     letterSpacing: 0,
-    verticalAlign: 'middle',
   }),
 );
 
-export const FormTermsLink = styled(Typography)(
+export const StyledTermsLink = styled(Typography)(
   ({ theme: { palette, typography } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
     fontSize: '14px',
     lineHeight: '100%',
     letterSpacing: 0,
-    verticalAlign: 'middle',
     color: palette.primary.dark,
     textDecoration: 'underline',
     cursor: 'pointer',
+    verticalAlign: 'middle',
   }),
 );
 
-export const FormOpenDepositBtnBox = styled(Box)(() => ({
+export const StyledBtnRow = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: ' flex-end',
-  marginTop: '32px',
+  marginTop: spacing(4),
 }));
 
-export const FormActionBtn = styled(Button)(({ theme: { typography } }) => ({
-  height: '55px',
-  borderRadius: '8px',
-  padding: '19px 24px',
+export const StyledActionBtn = styled(Button)(
+  ({ theme: { typography, spacing } }) => ({
+    height: '55px',
+    borderRadius: '8px',
+    padding: spacing(2.5, 3),
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontWeight: 500,
+    fontSize: '16px',
+    lineHeight: '100%',
+    letterSpacing: 0,
+  }),
+);
+
+export const StyledOption = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+}));
+
+export const StyledOptionText = styled(Box)(({ theme: { typography } }) => ({
   fontFamily: typography.mediumLogo?.fontFamily,
-  fontWeight: 500,
-  fontSize: '16px',
-  lineHeight: '100%',
-  letterSpacing: 0,
+  fontWeight: 400,
+  fontSize: typography.mediumLogo?.fontSize,
+  lineHeight: '20px',
+  letterSpacing: '0.25px',
 }));

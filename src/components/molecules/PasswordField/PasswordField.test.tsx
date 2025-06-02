@@ -8,8 +8,11 @@ import { ISignupFormInput } from 'models/IAuth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (str: string) => str,
+    t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 interface WrapperComponentProps {

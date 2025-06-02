@@ -7,15 +7,12 @@ const openDepositPage = 'DepositWindow';
 export const openDepositValidationSchema = yup.object().shape({
   amount: yup
     .number()
-    .nullable()
+    .transform((value, originalValue) =>
+      originalValue === '' ? undefined : value,
+    )
     .required(i18n.t(`${openDepositPage}.validation.depositAmountRequired`))
     .min(0, i18n.t(`${openDepositPage}.validation.depositMinAmount`))
-    .typeError(i18n.t(`${openDepositPage}.validation.depositTypeError`))
-    .test(
-      'is-number',
-      i18n.t(`${openDepositPage}.validation.depositTypeError`),
-      (value) => value === null || !isNaN(value),
-    ),
+    .typeError(i18n.t(`${openDepositPage}.validation.depositTypeError`)),
   account: yup
     .string()
     .required(i18n.t(`${openDepositPage}.validation.accountRequired`))

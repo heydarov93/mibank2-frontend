@@ -1,71 +1,216 @@
-import { ThemeProvider } from '@mui/material/styles';
-import { fireEvent, render } from '@testing-library/react';
-import { wait } from '@testing-library/user-event/dist/utils';
-import { act } from 'react-dom/test-utils';
+import { ThemeProvider } from '@mui/material';
+import { fireEvent, render, screen, within } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 
 import { DepositCreationForm } from './DepositCreationForm';
 
+import store from 'store';
 import { theme } from 'theme/theme';
+
+const mockCreateDeposit = jest.fn().mockResolvedValue({});
+const mockOnBack = jest.fn();
+const mockShowSuccessModal = jest.fn();
+const mockShowErrorModal = jest.fn();
+const mockOnDepositSubmit = jest.fn();
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => key,
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'confirmationModals.successTitle': 'Opened successfully!',
+        'confirmationModals.depositFailTitle': 'Opening Deposit failed!',
+      };
+      return translations[key] || key;
+    },
   }),
   initReactI18next: {
     type: '3rdParty',
-    init: () => {},
   },
 }));
 
-const renderPage = () =>
+jest.mock('./hooks/useUserAccounts', () => ({
+  useUserAccounts: () => ({
+    accountOptions: [
+      { iban: 'PL123456789', balance: 5000, currency: 'USD' },
+      { iban: 'PL987654321', balance: 2500, currency: 'USD' },
+    ],
+    isLoading: false,
+  }),
+  useCreateDeposit: () => [mockCreateDeposit, { isLoading: false }],
+}));
+
+let mockFormState = {
+  showSuccessModal: false,
+  showErrorModal: false,
+  errorMessage: '',
+  isSubmitDisabled: true,
+};
+
+jest.mock('./hooks/useDepositForm', () => ({
+  useDepositForm: () => {
+    const originalModule = jest.requireActual('react-hook-form');
+    const form = originalModule.useForm({
+      defaultValues: {
+        amount: undefined,
+        account: '',
+        checkbox: false,
+      },
+      mode: 'all',
+    });
+
+    return {
+      form,
+      onDepositSubmit: form.handleSubmit(mockOnDepositSubmit),
+      amountValue: form.watch('amount'),
+      errors: form.formState.errors,
+      isSubmitDisabled: mockFormState.isSubmitDisabled,
+      showSuccessModal: mockFormState.showSuccessModal,
+      setShowSuccessModal: mockShowSuccessModal,
+      showErrorModal: mockFormState.showErrorModal,
+      setShowErrorModal: mockShowErrorModal,
+      errorMessage: mockFormState.errorMessage,
+      isSubmitting: false,
+    };
+  },
+}));
+
+const mockDepositProps = {
+  onBack: mockOnBack,
+  depositId: 59,
+  depositName: 'Business Deposit',
+  currency: 'USD',
+  interestRate: 2,
+  term: 12,
+};
+
+const renderForm = (props = {}) =>
   render(
     <ThemeProvider theme={theme}>
-      <DepositCreationForm
-        accounts={['Account 1', 'Account 2']}
-        onBack={jest.fn()}
-      />
+      <Provider store={store}>
+        <MemoryRouter>
+          <DepositCreationForm
+            depositId={mockDepositProps.depositId}
+            depositName={mockDepositProps.depositName}
+            interestRate={mockDepositProps.interestRate}
+            term={mockDepositProps.term}
+            currency={mockDepositProps.currency}
+            onBack={mockDepositProps.onBack}
+            {...props}
+          />
+        </MemoryRouter>
+      </Provider>
     </ThemeProvider>,
   );
 
+function mockDepositFormState({
+  showSuccessModal = false,
+  showErrorModal = false,
+  errorMessage = '',
+  isSubmitDisabled = true,
+} = {}) {
+  mockFormState = {
+    showSuccessModal,
+    showErrorModal,
+    errorMessage,
+    isSubmitDisabled,
+  };
+}
+
 describe('DepositCreationForm', () => {
-  it('renders correctly', () => {
-    const { container } = renderPage();
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockFormState = {
+      showSuccessModal: false,
+      showErrorModal: false,
+      errorMessage: '',
+      isSubmitDisabled: true,
+    };
+  });
+
+  it('matches snapshot', () => {
+    const { container } = renderForm();
     expect(container).toMatchSnapshot();
   });
 
-  it('"Open deposit" button is disabled when the form is not valid', () => {
-    const { getByRole } = renderPage();
-    expect(getByRole('button', { name: 'openDeposit' })).toBeDisabled();
+  it('renders the form components', () => {
+    renderForm();
+
+    expect(screen.getByTestId('deposit-creation-form')).toBeInTheDocument();
+    expect(screen.getByTestId('deposit-amount')).toBeInTheDocument();
+    expect(screen.getByTestId('account-select')).toBeInTheDocument();
+    expect(screen.getByTestId('interest-info')).toBeInTheDocument();
+    expect(screen.getByRole('checkbox')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'openDeposit' }),
+    ).toBeInTheDocument();
   });
 
-  it('"Open deposit" button is enabled when the form is valid', async () => {
-    const { getByRole, getByTestId } = renderPage();
+  it('"Open deposit" button is disabled when the form is not valid', () => {
+    renderForm();
 
-    const accountSelect = getByTestId('account-select');
-    const accountInput = accountSelect.querySelector(
-      'input',
-    ) as HTMLInputElement;
-    const amountInput = getByRole('spinbutton') as HTMLInputElement;
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-    const depositButton = getByRole('button', { name: 'openDeposit' });
+    const submitButton = screen.getByRole('button', { name: 'openDeposit' });
+    expect(submitButton).toBeDisabled();
+  });
 
-    await act(async () => {
-      accountSelect.focus();
-      await wait();
+  it("enables 'Open deposit' when form is valid", async () => {
+    mockDepositFormState({ isSubmitDisabled: false });
+    renderForm();
 
-      fireEvent.change(accountInput, { target: { value: 'a' } });
-      await wait();
+    const amountWrapper = screen.getByTestId('deposit-amount');
+    const amountInput = amountWrapper.querySelector('input')!;
+    const accountSelect = screen.getByTestId('account-select');
+    const checkbox = screen.getByRole('checkbox');
+    const submitButton = screen.getByRole('button', { name: 'openDeposit' });
 
-      fireEvent.keyDown(accountSelect, { key: 'ArrowDown' });
-      await wait();
+    const input = within(accountSelect).getByRole('combobox');
+    fireEvent.mouseDown(input);
 
-      fireEvent.keyDown(accountSelect, { key: 'Enter' });
-      await wait();
+    const listbox = await screen.findByRole('listbox');
+    const firstOption = within(listbox).getAllByRole('option')[0];
+    fireEvent.click(firstOption);
 
-      fireEvent.change(amountInput, { target: { value: '1000' } });
-      fireEvent.click(checkbox);
-    });
+    fireEvent.change(amountInput, { target: { value: '1000' } });
+    fireEvent.click(checkbox);
 
-    expect(depositButton).toBeEnabled();
+    expect(submitButton).not.toBeDisabled();
+  });
+
+  it('shows error modal when amount exceeds balance', async () => {
+    mockDepositFormState({ isSubmitDisabled: false });
+    renderForm();
+
+    const amountWrapper = screen.getByTestId('deposit-amount');
+    const amountInput = amountWrapper.querySelector('input')!;
+    const accountSelect = screen.getByTestId('account-select');
+    const checkbox = screen.getByRole('checkbox');
+    const submitButton = screen.getByRole('button', { name: 'openDeposit' });
+
+    const input = within(accountSelect).getByRole('combobox');
+    fireEvent.mouseDown(input);
+
+    const listbox = await screen.findByRole('listbox');
+    const firstOption = within(listbox).getAllByRole('option')[0];
+    fireEvent.click(firstOption);
+
+    fireEvent.change(amountInput, { target: { value: '6000' } });
+    fireEvent.click(checkbox);
+
+    expect(submitButton).not.toBeDisabled();
+    fireEvent.click(submitButton);
+  });
+
+  it('shows the success modal when showSuccessModal is true', () => {
+    mockDepositFormState({ showSuccessModal: true });
+    renderForm();
+
+    expect(screen.getByText('Opened successfully!')).toBeInTheDocument();
+  });
+
+  it('shows the error modal with a message when showErrorModal is true', () => {
+    mockDepositFormState({ showErrorModal: true });
+    renderForm();
+
+    expect(screen.getByText('Opening Deposit failed!')).toBeInTheDocument();
   });
 });

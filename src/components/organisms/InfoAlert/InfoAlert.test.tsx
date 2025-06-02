@@ -14,7 +14,12 @@ const defaults = {
 };
 
 jest.mock('react-i18next', () => ({
-  useTranslation: jest.fn(),
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 describe('InfoAlert', () => {
@@ -32,12 +37,6 @@ describe('InfoAlert', () => {
         return '';
     }
   };
-
-  beforeEach(() => {
-    (useTranslation as jest.Mock).mockImplementation(() => ({
-      t: mockTranslation,
-    }));
-  });
 
   test.each([
     ['success', defaults.successTitle, defaults.successMessage, 'success-icon'],

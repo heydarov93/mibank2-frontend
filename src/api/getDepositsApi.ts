@@ -41,7 +41,7 @@ export const getDepositsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
-  tagTypes: ['Deposits'],
+  tagTypes: ['getDeposits'],
   endpoints: (builder) => ({
     getDeposits: builder.query<GetDepositsResponse, GetDepositsParams>({
       query: ({ page, size }) => ({
@@ -49,7 +49,7 @@ export const getDepositsApi = createApi({
         method: 'GET',
         params: { page, size },
       }),
-      providesTags: ['Deposits'],
+      providesTags: ['getDeposits'],
     }),
   }),
 });

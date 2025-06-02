@@ -17,14 +17,14 @@ import {
   AboutDepositCard,
   AvailableDepositsWindow,
   DepositBenefitsGrid,
+  OpenDepositModal,
+  OpenDepositRow,
 } from 'components/organisms';
-import { OpenDepositForm } from 'components/organisms/OpenDepositForm/OpenDepositForm';
-import { OpenDepositModal } from 'components/organisms/OpenDepositModal/OpenDepositModal';
 import useDisclosure from 'hooks/useDisclosure';
 
 export const DepositLearnMorePage = () => {
   const params = useParams();
-  const depositIdFromParams = Number(params.id);
+  const depositId = Number(params.id);
   const navigate = useNavigate();
   const { isOpen, close, open } = useDisclosure();
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
@@ -35,9 +35,7 @@ export const DepositLearnMorePage = () => {
   } = useGetDepositsQuery({ page: 0, size: 5 });
 
   const depositIndex =
-    deposits?.content?.findIndex(
-      (deposit) => deposit.id === depositIdFromParams,
-    ) ?? 0;
+    deposits?.content?.findIndex((deposit) => deposit.id === depositId) ?? 0;
   const depositInfo = deposits?.content?.[depositIndex] ?? null;
   const isLoadingDeposits = isLoading || !depositInfo;
   const [selectedDeposit, setSelectedDeposit] = useState<Deposit | null>(null);
@@ -130,7 +128,14 @@ export const DepositLearnMorePage = () => {
           />
         </Box>
         <DepositBenefitsGrid />
-        <OpenDepositForm onBack={handleDepositBack} />
+        <OpenDepositRow
+          onBack={handleDepositBack}
+          depositName={depositInfo.name}
+          depositId={depositId}
+          depositCurrency={depositInfo.currency}
+          interestRate={depositInfo.interestRate}
+          term={depositInfo.term}
+        />
       </StyledContainer>
       <AvailableDepositsWindow
         open={isOpen}
