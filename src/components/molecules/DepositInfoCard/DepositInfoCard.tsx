@@ -17,7 +17,7 @@ import DepositCardSvg from 'assets/icons/DepositCardImg.svg';
 
 type DepositInfoCardProps = Deposit;
 
-const DepositInfoCard = ({
+export const DepositInfoCard = ({
   name,
   description,
   min,
@@ -100,5 +100,3 @@ const DepositInfoCard = ({
     </StyledCardContainer>
   );
 };
-
-export default DepositInfoCard;

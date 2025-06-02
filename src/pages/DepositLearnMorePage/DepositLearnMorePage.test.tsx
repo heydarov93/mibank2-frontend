@@ -1,5 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles';
-import { render, waitFor } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter, useNavigate, useParams } from 'react-router-dom';
 
 import { DepositLearnMorePage } from './DepositLearnMorePage';
@@ -11,9 +13,74 @@ jest.mock('components/atoms/DepositErrorMessage/DepositErrorMessage', () => ({
   DepositErrorMessage: () => <div>error</div>,
 }));
 
+jest.mock(
+  'components/molecules/DepositCreationForm/hooks/useUserAccounts',
+  () => ({
+    useUserAccounts: () => ({
+      accountOptions: [
+        {
+          id: 'acc-1',
+          iban: 'US1234567890',
+          balance: 10000,
+          currency: 'USD',
+        },
+      ],
+      isLoading: false,
+    }),
+    useCreateDeposit: () => [
+      jest.fn(() => Promise.resolve({})),
+      { isLoading: false },
+    ],
+  }),
+);
+
+jest.mock('api/getUserAccountsApi', () => ({
+  useGetUserAccountsQuery: jest.fn(() => ({
+    data: {
+      accounts: [
+        {
+          id: 'acc-1',
+          iban: 'US1234567890',
+          balance: 10000,
+          currency: 'USD',
+        },
+      ],
+    },
+    isLoading: false,
+  })),
+  getUserAccountsApi: {
+    reducerPath: 'getUserAccountsApi',
+    reducer: jest.fn(),
+  },
+}));
+
 jest.mock('api/getDepositsApi', () => ({
   useGetDepositsQuery: jest.fn(),
+  getDepositsApi: {
+    reducerPath: 'getDepositsApi',
+    reducer: jest.fn(),
+  },
 }));
+
+const mockStore = configureStore({
+  reducer: {
+    getDepositsApi: () => ({}),
+    getUserAccountsApi: () => ({}),
+    getOffersApi: () => ({}),
+  },
+});
+
+jest.mock('components/organisms/OpenDepositModal/OpenDepositModal', () => ({
+  OpenDepositModal: () => <div data-testid="open-deposit-modal-form" />,
+}));
+
+jest.mock(
+  'components/organisms/AvailableDepositsWindow/AvailableDepositsWindow',
+  () => ({
+    AvailableDepositsWindow: ({ open }: { open: boolean }) =>
+      open ? <div data-testid="available-deposits-window" /> : null,
+  }),
+);
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -22,18 +89,22 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  ...jest.requireActual('react-i18next'),
   useTranslation: () => ({
     t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 const renderPage = () =>
   render(
     <ThemeProvider theme={theme}>
-      <MemoryRouter>
-        <DepositLearnMorePage />
-      </MemoryRouter>
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <DepositLearnMorePage />
+        </MemoryRouter>
+      </Provider>
     </ThemeProvider>,
   );
 
@@ -44,6 +115,7 @@ describe('DepositLearnMorePage', () => {
     (useNavigate as jest.Mock).mockReturnValue(jest.fn());
     (useGetDepositsQuery as jest.Mock).mockReturnValue({
       isLoading: false,
+      isError: false,
       data: {
         content: [
           {
@@ -52,12 +124,15 @@ describe('DepositLearnMorePage', () => {
             description: 'Test Description',
             imageUrl: 'test.jpg',
             interestRate: 5,
-            minAmount: 1000,
-            maxAmount: 10000,
+            currency: 'USD',
+            term: 12,
+            capitalization: 2,
+            earlyWithdrawalFee: 1,
+            earlyWithdrawalLimit: 30,
+            min: 1000,
           },
         ],
       },
-      isError: false,
     });
   });
 
@@ -72,8 +147,8 @@ describe('DepositLearnMorePage', () => {
       isError: false,
     });
 
-    const { getByRole } = renderPage();
-    expect(getByRole('progressbar')).toBeInTheDocument();
+    renderPage();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 
   it('renders error state', () => {
@@ -82,40 +157,36 @@ describe('DepositLearnMorePage', () => {
       isError: true,
     });
 
-    const { getByText } = renderPage();
-    expect(getByText('error')).toBeInTheDocument();
+    renderPage();
+    expect(screen.getByText('error')).toBeInTheDocument();
   });
 
   it('navigates back when back button is clicked', () => {
     const navigate = jest.fn();
     (useNavigate as jest.Mock).mockReturnValue(navigate);
 
-    const { getByTestId } = renderPage();
-    const backButton = getByTestId('back-button');
-    backButton.click();
-
+    renderPage();
+    fireEvent.click(screen.getByTestId('back-button'));
     expect(navigate).toHaveBeenCalledWith(-1);
   });
 
   it('opens deposit form when "Open Deposit" button is clicked', async () => {
-    const { getByTestId } = renderPage();
-    const openDepositButton = getByTestId('open-current-deposit-button');
-
-    openDepositButton.click();
+    renderPage();
+    fireEvent.click(screen.getByTestId('open-current-deposit-button'));
 
     await waitFor(() =>
-      expect(getByTestId('deposit-creation-form')).toBeInTheDocument(),
+      expect(screen.getByTestId('open-deposit-modal-form')).toBeInTheDocument(),
     );
   });
 
   it('opens available deposits window when "View All Deposits" button is clicked', async () => {
-    const { getByTestId } = renderPage();
-    const openDepositButton = getByTestId('open-all-deposits-button');
-
-    openDepositButton.click();
+    renderPage();
+    fireEvent.click(screen.getByTestId('open-all-deposits-button'));
 
     await waitFor(() =>
-      expect(getByTestId('available-deposits-window')).toBeInTheDocument(),
+      expect(
+        screen.getByTestId('available-deposits-window'),
+      ).toBeInTheDocument(),
     );
   });
 });

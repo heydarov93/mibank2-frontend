@@ -1,8 +1,8 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Button, styled, Typography } from '@mui/material';
 
-export const MainContainer = styled(Box)(({ theme: { palette } }) => ({
+export const MainContainer = styled(Box)(({ theme: { palette, spacing } }) => ({
   display: 'flex',
-  padding: '32px',
+  padding: spacing(4),
   border: `1px solid ${palette.error.main}`,
   borderRadius: '8px',
   justifyContent: 'space-between',
@@ -12,13 +12,15 @@ export const MainContainer = styled(Box)(({ theme: { palette } }) => ({
   height: '124px',
 }));
 
-export const StyledHeader = styled(Typography)(({ theme: { typography } }) => ({
-  fontSize: '24px',
-  fontFamily: typography.mediumLogo?.fontFamily,
-  lineHeight: '28px',
-  fontWeight: 600,
-  marginBottom: '8px',
-}));
+export const StyledHeader = styled(Typography)(
+  ({ theme: { typography, spacing } }) => ({
+    fontSize: '24px',
+    fontFamily: typography.mediumLogo?.fontFamily,
+    lineHeight: '28px',
+    fontWeight: 600,
+    marginBottom: spacing(1),
+  }),
+);
 
 export const SecondaryText = styled(Typography)(
   ({ theme: { typography, palette } }) => ({
@@ -39,4 +41,25 @@ export const StyledIcon = styled(Box)(({ theme: { palette, spacing } }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+}));
+
+export const StyledBackButton = styled(Button)(
+  ({ theme: { spacing, typography } }) => ({
+    width: '110px',
+    height: '48px',
+    borderRadius: '8px',
+    padding: spacing(1, 3),
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontWeight: 500,
+    fontSize: typography.mediumLogo?.fontSize,
+    lineHeight: '100%',
+    letterSpacing: 0,
+  }),
+);
+
+export const StyledButtonsRow = styled(Box)(({ theme: { spacing } }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'flex-end',
+  gap: spacing(1.5),
 }));

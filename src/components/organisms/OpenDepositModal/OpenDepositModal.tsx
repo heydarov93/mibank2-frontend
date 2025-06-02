@@ -1,16 +1,15 @@
-import CloseIcon from '@mui/icons-material/Close';
 import { Box, Drawer } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 
 import { Deposit } from 'api/getDepositsApi';
-import { DepositCreationForm } from 'components/molecules/DepositCreationForm/DepositCreationForm';
-import DepositInfoCard from 'components/molecules/DepositInfoCard/DepositInfoCard';
+import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { DepositCreationForm, DepositInfoCard } from 'components/molecules';
 import { StyledCloseButton } from 'components/molecules/DepositInfoCard/DepositInfoCard.styled';
 import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
+import useDisclosure from 'hooks/useDisclosure';
 
 interface OpenDepositModalProps {
   deposit: Deposit | null;
-  onClose?: () => void;
+  onClose: () => void;
   onBack: () => void;
 }
 
@@ -19,8 +18,7 @@ export const OpenDepositModal = ({
   onBack,
   deposit,
 }: OpenDepositModalProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-  const accounts = [t('account1'), t('account2')];
+  const { open } = useDisclosure();
 
   return (
     <Drawer
@@ -39,14 +37,18 @@ export const OpenDepositModal = ({
     >
       <Box display="flex">
         <DepositCreationForm
-          accounts={accounts}
           modal={true}
           onCloseModal={onClose}
           onBack={onBack}
+          depositName={deposit?.name as string}
+          depositId={deposit?.id as number}
+          currency={deposit?.currency as string}
+          interestRate={deposit?.interestRate as number}
+          term={deposit?.term as number}
         />
         {deposit && <DepositInfoCard {...deposit} />}
-        <StyledCloseButton onClick={onClose}>
-          <CloseIcon />
+        <StyledCloseButton data-testid="modal-close-button">
+          <CloseButtonX onClick={open} sx={{ cursor: 'pointer' }} />
         </StyledCloseButton>
       </Box>
     </Drawer>

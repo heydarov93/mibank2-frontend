@@ -1,4 +1,4 @@
-import { Box, IconButton, List, styled, Typography } from '@mui/material';
+import { Box, List, styled, Typography } from '@mui/material';
 
 export const StyledCardContainer = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
@@ -72,18 +72,16 @@ export const StyledInfoCardSecondaryText = styled(Typography)(
   }),
 );
 
-export const StyledCloseButton = styled(IconButton)(
+export const StyledCloseButton = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
     position: 'absolute',
-    right: spacing(5),
+    right: spacing(0.5),
     top: spacing(5),
-    backgroundColor: 'transparent',
     color: palette.grey[400],
     padding: spacing(1),
-    borderRadius: spacing(1),
-    '&:hover': {
-      backgroundColor: palette.shadow.shadowLight,
-    },
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   }),
 );
 

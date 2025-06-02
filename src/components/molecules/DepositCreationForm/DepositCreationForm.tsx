@@ -1,174 +1,145 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {
-  Autocomplete,
-  Box,
-  InputAdornment,
-  Switch,
-  TextField,
-} from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
+import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import {
-  FormActionBtn,
-  FormContainer,
-  FormHeader,
-  FormInterestBox,
-  FormInterestLabel,
-  FormInterestText,
-  FormLabel,
-  FormOpenDepositBtnBox,
-  FormSubTitle,
-  FormTermsLink,
-  FormTermsRow,
-  FormTermsText,
-  FormTitle,
-} from './DepositCreationForm.styled';
+import BackOfficeConfirmationWindow from '../BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
+import BackOfficeFailWindow from '../BackOfficeFailWindow/BackOfficeFailWindow';
+import { BackOfficeWarningWindow } from '../BackOfficeWarningWindow/BackOfficeWarningWindow';
 
+import { StyledContainer, StyledTermsLink } from './DepositCreationForm.styled';
+import { useDepositForm } from './hooks/useDepositForm';
+import { useCreateDeposit, useUserAccounts } from './hooks/useUserAccounts';
+import AccountSelect from './molecules/AccountSelect';
+import AmountField from './molecules/AmountField';
+import ConfirmationSwitch from './molecules/ConfirmationSwitch';
+import FormButtons from './molecules/FormButtons';
+import FormHeader from './molecules/FormHeader';
+import InterestInfo from './molecules/InterestInfo';
+import { buildDepositPayload } from './utils/buildDepositPayload';
+
+import useDisclosure from 'hooks/useDisclosure';
 import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
 
 interface DepositCreationFormProps {
-  accounts: string[];
   modal?: boolean;
   onCloseModal?: () => void;
+  currency: string;
   onBack: () => void;
+  depositId: number;
+  interestRate: number;
+  term: number;
+  depositName: string;
 }
 
 export const DepositCreationForm = ({
-  accounts,
+  depositName,
+  depositId,
+  interestRate,
+  currency,
+  term,
   modal,
   onCloseModal,
   onBack,
 }: DepositCreationFormProps) => {
+  const { isOpen, open, close } = useDisclosure();
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
+  const { accountOptions, isLoading } = useUserAccounts();
+  const [createUserDeposit] = useCreateDeposit();
 
   const {
-    control,
-    formState: { errors, isValid },
-  } = useForm({
-    resolver: yupResolver(openDepositValidationSchema),
-    mode: 'all',
-    defaultValues: {
-      amount: undefined,
-      account: '',
-      checkbox: false,
-    },
+    form,
+    onDepositSubmit,
+    amountValue,
+    errors,
+    isSubmitDisabled,
+    showSuccessModal,
+    setShowSuccessModal,
+    showErrorModal,
+    setShowErrorModal,
+    errorMessage,
+  } = useDepositForm({
+    validationSchema: openDepositValidationSchema,
+    onSuccess: modal ? onCloseModal : undefined,
+    accountOptions,
+    createDeposit: createUserDeposit,
+    buildPayload: buildDepositPayload,
+    depositId,
   });
 
+  const { control } = form;
+
   return (
-    <FormContainer data-testid="deposit-creation-form">
-      <FormHeader>
-        <ArrowBackIosIcon
-          onClick={onBack}
-          sx={(theme) => ({
-            width: '24px',
-            height: '24px',
-            color: theme.palette.grey[400],
-            cursor: 'pointer',
-          })}
-        />
-        <FormTitle>{t('openDeposit')}</FormTitle>
-      </FormHeader>
-      <FormSubTitle>{t('openDepositFormSubTitle')}</FormSubTitle>
-      <form>
-        <Box sx={{ marginBottom: '24px' }}>
-          <FormLabel>{t('depositAmountLabel')}</FormLabel>
-          <Controller
-            name="amount"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                fullWidth
-                type="number"
-                inputProps={{ min: 0, pattern: 'd*' }}
-                placeholder={t('depositAmountPlaceholder')}
-                onBlur={field.onBlur}
-                onChange={(e) => field.onChange(e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      {t('depositCurrencyLabel')}
-                    </InputAdornment>
-                  ),
-                }}
-                error={!!errors.amount}
-                helperText={errors.amount?.message}
-                sx={{ borderRadius: '8px' }}
-              />
-            )}
-          />
-        </Box>
+    <StyledContainer data-testid="deposit-creation-form">
+      <Box component="form" onSubmit={onDepositSubmit}>
+        <FormHeader onBack={onBack} />
 
-        <Box sx={{ marginBottom: '24px' }}>
-          <FormLabel>{t('selectAccountLabel')}</FormLabel>
-          <Controller
-            name="account"
-            control={control}
-            render={({ field }) => (
-              <Autocomplete
-                data-testid="account-select"
-                options={accounts}
-                value={field.value}
-                onChange={(_, value) => field.onChange(value || '')}
-                getOptionLabel={(option) => option}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder={t('selectAccountLabel')}
-                    error={!!errors.account}
-                    helperText={errors.account?.message}
-                    onChange={(e) => field.onChange(e.target.value)}
-                    onBlur={field.onBlur}
-                  />
-                )}
-                sx={{ borderRadius: '8px' }}
-              />
-            )}
-          />
-        </Box>
+        <AmountField control={control} errors={errors} currency={currency} />
 
-        <FormInterestBox>
-          <FormInterestText>{t('calculationInfo')}</FormInterestText>
-          <FormInterestLabel>{t('calculationResult')}</FormInterestLabel>
-        </FormInterestBox>
-
-        <Controller
-          name="checkbox"
+        <AccountSelect
           control={control}
-          render={({ field }) => (
-            <FormTermsRow
-              control={
-                <Switch
-                  {...field}
-                  checked={field.value}
-                  onChange={(e) => field.onChange(e.target.checked)}
-                  size="medium"
-                />
-              }
-              label={<FormTermsText>{t('confirmationText')}</FormTermsText>}
-            />
-          )}
+          errors={errors}
+          isLoading={isLoading}
+          options={accountOptions}
         />
 
-        <FormTermsLink>{t('termsLinkText')}</FormTermsLink>
+        <InterestInfo
+          interestRate={interestRate}
+          amount={amountValue}
+          currency={currency}
+          term={term}
+        />
 
-        <FormOpenDepositBtnBox>
-          {modal && (
-            <FormActionBtn
-              variant="outlined"
-              sx={{ marginRight: '25px', width: '113px' }}
-              onClick={onCloseModal}
-            >
-              {t('cancelDeposit')}
-            </FormActionBtn>
-          )}
-          <FormActionBtn variant="contained" disabled={!isValid}>
-            {t('openDeposit')}
-          </FormActionBtn>
-        </FormOpenDepositBtnBox>
-      </form>
-    </FormContainer>
+        <ConfirmationSwitch control={control} />
+
+        <StyledTermsLink>{t('termsLinkText')}</StyledTermsLink>
+
+        <FormButtons
+          isDisabled={isSubmitDisabled}
+          onCloseModal={open}
+          modal={modal}
+        />
+      </Box>
+
+      <BackOfficeWarningWindow
+        deposit={true}
+        open={isOpen}
+        title={t('confirmationModals.cancelDepositTitle')}
+        text={t('confirmationModals.cancelDepositBody')}
+        onCancelClick={onBack}
+        onBackClick={close}
+      />
+
+      {showSuccessModal && (
+        <BackOfficeConfirmationWindow
+          sx={{
+            height: 'fit-content',
+            width: '540px',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+          title={t('confirmationModals.successTitle')}
+          body={t('confirmationModals.successBody', {
+            depositName: depositName?.toLowerCase(),
+          })}
+          depositSuccess={true}
+          depositId={depositId}
+          onClose={() => setShowSuccessModal(false)}
+        />
+      )}
+
+      {showErrorModal && (
+        <BackOfficeFailWindow
+          sx={{
+            height: 'fit-content',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+          onClose={() => setShowErrorModal(false)}
+          title={t('confirmationModals.depositFailTitle')}
+          body={errorMessage}
+        />
+      )}
+    </StyledContainer>
   );
 };

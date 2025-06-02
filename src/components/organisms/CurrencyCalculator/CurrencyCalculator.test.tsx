@@ -47,7 +47,12 @@ jest.mock('api/convertCurrencyApi', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  useTranslation: jest.fn(),
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 describe('CurrencyCalculator', () => {
@@ -76,10 +81,6 @@ describe('CurrencyCalculator', () => {
     );
 
   beforeEach(() => {
-    (useTranslation as jest.Mock).mockReturnValue({
-      t: (key: string) => key,
-    });
-
     (useGetCurrentRatesQuery as jest.Mock).mockReturnValue({
       data: [{ rates: mockRates }],
       isLoading: false,

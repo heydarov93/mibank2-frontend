@@ -26,15 +26,17 @@ import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { convertCurrencyApi } from 'api/convertCurrencyApi';
 import { createCardApi } from 'api/createCardApi';
-import { createDepositApi } from 'api/createDeposit';
+import { createDepositApi, createUserDepositApi } from 'api/createDeposit';
 import { deleteDepositApi } from 'api/deleteDepositApi';
 import { employeeControllerApi } from 'api/employeeController';
+import { employeeLogInApi } from 'api/employeeLogInApi';
 import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
 import { getDepositsApi } from 'api/getDepositsApi';
 import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
 import { getOffersApi } from 'api/getOffersApi';
 import { getPostcode } from 'api/getPostcode';
 import { getProductsApi } from 'api/getProductsApi';
+import { getUserAccountsApi } from 'api/getUserAccountsApi';
 import { getUserIdApi } from 'api/getUserIdApi';
 import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
 import { refreshToken } from 'api/refreshTokenApi';
@@ -63,11 +65,11 @@ const rootReducer = combineReducers({
   [confirmForgotPasswordApi.reducerPath]: confirmForgotPasswordApi.reducer,
   [refreshToken.reducerPath]: refreshToken.reducer,
   [authenticateEmployeeApi.reducerPath]: authenticateEmployeeApi.reducer,
+  [employeeLogInApi.reducerPath]: employeeLogInApi.reducer,
   [validateOtpApi.reducerPath]: validateOtpApi.reducer,
   [employeeControllerApi.reducerPath]: employeeControllerApi.reducer,
   [registerEmployeeApi.reducerPath]: registerEmployeeApi.reducer,
   [createDepositApi.reducerPath]: createDepositApi.reducer,
-  [getDepositsApi.reducerPath]: getDepositsApi.reducer,
   [createCardApi.reducerPath]: createCardApi.reducer,
   [accountsApi.reducerPath]: accountsApi.reducer,
   [getUserIdApi.reducerPath]: getUserIdApi.reducer,
@@ -77,6 +79,9 @@ const rootReducer = combineReducers({
   [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
   [getProductsApi.reducerPath]: getProductsApi.reducer,
   [getOffersApi.reducerPath]: getOffersApi.reducer,
+  [getUserAccountsApi.reducerPath]: getUserAccountsApi.reducer,
+  [getDepositsApi.reducerPath]: getDepositsApi.reducer,
+  [createUserDepositApi.reducerPath]: createUserDepositApi.reducer,
 });
 
 const persistConfig = {
@@ -95,6 +100,7 @@ const persistConfig = {
     confirmForgotPasswordApi.reducerPath,
     refreshToken.reducerPath,
     authenticateEmployeeApi.reducerPath,
+    employeeLogInApi.reducerPath,
     validateOtpApi.reducerPath,
     employeeControllerApi.reducerPath,
     registerEmployeeApi.reducerPath,
@@ -109,6 +115,8 @@ const persistConfig = {
     convertCurrencyApi.reducerPath,
     getProductsApi.reducerPath,
     getOffersApi.reducerPath,
+    getUserAccountsApi.reducerPath,
+    createUserDepositApi.reducerPath,
   ],
 };
 
@@ -133,6 +141,7 @@ const store = configureStore({
       confirmForgotPasswordApi.middleware,
       refreshToken.middleware,
       authenticateEmployeeApi.middleware,
+      employeeLogInApi.middleware,
       validateOtpApi.middleware,
       employeeControllerApi.middleware,
       registerEmployeeApi.middleware,
@@ -147,6 +156,8 @@ const store = configureStore({
       convertCurrencyApi.middleware,
       getProductsApi.middleware,
       getOffersApi.middleware,
+      getUserAccountsApi.middleware,
+      createUserDepositApi.middleware,
     ]),
 });
 

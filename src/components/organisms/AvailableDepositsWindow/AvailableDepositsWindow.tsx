@@ -13,7 +13,10 @@ import { DepositErrorMessage } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
+import {
+  DRAWER_HEIGHT_CALC_SIZE,
+  LEARN_MORE_PAGE_BASE_URL,
+} from 'constants/learnMorePage';
 import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
@@ -66,7 +69,8 @@ export const AvailableDepositsWindow = ({
             <CircularProgress />
           ) : (
             deposits?.content?.map((item, i) => {
-              const { id, currency, description, term, name, interestRate } = item;
+              const { id, currency, description, term, name, interestRate } =
+                item;
 
               return (
                 <ListItem sx={{ padding: 0 }} key={id}>
@@ -81,7 +85,7 @@ export const AvailableDepositsWindow = ({
                     }
                     secondaryButton={
                       <Link
-                        to={`/deposits/learn-more/${id}`}
+                        to={`${LEARN_MORE_PAGE_BASE_URL}${id}`}
                         style={{ color: theme.palette.primary.main }}
                         onClick={onClose}
                       >

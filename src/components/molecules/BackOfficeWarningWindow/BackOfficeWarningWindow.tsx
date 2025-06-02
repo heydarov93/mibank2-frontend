@@ -28,9 +28,11 @@ interface BackOfficeWarningWindowProps {
   open?: boolean;
   product?: Partial<TableData>;
   employee?: Partial<TableData>;
+  deposit?: boolean;
   sx?: SxProps<Theme>;
   onDeleteClick?: (product: Partial<TableData> | undefined) => void;
-  onCancelClick: () => void;
+  onCancelClick?: () => void;
+  onBackClick?: () => void;
   title?: string;
   text?: string;
   isLoading?: boolean;
@@ -42,9 +44,11 @@ export const BackOfficeWarningWindow = ({
   open,
   product,
   employee,
+  deposit,
   sx,
   onDeleteClick,
   onCancelClick,
+  onBackClick,
   title,
   text,
   isLoading,
@@ -104,20 +108,39 @@ export const BackOfficeWarningWindow = ({
         </Box>
       </DialogTitle>
 
-      <DialogActions sx={{ padding: 0, justifyContent: 'flex-end', gap: 1 }}>
-        {isLoading && <CircularProgress size={24} />}
-        <Button variant="outlined" onClick={onCancelClick}>
-          {t('ConfirmationWindow.cancelBtn')}
-        </Button>
-        <Button
-          variant="contained"
-          color="error"
-          onClick={handleDeleteClick}
-          disabled={isLoading}
-        >
-          {t('ConfirmationWindow.deleteBtn')}
-        </Button>
-      </DialogActions>
+      {product || employee ? (
+        <DialogActions sx={{ padding: 0, justifyContent: 'flex-end', gap: 1 }}>
+          {isLoading && <CircularProgress size={24} />}
+          <Button variant="outlined" onClick={onCancelClick}>
+            {t('ConfirmationWindow.cancelBtn')}
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleDeleteClick}
+            disabled={isLoading}
+          >
+            {t('ConfirmationWindow.deleteBtn')}
+          </Button>
+        </DialogActions>
+      ) : null}
+
+      {deposit && (
+        <DialogActions sx={{ padding: 0, justifyContent: 'flex-end', gap: 1 }}>
+          {isLoading && <CircularProgress size={24} />}
+          <Button variant="outlined" onClick={onBackClick}>
+            Go Back
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            disabled={isLoading}
+            onClick={onCancelClick}
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      )}
 
       {isError && (
         <DialogContent sx={{ justifyContent: 'center', padding: 0 }}>
