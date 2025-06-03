@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import {
   ProductsContainer,
 } from './BackOfficeLeftSidebar.styled';
 
-import { StyledIcon, StyledLogo } from 'components/atoms/Logo/Logo.styled';
+import { Logo } from 'components/atoms';
 import LogoutButton from 'components/atoms/LogoutButton/LogoutButton';
 import SettingsButton from 'components/atoms/SettingsButton/SettingsButton';
 import BackOfficeNavigationLink from 'components/molecules/BackOfficeNavigationLinks/BackOfficeNavigationLink';
@@ -37,27 +37,12 @@ const BackOfficeLeftSidebar = () => {
   };
 
   return (
-    <Box
-      width={'100%'}
-      sx={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
-    >
-      <Box color={'white'}>
-        <Typography>Millennium Bank</Typography>
-        <StyledLogo isSmall={false}>
-          <StyledIcon isWhite={true} />
-        </StyledLogo>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <Box display="flex" flexDirection="column" gap={8} width="100%">
+      <Logo color="white" size="xl" labelOnTop={true} />
+      <Box display="flex" flexDirection="column" gap={4}>
         <ProductsContainer>
           <StyledHeader>{t('SideBar.productHeader')}</StyledHeader>
-          <Box
-            sx={{
-              paddingLeft: '32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
+          <Box paddingLeft={4} display="flex" flexDirection="column" gap={1.5}>
             <BackOfficeNavigationLink
               svg={PlusIcon}
               text={t('SideBar.createProduct')}
@@ -73,14 +58,7 @@ const BackOfficeLeftSidebar = () => {
         </ProductsContainer>
         <ProductsContainer>
           <StyledHeader>{t('SideBar.employeeHeader')}</StyledHeader>
-          <Box
-            sx={{
-              paddingLeft: '32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
+          <Box paddingLeft={4} display="flex" flexDirection="column" gap={1.5}>
             <BackOfficeNavigationLink
               svg={PlusIcon}
               text={t('SideBar.addEmployee')}
@@ -96,14 +74,7 @@ const BackOfficeLeftSidebar = () => {
         </ProductsContainer>
         <ProductsContainer>
           <StyledHeader>{t('SideBar.clientHeader')}</StyledHeader>
-          <Box
-            sx={{
-              paddingLeft: '32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
+          <Box paddingLeft={4} display="flex" flexDirection="column" gap={1.5}>
             <BackOfficeNavigationLink
               svg={PlusIcon}
               text={t('SideBar.addClient')}
@@ -118,7 +89,7 @@ const BackOfficeLeftSidebar = () => {
           </Box>
         </ProductsContainer>
       </Box>
-      <Box sx={{ display: 'flex', gap: '8px', justifyContent: 'end' }}>
+      <Box display="flex" gap={1} justifyContent="flex-end">
         <SettingsButton />
         <LogoutButton onClick={handleLogoutClick} />
       </Box>

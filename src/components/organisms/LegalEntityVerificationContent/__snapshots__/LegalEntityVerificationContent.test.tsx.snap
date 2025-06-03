@@ -6,7 +6,7 @@ exports[`LegalEntityVerificationContent matches the snapshot 1`] = `
     class="MuiBox-root css-6glu07"
   >
     <div
-      data-size="medium"
+      data-size="lg"
       data-testid="logo"
     />
     <div

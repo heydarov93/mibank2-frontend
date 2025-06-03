@@ -4,13 +4,13 @@ import { ErrorNotification } from '../ErrorNotification/ErrorNotification';
 
 import { PageWrapper, StyledBoxContainer } from './AuthWrapper.styled';
 
-import { ELogoSize, Logo } from 'components/atoms';
+import { Logo } from 'components/atoms';
 
 export const AuthWrapper = ({ children }: { children: ReactNode }) => (
   <PageWrapper>
     <StyledBoxContainer>
       <ErrorNotification />
-      <Logo size={ELogoSize.MEDIUM} />
+      <Logo size="lg" />
       {children}
     </StyledBoxContainer>
   </PageWrapper>

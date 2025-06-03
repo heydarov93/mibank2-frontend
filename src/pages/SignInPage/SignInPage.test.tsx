@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -8,6 +9,7 @@ import { SignInPage } from './SignInPage';
 import { authApi } from 'api/authApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { userInfoApi } from 'api/userInfoApi';
+import { theme } from 'theme/theme';
 
 const initialValues = {
   auth: {
@@ -70,7 +72,9 @@ describe('LoginPage', () => {
     const { asFragment } = render(
       <Provider store={mockStore}>
         <MemoryRouter>
-          <SignInPage />
+          <ThemeProvider theme={theme}>
+            <SignInPage />
+          </ThemeProvider>
         </MemoryRouter>
       </Provider>,
     );

@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -7,6 +8,7 @@ import { Footer } from './Footer';
 
 import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
 import { useAppSelector } from 'hooks';
+import { theme } from 'theme/theme';
 
 const initialValues = {
   auth: {
@@ -24,7 +26,9 @@ const renderFooter = () => {
   render(
     <Provider store={mockStore}>
       <MemoryRouter>
-        <Footer />
+        <ThemeProvider theme={theme}>
+          <Footer />
+        </ThemeProvider>
       </MemoryRouter>
     </Provider>,
   );

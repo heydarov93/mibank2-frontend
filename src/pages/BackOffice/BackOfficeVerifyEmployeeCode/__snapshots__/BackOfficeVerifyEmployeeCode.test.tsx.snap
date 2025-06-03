@@ -6,27 +6,25 @@ exports[`BackOfficeVerifyEmployeeCode renders correctly and matches snapshot 1`]
     style="display: flex; flex-direction: column; align-items: center; gap: 12px; justify-content: center; height: 100vh;"
   >
     <div
-      class="MuiBox-root css-w0slhu"
+      class="MuiBox-root css-fi2a58"
       data-testid="logo"
     >
-      <div
-        class="MuiBox-root css-yruxu8"
+      <span
+        aria-hidden="true"
+        class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-ops86o-MuiIcon-root"
       >
         <svg
-          class="css-1w10xs4"
+          height="100%"
+          width="100%"
         >
           Logo.svg
         </svg>
-      </div>
-      <div
-        class="MuiBox-root css-1atcn2a"
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1pwdld8-MuiTypography-root"
       >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-pwumes-MuiTypography-root"
-        >
-          Millennium Bank
-        </p>
-      </div>
+        Millennium Bank
+      </p>
     </div>
     <p
       class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"

@@ -7,7 +7,6 @@ import { StyledContainer } from './AuthPageWrapper.styled';
 import {
   BackArrow,
   ButtonLink,
-  ELogoSize,
   Logo,
   NavigationWarningModal,
 } from 'components/atoms';
@@ -57,7 +56,7 @@ export function AuthPageWrapper({ children }: { children: ReactNode }) {
         onCancel={handleCancelNavigateBack}
       />
       <StyledContainer>
-        <Logo size={ELogoSize.MEDIUM} />
+        <Logo size="lg" />
         {children}
         <ButtonLink
           message={t('doesAccountExist')}

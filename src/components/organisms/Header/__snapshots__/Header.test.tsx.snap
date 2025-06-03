@@ -13,27 +13,25 @@ exports[`Header component snapshot should match 1`] = `
         href="/"
       >
         <div
-          class="MuiBox-root css-1szp4xl"
+          class="MuiBox-root css-ybpx8d"
           data-testid="logo"
         >
-          <div
-            class="MuiBox-root css-2t4951"
+          <span
+            aria-hidden="true"
+            class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-1ygk0ui-MuiIcon-root"
           >
             <svg
-              class="css-1w10xs4"
+              height="100%"
+              width="100%"
             >
               Logo.svg
             </svg>
-          </div>
-          <div
-            class="MuiBox-root css-ucw12t"
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1oq6dw0-MuiTypography-root"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-18wusoe-MuiTypography-root"
-            >
-              logoTitle
-            </p>
-          </div>
+            logoTitle
+          </p>
         </div>
       </a>
       <div

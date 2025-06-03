@@ -27,14 +27,14 @@ import {
   TO_TRANSFERS,
   TO_VERIFICATION,
   TO_VERIFY_EMAIL,
-  TO_WELCOME
+  TO_WELCOME,
 } from '../constants/routesName';
 import {
   BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
   BusinessCreatePasswordPage,
   BusinessSignUpPage,
-  CreateFogotPasswordPage,
+  CreateForgotPasswordPage,
   CreatePasswordPage,
   DepositLearnMorePage,
   ErrorPage,
@@ -144,7 +144,7 @@ const routes = createBrowserRouter([
   },
   {
     path: TO_CREATE_FORGOT_PASSWORD,
-    element: <CreateFogotPasswordPage />,
+    element: <CreateForgotPasswordPage />,
   },
   {
     path: TO_CREATE_FORGOT_PASSWORD_FINISHED,
@@ -197,4 +197,3 @@ const routes = createBrowserRouter([
 ]);
 
 export { routes };
-

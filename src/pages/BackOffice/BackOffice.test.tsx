@@ -1,6 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+
 import BackOffice from './BackOffice';
 
 jest.mock('./BackOfficeLeftSidebar', () => ({
@@ -14,27 +14,28 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('BackOffice', () => {
-  it('renders BackOfficeLeftSidebar and Outlet', () => {
-    const { getByTestId } = render(
-      <Router>
+  const setup = () =>
+    render(
+      <MemoryRouter>
         <BackOffice />
-      </Router>,
+      </MemoryRouter>,
     );
 
-    expect(getByTestId('BackOfficeLeftSidebar')).toBeInTheDocument();
-    expect(getByTestId('Outlet')).toBeInTheDocument();
+  it('renders BackOfficeLeftSidebar and Outlet', () => {
+    setup();
+
+    expect(screen.getByTestId('BackOfficeLeftSidebar')).toBeInTheDocument();
+    expect(screen.getByTestId('Outlet')).toBeInTheDocument();
   });
 
   it('has correct layout with flex display', () => {
-    const { container } = render(
-      <Router>
-        <BackOffice />
-      </Router>,
-    );
+    const { container } = setup();
 
     const backOfficeContainer = container.firstChild as HTMLElement;
-    expect(backOfficeContainer).toHaveStyle('display: flex');
-    expect(backOfficeContainer).toHaveStyle('min-height: 100vh');
-    expect(backOfficeContainer).toHaveStyle('width: 100%');
+    expect(backOfficeContainer).toHaveStyle({
+      display: 'flex',
+      minHeight: '100vh',
+      width: '100%',
+    });
   });
 });

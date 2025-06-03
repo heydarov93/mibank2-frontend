@@ -6,7 +6,7 @@ export { VerificationPage } from './VerificationPage/VerificationPage';
 export { SignUpPage } from './SignUpPage/SignUpPage';
 export { CreatePasswordPage } from './CreatePasswordPage/CreatePasswordPage';
 export { RegistrationPage } from './RegistrationPage/RegistrationPage';
-export { CreateFogotPasswordPage } from './CreateForgotPasswordPage/CreateForgotPasswordPage';
+export { CreateForgotPasswordPage } from './CreateForgotPasswordPage/CreateForgotPasswordPage';
 export { ForgotPasswordPageFinished } from './CreateForgotPasswordPage/ForgotPasswordPageFinished';
 export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
 export { BackOfficeEmployeeLoginPage } from './BackOfficeEmployeeSignInPage/BackOfficeEmployeeSigninPage';

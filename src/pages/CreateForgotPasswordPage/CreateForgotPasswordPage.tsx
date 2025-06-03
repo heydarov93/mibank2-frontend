@@ -4,7 +4,7 @@ import { BackArrow } from 'components/atoms/BackArrow/BackArrow';
 import { AuthWrapper, Footer } from 'components/organisms';
 import { CreateForgotPasswordForm } from 'components/organisms';
 
-export const CreateFogotPasswordPage = () => {
+export const CreateForgotPasswordPage = () => {
   const navigate = useNavigate();
   const handleBackClick = () => {
     navigate(-1);

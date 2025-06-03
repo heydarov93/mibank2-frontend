@@ -10,7 +10,7 @@ import {
   StyledFormContent,
   StyledFormTitle,
   StyledLabel,
-} from './CreateFogotPasswordForm.styled';
+} from './CreateForgotPasswordForm.styled';
 
 import { useConfirmForgotPasswordMutation } from 'api/confirmForgotPasswordApi';
 import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';

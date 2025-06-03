@@ -1,7 +1,10 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+
 import BackOfficeLeftSidebar from './BackOfficeLeftSidebar';
+
+import { theme } from 'theme/theme';
 
 jest.mock('../../assets/icons/PlusIcon.svg', () => ({
   ReactComponent: () => <svg data-testid="PlusIcon" />,
@@ -15,18 +18,20 @@ jest.mock('../../assets/icons/ViewEmployeesIcon.svg', () => ({
 jest.mock('../../assets/icons/WalletIcon.svg', () => ({
   ReactComponent: () => <svg data-testid="WalletIcon" />,
 }));
-jest.mock('components/atoms/Logo/Logo.styled', () => ({
-  StyledIcon: () => <div data-testid="StyledIcon" />,
-  StyledLogo: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="StyledLogo">{children}</div>
-  ),
-}));
-jest.mock('components/atoms/LogoutButton/LogoutButton', () => () => (
-  <button data-testid="LogoutButton">Logout</button>
-));
-jest.mock('components/atoms/SettingsButton/SettingsButton', () => () => (
-  <button data-testid="SettingsButton">Settings</button>
-));
+jest.mock(
+  'components/atoms/LogoutButton/LogoutButton',
+  () =>
+    function LogoutButton() {
+      return <button data-testid="LogoutButton">Logout</button>;
+    },
+);
+jest.mock(
+  'components/atoms/SettingsButton/SettingsButton',
+  () =>
+    function SettingsButton() {
+      return <button data-testid="SettingsButton">Settings</button>;
+    },
+);
 jest.mock(
   'components/molecules/BackOfficeNavigationLinks/BackOfficeNavigationLink',
   () => ({
@@ -34,7 +39,6 @@ jest.mock(
     default: ({
       svg: SvgIcon,
       text,
-      link,
     }: {
       svg: any;
       text: string;
@@ -48,35 +52,32 @@ jest.mock(
   }),
 );
 
-describe('BackOfficeLeftSidebar', () => {
-  it('renders correctly and matches snapshot', () => {
-    const { asFragment } = render(
-      <Router>
+const renderSidebar = () =>
+  render(
+    <MemoryRouter>
+      <ThemeProvider theme={theme}>
         <BackOfficeLeftSidebar />
-      </Router>,
-    );
+      </ThemeProvider>
+    </MemoryRouter>,
+  );
+
+describe('BackOfficeLeftSidebar', () => {
+  it('matches snapshot', () => {
+    const { asFragment } = renderSidebar();
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('renders all expected components', () => {
-    const { getByTestId, getAllByTestId, getByText } = render(
-      <Router>
-        <BackOfficeLeftSidebar />
-      </Router>,
-    );
+  it('renders all expected UI elements', () => {
+    renderSidebar();
 
-    expect(getByText('Millennium Bank')).toBeInTheDocument();
-    expect(getByTestId('StyledLogo')).toBeInTheDocument();
+    expect(screen.getAllByTestId('BackOfficeNavigationLink')).toHaveLength(6);
+    expect(screen.getAllByTestId('PlusIcon')).toHaveLength(3);
 
-    const navLinks = getAllByTestId('BackOfficeNavigationLink');
-    expect(navLinks.length).toBe(6);
+    expect(screen.getByTestId('WalletIcon')).toBeInTheDocument();
+    expect(screen.getByTestId('ViewEmployeesIcon')).toBeInTheDocument();
+    expect(screen.getByTestId('ViewClientsIcon')).toBeInTheDocument();
 
-    expect(getAllByTestId('PlusIcon').length).toBe(3);
-    expect(getByTestId('WalletIcon')).toBeInTheDocument();
-    expect(getByTestId('ViewEmployeesIcon')).toBeInTheDocument();
-    expect(getByTestId('ViewClientsIcon')).toBeInTheDocument();
-
-    expect(getByTestId('LogoutButton')).toBeInTheDocument();
-    expect(getByTestId('SettingsButton')).toBeInTheDocument();
+    expect(screen.getByTestId('LogoutButton')).toBeInTheDocument();
+    expect(screen.getByTestId('SettingsButton')).toBeInTheDocument();
   });
 });
