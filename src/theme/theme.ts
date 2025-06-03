@@ -81,6 +81,12 @@ export const theme = createTheme({
   animations: {
     shake: shakeAnimation,
   },
+  logo: {
+    sm: { iconSize: '36px', fontSize: '12px' },
+    md: { iconSize: '50px', fontSize: '16px' },
+    lg: { iconSize: '72px', fontSize: '14px' },
+    xl: { iconSize: '96px', fontSize: '14px' },
+  },
 });
 
 theme.components = {

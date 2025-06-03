@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -9,6 +10,7 @@ import { ForgotPasswordPage } from './ForgotPasswordPage';
 import { authApi } from 'api/authApi';
 import { contactInfoApi } from 'api/contactInfoApi';
 import { userInfoApi } from 'api/userInfoApi';
+import { theme } from 'theme/theme';
 
 const initialValues = {
   auth: {
@@ -57,46 +59,46 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('utils', () => {
-  return {
-    generateRandomParam: jest.fn().mockReturnValue(''),
-    handleLockedError: jest.fn(),
-    useErrorHandlers: jest.fn,
-    localTokenHandler: {
-      getToken: jest.fn(),
-    },
-    formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
-  };
-});
+jest.mock('utils', () => ({
+  generateRandomParam: jest.fn().mockReturnValue(''),
+  handleLockedError: jest.fn(),
+  useErrorHandlers: jest.fn,
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+  formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
+}));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: jest.fn(),
 }));
 
-describe('Forgot password Finished should match snapshot', () => {
-  it('snapshot should match', () => {
-    const { asFragment } = render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
+const renderComponent = () =>
+  render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <ThemeProvider theme={theme}>
           <ForgotPasswordPage />
-        </MemoryRouter>
-      </Provider>,
-    );
+        </ThemeProvider>
+      </MemoryRouter>
+    </Provider>,
+  );
+
+describe('ForgotPasswordPage', () => {
+  it('should match snapshot', () => {
+    const { asFragment } = renderComponent();
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('navigate to signin page when click on back button', async () => {
+  it('should navigate to signin page on back button click', () => {
     const mockNavigate = jest.fn();
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <ForgotPasswordPage />,
-        </MemoryRouter>
-      </Provider>,
-    );
-    const backButton = screen.getByRole('button', { name: 'RegistrationPage.buttonBackArrow' });
+
+    renderComponent();
+    const backButton = screen.getByRole('button', {
+      name: 'RegistrationPage.buttonBackArrow',
+    });
     fireEvent.click(backButton);
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
   });

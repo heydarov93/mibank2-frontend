@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useLogInMutation } from 'api/employeeLogInApi';
-import { ELogoSize, Logo, SubmitButton } from 'components/atoms';
+import { Logo, SubmitButton } from 'components/atoms';
 import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/OneTimePasscode';
 import {
   CancelButton,
@@ -99,14 +99,9 @@ const BackOfficeVerifyEmployeeCode = () => {
         }}
         onSubmit={onSubmit}
       >
-        <Logo size={ELogoSize.MEDIUM} />
+        <Logo size="lg" />
         <Typography>{t('OTPVerificationPage.verifyCodeMessage')}</Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '8px',
-          }}
-        >
+        <Box display="flex" gap={1}>
           <OneTimePasscode
             otp={otp}
             handleChange={handleChange}
@@ -119,12 +114,10 @@ const BackOfficeVerifyEmployeeCode = () => {
           {isError && <Alert severity="error">{errorMessage}</Alert>}
         </Box>
         <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            alignItems: 'center',
-          }}
+          display="flex"
+          justifyContent="center"
+          gap={1.5}
+          alignItems="center"
         >
           <StyledCancelContainer>
             <CancelButton onClick={handleCancel}>
@@ -137,14 +130,8 @@ const BackOfficeVerifyEmployeeCode = () => {
           />
         </Box>
         {isLoading && (
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '12px',
-            }}
-          >
-            <CircularProgress data-testid="progress-indicator"/>
+          <Box display="flex" justifyContent="center" gap={1.5}>
+            <CircularProgress data-testid="progress-indicator" />
           </Box>
         )}
       </form>

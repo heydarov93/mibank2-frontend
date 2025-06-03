@@ -1,25 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
+exports[`BackOfficeLeftSidebar matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-gxi7h9"
+    class="MuiBox-root css-9us84d"
   >
     <div
-      class="MuiBox-root css-kbn7if"
+      class="MuiBox-root css-95a6nz"
+      data-testid="logo"
     >
+      <span
+        aria-hidden="true"
+        class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-1w86u6e-MuiIcon-root"
+      >
+        <svg
+          height="100%"
+          width="100%"
+        >
+          LogoWhite.svg
+        </svg>
+      </span>
       <p
-        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-qfsiut-MuiTypography-root"
       >
         Millennium Bank
       </p>
-      <div
-        data-testid="StyledLogo"
-      >
-        <div
-          data-testid="StyledIcon"
-        />
-      </div>
     </div>
     <div
       class="MuiBox-root css-6r2fzw"
@@ -28,9 +33,9 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
         class="MuiBox-root css-197vxcd"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-9btzqd-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-11yndm1-MuiTypography-root"
         >
-          SideBar.productHeader
+          Products
         </p>
         <div
           class="MuiBox-root css-g77exw"
@@ -42,7 +47,7 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="PlusIcon"
             />
             <span>
-              SideBar.createProduct
+              Create New Product
             </span>
           </div>
           <div
@@ -52,7 +57,7 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="WalletIcon"
             />
             <span>
-              SideBar.viewProducts
+              View All Products
             </span>
           </div>
         </div>
@@ -61,9 +66,9 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
         class="MuiBox-root css-197vxcd"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-9btzqd-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-11yndm1-MuiTypography-root"
         >
-          SideBar.employeeHeader
+          Employees
         </p>
         <div
           class="MuiBox-root css-g77exw"
@@ -75,7 +80,7 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="PlusIcon"
             />
             <span>
-              SideBar.addEmployee
+              Add New Employee
             </span>
           </div>
           <div
@@ -85,7 +90,7 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="ViewEmployeesIcon"
             />
             <span>
-              SideBar.viewEmployees
+              View All Employees
             </span>
           </div>
         </div>
@@ -94,9 +99,9 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
         class="MuiBox-root css-197vxcd"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-9btzqd-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-11yndm1-MuiTypography-root"
         >
-          SideBar.clientHeader
+          Clients
         </p>
         <div
           class="MuiBox-root css-g77exw"
@@ -108,7 +113,7 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="PlusIcon"
             />
             <span>
-              SideBar.addClient
+              Add a New Client
             </span>
           </div>
           <div
@@ -118,14 +123,14 @@ exports[`BackOfficeLeftSidebar renders correctly and matches snapshot 1`] = `
               data-testid="ViewClientsIcon"
             />
             <span>
-              SideBar.viewClients
+              View All Clients
             </span>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="MuiBox-root css-1r6dl8z"
+      class="MuiBox-root css-xine5j"
     >
       <button
         data-testid="SettingsButton"

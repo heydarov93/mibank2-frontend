@@ -1,18 +1,11 @@
 import { Box } from '@mui/material';
-import {
-  SyntheticEvent,
-  useEffect,
-  useState
-} from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { StyledContainer, StyledHeader } from './WelcomePage.styled';
 
-import { Logo } from 'components/atoms';
-import { TabPanel } from 'components/atoms/TabPanel/TabPanel';
-import { Footer } from 'components/organisms';
-import { WelcomeHeader } from 'components/organisms/WelcomeHeader';
-import { WelcomeNav } from 'components/organisms/WelcomeNav/WelcomeNav';
+import { Logo, TabPanel } from 'components/atoms';
+import { Footer, WelcomeHeader, WelcomeNav } from 'components/organisms';
 import { EWelcomeTab } from 'enums/EWelcomeTab';
 import { UnderDevPage } from 'pages/UnderDevPage/UnderDevPage';
 
@@ -49,11 +42,11 @@ export const WelcomePage = () => {
       <StyledHeader>
         <WelcomeHeader activeTab={tabValue} onSetActiveTab={handleTabChange} />
         <StyledContainer>
-          <Logo />
+          <Logo size="md" />
           <WelcomeNav activePanel={tabValue} />
         </StyledContainer>
       </StyledHeader>
-      <Box marginTop="120px">
+      <Box marginTop={15}>
         <TabPanel value={tabValue} index={TAB_INDEX[EWelcomeTab.Personal]}>
           Personal Page
         </TabPanel>

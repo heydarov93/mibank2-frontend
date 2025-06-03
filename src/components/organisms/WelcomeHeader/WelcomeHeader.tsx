@@ -49,17 +49,14 @@ export const WelcomeHeader = ({
 
       <StyledRightSection>
         <IconButton>
-          <SearchIcon sx={{ width: '24px', height: '24px' }} />
+          <SearchIcon width="24px" height="24px" />
         </IconButton>
 
         <StyledContactsText variant="body2">{t('contacts')}</StyledContactsText>
 
         <DropDownBox onClick={handleLangClick}>
           <StyledLangText variant="body2">{t('language')}</StyledLangText>
-          <ExpandMoreIcon
-            fontSize="small"
-            sx={{ width: '24px', height: '24px' }}
-          />
+          <ExpandMoreIcon fontSize="small" width="24px" height="24px" />
         </DropDownBox>
         <Menu
           anchorEl={langAnchorEl}

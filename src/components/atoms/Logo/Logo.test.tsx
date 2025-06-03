@@ -1,23 +1,21 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { render } from '@testing-library/react';
 
-import { Logo, ELogoSize } from './Logo';
+import { Logo } from './Logo';
+
+import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
-const theme = createTheme({
-  typography: {
-    smallLogo: { fontSize: '12px', lineHeight: '16px', fontFamily: 'Inter' },
-    mediumLogo: { fontSize: '16px', lineHeight: '20px', fontFamily: 'Inter' },
-  },
-});
-
 describe('Logo Component', () => {
-  it('should render witthout crashing', () => {
+  it('should render without crashing', () => {
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Logo />
@@ -44,18 +42,15 @@ describe('Logo Component', () => {
   });
 
   it('should render with medium title when specified', () => {
-    const { getByTestId, getByText } = render(
+    const { getByText } = render(
       <ThemeProvider theme={theme}>
-        <Logo size={ELogoSize.MEDIUM} />
+        <Logo size="md" />
       </ThemeProvider>,
     );
     const titleElement = getByText('logoTitle');
-    const logoContainer = getByTestId('logo');
 
-    expect(logoContainer).toBeInTheDocument();
     expect(titleElement).toBeInTheDocument();
     expect(titleElement).toHaveStyle(`font-size: 16px`);
-    expect(logoContainer).toHaveStyle('flex-direction: column');
   });
 
   it('should render BankLogoBoxIcon', () => {

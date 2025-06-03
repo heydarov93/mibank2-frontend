@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@mui/material';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -5,6 +6,7 @@ import { FooterContacts } from './FooterContacts';
 
 import { useGetVersionQuery, useGetContactsQuery } from 'api/contactInfoApi';
 import { useAppSelector } from 'hooks';
+import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -34,7 +36,9 @@ jest.mock('hooks', () => ({
 const renderFooterContacts = () => {
   render(
     <MemoryRouter>
-      <FooterContacts />
+      <ThemeProvider theme={theme}>
+        <FooterContacts />
+      </ThemeProvider>
     </MemoryRouter>,
   );
 };

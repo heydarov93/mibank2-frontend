@@ -1,56 +1,58 @@
-import { Typography, useTheme } from '@mui/material';
+import { Icon, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import {
-  StyledLogo,
-  StyledLogoContainer,
-  StyledLogoNameContainer,
-  StyledIcon,
-} from './Logo.styled';
+import { StyledContainer } from './Logo.styled';
 
-type LogoProps = {
-  size?: ELogoSize;
-  color?: ELogoColor;
-};
+import { ReactComponent as LogoSvgBlue } from 'assets/icons/Logo.svg';
+import { ReactComponent as LogoSvgWhite } from 'assets/icons/LogoWhite.svg';
+import { theme } from 'theme/theme';
 
-export enum ELogoSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
+type TLogoSize = keyof typeof theme.logo;
+type TLogoColor = 'blue' | 'white';
+
+interface ILogoProps {
+  size?: TLogoSize;
+  color?: TLogoColor;
+  labelOnTop?: boolean;
 }
 
-export enum ELogoColor {
-  DARK = 'dark',
-  WHITE = 'white',
-}
-
-export const Logo = ({
-  size = ELogoSize.SMALL,
-  color = ELogoColor.DARK,
-}: LogoProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  const theme = useTheme();
-
-  const isSmall = size === ELogoSize.SMALL;
-
-  const isMedium = size === ELogoSize.MEDIUM;
-
-  const isWhite = color === ELogoColor.WHITE;
-
+const LogoSvg = ({ color }: { color: TLogoColor }) => {
+  const props = { width: '100%', height: '100%' };
   return (
-    <StyledLogoContainer isMedium={isMedium} data-testid="logo">
-      <StyledLogo isSmall={isSmall}>
-        <StyledIcon isWhite={isWhite} />
-      </StyledLogo>
-      <StyledLogoNameContainer isSmall={isSmall} isWhite={isWhite}>
-        {/* TODO: need to setup line-heaght into the theme */}
-        <Typography
-          sx={
-            isSmall ? theme.typography.smallLogo : theme.typography.mediumLogo
-          }
-        >
-          {t('logoTitle')}
-        </Typography>
-      </StyledLogoNameContainer>
-    </StyledLogoContainer>
+    <>
+      {color === 'blue' && <LogoSvgBlue {...props} />}
+      {color === 'white' && <LogoSvgWhite {...props} />}
+    </>
   );
 };
+
+export function Logo({
+  size = 'sm',
+  color = 'blue',
+  labelOnTop = false,
+}: ILogoProps) {
+  const { t } = useTranslation('translation', { keyPrefix: 'header' });
+  const theme = useTheme();
+  const logo = theme.logo[size];
+
+  const isWhite = color === 'white';
+  const isCompact = ['sm', 'md'].includes(size);
+  const flexColumn = labelOnTop ? 'column-reverse' : 'column';
+  const flexDirection = isCompact ? 'row' : flexColumn;
+  const textWidth = isCompact ? 'min-content' : 'max-content';
+
+  return (
+    <StyledContainer flexDirection={flexDirection} data-testid="logo">
+      <Icon sx={{ width: logo.iconSize, height: logo.iconSize }}>
+        <LogoSvg color={color} />
+      </Icon>
+      <Typography
+        fontSize={logo.fontSize}
+        width={textWidth}
+        color={isWhite ? 'common.white' : 'common.black'}
+      >
+        {t('logoTitle')}
+      </Typography>
+    </StyledContainer>
+  );
+}

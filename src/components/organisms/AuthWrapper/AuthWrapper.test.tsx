@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import { AuthWrapper } from './AuthWrapper';
 
-import { ELogoSize, Logo } from 'components/atoms';
+import { Logo } from 'components/atoms';
 
 i18n.init({
   resources: {
@@ -26,7 +26,6 @@ jest.mock('../ErrorNotification/ErrorNotification', () => ({
 }));
 
 jest.mock('components/atoms', () => ({
-  ELogoSize: { MEDIUM: 'medium' },
   Logo: jest.fn(() => <div>Logo</div>),
 }));
 
@@ -53,10 +52,7 @@ describe('AuthWrapper', () => {
   });
 
   it('should render the Logo component with the correct size', () => {
-    expect(Logo).toHaveBeenCalledWith(
-      { size: ELogoSize.MEDIUM },
-      expect.anything(),
-    );
+    expect(Logo).toHaveBeenCalledWith({ size: 'lg' }, expect.anything());
   });
 
   it('should render children components', () => {

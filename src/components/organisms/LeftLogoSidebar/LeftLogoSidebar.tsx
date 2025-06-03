@@ -1,23 +1,12 @@
-import { useTranslation } from 'react-i18next';
+import { StyledLogoContainer, StyledSidebar } from './LeftLogoSidebar.styled';
 
-import {
-  StyledLogoContainer,
-  StyledLogoText,
-  StyledSidebar,
-} from './LeftLogoSidebar.styled';
-
-import { MiBlueLogoIcon } from 'components/atoms';
+import { Logo } from 'components/atoms';
 
 export const LeftLogoSidebar = () => {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'BusinessLoginPage',
-  });
-
   return (
     <StyledSidebar>
       <StyledLogoContainer>
-        <MiBlueLogoIcon />
-        <StyledLogoText>{t('logoTitle')}</StyledLogoText>
+        <Logo size="xl" color="white" />
       </StyledLogoContainer>
     </StyledSidebar>
   );

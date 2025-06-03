@@ -10,7 +10,7 @@ import {
   StyledTitle,
 } from './LegalEntityVerificationContent.styled';
 
-import { ELogoSize, Logo } from 'components/atoms';
+import { Logo } from 'components/atoms';
 
 export const LegalEntityVerificationContent = () => {
   const { t } = useTranslation('translation', {
@@ -19,7 +19,7 @@ export const LegalEntityVerificationContent = () => {
 
   return (
     <StyledContent>
-      <Logo size={ELogoSize.MEDIUM} />
+      <Logo size="lg" />
 
       <StyledActions>
         <StyledActionsTop>

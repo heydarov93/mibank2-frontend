@@ -44,7 +44,7 @@ export const StyledFormTitle = styled(Typography)(
     },
 
     [breakpoints.up('md')]: {
-      marginTop: '18px',
+      marginTop: spacing(2.25),
     },
   }),
 );

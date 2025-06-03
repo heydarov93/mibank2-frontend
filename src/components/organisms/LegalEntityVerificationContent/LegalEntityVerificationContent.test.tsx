@@ -40,7 +40,7 @@ describe('LegalEntityVerificationContent', () => {
 
   it('renders the company logo at medium size', () => {
     const logo = screen.getByTestId('logo');
-    expect(logo).toHaveAttribute('data-size', 'medium');
+    expect(logo).toHaveAttribute('data-size', 'lg');
   });
 
   it('renders the title and body text', () => {
@@ -53,7 +53,7 @@ describe('LegalEntityVerificationContent', () => {
   it('renders two links with the correct hrefs', () => {
     const links = screen.getAllByTestId('router-link');
     expect(links).toHaveLength(2);
-    links.forEach(link => expect(link).toHaveAttribute('href', '/'));
+    links.forEach((link) => expect(link).toHaveAttribute('href', '/'));
   });
 
   it('allows clicking the resend link without error', async () => {

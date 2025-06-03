@@ -30,6 +30,7 @@ export { PaymentReceiptModal } from './PaymentReceiptModal/PaymentReceiptModal';
 export { LegalEntityVerificationContent } from './LegalEntityVerificationContent/LegalEntityVerificationContent';
 export { AddressRegisterForm } from './AddressRegisterForm/AddressRegisterForm';
 export { LeftLogoSidebar } from './LeftLogoSidebar/LeftLogoSidebar';
-
+export { WelcomeHeader } from './WelcomeHeader/WelcomeHeader';
+export { WelcomeNav } from './WelcomeNav/WelcomeNav';
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';
