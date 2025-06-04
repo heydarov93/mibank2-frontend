@@ -3,12 +3,11 @@ import { styled } from '@mui/material/styles';
 
 export const StyledCarouselContainer = styled(Box)(() => ({
   position: 'relative',
-  width: '974px',
   height: '197px',
 }));
 
-export const StyledStack = styled(Stack)(({ theme }) => ({
-  color: theme.palette.error.main,
-  gap: '8px',
+export const StyledStack = styled(Stack)(({ theme: { palette, spacing } }) => ({
+  color: palette.error.main,
+  gap: spacing(1),
   alignItems: 'center',
 }));

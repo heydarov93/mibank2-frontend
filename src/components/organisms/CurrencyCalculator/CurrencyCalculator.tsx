@@ -1,12 +1,11 @@
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { Alert, CircularProgress } from '@mui/material';
+import { Alert, Box, CircularProgress } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
 
 import {
-  StyledContainer,
   StyledCurrencyText,
   StyledIconButton,
   StyledInputsColumn,
@@ -40,7 +39,7 @@ const CurrencyCalculator = () => {
       handleAmountChange(e, isFromCurrency);
 
   return (
-    <StyledContainer>
+    <Box>
       <StyledTableTitle>{t('CurCal.cal')}</StyledTableTitle>
 
       {isConvertCurrencyError && (
@@ -94,7 +93,7 @@ const CurrencyCalculator = () => {
             {exchange.to.currency}
           </StyledCurrencyText>
         )}
-    </StyledContainer>
+    </Box>
   );
 };
 

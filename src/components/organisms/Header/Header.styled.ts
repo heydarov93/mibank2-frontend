@@ -8,7 +8,7 @@ export const StyledHeader = styled('header')(
     alignItems: 'center',
     backgroundColor: palette.common.white,
     padding: spacing(0.5, 2),
-    // boxShadow: `0px 2px 8px 0px ${palette.grey[200]}`,
+    boxShadow: `0 3px 4px 0 ${palette.shadow.shadowCoolLight}`,
 
     [breakpoints.up('sm')]: {
       padding: spacing(0.25, 4),

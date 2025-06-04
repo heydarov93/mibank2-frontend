@@ -18,7 +18,7 @@ import { TransferMethodMenu } from 'components/organisms/TransferMethodMenu/Tran
 export const transferMethods = ['iban', 'card', 'owncards'] as const;
 export type TTransferMethod = (typeof transferMethods)[number];
 
-export default function TransfersPage() {
+export function TransfersPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const transferMethod = searchParams.get('method') as TTransferMethod;
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
@@ -38,7 +38,7 @@ export default function TransfersPage() {
   }
 
   return (
-    <Box sx={{ marginTop: 3 }}>
+    <Box width="100%">
       {transferMethod && (
         <StyledBackButton
           onClick={handleCancelConfirm}
