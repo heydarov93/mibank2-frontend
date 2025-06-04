@@ -80,7 +80,7 @@ export const RatesTable = () => {
   );
 
   return (
-    <Box width={'50%'}>
+    <Box>
       <StyledTableTitle>{t('ratesTable.title')}</StyledTableTitle>
 
       {isRatesError && (

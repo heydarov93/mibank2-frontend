@@ -1,9 +1,5 @@
 import { Box, IconButton, styled, Typography } from '@mui/material';
 
-export const StyledContainer = styled(Box)(() => ({
-  maxWidth: '480px',
-}));
-
 export const StyledInputsColumn = styled(Box)(({ theme: { spacing } }) => ({
   position: 'relative',
   display: 'flex',

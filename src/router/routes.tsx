@@ -40,10 +40,12 @@ import {
   ErrorPage,
   ForgotPasswordPage,
   ForgotPasswordPageFinished,
+  Homepage,
   LegalEntityVerificationPage,
   RegistrationPage,
   SignInPage,
   SignUpPage,
+  TransfersPage,
   UnderDevPage,
   VerificationPage,
   VerifyEmailPage,
@@ -63,8 +65,6 @@ import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPa
 import BackOfficeViewEmployees from 'pages/BackOfficeViewEmployees/BackOfficeViewEmployees';
 import BackOfficeViewProductsPage from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage';
 import BusinessLoginPage from 'pages/BusinessLoginPage/BusinessLoginPage';
-import Homepage from 'pages/Homepage/Homepage';
-import TransfersPage from 'pages/TransfersPage/TransfersPage';
 
 const routes = createBrowserRouter([
   {

@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 
 import awsExports from './aws-exports';
 
-import { AppContainer } from 'App.styled';
-import { Footer, Header } from 'components/organisms';
+import { AppContainer, OutletContainer } from 'App.styled';
+import { Sidebar, Footer, Header } from 'components/organisms';
 
 Amplify.configure(awsExports);
 
@@ -12,7 +12,10 @@ export const App = () => {
   return (
     <AppContainer>
       <Header />
-      <Outlet />
+      <OutletContainer>
+        <Sidebar />
+        <Outlet />
+      </OutletContainer>
       <Footer />
     </AppContainer>
   );

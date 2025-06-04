@@ -31,6 +31,23 @@
     "greetings": "Hello"
   },
   "MainPage": {
+    "sidebar": {
+      "myCards": {
+        "title": "My Cards"
+      },
+      "myTransactions": {
+        "title": "My Transactions"
+      },
+      "myLoans": {
+        "title": "My Loans"
+      },
+      "myDeposits": {
+        "title": "My Deposits"
+      },
+      "addNewProduct": "Add new product",
+      "seeAll": "See all",
+      "emptySection": "Nothing here yet. Add a new product."
+    },
     "currencyExchange": {
       "title": "Currency exchange",
       "subTitle": "Millenium Bank provides a comprehensive suite of trading tools that enable efficient buying, selling, and exchanging of currencies and opportunities to earn passive income"
