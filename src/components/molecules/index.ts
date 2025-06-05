@@ -42,3 +42,4 @@ export { CurrencySelect } from './CurrencySelect/CurrencySelect';
 export { NumericInput } from './NumericInput/NumericInput';
 export { PatternInput } from './PatternInput/PatternInput';
 export { InputFieldControlled } from './InputFieldControlled/InputFieldControlled';
+export { CustomTableRow } from './CustomTableRow/CustomTableRow';

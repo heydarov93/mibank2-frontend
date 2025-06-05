@@ -275,17 +275,19 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
       </table>
       <div
         class="MuiBox-root css-5xhpq3"
+        data-testid="main-container"
       >
         <div
-          class="MuiBox-root css-axw7ok"
+          class="MuiBox-root css-69mwjq"
         >
           <p
             class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
           >
-            Items per page
+            itemsPerPage
           </p>
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-junvyf-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-1ikgd6f-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            data-testid="count-select"
           >
             <div
               aria-controls=":r1:"
@@ -311,12 +313,13 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="KeyboardArrowDownIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
-              <svg>
-                ExpandMoreIcon.svg
-              </svg>
+              <path
+                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"
+              />
             </svg>
             <fieldset
               aria-hidden="true"
@@ -336,23 +339,18 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
           >
-            1
-             - 
-            0
-             
-            of 
-            0
-             items
+            pageDisplayText
           </p>
         </div>
         <div
-          class="MuiBox-root css-k5rr6j"
+          class="MuiBox-root css-aabovo"
+          data-testid="pagination-actions"
         >
           <div
-            class="MuiBox-root css-70qvj9"
+            class="MuiBox-root css-wxfvax"
           >
             <button
-              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-x5rw2m-MuiButtonBase-root-MuiIconButton-root"
               disabled=""
               tabindex="-1"
               type="button"
@@ -388,14 +386,15 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
             >
-              Previous
+              prevBtn
             </p>
           </div>
           <div
-            class="MuiBox-root css-axw7ok"
+            class="MuiBox-root css-1bc9qkb"
           >
             <div
               class="MuiBox-root css-rewt5a"
+              data-testid="current-page"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
@@ -407,16 +406,16 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
             >
               of 
-              0
+              1
             </p>
           </div>
           <div
-            class="MuiBox-root css-70qvj9"
+            class="MuiBox-root css-wxfvax"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-bhz8bd-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
             >
-              Next
+              nextBtn
             </p>
             <button
               class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
@@ -426,7 +425,7 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
                 focusable="false"
                 viewBox="0 0 12 20"
               >
@@ -436,14 +435,14 @@ exports[`renders BackOfficeViewEmployees correctly 1`] = `
               </svg>
             </button>
             <button
-              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1hzwo8z-MuiButtonBase-root-MuiIconButton-root"
               disabled=""
               tabindex="-1"
               type="button"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
                 focusable="false"
                 viewBox="0 0 24 24"
               >

@@ -18,3 +18,4 @@ export { BusinessSignUpPage } from './BusinessSignUpPage/BusinessSignUpPage';
 export { BusinessCreatePasswordPage } from './BusinessCreatePasswordPage/BusinessCreatePasswordPage';
 export { VerifyEmailPage } from './VerifyEmailPage/VerifyEmailPage';
 export { TransfersPage } from './TransfersPage/TransfersPage';
+export { TransactionsHistoryPage } from './TransactionsHistoryPage/TransactionsHistoryPage';

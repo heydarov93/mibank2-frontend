@@ -46,6 +46,7 @@ import {
   SignInPage,
   SignUpPage,
   TransfersPage,
+  TransactionsHistoryPage,
   UnderDevPage,
   VerificationPage,
   VerifyEmailPage,
@@ -90,7 +91,7 @@ const routes = createBrowserRouter([
       },
       {
         path: TO_HISTORY,
-        element: <UnderDevPage />,
+        element: <TransactionsHistoryPage />,
       },
       {
         path: TO_DEPOSIT_LEARN_MORE,

@@ -263,9 +263,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
     </table>
     <div
       class="MuiBox-root css-tj50lq"
+      data-testid="main-container"
     >
       <div
-        class="MuiBox-root css-axw7ok"
+        class="MuiBox-root css-69mwjq"
       >
         <p
           class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
@@ -273,7 +274,8 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           Items per page
         </p>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-ntsdmc-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-wyfja0-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          data-testid="count-select"
         >
           <div
             aria-controls=":r0:"
@@ -299,12 +301,12 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           <svg
             aria-hidden="true"
             class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-            data-testid="ArrowDropDownIcon"
+            data-testid="KeyboardArrowDownIcon"
             focusable="false"
             viewBox="0 0 24 24"
           >
             <path
-              d="M7 10l5 5 5-5z"
+              d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"
             />
           </svg>
           <fieldset
@@ -325,23 +327,18 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
         <p
           class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
         >
-          11
-           - 
-          2
-           
-          of 
-          2
-           items
+          1 - 2 of 2 items
         </p>
       </div>
       <div
-        class="MuiBox-root css-k5rr6j"
+        class="MuiBox-root css-aabovo"
+        data-testid="pagination-actions"
       >
         <div
-          class="MuiBox-root css-70qvj9"
+          class="MuiBox-root css-wxfvax"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-x5rw2m-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"
           >
@@ -385,10 +382,11 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           </p>
         </div>
         <div
-          class="MuiBox-root css-axw7ok"
+          class="MuiBox-root css-1bc9qkb"
         >
           <div
             class="MuiBox-root css-v3ih39"
+            data-testid="current-page"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
@@ -404,10 +402,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           </p>
         </div>
         <div
-          class="MuiBox-root css-70qvj9"
+          class="MuiBox-root css-wxfvax"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-nb8uog-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-1vinusq-MuiTypography-root"
           >
             Next
           </p>
@@ -419,7 +417,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
               focusable="false"
               viewBox="0 0 12 20"
             >
@@ -429,14 +427,14 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             </svg>
           </button>
           <button
-            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1hzwo8z-MuiButtonBase-root-MuiIconButton-root"
             disabled=""
             tabindex="-1"
             type="button"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1io3t8g-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
               focusable="false"
               viewBox="0 0 24 24"
             >

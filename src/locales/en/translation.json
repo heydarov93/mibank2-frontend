@@ -187,11 +187,9 @@
     "messageFieldLabel": "Message (optional)",
     "messageFieldPlaceholder": "Thank you",
     "transferAll": "Transfer the remaining balance from the card",
-
     "cancel": "Cancel",
     "submit": "Send",
     "confirm": "Confirm",
-
     "transferModal": {
       "title": "Confirm Transfer",
       "fee": "Fee",
@@ -245,6 +243,29 @@
       "amountRequired": "Please specify transfer amount",
       "messageMaxCharacters": "Character limit of 150 exceeded",
       "messagePattern": "Message can only contain latin letters, numbers and special characters"
+    }
+  },
+  "TransactionsHistoryPage": {
+    "title": "Transactions",
+    "columnHeaders": {
+      "card": "Card",
+      "sum": "Sum",
+      "template": "Template",
+      "date": "Date"
+    },
+    "emptyStatesContent": {
+      "noMatches": {
+        "title": "No matches were found.",
+        "message": "Please try again."
+      },
+      "noTransactions": {
+        "title": "Nothing here yet.",
+        "message": "Make your first transaction."
+      },
+      "offline": {
+        "title": "You are offline.",
+        "message": "Please check the connection."
+      }
     }
   },
   "SignupPage": {
@@ -517,6 +538,12 @@
     "subTitle": "The page you are looking for might have been removed or is temporary unavailable.",
     "text": "Go back to",
     "linkText": "Home"
+  },
+  "TablePagination": {
+    "itemsPerPage": "Items per page",
+    "pageDisplayText": "{{start}} - {{end}} of {{count}} items",
+    "prevBtn": "Previous",
+    "nextBtn": "Next"
   },
   "UnderDevPage": {
     "title": "Under Development",
