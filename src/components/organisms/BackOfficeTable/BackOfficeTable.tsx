@@ -1,10 +1,12 @@
 import {
   CircularProgress,
+  SelectChangeEvent,
   Table,
   TableBody,
   TableContainer,
   TableRow,
 } from '@mui/material';
+import { MouseEvent } from 'react';
 
 import {
   StyledTableCell,
@@ -15,8 +17,9 @@ import {
 import BackOfficeTableItem, {
   TableData,
 } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import BackOfficeTablePagination from 'components/molecules/BackOfficeTablePagination/BackOfficeTablePagination';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
+import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
+import { usePaginationInfo } from 'hooks';
 
 interface TableHeadItem {
   label: string;
@@ -56,7 +59,6 @@ interface BackOfficeTableProps {
 const BackOfficeTable = ({
   tableHead,
   tableBody,
-  totalItems,
   page,
   pageSize,
   onPageChange,
@@ -65,6 +67,24 @@ const BackOfficeTable = ({
   onEditClick,
   isLoading,
 }: BackOfficeTableProps) => {
+  const { totalPages, pageDisplayText } = usePaginationInfo(
+    tableBody.length,
+    page ?? 1,
+    pageSize ?? 10,
+  );
+
+  const handlePageChange = (
+    _event: MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    onPageChange?.(newPage);
+  };
+
+  const handleRowsPerPageChange = (event: SelectChangeEvent<number>) => {
+    onPageSizeChange?.(Number(event.target.value));
+    onPageChange?.(0);
+  };
+
   return (
     <TableContainer
       sx={{
@@ -111,14 +131,14 @@ const BackOfficeTable = ({
           )}
         </TableBody>
       </Table>
-      <BackOfficeTablePagination
-        count={totalItems || 0}
+
+      <CustomTablePagination
+        pageDisplayText={pageDisplayText}
+        totalPages={totalPages}
         page={page || 0}
         rowsPerPage={pageSize || 10}
-        onPageChange={(_event, newPage) => onPageChange?.(newPage)}
-        onRowsPerPageChange={(event) =>
-          onPageSizeChange?.(Number(event.target.value))
-        }
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </TableContainer>
   );
