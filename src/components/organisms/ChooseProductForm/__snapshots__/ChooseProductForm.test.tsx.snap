@@ -3,14 +3,14 @@
 exports[`ChooseProductForm - Visual Rendering renders correctly and matches snapshot with default empty state 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-1mv69se"
+    class="MuiBox-root css-1y6vvy9"
   >
     <form
       data-testid="main-form"
       style="width: 420px; display: flex; flex-direction: column; gap: 20px;"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-13anp12-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-13atzvy-MuiTypography-root"
       >
         Choose the product
       </p>
@@ -38,13 +38,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               role="combobox"
               tabindex="0"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -106,13 +104,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               id="mui-component-select-subtype"
               role="combobox"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -175,13 +171,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               role="combobox"
               tabindex="0"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -238,7 +232,7 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
               id="productName"
               name="name"
-              placeholder="Name"
+              placeholder="Enter Here"
               type="text"
               value=""
             />
@@ -278,7 +272,6 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
               id=":r4:"
               name="description"
-              placeholder="Description"
               rows="4"
               style="height: 0px; overflow: hidden;"
             />
@@ -323,14 +316,14 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
 exports[`ChooseProductForm - Visual Rendering renders correctly and matches snapshot with prefilled values 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-1mv69se"
+    class="MuiBox-root css-1y6vvy9"
   >
     <form
       data-testid="main-form"
       style="width: 420px; display: flex; flex-direction: column; gap: 20px;"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-13anp12-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-13atzvy-MuiTypography-root"
       >
         Choose the product
       </p>
@@ -358,13 +351,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               role="combobox"
               tabindex="0"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -426,13 +417,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               id="mui-component-select-subtype"
               role="combobox"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -495,13 +484,11 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               role="combobox"
               tabindex="0"
             >
-              <div
-                class="MuiStack-root css-3y1137-MuiStack-root"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-16mmgf6-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                />
-              </div>
+                Choose Here
+              </p>
             </div>
             <input
               aria-hidden="true"
@@ -558,7 +545,7 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
               id="productName"
               name="name"
-              placeholder="Name"
+              placeholder="Enter Here"
               type="text"
               value=""
             />
@@ -598,7 +585,6 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input"
               id=":r9:"
               name="description"
-              placeholder="Description"
               rows="4"
               style="height: 0px; overflow: hidden;"
             />
