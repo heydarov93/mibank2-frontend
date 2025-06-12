@@ -243,6 +243,10 @@
       "amountRequired": "Please specify transfer amount",
       "messageMaxCharacters": "Character limit of 150 exceeded",
       "messagePattern": "Message can only contain latin letters, numbers and special characters"
+    },
+    "warningModal": {
+      "title": "Leaving transfer process?",
+      "description": "If you leave, the progress won’t be saved."
     }
   },
   "TransactionsHistoryPage": {
@@ -356,10 +360,6 @@
         "postcodeFormat": "Please use 5 digits and a dash (XX-XXX)",
         "cityNotFound": "No city found. Choose a different option."
       }
-    },
-    "confirmationModal": {
-      "title": "Leaving registration?",
-      "description": "The progress won’t be saved."
     }
   },
   "GeneralErrors": {
@@ -440,12 +440,6 @@
       "dateOfBirth": "Pick the date",
       "selectField": "Choose here",
       "postcodeField": "12-345"
-    },
-    "navigationWarningModal": {
-      "title": "Leaving the page?",
-      "contentText": "Are you sure that you want to leave the page? The changes on this page will not be saved.",
-      "cancel": "Cancel",
-      "confirm": "Confirm"
     },
     "requiredField": "The field is required",
     "nameErrorPattern": "Only Latin/Cyrillic letters, space and hyphen are acceptable",
@@ -881,6 +875,12 @@
     "success": {
       "title": "Success",
       "message": "Operation completed successfully!"
+    },
+    "warning": {
+      "title": "Leaving registration?",
+      "contentText": "The progress won’t be saved.",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     },
     "form": {
       "createPassword": {

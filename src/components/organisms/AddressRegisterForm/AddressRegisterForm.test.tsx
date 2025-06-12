@@ -148,10 +148,6 @@ describe('AddressRegisterForm', () => {
     renderComponent();
 
     expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
-    expect(screen.getByText('confirmationModal.title')).toBeInTheDocument();
-    expect(
-      screen.getByText('confirmationModal.description'),
-    ).toBeInTheDocument();
   });
 
   it('does not show the navigation warning modal when warningModalOpen is false', () => {

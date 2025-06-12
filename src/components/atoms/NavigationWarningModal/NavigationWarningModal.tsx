@@ -32,7 +32,9 @@ export const NavigationWarningModal = ({
   onConfirm,
   onCancel,
 }: NavigationWarningModalProps) => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'common',
+  });
 
   return (
     <StyledNavigationWarningModal
@@ -42,23 +44,22 @@ export const NavigationWarningModal = ({
       sx={sx}
     >
       <DialogTitle>
-        {title || t('RegistrationPage.navigationWarningModal.title')}
+        {title || t('warning.title')}
         <IconButton onClick={onCancel}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {description ||
-            t('RegistrationPage.navigationWarningModal.contentText')}
+          {description || t('warning.contentText')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel} className="cancelButton">
-          {cancelLabel || t('RegistrationPage.navigationWarningModal.cancel')}
+          {cancelLabel || t('warning.cancel')}
         </Button>
         <Button onClick={onConfirm} className="confirmButton">
-          {confirmLabel || t('RegistrationPage.navigationWarningModal.confirm')}
+          {confirmLabel || t('warning.confirm')}
         </Button>
       </DialogActions>
     </StyledNavigationWarningModal>
