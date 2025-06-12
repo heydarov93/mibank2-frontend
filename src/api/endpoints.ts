@@ -59,6 +59,10 @@ export const endpoints = {
     getOffer: '/os/api/offer/retrieve/page',
     getOfferImages: '/os/api/offer',
   },
+  userCards: {
+    getCards: '/cs/api/card/detailed-search',
+    issueUserCard: '/cs/api/card/issue-user-card',
+  },
   accounts: {
     transfer: {
       toIBAN: '/as/api/account/transfer-iban',
@@ -68,5 +72,8 @@ export const endpoints = {
     iban: '/as/api/account/users',
     card: '/as/api/card',
     ibanByToken: '/as/api/account/by-token',
+    linkAccountWithCard: '/as/api/account/link-account-with-card',
+    checkCardIssuance: '/as/api/account/check-card-issuance',
+    createUserCardAccount: '/as/api/account/create-user-card-account',
   },
-};
+} as const;

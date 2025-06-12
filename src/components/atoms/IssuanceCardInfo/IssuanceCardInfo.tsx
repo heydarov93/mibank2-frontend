@@ -9,7 +9,7 @@ import { IssuanceCardData } from 'models/IProductInfo';
 interface IssuanceCardInfoProps
   extends Pick<
     IssuanceCardData,
-    'currency' | 'monthlyFee' | 'foreignTransactionLimit' | 'cashbackRate'
+    'cardCurrency' | 'monthlyFee' | 'foreignTransactionLimit' | 'cashbackRate'
   > {
   cardName: string;
   sx?: SxProps<Theme>;
@@ -17,7 +17,7 @@ interface IssuanceCardInfoProps
 
 export const IssuanceCardInfo = ({
   cardName,
-  currency,
+  cardCurrency,
   monthlyFee,
   foreignTransactionLimit,
   cashbackRate,
@@ -35,13 +35,13 @@ export const IssuanceCardInfo = ({
         <Stack direction="row">
           <StyledTypography>{t('monthlyFee')}:</StyledTypography>
           <StyledTypography fontWeight={500}>
-            {currency} {monthlyFee?.toFixed(2).replace('.', ',')}
+            {cardCurrency} {monthlyFee?.toFixed(2).replace('.', ',')}
           </StyledTypography>
         </Stack>
         <Stack direction="row">
           <StyledTypography>{t('transactionLimit')}:</StyledTypography>
           <StyledTypography fontWeight={500}>
-            {currency}{' '}
+            {cardCurrency}{' '}
             {foreignTransactionLimit?.toLocaleString().replace(/,/g, ' ')}
           </StyledTypography>
         </Stack>

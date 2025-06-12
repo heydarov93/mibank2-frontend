@@ -32,6 +32,7 @@ export * from './SharedStyledComponents/Dialogs';
 export { SwitchWithLabel } from './SwitchWithLabel/SwitchWithLabel';
 export { FieldWithLabel } from './FieldWithLabel/FieldWithLabel';
 export { PostcodeField } from './PostcodeField/PostcodeField';
-export { CurrencyFlagIcon } from './CurrencyFlagIcon/CurrencyFlagIcon';
+export * from './CurrencyFlagIcon/CurrencyFlagIcon';
 export { CardIssuerIcon } from './CardIssuerIcon/CardIssuerIcon';
 export { TabPanel } from './TabPanel/TabPanel';
+export { LoadingIndicator } from './LoadingIndicator/LoadingIndicator';

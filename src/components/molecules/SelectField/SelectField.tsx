@@ -5,6 +5,8 @@ import {
   Typography,
   Stack,
   SelectProps,
+  CircularProgress,
+  Box,
 } from '@mui/material';
 import { Controller, Control, FieldValues, Path } from 'react-hook-form';
 
@@ -26,6 +28,7 @@ export type SelectFieldProps<T extends FieldValues> = Omit<
   error?: { message?: string };
   disabled?: boolean;
   placeholder?: string;
+  optionsLoading?: boolean;
 };
 
 export const SelectField = <T extends FieldValues>({
@@ -35,6 +38,7 @@ export const SelectField = <T extends FieldValues>({
   error,
   disabled = false,
   placeholder,
+  optionsLoading,
   onChange,
   ...selectProps
 }: SelectFieldProps<T>) => {
@@ -93,33 +97,46 @@ export const SelectField = <T extends FieldValues>({
             }}
             {...selectProps}
           >
-            {options.map((option, index) => (
-              <MenuItem key={index} value={option.value}>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  alignItems="center"
-                  justifyContent="space-between"
-                  sx={{ width: '100%' }}
-                >
-                  <Typography sx={{ fontSize: 14 }}>
-                    {option.label ?? option.value}
-                  </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      color:
-                        option.value === field.value
-                          ? theme.palette.primary.main
-                          : theme.palette.grey[400],
-                      fontSize: 14,
-                    })}
+            {optionsLoading ? (
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  p: 1.5,
+                }}
+              >
+                <CircularProgress size={24} />
+              </Box>
+            ) : (
+              options.map((option, index) => (
+                <MenuItem key={index} value={option.value}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    sx={{ width: '100%' }}
                   >
-                    {option.secondaryLabel}
-                  </Typography>
-                </Stack>
-                {option.value === field.value && <DoneIcon />}
-              </MenuItem>
-            ))}
+                    <Typography sx={{ fontSize: 14 }}>
+                      {option.label ?? option.value}
+                    </Typography>
+                    <Typography
+                      sx={(theme) => ({
+                        color:
+                          option.value === field.value
+                            ? theme.palette.primary.main
+                            : theme.palette.grey[400],
+                        fontSize: 14,
+                      })}
+                    >
+                      {option.secondaryLabel}
+                    </Typography>
+                  </Stack>
+                  {option.value === field.value && <DoneIcon />}
+                </MenuItem>
+              ))
+            )}
           </Select>
         )}
       />

@@ -1,184 +1,192 @@
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import { useEffect } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { StyledDialog } from 'components/atoms';
+import { InfoAlert } from '../InfoAlert/InfoAlert';
+import { SimpleAlert } from '../SimpleAlert/SimpleAlert';
+
+import {
+  IssueCardModalActions,
+  IssueCardModalSelects,
+  IssueCardsSelectionList,
+  SelectedCardForm,
+} from './molecules';
+
+import { LoadingIndicator, StyledDialog } from 'components/atoms';
 import {
   IssuanceCardInfo,
   ModalHeader,
   NavigationWarningModal,
 } from 'components/atoms';
 import { IssueCardModalBottomAlert } from 'components/atoms';
-import {
-  IssueCardModalActions,
-  IssueCardModalSelects,
-  IssueCardsSelectionList,
-  SelectedCardForm,
-} from 'components/molecules';
+import { useCardIssuance } from 'components/organisms/IssueCardModal/hooks/useCardIssuance';
+import { useCardIssueFlow } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
+import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
-import { useCardIssueFlow } from 'hooks/useCardIssueFlow';
-import { IssuanceCardData } from 'models/IProductInfo';
+import useDisclosure from 'hooks/useDisclosure';
 
 export interface IssueCardModalProps {
   open: boolean;
   onClose: () => void;
 }
 
-const mockCardOptions: IssuanceCardData[] = [
-  {
-    id: 1,
-    name: 'Visa Black',
-    fee: 15,
-    feeCurrency: 'PLN',
-    currency: 'PLN',
-    background: '#000',
-    cardIssuer: 'visa',
-    cardType: 'Debit',
-    issueType: 'Digital',
-    cashbackRate: 0.3,
-    monthlyFee: 10,
-    foreignTransactionLimit: 10000,
-    dailyOperationalLimit: 1000,
-  },
-  {
-    id: 2,
-    name: 'Visa Premium',
-    fee: 50,
-    feeCurrency: 'PLN',
-    currency: 'PLN',
-    background: 'linear-gradient(136deg, #b3261e 8.4%, #4d110d 92%)',
-    cardIssuer: 'visa',
-    cardType: 'Debit',
-    issueType: 'Digital',
-    cashbackRate: 0.5,
-    monthlyFee: 20,
-    foreignTransactionLimit: 10000,
-    dailyOperationalLimit: 1000,
-  },
-  {
-    id: 3,
-    name: 'Visa Classic',
-    fee: 0,
-    feeCurrency: 'PLN',
-    currency: 'PLN',
-    background: 'linear-gradient(136deg, #4d9bc2 8.4%, #1e3456 92%)',
-    cardIssuer: 'visa',
-    cardType: 'Credit',
-    issueType: 'Plastic',
-    cashbackRate: 0.1,
-    monthlyFee: 0,
-    foreignTransactionLimit: 30000,
-    dailyOperationalLimit: 5000,
-  },
-];
-
-const defaultValues = {
-  issuanceAccount: '',
-  paymentAccount: '',
-  currency: '',
-  cardType: '',
-  issueType: '',
-  cardIssuer: '',
-};
-
-export type CardIssueFormValues = typeof defaultValues;
-
 export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const {
     formMethods,
     step,
+    cards,
     selectedCard,
     confirmationModal,
+    isLoadingCards,
+    isConfirmationStep,
     handleSelectCard,
     handleClose,
     handleBack,
     handleStepUpdate,
-  } = useCardIssueFlow({ onClose, defaultValues });
-  const isConfirmationStep = step === ECardIssueStepper.CONFIRMATION;
-  const title = isConfirmationStep ? t('cardSelected') : t('issueCard');
+  } = useCardIssueFlow({ onClose });
+  const { issueCard, reset, isIssuingCard, errorMessage, isCardIssued } =
+    useCardIssuance({
+      selectedCard,
+    });
+  const successAlert = useDisclosure();
+  const errorAlert = useDisclosure();
+  const { handleSubmit } = formMethods;
+  const title = t(isConfirmationStep ? 'cardSelected' : 'issueCard');
   const showSelectedCardForm = isConfirmationStep && selectedCard !== null;
+  const isDialogHidden = isIssuingCard || isCardIssued;
+  const issueFee = selectedCard?.issueFee ?? 0;
+  const successMessage = t(
+    issueFee === 0 ? 'freeCardIssuedDescription' : 'paidCardIssuedDescription',
+  );
+
+  useEffect(() => {
+    successAlert.set(isCardIssued);
+    errorAlert.set(Boolean(errorMessage));
+  }, [isCardIssued, errorMessage, errorAlert.set, successAlert.set]);
+
+  function handleCloseSuccessAlert() {
+    successAlert.close();
+    handleClose();
+    setTimeout(reset, DIALOGS_ANIMATION_TIME);
+  }
+
+  function handleCloseErrorAlert() {
+    errorAlert.close();
+    reset();
+  }
 
   return (
-    <StyledDialog
-      open={open}
-      onClose={confirmationModal.open}
-      data-testid="issue-card-modal"
-    >
-      <Box
-        component="form"
-        onSubmit={(e) => {
-          // TODO: handle form submission when api is ready
-          e.preventDefault();
-        }}
-        sx={{ color: 'black' }}
+    <>
+      <StyledDialog
+        open={open}
+        onClose={confirmationModal.open}
+        data-testid="issue-card-modal"
+        sx={{ opacity: isDialogHidden ? 0 : 1 }}
       >
-        <FormProvider {...formMethods}>
-          <ModalHeader
-            title={title}
-            onClose={confirmationModal.open}
-            onBack={isConfirmationStep ? handleBack : undefined}
-          />
-
-          {showSelectedCardForm ? (
-            <SelectedCardForm
-              {...selectedCard}
-              onCancel={confirmationModal.open}
+        <Box
+          component="form"
+          onSubmit={handleSubmit(issueCard)}
+          sx={{
+            color: 'black',
+          }}
+        >
+          <FormProvider {...formMethods}>
+            <ModalHeader
+              title={title}
+              onClose={confirmationModal.open}
+              onBack={isConfirmationStep ? handleBack : undefined}
             />
-          ) : (
-            <>
-              <IssueCardModalSelects sx={{ mt: 3 }} />
 
-              {step === ECardIssueStepper.DATA_SELECTION && (
-                <IssueCardModalBottomAlert sx={{ mt: '36px' }} />
-              )}
-
-              {(step === ECardIssueStepper.CARD_SELECTION ||
-                step === ECardIssueStepper.CARD_SELECTED) && (
-                <IssueCardsSelectionList
-                  cards={mockCardOptions}
-                  onCardSelect={handleSelectCard}
-                  selectedCard={selectedCard}
-                  sx={{ mt: '32px' }}
-                />
-              )}
-
-              {step === ECardIssueStepper.CARD_SELECTED && selectedCard && (
-                <IssuanceCardInfo
-                  cardName={selectedCard.name}
-                  currency={selectedCard.currency}
-                  monthlyFee={selectedCard.monthlyFee}
-                  foreignTransactionLimit={selectedCard.foreignTransactionLimit}
-                  cashbackRate={selectedCard.cashbackRate}
-                  sx={{ mt: '12px' }}
-                />
-              )}
-
-              <IssueCardModalActions
-                step={step}
+            {showSelectedCardForm ? (
+              <SelectedCardForm
+                {...selectedCard}
+                background="#000"
                 onCancel={confirmationModal.open}
-                onConfirm={handleStepUpdate(ECardIssueStepper.CONFIRMATION)}
-                sx={{ mt: '32px' }}
               />
-            </>
-          )}
+            ) : (
+              <>
+                <IssueCardModalSelects sx={{ mt: 3 }} />
 
-          <NavigationWarningModal
-            open={confirmationModal.isOpen}
-            title={t('confirmationModal.title')}
-            description={t('confirmationModal.description')}
-            cancelLabel={t('confirmationModal.goBack')}
-            confirmLabel={t('confirmationModal.leave')}
-            onConfirm={handleClose}
-            onCancel={confirmationModal.close}
-            sx={(theme) => ({
-              '.MuiTypography-root': {
-                color: theme.palette.grey[600],
-              },
-            })}
-          />
-        </FormProvider>
-      </Box>
-    </StyledDialog>
+                {step === ECardIssueStepper.DATA_SELECTION && (
+                  <IssueCardModalBottomAlert sx={{ mt: 4 }} />
+                )}
+
+                {(step === ECardIssueStepper.CARD_SELECTION ||
+                  step === ECardIssueStepper.CARD_SELECTED) && (
+                  <IssueCardsSelectionList
+                    cards={cards}
+                    isLoading={isLoadingCards}
+                    onCardSelect={handleSelectCard}
+                    selectedCard={selectedCard}
+                    sx={{ mt: 4 }}
+                  />
+                )}
+
+                {step === ECardIssueStepper.CARD_SELECTED && selectedCard && (
+                  <IssuanceCardInfo
+                    cardName={selectedCard.cardName}
+                    cardCurrency={selectedCard.cardCurrency}
+                    monthlyFee={selectedCard.monthlyFee}
+                    foreignTransactionLimit={
+                      selectedCard.foreignTransactionLimit
+                    }
+                    cashbackRate={selectedCard.cashbackRate}
+                    sx={{ mt: 1.5 }}
+                  />
+                )}
+
+                <IssueCardModalActions
+                  step={step}
+                  onCancel={confirmationModal.open}
+                  onConfirm={handleStepUpdate(ECardIssueStepper.CONFIRMATION)}
+                  sx={{ mt: 4 }}
+                />
+              </>
+            )}
+          </FormProvider>
+        </Box>
+      </StyledDialog>
+
+      <SimpleAlert open={isIssuingCard} withBackdrop>
+        <Stack direction="row" gap={1.5}>
+          <Typography>{t('processingPayment')}</Typography>
+          <LoadingIndicator />
+        </Stack>
+      </SimpleAlert>
+
+      <InfoAlert
+        open={successAlert.isOpen}
+        onClose={handleCloseSuccessAlert}
+        type="success"
+        title={t('cardIssuedTitle')}
+        message={successMessage}
+        withBackdrop
+      />
+
+      <InfoAlert
+        open={errorAlert.isOpen}
+        onClose={handleCloseErrorAlert}
+        type="error"
+        title={t('transactionFailed')}
+        message={errorMessage}
+      />
+
+      <NavigationWarningModal
+        open={confirmationModal.isOpen}
+        title={t('confirmationModal.title')}
+        description={t('confirmationModal.description')}
+        cancelLabel={t('confirmationModal.goBack')}
+        confirmLabel={t('confirmationModal.leave')}
+        onConfirm={handleClose}
+        onCancel={confirmationModal.close}
+        sx={(theme) => ({
+          '.MuiTypography-root': {
+            color: theme.palette.grey[600],
+          },
+        })}
+      />
+    </>
   );
 };

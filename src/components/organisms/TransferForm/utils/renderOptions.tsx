@@ -9,15 +9,7 @@ import {
 
 import { CardIssuerIcon } from 'components/atoms';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
-
-function formatWithPattern(
-  input: string,
-  pattern: typeof IBAN_PATTERN | typeof CARD_PATTERN,
-) {
-  const digits = input.replace(/\D/g, '').split('');
-  let i = 0;
-  return pattern.replace(/#/g, () => digits[i++] ?? '');
-}
+import { formatWithPattern } from 'utils/formatWithPattern';
 
 export function renderOption(
   props: HTMLAttributes<HTMLLIElement>,
