@@ -4,7 +4,7 @@ import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
 import { TokenType } from 'models/IAuth';
-import { localTokenHandler, sessionTokenHandler } from 'utils/tokenHandler';
+import { sessionTokenHandler } from 'utils/tokenHandler';
 
 export const createDepositApi = createApi({
   reducerPath: 'createDepositApi',
@@ -31,16 +31,13 @@ export const createUserDepositApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
-  tagTypes: ['userDeposit'],
+  tagTypes: ['createUserDeposit'],
   endpoints: (builder) => ({
     createUserDeposit: builder.mutation({
       query: (data) => ({
         url: endpoints.productManagement.userDeposits.createDeposit,
         method: 'POST',
         body: data,
-        headers: {
-          Authorization: `Bearer ${localTokenHandler.getToken(TokenType.ACCESS)}`,
-        },
       }),
     }),
   }),

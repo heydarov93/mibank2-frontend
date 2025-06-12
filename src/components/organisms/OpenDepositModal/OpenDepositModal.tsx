@@ -1,11 +1,10 @@
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { Box, Drawer } from '@mui/material';
 
 import { Deposit } from 'api/getDepositsApi';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositCreationForm, DepositInfoCard } from 'components/molecules';
 import { StyledCloseButton } from 'components/molecules/DepositInfoCard/DepositInfoCard.styled';
 import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
-import useDisclosure from 'hooks/useDisclosure';
 
 interface OpenDepositModalProps {
   deposit: Deposit | null;
@@ -18,7 +17,6 @@ export const OpenDepositModal = ({
   onBack,
   deposit,
 }: OpenDepositModalProps) => {
-  const { open } = useDisclosure();
 
   return (
     <Drawer
@@ -38,7 +36,6 @@ export const OpenDepositModal = ({
       <Box display="flex">
         <DepositCreationForm
           modal={true}
-          onCloseModal={onClose}
           onBack={onBack}
           depositName={deposit?.name as string}
           depositId={deposit?.id as number}
@@ -47,8 +44,11 @@ export const OpenDepositModal = ({
           term={deposit?.term as number}
         />
         {deposit && <DepositInfoCard {...deposit} />}
-        <StyledCloseButton data-testid="modal-close-button">
-          <CloseButtonX onClick={open} sx={{ cursor: 'pointer' }} />
+        <StyledCloseButton
+          onClick={onBack}
+          data-testid="modal-close-button"
+        >
+          <CloseRoundedIcon />
         </StyledCloseButton>
       </Box>
     </Drawer>

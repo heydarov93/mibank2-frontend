@@ -12,7 +12,6 @@ export const endpoints = {
       forgotPassword: '/uas/api/user/forgot-password',
       confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
       refreshToken: 'uas/api/user/refresh-token',
-      getUserAccounts: '/as/api/account/by-token',
       userId: 'uas/api/user/id',
     },
   },
@@ -68,5 +67,6 @@ export const endpoints = {
     },
     iban: '/as/api/account/users',
     card: '/as/api/card',
+    ibanByToken: '/as/api/account/by-token',
   },
 };

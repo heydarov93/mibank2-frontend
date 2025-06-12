@@ -13,7 +13,7 @@ import {
 } from './BackOfficeProductWindow.styled';
 
 import { useCreateCardMutation } from 'api/createCardApi';
-import { useCreateDepositMutation } from 'api/createDeposit';
+import { useCreateDepositMutation } from 'api/createDepositApi';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
 import { ProductStatus, ProductType } from 'enums/EProductType';
 import { useAppSelector, useAppDispatch } from 'hooks';

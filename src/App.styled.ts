@@ -18,6 +18,6 @@ export const OutletContainer = styled('div')(({ theme: { spacing } }) => ({
   maxWidth: '1920px',
 
   '& > :first-child': {
-    maxWidth: 385, // fixed width for Sidebar
+    maxWidth: 385,
   },
 }));

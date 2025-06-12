@@ -79,7 +79,7 @@ export const accountsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
-  tagTypes: ['IBANAccounts', 'CardAccounts'],
+  tagTypes: ['IBANAccounts', 'CardAccounts', 'UserAccountsByToken'],
   endpoints: (builder) => ({
     getIBANAccounts: builder.query<IBANAccountResponse[], { userId: number }>({
       query: ({ userId }) => ({
@@ -129,6 +129,14 @@ export const accountsApi = createApi({
       query: ({ amount, isInternal, transferType }) => ({
         url: endpoints.accounts.transfer.fee,
         params: { amount, isInternal, transferType },
+      }),
+    }),
+
+    getUserAccountsByToken: builder.query({
+      query: ({ token }) => ({
+        url: endpoints.accounts.ibanByToken,
+        method: 'GET',
+        params: { token },
       }),
     }),
   }),

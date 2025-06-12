@@ -7,7 +7,7 @@ import {
   SecondaryText,
   StyledBackButton,
   StyledButtonsRow,
-  StyledHeader,
+  StyledHeader
 } from './BackOfficeConfirmationWindow.styled';
 
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
@@ -84,7 +84,7 @@ const BackOfficeConfirmationWindow = ({
           )}
         </Box>
       </Box>
-      <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
+        <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
     </MainContainer>
   );
 };

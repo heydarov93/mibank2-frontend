@@ -18,6 +18,7 @@ const FormButtons = ({ modal, onCloseModal, isDisabled }: FormButtonsProps) => {
           variant="outlined"
           sx={{ marginRight: '25px', width: '113px' }}
           onClick={onCloseModal}
+          disabled={isDisabled}
         >
           {t('cancelDeposit')}
         </StyledActionBtn>
