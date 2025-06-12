@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { accountsApi } from './accountsApi';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
@@ -65,6 +66,15 @@ export const userCardsApi = createApi({
         method: 'POST',
         responseHandler: 'text',
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        await queryFulfilled;
+        dispatch(
+          accountsApi.util.invalidateTags([
+            'IBANAccounts',
+            'UserAccountsByToken',
+          ]),
+        );
+      },
       invalidatesTags: ['Cards'],
     }),
   }),
