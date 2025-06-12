@@ -32,7 +32,7 @@ export { AddressRegisterForm } from './AddressRegisterForm/AddressRegisterForm';
 export { LeftLogoSidebar } from './LeftLogoSidebar/LeftLogoSidebar';
 export { WelcomeHeader } from './WelcomeHeader/WelcomeHeader';
 export { WelcomeNav } from './WelcomeNav/WelcomeNav';
-export { Sidebar } from './Sidebar/Sidebar';
+export { SidebarWrapper } from './Sidebar/SidebarWrapper';
 export { TransactionsTable } from './TransactionsTable/TransactionsTable';
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';

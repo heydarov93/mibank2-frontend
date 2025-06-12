@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiStack-root css-be09fu-MuiStack-root"
+  >
+    <div
+      class="css-1011c0n"
+    >
+      <div
+        class="MuiStack-root css-1wxncy-MuiStack-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-eyzug1-MuiTypography-root"
+          data-testid="section-title"
+        >
+          My Transactions
+        </p>
+      </div>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1d85qqt-MuiTypography-root-MuiLink-root"
+        href="/history"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1wt9zge-MuiTypography-root"
+        >
+          seeAll
+        </p>
+        <span
+          aria-hidden="true"
+          class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-oo4r0e-MuiIcon-root"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="ChevronRightIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

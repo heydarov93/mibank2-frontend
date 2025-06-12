@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transaction matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1wrcl4x"
+  >
+    <span
+      aria-hidden="true"
+      class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-1nk8pry-MuiIcon-root"
+      data-testid="transaction-icon"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        data-testid="ArrowDownwardRoundedIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M11 5v11.17l-4.88-4.88c-.39-.39-1.03-.39-1.42 0-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L13 16.17V5c0-.55-.45-1-1-1s-1 .45-1 1"
+        />
+      </svg>
+    </span>
+    <div
+      class="MuiBox-root css-8atqhb"
+    >
+      <div
+        class="css-168e3yi"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+        >
+          My Visa
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+        >
+          + USD 100.00
+        </p>
+      </div>
+      <div
+        class="css-mxblsg"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+        >
+          **** 3456
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+        >
+          MOCKED_TIME
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

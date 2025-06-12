@@ -7,7 +7,6 @@ import {
   waitFor,
   cleanup,
 } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { Provider } from 'react-redux';
 
 import CurrencyCalculator from './CurrencyCalculator';
@@ -104,7 +103,7 @@ describe('CurrencyCalculator', () => {
   });
 
   test('renders correctly', () => {
-    expect(screen.getByText('CurCal.cal')).toBeInTheDocument();
+    expect(screen.getByText('title')).toBeInTheDocument();
   });
 
   test('handles amount change for "from" currency', async () => {
@@ -174,7 +173,7 @@ describe('CurrencyCalculator', () => {
   });
 
   test('displays calculated exchange rate', async () => {
-    const rate = await screen.findByText('CurCal.rate: 1 USD = 1.1628 EUR');
+    const rate = await screen.findByText('rate: 1 USD = 1.1628 EUR');
     expect(rate).toBeInTheDocument();
   });
 
@@ -213,6 +212,6 @@ describe('CurrencyCalculator', () => {
     cleanup();
     renderResult = renderComponent();
 
-    expect(screen.queryByText(/CurCal.rate/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/rate/)).not.toBeInTheDocument();
   });
 });

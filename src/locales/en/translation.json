@@ -30,13 +30,17 @@
     },
     "greetings": "Hello"
   },
-  "MainPage": {
+  "Homepage": {
     "sidebar": {
       "myCards": {
         "title": "My Cards"
       },
       "myTransactions": {
-        "title": "My Transactions"
+        "title": "My Transactions",
+        "today": "Today",
+        "all": "All",
+        "income": "Income",
+        "expenses": "Expenses"
       },
       "myLoans": {
         "title": "My Loans"
@@ -44,26 +48,32 @@
       "myDeposits": {
         "title": "My Deposits"
       },
-      "addNewProduct": "Add new product",
       "seeAll": "See all",
-      "emptySection": "Nothing here yet. Add a new product."
+      "emptySectionDefault": "Nothing here yet. Add a new product.",
+      "emptySectionConnectionError": "Please check your connection.",
+      "addNewProduct": "Add new product"
     },
     "currencyExchange": {
       "title": "Currency exchange",
-      "subTitle": "Millenium Bank provides a comprehensive suite of trading tools that enable efficient buying, selling, and exchanging of currencies and opportunities to earn passive income"
+      "subTitle": "Millenium Bank provides a comprehensive suite of trading tools that enable efficient buying, selling, and exchanging of currencies and opportunities to earn passive income",
+      "calculator": {
+        "title": "Calculator",
+        "give": "Give",
+        "get": "Get",
+        "rate": "Rate",
+        "errorMessage": "Exchange rates are currently unavailable, sorry for inconvenience"
+      },
+      "ratesTable": {
+        "title": "Rates",
+        "currencyColumnLabel": "Currency",
+        "buyRateColumnLabel": "Buy Rate",
+        "sellRateColumnLabel": "Sell Rate",
+        "errorMessage": "Table is currently unavailable. Please try again later!"
+      }
     },
-    "ratesTable": {
-      "title": "Rates",
-      "currencyColumnLabel": "Currency",
-      "buyRateColumnLabel": "Buy Rate",
-      "sellRateColumnLabel": "Sell Rate",
-      "errorMessage": "Table is currently unavailable. Please try again later!"
-    },
-    "viewOffers": {
-      "learnMore": "Learn more"
-    },
-    "offersSlider": {
-      "error": "An error occurred while loading available offers"
+    "offers": {
+      "learnMore": "Learn more",
+      "errorMessage": "An error occurred while loading available offers"
     }
   },
   "DepositWindow": {
@@ -862,15 +872,6 @@
       "cancelProductText": "All entered details will be discarded. Are you sure you want to proceed?",
       "deleteEmployee": "Delete Employee?",
       "deleteEmployeeText": "Deletion is irreversible. Are you sure you want to delete"
-    }
-  },
-  "Homepage": {
-    "CurCal": {
-      "cal": "Calculator",
-      "give": "Give",
-      "get": "Get",
-      "rate": "Rate",
-      "errorMessage": "Exchange rates are currently unavailable, sorry for inconvenience"
     }
   },
   "common": {

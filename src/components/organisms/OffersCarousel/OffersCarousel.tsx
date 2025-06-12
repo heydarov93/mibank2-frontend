@@ -8,7 +8,9 @@ import MiCarousel from 'components/molecules/Carousel/MiCarousel';
 import { OfferSlide } from 'components/molecules/OfferSlide/OfferSlide';
 
 export const OffersCarousel = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'MainPage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.offers',
+  });
   const {
     data: images,
     isLoading,
@@ -26,7 +28,7 @@ export const OffersCarousel = () => {
   if (isError) {
     return (
       <StyledStack data-testid="offers-slider-error">
-        {t('offersSlider.error')}
+        {t('errorMessage')}
         <Button onClick={refetch} variant="contained">
           Retry
         </Button>

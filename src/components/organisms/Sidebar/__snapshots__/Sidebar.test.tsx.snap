@@ -1,0 +1,359 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-zge4jh"
+  >
+    <div>
+      <div
+        data-testid="section-title"
+      >
+        myCards.title
+      </div>
+      <button
+        data-testid="add-product-button-myCards.title"
+      >
+        Add
+      </button>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-poox9x-MuiTypography-root"
+        data-testid="empty-section-description"
+      >
+        emptySectionDefault
+      </p>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+    />
+    <div>
+      <div
+        data-testid="section-title"
+      >
+        myTransactions.title
+      </div>
+      <div
+        class="MuiTabs-root css-1wn4i7x-MuiTabs-root"
+        data-testid="my-transactions"
+      >
+        <div
+          class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+          style="overflow: hidden; margin-bottom: 0px;"
+        >
+          <div
+            class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+            role="tablist"
+          >
+            <button
+              aria-controls="tabpanel-0"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary MuiTab-fullWidth Mui-selected css-19l1n1n-MuiButtonBase-root-MuiTab-root"
+              id="tab-0"
+              role="tab"
+              tabindex="0"
+              type="button"
+            >
+              myTransactions.all
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              aria-controls="tabpanel-1"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary MuiTab-fullWidth css-19l1n1n-MuiButtonBase-root-MuiTab-root"
+              id="tab-1"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              myTransactions.income
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              aria-controls="tabpanel-2"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary MuiTab-fullWidth css-19l1n1n-MuiButtonBase-root-MuiTab-root"
+              id="tab-2"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              myTransactions.expenses
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <span
+            class="MuiTabs-indicator css-qd5pt7-MuiTabs-indicator"
+            style="left: 0px; width: 0px;"
+          />
+        </div>
+      </div>
+      <div
+        aria-labelledby="tab-0"
+        id="tabpanel-0"
+        role="tabpanel"
+      >
+        <div
+          class="MuiStack-root css-1ucnu3w-MuiStack-root"
+        >
+          <div
+            class="MuiStack-root css-hwnj0i-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1eim6gf-MuiTypography-root"
+            >
+              MOCKED_DATE
+            </p>
+            <div
+              class="css-1wrcl4x"
+            >
+              <span
+                aria-hidden="true"
+                class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-oxu8ww-MuiIcon-root"
+                data-testid="transaction-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="ArrowUpwardRoundedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M13 19V7.83l4.88 4.88c.39.39 1.03.39 1.42 0 .39-.39.39-1.02 0-1.41l-6.59-6.59a.9959.9959 0 0 0-1.41 0l-6.6 6.58c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L11 7.83V19c0 .55.45 1 1 1s1-.45 1-1"
+                  />
+                </svg>
+              </span>
+              <div
+                class="MuiBox-root css-8atqhb"
+              >
+                <div
+                  class="css-uc7zhl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    Strong card
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    - PLN 4.20
+                  </p>
+                </div>
+                <div
+                  class="css-1pw2ad4"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    **** 3649
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    MOCKED_TIME
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="css-1wrcl4x"
+            >
+              <span
+                aria-hidden="true"
+                class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-zgnvje-MuiIcon-root"
+                data-testid="transaction-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="ArrowDownwardRoundedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11 5v11.17l-4.88-4.88c-.39-.39-1.03-.39-1.42 0-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L13 16.17V5c0-.55-.45-1-1-1s-1 .45-1 1"
+                  />
+                </svg>
+              </span>
+              <div
+                class="MuiBox-root css-8atqhb"
+              >
+                <div
+                  class="css-uc7zhl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    Strong card
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    + PLN 44.5
+                  </p>
+                </div>
+                <div
+                  class="css-1pw2ad4"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    **** 4125
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    MOCKED_TIME
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="css-1wrcl4x"
+            >
+              <span
+                aria-hidden="true"
+                class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-oxu8ww-MuiIcon-root"
+                data-testid="transaction-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="ArrowUpwardRoundedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M13 19V7.83l4.88 4.88c.39.39 1.03.39 1.42 0 .39-.39.39-1.02 0-1.41l-6.59-6.59a.9959.9959 0 0 0-1.41 0l-6.6 6.58c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L11 7.83V19c0 .55.45 1 1 1s1-.45 1-1"
+                  />
+                </svg>
+              </span>
+              <div
+                class="MuiBox-root css-8atqhb"
+              >
+                <div
+                  class="css-uc7zhl"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    Strong card
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    - PLN 12.60
+                  </p>
+                </div>
+                <div
+                  class="css-1pw2ad4"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    **** 8967
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-1mpknng-MuiTypography-root"
+                  >
+                    MOCKED_TIME
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-labelledby="tab-1"
+        hidden=""
+        id="tabpanel-1"
+        role="tabpanel"
+      />
+      <div
+        aria-labelledby="tab-2"
+        hidden=""
+        id="tabpanel-2"
+        role="tabpanel"
+      />
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+    />
+    <div>
+      <div
+        data-testid="section-title"
+      >
+        myLoans.title
+      </div>
+      <button
+        data-testid="add-product-button-myLoans.title"
+      >
+        Add
+      </button>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-poox9x-MuiTypography-root"
+        data-testid="empty-section-description"
+      >
+        emptySectionDefault
+      </p>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+    />
+    <div>
+      <div
+        data-testid="section-title"
+      >
+        myDeposits.title
+      </div>
+      <button
+        data-testid="add-product-button-myDeposits.title"
+      >
+        Add
+      </button>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-poox9x-MuiTypography-root"
+        data-testid="empty-section-description"
+      >
+        emptySectionDefault
+      </p>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+    />
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-vyj3nu-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      addNewProduct
+      <span
+        class="MuiButton-icon MuiButton-endIcon MuiButton-iconSizeMedium css-1gnd1fd-MuiButton-endIcon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;

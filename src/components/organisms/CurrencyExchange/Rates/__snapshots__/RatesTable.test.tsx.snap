@@ -6,9 +6,9 @@ exports[`RatesTable component matches snapshot 1`] = `
     class="MuiBox-root css-0"
   >
     <p
-      class="MuiTypography-root MuiTypography-body1 css-ulnjw5-MuiTypography-root"
+      class="MuiTypography-root MuiTypography-body1 css-zaqx05-MuiTypography-root"
     >
-      ratesTable.title
+      title
     </p>
     <div
       class="MuiTableContainer-root css-2boffn-MuiTableContainer-root"
@@ -26,19 +26,19 @@ exports[`RatesTable component matches snapshot 1`] = `
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
               scope="col"
             >
-              ratesTable.currencyColumnLabel
+              currencyColumnLabel
             </th>
             <th
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
               scope="col"
             >
-              ratesTable.buyRateColumnLabel
+              buyRateColumnLabel
             </th>
             <th
               class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1yx88p1-MuiTableCell-root"
               scope="col"
             >
-              ratesTable.sellRateColumnLabel
+              sellRateColumnLabel
             </th>
           </tr>
         </thead>

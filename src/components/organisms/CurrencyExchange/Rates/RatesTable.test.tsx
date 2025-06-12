@@ -140,16 +140,10 @@ describe('RatesTable component', () => {
       </ThemeProvider>,
     );
 
-    expect(screen.getByText('ratesTable.title')).toBeInTheDocument();
-    expect(
-      screen.getByText('ratesTable.currencyColumnLabel'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('ratesTable.buyRateColumnLabel'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('ratesTable.sellRateColumnLabel'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('title')).toBeInTheDocument();
+    expect(screen.getByText('currencyColumnLabel')).toBeInTheDocument();
+    expect(screen.getByText('buyRateColumnLabel')).toBeInTheDocument();
+    expect(screen.getByText('sellRateColumnLabel')).toBeInTheDocument();
 
     expect(screen.getByText('1 USD')).toBeInTheDocument();
     expect(screen.getByText('1 EUR')).toBeInTheDocument();

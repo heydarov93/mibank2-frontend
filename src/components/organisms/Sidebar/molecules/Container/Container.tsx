@@ -1,5 +1,5 @@
 import { Divider } from '@mui/material';
-import { Children, ReactNode } from 'react';
+import { Children, Fragment, ReactNode } from 'react';
 
 import { StyledContainer } from './Container.styled';
 
@@ -8,10 +8,10 @@ export function Container({ children }: { children: ReactNode }) {
   return (
     <StyledContainer>
       {sections.map((section, index) => (
-        <>
+        <Fragment key={index}>
           {section}
           {index !== sections.length - 1 && <Divider />}
-        </>
+        </Fragment>
       ))}
     </StyledContainer>
   );

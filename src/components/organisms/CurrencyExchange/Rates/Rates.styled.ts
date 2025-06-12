@@ -16,7 +16,7 @@ export const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 
 export const StyledTableTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.black,
-  fontFamily: theme.typography.mediumLogo?.fontFamily,
+  fontFamily: 'Urbanist',
   fontWeight: 600,
   fontSize: '18px',
   lineHeight: '28px',
