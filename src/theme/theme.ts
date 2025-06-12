@@ -140,33 +140,6 @@ theme.components = {
   MuiSelect: {
     defaultProps: {
       IconComponent: ExpandMoreIcon,
-      MenuProps: {
-        slotProps: {
-          paper: {
-            sx: {
-              borderRadius: '8px',
-              boxShadow: `0 4px 24px 0 ${theme.palette.shadow.shadowLight};`,
-              background: theme.palette.common.white,
-              border: `1px solid ${theme.palette.grey[200]}`,
-              mt: '4px',
-
-              '.MuiMenuItem-root': {
-                fontSize: '14px',
-                height: '40px',
-              },
-
-              '.MuiList-root': {
-                p: 0,
-              },
-
-              '.Mui-selected': {
-                color: theme.palette.primary.main,
-                background: theme.palette.primary.light,
-              },
-            },
-          },
-        },
-      },
     },
     styleOverrides: {
       root: {
@@ -189,6 +162,31 @@ theme.components = {
       },
       icon: {
         right: '10px',
+      },
+    },
+  },
+  MuiMenu: {
+    styleOverrides: {
+      paper: {
+        borderRadius: '8px',
+        boxShadow: `0 4px 24px 0 ${theme.palette.shadow.shadowLight};`,
+        background: theme.palette.common.white,
+        border: `1px solid ${theme.palette.grey[200]}`,
+        marginTop: '4px',
+
+        '.MuiMenuItem-root': {
+          fontSize: '14px',
+          height: '40px',
+        },
+
+        '.MuiList-root': {
+          padding: 0,
+        },
+
+        '.Mui-selected': {
+          color: theme.palette.primary.main,
+          background: theme.palette.primary.light,
+        },
       },
     },
   },

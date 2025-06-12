@@ -27,7 +27,7 @@ export const OpenBusinessAccountSelects = ({
   });
   const { control, setValue } = useFormContext<OpenBusinessAccFormValues>();
 
-  function handleIssueTypeChange(e: SelectChangeEvent<string>) {
+  function handleIssueTypeChange(e: SelectChangeEvent<string | number>) {
     const issueType = e.target.value;
     setValue('addressConfirmed', issueType === 'digital', {
       shouldValidate: true,

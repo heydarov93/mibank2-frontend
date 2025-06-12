@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -19,6 +19,9 @@ jest.mock('react-i18next', () => ({
       return translations[key] || key;
     },
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 jest.mock('components/molecules', () => ({

@@ -1001,5 +1001,30 @@
   },
   "Address": {
     "edit": "Edit"
+  },
+  "Transfers": {
+    "filters": {
+      "clearFilters": "Clear filters",
+      "periodInfo": "Your transactions for period {{startDate}} - {{endDate}}.",
+      "options": {
+        "time": {
+          "last7Days": "Last 7 days",
+          "last30Days": "Last 30 days",
+          "allTime": "All time",
+          "custom": "Custom"
+        },
+        "transactionTypes": {
+          "all": "All transactions",
+          "income": "Income",
+          "expense": "Expense"
+        }
+      }
+    },
+    "datePicker": {
+      "startDate": "Start date",
+      "endDate": "End date",
+      "cancel": "Cancel",
+      "apply": "Apply"
+    }
   }
 }

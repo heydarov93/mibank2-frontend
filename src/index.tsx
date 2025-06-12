@@ -1,4 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
@@ -16,6 +18,8 @@ import { theme } from './theme/theme';
 import './assets/css/global.css';
 import { AutoLogoutMessageModal } from 'components/organisms/AutoLogoutModal/AutoLogoutMessageModal';
 import { AutoLogoutModal } from 'components/organisms/AutoLogoutModal/AutoLogoutModal';
+
+dayjs.extend(isBetween);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

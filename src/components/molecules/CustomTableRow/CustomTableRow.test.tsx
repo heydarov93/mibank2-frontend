@@ -5,18 +5,6 @@ import { CustomTableRow } from './CustomTableRow';
 
 import { theme } from 'theme/theme';
 
-jest.mock('components/atoms/GreenPlusIcon/GreenPlusIcon', () => {
-  return function GreenPlusIcon() {
-    return <div data-testid="green-plus-icon" />;
-  };
-});
-
-jest.mock('components/atoms/RedMinusIcon/RedMinusIcon', () => {
-  return function RedMinusIcon() {
-    return <div data-testid="red-minus-icon" />;
-  };
-});
-
 const defaultProps = {
   cardNumber: '1234 **** **** 5678',
   currency: 'PLN',

@@ -56,7 +56,7 @@ const MiCarousel: React.FC<MiCarouselProps> = ({
         },
       }}
       sx={{
-        '& > div:first-child': {
+        '& > div:first-of-type': {
           borderRadius: '8px',
           overflow: 'hidden',
         },
