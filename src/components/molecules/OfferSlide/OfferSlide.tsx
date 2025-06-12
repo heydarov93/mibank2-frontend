@@ -15,7 +15,9 @@ import { Offer } from 'api/getOffersApi';
 type OfferSlideProps = Offer;
 
 export const OfferSlide = ({ name, description, banner }: OfferSlideProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'MainPage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.offers',
+  });
 
   return (
     <StyledSlideWrapper data-testid="offers-slider-slide">
@@ -25,7 +27,7 @@ export const OfferSlide = ({ name, description, banner }: OfferSlideProps) => {
         <StyledDesc>{description}</StyledDesc>
       </StyledContentWrapper>
       <StyledOverlay />
-      <StyledButton>{t('viewOffers.learnMore')}</StyledButton>
+      <StyledButton>{t('learnMore')}</StyledButton>
     </StyledSlideWrapper>
   );
 };

@@ -15,7 +15,9 @@ import { CurrencyInput } from 'components/molecules/CurrencyInput/CurrencyInput'
 import { useCurrencyCalculator } from 'hooks/useCurrencyCalculator';
 
 const CurrencyCalculator = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'Homepage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.currencyExchange.calculator',
+  });
   const {
     isConvertCurrencyError,
     errorMessage,
@@ -40,7 +42,7 @@ const CurrencyCalculator = () => {
 
   return (
     <Box>
-      <StyledTableTitle>{t('CurCal.cal')}</StyledTableTitle>
+      <StyledTableTitle>{t('title')}</StyledTableTitle>
 
       {isConvertCurrencyError && (
         <Alert
@@ -54,7 +56,7 @@ const CurrencyCalculator = () => {
 
       <StyledInputsColumn>
         <CurrencyInput
-          label={t('CurCal.give')}
+          label={t('give')}
           fromCurrency={exchange.to.currency}
           toCurrency={exchange.from.currency}
           amount={exchange.from.amount}
@@ -71,7 +73,7 @@ const CurrencyCalculator = () => {
         </StyledIconButton>
 
         <CurrencyInput
-          label={t('CurCal.get')}
+          label={t('get')}
           fromCurrency={exchange.from.currency}
           toCurrency={exchange.to.currency}
           amount={exchange.to.amount}
@@ -85,7 +87,7 @@ const CurrencyCalculator = () => {
         rates[exchange.from.currency] &&
         rates[exchange.to.currency] && (
           <StyledCurrencyText>
-            {t('CurCal.rate')}: 1 {exchange.from.currency} ={' '}
+            {t('rate')}: 1 {exchange.from.currency} ={' '}
             {(
               rates[exchange.from.currency].buy /
               rates[exchange.to.currency].sell

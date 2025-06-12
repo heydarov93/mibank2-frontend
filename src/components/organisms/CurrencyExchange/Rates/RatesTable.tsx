@@ -39,7 +39,9 @@ interface Rate {
 }
 
 export const RatesTable = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'MainPage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.currencyExchange.ratesTable',
+  });
   const theme = useTheme();
 
   const {
@@ -63,9 +65,7 @@ export const RatesTable = () => {
     isLoadingPrevious;
 
   const isRatesError = isCurrentRatesError || isPreviousRatesError;
-  const errorMessage: TableError = isRatesError
-    ? t('ratesTable.errorMessage')
-    : null;
+  const errorMessage: TableError = isRatesError ? t('errorMessage') : null;
 
   if (isRatesDataLoading) {
     return <CircularProgress />;
@@ -81,7 +81,7 @@ export const RatesTable = () => {
 
   return (
     <Box>
-      <StyledTableTitle>{t('ratesTable.title')}</StyledTableTitle>
+      <StyledTableTitle>{t('title')}</StyledTableTitle>
 
       {isRatesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
@@ -93,15 +93,9 @@ export const RatesTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <StyledHeadCell>
-                {t('ratesTable.currencyColumnLabel')}
-              </StyledHeadCell>
-              <StyledHeadCell>
-                {t('ratesTable.buyRateColumnLabel')}
-              </StyledHeadCell>
-              <StyledHeadCell>
-                {t('ratesTable.sellRateColumnLabel')}
-              </StyledHeadCell>
+              <StyledHeadCell>{t('currencyColumnLabel')}</StyledHeadCell>
+              <StyledHeadCell>{t('buyRateColumnLabel')}</StyledHeadCell>
+              <StyledHeadCell>{t('sellRateColumnLabel')}</StyledHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>

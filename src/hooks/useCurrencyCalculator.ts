@@ -12,7 +12,9 @@ interface ConvertedCurrency {
 }
 
 export const useCurrencyCalculator = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'Homepage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.currencyExchange.calculator',
+  });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [exchange, setExchange] = useState({
     from: { currency: 'USD', amount: '' },
@@ -89,7 +91,7 @@ export const useCurrencyCalculator = () => {
       .then((result: ConvertedCurrency) =>
         updateConvertedAmount(result.convertedAmount, isFromAmount),
       )
-      .catch(() => setErrorMessage(t('CurCal.errorMessage')));
+      .catch(() => setErrorMessage(t('errorMessage')));
   };
 
   const handleCurrencyChange = (isFromCurrency: boolean, currency: string) => {
@@ -124,7 +126,7 @@ export const useCurrencyCalculator = () => {
 
   useEffect(() => {
     if (isConvertCurrencyError) {
-      setErrorMessage(t('CurCal.errorMessage'));
+      setErrorMessage(t('errorMessage'));
     }
   }, [isConvertCurrencyError]);
 
