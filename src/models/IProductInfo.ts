@@ -1,3 +1,5 @@
+import { TCurrency } from 'components/atoms';
+
 export interface ProductFormData {
   productType: string;
   subtype: string;
@@ -43,13 +45,32 @@ export interface DepositBackendData {
   earlyWithdrawalFee: number;
 }
 
+export enum ECardType {
+  DEBIT = 'DEBIT',
+  CREDIT = 'CREDIT',
+}
+
+export enum ECardIssuer {
+  VISA = 'Visa',
+  MASTERCARD = 'Mastercard',
+}
+
+export enum ECardIssueType {
+  DIGITAL = 'DIGITAL',
+  PLASTIC = 'PLASTIC',
+}
+
+export enum ECardStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
 export interface IssuanceCardData extends CardFormData {
-  id: number;
-  name: string;
-  fee: number;
-  feeCurrency: string;
-  background: string;
-  currency: string;
-  issueType: string;
-  cardIssuer: 'visa' | 'mastercard';
+  cardId: number;
+  cardName: string;
+  issueFee: number | null;
+  issueCurrency: TCurrency;
+  cardCurrency: string;
+  issueType: string | null;
+  cardIssuer: ECardIssuer;
 }

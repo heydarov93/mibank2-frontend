@@ -11,17 +11,16 @@ import {
 import { SwitchWithLabel } from 'components/atoms/SwitchWithLabel/SwitchWithLabel';
 import useDisclosure from 'hooks/useDisclosure';
 import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
-import { IssuanceCardData } from 'models/IProductInfo';
+import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
 
 const mockCardOptions: Record<string, IssuanceCardData> = {
   digital: {
-    id: 1,
-    name: 'Visa Business',
-    fee: 0,
-    feeCurrency: 'PLN',
-    currency: 'PLN',
-    background: 'linear-gradient(136deg, #4d9bc2 8.4%, #1e3456 92%)',
-    cardIssuer: 'visa',
+    cardId: 1,
+    cardName: 'Visa Business',
+    issueFee: 0,
+    issueCurrency: 'PLN',
+    cardCurrency: 'PLN',
+    cardIssuer: ECardIssuer.VISA,
     cardType: 'Debit',
     issueType: 'Digital',
     cashbackRate: 0.1,
@@ -30,13 +29,12 @@ const mockCardOptions: Record<string, IssuanceCardData> = {
     dailyOperationalLimit: 1000,
   },
   plastic: {
-    id: 2,
-    name: 'Visa Business',
-    fee: 0,
-    feeCurrency: 'PLN',
-    currency: 'PLN',
-    background: 'linear-gradient(136deg, #b3261e 8.4%, #4d110d 92%)',
-    cardIssuer: 'visa',
+    cardId: 2,
+    cardName: 'Visa Business',
+    issueFee: 0,
+    issueCurrency: 'PLN',
+    cardCurrency: 'PLN',
+    cardIssuer: ECardIssuer.VISA,
     cardType: 'Debit',
     issueType: 'Digital',
     cashbackRate: 0.1,
@@ -74,11 +72,11 @@ export const BusinessSelectedCardInfo = ({
     <Stack color="black" sx={sx} data-testid="business-card-info">
       <Box sx={{ alignSelf: 'center' }}>
         <IssuanceCard
-          name={cardData.name}
-          background={cardData.background}
+          cardName={cardData.cardName}
+          background="#000"
           monthlyFee={cardData.monthlyFee}
-          feeCurrency={cardData.feeCurrency}
-          currency={cardData.currency}
+          issueCurrency={cardData.issueCurrency}
+          cardCurrency={cardData.cardCurrency}
           cashback={cardData.cashbackRate}
           cardIssuer={cardData.cardIssuer}
         />

@@ -928,6 +928,18 @@
     "monthlyFee": "Monthly fee",
     "transactionLimit": "Foreign transaction limit",
     "cashbackAmount": "Cashback amount",
+    "noAvailableCards": "No available cards according to requested criteria.",
+    "processingPayment": "Processing your payment... Please wait",
+    "cardIssuedTitle": "Issued successfully!",
+    "paidCardIssuedDescription": "Your card has been issued successfully! The issuance fee has been deducted from your selected account.",
+    "freeCardIssuedDescription": "Your card has been issued successfully!",
+    "insufficientFunds": "Insufficient funds to cover the card issuance fee",
+    "transactionFailed": "Transaction failed",
+    "otherError": "Something went wrong. Please try again.",
+    "debitCard": "Debit Card",
+    "creditCard": "Credit Card",
+    "digital": "Digital",
+    "plastic": "Plastic",
     "confirmationModal": {
       "title": "Leaving issuing a card?",
       "description": "If you leave, the progress won’t be saved.",
@@ -940,7 +952,9 @@
     "monthlyFee": "Monthly Fee",
     "cardCurrency": "Card Currency",
     "type": "Type",
-    "cashback": "Cashback"
+    "cashback": "Cashback",
+    "debitCard": "Debit",
+    "creditCard": "Credit"
   },
   "OpenBusinessAccountModal": {
     "title": "Open a Business Account",

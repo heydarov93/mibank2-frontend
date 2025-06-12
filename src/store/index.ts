@@ -42,6 +42,7 @@ import { refreshToken } from 'api/refreshTokenApi';
 import { registerEmployeeApi } from 'api/registerEmployee';
 import { registerNewUserApi } from 'api/registerNewUserApi';
 import { updateDepositApi } from 'api/updateDepositApi';
+import { userCardsApi } from 'api/userCardsApi';
 import { userInfoApi } from 'api/userInfoApi';
 import { validateOtpApi } from 'api/validateOtpApi';
 
@@ -80,6 +81,7 @@ const rootReducer = combineReducers({
   [getOffersApi.reducerPath]: getOffersApi.reducer,
   [getDepositsApi.reducerPath]: getDepositsApi.reducer,
   [createUserDepositApi.reducerPath]: createUserDepositApi.reducer,
+  [userCardsApi.reducerPath]: userCardsApi.reducer,
 });
 
 const persistConfig = {
@@ -114,6 +116,8 @@ const persistConfig = {
     getProductsApi.reducerPath,
     getOffersApi.reducerPath,
     createUserDepositApi.reducerPath,
+    accountsApi.reducerPath,
+    userCardsApi.reducerPath,
   ],
 };
 
@@ -154,6 +158,8 @@ const store = configureStore({
       getProductsApi.middleware,
       getOffersApi.middleware,
       createUserDepositApi.middleware,
+      accountsApi.middleware,
+      userCardsApi.middleware,
     ]),
 });
 

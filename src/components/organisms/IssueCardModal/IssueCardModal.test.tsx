@@ -1,12 +1,18 @@
 import {
+  act,
   fireEvent,
   render,
   RenderResult,
   screen,
   waitFor,
 } from '@testing-library/react';
+import { Provider } from 'react-redux';
 
 import { IssueCardModal } from './IssueCardModal';
+
+import { useLazyGetCardsQuery } from 'api/userCardsApi';
+import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
+import store from 'store';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -17,29 +23,78 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-const selectAllValues = () =>
-  screen.getAllByRole('combobox').forEach((select) => {
-    fireEvent.mouseDown(select);
+jest.mock('api/userCardsApi', () => ({
+  ...jest.requireActual('api/userCardsApi'),
+  useLazyGetCardsQuery: jest.fn(),
+}));
+
+jest.mock('hooks/useGetAccountOptions', () => ({
+  useGetAccountOptions: jest.fn(),
+}));
+
+const selectAllValues = async () => {
+  for (const select of screen.getAllByRole('combobox')) {
+    await act(() => fireEvent.mouseDown(select));
 
     const listbox = screen.getByRole('listbox');
     const firstOption = listbox.querySelector('li') as HTMLElement;
 
-    fireEvent.click(firstOption);
-  });
+    await act(() => fireEvent.click(firstOption));
+  }
+};
 
-const selectCard = () => {
+const selectCard = async () => {
   const firstCard = screen.queryAllByTestId(
     'small-issuance-card',
   )[0] as HTMLElement;
 
-  fireEvent.click(firstCard);
+  await act(() => fireEvent.click(firstCard));
 };
 
 describe('IssueCardModal', () => {
   let rerender: RenderResult['rerender'];
 
   beforeEach(() => {
-    rerender = render(<IssueCardModal open onClose={jest.fn()} />).rerender;
+    (useLazyGetCardsQuery as jest.Mock).mockReturnValue([
+      jest.fn(() => Promise.resolve()),
+      {
+        data: {
+          data: [
+            {
+              id: 1,
+              cardName: 'Home',
+              cardCurrency: 'USD',
+              cardType: 'Digital   ',
+              cashbackRate: 1,
+              dailyLimit: 10000,
+              issueType: null,
+              cardIssuer: 'Visa',
+              issueFee: null,
+              issueCurrency: 'PLN',
+              foreignTransactionLimit: 100000000,
+              monthlyFee: 10,
+              cardStatus: 'ACTIVE',
+            },
+          ],
+        },
+        isLoading: false,
+      },
+    ]);
+    (useGetAccountOptions as jest.Mock).mockReturnValue({
+      isLoading: false,
+      data: [
+        {
+          value: '1',
+          label: '1234567890',
+          secondaryLabel: 'PLN 100,00',
+        },
+      ],
+    });
+    rerender = render(
+      <Provider store={store}>
+        <IssueCardModal open onClose={jest.fn()} />
+      </Provider>,
+    ).rerender;
   });
 
   it('renders the form when open is true', () => {
@@ -47,7 +102,11 @@ describe('IssueCardModal', () => {
   });
 
   it("doesn't render the form when open is false", async () => {
-    rerender(<IssueCardModal open={false} onClose={jest.fn()} />);
+    rerender(
+      <Provider store={store}>
+        <IssueCardModal open={false} onClose={jest.fn()} />
+      </Provider>,
+    );
     await waitFor(() =>
       expect(screen.queryByTestId('issue-card-modal')).toBeNull(),
     );
@@ -59,8 +118,8 @@ describe('IssueCardModal', () => {
     ).toBeDisabled();
   });
 
-  it('displays available cards when all fields are filled with disabled "Continue" button', () => {
-    selectAllValues();
+  it('displays available cards when all fields are filled with disabled "Continue" button', async () => {
+    await selectAllValues();
 
     expect(
       screen.getByTestId('issue-card-modal-continue-button'),
@@ -70,14 +129,14 @@ describe('IssueCardModal', () => {
     ).toBeInTheDocument();
   });
 
-  it('makes "Continue" button enabled and renders information about selected card if all fields are filled and card is selected', () => {
-    selectAllValues();
+  it('makes "Continue" button enabled and renders information about selected card if all fields are filled and card is selected', async () => {
+    await selectAllValues();
 
     expect(
       screen.queryByTestId('issue-card-modal-selected-card-info'),
     ).toBeNull();
 
-    selectCard();
+    await selectCard();
 
     expect(
       screen.getByTestId('issue-card-modal-selected-card-info'),
@@ -87,9 +146,9 @@ describe('IssueCardModal', () => {
     ).toBeEnabled();
   });
 
-  it('renders "SelectedCardForm" if user clicks "Continue" button', () => {
-    selectAllValues();
-    selectCard();
+  it('renders "SelectedCardForm" if user clicks "Continue" button', async () => {
+    await selectAllValues();
+    await selectCard();
 
     fireEvent.click(screen.getByTestId('issue-card-modal-continue-button'));
 

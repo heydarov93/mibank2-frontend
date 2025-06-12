@@ -74,6 +74,43 @@ interface IFeeResponse {
   totalAmount: number;
 }
 
+interface ILinkAccountWithCardRequest {
+  accountId: string;
+  cardId: number;
+  currencyCode: string;
+}
+
+interface ICheckCardIssuanceRequest {
+  paymentAccount: string;
+  issuanceCurrency: string;
+  issuanceAmount: number;
+}
+
+interface ICheckCardIssuanceResponse {
+  userAccountId: string;
+  isEligible: boolean;
+}
+
+interface ICreateUserCardAccRequest {
+  userId: number;
+  cardId: number;
+  currencyCode: string;
+}
+
+interface ICreateUserCardAccResponse {
+  userAccountId: string;
+  userId: number;
+  productId: number;
+  ibanNum: string;
+  swiftNum: string;
+  currency: string;
+  currentAccountBalance: number;
+  accountStartDate: string;
+  accountStatus: string;
+  bankDepartment: string;
+  lastTransaction: string;
+}
+
 export const accountsApi = createApi({
   reducerPath: 'accountsApi',
   baseQuery: fetchBaseQuery({
@@ -139,6 +176,37 @@ export const accountsApi = createApi({
         params: { token },
       }),
     }),
+
+    linkAccountWithCard: builder.mutation<void, ILinkAccountWithCardRequest>({
+      query: (data) => ({
+        url: endpoints.accounts.linkAccountWithCard,
+        body: data,
+        method: 'PATCH',
+      }),
+    }),
+
+    checkCardIssuance: builder.mutation<
+      ICheckCardIssuanceResponse,
+      ICheckCardIssuanceRequest
+    >({
+      query: (data) => ({
+        url: endpoints.accounts.checkCardIssuance,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+
+    createUserCardAccount: builder.mutation<
+      ICreateUserCardAccResponse,
+      ICreateUserCardAccRequest
+    >({
+      query: (data) => ({
+        url: endpoints.accounts.createUserCardAccount,
+        body: data,
+        method: 'POST',
+      }),
+      invalidatesTags: ['IBANAccounts'],
+    }),
   }),
 });
 
@@ -148,4 +216,7 @@ export const {
   useTransferToIBANMutation,
   useTransferToCardMutation,
   useGetTransferFeeQuery,
+  useLinkAccountWithCardMutation,
+  useCheckCardIssuanceMutation,
+  useCreateUserCardAccountMutation,
 } = accountsApi;

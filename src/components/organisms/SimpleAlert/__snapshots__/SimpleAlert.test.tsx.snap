@@ -3,7 +3,7 @@
 exports[`SimpleAlert should render with the correct message 1`] = `
 <DocumentFragment>
   <div
-    class="MuiSnackbar-root MuiSnackbar-anchorOriginTopCenter css-134p6ta-MuiSnackbar-root"
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginTopCenter css-zzms1-MuiSnackbar-root"
     role="alert"
   >
     <div

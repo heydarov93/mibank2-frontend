@@ -3,7 +3,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { SelectedCardForm } from './SelectedCardForm';
 
-import { IssuanceCardData } from 'models/IProductInfo';
+import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
+import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
 
 const translations = {
   confirm: 'Confirmation',
@@ -21,14 +22,17 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('hooks/useGetAccountOptions', () => ({
+  useGetAccountOptions: jest.fn(),
+}));
+
 const cardData: IssuanceCardData = {
-  id: 1,
-  name: 'Visa Black',
-  fee: 15,
-  feeCurrency: 'PLN',
-  currency: 'PLN',
-  background: '#000',
-  cardIssuer: 'visa',
+  cardId: 1,
+  cardName: 'Visa Black',
+  issueFee: 15,
+  issueCurrency: 'PLN',
+  cardCurrency: 'PLN',
+  cardIssuer: ECardIssuer.VISA,
   cardType: 'Debit',
   issueType: 'Digital',
   cashbackRate: 0.3,
@@ -46,7 +50,7 @@ const FormWrapper = (props: IssuanceCardData) => {
 
   return (
     <FormProvider {...methods}>
-      <SelectedCardForm {...props} onCancel={jest.fn()} />
+      <SelectedCardForm {...props} onCancel={jest.fn()} background="#000" />
     </FormProvider>
   );
 };
@@ -76,9 +80,22 @@ const selectAccount = () => {
 const renderForm = (data = cardData) => render(<FormWrapper {...data} />);
 
 describe('SelectedCardForm', () => {
+  beforeEach(() => {
+    (useGetAccountOptions as jest.Mock).mockReturnValue({
+      isLoading: false,
+      data: [
+        {
+          value: '1',
+          label: '1234567890',
+          secondaryLabel: 'PLN 100,00',
+        },
+      ],
+    });
+  });
+
   it('renders correctly with card data', () => {
     renderForm();
-    expect(screen.getByText(cardData.name)).toBeInTheDocument();
+    expect(screen.getByText(cardData.cardName)).toBeInTheDocument();
   });
 
   it('renders account select if card is not free', () => {
@@ -87,7 +104,7 @@ describe('SelectedCardForm', () => {
   });
 
   it('does not render account select if card is free', () => {
-    renderForm({ ...cardData, fee: 0 });
+    renderForm({ ...cardData, issueFee: 0 });
     expect(screen.queryByRole('combobox')).toBeNull();
   });
 
@@ -108,7 +125,7 @@ describe('SelectedCardForm', () => {
   });
 
   it('confirmation button has "Issue Card" text if card is free', () => {
-    renderForm({ ...cardData, fee: 0 });
+    renderForm({ ...cardData, issueFee: 0 });
     expect(screen.getByTestId('confirm-btn')).toHaveTextContent(
       translations.issueCard,
     );

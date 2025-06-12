@@ -12,6 +12,7 @@ export const StyledDialog = styled(Dialog)(({ theme }) => ({
 export const StyledActionsWrapper = styled(Stack)(({ theme: { spacing } }) => ({
   gap: spacing(3),
   justifyContent: 'flex-end',
+  minHeight: '56px',
   '.MuiButton-root': {
     minWidth: '113px',
   },

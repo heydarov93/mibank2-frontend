@@ -1,22 +1,32 @@
-import { Stack, SxProps, Theme } from '@mui/material';
+import { SelectChangeEvent, Stack, SxProps, Theme } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { CardIssueFormValues } from '../../hooks/useCardIssueFlow';
+
 import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';
-import { CardIssueFormValues } from 'components/organisms/IssueCardModal/IssueCardModal';
 import currencies from 'constants/currencies';
+import { EAccount } from 'enums/EAccount';
+import { t } from 'i18n';
+import { ECardType, ECardIssueType, ECardIssuer } from 'models/IProductInfo';
 
 const currenciesOptions = currencies.map((value) => ({ value }));
 
 const cardTypes = [
-  { value: 'Debit', label: 'Debit Card' },
-  { value: 'Credit', label: 'Credit Card (NOT IN MVP)' },
+  { value: ECardType.DEBIT, label: t('IssueCardModal.debitCard') },
+  { value: ECardType.CREDIT, label: t('IssueCardModal.creditCard') },
 ];
 
-const issueTypes = [{ value: 'Digital' }, { value: 'Plastic' }];
+const issueTypes = [
+  { value: ECardIssueType.DIGITAL, label: t('IssueCardModal.digital') },
+  { value: ECardIssueType.PLASTIC, label: t('IssueCardModal.plastic') },
+];
 
-const cardIssuers = [{ value: 'Visa' }, { value: 'MasterCard' }];
+const cardIssuers = [
+  { value: ECardIssuer.VISA, label: 'Visa' },
+  { value: ECardIssuer.MASTERCARD, label: 'MasterCard' },
+];
 
 interface IssueCardModalSelectsProps {
   sx?: SxProps<Theme>;
@@ -24,11 +34,24 @@ interface IssueCardModalSelectsProps {
 
 export const IssueCardModalSelects = ({ sx }: IssueCardModalSelectsProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
-  const { control } = useFormContext<CardIssueFormValues>();
+  const { control, setValue } = useFormContext<CardIssueFormValues>();
+
+  function handleAccountChange(e: SelectChangeEvent<string>) {
+    const { value } = e.target;
+
+    if (value !== EAccount.NEW_ACCOUNT) {
+      setValue('paymentAccount', value);
+    }
+  }
 
   return (
     <Stack gap={2.5} sx={sx}>
-      <AccountSelect name="issuanceAccount" control={control} withNewAccount />
+      <AccountSelect
+        name="issuanceAccount"
+        control={control}
+        withNewAccount
+        onChange={handleAccountChange}
+      />
       <FieldWithLabel label={t('currency')}>
         <SelectField
           options={currenciesOptions}

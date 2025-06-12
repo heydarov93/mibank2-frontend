@@ -7,57 +7,65 @@ import { CardWrapper, StyledTypography } from './IssuanceCard.styled';
 import { ReactComponent as MastercardIcon } from 'assets/icons/Mastercard.svg';
 import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
 import { ReactComponent as SimpleVisaIcon } from 'assets/icons/SimpleVisaIcon.svg';
-import { IssuanceCardData } from 'models/IProductInfo';
+import { ECardIssuer, ECardType, IssuanceCardData } from 'models/IProductInfo';
 
 export type IssuanceCardProps = Pick<
   IssuanceCardData,
-  'name' | 'feeCurrency' | 'background' | 'currency' | 'cardIssuer'
+  'cardName' | 'issueCurrency' | 'cardCurrency' | 'cardIssuer'
 > & {
-  issuanceFee?: IssuanceCardData['fee'];
+  issueFee?: IssuanceCardData['issueFee'];
   monthlyFee?: IssuanceCardData['monthlyFee'];
   cashback?: IssuanceCardData['cashbackRate'];
   cardType?: IssuanceCardData['cardType'];
+  background: string;
 };
 
 const issuers: Record<IssuanceCardProps['cardIssuer'], ReactElement> = {
-  visa: <SimpleVisaIcon />,
-  mastercard: <MastercardIcon height={24} width={33} />,
+  [ECardIssuer.VISA]: <SimpleVisaIcon />,
+  [ECardIssuer.MASTERCARD]: <MastercardIcon height={24} width={33} />,
 };
 
 export const IssuanceCard = ({
-  name,
-  issuanceFee,
+  cardName,
+  issueFee,
   monthlyFee,
-  feeCurrency,
+  issueCurrency,
   background,
-  currency,
+  cardCurrency,
   cardType,
   cardIssuer,
   cashback,
 }: IssuanceCardProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssuanceCard' });
-  const fee = issuanceFee ?? monthlyFee;
-  const feeTitle = t(issuanceFee ? 'issuanceFee' : 'monthlyFee');
+  const fee = issueFee ?? monthlyFee ?? 0;
+  const isIssueFeeProvided = issueFee ?? issueFee === null;
+  const feeTitle = t(isIssueFeeProvided ? 'issuanceFee' : 'monthlyFee');
+  const cardTypes = {
+    [ECardType.DEBIT]: t('debitCard'),
+    [ECardType.CREDIT]: t('creditCard'),
+  };
 
   return (
     <CardWrapper background={background}>
       <Stack direction="row">
         <Stack gap="38px" flex={1}>
           <Typography fontWeight={500} fontSize={32} lineHeight={1.25}>
-            {name}
+            {cardName}
           </Typography>
           <Stack gap="8px" sx={(theme) => ({ color: theme.palette.grey[400] })}>
             {typeof fee === 'number' && (
               <Stack direction="row">
                 <StyledTypography>{feeTitle}:</StyledTypography>
                 <StyledTypography fontWeight={500}>
-                  {fee.toFixed(2)} {feeCurrency}
+                  {fee.toFixed(2)} {issueCurrency}
                 </StyledTypography>
               </Stack>
             )}
             <Stack direction="row">
               <StyledTypography>{t('cardCurrency')}:</StyledTypography>
-              <StyledTypography fontWeight={500}>{currency}</StyledTypography>
+              <StyledTypography fontWeight={500}>
+                {cardCurrency}
+              </StyledTypography>
             </Stack>
             {typeof cashback === 'number' ? (
               <Stack direction="row">
@@ -69,7 +77,9 @@ export const IssuanceCard = ({
             ) : (
               <Stack direction="row">
                 <StyledTypography>{t('type')}:</StyledTypography>
-                <StyledTypography fontWeight={500}>{cardType}</StyledTypography>
+                <StyledTypography fontWeight={500}>
+                  {cardTypes[cardType?.trim() as ECardType]}
+                </StyledTypography>
               </Stack>
             )}
           </Stack>

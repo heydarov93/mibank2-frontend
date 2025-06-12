@@ -12,6 +12,7 @@ export interface InfoAlertProps extends SnackbarProps {
   title?: string;
   message?: string;
   type?: 'success' | 'error';
+  withBackdrop?: boolean;
 }
 
 export const InfoAlert = ({
@@ -20,6 +21,7 @@ export const InfoAlert = ({
   message,
   title,
   type = 'success',
+  withBackdrop,
   ...snackbarProps
 }: InfoAlertProps) => {
   const { t } = useTranslation('translation', {
@@ -34,7 +36,17 @@ export const InfoAlert = ({
       onClose={onClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       {...snackbarProps}
-      sx={{ ...snackbarProps.sx, maxWidth: '532px', width: '100%' }}
+      sx={{
+        ...(withBackdrop && {
+          '&': {
+            top: 0,
+            width: '100%',
+            height: '100%',
+            background: 'rgba(0, 0, 0, 0.3)',
+          },
+        }),
+        ...snackbarProps.sx,
+      }}
     >
       <StyledAlert
         onClose={onClose}
@@ -43,7 +55,11 @@ export const InfoAlert = ({
           success: <SuccessIcon data-testid="success-icon" />,
           error: <ExclamationIcon data-testid="error-icon" />,
         }}
-        sx={(theme) => ({ border: `1px solid ${theme.palette[type].main}` })}
+        sx={(theme) => ({
+          border: `1px solid ${theme.palette[type].main}`,
+          maxWidth: '532px',
+          width: '100%',
+        })}
       >
         <Typography
           fontSize={24}

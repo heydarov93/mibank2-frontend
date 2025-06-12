@@ -1,47 +1,34 @@
-import { Stack, Typography } from '@mui/material';
+import { SelectProps, Stack, Typography } from '@mui/material';
 import { useMemo } from 'react';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { SelectField, SelectFieldOption } from 'components/molecules';
+import { SelectField } from 'components/molecules';
+import { EAccount } from 'enums/EAccount';
+import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
 
 interface AccountSelectProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   withNewAccount?: boolean;
+  onChange?: SelectProps<string>['onChange'];
 }
-
-const mockAccounts: SelectFieldOption[] = [
-  {
-    value: 'Option 1',
-    label: 'PL12 1116 6660 0000 0001 2345 678',
-    secondaryLabel: 'PLN 100,00 ',
-  },
-  {
-    value: 'Option 2',
-    label: 'PL12 1116 6660 0000 0001 2345 678',
-    secondaryLabel: 'USD 100,00 ',
-  },
-  {
-    value: 'Option 3',
-    label: 'PL12 1116 6660 0000 0001 2345 678',
-    secondaryLabel: 'EUR 100,00 ',
-  },
-];
 
 export const AccountSelect = <T extends FieldValues>({
   control,
   name,
   withNewAccount,
+  onChange,
 }: AccountSelectProps<T>) => {
+  const { isLoading, data } = useGetAccountOptions();
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
-  const accountOptions = useMemo(
-    () =>
-      withNewAccount
-        ? mockAccounts.concat({ value: 'newAcc', label: t('openNewAcc') })
-        : mockAccounts,
-    [withNewAccount],
-  );
+  const accountOptions = useMemo(() => {
+    if (isLoading) return [];
+
+    return withNewAccount
+      ? data.concat({ value: EAccount.NEW_ACCOUNT, label: t('openNewAcc') })
+      : data;
+  }, [data, withNewAccount, isLoading]);
 
   return (
     <Stack spacing="4px">
@@ -53,6 +40,8 @@ export const AccountSelect = <T extends FieldValues>({
         name={name}
         control={control}
         placeholder={t('choose')}
+        optionsLoading={isLoading}
+        onChange={onChange}
       />
     </Stack>
   );

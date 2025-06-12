@@ -2,24 +2,23 @@ import { Box, Button, Link, Stack, Typography } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { IssuanceCardProps } from '../IssuanceCard/IssuanceCard';
+import { IssuanceCardProps } from '../../../../molecules/IssuanceCard/IssuanceCard';
 
 import { SwitchWithLabel } from 'components/atoms';
 import { AccountSelect, IssuanceCard } from 'components/molecules';
-import { CardIssueFormValues } from 'components/organisms/IssueCardModal/IssueCardModal';
+import { CardIssueFormValues } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
 import useDisclosure from 'hooks/useDisclosure';
 
 interface SelectedCardFormProps extends IssuanceCardProps {
-  fee: number;
   onCancel: () => void;
 }
 
 export const SelectedCardForm = ({
-  name,
-  fee,
-  feeCurrency,
+  cardName,
+  issueFee,
+  issueCurrency,
   background,
-  currency,
+  cardCurrency,
   cardType,
   cardIssuer,
   onCancel,
@@ -28,6 +27,7 @@ export const SelectedCardForm = ({
   const { control, watch } = useFormContext<CardIssueFormValues>();
   const { isOpen: isLinkVisited, open: markLinkAsVisited } = useDisclosure();
   const { isOpen: isAgreed, toggle: toggleConfirmation } = useDisclosure();
+  const fee = issueFee ?? 0;
   const isCardFree = fee === 0;
   const isPaymentAccSelected = isCardFree || Boolean(watch('paymentAccount'));
   const isConfirmBtnDisabled = !isAgreed || !isPaymentAccSelected;
@@ -37,11 +37,11 @@ export const SelectedCardForm = ({
     <Box data-testid="selected-card-form">
       <Box sx={{ mt: '24px' }}>
         <IssuanceCard
-          name={name}
+          cardName={cardName}
           background={background}
-          issuanceFee={fee}
-          feeCurrency={feeCurrency}
-          currency={currency}
+          issueFee={issueFee}
+          issueCurrency={issueCurrency}
+          cardCurrency={cardCurrency}
           cardType={cardType}
           cardIssuer={cardIssuer}
         />
@@ -67,7 +67,7 @@ export const SelectedCardForm = ({
         sx={{ mt: 2 }}
       />
       <Typography fontWeight={500} fontSize={32} textAlign="right" mt="32px">
-        {fee.toFixed(2)} {currency}
+        {fee.toFixed(2)} {cardCurrency}
       </Typography>
       {!isCardFree && <AccountSelect name="paymentAccount" control={control} />}
       <Stack

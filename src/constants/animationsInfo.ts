@@ -1,0 +1,1 @@
+export const DIALOGS_ANIMATION_TIME = 300;

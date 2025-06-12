@@ -1,20 +1,34 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { CardIssueFormValues, IssueCardModalProps } from 'components/organisms';
+import { useLazyGetCardsQuery } from 'api/userCardsApi';
+import { IssueCardModalProps } from 'components/organisms';
+import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
 import useDisclosure from 'hooks/useDisclosure';
-import { IssuanceCardData } from 'models/IProductInfo';
+import {
+  ECardIssuer,
+  ECardIssueType,
+  ECardType,
+  IssuanceCardData,
+} from 'models/IProductInfo';
 
 interface UseIssueFlowOptions {
   onClose: IssueCardModalProps['onClose'];
-  defaultValues: CardIssueFormValues;
 }
 
-export const useCardIssueFlow = ({
-  onClose,
-  defaultValues,
-}: UseIssueFlowOptions) => {
+const defaultValues = {
+  issuanceAccount: '',
+  paymentAccount: '',
+  currency: '',
+  cardType: '',
+  issueType: '',
+  cardIssuer: '',
+};
+
+export type CardIssueFormValues = typeof defaultValues;
+
+export const useCardIssueFlow = ({ onClose }: UseIssueFlowOptions) => {
   const formMethods = useForm({ defaultValues });
   const { reset, watch } = formMethods;
   const [selectedCard, setSelectedCard] = useState<IssuanceCardData | null>(
@@ -24,6 +38,10 @@ export const useCardIssueFlow = ({
     ECardIssueStepper.DATA_SELECTION,
   );
   const confirmationModal = useDisclosure();
+  const [getCardsQuery, { data: cardsData, isFetching: isLoadingCards }] =
+    useLazyGetCardsQuery();
+  const cards = cardsData?.data ?? [];
+  const isConfirmationStep = step === ECardIssueStepper.CONFIRMATION;
 
   useEffect(() => {
     const { unsubscribe } = watch((formFields) => {
@@ -31,8 +49,14 @@ export const useCardIssueFlow = ({
         ([key, value]) => key === 'paymentAccount' || Boolean(value),
       );
 
-      if (isAllDataFilled && step === ECardIssueStepper.DATA_SELECTION) {
-        setStep(ECardIssueStepper.CARD_SELECTION);
+      if (isAllDataFilled) {
+        if (!isConfirmationStep) {
+          getCards(formFields as CardIssueFormValues);
+        }
+
+        if (step === ECardIssueStepper.DATA_SELECTION) {
+          setStep(ECardIssueStepper.CARD_SELECTION);
+        }
       }
     });
 
@@ -46,7 +70,7 @@ export const useCardIssueFlow = ({
       reset();
       setSelectedCard(null);
       setStep(ECardIssueStepper.DATA_SELECTION);
-    }, 300);
+    }, DIALOGS_ANIMATION_TIME);
   }
 
   function handleSelectCard(cardData: IssuanceCardData) {
@@ -62,11 +86,31 @@ export const useCardIssueFlow = ({
     return () => setStep(step);
   }
 
+  async function getCards({
+    cardType,
+    cardIssuer,
+    issueType,
+    currency,
+  }: CardIssueFormValues) {
+    getCardsQuery({
+      cardType: cardType as ECardType,
+      cardIssuer: cardIssuer as ECardIssuer,
+      issueType: issueType as ECardIssueType,
+      cardCurrency: currency,
+    }).then(() => {
+      setSelectedCard(null);
+      setStep(ECardIssueStepper.CARD_SELECTION);
+    });
+  }
+
   return {
     formMethods,
     selectedCard,
     step,
     confirmationModal,
+    cards,
+    isLoadingCards,
+    isConfirmationStep,
     handleSelectCard,
     handleClose,
     handleBack,
