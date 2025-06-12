@@ -121,8 +121,6 @@ export const AddressRegisterForm = () => {
       </StyledFormContainer>
 
       <NavigationWarningModal
-        title={t('confirmationModal.title')}
-        description={t('confirmationModal.description')}
         open={warningModalOpen}
         onConfirm={handleNavigateBack}
         onCancel={handleCancelNavigateBack}
