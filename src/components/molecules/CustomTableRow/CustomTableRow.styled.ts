@@ -12,14 +12,14 @@ export const StyledTableCell = styled(TableCell)(
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 400,
     lineHeight: '24px',
-    padding: spacing(2),
+    padding: spacing(1.5, 2),
     fontSize: '16px',
     color: palette.common.black,
   }),
 );
 
 export const StyledAmountText = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'positive',
+  shouldForwardProp: (prop) => prop !== 'positive' && prop !== 'income',
 })<{ income?: boolean }>(({ income, theme: { palette } }) => ({
   fontWeight: 400,
   fontSize: '16px',

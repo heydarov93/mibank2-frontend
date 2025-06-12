@@ -1,7 +1,24 @@
 import { styled, TextField } from '@mui/material';
 
-export const StyledTextField = styled(TextField)(
-  ({ theme: { palette, animations } }) => ({
+export const StyledTextField = styled(TextField, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})<{ active?: boolean }>(({ theme: { palette, animations }, active }) => {
+  const activeColor = active ? palette.primary.main : undefined;
+
+  return {
+    '.MuiOutlinedInput-notchedOutline': {
+      border: active
+        ? `2px solid ${palette.primary.main} !important`
+        : undefined,
+    },
+
+    '.MuiInputBase-root': {
+      'input, svg': {
+        color: activeColor,
+        fill: activeColor,
+      },
+    },
+
     '&.shake': {
       animation: `${animations?.shake} 0.25s`,
     },
@@ -39,5 +56,5 @@ export const StyledTextField = styled(TextField)(
     "& input[type='password']::-ms-reveal": {
       display: 'none',
     },
-  }),
-);
+  };
+});

@@ -49,13 +49,15 @@ const enum FieldName {
   ownerName = 'ownerName',
   nip = 'nip',
   office = 'office',
+  startDate = 'startDate',
+  endDate = 'endDate',
 }
 
 export interface InputFieldProps<T extends FieldValues> {
   name: Path<T>;
   id: `${FieldName}`;
   control: Control<T>;
-  placeholder: string;
+  placeholder?: string;
   type?: string;
   disabled?: boolean;
   error?: FieldError;
@@ -68,7 +70,10 @@ export interface InputFieldProps<T extends FieldValues> {
   multiline?: boolean;
   rows?: number;
   sx?: SxProps<Theme>;
+  value?: string;
+  readOnly?: boolean;
   'data-testid'?: string;
+  active?: boolean;
   onCut?: (e: SyntheticEvent) => void;
   onCopy?: (e: SyntheticEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
@@ -76,6 +81,7 @@ export interface InputFieldProps<T extends FieldValues> {
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onPaste?: (e: SyntheticEvent) => void;
   onChange?: (e: SyntheticEvent) => void;
+  onClick?: (e: SyntheticEvent) => void;
 }
 
 export const InputField = <T extends FieldValues>({
@@ -95,11 +101,15 @@ export const InputField = <T extends FieldValues>({
   onKeyDown,
   onPaste,
   onChange,
+  onClick,
   InputProps,
   maxLength,
   multiline,
   rows,
   sx,
+  value,
+  readOnly,
+  active,
   'data-testid': testId,
 }: InputFieldProps<T>) => (
   <Controller
@@ -121,18 +131,22 @@ export const InputField = <T extends FieldValues>({
         onFocus={onFocus}
         onKeyDown={onKeyDown}
         onPaste={onPaste}
+        onClick={onClick}
         InputProps={{
           ...InputProps,
           inputProps: {
             maxLength,
             onChange: onChange,
           },
+          readOnly,
         }}
         multiline={multiline}
         rows={rows}
         sx={sx}
         data-testid={testId}
+        active={active}
         {...field}
+        value={value || field.value}
       />
     )}
   />

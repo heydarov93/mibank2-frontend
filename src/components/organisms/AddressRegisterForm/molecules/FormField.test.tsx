@@ -1,5 +1,11 @@
 import { ThemeProvider } from '@mui/material/styles';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -147,11 +153,13 @@ describe('FormField Component', () => {
 
     const select = screen.getByRole('combobox');
 
-    fireEvent.mouseDown(select);
+    act(() => fireEvent.mouseDown(select));
     const option = screen.getByText('Germany');
-    fireEvent.click(option);
+    act(() => fireEvent.click(option));
 
-    expect(select).toHaveAttribute('aria-expanded', 'false');
+    await waitFor(() =>
+      expect(select).toHaveAttribute('aria-expanded', 'false'),
+    );
   });
 
   it('shows error message when error exists', () => {

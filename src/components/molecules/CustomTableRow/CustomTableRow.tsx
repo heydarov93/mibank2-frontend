@@ -7,8 +7,8 @@ import {
   StyledTableRow,
 } from './CustomTableRow.styled';
 
-import GreenPlusIcon from 'components/atoms/GreenPlusIcon/GreenPlusIcon';
-import RedMinusIcon from 'components/atoms/RedMinusIcon/RedMinusIcon';
+import { ReactComponent as GreenPlusIcon } from 'assets/icons/GreenPlus.svg';
+import { ReactComponent as RedMinusIcon } from 'assets/icons/RedMinus.svg';
 
 interface CustomTableRowProps {
   cardNumber: string;
@@ -36,30 +36,14 @@ export const CustomTableRow = ({
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'flex-start',
+            alignItems: 'center',
             gap: 0.5,
-            '& .MuiSvgIcon-root': {
-              verticalAlign: 'middle',
-              marginTop: '0px',
-              marginBottom: '0px',
-            },
           }}
         >
           {isIncome ? (
-            <GreenPlusIcon
-              sx={{
-                verticalAlign: 'baseline',
-                display: 'inline-block',
-              }}
-            />
+            <GreenPlusIcon data-testid="green-plus-icon" />
           ) : (
-            <RedMinusIcon
-              sx={{
-                verticalAlign: 'baseline',
-                display: 'inline-block',
-              }}
-            />
+            <RedMinusIcon data-testid="red-minus-icon" />
           )}
           <StyledAmountText
             income={isIncome}
@@ -78,7 +62,11 @@ export const CustomTableRow = ({
         <IconButton
           size="small"
           data-testid="icon-button"
-          sx={({ palette }) => ({ color: palette.common.black })}
+          sx={({ palette }) => ({
+            color: palette.common.black,
+            width: '24px',
+            height: '24px',
+          })}
         >
           <ChevronRight fontSize="medium" data-testid="chevron-right" />
         </IconButton>

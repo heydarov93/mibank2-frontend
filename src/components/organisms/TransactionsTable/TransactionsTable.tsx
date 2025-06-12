@@ -15,6 +15,7 @@ import {
   StyledTableHead,
   StyledTableTitle,
 } from './TransactionsTable.styled';
+import { TransferFilters } from './molecules';
 import { formatCardNumber, formatDateTime } from './utils/formatValueUtils';
 
 import { CustomTableRow } from 'components/molecules';
@@ -310,6 +311,7 @@ export const TransactionsTable = () => {
   return (
     <StyledContainer>
       <StyledTableTitle variant="h3">{t('title')}</StyledTableTitle>
+      <TransferFilters sx={{ mb: 1 }} />
       <Box>
         <StyledTableContainer>
           <Table>

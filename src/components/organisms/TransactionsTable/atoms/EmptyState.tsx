@@ -1,10 +1,9 @@
-
 import {
   StyledEmptyStateContainer,
   StyledEmptyStateContent,
 } from '../TransactionsTable.styled';
 
-import { TRANSACTION_EMPTY_STATE_CONTENTS } from 'constants/transactionEmptyStateContents';
+import { TRANSACTION_EMPTY_STATE_CONTENTS } from 'components/organisms/TransactionsTable/constants/transactionEmptyStateContents';
 
 type EmptyStateType = 'no-matches' | 'no-transactions' | 'offline';
 
