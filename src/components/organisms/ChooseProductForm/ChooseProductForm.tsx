@@ -105,6 +105,7 @@ const ChooseProductForm = () => {
             control={control}
             options={productOptions}
             error={errors.productType}
+            placeholder={t('CreateProduct.chooseHere')}
           />
         </Box>
         <Box>
@@ -118,6 +119,7 @@ const ChooseProductForm = () => {
                 : cardOptions
             }
             error={errors.subtype}
+            placeholder={t('CreateProduct.chooseHere')}
             disabled={!selectedProduct}
           />
         </Box>
@@ -128,6 +130,7 @@ const ChooseProductForm = () => {
             control={control}
             options={[...currencyOptions]}
             error={errors.currency}
+            placeholder={t('CreateProduct.chooseHere')}
           />
         </Box>
         <Box>
@@ -136,7 +139,7 @@ const ChooseProductForm = () => {
             name="name"
             id="productName"
             control={control}
-            placeholder="Name"
+            placeholder={t('CreateProduct.enterHere')}
             error={errors.name}
             helperText={errors.name?.message}
           />
@@ -149,7 +152,6 @@ const ChooseProductForm = () => {
             render={({ field }) => (
               <TextField
                 {...field}
-                placeholder="Description"
                 multiline
                 rows={4}
                 error={!!errors.description}
