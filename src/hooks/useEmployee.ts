@@ -11,6 +11,7 @@ import {
   useViewEmployeeQuery,
 } from 'api/employeeController';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
 import {
   SEARCH_LOWEST_LIMIT,
   SEARCH_VALUE_ZERO,
@@ -204,23 +205,27 @@ const useEmployees = () => {
 
   useEffect(() => {
     if (state.successMsgModal) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setState((prev) => ({
           ...prev,
           successMsgModal: false,
         }));
-      }, 4000);
+      }, MODAL_DISPLAY_TIMEOUT);
+
+      return () => clearTimeout(timer);
     }
   }, [state.successMsgModal]);
 
   useEffect(() => {
     if (state.failMsgModal) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setState((prev) => ({
           ...prev,
           failMsgModal: false,
         }));
-      }, 4000);
+      }, MODAL_DISPLAY_TIMEOUT);
+
+      return () => clearTimeout(timer);
     }
   }, [state.failMsgModal]);
 

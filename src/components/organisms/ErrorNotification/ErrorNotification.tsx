@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledAlert, StyledLink } from './ErrorNotification.styled';
 
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
@@ -38,7 +39,7 @@ export const ErrorNotification = () => {
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={open}
-      autoHideDuration={5000}
+      autoHideDuration={MODAL_DISPLAY_TIMEOUT}
       onClose={handleClose}
     >
       <StyledAlert severity="error">

@@ -34,7 +34,7 @@ jest.mock(
   }),
 );
 
-jest.mock('api/getUserAccountsApi', () => ({
+jest.mock('api/accountsApi', () => ({
   useGetUserAccountsQuery: jest.fn(() => ({
     data: {
       accounts: [

@@ -21,7 +21,6 @@ import { openDepositValidationSchema } from 'validation/validationOpenDepositSch
 
 interface DepositCreationFormProps {
   modal?: boolean;
-  onCloseModal?: () => void;
   currency: string;
   onBack: () => void;
   depositId: number;
@@ -37,7 +36,6 @@ export const DepositCreationForm = ({
   currency,
   term,
   modal,
-  onCloseModal,
   onBack,
 }: DepositCreationFormProps) => {
   const { isOpen, open, close } = useDisclosure();
@@ -52,17 +50,18 @@ export const DepositCreationForm = ({
     errors,
     isSubmitDisabled,
     showSuccessModal,
-    setShowSuccessModal,
     showErrorModal,
-    setShowErrorModal,
     errorMessage,
+    handleSuccessModalClose,
+    handleErrorModalClose,
   } = useDepositForm({
     validationSchema: openDepositValidationSchema,
-    onSuccess: modal ? onCloseModal : undefined,
+    onSuccess: onBack,
     accountOptions,
     createDeposit: createUserDeposit,
     buildPayload: buildDepositPayload,
     depositId,
+    isModal: modal,
   });
 
   const { control } = form;
@@ -112,7 +111,7 @@ export const DepositCreationForm = ({
         <BackOfficeConfirmationWindow
           sx={{
             height: 'fit-content',
-            width: '540px',
+            maxWidth: '540px',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -123,7 +122,7 @@ export const DepositCreationForm = ({
           })}
           depositSuccess={true}
           depositId={depositId}
-          onClose={() => setShowSuccessModal(false)}
+          onClose={handleSuccessModalClose}
         />
       )}
 
@@ -135,7 +134,7 @@ export const DepositCreationForm = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
           }}
-          onClose={() => setShowErrorModal(false)}
+          onClose={handleErrorModalClose}
           title={t('confirmationModals.depositFailTitle')}
           body={errorMessage}
         />

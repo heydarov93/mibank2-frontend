@@ -1,23 +1,33 @@
-import { useCreateUserDepositMutation } from 'api/createDeposit';
-import { useGetUserAccountsQuery } from 'api/getUserAccountsApi';
-import { TokenType } from 'models/IAuth';
+import { useGetIBANAccountsQuery } from 'api/accountsApi';
+import { useCreateUserDepositMutation } from 'api/createDepositApi';
+import { useGetUserIdQuery } from 'api/getUserIdApi';
 import { Account, AccountOption } from 'models/IDepositInfo';
-import { localTokenHandler } from 'utils';
 
 export const useUserAccounts = (): {
   accountOptions: AccountOption[];
   isLoading: boolean;
 } => {
-  const token = localTokenHandler.getToken(TokenType.ACCESS);
-  const { data, isLoading } = useGetUserAccountsQuery({ token });
+  const { data: userData, isLoading: isUserDataLoading } = useGetUserIdQuery();
+  const { data: userAccountsData, isLoading: isUserAccountsLoading } =
+    useGetIBANAccountsQuery(
+      {
+        userId: Number(userData?.userId),
+      },
+      {
+        skip: !userData?.userId,
+      },
+    );
 
   const accountOptions: AccountOption[] =
-    data?.accounts?.map((account: Account) => ({
+    userAccountsData?.map((account: Account) => ({
       accountId: account.userAccountId,
       iban: account.ibanNum,
       currency: account.currency,
-      balance: account.currentAccountBalance,
+      balance: String(account.currentAccountBalance),
     })) || [];
+
+  const isLoading =
+    isUserDataLoading || Boolean(userData?.userId && isUserAccountsLoading);
 
   return { accountOptions, isLoading };
 };

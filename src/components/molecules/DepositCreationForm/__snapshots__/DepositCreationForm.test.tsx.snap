@@ -177,16 +177,16 @@ exports[`DepositCreationForm matches snapshot 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-wbz3o9"
+        class="MuiBox-root css-10iplcc"
         data-testid="interest-info"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-3zo7l5-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1q8qb28-MuiTypography-root"
         >
           calcInstruction
         </p>
         <p
-          class="MuiTypography-root MuiTypography-body1 css-1ofg2tb-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-9kh8rx-MuiTypography-root"
         >
           calcResultPlaceholder
         </p>

@@ -52,6 +52,7 @@ export const OpenDepositRow = ({
         interestRate={interestRate}
         currency={depositCurrency}
         term={term}
+        modal={false}
       />
     </DepositContainer>
   );

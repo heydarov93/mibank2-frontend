@@ -68,16 +68,18 @@ export const StyledInterestBox = styled(Box)(
     padding: spacing(3.25, 1.75),
     borderRadius: '8px',
     width: '100%',
-    height: '80px',
+    minHeight: '80px',
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
+    overflow: 'hidden',
   }),
 );
 
 export const StyledInterestText = styled(Typography)(
-  ({ theme: { palette, typography } }) => ({
+  ({ theme: { palette, typography, spacing } }) => ({
     color: palette.common.black,
     fontFamily: typography.mediumLogo?.fontFamily,
     fontWeight: 500,
@@ -85,6 +87,9 @@ export const StyledInterestText = styled(Typography)(
     lineHeight: '100%',
     letterSpacing: 0,
     width: '200px',
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
+    marginRight: spacing(1.5),
   }),
 );
 
@@ -96,6 +101,12 @@ export const StyledInterestLabel = styled(Typography)(
     lineHeight: '100%',
     letterSpacing: 0,
     color: palette.grey[300],
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    hyphens: 'auto',
+    overflow: 'hidden',
   }),
 );
 

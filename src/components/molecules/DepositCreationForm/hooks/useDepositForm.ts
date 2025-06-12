@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
 import { DepositPayload } from '../utils/buildDepositPayload';
 
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
 import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
 
 interface UseDepositFormProps {
@@ -23,7 +24,10 @@ interface UseDepositFormProps {
     depositId: number,
   ) => DepositPayload;
   depositId: number;
+  isModal?: boolean;
 }
+
+type SubmissionState = 'idle' | 'success' | 'error';
 
 export const useDepositForm = ({
   validationSchema,
@@ -37,10 +41,11 @@ export const useDepositForm = ({
   createDeposit,
   buildPayload,
   depositId,
+  isModal = false,
 }: UseDepositFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const form = useForm<DepositFormValues>({
@@ -53,42 +58,79 @@ export const useDepositForm = ({
   const { isValid, errors, isSubmitting } = formState;
   const isSubmitDisabled = !isValid || isSubmitting;
   const amountValue = watch('amount');
+  const showSuccessModal = submissionState === 'success';
+  const showErrorModal = submissionState === 'error';
 
-  const onDepositSubmit = handleSubmit(async (formData: DepositFormValues) => {
-    try {
+  const handleSuccess = useCallback(() => {
+    setSubmissionState('success');
+
+    if (!isModal && onSuccess) {
+      onSuccess();
+    }
+  }, [isModal, onSuccess]);
+
+  const handleSuccessModalClose = useCallback(() => {
+    setSubmissionState('idle');
+    reset();
+
+    if (isModal && onSuccess) {
+      onSuccess();
+    }
+  }, [isModal, onSuccess, reset]);
+
+  const handleError = (message: string) => {
+    setErrorMessage(message);
+    setSubmissionState('error');
+  };
+
+  const handleErrorModalClose = () => {
+    setSubmissionState('idle');
+    setErrorMessage('');
+  };
+
+  const validateSufficientFunds = useCallback(
+    (formData: DepositFormValues): boolean => {
       const account = accountOptions.find(
         (acc) => acc.iban === formData.account,
       );
-
-      const isInsufficientFunds =
+      const hasInsufficientFunds =
         account && Number(account.balance) < Number(formData.amount);
 
-      if (isInsufficientFunds) {
-        setErrorMessage(t('confirmationModals.insufficientBalance'));
-        setShowErrorModal(true);
+      if (hasInsufficientFunds) {
+        handleError(t('confirmationModals.insufficientBalance'));
+        return false;
+      }
+      return true;
+    },
+    [accountOptions, handleError],
+  );
+
+  const onDepositSubmit = handleSubmit(async (formData: DepositFormValues) => {
+    if (!validateSufficientFunds(formData)) {
+      return;
+    }
+
+    try {
+      const payload = buildPayload(formData, accountOptions, depositId);
+      const result = await createDeposit(payload);
+
+      if (result.error) {
+        handleError(t('confirmationModals.somethingWentWrong'));
         return;
       }
 
-      const payload = buildPayload(formData, accountOptions, depositId);
-      await createDeposit(payload);
-      reset();
-      setShowSuccessModal(true);
-      onSuccess?.();
+      handleSuccess();
     } catch (error) {
-      setErrorMessage(t('confirmationModals.somethingWentWrong'));
-      setShowErrorModal(true);
+      handleError(t('confirmationModals.somethingWentWrong'));
     }
   });
 
   useEffect(() => {
     if (showErrorModal) {
-      const timer = setTimeout(() => {
-        setShowErrorModal(false);
-      }, 4000);
-
+      const timer = setTimeout(handleErrorModalClose, MODAL_DISPLAY_TIMEOUT);
       return () => clearTimeout(timer);
     }
-  }, [showErrorModal]);
+  }, [showErrorModal, handleErrorModalClose]);
 
   return {
     form,
@@ -96,10 +138,11 @@ export const useDepositForm = ({
     isSubmitDisabled,
     amountValue,
     errors,
+    submissionState,
     showSuccessModal,
-    setShowSuccessModal,
     showErrorModal,
-    setShowErrorModal,
     errorMessage,
+    handleSuccessModalClose,
+    handleErrorModalClose,
   };
 };

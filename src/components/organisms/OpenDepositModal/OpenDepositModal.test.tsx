@@ -21,7 +21,9 @@ jest.mock(
   () => {
     const MockForm = (props: any) => (
       <div data-testid="deposit-creation-form">
-        <button onClick={props.onCloseModal}>Close Form</button>
+        {props.onCloseModal && (
+          <button onClick={props.onCloseModal}>Close Form</button>
+        )}
         <button onClick={props.onBack}>Back</button>
         <div>Deposit ID: {props.depositId}</div>
         <div>Currency: {props.currency}</div>
@@ -110,15 +112,15 @@ describe('OpenDepositModal', () => {
     expect(screen.getByText('Term: 12')).toBeInTheDocument();
   });
 
-  it('calls onClose when "Close Form" is clicked', () => {
-    renderComponent(mockDepositData);
-    fireEvent.click(screen.getByText('Close Form'));
-    expect(mockOnClose).toHaveBeenCalledTimes(1);
-  });
-
   it('calls onBack when "Back" is clicked', () => {
     renderComponent(mockDepositData);
     fireEvent.click(screen.getByText('Back'));
     expect(mockOnBack).toHaveBeenCalledTimes(1);
   });
+
+  it('calls onBack when close button is clicked', () => {
+    renderComponent(mockDepositData);
+    fireEvent.click(screen.getByTestId('modal-close-button'));
+    expect(mockOnBack).toHaveBeenCalledTimes(1);
+  }); 
 });
