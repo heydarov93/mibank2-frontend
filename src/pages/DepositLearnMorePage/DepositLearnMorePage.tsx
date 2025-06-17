@@ -32,7 +32,7 @@ export const DepositLearnMorePage = () => {
     data: deposits,
     isLoading,
     isError: isDepositError,
-  } = useGetDepositsQuery({ page: 0, size: 5 });
+  } = useGetDepositsQuery({});
 
   const depositIndex =
     deposits?.content?.findIndex((deposit) => deposit.id === depositId) ?? 0;
@@ -71,6 +71,17 @@ export const DepositLearnMorePage = () => {
     return <CircularProgress />;
   }
 
+  const viewAllDespositsButton = (
+    <Button
+      onClick={handleOpenAllDeposits}
+      variant="outlined"
+      sx={(theme) => ({ padding: theme.spacing(1, 2) })}
+      data-testid="open-all-deposits-button"
+    >
+      {t('viewAllDeposits')}
+    </Button>
+  );
+
   return (
     <>
       <Box position="relative">
@@ -94,25 +105,11 @@ export const DepositLearnMorePage = () => {
             depositImgSrc={
               depositBoxImages[depositIndex % depositBoxImages.length]
             }
-            secondaryButton={
-              <Button
-                onClick={handleOpenAllDeposits}
-                variant="outlined"
-                sx={{
-                  alignSelf: 'stretch',
-                  borderRadius: '8px',
-                  flex: '1 0 100%',
-                  maxWidth: '170px',
-                }}
-                data-testid="open-all-deposits-button"
-              >
-                {t('viewAllDeposits')}
-              </Button>
-            }
+            secondaryButton={viewAllDespositsButton}
             onOpenDepositForm={handleOpenDepositForm}
           />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box display="flex" justifyContent="space-between">
           <AboutDepositCard
             capitalizationRate={depositInfo.capitalization}
             depositName={depositInfo.name}
@@ -147,9 +144,7 @@ export const DepositLearnMorePage = () => {
       />
       <OpenDepositModal
         deposit={selectedDeposit}
-        onClose={() => {
-          setSelectedDeposit(null);
-        }}
+        onClose={() => setSelectedDeposit(null)}
         onBack={handleDepositBack}
       />
     </>

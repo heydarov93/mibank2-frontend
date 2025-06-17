@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +17,6 @@ import DepositCardPeopleImg from 'assets/icons/DepositCardImg-2.svg';
 import DepositCardGrowthImg from 'assets/icons/DepositCardImg-3.svg';
 import DepositCardNetworkImg from 'assets/icons/DepositCardImg-4.svg';
 import DepositCardAbstractImg from 'assets/icons/DepositCardImg-5.svg';
-import { SubmitButton } from 'components/atoms';
 
 interface DepositBoxProps {
   depositName: string;
@@ -54,16 +53,15 @@ export const DepositBox = ({
     <DepositContainer>
       <StyledContentContainer>
         <StyledDepositName>{depositName}</StyledDepositName>
-        <Box sx={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-          <SubmitButton
-            buttonContent={t('openDeposit')}
+        <Box display="flex" gap={3} alignItems="center">
+          <Button
+            variant="contained"
             onClick={onOpenDepositForm}
+            sx={(theme) => ({ padding: theme.spacing(1, 2) })}
             data-testid="open-current-deposit-button"
-            sx={{
-              flex: '1 0 100%',
-              maxWidth: '150px',
-            }}
-          />
+          >
+            {t('openDeposit')}
+          </Button>
           {secondaryButton}
         </Box>
       </StyledContentContainer>

@@ -43,7 +43,7 @@ exports[`DepositCreationForm matches snapshot 1`] = `
           depositAmountLabel
         </label>
         <div
-          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1inh339-MuiFormControl-root-MuiTextField-root"
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
           data-testid="deposit-amount"
         >
           <div
@@ -66,18 +66,18 @@ exports[`DepositCreationForm matches snapshot 1`] = `
               <div
                 class="MuiBox-root css-axw7ok"
               >
-                <div
-                  class="MuiBox-root css-c2uxn6"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
                 >
-                  <img
-                    data-testid="circle-country-flag"
-                    height="30"
-                    src="https://react-circle-flags.pages.dev/us.svg"
-                    title="us"
-                  />
-                </div>
+                  <svg>
+                    UsaFlag.svg
+                  </svg>
+                </svg>
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-eflgtu-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1v0y3wm-MuiTypography-root"
                 >
                   USD
                 </p>

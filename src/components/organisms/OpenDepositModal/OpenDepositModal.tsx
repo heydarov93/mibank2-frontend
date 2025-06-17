@@ -17,7 +17,6 @@ export const OpenDepositModal = ({
   onBack,
   deposit,
 }: OpenDepositModalProps) => {
-
   return (
     <Drawer
       anchor="right"
@@ -34,20 +33,19 @@ export const OpenDepositModal = ({
       }}
     >
       <Box display="flex">
-        <DepositCreationForm
-          modal={true}
-          onBack={onBack}
-          depositName={deposit?.name as string}
-          depositId={deposit?.id as number}
-          currency={deposit?.currency as string}
-          interestRate={deposit?.interestRate as number}
-          term={deposit?.term as number}
-        />
+        {deposit && (
+          <DepositCreationForm
+            modal={true}
+            onBack={onBack}
+            depositName={deposit.name}
+            depositId={deposit.id}
+            currency={deposit.currency}
+            interestRate={deposit.interestRate}
+            term={deposit.term}
+          />
+        )}
         {deposit && <DepositInfoCard {...deposit} />}
-        <StyledCloseButton
-          onClick={onBack}
-          data-testid="modal-close-button"
-        >
+        <StyledCloseButton onClick={onBack} data-testid="modal-close-button">
           <CloseRoundedIcon />
         </StyledCloseButton>
       </Box>

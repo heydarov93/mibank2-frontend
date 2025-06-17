@@ -16,12 +16,13 @@ import FormHeader from './molecules/FormHeader';
 import InterestInfo from './molecules/InterestInfo';
 import { buildDepositPayload } from './utils/buildDepositPayload';
 
+import { TCurrency } from 'components/atoms';
 import useDisclosure from 'hooks/useDisclosure';
 import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
 
 interface DepositCreationFormProps {
   modal?: boolean;
-  currency: string;
+  currency: TCurrency;
   onBack: () => void;
   depositId: number;
   interestRate: number;
