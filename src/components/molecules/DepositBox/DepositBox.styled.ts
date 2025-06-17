@@ -1,27 +1,28 @@
-import { Box, Button, styled, Typography } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 
-export const DepositContainer = styled(Box)(
+export const DepositContainer = styled('div')(
   ({ theme: { palette, spacing } }) => ({
-    width: '100%',
-    backgroundColor: palette.common.white,
-    borderRadius: spacing(2),
-    padding: spacing(0, 5),
     display: 'flex',
     justifyContent: 'space-between',
+    gap: spacing(3),
+    width: '100%',
+    padding: spacing(0, 5),
+    backgroundColor: palette.common.white,
+    borderRadius: spacing(2),
   }),
 );
 
-export const StyledContentContainer = styled(Box)(({ theme: { spacing } }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  padding: spacing(5, 0),
-  minWidth: '313px',
-}));
+export const StyledContentContainer = styled('div')(
+  ({ theme: { spacing } }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: spacing(5, 0),
+  }),
+);
 
 export const StyledDepositName = styled(Typography)(
-  ({ theme: { palette, typography, spacing } }) => ({
-    fontFamily: typography.mediumLogo?.fontFamily,
+  ({ theme: { palette, spacing } }) => ({
     color: palette.common.black,
     fontWeight: 600,
     fontSize: spacing(3),
@@ -29,38 +30,28 @@ export const StyledDepositName = styled(Typography)(
 );
 
 export const StyledSecondaryName = styled(Typography)(
-  ({ theme: { palette, typography, spacing } }) => ({
-    fontFamily: typography.mediumLogo?.fontFamily,
+  ({ theme: { palette } }) => ({
     color: palette.common.black,
     fontWeight: 500,
-    fontSize: spacing(3),
+    fontSize: '16px',
   }),
 );
 
 export const StyledDescription = styled(Typography)(
-  ({ theme: { palette, typography, spacing } }) => ({
-    fontFamily: typography.mediumLogo?.fontFamily,
+  ({ theme: { palette } }) => ({
     color: palette.grey[400],
     fontWeight: 400,
-    fontSize: spacing(2),
+    fontSize: '16px',
     maxWidth: '313px',
   }),
 );
 
-export const StyledDescriptionItems = styled(Box)(() => ({
+export const StyledDescriptionItems = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
-  gap: '68px',
-}));
-
-export const StyledViewAllButton = styled(Button)(() => ({
-  width: '170px',
-  height: '56px',
-  borderRadius: '8px',
-  padding: '8px 24px',
 }));
 
 export const StyledDepositIllustration = styled('img')(() => ({
-  width: '316px',
-  height: '316px',
+  width: '256px',
+  height: '256px',
 }));

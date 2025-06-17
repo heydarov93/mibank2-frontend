@@ -3,11 +3,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
+import { TCurrency } from 'components/atoms';
+
 export interface Deposit {
   augmentable: boolean;
   autoRenewable: boolean;
   capitalization: number;
-  currency: string;
+  currency: TCurrency;
   description: string;
   earlyWithdrawal: boolean;
   earlyWithdrawalFee: number;
@@ -22,8 +24,8 @@ export interface Deposit {
 }
 
 interface GetDepositsParams {
-  page: number;
-  size: number;
+  page?: number;
+  size?: number;
 }
 
 interface GetDepositsResponse {

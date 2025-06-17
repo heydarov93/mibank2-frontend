@@ -1,19 +1,12 @@
-import { Box, InputAdornment, Typography } from '@mui/material';
-import { CircleFlag } from 'react-circle-flags';
+import { Box, Typography } from '@mui/material';
 
-const CurrencyBox = ({ currency }: { currency: string }) => {
-  const countryCode = currency?.slice(0, 2).toLocaleLowerCase();
-  
-  return (
-    <InputAdornment position="end">
-      <Box display="flex" alignItems="center" gap="8px">
-        <Box width={30} height={30}>
-          <CircleFlag countryCode={countryCode} height="30" />
-        </Box>
-        <Typography sx={{ fontWeight: 500 }}>{currency}</Typography>
-      </Box>
-    </InputAdornment>
-  );
-};
+import { CurrencyFlagIcon, TCurrency } from 'components/atoms';
 
-export default CurrencyBox;
+export const CurrencyBox = ({ currency }: { currency: TCurrency }) => (
+  <Box display="flex" alignItems="center" gap={1}>
+    <CurrencyFlagIcon currency={currency} />
+    <Typography fontWeight={500} lineHeight="unset" color="common.black">
+      {currency}
+    </Typography>
+  </Box>
+);

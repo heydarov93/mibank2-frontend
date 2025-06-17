@@ -39,24 +39,24 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
       class="MuiBox-root css-0"
     >
       <div
-        class="MuiBox-root css-9u218"
+        class="css-i13ooa"
       >
         <div
-          class="MuiBox-root css-1koq44g"
+          class="css-1udcu5g"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-13iruyf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-jnj8ui-MuiTypography-root"
           >
             Test Deposit
           </p>
           <div
-            class="MuiBox-root css-yzkv41"
+            class="MuiBox-root css-yqacci"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1qowome-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1fcv9i5-MuiButtonBase-root-MuiButton-root"
               data-testid="open-current-deposit-button"
               tabindex="0"
-              type="submit"
+              type="button"
             >
               openDeposit
               <span
@@ -64,7 +64,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
               />
             </button>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1hm4clp-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1bym1c3-MuiButtonBase-root-MuiButton-root"
               data-testid="open-all-deposits-button"
               tabindex="0"
               type="button"
@@ -77,31 +77,31 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
           </div>
         </div>
         <img
-          class="css-16k8u7m"
+          class="css-1th1fq5"
           src="DepositCardImg-1.svg"
         />
         <div
-          class="MuiBox-root css-1koq44g"
+          class="css-1udcu5g"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-8b7sds-MuiTypography-root"
           >
             Test Description
           </p>
           <div
-            class="MuiBox-root css-mw6895"
+            class="css-gg4vpm"
           >
             <div
               class="MuiBox-root css-0"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-1tya5wy-MuiTypography-root"
               >
                 5
                 %
               </p>
               <p
-                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-8b7sds-MuiTypography-root"
               >
                 rate
               </p>
@@ -110,12 +110,12 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
               class="MuiBox-root css-0"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-1tya5wy-MuiTypography-root"
               >
                 months
               </p>
               <p
-                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-8b7sds-MuiTypography-root"
               >
                 duration
               </p>
@@ -124,12 +124,12 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
               class="MuiBox-root css-0"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-1i063xu-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-1tya5wy-MuiTypography-root"
               >
                 USD
               </p>
               <p
-                class="MuiTypography-root MuiTypography-body1 css-82tndp-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-8b7sds-MuiTypography-root"
               >
                 currency
               </p>
@@ -762,7 +762,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
               depositAmountLabel
             </label>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1inh339-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
               data-testid="deposit-amount"
             >
               <div
@@ -785,18 +785,18 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
                   <div
                     class="MuiBox-root css-axw7ok"
                   >
-                    <div
-                      class="MuiBox-root css-c2uxn6"
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
                     >
-                      <img
-                        data-testid="circle-country-flag"
-                        height="30"
-                        src="https://react-circle-flags.pages.dev/us.svg"
-                        title="us"
-                      />
-                    </div>
+                      <svg>
+                        UsaFlag.svg
+                      </svg>
+                    </svg>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 css-eflgtu-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-1v0y3wm-MuiTypography-root"
                     >
                       USD
                     </p>

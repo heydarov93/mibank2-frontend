@@ -1,23 +1,23 @@
-import { Box, TextField } from '@mui/material';
+import { Box, InputAdornment, TextField } from '@mui/material';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { StyledLabel } from '../DepositCreationForm.styled';
-import CurrencyBox from '../atoms/CurrencyBox';
+import { CurrencyBox } from '../atoms/CurrencyBox';
 
+import { TCurrency } from 'components/atoms';
 import { DepositFormValues } from 'models/IDepositInfo';
 
 interface AmountFieldProps {
   control: Control<DepositFormValues>;
   errors: FieldErrors<DepositFormValues>;
-  currency: string;
+  currency: TCurrency;
 }
 
 const AmountField = ({ control, errors, currency }: AmountFieldProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-
   return (
-    <Box sx={{ marginBottom: '24px' }}>
+    <Box marginBottom={3}>
       <StyledLabel>{t('depositAmountLabel')}</StyledLabel>
       <Controller
         name="amount"
@@ -34,11 +34,14 @@ const AmountField = ({ control, errors, currency }: AmountFieldProps) => {
             onBlur={field.onBlur}
             onChange={(e) => field.onChange(e.target.value)}
             InputProps={{
-              endAdornment: <CurrencyBox currency={currency} />,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <CurrencyBox currency={currency} />
+                </InputAdornment>
+              ),
             }}
             error={!!errors.amount}
             helperText={errors.amount?.message}
-            sx={{ borderRadius: '8px' }}
           />
         )}
       />

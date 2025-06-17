@@ -2,13 +2,14 @@ import { useTranslation } from 'react-i18next';
 
 import { DepositContainer } from './OpenDepositRow.styled';
 
+import { TCurrency } from 'components/atoms';
 import { DepositCreationForm } from 'components/molecules';
 import { DepositSteps } from 'components/molecules/DepositSteps/DepositSteps';
 
 interface OpenDepositRowProps {
   onBack: () => void;
   depositId: number;
-  depositCurrency: string;
+  depositCurrency: TCurrency;
   interestRate: number;
   term: number;
   depositName: string;

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import { OpenDepositModal } from './OpenDepositModal';
 
+import { TCurrency } from 'components/atoms';
 import store from 'store';
 import { theme } from 'theme/theme';
 
@@ -60,7 +61,7 @@ const mockDepositData = {
   augmentable: false,
   autoRenewable: false,
   capitalization: 20,
-  currency: 'USD',
+  currency: 'USD' as TCurrency,
   description: 'Test Description',
   earlyWithdrawal: false,
   earlyWithdrawalFee: 10,
@@ -122,5 +123,5 @@ describe('OpenDepositModal', () => {
     renderComponent(mockDepositData);
     fireEvent.click(screen.getByTestId('modal-close-button'));
     expect(mockOnBack).toHaveBeenCalledTimes(1);
-  }); 
+  });
 });

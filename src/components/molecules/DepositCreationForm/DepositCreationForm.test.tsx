@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { DepositCreationForm } from './DepositCreationForm';
 
+import { TCurrency } from 'components/atoms';
 import store from 'store';
 import { theme } from 'theme/theme';
 
@@ -79,7 +80,7 @@ const mockDepositProps = {
   onBack: mockOnBack,
   depositId: 59,
   depositName: 'Business Deposit',
-  currency: 'USD',
+  currency: 'USD' as TCurrency,
   interestRate: 2,
   term: 12,
 };

@@ -35,7 +35,7 @@ export const AvailableDepositsWindow = ({
     data: deposits,
     isLoading: isLoadingDeposits,
     isError: isDepositsError,
-  } = useGetDepositsQuery({ page: 0, size: 5 });
+  } = useGetDepositsQuery({});
 
   return (
     <Drawer
