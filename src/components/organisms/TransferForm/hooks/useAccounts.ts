@@ -1,9 +1,8 @@
 import { useGetIBANAccounts } from './useGetIBANAccounts';
 import { useGetCardAccounts } from './userGetCardAccounts';
 
+import { TCardIssuer } from 'models/types';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-
-export type CardIssuer = 'visa' | 'mastercard';
 
 export interface IUserIBANAccount {
   type: 'iban';
@@ -19,7 +18,7 @@ export interface IUserCardAccount {
   number: string;
   currency: string;
   balance: number;
-  issuer: CardIssuer;
+  issuer: TCardIssuer;
 }
 
 export interface ISavedIBANAccount {
@@ -34,7 +33,7 @@ export interface ISavedCardAccount {
   id: string;
   number: string;
   label: string;
-  issuer: CardIssuer;
+  issuer: TCardIssuer;
 }
 
 export function useAccounts(method: TTransferMethod) {

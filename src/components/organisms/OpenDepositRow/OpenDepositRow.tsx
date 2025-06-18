@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { DepositContainer } from './OpenDepositRow.styled';
 
-import { TCurrency } from 'components/atoms';
 import { DepositCreationForm } from 'components/molecules';
 import { DepositSteps } from 'components/molecules/DepositSteps/DepositSteps';
+import { TCurrency } from 'models/types';
 
 interface OpenDepositRowProps {
   onBack: () => void;

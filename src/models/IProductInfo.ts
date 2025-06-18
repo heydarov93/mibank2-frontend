@@ -1,4 +1,4 @@
-import { TCurrency } from 'components/atoms';
+import { TCurrency } from './types';
 
 export interface ProductFormData {
   productType: string;

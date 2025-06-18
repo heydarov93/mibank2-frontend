@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { StyledLabel } from '../DepositCreationForm.styled';
 import { CurrencyBox } from '../atoms/CurrencyBox';
 
-import { TCurrency } from 'components/atoms';
 import { DepositFormValues } from 'models/IDepositInfo';
+import { TCurrency } from 'models/types';
 
 interface AmountFieldProps {
   control: Control<DepositFormValues>;

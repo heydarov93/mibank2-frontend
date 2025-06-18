@@ -9,3 +9,4 @@ export {
   getAuthStatus,
   getEmail,
 } from './storageAuthHandler';
+export { separateThousands } from './separateThousands';

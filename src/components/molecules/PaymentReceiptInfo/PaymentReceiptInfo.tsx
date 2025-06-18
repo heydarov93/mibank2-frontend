@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentReceiptModal.styled';
 import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
-import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
 import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
+import { TCurrency } from 'models/types';
 import { formatCurrency } from 'utils/currencyUtils';
 
 export interface IPaymentReceipt {

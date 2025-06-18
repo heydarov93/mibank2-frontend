@@ -26,8 +26,8 @@ import {
   useGetPreviousRatesQuery,
 } from 'api/getExchangeRatesApi';
 import { CurrencyFlagIcon } from 'components/atoms';
-import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
 import currencies from 'constants/currencies';
+import { TCurrency } from 'models/types';
 
 type TableError = string | null;
 
