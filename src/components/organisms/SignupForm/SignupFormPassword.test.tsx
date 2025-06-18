@@ -58,9 +58,8 @@ describe('SignupFormPassword', () => {
   });
 
   it('should enable the submit button only when the form is valid', async () => {
-
-    const passwordInput = screen.getByLabelText('password.label');
-    const confirmPasswordInput = screen.getByLabelText('confirmPassword.label');
+    const passwordInput = screen.getByLabelText('mainLabel');
+    const confirmPasswordInput = screen.getByLabelText('confirmLabel');
     const submitButton = screen.getByText('buttonLabelSignup');
 
     expect(submitButton).toBeDisabled();

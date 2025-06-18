@@ -2,37 +2,46 @@ import { render, screen } from '@testing-library/react';
 
 import { ValidationTag } from './ValidationTag';
 
-// Мокаем i18next для тестов
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => key, // Просто возвращаем ключ как текст
+    t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 describe('ValidationTag', () => {
-  it('should render without crashing', () => {
-    const { container } = render(<ValidationTag tagText={''} isValidated />);
+  it('should render correctly', () => {
+    const { container } = render(<ValidationTag text="" isValidated />);
     expect(container).toBeInTheDocument();
   });
 
   it('displays the correct text', () => {
-    render(<ValidationTag tagText="Minimum 8 characters" isValidated />);
+    render(<ValidationTag text="Minimum 8 characters" isValidated />);
     expect(screen.getByText('Minimum 8 characters')).toBeInTheDocument();
   });
 
   it('renders CheckIcon when isValidated is true', () => {
-    render(<ValidationTag tagText="" isValidated />);
-    expect(screen.getByTestId('CheckIcon')).toBeInTheDocument();
+    render(<ValidationTag text="" isValidated />);
+    expect(screen.getByTestId('success-icon')).toBeInTheDocument();
   });
 
   it('renders ClearIcon when isValidated is false', () => {
-    render(<ValidationTag tagText="" isValidated={false} />);
-    expect(screen.getByTestId('ClearIcon')).toBeInTheDocument();
+    render(<ValidationTag text="" isValidated={false} />);
+    expect(screen.getByTestId('error-icon')).toBeInTheDocument();
   });
 
-  it('renders info icon when isSpecial is true', () => {
-    render(<ValidationTag tagText="" isValidated isSpecial />);
-    const infoIcon = screen.getByTestId('InfoOutlinedIcon');
+  it('renders info icon when withInfo is true', () => {
+    render(<ValidationTag text="" isValidated withInfo />);
+    const infoIcon = screen.getByTestId('info-icon');
     expect(infoIcon).toBeInTheDocument();
+  });
+
+  it('to match snapshot', () => {
+    const { asFragment } = render(
+      <ValidationTag text="" isValidated withInfo />,
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

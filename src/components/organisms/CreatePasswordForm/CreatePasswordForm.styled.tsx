@@ -12,29 +12,20 @@ export const StyledFormContent = styled(Box)(({ theme: { spacing } }) => ({
   width: '100%',
 }));
 
-export const StyledLabel = styled('label')(({ theme: { palette } }) => ({
-  color: palette.common.black,
-  fontSize: 14,
-  lineHeight: '20px',
-  fontWeight: 500,
-}));
-
 export const StyledFormTitle = styled(Typography)(
   ({ theme: { spacing, breakpoints } }) => ({
-    marginTop: spacing(6),
-    marginBottom: spacing(3),
+    marginBlock: spacing(6, 3),
     fontSize: 20,
     fontWeight: 500,
 
     [breakpoints.up('sm')]: {
-      marginTop: spacing(5),
-      marginBottom: spacing(2),
+      marginBlock: spacing(5, 2),
       fontSize: 32,
       fontWeight: 400,
     },
 
     [breakpoints.up('md')]: {
-      marginTop: '18px',
+      marginTop: spacing(2.25),
     },
   }),
 );

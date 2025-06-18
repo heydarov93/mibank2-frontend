@@ -5,6 +5,7 @@ import { REG_EXP } from './regExp';
 import i18n from 'i18n';
 
 const loginFields = 'LoginPage';
+const passwordField = 'common.form.field.password.error';
 
 export const validationLoginSchema = yup.object().shape({
   email: yup
@@ -16,11 +17,8 @@ export const validationLoginSchema = yup.object().shape({
   password: yup
     .string()
     .trim()
-    .required(i18n.t(`${loginFields}.requiredField`))
-    .matches(
-      REG_EXP.passwordRegExp,
-      i18n.t(`${loginFields}.password.errorPattern`),
-    )
-    .max(50, i18n.t(`${loginFields}.password.errorMaxLen`)),
+    .required(i18n.t(`${passwordField}.required`))
+    .matches(REG_EXP.passwordRegExp, i18n.t(`${passwordField}.errorPattern`))
+    .max(50, i18n.t(`${passwordField}.errorMaxLen`)),
   checkbox: yup.boolean().oneOf([true]),
 });
