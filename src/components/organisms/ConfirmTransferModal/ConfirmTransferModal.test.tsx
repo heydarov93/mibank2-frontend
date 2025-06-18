@@ -4,7 +4,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ConfirmTransferModal } from './ConfirmTransferModal';
 
 import { useGetTransferFeeQuery } from 'api/accountsApi';
-import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
+import { TCurrency } from 'models/types';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { theme } from 'theme/theme';
 

@@ -1,8 +1,8 @@
 import { MastercardIcon } from '../MastercardIcon/MastercardIcon';
 import { VisaIcon } from '../VisaIcon/VisaIcon';
 
-import { CardIssuer } from 'components/organisms/TransferForm/hooks/useAccounts';
+import { TCardIssuer } from 'models/types';
 
-export function CardIssuerIcon({ issuer }: { issuer: CardIssuer }) {
+export function CardIssuerIcon({ issuer }: { issuer: TCardIssuer }) {
   return issuer === 'visa' ? <VisaIcon /> : <MastercardIcon />;
 }

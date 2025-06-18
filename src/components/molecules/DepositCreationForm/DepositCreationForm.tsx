@@ -16,8 +16,8 @@ import FormHeader from './molecules/FormHeader';
 import InterestInfo from './molecules/InterestInfo';
 import { buildDepositPayload } from './utils/buildDepositPayload';
 
-import { TCurrency } from 'components/atoms';
 import useDisclosure from 'hooks/useDisclosure';
+import { TCurrency } from 'models/types';
 import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
 
 interface DepositCreationFormProps {

@@ -2,8 +2,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, MenuItem, Select, SelectProps, Theme } from '@mui/material';
 
 import { CurrencyFlagIcon } from 'components/atoms';
-import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
 import currencies from 'constants/currencies';
+import { TCurrency } from 'models/types';
 
 type CustomSelectProps = SelectProps & {
   disabledOptions?: string[];

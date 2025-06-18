@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { OpenDepositModal } from './OpenDepositModal';
 
-import { TCurrency } from 'components/atoms';
+import { TCurrency } from 'models/types';
 import store from 'store';
 import { theme } from 'theme/theme';
 

@@ -9,10 +9,8 @@ import {
   StyledTypography,
 } from './Transaction.styled';
 
-import { TCurrency } from 'components/atoms/CurrencyFlagIcon/CurrencyFlagIcon';
+import { TCurrency, TTransactionType } from 'models/types';
 import { getLocaleTimeString } from 'utils/dateUtils';
-
-type TTransactionType = 'income' | 'expense';
 
 export interface ITransaction {
   cardName: string;
