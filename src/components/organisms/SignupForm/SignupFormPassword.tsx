@@ -9,27 +9,27 @@ import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLabel,
 } from './SignupForm.styled';
 
 import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
-import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
-import { TOSCheckbox, PasswordField } from 'components/molecules';
-import { TO_VERIFY_EMAIL } from 'constants/routesName';
-import { ValidationKey } from 'enums';
+import { ButtonLink, SubmitButton } from 'components/atoms';
+import {
+  TOSCheckbox,
+  PasswordField,
+  PasswordValidationTags,
+} from 'components/molecules';
+import { TO_SIGN_IN, TO_VERIFY_EMAIL } from 'constants/routesName';
 import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers/AuthSlice';
-import { passwordValidationRules, validationSignupSchema } from 'validation';
+import { validationSignupSchema } from 'validation';
 
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
-  const dispatch = useAppDispatch();
-
-  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {
     formState: { errors, isValid, touchedFields },
@@ -46,9 +46,12 @@ export const SignupFormPassword = () => {
       checkbox: true,
     },
   });
-  const passwordValue = watch('password');
 
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const passwordValue = watch('password');
   const isValidConfirm = !errors?.password && touchedFields.password;
+  const showPasswordTags = isPasswordFocused && !isValidConfirm;
+
   const [registerNewUser] = useRegisterNewUserMutation();
 
   const onSubmit = async (data: ISignupFormInput) => {
@@ -80,12 +83,7 @@ export const SignupFormPassword = () => {
       <StyledFormTitle>{t('formTitle')}</StyledFormTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
-          <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex' }}>
-              <StyledLabel htmlFor="password">
-                {t('password.label')}
-              </StyledLabel>
-            </Box>
+          <Box width="100%">
             <PasswordField
               control={control}
               name="password"
@@ -93,25 +91,11 @@ export const SignupFormPassword = () => {
               errors={errors}
               onFocus={() => setIsPasswordFocused(true)}
             />
-            {isPasswordFocused &&
-              !isValidConfirm &&
-              Object.keys(passwordValidationRules).map((key) => (
-                <ValidationTag
-                  key={key}
-                  tagText={t(`password.${key}`)}
-                  isValidated={passwordValidationRules[key as ValidationKey](
-                    passwordValue,
-                  )}
-                  isSpecial={key === ValidationKey.SPECIAL_CHAR ? true : false}
-                />
-              ))}
+            {showPasswordTags && (
+              <PasswordValidationTags password={passwordValue} />
+            )}
           </Box>
-          <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex' }}>
-              <StyledLabel htmlFor="confirmPassword">
-                {t('confirmPassword.label')}
-              </StyledLabel>
-            </Box>
+          <Box width="100%">
             <PasswordField
               control={control}
               name="confirmPassword"
@@ -131,7 +115,7 @@ export const SignupFormPassword = () => {
       <ButtonLink
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href="/signin"
+        href={TO_SIGN_IN}
       />
     </>
   );

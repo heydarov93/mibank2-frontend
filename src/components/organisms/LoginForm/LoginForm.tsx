@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import {
   StyledForm,
@@ -11,40 +10,25 @@ import {
   StyledFormTitle,
   StyledLabel,
 } from './LoginForm.styled';
+import { useLogin } from './hooks/useLogin';
 
-import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
+import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import {
-  ButtonLink,
-  InputField,
-  SubmitButton,
-  ValidationTag,
-} from 'components/atoms';
-import { TOSCheckbox, PasswordField, Timer } from 'components/molecules';
-import {
-  TO_FORGOT_PASSWORD,
-  TO_SIGN_UP,
-  TO_VERIFICATION,
-} from 'constants/routesName';
-import { ErrorStatus, ValidationKey } from 'enums';
-import { useAppDispatch, useErrorHandlers } from 'hooks';
-import { ILoginFormInput, ILoginData, TokenType } from 'models/IAuth';
-import { IErrorData } from 'models/IError';
-import {
-  setError,
-  setLoading,
-  setVerifying,
-  setVerifyingTimer,
-} from 'store/reducers/AuthSlice';
-import { localTokenHandler } from 'utils';
-import { passwordValidationRules, validationLoginSchema } from 'validation';
+  TOSCheckbox,
+  PasswordField,
+  Timer,
+  PasswordValidationTags,
+} from 'components/molecules';
+import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
+import { useAppDispatch } from 'hooks';
+import { ILoginFormInput } from 'models/IAuth';
+import { setError } from 'store/reducers/AuthSlice';
+import { validationLoginSchema } from 'validation';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });
   const dispatch = useAppDispatch();
 
-  const [authorize] = useAuthorizeMutation();
-  const [sendcode] = useSendcodeMutation();
-  const { handleLockedError } = useErrorHandlers();
   const {
     formState: { errors, touchedFields },
     control,
@@ -62,9 +46,18 @@ export const LoginForm = () => {
     },
   });
 
-  const [remainingTime, setRemainingTime] = useState<number>(0);
   const [isFormDisabled, setIsFormDisabled] = useState(false);
-  const [lockoutEndTime, setLockoutEndTime] = useState<number>(0);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const isValidConfirm = !errors?.password && touchedFields.password;
+  const showPasswordTags = isPasswordFocused && !isValidConfirm;
+  const passwordValue = watch('password');
+
+  const { logIn, remainingTime, lockoutEndTime } = useLogin({
+    dispatch,
+    setIsFormDisabled,
+    resetForm,
+    resetField,
+  });
 
   const handleCleanField = () => {
     if (errors.password) resetField('password');
@@ -72,75 +65,6 @@ export const LoginForm = () => {
     if (errors.checkbox) {
       dispatch(setError(t('errorTermsPrivacyRequired')));
       resetField('checkbox', { defaultValue: false });
-    }
-  };
-
-  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-  const navigate = useNavigate();
-
-  const passwordValue = watch('password');
-
-  const isValidConfirm = !errors?.password && touchedFields.password;
-
-  const logIn = async (credentials: ILoginData) => {
-    try {
-      const data = await authorize(credentials).unwrap();
-
-      localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
-      dispatch(setVerifying(true));
-      dispatch(setLoading(true));
-
-      let isError = false;
-
-      try {
-        const response = await sendcode(null).unwrap();
-        const expiredTimer = response.expiredTimer;
-        dispatch(setVerifyingTimer(expiredTimer));
-      } catch (e) {
-        const error = e as IErrorData;
-        isError = true;
-        switch (error.status) {
-          case ErrorStatus.TOO_MANY_REQUESTS:
-            dispatch(setVerifyingTimer(error.data.expiredTimer));
-            isError = false;
-            break;
-          case ErrorStatus.LOCKED:
-            dispatch(setVerifyingTimer(error.data.blockTimeRemaining));
-            break;
-          case ErrorStatus.BAD_REQUEST:
-            dispatch(setError(error.data.exceptionMessage));
-            break;
-          default:
-            dispatch(setError(t('serverError')));
-            break;
-        }
-      } finally {
-        navigate(TO_VERIFICATION, { state: { isError } });
-      }
-
-      resetForm();
-    } catch (e) {
-      const error = e as IErrorData;
-      switch (error.status) {
-        case ErrorStatus.NOT_FOUND:
-          dispatch(setError(error.data.exceptionMessage));
-          resetField('password');
-          break;
-        case ErrorStatus.LOCKED:
-          handleLockedError(
-            error,
-            setIsFormDisabled,
-            setRemainingTime,
-            setLockoutEndTime,
-          );
-          resetField('password');
-          break;
-        default:
-          dispatch(setError(t('serverError')));
-          break;
-      }
-    } finally {
-      dispatch(setLoading(false));
     }
   };
 
@@ -181,7 +105,7 @@ export const LoginForm = () => {
       <StyledFormTitle>{t('formTitle')}</StyledFormTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
-          <Box sx={{ width: '100%' }}>
+          <Box width="100%">
             <StyledLabel htmlFor="email">{t('email.label')}</StyledLabel>
             <InputField
               name="email"
@@ -193,12 +117,7 @@ export const LoginForm = () => {
               disabled={isFormDisabled}
             />
           </Box>
-          <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex' }}>
-              <StyledLabel htmlFor="password">
-                {t('password.label')}
-              </StyledLabel>
-            </Box>
+          <Box width="100%">
             <PasswordField
               control={control}
               id="password"
@@ -207,18 +126,9 @@ export const LoginForm = () => {
               isFormDisabled={isFormDisabled}
               onFocus={() => setIsPasswordFocused(true)}
             />
-            {isPasswordFocused &&
-              !isValidConfirm &&
-              Object.keys(passwordValidationRules).map((key) => (
-                <ValidationTag
-                  key={key}
-                  tagText={t(`password.${key}`)}
-                  isValidated={passwordValidationRules[key as ValidationKey](
-                    passwordValue,
-                  )}
-                  isSpecial={key === ValidationKey.SPECIAL_CHAR ? true : false}
-                />
-              ))}
+            {showPasswordTags && (
+              <PasswordValidationTags password={passwordValue} />
+            )}
           </Box>
         </StyledFormContent>
         <TOSCheckbox

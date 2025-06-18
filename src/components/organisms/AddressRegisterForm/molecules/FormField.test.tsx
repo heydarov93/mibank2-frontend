@@ -15,13 +15,6 @@ import { FormField, FormFieldProps } from './FormField';
 import { ILegalAddress, ISelectOption } from 'models/IRegistration';
 import { theme } from 'theme/theme';
 
-jest.mock('enums', () => ({
-  EFieldType: {
-    TEXT: 'text',
-    SELECT: 'select',
-  },
-}));
-
 jest.mock('models/IRegistration', () => ({
   ILegalAddress: {},
   ISelectOption: {},

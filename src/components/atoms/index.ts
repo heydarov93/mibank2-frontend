@@ -36,3 +36,4 @@ export * from './CurrencyFlagIcon/CurrencyFlagIcon';
 export { CardIssuerIcon } from './CardIssuerIcon/CardIssuerIcon';
 export { TabPanel } from './TabPanel/TabPanel';
 export { LoadingIndicator } from './LoadingIndicator/LoadingIndicator';
+export { SpecialCharactersTooltip } from './SpecialCharactersTooltip/SpecialCharactersTooltip';

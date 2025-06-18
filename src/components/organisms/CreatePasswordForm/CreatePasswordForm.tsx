@@ -9,15 +9,17 @@ import {
   StyledForm,
   StyledFormContent,
   StyledFormTitle,
-  StyledLabel,
 } from './CreatePasswordForm.styled';
 
-import { SubmitButton, ValidationTag } from 'components/atoms';
-import { TOSCheckbox, PasswordField } from 'components/molecules';
+import { SubmitButton } from 'components/atoms';
+import {
+  TOSCheckbox,
+  PasswordField,
+  PasswordValidationTags,
+} from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/routesName';
-import { ValidationKey } from 'enums';
 import { ISignupFormInput } from 'models/IAuth';
-import { passwordValidationRules, validationSignupSchema } from 'validation';
+import { validationSignupSchema } from 'validation';
 
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
@@ -45,8 +47,8 @@ export const CreatePasswordForm = () => {
   });
 
   const passwordValue = watch('password');
-
   const isValidConfirm = !errors?.password && touchedFields.password;
+  const showPasswordTags = isPasswordFocused && !isValidConfirm;
   // TODO: substitute with real submit when BE is ready
   const onFormSubmit = async () => {
     try {
@@ -65,7 +67,6 @@ export const CreatePasswordForm = () => {
       <StyledForm onSubmit={handleSubmit(onFormSubmit)}>
         <StyledFormContent>
           <Box>
-            <StyledLabel htmlFor="password">{t('mainFieldLabel')}</StyledLabel>
             <PasswordField
               control={control}
               name="password"
@@ -73,23 +74,11 @@ export const CreatePasswordForm = () => {
               errors={errors}
               onFocus={() => setIsPasswordFocused(true)}
             />
-            {isPasswordFocused &&
-              !isValidConfirm &&
-              Object.keys(passwordValidationRules).map((key) => (
-                <ValidationTag
-                  key={key}
-                  tagText={t(`error.${key}`)}
-                  isValidated={passwordValidationRules[key as ValidationKey](
-                    passwordValue,
-                  )}
-                  isSpecial={key === ValidationKey.SPECIAL_CHAR ? true : false}
-                />
-              ))}
+            {showPasswordTags && (
+              <PasswordValidationTags password={passwordValue} />
+            )}
           </Box>
           <Box>
-            <StyledLabel htmlFor="confirmPassword">
-              {t('confirmFieldLabel')}
-            </StyledLabel>
             <PasswordField
               control={control}
               name="confirmPassword"

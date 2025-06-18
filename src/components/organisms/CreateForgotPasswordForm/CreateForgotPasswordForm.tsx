@@ -13,21 +13,22 @@ import {
 } from './CreateForgotPasswordForm.styled';
 
 import { useConfirmForgotPasswordMutation } from 'api/confirmForgotPasswordApi';
-import { ButtonLink, SubmitButton, ValidationTag } from 'components/atoms';
+import { ButtonLink, SubmitButton } from 'components/atoms';
 import {
   PasswordField,
+  PasswordValidationTags,
   VerificationCodeInputField,
 } from 'components/molecules';
-import { TO_CREATE_FORGOT_PASSWORD_FINISHED } from 'constants/routesName';
-import { ValidationKey, ErrorStatus } from 'enums';
+import {
+  TO_CREATE_FORGOT_PASSWORD_FINISHED,
+  TO_SIGN_IN,
+} from 'constants/routesName';
+import { ErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
-import {
-  passwordValidationRules,
-  validationForgotPasswordSchema,
-} from 'validation';
+import { validationForgotPasswordSchema } from 'validation';
 
 export const CreateForgotPasswordForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'ForgotPassword' });
@@ -57,6 +58,8 @@ export const CreateForgotPasswordForm = () => {
 
   const passwordValue = watch('password');
   const confirmPasswordValue = watch('confirmPassword');
+  const isValidConfirm = !errors?.password && touchedFields.password;
+  const showPasswordTags = isPasswordFocused && !isValidConfirm;
 
   useEffect(() => {
     const trimmedPassword = passwordValue.trim();
@@ -81,8 +84,6 @@ export const CreateForgotPasswordForm = () => {
       clearErrors('confirmPassword');
     }
   }, [passwordValue, confirmPasswordValue]);
-
-  const isValidConfirm = !errors?.password && touchedFields.password;
 
   const onSubmit = async (data: IForgotPasswordFormInput) => {
     const userData = {
@@ -126,11 +127,6 @@ export const CreateForgotPasswordForm = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormContent>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex' }}>
-              <StyledLabel htmlFor="password">
-                {t('password.label')}
-              </StyledLabel>
-            </Box>
             <PasswordField
               control={control}
               name="password"
@@ -138,25 +134,11 @@ export const CreateForgotPasswordForm = () => {
               errors={errors}
               onFocus={() => setIsPasswordFocused(true)}
             />
-            {isPasswordFocused &&
-              !isValidConfirm &&
-              Object.keys(passwordValidationRules).map((key) => (
-                <ValidationTag
-                  key={key}
-                  tagText={t(`password.${key}`)}
-                  isValidated={passwordValidationRules[key as ValidationKey](
-                    passwordValue,
-                  )}
-                  isSpecial={key === ValidationKey.SPECIAL_CHAR}
-                />
-              ))}
+            {showPasswordTags && (
+              <PasswordValidationTags password={passwordValue} />
+            )}
           </Box>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ display: 'flex' }}>
-              <StyledLabel htmlFor="confirmPassword">
-                {t('confirmPassword.label')}
-              </StyledLabel>
-            </Box>
             <PasswordField
               control={control}
               name="confirmPassword"
@@ -188,7 +170,7 @@ export const CreateForgotPasswordForm = () => {
       <ButtonLink
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href="/signin"
+        href={TO_SIGN_IN}
       />
     </>
   );
