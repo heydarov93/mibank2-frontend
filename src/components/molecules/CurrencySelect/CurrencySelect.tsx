@@ -58,7 +58,7 @@ export function CurrencySelect(props: CustomSelectProps) {
           disabled={disabledOptions?.includes(currency) ?? false}
         >
           <Box display="flex" alignItems="center" gap={1}>
-            <CurrencyFlagIcon currency={currency} fontSize="medium" />
+            <CurrencyFlagIcon currency={currency} />
             <span style={{ fontWeight: 500 }}>{currency}</span>
           </Box>
         </MenuItem>

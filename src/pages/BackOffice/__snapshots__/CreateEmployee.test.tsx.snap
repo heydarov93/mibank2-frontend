@@ -22,8 +22,6 @@ exports[`CreateEmployee Component should render correctly and match snapshot 1`]
           First Name
         </p>
         <input
-          control="[object Object]"
-          helpertext=""
           id="firstName"
           name="firstName"
           placeholder="Enter the First Name"
@@ -38,8 +36,6 @@ exports[`CreateEmployee Component should render correctly and match snapshot 1`]
           Last Name
         </p>
         <input
-          control="[object Object]"
-          helpertext=""
           id="lastName"
           name="lastName"
           placeholder="Enter the Last Name"
@@ -54,8 +50,6 @@ exports[`CreateEmployee Component should render correctly and match snapshot 1`]
           Email
         </p>
         <input
-          control="[object Object]"
-          helpertext=""
           id="email"
           name="email"
           placeholder="example@gmail.com"
@@ -145,11 +139,7 @@ exports[`CreateEmployee Component should render correctly and match snapshot 1`]
           Date Added
         </p>
         <input
-          class=""
-          control="[object Object]"
-          errors="[object Object]"
           id="dateAdded"
-          maxdate="[object Object]"
           name="dateAdded"
           placeholder="Date Added"
           type="date"

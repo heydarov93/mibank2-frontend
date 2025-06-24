@@ -1,12 +1,24 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 
 import { EditCorporateAddressForm } from './EditCorporateAddressForm';
 
 describe('EditCorporateAddressForm', () => {
   let container: HTMLElement;
 
-  beforeEach(() => {
-    container = render(<EditCorporateAddressForm />).container;
+  beforeEach(async () => {
+    await act(async () => {
+      container = render(<EditCorporateAddressForm />).container;
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('save-button')).toBeInTheDocument();
+    });
   });
 
   it('has all fields prefilled with address data', () => {

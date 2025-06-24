@@ -9,28 +9,35 @@ import {
 import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
 import { currencySymbol } from 'constants/currencies';
-import { TCardIssuer, TCurrency } from 'models/types';
+import { TCardIssuer, TCardStatus, TCardType, TCurrency } from 'models/types';
 import { separateThousands } from 'utils';
 
-interface IUserBankCard {
+export interface IUserBankCard {
+  holder: string;
   name: string;
+  issuer: TCardIssuer;
   number: number;
+  cvv: number;
+  iban: string;
+  swift: string;
   balance: number;
   currency: TCurrency;
-  issuer: TCardIssuer;
+  type: TCardType;
+  issueDate: string;
   expirationDate: string;
-  type: 'virtual' | 'plastic';
+  cashbackRate: number;
+  status: TCardStatus;
 }
 
 export function UserBankCard({ data }: { data: IUserBankCard }) {
   return (
     <StyledContainer>
       <StyledTopBox>
-        <Typography noWrap fontSize={12}>
+        <Typography fontSize={14} whiteSpace="nowrap">
           {data.name}
         </Typography>
         <Icon sx={{ width: 24, height: 24 }}>
-          <SimpleLogo />
+          <SimpleLogo data-testid="simple-logo" />
         </Icon>
       </StyledTopBox>
       <Typography fontSize={24} fontWeight={600} marginTop={1.5}>
@@ -45,9 +52,14 @@ export function UserBankCard({ data }: { data: IUserBankCard }) {
             {data.expirationDate}
           </Typography>
         </Box>
-        <Box display="flex" alignItems="center" gap={2}>
-          <Typography fontSize={12}>{data.type}</Typography>
-          <CardIssuerIcon issuer={data.issuer} />
+        <Box display="flex" alignItems="center" gap={1}>
+          <Typography fontSize={12}>
+            {data.type === 'digital' ? 'virtual' : 'plastic'}
+          </Typography>
+          <CardIssuerIcon
+            issuer={data.issuer}
+            style={{ height: 24, width: 50 }}
+          />
         </Box>
       </StyledBtmBox>
     </StyledContainer>

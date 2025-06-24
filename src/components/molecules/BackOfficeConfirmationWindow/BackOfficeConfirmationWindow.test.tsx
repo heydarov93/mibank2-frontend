@@ -14,6 +14,15 @@ jest.mock(
   },
 );
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string) => str,
+      i18n: {},
+    };
+  },
+}));
+
 describe('BackOfficeConfirmationWindow', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(

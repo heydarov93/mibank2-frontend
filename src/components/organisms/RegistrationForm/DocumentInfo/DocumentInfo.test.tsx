@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import i18n from 'i18next';
 import { FormProvider, useForm } from 'react-hook-form';
 import { initReactI18next } from 'react-i18next';
@@ -26,22 +26,29 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const renderWithProviders = () => {
-  const Wrapper = () => {
-    const methods = useForm();
+const Wrapper = () => {
+  const methods = useForm({
+    defaultValues: {
+      documentNumber: '',
+      expirationDate: '',
+      issueDate: '',
+    },
+  });
+  return (
+    <Provider store={store}>
+      <MemoryRouter>
+        <FormProvider {...methods}>
+          <DocumentInfo onBack={jest.fn()} />
+        </FormProvider>
+      </MemoryRouter>
+    </Provider>
+  );
+};
 
-    return (
-      <Provider store={store}>
-        <MemoryRouter>
-          <FormProvider {...methods}>
-            <DocumentInfo onBack={jest.fn()} />
-          </FormProvider>
-        </MemoryRouter>
-      </Provider>
-    );
-  };
-
-  render(<Wrapper />);
+const renderWithProviders = async () => {
+  await act(async () => {
+    render(<Wrapper />);
+  });
 };
 
 describe('DocumentInfo Component', () => {

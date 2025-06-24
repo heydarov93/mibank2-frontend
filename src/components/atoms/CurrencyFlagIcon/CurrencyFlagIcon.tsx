@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import { CSSProperties } from 'react';
 
 import { ReactComponent as CHF } from 'assets/icons/ChfFlag.svg';
 import { ReactComponent as EUR } from 'assets/icons/EurFlag.svg';
@@ -8,7 +8,7 @@ import { ReactComponent as PLN } from 'assets/icons/PlnFlag.svg';
 import { ReactComponent as USD } from 'assets/icons/UsaFlag.svg';
 import { TCurrency } from 'models/types';
 
-export const icons = {
+export const flagIcons = {
   USD,
   EUR,
   GBP,
@@ -17,16 +17,13 @@ export const icons = {
   PLN,
 };
 
-type CurrencyFlagIconProps = SvgIconProps & {
+interface CurrencyFlagIconProps {
   currency: TCurrency;
-};
+  style?: CSSProperties;
+}
 
 export function CurrencyFlagIcon(props: CurrencyFlagIconProps) {
-  const { currency, ...restProps } = props;
-  const Icon = icons[currency];
-  return (
-    <SvgIcon {...restProps}>
-      <Icon />
-    </SvgIcon>
-  );
+  const { currency, style } = props;
+  const Icon = flagIcons[currency];
+  return <Icon style={style} data-testid="currency-flag-icon" />;
 }

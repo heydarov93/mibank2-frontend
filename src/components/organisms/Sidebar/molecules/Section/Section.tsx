@@ -3,7 +3,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Icon, Stack, Typography } from '@mui/material';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, To } from 'react-router-dom';
 
 import {
   StyledIconButton,
@@ -14,7 +14,7 @@ import {
 
 interface SectionProps {
   title: string;
-  seeAllRoute: string;
+  seeAllRoute: To;
   onAddProduct?: () => void;
   children?: ReactNode;
 }

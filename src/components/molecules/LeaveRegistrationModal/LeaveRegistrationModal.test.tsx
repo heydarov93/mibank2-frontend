@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import { LeaveRegistrationModal } from './LeaveRegistrationModal';
 
@@ -57,19 +56,19 @@ describe('LeaveRegistrationModal', () => {
 
   it('calls onCloseModal when clicking Cancel button', async () => {
     const cancelBtn = screen.getByRole('button', { name: /cancel/i });
-    await userEvent.click(cancelBtn);
+    fireEvent.click(cancelBtn);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('calls onCloseModal when clicking Close icon', async () => {
     const closeX = screen.getByTestId('close-button');
-    await userEvent.click(closeX);
+    fireEvent.click(closeX);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('navigates to welcome route when clicking Confirm button', async () => {
     const confirmBtn = screen.getByRole('button', { name: /confirm/i });
-    await userEvent.click(confirmBtn);
+    fireEvent.click(confirmBtn);
     expect(mockNavigate).toHaveBeenCalledWith(TO_WELCOME);
   });
 

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -31,15 +31,17 @@ jest.mock('react-i18next', () => ({
 describe('Create Forgot password form', () => {
   let container: HTMLElement;
 
-  beforeEach(() => {
-    const rendered = render(
-      <Provider store={mockStore}>
-        <MemoryRouter>
-          <CreateForgotPasswordForm />
-        </MemoryRouter>
-      </Provider>,
-    );
-    container = rendered.container;
+  beforeEach(async () => {
+    await act(async () => {
+      const rendered = render(
+        <Provider store={mockStore}>
+          <MemoryRouter>
+            <CreateForgotPasswordForm />
+          </MemoryRouter>
+        </Provider>,
+      );
+      container = rendered.container;
+    });
   });
 
   it('snapshot should match', () => {
@@ -51,8 +53,10 @@ describe('Create Forgot password form', () => {
     const confirmPasswordInput = screen.getByLabelText('confirmLabel');
     const submitButton = screen.getByTestId('save-button');
 
-    userEvent.type(passwordInput, 'Test@005');
-    userEvent.type(confirmPasswordInput, 'Test@006');
+    act(() => {
+      userEvent.type(passwordInput, 'Test@005');
+      userEvent.type(confirmPasswordInput, 'Test@006');
+    });
 
     expect(submitButton).toBeDisabled();
   });
@@ -63,9 +67,11 @@ describe('Create Forgot password form', () => {
     const verificationCodeInput = screen.getByLabelText('EnterVerificatonCode');
     const submitButton = screen.getByTestId('save-button');
 
-    userEvent.type(passwordInput, '');
-    userEvent.type(confirmPasswordInput, '');
-    userEvent.type(verificationCodeInput, '');
+    act(() => {
+      userEvent.type(passwordInput, '');
+      userEvent.type(confirmPasswordInput, '');
+      userEvent.type(verificationCodeInput, '');
+    });
 
     expect(submitButton).toBeDisabled();
   });
@@ -75,9 +81,11 @@ describe('Create Forgot password form', () => {
     const confirmPasswordInput = screen.getByLabelText('confirmLabel');
     const verificationCodeInput = screen.getByLabelText('EnterVerificatonCode');
 
-    userEvent.type(passwordInput, 'Test@005');
-    userEvent.type(confirmPasswordInput, 'Test@005');
-    userEvent.type(verificationCodeInput, '123abc');
+    act(() => {
+      userEvent.type(passwordInput, 'Test@005');
+      userEvent.type(confirmPasswordInput, 'Test@005');
+      userEvent.type(verificationCodeInput, '123abc');
+    });
 
     fireEvent.blur(verificationCodeInput);
     const verificationCodeErrorMessage = await screen.findByText((text) =>

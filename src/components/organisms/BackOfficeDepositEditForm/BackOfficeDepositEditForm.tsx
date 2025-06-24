@@ -62,7 +62,7 @@ const BackOfficeDepositEditForm = ({
     defaultValues: {
       name: formData?.productName || '',
       description: formData?.cardDescription || '',
-      currency: formData?.cardCurrency || '',
+      currency: formData?.cardCurrency || 'PLN',
       min: formData?.minimumDepositSum || '',
       max: formData?.maximumDepositSum || '',
       term: formData?.depositTerm || '',

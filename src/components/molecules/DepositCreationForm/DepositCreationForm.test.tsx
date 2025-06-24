@@ -1,5 +1,12 @@
 import { ThemeProvider } from '@mui/material';
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  within,
+  waitFor,
+} from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -85,25 +92,34 @@ const mockDepositProps = {
   term: 12,
 };
 
-const renderForm = (props = {}) =>
-  render(
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <MemoryRouter>
-          <DepositCreationForm
-            depositId={mockDepositProps.depositId}
-            depositName={mockDepositProps.depositName}
-            interestRate={mockDepositProps.interestRate}
-            term={mockDepositProps.term}
-            currency={mockDepositProps.currency}
-            onBack={mockDepositProps.onBack}
-            {...props}
-          />
-        </MemoryRouter>
-      </Provider>
-    </ThemeProvider>,
-  );
+const renderForm = async (props = {}) => {
+  let container;
+  await act(async () => {
+    container = render(
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <MemoryRouter>
+            <DepositCreationForm
+              depositId={mockDepositProps.depositId}
+              depositName={mockDepositProps.depositName}
+              interestRate={mockDepositProps.interestRate}
+              term={mockDepositProps.term}
+              currency={mockDepositProps.currency}
+              onBack={mockDepositProps.onBack}
+              {...props}
+            />
+          </MemoryRouter>
+        </Provider>
+      </ThemeProvider>,
+    ).container;
+  });
 
+  await waitFor(() => {
+    expect(screen.getByTestId('deposit-creation-form')).toBeInTheDocument();
+  });
+
+  return container;
+};
 function mockDepositFormState({
   showSuccessModal = false,
   showErrorModal = false,
@@ -129,13 +145,13 @@ describe('DepositCreationForm', () => {
     };
   });
 
-  it('matches snapshot', () => {
-    const { container } = renderForm();
+  it('matches snapshot', async () => {
+    const container = await renderForm();
     expect(container).toMatchSnapshot();
   });
 
-  it('renders the form components', () => {
-    renderForm();
+  it('renders the form components', async () => {
+    await renderForm();
 
     expect(screen.getByTestId('deposit-creation-form')).toBeInTheDocument();
     expect(screen.getByTestId('deposit-amount')).toBeInTheDocument();
@@ -147,8 +163,8 @@ describe('DepositCreationForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('"Open deposit" button is disabled when the form is not valid', () => {
-    renderForm();
+  it('"Open deposit" button is disabled when the form is not valid', async () => {
+    await renderForm();
 
     const submitButton = screen.getByRole('button', { name: 'openDeposit' });
     expect(submitButton).toBeDisabled();
@@ -156,7 +172,7 @@ describe('DepositCreationForm', () => {
 
   it("enables 'Open deposit' when form is valid", async () => {
     mockDepositFormState({ isSubmitDisabled: false });
-    renderForm();
+    await renderForm();
 
     const amountWrapper = screen.getByTestId('deposit-amount');
     const amountInput = amountWrapper.querySelector('input')!;
@@ -179,7 +195,7 @@ describe('DepositCreationForm', () => {
 
   it('shows error modal when amount exceeds balance', async () => {
     mockDepositFormState({ isSubmitDisabled: false });
-    renderForm();
+    await renderForm();
 
     const amountWrapper = screen.getByTestId('deposit-amount');
     const amountInput = amountWrapper.querySelector('input')!;
@@ -201,16 +217,16 @@ describe('DepositCreationForm', () => {
     fireEvent.click(submitButton);
   });
 
-  it('shows the success modal when showSuccessModal is true', () => {
+  it('shows the success modal when showSuccessModal is true', async () => {
     mockDepositFormState({ showSuccessModal: true });
-    renderForm();
+    await renderForm();
 
     expect(screen.getByText('Opened successfully!')).toBeInTheDocument();
   });
 
-  it('shows the error modal with a message when showErrorModal is true', () => {
+  it('shows the error modal with a message when showErrorModal is true', async () => {
     mockDepositFormState({ showErrorModal: true });
-    renderForm();
+    await renderForm();
 
     expect(screen.getByText('Opening Deposit failed!')).toBeInTheDocument();
   });

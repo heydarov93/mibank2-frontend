@@ -1,11 +1,5 @@
 import { ThemeProvider } from '@mui/material/styles';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -15,34 +9,31 @@ import { FormField, FormFieldProps } from './FormField';
 import { ILegalAddress, ISelectOption } from 'models/IRegistration';
 import { theme } from 'theme/theme';
 
-jest.mock('models/IRegistration', () => ({
-  ILegalAddress: {},
-  ISelectOption: {},
-}));
+const TestComponent = (props: FormFieldProps) => {
+  const methods = useForm<ILegalAddress>({
+    defaultValues: {
+      country: '',
+      city: '',
+      street: '',
+      building: '',
+      office: '',
+      postcode: '',
+    },
+  });
 
-const renderFormField = (props: FormFieldProps) => {
-  const TestComponent = () => {
-    const methods = useForm<ILegalAddress>({
-      defaultValues: {
-        country: '',
-        city: '',
-        street: '',
-        building: '',
-        office: '',
-        postcode: '',
-      },
-    });
+  return (
+    <ThemeProvider theme={theme}>
+      <FormProvider {...methods}>
+        <FormField {...props} />
+      </FormProvider>
+    </ThemeProvider>
+  );
+};
 
-    return (
-      <ThemeProvider theme={theme}>
-        <FormProvider {...methods}>
-          <FormField {...props} />
-        </FormProvider>
-      </ThemeProvider>
-    );
-  };
-
-  return render(<TestComponent />);
+const renderFormField = async (props: FormFieldProps) => {
+  await act(async () => {
+    render(<TestComponent {...props} />);
+  });
 };
 
 const TestWithError = () => {
@@ -66,18 +57,20 @@ describe('FormField Component', () => {
     jest.clearAllMocks();
   });
 
-  it('renders text field with label', () => {
+  it('renders text field with label', async () => {
     renderFormField({
       label: 'Street',
       placeholder: 'Enter street',
       name: 'street',
     });
 
-    expect(screen.getByText('Street')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Enter street')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Street')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Enter street')).toBeInTheDocument();
+    });
   });
 
-  it('renders select field with options', () => {
+  it('renders select field with options', async () => {
     const options: ISelectOption[] = [
       { value: 'Poland', label: 'Poland' },
       { value: 'Germany', label: 'Germany' },
@@ -90,22 +83,23 @@ describe('FormField Component', () => {
       options,
     });
 
-    expect(screen.getByText('Country')).toBeInTheDocument();
-    expect(screen.getByRole('combobox')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Country')).toBeInTheDocument();
+      expect(screen.getByRole('combobox')).toBeInTheDocument();
+    });
   });
 
-  it('disables field when disabled prop is true', () => {
+  it('disables field when disabled prop is true', async () => {
     renderFormField({
       label: 'Street',
       name: 'street',
       disabled: true,
     });
 
-    const input = screen.getByRole('textbox');
-    expect(input).toBeDisabled();
+    await waitFor(() => expect(screen.getByRole('textbox')).toBeDisabled());
   });
 
-  it('disables select when disabled prop is true', () => {
+  it('disables select when disabled prop is true', async () => {
     const options: ISelectOption[] = [{ value: 'poland', label: 'Poland' }];
 
     renderFormField({
@@ -116,8 +110,12 @@ describe('FormField Component', () => {
       options,
     });
 
-    const select = screen.getByRole('combobox');
-    expect(select).toHaveAttribute('aria-disabled', 'true');
+    await waitFor(() =>
+      expect(screen.getByRole('combobox')).toHaveAttribute(
+        'aria-disabled',
+        'true',
+      ),
+    );
   });
 
   it('allows typing in text field', async () => {
@@ -126,9 +124,13 @@ describe('FormField Component', () => {
       name: 'street',
     });
 
-    const input = screen.getByRole('textbox');
-    await userEvent.type(input, 'Test value');
-    expect(input).toHaveValue('Test value');
+    await waitFor(() => {
+      const input = screen.getByRole('textbox');
+      act(() => {
+        userEvent.type(input, 'Test value');
+      });
+      expect(input).toHaveValue('Test value');
+    });
   });
 
   it('allows selecting option in select field', async () => {
@@ -137,22 +139,20 @@ describe('FormField Component', () => {
       { value: 'poland', label: 'Poland' },
     ];
 
-    renderFormField({
+    await renderFormField({
       label: 'Country',
       name: 'country',
       type: 'select',
       options,
     });
 
-    const select = screen.getByRole('combobox');
+    const select = await waitFor(() => screen.getByRole('combobox'));
+    act(() => userEvent.click(select));
 
-    act(() => fireEvent.mouseDown(select));
-    const option = screen.getByText('Germany');
-    act(() => fireEvent.click(option));
+    const option = await waitFor(() => screen.getByText('Germany'));
+    act(() => userEvent.click(option));
 
-    await waitFor(() =>
-      expect(select).toHaveAttribute('aria-expanded', 'false'),
-    );
+    await waitFor(() => expect(select).toHaveTextContent('Germany'));
   });
 
   it('shows error message when error exists', () => {

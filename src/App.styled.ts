@@ -1,5 +1,7 @@
 import { Box, styled } from '@mui/material';
 
+export const SIDEBAR_WIDTH = 385;
+
 export const AppContainer = styled(Box)`
   display: flex;
   flex-direction: column;
@@ -18,6 +20,6 @@ export const OutletContainer = styled('div')(({ theme: { spacing } }) => ({
   maxWidth: '1920px',
 
   '& > :first-child': {
-    maxWidth: 385,
+    maxWidth: SIDEBAR_WIDTH,
   },
 }));

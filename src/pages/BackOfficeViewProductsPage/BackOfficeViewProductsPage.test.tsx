@@ -1,6 +1,12 @@
 import { ThemeProvider } from '@mui/material';
 import { configureStore } from '@reduxjs/toolkit';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -50,8 +56,7 @@ describe('BackOfficeViewProductsPage', () => {
 
   test('typing and pressing enter in search triggers debounce logic', async () => {
     const input = screen.getByPlaceholderText('header.searchProducts');
-
-    await userEvent.type(input, 'Gold Product');
+    act(() => userEvent.type(input, 'Gold Product'));
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
 
     await waitFor(() => {
@@ -73,11 +78,13 @@ describe('BackOfficeViewProductsPage', () => {
 
   test('shows "NoMatchesFound" component when no products and query exists', async () => {
     const input = screen.getByPlaceholderText('header.searchProducts');
-    await userEvent.type(input, 'NonMatchingProduct');
+    act(() => userEvent.type(input, 'NonMatchingProduct'));
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
 
     await waitFor(() => {
-      expect(screen.getByText('noMatchesFound.viewAllProducts')).toBeInTheDocument();
+      expect(
+        screen.getByText('noMatchesFound.viewAllProducts'),
+      ).toBeInTheDocument();
     });
   });
 

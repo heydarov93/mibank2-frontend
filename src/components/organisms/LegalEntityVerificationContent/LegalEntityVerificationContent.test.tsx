@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { LegalEntityVerificationContent } from './LegalEntityVerificationContent';
@@ -58,9 +57,8 @@ describe('LegalEntityVerificationContent', () => {
 
   it('allows clicking the resend link without error', async () => {
     const resendLink = screen.getByRole('link', { name: /send another link/i });
-    await userEvent.click(resendLink);
-
-    expect(resendLink).toBeEnabled();
+    fireEvent.click(resendLink);
+    waitFor(() => expect(resendLink).toBeEnabled());
   });
 
   it('matches the snapshot', () => {

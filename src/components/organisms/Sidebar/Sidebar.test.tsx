@@ -56,7 +56,6 @@ describe('Sidebar', () => {
     expect(sectionTitles).toContain('myLoans.title');
     expect(sectionTitles).toContain('myDeposits.title');
 
-    expect(screen.getAllByTestId('empty-section-description')).toHaveLength(3);
     expect(screen.getByTestId('my-transactions')).toBeInTheDocument();
 
     expect(

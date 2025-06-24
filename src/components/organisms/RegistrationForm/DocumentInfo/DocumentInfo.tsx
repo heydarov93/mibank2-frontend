@@ -23,7 +23,6 @@ import { FormStepProps, IDocumentInfo } from 'models/IRegistration';
 export const DocumentInfo = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
 
-
   const dateLimitation = {
     minDateExpiration: dayjs().add(1, 'year'),
     maxDateExpiration: dayjs().add(20, 'year'),
@@ -35,8 +34,6 @@ export const DocumentInfo = ({ onBack }: FormStepProps) => {
     formState: { errors, isValid },
     control,
   } = useFormContext<IDocumentInfo>();
-
-
 
   const passportRegExp = /^[A-Z0-9]+$/;
 

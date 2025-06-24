@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Box, Dialog, DialogContent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,13 +36,13 @@ export const LeaveRegistrationModal = ({
         },
       }}
     >
-      <DialogTitle>
+      <Box>
         <StyledTitle variant="h3">{t('leaveRegisterModal.title')}</StyledTitle>
         <CloseButtonX
           onClick={onCloseModal}
           sx={{ position: 'absolute', top: '25px', right: '15px' }}
         />
-      </DialogTitle>
+      </Box>
 
       <DialogContent sx={{ paddingBottom: '32px' }}>
         <StyledBody variant="body2">{t('leaveRegisterModal.body')}</StyledBody>

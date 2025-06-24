@@ -1,5 +1,5 @@
-import React from 'react';
 import { render } from '@testing-library/react';
+
 import CreateEmployee from './CreateEmployee';
 
 jest.mock('api/registerEmployee', () => ({
@@ -11,12 +11,18 @@ jest.mock('dayjs', () => () => ({
 }));
 
 jest.mock('components/atoms', () => ({
-  InputField: (props: any) => <input {...props} />,
+  InputField: (props: any) => {
+    const { id, name, placeholder } = props;
+    return <input id={id} name={name} placeholder={placeholder} />;
+  },
   SubmitButton: (props: any) => <button>{props.buttonContent}</button>,
 }));
 
 jest.mock('components/molecules', () => ({
-  DocumentDatePicker: (props: any) => <input type="date" {...props} />,
+  DocumentDatePicker: (props: any) => {
+    const { id, name, placeholder } = props;
+    return <input type="date" id={id} name={name} placeholder={placeholder} />;
+  },
 }));
 
 describe('CreateEmployee Component', () => {
