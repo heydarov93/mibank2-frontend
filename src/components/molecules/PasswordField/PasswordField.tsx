@@ -93,7 +93,7 @@ export const PasswordField = <T extends FieldValues>({
   return (
     <>
       <Box display="flex">
-        <StyledLabel htmlFor={name}>
+        <StyledLabel htmlFor={id}>
           {t(name === 'password' ? 'mainLabel' : 'confirmLabel')}
         </StyledLabel>
       </Box>
@@ -107,7 +107,7 @@ export const PasswordField = <T extends FieldValues>({
         type={showPassword ? 'text' : 'password'}
         onCut={preventChange}
         onCopy={preventChange}
-        placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
+        placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫᛫"
         disabled={isFormDisabled}
         InputProps={passwordInputProps}
         onKeyUp={onKeyUpHandler}

@@ -106,7 +106,7 @@ exports[`LoginPage snapshot should match 1`] = `
                   class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
                   id="password"
                   name="password"
-                  placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫"
+                  placeholder="᛫᛫᛫᛫᛫᛫᛫᛫᛫᛫"
                   type="password"
                   value=""
                 />

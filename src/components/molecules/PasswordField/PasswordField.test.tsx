@@ -8,7 +8,7 @@ import { ISignupFormInput } from 'models/IAuth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => key,
+    t: () => 'Password',
   }),
   initReactI18next: {
     type: '3rdParty',
@@ -48,7 +48,7 @@ describe('PasswordField Component', () => {
   it('renders password input with default type as password', () => {
     render(<WrapperComponent name="password" id="password" />);
 
-    const passwordInput = screen.getByPlaceholderText('᛫᛫᛫᛫᛫᛫᛫᛫᛫');
+    const passwordInput = screen.getByLabelText('Password');
     expect(passwordInput).toHaveAttribute('type', 'password');
   });
 
@@ -58,7 +58,7 @@ describe('PasswordField Component', () => {
     const toggleButton = screen.getByRole('button', {
       name: /toggle password visibility/i,
     });
-    const passwordInput = screen.getByPlaceholderText('᛫᛫᛫᛫᛫᛫᛫᛫᛫');
+    const passwordInput = screen.getByLabelText('Password');
 
     fireEvent.click(toggleButton);
     expect(passwordInput).toHaveAttribute('type', 'text');
@@ -102,7 +102,7 @@ describe('PasswordField Component', () => {
   it('prevents cut and copy actions on the input field', () => {
     render(<WrapperComponent name="password" id="password" />);
 
-    const passwordInput = screen.getByPlaceholderText('᛫᛫᛫᛫᛫᛫᛫᛫᛫');
+    const passwordInput = screen.getByLabelText('Password');
 
     fireEvent.cut(passwordInput);
     fireEvent.copy(passwordInput);
