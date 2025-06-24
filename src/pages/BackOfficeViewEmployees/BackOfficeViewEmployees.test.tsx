@@ -79,22 +79,22 @@ beforeEach(() => {
   (useEmployees as jest.Mock).mockReturnValue(mockEmployeesData);
 });
 
-const renderWithProviders = (ui: React.ReactElement) => {
-  const Wrapper: React.FC<{ children: React.ReactNode }> = ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => {
-    const methods = useForm();
-    return (
-      <ThemeProvider theme={theme}>
-        <FormProvider {...methods}>
-          <MemoryRouter>{children}</MemoryRouter>
-        </FormProvider>
-      </ThemeProvider>
-    );
-  };
+const Wrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const methods = useForm();
+  return (
+    <ThemeProvider theme={theme}>
+      <FormProvider {...methods}>
+        <MemoryRouter>{children}</MemoryRouter>
+      </FormProvider>
+    </ThemeProvider>
+  );
+};
 
+const renderWithProviders = (ui: React.ReactElement) => {
   return render(ui, { wrapper: Wrapper });
 };
 

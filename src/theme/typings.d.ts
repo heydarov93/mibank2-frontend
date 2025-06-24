@@ -68,6 +68,10 @@ declare module '@mui/material/styles' {
     disabled: {
       blue: string;
     };
+    userCardStack: {
+      card1: string;
+      card2: string;
+    };
   }
 
   interface PaletteOptions {
@@ -84,6 +88,10 @@ declare module '@mui/material/styles' {
     };
     disabled: {
       blue: string;
+    };
+    userCardStack: {
+      card1: string;
+      card2: string;
     };
   }
 }

@@ -33,7 +33,7 @@ export function renderOption(
       >
         <Box display="flex" gap={1}>
           {cardIcon}
-          <span>{accountNumber}</span>
+          <span style={{ whiteSpace: 'nowrap' }}>{accountNumber}</span>
         </Box>
         <span style={{ whiteSpace: 'nowrap' }}>{option.label}</span>
       </Stack>

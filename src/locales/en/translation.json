@@ -33,7 +33,17 @@
   "Homepage": {
     "sidebar": {
       "myCards": {
-        "title": "My Cards"
+        "title": "My Cards",
+        "primaryCard": "Primary Card",
+        "cardInfo": "Card Info",
+        "status": "Status",
+        "active": "Active",
+        "expired": "Expired",
+        "blocked": "Blocked",
+        "cardHolder": "Card Holder",
+        "cardNumber": "Card Number",
+        "issueDate": "Issue Date",
+        "cashbackRate": "Cashback Rate"
       },
       "myTransactions": {
         "title": "My Transactions",

@@ -1,6 +1,5 @@
 import { ThemeProvider } from '@mui/material';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import CustomPaginationActions from '../CustomPaginationActions';
 
@@ -66,21 +65,21 @@ describe('CustomPaginationActions', () => {
     renderWithTheme(<CustomPaginationActions {...defaultProps} />);
 
     const rightArrow = screen.getByTestId('right-arrow').closest('button');
-    await userEvent.click(rightArrow!);
+    fireEvent.click(rightArrow!);
     expect(defaultProps.onPageChange).toHaveBeenCalledWith(
       expect.any(Object),
       6,
     );
 
     const leftArrow = screen.getByTestId('left-arrow').closest('button');
-    await userEvent.click(leftArrow!);
+    fireEvent.click(leftArrow!);
     expect(defaultProps.onPageChange).toHaveBeenCalledWith(
       expect.any(Object),
       4,
     );
 
     const leftArrowEnd = screen.getByTestId('left-arrow-end').closest('button');
-    await userEvent.click(leftArrowEnd!);
+    fireEvent.click(leftArrowEnd!);
     expect(defaultProps.onPageChange).toHaveBeenCalledWith(
       expect.any(Object),
       0,
@@ -89,7 +88,7 @@ describe('CustomPaginationActions', () => {
     const rightArrowEnd = screen
       .getByTestId('right-arrow-end')
       .closest('button');
-    await userEvent.click(rightArrowEnd!);
+    fireEvent.click(rightArrowEnd!);
     expect(defaultProps.onPageChange).toHaveBeenCalledWith(
       expect.any(Object),
       9,

@@ -1,6 +1,5 @@
 import { ThemeProvider } from '@mui/material/styles';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { TransactionsTable } from './TransactionsTable';
 
@@ -99,14 +98,14 @@ describe('TransactionsTable', () => {
 
   it('should handle page changes', async () => {
     const nextButton = screen.getByTestId('next-page');
-    await userEvent.click(nextButton);
+    fireEvent.click(nextButton);
 
     expect(screen.getByText('Transactions')).toBeInTheDocument();
   });
 
   it('should handle rows per page changes', async () => {
     const changeRowsButton = screen.getByTestId('change-rows');
-    await userEvent.click(changeRowsButton);
+    fireEvent.click(changeRowsButton);
 
     expect(screen.getByText('Transactions')).toBeInTheDocument();
   });

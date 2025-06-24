@@ -1,10 +1,11 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { initReactI18next, useTranslation } from 'react-i18next';
-import BackOfficeDepositEditForm from './BackOfficeDepositEditForm';
 import { configureStore } from '@reduxjs/toolkit';
-import { updateDepositApi } from 'api/updateDepositApi';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
+
+import BackOfficeDepositEditForm from './BackOfficeDepositEditForm';
+
+import { updateDepositApi } from 'api/updateDepositApi';
+import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

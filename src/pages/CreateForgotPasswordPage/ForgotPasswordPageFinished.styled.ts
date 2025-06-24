@@ -43,11 +43,12 @@ export const StyledTitle = styled(Typography)(
   }),
 );
 
-export const StyledDescription = styled(Typography)(
+export const StyledDescription = styled('div')(
   ({ theme: { breakpoints, palette, spacing } }) => ({
     position: 'relative',
     bottom: spacing(4),
     fontSize: '14px',
+    textAlign: 'center',
     color: palette.grey[400],
     [breakpoints.up('sm')]: {
       fontSize: '16px',

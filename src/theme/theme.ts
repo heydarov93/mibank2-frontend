@@ -77,6 +77,10 @@ export const theme = createTheme({
     disabled: {
       blue: '#6b9af4',
     },
+    userCardStack: {
+      card1: '#8493BB',
+      card2: '#CFD5E2',
+    },
   },
   animations: {
     shake: shakeAnimation,

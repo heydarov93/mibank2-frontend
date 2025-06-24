@@ -59,22 +59,17 @@ jest.mock('./molecules/FormField', () => ({
 }));
 
 jest.mock('components/atoms', () => ({
-  NavigationWarningModal: ({
-    open,
-    title,
-    description,
-    onConfirm,
-    onCancel,
-    ...props
-  }: any) =>
-    open ? (
-      <div data-testid="warning-modal" {...props}>
+  NavigationWarningModal: (props: any) => {
+    const { onConfirm, onCancel, title, description, open } = props;
+    return open ? (
+      <div data-testid="warning-modal">
         <h2>{title}</h2>
         <p>{description}</p>
         <button onClick={onConfirm}>Confirm</button>
         <button onClick={onCancel}>Cancel</button>
       </div>
-    ) : null,
+    ) : null;
+  },
 }));
 
 jest.mock('hooks', () => ({

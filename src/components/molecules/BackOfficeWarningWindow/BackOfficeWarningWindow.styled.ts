@@ -5,7 +5,7 @@ export const Overlay = styled(Box)(({ theme: { palette } }) => ({
   top: 0,
   right: 0,
   bottom: 0,
-  left: "25%",
+  left: '25%',
   backgroundColor: palette.shadow.shadowMedium,
   display: 'flex',
   justifyContent: 'center',
@@ -31,7 +31,7 @@ export const MainHeader = styled(Typography)(
     color: palette.common.black,
     fontWeight: 600,
     lineHeight: '28px',
-  })
+  }),
 );
 
 export const SecondaryHeader = styled(Typography)(
@@ -44,7 +44,7 @@ export const SecondaryHeader = styled(Typography)(
   }),
 );
 
-export const ProductName = styled(Typography)(
+export const ProductName = styled('span')(
   ({ theme: { palette, typography } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: typography.mediumLogo?.fontSize,

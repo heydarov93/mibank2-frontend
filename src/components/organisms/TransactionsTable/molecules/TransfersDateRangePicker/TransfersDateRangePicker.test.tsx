@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
 import dayjs from 'dayjs';
-import { act } from 'react-dom/test-utils';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { TransfersDateRangePicker } from './TransfersDateRangePicker';
@@ -74,7 +73,6 @@ describe('TransfersDateRangePicker', () => {
   });
 
   it('has default dates selected in the calendar', () => {
-    screen.debug(undefined, 20000);
     const selectedStartDate = screen.getByTestId('selected-start-date');
     const selectedEndDate = screen.getByTestId('selected-end-date');
 
@@ -89,10 +87,10 @@ describe('TransfersDateRangePicker', () => {
 
   it('changes startDate and endDate when custom range is selected', () => {
     const firstDay = getAvailableDays()[0];
-    act(() => fireEvent.click(firstDay));
+    fireEvent.click(firstDay);
 
     const secondDay = getAvailableDays().at(-1) as HTMLElement;
-    act(() => fireEvent.click(secondDay));
+    fireEvent.click(secondDay);
 
     const { startDate, endDate } = getDateElements();
 
@@ -101,7 +99,7 @@ describe('TransfersDateRangePicker', () => {
   });
 
   it('executes onClose callback when user clicks on "Cancel" button', () => {
-    act(() => fireEvent.click(screen.getByTestId('cancel-btn')));
+    fireEvent.click(screen.getByTestId('cancel-btn'));
     expect(onClose).toHaveBeenCalled();
   });
 });

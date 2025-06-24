@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { UnderDevPage } from './UnderDevPage';
 
@@ -36,7 +35,7 @@ describe('UnderDevPage', () => {
     });
     expect(button).toBeInTheDocument();
 
-    userEvent.click(button);
+    fireEvent.click(button);
 
     expect(mockNavigate).toBeCalledWith(-1);
   });

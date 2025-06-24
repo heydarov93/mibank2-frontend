@@ -26,10 +26,15 @@ export const ForgotPasswordPageFinished = () => {
       <AuthWrapper>
         <StyledBox>
           <StyledTitleContainer>
-            <StyledTitle variant="h5" fontWeight="500" textAlign="center">
+            <StyledTitle
+              variant="h5"
+              fontWeight="500"
+              textAlign="center"
+              marginBottom={6}
+            >
               {t('PasswordUpdated')}
             </StyledTitle>
-            <StyledDescription variant="body2" textAlign="center">
+            <StyledDescription>
               <ButtonLink
                 message={t('PasswordUpdatedDescription')}
                 linkText="SignupPage.moveToLoginLink"

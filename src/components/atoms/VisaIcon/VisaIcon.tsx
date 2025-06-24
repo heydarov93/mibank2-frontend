@@ -1,13 +1,11 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
+import { CSSProperties } from 'react';
 
-import { ReactComponent as Visa } from 'assets/icons/Visa.svg';
+import { ReactComponent } from 'assets/icons/Visa.svg';
 
 interface VisaIconProps {
-  sx?: SxProps<Theme>;
+  style?: CSSProperties;
 }
 
-export const VisaIcon = ({ sx }: VisaIconProps) => (
-  <SvgIcon sx={{ ...sx }}>
-    <Visa width="100%" height="100%" />
-  </SvgIcon>
+export const VisaIcon = ({ style }: VisaIconProps) => (
+  <ReactComponent style={style} data-testid="card-issuer-icon" />
 );
