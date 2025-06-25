@@ -6,7 +6,7 @@ import { Deposit } from 'api/getDepositsApi';
 import {
   AvailableDepositsWindow,
   IssueCardModal,
-  OpenDepositModal,
+  OpenDepositModal
 } from 'components/organisms';
 import useDisclosure from 'hooks/useDisclosure';
 
@@ -35,7 +35,6 @@ export function SidebarWrapper() {
         onIssueCardModalOpen={issueCardModal.open}
         onDepositsModalOpen={depositsModal.open}
       />
-
       <AvailableDepositsWindow
         open={depositsModal.isOpen}
         onClose={depositsModal.close}

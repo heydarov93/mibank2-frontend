@@ -23,7 +23,6 @@ export function Sidebar({
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar',
   });
-
   const cardsViewSearchParam = createSearchParams({ view: 'cards' }).toString();
 
   return (

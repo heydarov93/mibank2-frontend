@@ -34,5 +34,7 @@ export { WelcomeHeader } from './WelcomeHeader/WelcomeHeader';
 export { WelcomeNav } from './WelcomeNav/WelcomeNav';
 export { SidebarWrapper } from './Sidebar/SidebarWrapper';
 export { TransactionsTable } from './TransactionsTable/TransactionsTable';
+export { SelectedCardDetails } from './SelectedCardDetails/SelectedCardDetails';
+export { MainContentSwitcher } from './MainContentSwitcher/MainContentSwitcher';
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';

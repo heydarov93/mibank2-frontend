@@ -990,5 +990,28 @@
       "cancel": "Cancel",
       "apply": "Apply"
     }
+  },
+  "AllCards": {
+    "title": "All cards",
+    "subTitle": "Choose a card to see its details",
+    "emptyState": "Looks like you haven’t added any cards yet.",
+    "addButton": "Add card",
+    "selectedCard": {
+      "title": "Name of the card",
+      "transferButton": "Transfer",
+      "putTopButton": "Put on Top",
+      "blockButton": "Block card",
+      "transactionsTabLabel": "Transactions",
+      "informationTabLabel": "Transactions",
+      "settingsTabLabel": "Transactions",
+      "statusLabel": "Status",
+      "holderLabel": "Card Holder",
+      "numberLabel": "Card Number",
+      "cvvLabel": "Cvv",
+      "ibanLabel": "Iban",
+      "swiftLabel": "Swift/Bic",
+      "dateLabel": "Issue Date",
+      "rateLabel": "Cashback Rate"
+    }
   }
 }
