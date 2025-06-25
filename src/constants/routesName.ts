@@ -3,6 +3,7 @@ export const TO_WELCOME = '/welcome';
 export const TO_PAYMENTS = '/payments';
 export const TO_TRANSFERS = '/transfers';
 export const TO_HISTORY = '/history';
+export const TO_ALL_CARDS = '/all-cards';
 export const TO_DEPOSIT_LEARN_MORE = '/deposits/learn-more/:id';
 
 //Auth and registration
