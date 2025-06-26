@@ -12,8 +12,8 @@ import { StyledAutoLogoutModal } from './AutoLogoutModal.styled';
 
 import { useGetRefreshTokenMutation } from 'api/refreshTokenApi';
 import { ReactComponent as StopWatch } from 'assets/icons/StopWatch.svg';
+import { ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { TokenType } from 'models/IAuth';
 import { routes } from 'router';
 import { setError } from 'store/reducers';
 import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
@@ -133,21 +133,21 @@ export const AutoLogoutModal = () => {
   const logout = () => {
     dispatch(logoutFromApp());
     routes.navigate('/signin');
-    localTokenHandler.clearToken(TokenType.ACCESS);
-    localTokenHandler.clearToken(TokenType.REFRESH);
+    localTokenHandler.clearToken(ETokenType.ACCESS);
+    localTokenHandler.clearToken(ETokenType.REFRESH);
     removeAuthData();
   };
 
   const getBack = async () => {
-    const oldRefreshToken = localTokenHandler.getToken(TokenType.REFRESH);
+    const oldRefreshToken = localTokenHandler.getToken(ETokenType.REFRESH);
     const payloadData = {
       email: email,
       refreshToken: oldRefreshToken,
     };
     try {
       const data = await refreshToken(payloadData).unwrap();
-      localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
-      localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
+      localTokenHandler.storeToken(data.refreshToken, ETokenType.REFRESH);
+      localTokenHandler.storeToken(data.accessToken, ETokenType.ACCESS);
     } catch (err) {
       if (err instanceof Error) {
         dispatch(setError(err.message));

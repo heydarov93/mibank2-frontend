@@ -32,12 +32,6 @@ export interface IEmailFormInput {
   email: string;
 }
 
-export enum TokenType {
-  ACCESS = 'accessToken',
-  REFRESH = 'refreshToken',
-  TEMPORARY = 'temporaryToken',
-}
-
 export interface IForgotPasswordFormInput {
   password: string;
   confirmPassword: string;

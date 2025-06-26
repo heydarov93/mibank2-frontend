@@ -1,9 +1,10 @@
-import { IUserBankCard } from 'components/molecules/UserBankCard/UserBankCard';
+import { IUserBankCard } from 'models/IUserCard';
 
 export function useGetUserCards() {
   // TODO replace with real data
   const data: IUserBankCard[] = [
     {
+      id: 1,
       name: 'Primary Card',
       number: 4532123456789012,
       balance: 3200.5,
@@ -16,10 +17,11 @@ export function useGetUserCards() {
       cvv: 123,
       iban: 'US64SVBKUS6S3300958879',
       swift: 'SVBKUS6S',
-      issueDate: '2022-05-15',
+      issueDate: '2022.05.15',
       cashbackRate: 1.5,
     },
     {
+      id: 2,
       name: 'Travel Card',
       number: 5500123412341234,
       balance: 850.75,
@@ -32,10 +34,11 @@ export function useGetUserCards() {
       cvv: 456,
       iban: 'DE89370400440532013000',
       swift: 'DEUTDEDBBER',
-      issueDate: '2023-01-20',
+      issueDate: '2023.01.20',
       cashbackRate: 2.0,
     },
     {
+      id: 3,
       name: 'Savings Card',
       number: 4532987654321098,
       balance: 15000,
@@ -48,10 +51,11 @@ export function useGetUserCards() {
       cvv: 789,
       iban: 'GB29NWBK60161331926819',
       swift: 'NWBKGB2L',
-      issueDate: '2021-07-12',
+      issueDate: '2021.07.12',
       cashbackRate: 1.0,
     },
     {
+      id: 4,
       name: 'Blocked Card',
       number: 5500987654321123,
       balance: 0,
@@ -64,10 +68,11 @@ export function useGetUserCards() {
       cvv: 321,
       iban: 'FR1420041010050500013M02606',
       swift: 'BNPAFRPP',
-      issueDate: '2020-09-01',
+      issueDate: '2020.09.01',
       cashbackRate: 0,
     },
     {
+      id: 5,
       name: 'Business Card',
       number: 4532567890123456,
       balance: 50000,
@@ -80,7 +85,7 @@ export function useGetUserCards() {
       cvv: 654,
       iban: 'CH9300762011623852957',
       swift: 'UBSWCHZH80A',
-      issueDate: '2024-04-05',
+      issueDate: '2024.04.05',
       cashbackRate: 2.5,
     },
   ];

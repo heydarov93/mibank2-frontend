@@ -2,11 +2,11 @@ import { Box, styled } from '@mui/material';
 
 export const SIDEBAR_WIDTH = 385;
 
-export const AppContainer = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
+export const AppContainer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
+}));
 
 export const OutletContainer = styled('div')(({ theme: { spacing } }) => ({
   display: 'flex',

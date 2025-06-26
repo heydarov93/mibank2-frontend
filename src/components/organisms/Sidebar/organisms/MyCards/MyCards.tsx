@@ -36,9 +36,9 @@ export function MyCards() {
     <>
       <StyledContainer>
         <CardStackCarousel index={selectedCard} onChange={handleCardSelect}>
-          {userBankCards.map((card) => (
-            <StyledCardContainer key={card.number}>
-              <UserBankCard data={card} />
+          {userBankCards.map((card, index) => (
+            <StyledCardContainer key={index}>
+              <UserBankCard card={card} />
             </StyledCardContainer>
           ))}
         </CardStackCarousel>

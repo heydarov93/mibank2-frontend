@@ -19,7 +19,7 @@ import {
   PasswordValidationTags,
 } from 'components/molecules';
 import { TO_SIGN_IN, TO_VERIFY_EMAIL } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -63,7 +63,7 @@ export const SignupFormPassword = () => {
       const postRequest = await registerNewUser(userData).unwrap();
       if (!postRequest) {
         throw {
-          originalStatus: ErrorStatus.BAD_REQUEST,
+          originalStatus: EErrorStatus.BAD_REQUEST,
         };
       }
     } catch (e) {

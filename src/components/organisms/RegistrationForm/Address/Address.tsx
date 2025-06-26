@@ -24,7 +24,7 @@ import {
 } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/allowedKeys';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { IErrorData } from 'models/IError';
 import { FormStepProps, IAddress } from 'models/IRegistration';
 import { setError } from 'store/reducers';
@@ -73,7 +73,7 @@ export const Address = ({ onBack }: FormStepProps) => {
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
-        case ErrorStatus.NOT_FOUND:
+        case EErrorStatus.NOT_FOUND:
           dispatch(setError(t('RegistrationPage.errorAddressFormat')));
           break;
         default:

@@ -39,7 +39,8 @@ exports[`Sidebar matches snapshot 1`] = `
                       class="MuiBox-root css-1mv69se"
                     >
                       <div
-                        class="css-d6l7xt"
+                        class="MuiBox-root css-15k8qd7"
+                        data-testid="user-bank-card"
                       >
                         <div
                           class="css-1qdyvok"
@@ -66,7 +67,7 @@ exports[`Sidebar matches snapshot 1`] = `
                           $ 3 200.5
                         </p>
                         <div
-                          class="css-c7tt2i"
+                          class="MuiBox-root css-1gj1uxd"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -118,7 +119,8 @@ exports[`Sidebar matches snapshot 1`] = `
                       class="MuiBox-root css-1mv69se"
                     >
                       <div
-                        class="css-d6l7xt"
+                        class="MuiBox-root css-15k8qd7"
+                        data-testid="user-bank-card"
                       >
                         <div
                           class="css-1qdyvok"
@@ -145,7 +147,7 @@ exports[`Sidebar matches snapshot 1`] = `
                           € 850.75
                         </p>
                         <div
-                          class="css-c7tt2i"
+                          class="MuiBox-root css-1gj1uxd"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -197,7 +199,8 @@ exports[`Sidebar matches snapshot 1`] = `
                       class="MuiBox-root css-1mv69se"
                     >
                       <div
-                        class="css-d6l7xt"
+                        class="MuiBox-root css-15k8qd7"
+                        data-testid="user-bank-card"
                       >
                         <div
                           class="css-1qdyvok"
@@ -224,7 +227,7 @@ exports[`Sidebar matches snapshot 1`] = `
                           $ 15 000
                         </p>
                         <div
-                          class="css-c7tt2i"
+                          class="MuiBox-root css-1gj1uxd"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -276,7 +279,8 @@ exports[`Sidebar matches snapshot 1`] = `
                       class="MuiBox-root css-1mv69se"
                     >
                       <div
-                        class="css-d6l7xt"
+                        class="MuiBox-root css-15k8qd7"
+                        data-testid="user-bank-card"
                       >
                         <div
                           class="css-1qdyvok"
@@ -303,7 +307,7 @@ exports[`Sidebar matches snapshot 1`] = `
                           £ 0
                         </p>
                         <div
-                          class="css-c7tt2i"
+                          class="MuiBox-root css-1gj1uxd"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -355,7 +359,8 @@ exports[`Sidebar matches snapshot 1`] = `
                       class="MuiBox-root css-1mv69se"
                     >
                       <div
-                        class="css-d6l7xt"
+                        class="MuiBox-root css-15k8qd7"
+                        data-testid="user-bank-card"
                       >
                         <div
                           class="css-1qdyvok"
@@ -382,7 +387,7 @@ exports[`Sidebar matches snapshot 1`] = `
                           $ 50 000
                         </p>
                         <div
-                          class="css-c7tt2i"
+                          class="MuiBox-root css-1gj1uxd"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -565,7 +570,7 @@ exports[`Sidebar matches snapshot 1`] = `
                     </p>
                   </div>
                   <button
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1xp3cee-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1p57u5m-MuiButtonBase-root-MuiIconButton-root"
                     data-testid="visibility-toggle"
                     tabindex="0"
                     type="button"
@@ -601,7 +606,7 @@ exports[`Sidebar matches snapshot 1`] = `
                     </p>
                   </div>
                   <button
-                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1xp3cee-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1p57u5m-MuiButtonBase-root-MuiIconButton-root"
                     data-testid="visibility-toggle"
                     tabindex="0"
                     type="button"
@@ -687,7 +692,7 @@ exports[`Sidebar matches snapshot 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-pyqxvz-MuiTypography-root"
                     >
-                      2022-05-15
+                      2022.05.15
                     </p>
                   </div>
                 </div>

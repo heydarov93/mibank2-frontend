@@ -54,7 +54,7 @@ export function CardDetailRow({
         <IconButton
           data-testid="visibility-toggle"
           disableRipple
-          sx={{ color: 'grey.300', padding: 0 }}
+          sx={{ color: 'grey.400', padding: 0 }}
           onClick={handleVisibilityToggle}
         >
           {isDataVisible ? <VisibilityOutlined /> : <VisibilityOffOutlined />}

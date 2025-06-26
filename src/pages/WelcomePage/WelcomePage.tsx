@@ -6,7 +6,7 @@ import { StyledContainer, StyledHeader } from './WelcomePage.styled';
 
 import { Logo, TabPanel } from 'components/atoms';
 import { Footer, WelcomeHeader, WelcomeNav } from 'components/organisms';
-import { EWelcomeTab } from 'enums/EWelcomeTab';
+import { EWelcomeTab } from 'enums';
 import { UnderDevPage } from 'pages/UnderDevPage/UnderDevPage';
 
 const TAB_INDEX: Record<EWelcomeTab, number> = {

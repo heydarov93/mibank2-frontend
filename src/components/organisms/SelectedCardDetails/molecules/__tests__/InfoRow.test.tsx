@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { ReactNode } from 'react';
 
 import InfoRow from '../InfoRow';
 
@@ -7,14 +8,16 @@ import { theme } from 'theme/theme';
 
 jest.mock('@mui/icons-material', () => ({
   ContentCopy: () => <span data-testid="copy-icon">ContentCopy</span>,
-  Visibility: () => <span data-testid="visibility-icon">Visibility</span>,
-  VisibilityOff: () => (
+  VisibilityOutlined: () => (
+    <span data-testid="visibility-icon">Visibility</span>
+  ),
+  VisibilityOffOutlined: () => (
     <span data-testid="visibility-off-icon">VisibilityOff</span>
   ),
 }));
 
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
+const renderWithTheme = (children: ReactNode) => {
+  return render(<ThemeProvider theme={theme}>{children}</ThemeProvider>);
 };
 
 const defaultProps = {

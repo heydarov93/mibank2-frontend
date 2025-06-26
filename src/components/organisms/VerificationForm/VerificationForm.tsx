@@ -13,14 +13,13 @@ import { VerificationTitle } from './VerificationTitle';
 import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
 import { useLazyGetUserInfoQuery } from 'api/userInfoApi';
 import { Timer } from 'components/molecules';
-import { ErrorStatus, EUserStatus } from 'enums';
+import { EErrorStatus, EUserStatus, ETokenType } from 'enums';
 import {
   useAppDispatch,
   useAppSelector,
   useConnectionStatus,
   useErrorHandlers,
 } from 'hooks';
-import { TokenType } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
 import { getVerifyingTimer } from 'store/selectors';
@@ -47,7 +46,7 @@ export const VerificationForm = ({
   const [verifyCode] = useVerifyCodeMutation();
   const [triggerGetUserInfo] = useLazyGetUserInfoQuery();
 
-  const token = localTokenHandler.getToken(TokenType.TEMPORARY);
+  const token = localTokenHandler.getToken(ETokenType.TEMPORARY);
   const expiredTimer = useAppSelector(getVerifyingTimer);
 
   const [email, setEmail] = useState('');
@@ -91,14 +90,14 @@ export const VerificationForm = ({
       const userInfoResult =
         await triggerGetUserInfo(paramsForUserInfo).unwrap();
 
-      localTokenHandler.storeToken(data.accessToken, TokenType.ACCESS);
-      localTokenHandler.storeToken(data.refreshToken, TokenType.REFRESH);
-      if (localTokenHandler.getToken(TokenType.ACCESS)) {
+      localTokenHandler.storeToken(data.accessToken, ETokenType.ACCESS);
+      localTokenHandler.storeToken(data.refreshToken, ETokenType.REFRESH);
+      if (localTokenHandler.getToken(ETokenType.ACCESS)) {
         setIsCodeCorrect(true);
         setIsCodeWrong(false);
 
         setAuthData(true, currentEmail);
-        localTokenHandler.clearToken(TokenType.TEMPORARY);
+        localTokenHandler.clearToken(ETokenType.TEMPORARY);
         if (userInfoResult.status === EUserStatus.ACTIVE) {
           setTimeout(() => {
             navigate('/registration');
@@ -122,10 +121,10 @@ export const VerificationForm = ({
         dispatch(setError(t('serverError')));
       } else {
         switch (error.status) {
-          case ErrorStatus.NOT_FOUND:
+          case EErrorStatus.NOT_FOUND:
             dispatch(setError(error.data.exceptionMessage));
             break;
-          case ErrorStatus.LOCKED:
+          case EErrorStatus.LOCKED:
             handleLockedError(
               error,
               setIsFormDisabled,
@@ -157,13 +156,13 @@ export const VerificationForm = ({
       const error = e as IErrorData;
       setIsFormDisabled(true);
       switch (error.status) {
-        case ErrorStatus.TOO_MANY_REQUESTS:
+        case EErrorStatus.TOO_MANY_REQUESTS:
           startTimer(error.data.expiredTimer);
           break;
-        case ErrorStatus.BAD_REQUEST:
+        case EErrorStatus.BAD_REQUEST:
           dispatch(setError(error.data.exceptionMessage));
           break;
-        case ErrorStatus.UNAUTHORIZED:
+        case EErrorStatus.UNAUTHORIZED:
         default:
           dispatch(setError(t('serverError')));
           break;

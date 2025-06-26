@@ -14,7 +14,7 @@ import {
 import { useCheckEmailMutation } from 'api/checkEmailApi';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_PASSWORD, TO_SIGN_IN } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -53,7 +53,7 @@ export const SignupFormEmail = () => {
 
       if (response !== null) {
         throw {
-          originalStatus: ErrorStatus.BAD_REQUEST,
+          originalStatus: EErrorStatus.BAD_REQUEST,
         };
       }
       dispatch(setEmail(data));
@@ -62,7 +62,7 @@ export const SignupFormEmail = () => {
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
-        case ErrorStatus.BAD_REQUEST:
+        case EErrorStatus.BAD_REQUEST:
           setFormError(
             'email',
             {

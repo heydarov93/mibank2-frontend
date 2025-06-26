@@ -16,6 +16,7 @@ import store, { persistor } from './store';
 import { theme } from './theme/theme';
 
 import './assets/css/global.css';
+
 import { AutoLogoutMessageModal } from 'components/organisms/AutoLogoutModal/AutoLogoutMessageModal';
 import { AutoLogoutModal } from 'components/organisms/AutoLogoutModal/AutoLogoutModal';
 

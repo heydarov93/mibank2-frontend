@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { PaymentReceiptModal } from './PaymentReceiptModal';
 
-import { TCurrency } from 'models/types';
+import { TCurrency } from 'types/card';
 
 const onCloseMock = jest.fn();
 

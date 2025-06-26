@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthWrapper, Footer, LoginForm } from 'components/organisms';
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
 export const SignInPage = () => {
   const navigate = useNavigate();
 
-  const hasAccessToken = localTokenHandler.getToken(TokenType.ACCESS);
+  const hasAccessToken = localTokenHandler.getToken(ETokenType.ACCESS);
 
   useEffect(() => {
     if (hasAccessToken) {

@@ -14,7 +14,7 @@ import {
 import { useGetCodeForForgotPasswordMutation } from 'api/getCodeForForgotPasswordApi';
 import { InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -51,7 +51,7 @@ export const ForgotPassword = () => {
 
       if (response !== null) {
         throw {
-          originalStatus: ErrorStatus.BAD_REQUEST,
+          originalStatus: EErrorStatus.BAD_REQUEST,
         };
       }
       dispatch(setEmail(data));
@@ -61,7 +61,7 @@ export const ForgotPassword = () => {
       dispatch(
         setError(
           t(
-            error.originalStatus === ErrorStatus.BAD_REQUEST
+            error.originalStatus === EErrorStatus.BAD_REQUEST
               ? 'SignupPage.email.errorEmailRegistered'
               : 'LoginPage.serverError',
           ),

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledStack, StyledCarouselContainer } from './OffersCarousel.styled';
 
 import { Offer, useGetOfferImagesQuery } from 'api/getOffersApi';
-import MiCarousel from 'components/molecules/Carousel/MiCarousel';
+import { CustomCarousel } from 'components/molecules';
 import { OfferSlide } from 'components/molecules/OfferSlide/OfferSlide';
 
 export const OffersCarousel = () => {
@@ -50,11 +50,11 @@ export const OffersCarousel = () => {
 
   return (
     <StyledCarouselContainer data-testid="offers-slider">
-      <MiCarousel>
+      <CustomCarousel>
         {mockOffers.map((offer, index) => (
           <OfferSlide key={index} {...offer} />
         ))}
-      </MiCarousel>
+      </CustomCarousel>
     </StyledCarouselContainer>
   );
 };

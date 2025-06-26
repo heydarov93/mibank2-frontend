@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/tokenHandler';
 
 export const deleteDepositApi = createApi({
@@ -19,7 +19,7 @@ export const deleteDepositApi = createApi({
         params: { id },
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${sessionTokenHandler.getToken(TokenType.ACCESS)}`,
+          Authorization: `Bearer ${sessionTokenHandler.getToken(ETokenType.ACCESS)}`,
         },
       }),
       invalidatesTags: ['Deposits'],

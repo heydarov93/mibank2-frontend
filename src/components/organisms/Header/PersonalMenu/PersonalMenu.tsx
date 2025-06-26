@@ -12,8 +12,8 @@ import {
 
 import { useGetUserInfoQuery } from 'api/userInfoApi';
 import { UserCard } from 'components/molecules';
+import { ETokenType } from 'enums';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { TokenType } from 'models/IAuth';
 import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
 import { getEmail, localTokenHandler, removeAuthData } from 'utils';
@@ -31,7 +31,7 @@ export const PersonalMenu = () => {
   const logoutHandler = () => {
     dispatch(logoutFromApp());
     navigate('/signin');
-    localTokenHandler.clearToken(TokenType.ACCESS);
+    localTokenHandler.clearToken(ETokenType.ACCESS);
     removeAuthData();
   };
 
@@ -42,7 +42,7 @@ export const PersonalMenu = () => {
   const email = getEmail();
   const paramsForUserInfo = {
     email: email,
-    token: localTokenHandler.getToken(TokenType.ACCESS),
+    token: localTokenHandler.getToken(ETokenType.ACCESS),
   };
 
   const { data, isLoading } = useGetUserInfoQuery(

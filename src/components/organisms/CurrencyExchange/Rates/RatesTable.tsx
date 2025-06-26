@@ -27,7 +27,7 @@ import {
 } from 'api/getExchangeRatesApi';
 import { CurrencyFlagIcon } from 'components/atoms';
 import currencies from 'constants/currencies';
-import { TCurrency } from 'models/types';
+import { TCurrency } from 'types/card';
 
 type TableError = string | null;
 

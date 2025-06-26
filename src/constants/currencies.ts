@@ -1,4 +1,4 @@
-import { TCurrency } from 'models/types';
+import { TCurrency } from 'types/card';
 
 const currencies = ['PLN', 'USD', 'EUR', 'CHF', 'GBP', 'JPY'] as const;
 

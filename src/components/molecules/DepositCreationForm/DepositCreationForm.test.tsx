@@ -12,9 +12,9 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { DepositCreationForm } from './DepositCreationForm';
 
-import { TCurrency } from 'models/types';
 import store from 'store';
 import { theme } from 'theme/theme';
+import { TCurrency } from 'types/card';
 
 const mockCreateDeposit = jest.fn().mockResolvedValue({});
 const mockOnBack = jest.fn();

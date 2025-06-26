@@ -1,8 +1,8 @@
 import { useGetIBANAccounts } from './useGetIBANAccounts';
 import { useGetCardAccounts } from './userGetCardAccounts';
 
-import { TCardIssuer } from 'models/types';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { TCardIssuer } from 'types/card';
 
 export interface IUserIBANAccount {
   type: 'iban';

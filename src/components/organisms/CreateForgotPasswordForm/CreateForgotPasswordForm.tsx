@@ -23,7 +23,7 @@ import {
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_SIGN_IN,
 } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
@@ -98,7 +98,7 @@ export const CreateForgotPasswordForm = () => {
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
-        case ErrorStatus.BAD_REQUEST:
+        case EErrorStatus.BAD_REQUEST:
           setFormError(
             'verificationCode',
             { type: 'focus', message: t('invalidVerificationCode') },

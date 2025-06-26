@@ -1,6 +1,6 @@
 import { localTokenHandler } from './tokenHandler';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 
 describe('tokenHandler', () => {
   beforeEach(() => {
@@ -9,34 +9,30 @@ describe('tokenHandler', () => {
 
   it('should be able to store the token in localStorage', () => {
     const token = 'test-token';
-    const tokenType = TokenType.ACCESS;
 
-    localTokenHandler.storeToken(token, tokenType);
+    localTokenHandler.storeToken(token, ETokenType.ACCESS);
 
-    expect(localStorage.getItem(tokenType)).toBe(token);
+    expect(localStorage.getItem(ETokenType.ACCESS)).toBe(token);
   });
 
   it('should be able to retrieve the token from localStorage', () => {
     const token = 'test-token';
-    const tokenType = TokenType.ACCESS;
-    localStorage.setItem(tokenType, token);
+    localStorage.setItem(ETokenType.ACCESS, token);
 
-    expect(localTokenHandler.getToken(tokenType)).toBe(token);
+    expect(localTokenHandler.getToken(ETokenType.ACCESS)).toBe(token);
   });
 
   it('should return null if token does not exist', () => {
-    const tokenType = TokenType.ACCESS;
 
-    expect(localTokenHandler.getToken(tokenType)).toBeNull();
+    expect(localTokenHandler.getToken(ETokenType.ACCESS)).toBeNull();
   });
 
   it('should be able to remove the token from localStorage', () => {
     const token = 'test-token';
-    const tokenType = TokenType.ACCESS;
-    localStorage.setItem(tokenType, token);
+    localStorage.setItem(ETokenType.ACCESS, token);
 
-    localTokenHandler.clearToken(tokenType);
+    localTokenHandler.clearToken(ETokenType.ACCESS);
 
-    expect(localStorage.getItem(tokenType)).toBeNull();
+    expect(localStorage.getItem(ETokenType.ACCESS)).toBeNull();
   });
 });

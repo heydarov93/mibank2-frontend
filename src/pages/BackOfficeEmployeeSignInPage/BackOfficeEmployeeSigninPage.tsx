@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthWrapper } from 'components/organisms';
 import { BackOfficeEmployeeLoginForm } from 'components/organisms/BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
 export const BackOfficeEmployeeLoginPage = () => {
   const navigate = useNavigate();
-  const hasAccessToken = localTokenHandler.getToken(TokenType.ACCESS);
+  const hasAccessToken = localTokenHandler.getToken(ETokenType.ACCESS);
 
   useEffect(() => {
     if (hasAccessToken) {

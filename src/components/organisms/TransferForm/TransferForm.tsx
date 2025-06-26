@@ -43,8 +43,8 @@ import { InputFieldControlled, NumericInput } from 'components/molecules';
 import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
 import { IErrorData } from 'models/IError';
-import { TCurrency } from 'models/types';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { TCurrency } from 'types/card';
 import { schema } from 'validation/transferFormSchema';
 
 export interface ITransferForm {
