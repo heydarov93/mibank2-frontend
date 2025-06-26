@@ -12,10 +12,10 @@ import {
   StyledTitleContainer,
 } from './AllCardsSlider.styled';
 import { NoCard } from './molecules/NoCard';
-import { UserCardsCarousel } from './molecules/UserCardsCarousel';
+import { UserBankCardsCarousel } from './molecules/UserBankCardsCarousel';
 
 import { UserBankCard } from 'components/molecules/UserBankCard/UserBankCard';
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 interface AllCardsSliderProps {
   onCardSelect: (card: IUserBankCard) => void;
@@ -48,19 +48,19 @@ export const AllCardsSlider = ({
           <StyledSubTitle data-testid="subtitle">
             {t('subTitle')}
           </StyledSubTitle>
-          <UserCardsCarousel data-testid="user-cards-carousel">
-            {userBankCards.map((card: IUserBankCard, index: number) => (
+          <UserBankCardsCarousel data-testid="user-cards-carousel">
+            {userBankCards.map((card) => (
               <UserBankCard
                 card={card}
-                key={index}
+                key={card.id}
                 onCardClick={() => handleCardClick(card)}
-                isSelected={selectedCardId === card.id}
-                isSlide={true}
                 data-selected={selectedCardId === card.id}
                 data-card-id={card.id}
+                isSlide={true}
+                isSelected={selectedCardId === card.id}
               />
             ))}
-          </UserCardsCarousel>
+          </UserBankCardsCarousel>
         </StyledCardsContainer>
       )}
     </StyledContainer>

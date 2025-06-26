@@ -9,14 +9,14 @@ import {
 import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
 import { currencySymbol } from 'constants/currencies';
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 import { separateThousands } from 'utils';
 
 interface UserBankCardProps {
   card: IUserBankCard;
-  isSelected?: boolean;
-  isSlide?: boolean;
   onCardClick?: () => void;
+  isSlide?: boolean;
+  isSelected?: boolean;
 }
 
 export function UserBankCard({

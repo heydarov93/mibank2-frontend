@@ -6,7 +6,7 @@ import { StyledLabel } from '../DepositCreationForm.styled';
 import { CurrencyBox } from '../atoms/CurrencyBox';
 
 import { DepositFormValues } from 'models/IDepositInfo';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 interface AmountFieldProps {
   control: Control<DepositFormValues>;

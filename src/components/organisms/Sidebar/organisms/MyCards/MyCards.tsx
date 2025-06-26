@@ -16,7 +16,7 @@ export function MyCards() {
 
   const { data: userBankCards, isLoading } = useGetUserCards();
 
-  function handleCardSelect(current: number | undefined) {
+  function handleCardChange(current: number | undefined) {
     setSelectedCard(current ?? 0);
   }
 
@@ -35,9 +35,9 @@ export function MyCards() {
   return (
     <>
       <StyledContainer>
-        <CardStackCarousel index={selectedCard} onChange={handleCardSelect}>
+        <CardStackCarousel index={selectedCard} onChange={handleCardChange}>
           {userBankCards.map((card, index) => (
-            <StyledCardContainer key={index}>
+            <StyledCardContainer key={card?.number || `card-${index}`}>
               <UserBankCard card={card} />
             </StyledCardContainer>
           ))}

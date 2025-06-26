@@ -1,4 +1,4 @@
-import { TCurrency } from "types/card";
+import { TCurrency } from 'types/types';
 
 export interface ProductFormData {
   productType: string;

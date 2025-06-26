@@ -17,7 +17,7 @@ import InterestInfo from './molecules/InterestInfo';
 import { buildDepositPayload } from './utils/buildDepositPayload';
 
 import useDisclosure from 'hooks/useDisclosure';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
 
 interface DepositCreationFormProps {

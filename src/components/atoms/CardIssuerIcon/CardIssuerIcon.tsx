@@ -4,7 +4,7 @@ import { MastercardIcon } from '../MastercardIcon/MastercardIcon';
 import { UnionPayIcon } from '../UnionPayIcon/UnionPayIcon';
 import { VisaIcon } from '../VisaIcon/VisaIcon';
 
-import { TCardIssuer } from 'types/card';
+import { TCardIssuer } from 'types/types';
 
 interface Props {
   issuer: TCardIssuer;

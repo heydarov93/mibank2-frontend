@@ -14,7 +14,7 @@ import { DepositCreationForm } from './DepositCreationForm';
 
 import store from 'store';
 import { theme } from 'theme/theme';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 const mockCreateDeposit = jest.fn().mockResolvedValue({});
 const mockOnBack = jest.fn();

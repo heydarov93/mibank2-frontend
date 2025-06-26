@@ -7,6 +7,8 @@ import {
   Typography,
 } from '@mui/material';
 
+
+
 export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
     width: '100%',

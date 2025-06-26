@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 
 import { OpenDepositModal } from './OpenDepositModal';
 
-import { TCurrency } from 'types/card';
 import store from 'store';
 import { theme } from 'theme/theme';
+import { TCurrency } from 'types/types';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

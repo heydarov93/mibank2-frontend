@@ -9,7 +9,7 @@ import {
   StyledTypography,
 } from './Transaction.styled';
 
-import { TCurrency, TTransactionType } from 'types/card';
+import { TCurrency, TTransactionType } from 'types/types';
 import { getLocaleTimeString } from 'utils/dateUtils';
 
 export interface ITransaction {

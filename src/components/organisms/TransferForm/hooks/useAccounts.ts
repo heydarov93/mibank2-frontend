@@ -2,7 +2,7 @@ import { useGetIBANAccounts } from './useGetIBANAccounts';
 import { useGetCardAccounts } from './userGetCardAccounts';
 
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { TCardIssuer } from 'types/card';
+import { TCardIssuer } from 'types/types';
 
 export interface IUserIBANAccount {
   type: 'iban';

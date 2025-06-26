@@ -5,4 +5,3 @@ export { EUserStatus } from './EUserStatus';
 export { EFieldType } from './EFieldType';
 export { EWelcomeTab } from './EWelcomeTab';
 export { ETokenType } from './ETokenType';
-export { ECardIssuer } from './ECardIssuer';

@@ -3,7 +3,7 @@ import { Box, MenuItem, Select, SelectProps, Theme } from '@mui/material';
 
 import { CurrencyFlagIcon } from 'components/atoms';
 import currencies from 'constants/currencies';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 type CustomSelectProps = SelectProps & {
   disabledOptions?: string[];

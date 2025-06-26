@@ -3,8 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
-import { TCurrency } from 'types/card';
-
+import { TCurrency } from 'types/types';
 
 export interface Deposit {
   augmentable: boolean;
