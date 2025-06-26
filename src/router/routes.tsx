@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import {
   BACK_OFFICE_EMPLOYEE_SIGN_IN,
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
+  TO_ALL_CARDS,
   TO_BACK_OFFICE,
   TO_BACK_OFFICE_CREATE_EMPLOYEE,
   TO_BACK_OFFICE_CREATE_PRODUCT,
@@ -30,6 +31,7 @@ import {
   TO_WELCOME,
 } from '../constants/routesName';
 import {
+  AllCardsPage,
   BackOfficeEmployeeLoginPage,
   BackOfficeVerificationPage,
   BusinessCreatePasswordPage,
@@ -96,6 +98,10 @@ const routes = createBrowserRouter([
       {
         path: TO_DEPOSIT_LEARN_MORE,
         element: <DepositLearnMorePage />,
+      },
+      {
+        path: TO_ALL_CARDS,
+        element: <AllCardsPage />,
       },
     ],
   },
@@ -198,3 +204,4 @@ const routes = createBrowserRouter([
 ]);
 
 export { routes };
+

@@ -11,7 +11,7 @@ import {
   StyledCancelContainer,
 } from 'components/organisms/OneTimePasscodeForm/OneTimePasscodeForm.styled';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
 import { setEmployeeAuthData } from 'utils/storageAuthHandler';
 import { sessionTokenHandler } from 'utils/tokenHandler';
@@ -73,7 +73,7 @@ const BackOfficeVerifyEmployeeCode = () => {
       if (response) {
         const res = getEmailRoleFromToken(response.accessToken);
         setEmployeeAuthData(true, res?.email, res?.role);
-        sessionTokenHandler.storeToken(response.accessToken, TokenType.ACCESS);
+        sessionTokenHandler.storeToken(response.accessToken, ETokenType.ACCESS);
         navigate(TO_BACK_OFFICE_VIEW_EMPLOYEES);
       }
     } catch (e) {

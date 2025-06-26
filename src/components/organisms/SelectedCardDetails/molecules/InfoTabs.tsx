@@ -14,9 +14,7 @@ const InfoTabs = ({ activeTab, onTabChange }: InfoTabsProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'AllCards.selectedCard',
   });
-
-  const displayOption =
-    activeTab === ECardInfoTab.Information ? 'block' : 'none';
+  const displayOption = activeTab === ECardInfoTab.Information ? 'block' : 'none';
 
   return (
     <StyledTabs

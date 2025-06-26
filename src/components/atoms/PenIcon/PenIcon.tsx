@@ -1,5 +1,4 @@
 import { SvgIcon, SxProps, Theme } from '@mui/material';
-import React from 'react';
 
 import { ReactComponent as Pen } from 'assets/icons/EditIcon.svg';
 

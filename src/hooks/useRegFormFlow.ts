@@ -11,7 +11,7 @@ import useDisclosure from './useDisclosure';
 
 import { usePostRegistrationInfoMutation } from 'api/postRegistrationInfoApi';
 import { TO_HOME, TO_SIGN_IN } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
 import {
@@ -152,10 +152,10 @@ export const useRegFormFlow = () => {
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
-        case ErrorStatus.SERVER_ERROR:
+        case EErrorStatus.SERVER_ERROR:
           dispatch(setError(t('RegistrationPage.errorServerUnacceptable')));
           break;
-        case ErrorStatus.BAD_REQUEST:
+        case EErrorStatus.BAD_REQUEST:
           dispatch(setError(t('RegistrationPage.errorBadRequest')));
           break;
         default:

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
 export interface Offer {
@@ -52,7 +52,7 @@ export const getOffersApi = createApi({
         url: endpoints.offers.getOfferImages,
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${localTokenHandler.getToken(TokenType.ACCESS)}`,
+          Authorization: `Bearer ${localTokenHandler.getToken(ETokenType.ACCESS)}`,
         },
       }),
       providesTags: ['OfferImages'],

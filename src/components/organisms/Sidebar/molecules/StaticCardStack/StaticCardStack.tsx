@@ -2,13 +2,13 @@ import { Box } from '@mui/material';
 
 import { StyledStaticCard } from './StaticCardStack.styled';
 
-import { USER_CARD_WIDTH } from 'components/molecules/UserBankCard/UserBankCard.styled';
+import { SIDEBAR_USER_CARD_WIDTH } from 'components/molecules/UserBankCard/UserBankCard.styled';
 
 export function StaticCardStack() {
   return (
     <Box
       position="absolute"
-      width={USER_CARD_WIDTH}
+      width={SIDEBAR_USER_CARD_WIDTH}
       height="100%"
       top={0}
       left="50%"

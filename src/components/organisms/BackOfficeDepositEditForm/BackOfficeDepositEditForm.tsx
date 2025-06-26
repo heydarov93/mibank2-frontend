@@ -16,7 +16,7 @@ import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import currencies from 'constants/currencies';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus } from 'enums';
 import { IBackOfficeErrorData } from 'models/IError';
 import depositEditValidationSchema from 'validation/depositEditFormValidation';
 
@@ -86,13 +86,13 @@ const BackOfficeDepositEditForm = ({
       const error = e as IBackOfficeErrorData;
       if (error.originalStatus && typeof error.originalStatus === 'number') {
         switch (error.originalStatus) {
-          case ErrorStatus.UNAUTHORIZED:
+          case EErrorStatus.UNAUTHORIZED:
             onError(t('GeneralErrors.errorUnauthorized'));
             break;
-          case ErrorStatus.SERVER_ERROR:
+          case EErrorStatus.SERVER_ERROR:
             onError(t('GeneralErrors.serverError'));
             break;
-          case ErrorStatus.NOT_FOUND:
+          case EErrorStatus.NOT_FOUND:
             onError(t('GeneralErrors.notFound'));
             break;
           default:

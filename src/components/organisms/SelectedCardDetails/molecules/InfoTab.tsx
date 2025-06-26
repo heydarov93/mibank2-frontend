@@ -1,25 +1,29 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CardData } from '../SelectedCardDetails';
 import { StyledInfoSection } from '../SelectedCardDetails.styled';
 
 import InfoRow from './InfoRow';
 
+import { IUserBankCard } from 'models/IUserCard';
+
 interface CardDataProps {
-  cardData: CardData;
+  selectedCard: IUserBankCard;
 }
 
-const InfoTab = ({ cardData }: CardDataProps) => {
+const InfoTab = ({ selectedCard }: CardDataProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'AllCards.selectedCard',
   });
   const [showCardNumber, setShowCardNumber] = useState<boolean>(false);
   const [showCvv, setShowCvv] = useState<boolean>(false);
 
-  const getDisplayCardNumber = () => showCardNumber ? '1234 5678 9012 5846' : cardData.cardNumber;
+  const getDisplayCardNumber = () =>
+    showCardNumber
+      ? selectedCard.number
+      : `**** ${selectedCard.number.toString().slice(-4)}`;
 
-  const getDisplayCvv = () => (showCvv ? '123' : cardData.cvv);
+  const getDisplayCvv = () => (showCvv ? selectedCard.cvv : '***');
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -29,14 +33,14 @@ const InfoTab = ({ cardData }: CardDataProps) => {
     <StyledInfoSection data-testid="card-info-section">
       <InfoRow
         label={t('statusLabel')}
-        value={cardData.status}
-        status={cardData.status}
-        data-status={cardData.status}
+        value={selectedCard?.status.toUpperCase()}
+        status={selectedCard?.status}
+        data-status={selectedCard?.status}
         data-testid="info-row-card-status"
       />
       <InfoRow
         label={t('holderLabel')}
-        value={cardData.cardHolder}
+        value={selectedCard?.holder}
         data-testid="info-row-card-holder"
       />
       <InfoRow
@@ -57,23 +61,23 @@ const InfoTab = ({ cardData }: CardDataProps) => {
       />
       <InfoRow
         label={t('ibanLabel')}
-        value={cardData.iban}
-        onCopy={() => copyToClipboard(cardData.iban)}
+        value={selectedCard.iban}
+        onCopy={() => copyToClipboard(selectedCard.iban)}
         data-testid="info-row-iban"
       />
       <InfoRow
         label={t('swiftLabel')}
-        value={cardData.swiftBic}
+        value={selectedCard.swift}
         data-testid="info-row-swift-bic"
       />
       <InfoRow
         label={t('dateLabel')}
-        value={cardData.issueDate}
+        value={selectedCard.issueDate}
         data-testid="info-row-issue-date"
       />
       <InfoRow
         label={t('rateLabel')}
-        value={cardData.cashbackRate}
+        value={`${selectedCard.cashbackRate}%`}
         data-testid="info-row-cashback-rate"
       />
     </StyledInfoSection>

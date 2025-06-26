@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { TO_WELCOME } from 'constants/routesName';
-import { EWelcomeTab } from 'enums/EWelcomeTab';
+import { EWelcomeTab } from 'enums';
 import { ILegalAddress } from 'models/IRegistration';
 import { addressRegisterFormSchema } from 'validation/addressRegisterFormSchema';
 

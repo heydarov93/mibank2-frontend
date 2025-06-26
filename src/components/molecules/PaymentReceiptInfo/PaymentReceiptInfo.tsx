@@ -5,7 +5,7 @@ import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentRec
 import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
 import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
-import { TCurrency } from 'models/types';
+import { TCurrency } from 'types/card';
 import { formatCurrency } from 'utils/currencyUtils';
 
 export interface IPaymentReceipt {

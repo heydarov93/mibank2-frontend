@@ -30,7 +30,7 @@ export const UserCard = ({
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
   const initials = `${user?.firstName?.charAt(0) ?? ''}${user?.lastName?.charAt(0) ?? ''}`;
-  //Will use after refactor end point
+  // TODO: Will use after refactor end point
   // const fullName = `${user?.firstName} ${user?.lastName}`;
 
   const GreetingMap = {

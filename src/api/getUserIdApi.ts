@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/tokenHandler';
 
 export const getUserIdApi = createApi({
@@ -15,7 +15,7 @@ export const getUserIdApi = createApi({
   endpoints: (builder) => ({
     getUserId: builder.query<{ userId: number }, void>({
       query: () => ({
-        url: `${endpoints.userAccountManagement.users.userId}?token=${localTokenHandler.getToken(TokenType.ACCESS)}`,
+        url: `${endpoints.userAccountManagement.users.userId}?token=${localTokenHandler.getToken(ETokenType.ACCESS)}`,
       }),
       providesTags: ['UserId'],
     }),

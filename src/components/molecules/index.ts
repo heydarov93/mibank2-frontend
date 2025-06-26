@@ -42,3 +42,4 @@ export { InputFieldControlled } from './InputFieldControlled/InputFieldControlle
 export { CustomTableRow } from './CustomTableRow/CustomTableRow';
 export { DateCalendar } from './DateCalendar/DateCalendar';
 export { PasswordValidationTags } from './PasswordValidationTags/PasswordValidationTags';
+export { CustomCarousel } from './CustomCarousel/CustomCarousel';

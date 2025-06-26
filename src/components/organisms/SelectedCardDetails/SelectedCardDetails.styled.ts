@@ -92,6 +92,7 @@ export const StyledTab = styled(Tab)(({ theme: { spacing, palette } }) => ({
   padding: spacing(1, 3),
   width: '100%',
   minWidth: '300px',
+  maxWidth: '300px',
 
   '&.Mui-selected': {
     color: palette.primary.main,
@@ -144,7 +145,12 @@ export const StyledInfoText = styled(Typography)<{ status?: string }>(
     fontSize: '16px',
     fontWeight: 400,
     lineHeight: '100%',
-    color: status === 'Active' ? palette.success.main : palette.common.black,
+    color:
+      status === 'active'
+        ? palette.success.main
+        : status === 'blocked' || status === 'expired'
+          ? palette.error.main
+          : palette.common.black,
   }),
 );
 
@@ -171,7 +177,7 @@ export const StyledActionIcon = styled(IconButton)(
     },
 
     '.MuiSvgIcon-root': {
-      fontSize: '18px',
+      fontSize: '22px',
     },
   }),
 );

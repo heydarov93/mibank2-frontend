@@ -2,7 +2,7 @@ import { SxProps, useTheme } from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
 import Carousel from 'react-material-ui-carousel';
 
-interface MiCarouselProps {
+interface CustomCarouselProps {
   children: ReactNode[];
   indicatorIconButtonStyles?: CSSProperties;
   activeIndicatorIconButtonStyles?: CSSProperties;
@@ -10,13 +10,13 @@ interface MiCarouselProps {
   sx?: SxProps;
 }
 
-const MiCarousel: React.FC<MiCarouselProps> = ({
+export const CustomCarousel: React.FC<CustomCarouselProps> = ({
   children,
   indicatorIconButtonStyles,
   activeIndicatorIconButtonStyles,
   navButtonStyles,
   sx,
-}: MiCarouselProps) => {
+}: CustomCarouselProps) => {
   const theme = useTheme();
 
   return (
@@ -68,4 +68,3 @@ const MiCarousel: React.FC<MiCarouselProps> = ({
   );
 };
 
-export default MiCarousel;

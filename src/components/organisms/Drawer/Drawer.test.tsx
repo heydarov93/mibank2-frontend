@@ -9,8 +9,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { TemporaryDrawer } from './Drawer';
 
 import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
+import { ETokenType } from 'enums';
 import { useAppDispatch } from 'hooks';
-import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
 import { localTokenHandler, removeAuthData } from 'utils';
@@ -109,7 +109,9 @@ describe('TemporaryDrawer', () => {
     fireEvent.click(logoutButton);
 
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
-    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(TokenType.ACCESS);
+    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(
+      ETokenType.ACCESS,
+    );
     expect(removeAuthData).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
   });

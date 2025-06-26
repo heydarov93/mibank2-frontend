@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { endpoints } from './endpoints';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { baseQueryCreator } from 'store/baseQueryCreator';
 import { getEmail, localTokenHandler } from 'utils';
@@ -15,7 +15,7 @@ export const postRegistrationInfoApi = createApi({
       query: (data: IRegistrationForApi) => ({
         url: `${endpoints.userAccountManagement.users.postRegistrationInfo}?email=${getEmail()}`,
         headers: {
-          Authorization: `Bearer ${localTokenHandler.getToken(TokenType.ACCESS)}`,
+          Authorization: `Bearer ${localTokenHandler.getToken(ETokenType.ACCESS)}`,
         },
         method: 'POST',
         body: data,

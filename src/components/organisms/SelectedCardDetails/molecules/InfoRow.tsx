@@ -1,4 +1,8 @@
-import { ContentCopy, Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  ContentCopy,
+  VisibilityOutlined,
+  VisibilityOffOutlined,
+} from '@mui/icons-material';
 
 import {
   StyledActionIcon,
@@ -11,7 +15,7 @@ import {
 
 interface InfoRowProps {
   label: string;
-  value: string;
+  value: string | number;
   masked?: boolean;
   onToggle?: () => void;
   showIcon?: boolean;
@@ -44,12 +48,16 @@ const InfoRow = ({
       )}
       {onToggle && (
         <StyledActionIcon onClick={onToggle} data-testid="toggle-action">
-          {showIcon ? <Visibility data-testid="visibility-icon"/> : <VisibilityOff data-testid="visibility-off-icon"/>}
+          {showIcon ? (
+            <VisibilityOutlined data-testid="visibility-icon" />
+          ) : (
+            <VisibilityOffOutlined data-testid="visibility-off-icon" />
+          )}
         </StyledActionIcon>
       )}
       {onCopy && (
         <StyledActionIcon onClick={onCopy} data-testid="copy-action">
-          <ContentCopy data-testid="copy-icon"/>
+          <ContentCopy data-testid="copy-icon" />
         </StyledActionIcon>
       )}
     </StyledInfoValue>

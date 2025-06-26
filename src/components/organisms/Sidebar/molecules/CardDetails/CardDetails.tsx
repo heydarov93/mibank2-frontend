@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { CardInfoButton } from '../../atoms/CardInfoButton/CardInfoButton';
 import { CardDetailRow } from '../CardDetailRow/CardDetailRow';
 
-import { IUserBankCard } from 'components/molecules/UserBankCard/UserBankCard';
+import { IUserBankCard } from 'models/IUserCard';
+
 
 type CardDetailsProps = Pick<
   IUserBankCard,

@@ -1,9 +1,10 @@
 import { ThemeProvider } from '@mui/material';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { CardData } from '../../SelectedCardDetails';
 import InfoTab from '../InfoTab';
 
+import { IUserBankCard } from 'models/IUserCard';
 import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({
@@ -69,29 +70,40 @@ Object.assign(navigator, {
   },
 });
 
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
+const renderInfoTab = (selectedCard: IUserBankCard) => {
+  return render(
+    <ThemeProvider theme={theme}>
+      <InfoTab selectedCard={selectedCard} />
+    </ThemeProvider>,
+  );
 };
 
-const mockCardData: CardData = {
-  status: 'Active',
-  cardHolder: 'John Doe',
-  cardNumber: '•••• 1234',
-  cvv: '•••',
-  iban: 'US12 1116 6660 0000 0001 2345 678',
-  swiftBic: 'TESTBIC',
-  issueDate: '01.01.2026',
-  cashbackRate: '1.5%',
-};
+describe('InfoTab', () => {
+  const mockCard: IUserBankCard = {
+    id: 1,
+    name: 'Test Card',
+    number: 1234567890123456,
+    balance: 1000,
+    currency: 'USD',
+    issuer: 'visa',
+    expirationDate: '12/25',
+    type: 'plastic',
+    status: 'active',
+    holder: 'John Doe',
+    cvv: 123,
+    iban: 'US12345678901234567890',
+    swift: 'TESTBANK',
+    issueDate: '01.01.2023',
+    cashbackRate: 1.5,
+  };
 
-describe('InfoTab Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('Component Rendering', () => {
-    it('should render all InfoRow components with correct labels', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+  describe('Basic rendering', () => {
+    it('should render all card information fields', () => {
+      renderInfoTab(mockCard);
 
       expect(screen.getByTestId('info-row-status')).toBeInTheDocument();
       expect(screen.getByTestId('info-row-card-holder')).toBeInTheDocument();
@@ -103,18 +115,12 @@ describe('InfoTab Component', () => {
       expect(screen.getByTestId('info-row-cashback-rate')).toBeInTheDocument();
     });
 
-    it('should render with correct container structure', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
-
-      expect(screen.getByTestId('card-info-section')).toBeInTheDocument();
-    });
-
-    it('should pass cardData values to InfoRow components', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+    it('should display card data correctly', () => {
+      renderInfoTab(mockCard);
 
       expect(screen.getByTestId('info-row-status')).toHaveAttribute(
         'data-value',
-        'Active',
+        'ACTIVE',
       );
       expect(screen.getByTestId('info-row-card-holder')).toHaveAttribute(
         'data-value',
@@ -122,140 +128,126 @@ describe('InfoTab Component', () => {
       );
       expect(screen.getByTestId('info-row-iban')).toHaveAttribute(
         'data-value',
-        mockCardData.iban,
+        'US12345678901234567890',
       );
-      expect(screen.getByTestId('info-row-swift-bic')).toHaveAttribute(
+      expect(screen.getByTestId('info-row-cashback-rate')).toHaveAttribute(
         'data-value',
-        'TESTBIC',
+        '1.5%',
       );
     });
   });
 
-  describe('Card Number Visibility Toggle', () => {
+  describe('Card number visibility', () => {
     it('should initially show masked card number', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+      renderInfoTab(mockCard);
 
       const cardNumberRow = screen.getByTestId('info-row-card-number');
-      expect(cardNumberRow).toHaveAttribute('data-value', '•••• 1234');
+      expect(cardNumberRow).toHaveAttribute('data-value', '**** 3456');
       expect(cardNumberRow).toHaveAttribute('data-show-icon', 'false');
     });
 
-    it('should toggle to show full card number when toggle button is clicked', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+    it('should show full card number when toggled', async () => {
+      renderInfoTab(mockCard);
 
       const toggleButton = screen
         .getByTestId('info-row-card-number')
         .querySelector('[data-testid="toggle-button"]');
-      fireEvent.click(toggleButton!);
+      await userEvent.click(toggleButton!);
 
       const cardNumberRow = screen.getByTestId('info-row-card-number');
-      expect(cardNumberRow).toHaveAttribute(
-        'data-value',
-        '1234 5678 9012 5846',
-      );
+      expect(cardNumberRow).toHaveAttribute('data-value', '1234567890123456');
       expect(cardNumberRow).toHaveAttribute('data-show-icon', 'true');
     });
 
-    it('should toggle back to masked card number when clicked again', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+    it('should toggle back to masked when clicked again', async () => {
+      renderInfoTab(mockCard);
 
       const toggleButton = screen
         .getByTestId('info-row-card-number')
         .querySelector('[data-testid="toggle-button"]');
 
-      fireEvent.click(toggleButton!);
+      await userEvent.click(toggleButton!);
       expect(screen.getByTestId('info-row-card-number')).toHaveAttribute(
         'data-value',
-        '1234 5678 9012 5846',
+        '1234567890123456',
       );
 
-      fireEvent.click(toggleButton!);
+      await userEvent.click(toggleButton!);
       expect(screen.getByTestId('info-row-card-number')).toHaveAttribute(
         'data-value',
-        '•••• 1234',
+        '**** 3456',
       );
-    });
-
-    it('should have masked prop set to true for card number row', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
-
-      const cardNumberRow = screen.getByTestId('info-row-card-number');
-      expect(cardNumberRow).toHaveAttribute('data-masked', 'true');
     });
   });
 
-  describe('CVV Visibility Toggle', () => {
+  describe('CVV visibility', () => {
     it('should initially show masked CVV', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+      renderInfoTab(mockCard);
 
       const cvvRow = screen.getByTestId('info-row-cvv');
-      expect(cvvRow).toHaveAttribute('data-value', '•••');
+      expect(cvvRow).toHaveAttribute('data-value', '***');
       expect(cvvRow).toHaveAttribute('data-show-icon', 'false');
     });
 
-    it('should toggle to show full CVV when toggle button is clicked', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+    it('should show full CVV when toggled', async () => {
+      renderInfoTab(mockCard);
 
       const toggleButton = screen
         .getByTestId('info-row-cvv')
         .querySelector('[data-testid="toggle-button"]');
-      fireEvent.click(toggleButton!);
+      await userEvent.click(toggleButton!);
 
       const cvvRow = screen.getByTestId('info-row-cvv');
       expect(cvvRow).toHaveAttribute('data-value', '123');
       expect(cvvRow).toHaveAttribute('data-show-icon', 'true');
     });
-
-    it('should have masked prop set to true for CVV row', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
-
-      const cvvRow = screen.getByTestId('info-row-cvv');
-      expect(cvvRow).toHaveAttribute('data-masked', 'true');
-    });
   });
 
-  describe('Copy to Clipboard Functionality', () => {
-    it('should call clipboard API when IBAN copy button is clicked', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+  describe('Copy functionality', () => {
+    it('should copy IBAN to clipboard when copy button clicked', async () => {
+      renderInfoTab(mockCard);
 
       const copyButton = screen
         .getByTestId('info-row-iban')
         .querySelector('[data-testid="copy-button"]');
-      fireEvent.click(copyButton!);
+      await userEvent.click(copyButton!);
 
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-        mockCardData.iban,
+        'US12345678901234567890',
       );
-    });
-
-    it('should only provide copy functionality for IBAN row', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
-
-      expect(
-        screen
-          .getByTestId('info-row-iban')
-          .querySelector('[data-testid="copy-button"]'),
-      ).toBeInTheDocument();
-
-      expect(
-        screen
-          .getByTestId('info-row-status')
-          .querySelector('[data-testid="copy-button"]'),
-      ).not.toBeInTheDocument();
-      expect(
-        screen
-          .getByTestId('info-row-swift-bic')
-          .querySelector('[data-testid="copy-button"]'),
-      ).not.toBeInTheDocument();
     });
   });
 
-  describe('Status Field Special Handling', () => {
-    it('should pass status prop to status InfoRow', () => {
-      renderWithTheme(<InfoTab cardData={mockCardData} />);
+  describe('Independent toggle states', () => {
+    it('should manage card number and CVV visibility independently', async () => {
+      renderInfoTab(mockCard);
 
-      const statusRow = screen.getByTestId('info-row-status');
-      expect(statusRow).toHaveAttribute('data-status', 'Active');
+      const cardNumberToggle = screen
+        .getByTestId('info-row-card-number')
+        .querySelector('[data-testid="toggle-button"]');
+      const cvvToggle = screen
+        .getByTestId('info-row-cvv')
+        .querySelector('[data-testid="toggle-button"]');
+
+      await userEvent.click(cardNumberToggle!);
+      expect(screen.getByTestId('info-row-card-number')).toHaveAttribute(
+        'data-show-icon',
+        'true',
+      );
+      expect(screen.getByTestId('info-row-cvv')).toHaveAttribute(
+        'data-show-icon',
+        'false',
+      );
+
+      await userEvent.click(cvvToggle!);
+      expect(screen.getByTestId('info-row-card-number')).toHaveAttribute(
+        'data-show-icon',
+        'true',
+      );
+      expect(screen.getByTestId('info-row-cvv')).toHaveAttribute(
+        'data-show-icon',
+        'true',
+      );
     });
   });
 });

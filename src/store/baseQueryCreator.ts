@@ -5,9 +5,8 @@ import {
 } from '@reduxjs/toolkit/query';
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { TokenType } from '../models/IAuth';
-
 import { BASE_URL } from 'api/config';
+import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
 // TODO: add logic for token expired
@@ -20,8 +19,8 @@ export const baseQueryCreator =
     const baseQuery = fetchBaseQuery({
       baseUrl: BASE_URL(),
       prepareHeaders: (headers) => {
-        const accessToken = localTokenHandler.getToken(TokenType.ACCESS);
-        const temporaryToken = localTokenHandler.getToken(TokenType.TEMPORARY);
+        const accessToken = localTokenHandler.getToken(ETokenType.ACCESS);
+        const temporaryToken = localTokenHandler.getToken(ETokenType.TEMPORARY);
         if (accessToken) {
           headers.set('authorization', `Bearer ${accessToken}`);
         }

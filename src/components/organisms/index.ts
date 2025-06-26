@@ -36,5 +36,6 @@ export { SidebarWrapper } from './Sidebar/SidebarWrapper';
 export { TransactionsTable } from './TransactionsTable/TransactionsTable';
 export { SelectedCardDetails } from './SelectedCardDetails/SelectedCardDetails';
 export { MainContentSwitcher } from './MainContentSwitcher/MainContentSwitcher';
+export { AllCardsSlider } from './AllCardsSlider/AllCardsSlider';
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';

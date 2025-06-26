@@ -1,4 +1,4 @@
-export enum ValidationKey {
+export enum EValidationKey {
   MINIMUM_CHAR = 'minimumChar',
   LATIN_LETTERS_ONLY = 'latinLetters',
   LETTER_IN_UPPERCASE = 'oneUpperCase',

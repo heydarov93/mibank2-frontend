@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
 import { TO_VERIFICATION } from 'constants/routesName';
-import { ErrorStatus } from 'enums';
+import { EErrorStatus, ETokenType } from 'enums';
 import { useErrorHandlers } from 'hooks';
-import { ILoginData, ILoginFormInput, TokenType } from 'models/IAuth';
+import { ILoginData, ILoginFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import {
   setError,
@@ -44,7 +44,7 @@ export function useLogin({
     try {
       const data = await authorize(credentials).unwrap();
 
-      localTokenHandler.storeToken(data.accessToken, TokenType.TEMPORARY);
+      localTokenHandler.storeToken(data.accessToken, ETokenType.TEMPORARY);
       dispatch(setVerifying(true));
       dispatch(setLoading(true));
 
@@ -58,14 +58,14 @@ export function useLogin({
         const error = e as IErrorData;
         isError = true;
         switch (error.status) {
-          case ErrorStatus.TOO_MANY_REQUESTS:
+          case EErrorStatus.TOO_MANY_REQUESTS:
             dispatch(setVerifyingTimer(error.data.expiredTimer));
             isError = false;
             break;
-          case ErrorStatus.LOCKED:
+          case EErrorStatus.LOCKED:
             dispatch(setVerifyingTimer(error.data.blockTimeRemaining));
             break;
-          case ErrorStatus.BAD_REQUEST:
+          case EErrorStatus.BAD_REQUEST:
             dispatch(setError(error.data.exceptionMessage));
             break;
           default:
@@ -80,11 +80,11 @@ export function useLogin({
     } catch (e) {
       const error = e as IErrorData;
       switch (error.status) {
-        case ErrorStatus.NOT_FOUND:
+        case EErrorStatus.NOT_FOUND:
           dispatch(setError(error.data.exceptionMessage));
           resetField('password');
           break;
-        case ErrorStatus.LOCKED:
+        case EErrorStatus.LOCKED:
           handleLockedError(
             error,
             setIsFormDisabled,

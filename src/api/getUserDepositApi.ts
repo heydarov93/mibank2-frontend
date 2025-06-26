@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
-import { TokenType } from 'models/IAuth';
+import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/tokenHandler';
 
 export const getUserDepositApi = createApi({
@@ -20,7 +20,7 @@ export const getUserDepositApi = createApi({
         params: { id },
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionTokenHandler.getToken(TokenType.ACCESS)}`,
+          Authorization: `Bearer ${sessionTokenHandler.getToken(ETokenType.ACCESS)}`,
         },
       }),
       providesTags: ['userDeposit'],

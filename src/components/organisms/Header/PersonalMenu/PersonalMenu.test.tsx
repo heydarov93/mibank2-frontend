@@ -7,8 +7,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { PersonalMenu } from './PersonalMenu';
 
 import { useGetUserInfoQuery } from 'api/userInfoApi';
+import { ETokenType } from 'enums';
 import { useAppSelector } from 'hooks';
-import { TokenType } from 'models/IAuth';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { localTokenHandler, removeAuthData } from 'utils';
 
@@ -65,7 +65,7 @@ jest.mock('utils', () => ({
 }));
 
 jest.mock('models/IAuth', () => ({
-  TokenType: {
+  ETokenType: {
     ACCESS: 'ACCESS',
   },
 }));
@@ -182,7 +182,9 @@ describe('PersonalMenu component', () => {
     const { getByLabelText } = renderComponent();
     fireEvent.click(getByLabelText('logout'));
     expect(mockDispatch).toHaveBeenCalledWith(logoutFromApp());
-    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(TokenType.ACCESS);
+    expect(localTokenHandler.clearToken).toHaveBeenCalledWith(
+      ETokenType.ACCESS,
+    );
     expect(removeAuthData).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('/signin');
   });
