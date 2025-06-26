@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import InfoTab from '../InfoTab';
 
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({

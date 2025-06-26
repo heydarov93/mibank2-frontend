@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MyCards } from './MyCards';
 import * as hooks from './hooks/useGetUserCards';
 
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 jest.mock('../../molecules/EmptySection/EmptySection', () => ({
   EmptySection: () => <div data-testid="empty-section">Empty Section</div>,

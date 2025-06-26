@@ -4,7 +4,7 @@ import { DepositContainer } from './OpenDepositRow.styled';
 
 import { DepositCreationForm } from 'components/molecules';
 import { DepositSteps } from 'components/molecules/DepositSteps/DepositSteps';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 interface OpenDepositRowProps {
   onBack: () => void;

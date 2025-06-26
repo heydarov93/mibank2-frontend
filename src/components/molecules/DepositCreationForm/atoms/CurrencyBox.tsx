@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 
 import { CurrencyFlagIcon } from 'components/atoms';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 export const CurrencyBox = ({ currency }: { currency: TCurrency }) => (
   <Box display="flex" alignItems="center" gap={1}>

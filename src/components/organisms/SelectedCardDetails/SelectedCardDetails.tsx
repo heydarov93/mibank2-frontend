@@ -11,7 +11,7 @@ import InfoTab from './molecules/InfoTab';
 import InfoTabs from './molecules/InfoTabs';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 interface CardDetailsProps {
   selectedCard: IUserBankCard;

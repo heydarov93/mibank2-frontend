@@ -44,7 +44,7 @@ import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/Payment
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
 import { IErrorData } from 'models/IError';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 import { schema } from 'validation/transferFormSchema';
 
 export interface ITransferForm {

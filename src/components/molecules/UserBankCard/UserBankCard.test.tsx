@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { UserBankCard } from './UserBankCard';
 
 import { currencySymbol } from 'constants/currencies';
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 jest.mock('utils', () => ({
   separateThousands: (num: number) => num.toString(),

@@ -6,7 +6,7 @@ import { ReactComponent as GBP } from 'assets/icons/GbpFlag.svg';
 import { ReactComponent as JPY } from 'assets/icons/JpyFlag.svg';
 import { ReactComponent as PLN } from 'assets/icons/PlnFlag.svg';
 import { ReactComponent as USD } from 'assets/icons/UsaFlag.svg';
-import { TCurrency } from 'types/card';
+import { TCurrency } from 'types/types';
 
 export const flagIcons = {
   USD,

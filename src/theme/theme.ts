@@ -107,7 +107,7 @@ theme.components = {
         props: { disabled: true, variant: 'contained' },
         style: {
           '&&': {
-            background: `${theme.palette.primary.main}A6`, // opacity 0.65
+            background: `${theme.palette.primary.main}A6`,
             color: theme.palette.common.white,
           },
         },

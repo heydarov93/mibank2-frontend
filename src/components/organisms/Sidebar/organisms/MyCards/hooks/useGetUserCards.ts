@@ -1,4 +1,4 @@
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 export function useGetUserCards() {
   // TODO replace with real data

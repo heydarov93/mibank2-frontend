@@ -5,7 +5,7 @@ import { StyledInfoSection } from '../SelectedCardDetails.styled';
 
 import InfoRow from './InfoRow';
 
-import { IUserBankCard } from 'models/IUserCard';
+import { IUserBankCard } from 'models/IUserBankCard';
 
 interface CardDataProps {
   selectedCard: IUserBankCard;
