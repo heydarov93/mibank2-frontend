@@ -18,7 +18,7 @@ export const OpenBusinessAccountForm = ({
   onEdit,
 }: OpenBusinessAccountFormProps) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid="open-bussiness-account-form">
       <OpenBusinessAccountSelects sx={{ mt: 3 }} />
 
       {isDataFilled && (

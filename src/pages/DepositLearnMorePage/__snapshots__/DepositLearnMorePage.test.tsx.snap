@@ -621,6 +621,7 @@ exports[`DepositLearnMorePage renders correctly 1`] = `
     </div>
     <div
       class="MuiBox-root css-fyp73w"
+      data-testid="deposit-container"
     >
       <div
         class="MuiBox-root css-1i0b1l5"

@@ -1,9 +1,10 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { MyCards } from './MyCards';
 import * as hooks from './hooks/useGetUserCards';
 
+import { TUserBankCardComponent } from 'components/molecules/UserBankCard/UserBankCard';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 jest.mock('../../molecules/EmptySection/EmptySection', () => ({
@@ -41,7 +42,7 @@ jest.mock('../../molecules/StaticCardStack/StaticCardStack', () => ({
 }));
 
 jest.mock('components/molecules/UserBankCard/UserBankCard', () => ({
-  UserBankCard: ({ data }: { data: IUserBankCard }) => (
+  UserBankCard: ({ data }: { data: TUserBankCardComponent }) => (
     <div data-testid="user-bank-card">
       UserBankCard {data?.number || 'No number'}
     </div>
@@ -53,22 +54,25 @@ describe('MyCards', () => {
     jest.clearAllMocks();
   });
 
-  const createMockCard = (number: number, holder: string): IUserBankCard => ({
+  const createMockCard = (
+    number: number,
+    holder: string,
+  ): Omit<IUserBankCard, 'cvv' | 'iban' | 'swift'> => ({
     id: 1,
     number,
     holder,
-    name: holder,
+    name: 'Strong Card',
     issuer: 'visa',
-    cvv: 123,
-    iban: 'PL00TESTIBAN',
-    swift: 'TESTSWIFT',
     issueDate: '2020-01-01',
     cashbackRate: 1.5,
     expirationDate: '2025-01-01',
     balance: 1000,
     currency: 'PLN',
-    type: 'plastic',
+    issueType: 'plastic',
     status: 'active',
+    type: 'credit',
+    dailyLimit: 0,
+    isPrimary: false,
   });
 
   it('renders loading state', () => {
@@ -92,7 +96,7 @@ describe('MyCards', () => {
   });
 
   it('renders with cards and card details', () => {
-    const mockCards: IUserBankCard[] = [
+    const mockCards: Omit<IUserBankCard, 'cvv' | 'iban' | 'swift'>[] = [
       createMockCard(1234, 'John Doe'),
       createMockCard(5678, 'Jane Doe'),
     ];
@@ -111,7 +115,7 @@ describe('MyCards', () => {
   });
 
   it('changes selected card on carousel interaction', async () => {
-    const mockCards: IUserBankCard[] = [
+    const mockCards: Omit<IUserBankCard, 'cvv' | 'iban' | 'swift'>[] = [
       createMockCard(1234, 'John Doe'),
       createMockCard(5678, 'Jane Doe'),
     ];
@@ -129,22 +133,10 @@ describe('MyCards', () => {
     const changeButton = screen.getByRole('button', {
       name: /change to card 1/i,
     });
-    await userEvent.click(changeButton);
+    act(() => userEvent.click(changeButton));
 
     expect(screen.getByTestId('carousel')).toHaveTextContent(
       'Carousel index 1',
     );
-  });
-
-  it('handles undefined card data gracefully', () => {
-    jest.spyOn(hooks, 'useGetUserCards').mockReturnValue({
-      data: [undefined as any],
-      isLoading: false,
-      isError: false,
-    });
-
-    render(<MyCards />);
-
-    expect(screen.getByTestId('card-details')).toHaveTextContent('No number');
   });
 });

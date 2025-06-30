@@ -48,7 +48,7 @@ export const RegistrationFormWrapper = () => {
       />
       <MiBankStepper step={step} />
       <FormProvider {...formMethods}>
-        <form onSubmit={submitForm}>{renderFormStep()}</form>
+        <form onSubmit={submitForm} data-testid="registration-form">{renderFormStep()}</form>
       </FormProvider>
     </StyledBoxContainer>
   );

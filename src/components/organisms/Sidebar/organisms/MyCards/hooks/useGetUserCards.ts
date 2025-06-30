@@ -1,94 +1,32 @@
-import { IUserBankCard } from 'models/IUserBankCard';
+import { skipToken } from '@reduxjs/toolkit/query';
+
+import { useGetUserIdQuery } from 'api/getUserIdApi';
+import { useGetUserCardsQuery } from 'api/userCardsApi';
+import { adaptUserBankCardResponse } from 'utils/userBankCardApiAdapter';
 
 export function useGetUserCards() {
-  // TODO replace with real data
-  const data: IUserBankCard[] = [
-    {
-      id: 1,
-      name: 'Primary Card',
-      number: 4532123456789012,
-      balance: 3200.5,
-      currency: 'USD',
-      issuer: 'visa',
-      expirationDate: '08/2027',
-      type: 'plastic',
-      status: 'active',
-      holder: 'John Doe',
-      cvv: 123,
-      iban: 'US64SVBKUS6S3300958879',
-      swift: 'SVBKUS6S',
-      issueDate: '2022.05.15',
-      cashbackRate: 1.5,
-    },
-    {
-      id: 2,
-      name: 'Travel Card',
-      number: 5500123412341234,
-      balance: 850.75,
-      currency: 'EUR',
-      issuer: 'mastercard',
-      expirationDate: '03/2024',
-      type: 'digital',
-      status: 'expired',
-      holder: 'John Doe',
-      cvv: 456,
-      iban: 'DE89370400440532013000',
-      swift: 'DEUTDEDBBER',
-      issueDate: '2023.01.20',
-      cashbackRate: 2.0,
-    },
-    {
-      id: 3,
-      name: 'Savings Card',
-      number: 4532987654321098,
-      balance: 15000,
-      currency: 'USD',
-      issuer: 'unionpay',
-      expirationDate: '11/2028',
-      type: 'plastic',
-      status: 'active',
-      holder: 'John Doe',
-      cvv: 789,
-      iban: 'GB29NWBK60161331926819',
-      swift: 'NWBKGB2L',
-      issueDate: '2021.07.12',
-      cashbackRate: 1.0,
-    },
-    {
-      id: 4,
-      name: 'Blocked Card',
-      number: 5500987654321123,
-      balance: 0,
-      currency: 'GBP',
-      issuer: 'mastercard',
-      expirationDate: '09/2025',
-      type: 'plastic',
-      status: 'blocked',
-      holder: 'John Doe',
-      cvv: 321,
-      iban: 'FR1420041010050500013M02606',
-      swift: 'BNPAFRPP',
-      issueDate: '2020.09.01',
-      cashbackRate: 0,
-    },
-    {
-      id: 5,
-      name: 'Business Card',
-      number: 4532567890123456,
-      balance: 50000,
-      currency: 'USD',
-      issuer: 'visa',
-      expirationDate: '05/2030',
-      type: 'digital',
-      status: 'active',
-      holder: 'John Doe',
-      cvv: 654,
-      iban: 'CH9300762011623852957',
-      swift: 'UBSWCHZH80A',
-      issueDate: '2024.04.05',
-      cashbackRate: 2.5,
-    },
-  ];
+  const {
+    data: userIdData,
+    isLoading: isUserIdLoading,
+    isError: isUserIdError,
+  } = useGetUserIdQuery();
 
-  return { data, isLoading: false, isError: false };
+  const queryArgs = userIdData?.userId
+    ? { userId: userIdData.userId, page: 0, count: 20 }
+    : skipToken;
+
+  const {
+    data: cardsData,
+    isLoading,
+    isError,
+  } = useGetUserCardsQuery(queryArgs);
+
+  return {
+    ...cardsData,
+    data: cardsData?.data.map((cardResponse) =>
+      adaptUserBankCardResponse(cardResponse),
+    ),
+    isLoading: isLoading || isUserIdLoading,
+    isError: isError || isUserIdError,
+  };
 }

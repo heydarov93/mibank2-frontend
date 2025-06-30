@@ -5,11 +5,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useLogInMutation } from 'api/employeeLogInApi';
 import { Logo, SubmitButton } from 'components/atoms';
-import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/OneTimePasscode';
 import {
   CancelButton,
   StyledCancelContainer,
 } from 'components/organisms/OneTimePasscodeForm/OneTimePasscodeForm.styled';
+import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/molecules/OneTimePasscode';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
 import { ETokenType } from 'enums';
 import { getEmailRoleFromToken } from 'utils/getEmailFromToken';

@@ -4,52 +4,81 @@ import { accountsApi } from './accountsApi';
 import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
+import { IApiResponse } from 'models/commonApi';
 import {
-  ECardType,
-  ECardIssuer,
-  ECardIssueType,
-  ECardStatus,
-  IssuanceCardData,
-} from 'models/IProductInfo';
-
-interface GetCardsParams {
-  page?: number;
-  count?: number;
-  cardName?: string;
-  cardType?: ECardType;
-  cardIssuer?: ECardIssuer;
-  issueType?: ECardIssueType;
-  cardCurrency?: string;
-  cardStatus?: ECardStatus;
-}
-
-interface GetCardsResponse {
-  data: IssuanceCardData[];
-  hasNextPage: boolean;
-  lastPageNumber: number;
-  totalElements: number;
-}
-
-interface IssueUserCardRequest {
-  idempotencyKey: string;
-  cardId: number;
-  userId: number;
-  paymentAccount: string;
-  linkedAccount: string;
-  issuanceFee: number;
-  issuanceFeeCurrency: string;
-}
+  IGetCardsParams,
+  IUserBankCardDetailsResponse,
+  IGetUserCardsParams,
+  IIssueUserCardRequest,
+  IUpdatePrimaryPaymentCardRequest,
+  IUpdateUserCardStatusRequest,
+  TGetCardsResponse,
+  TGetUserCardsResponse,
+} from 'models/userCardsApi';
 
 export const userCardsApi = createApi({
   reducerPath: 'userCardsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL(),
   }),
-  tagTypes: ['Cards'],
+  tagTypes: ['userCard', 'userCards', 'Cards'],
   endpoints: (builder) => ({
-    getCards: builder.query<GetCardsResponse, GetCardsParams>({
+    getUserCards: builder.query<TGetUserCardsResponse, IGetUserCardsParams>({
+      query: ({ userId, page, count }) => ({
+        url: endpoints.cards.getUserCards,
+        method: 'GET',
+        params: {
+          userId,
+          page,
+          count,
+        },
+      }),
+      providesTags: (_result, _error, { userId }) => [
+        { type: 'userCards', id: userId },
+      ],
+    }),
+    getUserCardDetails: builder.query<
+      IUserBankCardDetailsResponse,
+      string | number
+    >({
+      query: (id) => ({
+        url: endpoints.cards.getUserCardDetails(id),
+        method: 'GET',
+      }),
+      providesTags: (_result, _error, id) => [{ type: 'userCard', id }],
+    }),
+    updateUserCardStatus: builder.mutation<
+      IApiResponse,
+      IUpdateUserCardStatusRequest
+    >({
+      query: ({ status, id }) => ({
+        url: endpoints.cards.updateUserCardStatus(id),
+        method: 'PATCH',
+        params: { status },
+      }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: 'userCards' },
+        { type: 'userCard', id },
+      ],
+    }),
+    updatePrimaryPaymentCard: builder.mutation<
+      IApiResponse,
+      IUpdatePrimaryPaymentCardRequest
+    >({
+      query: ({ id, isPrimaryPaymentCard }) => ({
+        url: endpoints.cards.updatePrimaryPaymentCard(id),
+        method: 'PATCH',
+        params: { isPrimaryPaymentCard },
+      }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: 'userCards' },
+        { type: 'userCard', id },
+      ],
+    }),
+
+    getCards: builder.query<TGetCardsResponse, IGetCardsParams>({
       query: (params) => ({
-        url: endpoints.userCards.getCards,
+        url: endpoints.cards.getCards,
         method: 'GET',
         params: {
           page: 0,
@@ -57,11 +86,11 @@ export const userCardsApi = createApi({
           ...params,
         },
       }),
-      providesTags: ['Cards'],
+      providesTags: [{ type: 'Cards', id: 'GET cards' }],
     }),
-    issueUserCard: builder.mutation<string, IssueUserCardRequest>({
+    issueUserCard: builder.mutation<string, IIssueUserCardRequest>({
       query: (data) => ({
-        url: endpoints.userCards.issueUserCard,
+        url: endpoints.cards.issueUserCard,
         body: data,
         method: 'POST',
         responseHandler: 'text',
@@ -82,6 +111,10 @@ export const userCardsApi = createApi({
 
 export const {
   useGetCardsQuery,
+  useGetUserCardsQuery,
+  useGetUserCardDetailsQuery,
   useLazyGetCardsQuery,
   useIssueUserCardMutation,
+  useUpdateUserCardStatusMutation,
+  useUpdatePrimaryPaymentCardMutation,
 } = userCardsApi;

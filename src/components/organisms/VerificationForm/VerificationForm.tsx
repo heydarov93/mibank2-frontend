@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { MemoizedVerificationCode } from './VerificationCode';
+import { MemoizedVerificationCode } from './Molecules/VerificationCode/VerificationCode';
+import { VerificationTitle } from './Molecules/VerificationTitle/VerificationTitle';
 import {
   StyledButton,
   StyledVerificationForm,
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
-import { VerificationTitle } from './VerificationTitle';
 
 import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
 import { useLazyGetUserInfoQuery } from 'api/userInfoApi';

@@ -1,68 +1,73 @@
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 
+import { IssueCardModal } from '../IssueCardModal/IssueCardModal';
 import { useGetUserCards } from '../Sidebar/organisms/MyCards/hooks/useGetUserCards';
 
 import {
-  StyledCardsContainer,
   StyledContainer,
   StyledIconButton,
-  StyledSubTitle,
   StyledTitle,
   StyledTitleContainer,
 } from './AllCardsSlider.styled';
-import { NoCard } from './molecules/NoCard';
-import { UserBankCardsCarousel } from './molecules/UserBankCardsCarousel';
+import { CardsContent } from './molecules/CardsContent/CardsContent';
 
-import { UserBankCard } from 'components/molecules/UserBankCard/UserBankCard';
+import useDisclosure from 'hooks/useDisclosure';
 import { IUserBankCard } from 'models/IUserBankCard';
 
+const SELECTED_CARD_SCALE = 1.12;
+
 interface AllCardsSliderProps {
-  onCardSelect: (card: IUserBankCard) => void;
-  selectedCardId: string | number;
+  onCardIdSelect: (id: IUserBankCard['id']) => void;
+  selectedCardId: IUserBankCard['id'];
 }
 
 export const AllCardsSlider = ({
-  onCardSelect,
+  onCardIdSelect,
   selectedCardId,
 }: AllCardsSliderProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'AllCards' });
-  const { data: userBankCards } = useGetUserCards();
+  const issueCardModal = useDisclosure();
 
-  const handleCardClick = (card: IUserBankCard) => {
-    onCardSelect(card);
-  };
+  const { data: userBankCards, isLoading, isError } = useGetUserCards();
+
+  const handleCardClick = (cardId: IUserBankCard['id']) =>
+    onCardIdSelect(cardId);
+
+  const getCardTransform = (cardId: IUserBankCard['id']) => ({
+    transform:
+      selectedCardId === cardId ? `scale(${SELECTED_CARD_SCALE})` : 'scale(1)',
+  });
 
   return (
-    <StyledContainer data-testid="main-container">
-      <StyledTitleContainer data-testid="title-container">
-        <StyledTitle data-testid="title">{t('title')}</StyledTitle>
-        <StyledIconButton data-testid="icon-button">
-          <AddIcon sx={{ fontSize: '20px' }} />
-        </StyledIconButton>
-      </StyledTitleContainer>
-      {userBankCards.length === 0 ? (
-        <NoCard />
-      ) : (
-        <StyledCardsContainer data-testid="cards-container">
-          <StyledSubTitle data-testid="subtitle">
-            {t('subTitle')}
-          </StyledSubTitle>
-          <UserBankCardsCarousel data-testid="user-cards-carousel">
-            {userBankCards.map((card) => (
-              <UserBankCard
-                card={card}
-                key={card.id}
-                onCardClick={() => handleCardClick(card)}
-                data-selected={selectedCardId === card.id}
-                data-card-id={card.id}
-                isSlide={true}
-                isSelected={selectedCardId === card.id}
-              />
-            ))}
-          </UserBankCardsCarousel>
-        </StyledCardsContainer>
-      )}
-    </StyledContainer>
+    <>
+      <StyledContainer data-testid="main-container">
+        <StyledTitleContainer data-testid="title-container">
+          <StyledTitle data-testid="title">{t('title')}</StyledTitle>
+          <StyledIconButton
+            onClick={issueCardModal.open}
+            disabled={isError}
+            data-testid="icon-button"
+          >
+            <AddIcon sx={{ fontSize: '20px' }} />
+          </StyledIconButton>
+        </StyledTitleContainer>
+
+        <CardsContent
+          isLoading={isLoading}
+          hasError={isError}
+          userBankCards={userBankCards}
+          onCardClick={handleCardClick}
+          getCardTransform={getCardTransform}
+          openIssueCardModal={issueCardModal.open}
+        />
+      </StyledContainer>
+
+      <IssueCardModal
+        open={issueCardModal.isOpen}
+        onClose={issueCardModal.close}
+        data-testid="issue-card-modal"
+      />
+    </>
   );
 };

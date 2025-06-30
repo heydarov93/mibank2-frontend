@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { DepositContainer } from './OpenDepositRow.styled';
+import { StyledDepositContainer } from './OpenDepositRow.styled';
 
 import { DepositCreationForm } from 'components/molecules';
 import { DepositSteps } from 'components/molecules/DepositSteps/DepositSteps';
@@ -44,7 +44,7 @@ export const OpenDepositRow = ({
   ];
 
   return (
-    <DepositContainer>
+    <StyledDepositContainer data-testid="deposit-container">
       <DepositSteps steps={steps} />
       <DepositCreationForm
         depositName={depositName}
@@ -55,6 +55,6 @@ export const OpenDepositRow = ({
         term={term}
         modal={false}
       />
-    </DepositContainer>
+    </StyledDepositContainer>
   );
 };

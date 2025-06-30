@@ -4,7 +4,6 @@ import { IUserCardAccount } from './useAccounts';
 
 import { useGetCardAccountsQuery } from 'api/accountsApi';
 import { useGetUserIdQuery } from 'api/getUserIdApi';
-// TODO REPLACE WITH REAL DATA
 export function useGetCardAccounts(skipQuery: boolean) {
   const { data } = useGetUserIdQuery();
 
