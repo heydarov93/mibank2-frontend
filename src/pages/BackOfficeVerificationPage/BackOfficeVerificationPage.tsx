@@ -1,19 +1,18 @@
 import { Box, CircularProgress } from '@mui/material';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 import {
-  MainContainer,
-  StepContainer,
   Header,
-  StepDescription,
-  StepBox,
   ImageContainer,
+  MainContainer,
+  StepBox,
+  StepContainer,
+  StepDescription,
 } from './BackOfficeVerificationPage.styled';
 
 import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
-import { OneTimePasscodeForm } from 'components/organisms/OneTimePasscodeForm';
+import { OneTimePasscodeForm } from 'components/organisms';
 import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 export const BackOfficeVerificationPage = () => {

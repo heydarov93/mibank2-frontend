@@ -994,13 +994,22 @@
   "AllCards": {
     "title": "All cards",
     "subTitle": "Choose a card to see its details",
-    "emptyState": "Looks like you haven’t added any cards yet.",
+    "emptyStateDescription": "Looks like you haven’t added any cards yet.",
     "addButton": "Add card",
+    "errors": {
+      "failedToLoadCards": "Failed to load user cards! Please try again.",
+      "notFoundCards": "User cards not found! Please try again later."
+    },
     "selectedCard": {
       "title": "Name of the card",
+      "primaryCardLabel": "Primary Card",
       "transferButton": "Transfer",
       "putTopButton": "Put on Top",
+      "putTopLoadingState": "Putting on top...",
+      "unblockButton": "Unblock card",
+      "unblockLoadingState": "Unblocking card...",
       "blockButton": "Block card",
+      "blockLoadingState": "Blocking card...",
       "transactionsTabLabel": "Transactions",
       "informationTabLabel": "Information",
       "settingsTabLabel": "Settings",
@@ -1011,7 +1020,11 @@
       "ibanLabel": "Iban",
       "swiftLabel": "Swift/Bic",
       "dateLabel": "Issue Date",
-      "rateLabel": "Cashback Rate"
+      "rateLabel": "Cashback Rate",
+      "errors": {
+        "failedToLoadCardDetails": "Failed to load user card details! Please try again later.",
+        "notFoundCardDetails": "User card details not found! Please try again later."
+      }
     }
   }
 }

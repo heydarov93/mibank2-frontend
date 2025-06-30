@@ -1,7 +1,7 @@
-import { Box, Icon, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import {
-  StyledBottomBox,
+  StyledBtmBox,
   StyledContainer,
   StyledTopBox,
 } from './UserBankCard.styled';
@@ -12,56 +12,63 @@ import { currencySymbol } from 'constants/currencies';
 import { IUserBankCard } from 'models/IUserBankCard';
 import { separateThousands } from 'utils';
 
-interface UserBankCardProps {
-  card: IUserBankCard;
-  onCardClick?: () => void;
-  isSlide?: boolean;
-  isSelected?: boolean;
+export const USER_CARD_WIDTH = 288;
+
+export type TUserBankCardComponent = Pick<
+  IUserBankCard,
+  | 'holder'
+  | 'name'
+  | 'issuer'
+  | 'number'
+  | 'balance'
+  | 'currency'
+  | 'expirationDate'
+  | 'issueType'
+>;
+
+interface Props {
+  data: TUserBankCardComponent;
+  size?: number;
 }
 
-export function UserBankCard({
-  card,
-  onCardClick,
-  isSelected,
-  isSlide = false,
-}: UserBankCardProps) {
+export function UserBankCard({ data, size = USER_CARD_WIDTH }: Props) {
+  const fontSize = size / USER_CARD_WIDTH;
+  const width = size / fontSize;
+
   return (
-    <StyledContainer
-      onClick={onCardClick}
-      isSelected={isSelected}
-      isSlide={isSlide}
-      data-testid="user-bank-card"
-    >
+    <StyledContainer fontSize={fontSize} width={`${width}em`}>
       <StyledTopBox>
-        <Typography fontSize={14} whiteSpace="nowrap">
-          {card.name}
+        <Typography fontSize="14em" whiteSpace="nowrap">
+          {data.name}
         </Typography>
-        <Icon sx={{ width: 24, height: 24 }}>
-          <SimpleLogo data-testid="simple-logo" />
-        </Icon>
+        <SimpleLogo
+          data-testid="simple-logo"
+          style={{ width: '24em', height: '24em' }}
+        />
       </StyledTopBox>
-      <Typography fontSize={24} fontWeight={600} marginTop={1.5}>
-        {currencySymbol[card.currency]} {separateThousands(card.balance, ' ')}
+      <Typography fontSize="24em" fontWeight={600} marginTop="0.5em">
+        {currencySymbol[data.currency]}{' '}
+        {separateThousands(Number(data.balance), ' ')}
       </Typography>
-      <StyledBottomBox>
+      <StyledBtmBox>
         <Box>
-          <Typography fontFamily="Inter" noWrap>
-            {`•••• ${card.number.toString().slice(-4)}`}
+          <Typography fontSize="16em" fontFamily="Inter" noWrap>
+            {`•••• ${data.number.toString().slice(-4)}`}
           </Typography>
-          <Typography fontSize={12} marginTop={1}>
-            {card.expirationDate}
+          <Typography fontSize="12em" marginTop="0.65em">
+            {data.expirationDate}
           </Typography>
         </Box>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Typography fontSize={12}>
-            {card.type === 'digital' ? 'virtual' : 'plastic'}
+        <Box display="flex" alignItems="center" gap="8em">
+          <Typography fontSize="12em">
+            {data.issueType === 'digital' ? 'virtual' : 'plastic'}
           </Typography>
           <CardIssuerIcon
-            issuer={card.issuer}
-            style={{ height: 24, width: 50 }}
+            issuer={data.issuer}
+            style={{ height: '24em', width: '50em' }}
           />
         </Box>
-      </StyledBottomBox>
+      </StyledBtmBox>
     </StyledContainer>
   );
 }

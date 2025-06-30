@@ -14,7 +14,7 @@ export const createCardApi = createApi({
   endpoints: (builder) => ({
     createCard: builder.mutation({
       query: (data) => ({
-        url: endpoints.productManagement.cards.createCard,
+        url: endpoints.cards.createCard,
         method: 'POST',
         body: data,
         headers: {

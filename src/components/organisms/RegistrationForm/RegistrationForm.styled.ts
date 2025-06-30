@@ -8,5 +8,4 @@ export const StyledActionsWrapper = styled(Box)(() => ({
   alignItems: 'flex-end',
 }));
 
-export const StyledContentContainer =
-  createComponentWithDefaultBreakpoints(Box);
+export const StyledContentContainer = createComponentWithDefaultBreakpoints(Box);

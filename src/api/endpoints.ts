@@ -48,9 +48,6 @@ export const endpoints = {
       createDeposit: '/ds/api/user-deposits',
       getDeposit: (accountId: string) => `/ds/api/user-deposits/${accountId}`,
     },
-    cards: {
-      createCard: '/cs/api/card/create-card',
-    },
     products: {
       getProducts: '/ds/api/product/products',
     },
@@ -59,9 +56,17 @@ export const endpoints = {
     getOffer: '/os/api/offer/retrieve/page',
     getOfferImages: '/os/api/offer',
   },
-  userCards: {
+  cards: {
     getCards: '/cs/api/card/detailed-search',
-    issueUserCard: '/cs/api/card/issue-user-card',
+    createCard: '/cs/api/card/create-card',
+    issueUserCard: '/cs/api/user-cards/issue-user-card',
+    getUserCards: '/cs/api/user-cards',
+    getUserCardDetails: (id: string | number) =>
+      `/cs/api/user-cards/${id}/detailed-response`,
+    updateUserCardStatus: (id: string | number) =>
+      `/cs/api/user-cards/${id}/update-status`,
+    updatePrimaryPaymentCard: (id: string | number) =>
+      `cs/api/user-cards/${id}/primary-payment-card`,
   },
   accounts: {
     transfer: {

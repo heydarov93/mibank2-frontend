@@ -3,16 +3,17 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import OneTimePasscode from './OneTimePasscode';
 import {
   CancelButton,
   StyledCancelContainer,
 } from './OneTimePasscodeForm.styled';
+import OneTimePasscode from './molecules/OneTimePasscode';
 
 import { useValidateOtpMutation } from 'api/validateOtpApi';
 import { SubmitButton } from 'components/atoms';
 import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
 import { theme } from 'theme/theme';
+
 interface OneTimePasscodeFormProps {
   email: string | null;
 }

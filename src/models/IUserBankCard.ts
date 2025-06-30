@@ -1,4 +1,10 @@
-import { TCardIssuer, TCardStatus, TCardType, TCurrency } from 'types/types';
+import {
+  TCardIssuer,
+  TCardStatus,
+  TCardIssueType,
+  TCurrency,
+  TCardType,
+} from 'types/types';
 
 export interface IUserBankCard {
   id: string | number;
@@ -10,10 +16,13 @@ export interface IUserBankCard {
   iban: string;
   swift: string;
   balance: number;
+  dailyLimit: number;
   currency: TCurrency;
+  issueType: TCardIssueType;
   type: TCardType;
   issueDate: string;
   expirationDate: string;
   cashbackRate: number;
   status: TCardStatus;
+  isPrimary: boolean;
 }

@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-export const DepositContainer = styled(Box)(() => ({
+export const StyledDepositContainer = styled(Box)(() => ({
   width: '100%',
   display: 'flex',
   flexDirection: 'row',

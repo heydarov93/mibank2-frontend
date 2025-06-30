@@ -1,3 +1,4 @@
+import { Fade, Collapse, Box } from '@mui/material';
 import { useState } from 'react';
 
 import { PageContainer } from './AllCardsPage.styled';
@@ -6,19 +7,35 @@ import { AllCardsSlider, SelectedCardDetails } from 'components/organisms';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 export const AllCardsPage = () => {
-  const [selectedCard, setSelectedCard] = useState<IUserBankCard>();
+  const [selectedCardId, setSelectedCardId] = useState<IUserBankCard['id']>('');
 
-  const handleCardSelect = (card: IUserBankCard) => {
-    setSelectedCard(card);
+  const handleCardIdSelect = (id: IUserBankCard['id']) => {
+    setSelectedCardId((prevSelectedCardId) =>
+      prevSelectedCardId === id ? '' : id,
+    );
   };
 
   return (
     <PageContainer>
       <AllCardsSlider
-        onCardSelect={handleCardSelect}
-        selectedCardId={selectedCard ? selectedCard.id : ''}
+        onCardIdSelect={handleCardIdSelect}
+        selectedCardId={selectedCardId}
       />
-      {selectedCard && <SelectedCardDetails selectedCard={selectedCard} />}
+      <Collapse
+        in={!!selectedCardId}
+        timeout={500}
+        sx={{ width: '100%' }}
+        data-testid="collapse-wrapper"
+      >
+        <Fade in={!!selectedCardId} timeout={300} data-testid="fade-wrapper">
+          <Box data-testid="box-wrapper">
+            <SelectedCardDetails
+              selectedCardId={selectedCardId}
+              data-testid="selected-card-details"
+            />
+          </Box>
+        </Fade>
+      </Collapse>
     </PageContainer>
   );
 };

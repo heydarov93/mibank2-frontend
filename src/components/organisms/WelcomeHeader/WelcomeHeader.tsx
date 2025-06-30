@@ -36,7 +36,7 @@ export const WelcomeHeader = ({
 
   return (
     <StyledContainer>
-      <StyledTabs value={activeTab} onChange={onSetActiveTab}>
+      <StyledTabs value={activeTab} onChange={onSetActiveTab} data-testid="header-tab-list">
         {[t('personal'), t('business'), t('aboutUs')].map((tab, index) => (
           <StyledTab
             key={tab}
@@ -48,7 +48,7 @@ export const WelcomeHeader = ({
       </StyledTabs>
 
       <StyledRightSection>
-        <IconButton>
+        <IconButton data-testid="search-button">
           <SearchIcon width="24px" height="24px" />
         </IconButton>
 

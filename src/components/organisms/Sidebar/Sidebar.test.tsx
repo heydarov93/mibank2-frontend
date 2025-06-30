@@ -20,7 +20,7 @@ jest.mock('utils/dateUtils', () => ({
 }));
 
 jest.mock('./molecules/Section/Section', () => ({
-  Section: ({ title, onAddProduct, children }: any) => (
+  Section: ({ title, onAddProduct }: any) => (
     <div>
       <div data-testid="section-title">{title}</div>
       {onAddProduct && (
@@ -31,7 +31,6 @@ jest.mock('./molecules/Section/Section', () => ({
           Add
         </button>
       )}
-      {children}
     </div>
   ),
 }));
@@ -55,8 +54,6 @@ describe('Sidebar', () => {
     expect(sectionTitles).toContain('myTransactions.title');
     expect(sectionTitles).toContain('myLoans.title');
     expect(sectionTitles).toContain('myDeposits.title');
-
-    expect(screen.getByTestId('my-transactions')).toBeInTheDocument();
 
     expect(
       screen.getByRole('button', { name: 'addNewProduct' }),

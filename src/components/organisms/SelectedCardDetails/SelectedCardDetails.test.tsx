@@ -1,246 +1,246 @@
 import { ThemeProvider } from '@mui/material';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import { useGetUserCardDetails } from '../Sidebar/organisms/MyCards/hooks/useGetUserCardDetails';
 
 import { SelectedCardDetails } from './SelectedCardDetails';
 
-import { IUserBankCard } from 'models/IUserBankCard';
 import { theme } from 'theme/theme';
 
+jest.mock('api/userCardsApi');
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
+  useTranslation: () => ({ t: (key: string) => key }),
   initReactI18next: {
     type: '3rdParty',
   },
 }));
-
 jest.mock('enums/ECardInfoTab', () => ({
   ECardInfoTab: {
-    Transactions: 'transactions',
     Information: 'information',
+    Transactions: 'transactions',
     Settings: 'settings',
   },
 }));
-
-jest.mock('./molecules/ButtonGroup.tsx', () => {
-  return function ButtonGroup() {
+jest.mock('./molecules/ButtonGroup/ButtonGroup', () => {
+  return function ButtonGroup({ selectedUserCardDetails }: any) {
     return (
       <div data-testid="button-group">
-        <button>Transfer</button>
-        <button>Put on Top</button>
-        <button>Block card</button>
+        Card ID: {selectedUserCardDetails.id}
       </div>
     );
   };
 });
-
-jest.mock('./molecules/InfoTabs', () => {
-  return function InfoTabs({
-    activeTab,
-    onTabChange,
-  }: {
-    activeTab: string;
-    onTabChange: (e: any, value: string) => void;
-  }) {
+jest.mock('./molecules/InfoTab/InfoTab', () => {
+  return function InfoTab({ selectedUserCardDetails }: any) {
+    return (
+      <div data-testid="info-tab">
+        Info for: {selectedUserCardDetails.holder}
+      </div>
+    );
+  };
+});
+jest.mock('./molecules/InfoTabs/InfoTabs', () => {
+  return function InfoTabs({ activeTab, onTabChange }: any) {
     return (
       <div data-testid="info-tabs">
         <button
-          data-testid="tab-transactions"
-          onClick={(e) => onTabChange(e, 'transactions')}
-          aria-selected={activeTab === 'transactions'}
-        >
-          Transactions
-        </button>
-        <button
           data-testid="tab-information"
           onClick={(e) => onTabChange(e, 'information')}
-          aria-selected={activeTab === 'information'}
+          data-active={activeTab === 'information'}
         >
           Information
         </button>
         <button
-          data-testid="tab-settings"
-          onClick={(e) => onTabChange(e, 'settings')}
-          aria-selected={activeTab === 'settings'}
+          data-testid="tab-transactions"
+          onClick={(e) => onTabChange(e, 'transactions')}
+          data-active={activeTab === 'transactions'}
         >
-          Settings
+          Transactions
         </button>
       </div>
     );
   };
 });
 
-jest.mock('./molecules/InfoTab', () => {
-  return function InfoTab({ selectedCard }: { selectedCard: IUserBankCard }) {
-    return (
-      <div data-testid="info-tab">Card Info for: {selectedCard.holder}</div>
-    );
-  };
-});
-
-const renderSelectedCardDetails = (selectedCard: IUserBankCard) => {
-  return render(
+const renderWithTheme = () => {
+  render(
     <ThemeProvider theme={theme}>
-      <SelectedCardDetails selectedCard={selectedCard} />
+      <SelectedCardDetails selectedCardId="card-123" />
     </ThemeProvider>,
   );
 };
 
-describe('SelectedCardDetails', () => {
-  const mockCard: IUserBankCard = {
-    id: 1,
-    name: 'Test Card',
-    number: 1234567890123456,
-    balance: 1000,
-    currency: 'USD',
-    issuer: 'visa',
-    expirationDate: '12/25',
-    type: 'plastic',
-    status: 'active',
-    holder: 'John Doe',
-    cvv: 123,
-    iban: 'US12345678901234567890',
-    swift: 'TESTBANK',
-    issueDate: '01.01.2023',
-    cashbackRate: 1.5,
-  };
+jest.mock('../Sidebar/organisms/MyCards/hooks/useGetUserCardDetails', () => ({
+  useGetUserCardDetails: jest.fn(),
+}));
+const mockedUseGetUserCardDetails = useGetUserCardDetails as jest.Mock;
 
-  describe('Basic rendering', () => {
-    it('should render main structure with header and tabs', () => {
-      renderSelectedCardDetails(mockCard);
+const mockCardDetailsResponse = {
+  id: 'card-123',
+  holder: 'John Doe',
+  number: '1234567890123456',
+  issueDate: '2023-01-15',
+  cashbackRate: 1.5,
+  status: 'ACTIVE',
+  isPrimary: false,
+  cvv: '123',
+  ibanNumber: 'GB82WEST12345698765432',
+  swiftNumber: 'WESTGB2L',
+};
+
+const mockPrimaryCardResponse = {
+  ...mockCardDetailsResponse,
+  isPrimary: true,
+};
+
+describe('SelectedCardDetails', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('Loading state', () => {
+    it('shows loading spinner while fetching card details', () => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: undefined,
+        isLoading: true,
+        isError: false,
+      } as any);
+
+      renderWithTheme();
+
+      expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    });
+  });
+
+  describe('Error states', () => {
+    it('shows error alert when API call fails', () => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        isError: true,
+      } as any);
+
+      renderWithTheme();
+
+      expect(screen.getByTestId('error-alert')).toBeInTheDocument();
+      expect(
+        screen.getByText('errors.failedToLoadCardDetails'),
+      ).toBeInTheDocument();
+    });
+
+    it('shows no data alert when card details not found', () => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        isError: false,
+      } as any);
+
+      renderWithTheme();
+
+      expect(screen.getByTestId('no-data-alert')).toBeInTheDocument();
+      expect(
+        screen.getByText('errors.notFoundCardDetails'),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('Successful data display', () => {
+    beforeEach(() => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: mockCardDetailsResponse,
+        isLoading: false,
+        isError: false,
+      } as any);
+    });
+
+    it('renders main container with header and title', () => {
+      renderWithTheme();
 
       expect(screen.getByTestId('container')).toBeInTheDocument();
       expect(screen.getByTestId('header')).toBeInTheDocument();
-      expect(screen.getByTestId('title')).toBeInTheDocument();
-      expect(screen.getByTestId('button-group')).toBeInTheDocument();
-      expect(screen.getByTestId('info-tabs')).toBeInTheDocument();
-    });
-
-    it('should display translated title', () => {
-      renderSelectedCardDetails(mockCard);
-
       expect(screen.getByTestId('title')).toHaveTextContent('title');
     });
 
-    it('should render InfoTab by default', () => {
-      renderSelectedCardDetails(mockCard);
+    it('renders button group with card details', () => {
+      renderWithTheme();
+
+      expect(screen.getByTestId('button-group')).toBeInTheDocument();
+      expect(screen.getByText('Card ID: card-123')).toBeInTheDocument();
+    });
+
+    it('renders info tabs', () => {
+      renderWithTheme();
+
+      expect(screen.getByTestId('info-tabs')).toBeInTheDocument();
+    });
+
+    it('shows info tab by default', () => {
+      renderWithTheme();
 
       expect(screen.getByTestId('info-tab')).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: 'Information' }),
-      ).toHaveAttribute('aria-selected', 'true');
+      expect(screen.getByText('Info for: John Doe')).toBeInTheDocument();
+    });
+
+    it('does not show primary card label for non-primary cards', () => {
+      renderWithTheme();
+
+      expect(screen.queryByText(/primaryCardLabel/)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Primary card display', () => {
+    it('shows primary card label for primary cards', () => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: mockPrimaryCardResponse,
+        isLoading: false,
+        isError: false,
+      } as any);
+
+      renderWithTheme();
+
+      expect(screen.getByText(/primaryCardLabel/)).toBeInTheDocument();
     });
   });
 
   describe('Tab navigation', () => {
-    it('should start with Information tab active', () => {
-      renderSelectedCardDetails(mockCard);
+    beforeEach(() => {
+      mockedUseGetUserCardDetails.mockReturnValue({
+        data: mockCardDetailsResponse,
+        isLoading: false,
+        isError: false,
+      } as any);
+    });
 
-      const informationTab = screen.getByRole('button', {
-        name: 'Information',
-      });
-      expect(informationTab).toHaveAttribute('aria-selected', 'true');
+    it('starts with information tab active and info tab visible', () => {
+      renderWithTheme();
+
+      expect(screen.getByTestId('tab-information')).toHaveAttribute(
+        'data-active',
+        'true',
+      );
       expect(screen.getByTestId('info-tab')).toBeInTheDocument();
     });
 
-    it('should hide InfoTab when switching to Transactions tab', async () => {
-      renderSelectedCardDetails(mockCard);
+    it('hides info tab when switching to transactions tab', () => {
+      renderWithTheme();
 
-      await userEvent.click(
-        screen.getByRole('button', { name: 'Transactions' }),
-      );
+      fireEvent.click(screen.getByTestId('tab-transactions'));
 
-      expect(
-        screen.getByRole('button', { name: 'Transactions' }),
-      ).toHaveAttribute('aria-selected', 'true');
-      expect(screen.queryByTestId('info-tab')).not.toBeInTheDocument();
-    });
-
-    it('should hide InfoTab when switching to Settings tab', async () => {
-      renderSelectedCardDetails(mockCard);
-
-      await userEvent.click(screen.getByRole('button', { name: 'Settings' }));
-
-      expect(screen.getByRole('button', { name: 'Settings' })).toHaveAttribute(
-        'aria-selected',
+      expect(screen.getByTestId('tab-transactions')).toHaveAttribute(
+        'data-active',
         'true',
       );
       expect(screen.queryByTestId('info-tab')).not.toBeInTheDocument();
     });
 
-    it('should show InfoTab again when returning to Information tab', async () => {
-      renderSelectedCardDetails(mockCard);
+    it('shows info tab again when switching back to information tab', () => {
+      renderWithTheme();
 
-      await userEvent.click(
-        screen.getByRole('button', { name: 'Transactions' }),
-      );
+      fireEvent.click(screen.getByTestId('tab-transactions'));
       expect(screen.queryByTestId('info-tab')).not.toBeInTheDocument();
 
-      await userEvent.click(
-        screen.getByRole('button', { name: 'Information' }),
-      );
+      fireEvent.click(screen.getByTestId('tab-information'));
       expect(screen.getByTestId('info-tab')).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: 'Information' }),
-      ).toHaveAttribute('aria-selected', 'true');
-    });
-  });
-
-  describe('Card data integration', () => {
-    it('should pass selected card to InfoTab component', () => {
-      renderSelectedCardDetails(mockCard);
-
-      expect(screen.getByText('Card Info for: John Doe')).toBeInTheDocument();
-    });
-
-    it('should handle different card data', () => {
-      const differentCard = { ...mockCard, holder: 'Jane Smith' };
-      renderSelectedCardDetails(differentCard);
-
-      expect(screen.getByText('Card Info for: Jane Smith')).toBeInTheDocument();
-    });
-  });
-
-  describe('Component integration', () => {
-    it('should pass correct props to InfoTabs', () => {
-      renderSelectedCardDetails(mockCard);
-
-      expect(
-        screen.getByRole('button', { name: 'Information' }),
-      ).toHaveAttribute('aria-selected', 'true');
-      expect(
-        screen.getByRole('button', { name: 'Transactions' }),
-      ).toHaveAttribute('aria-selected', 'false');
-      expect(screen.getByRole('button', { name: 'Settings' })).toHaveAttribute(
-        'aria-selected',
-        'false',
-      );
-    });
-
-    it('should handle tab changes correctly', async () => {
-      renderSelectedCardDetails(mockCard);
-
-      await userEvent.click(screen.getByRole('button', { name: 'Settings' }));
-      expect(screen.getByRole('button', { name: 'Settings' })).toHaveAttribute(
-        'aria-selected',
-        'true',
-      );
-
-      await userEvent.click(
-        screen.getByRole('button', { name: 'Transactions' }),
-      );
-      expect(
-        screen.getByRole('button', { name: 'Transactions' }),
-      ).toHaveAttribute('aria-selected', 'true');
-
-      await userEvent.click(
-        screen.getByRole('button', { name: 'Information' }),
-      );
-      expect(
-        screen.getByRole('button', { name: 'Information' }),
-      ).toHaveAttribute('aria-selected', 'true');
     });
   });
 });
