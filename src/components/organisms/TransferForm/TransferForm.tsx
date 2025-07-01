@@ -39,7 +39,10 @@ import { TransferAlertDialog } from './molecules/TransferAlertDialog/TransferAle
 import { createOptions } from './utils/createOptions';
 import { renderOption } from './utils/renderOptions';
 
-import { InputFieldControlled, NumericInput } from 'components/molecules';
+import {
+  InputFieldControlled,
+  NumericFieldControlled,
+} from 'components/molecules';
 import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
 import { IErrorData } from 'models/IError';
@@ -220,14 +223,13 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
           />
         </Box>
         <Box gridColumn={1} gridRow={2}>
-          <StyledLabel htmlFor="amount">{translation.amount.label}</StyledLabel>
-          <InputFieldControlled
+          <NumericFieldControlled
             name="amount"
+            label={translation.amount.label}
             control={control}
+            placeholder={translation.amount.placeholder}
+            error={errors.amount}
             textFieldProps={{
-              error: !!errors.amount,
-              helperText: errors.amount?.message ?? '',
-              placeholder: translation.amount.placeholder,
               InputProps: {
                 endAdornment: (
                   <InputAdornment position="end">
@@ -238,7 +240,6 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
                   </InputAdornment>
                 ),
                 sx: { paddingRight: 0.5 },
-                inputComponent: NumericInput as never,
               },
               sx: (theme) => ({
                 fieldset: {

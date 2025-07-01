@@ -73,7 +73,7 @@
         "rate": "Rate",
         "errorMessage": "Exchange rates are currently unavailable, sorry for inconvenience"
       },
-      "ratesTable": {
+      "exchangeRatesTable": {
         "title": "Rates",
         "currencyColumnLabel": "Currency",
         "buyRateColumnLabel": "Buy Rate",

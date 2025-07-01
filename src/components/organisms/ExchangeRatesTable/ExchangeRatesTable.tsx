@@ -16,10 +16,10 @@ import {
   StyledCellText,
   StyledHeadCell,
   StyledTableContainer,
-  StyledTableTitle,
+  StyledTitle,
   TrendingDownIcon,
   TrendingUpIcon,
-} from './Rates.styled';
+} from './ExchangeRatesTable.styled';
 
 import {
   useGetCurrentRatesQuery,
@@ -38,9 +38,9 @@ interface Rate {
   ask: number;
 }
 
-export const RatesTable = () => {
+export function ExchangeRatesTable() {
   const { t } = useTranslation('translation', {
-    keyPrefix: 'Homepage.currencyExchange.ratesTable',
+    keyPrefix: 'Homepage.currencyExchange.exchangeRatesTable',
   });
   const theme = useTheme();
 
@@ -81,7 +81,7 @@ export const RatesTable = () => {
 
   return (
     <Box>
-      <StyledTableTitle>{t('title')}</StyledTableTitle>
+      <StyledTitle>{t('title')}</StyledTitle>
 
       {isRatesError && (
         <Alert severity="error" sx={{ mb: 2 }}>
@@ -165,4 +165,4 @@ export const RatesTable = () => {
       </StyledTableContainer>
     </Box>
   );
-};
+}

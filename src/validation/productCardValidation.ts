@@ -43,6 +43,12 @@ export const productCardValidation = yup.object().shape({
       (value) =>
         value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString()),
     ),
-  cardIssuer: yup.string().required(i18n.t('BackOffice.VisaCard.required')),
-  cardType: yup.string().required(i18n.t('BackOffice.VisaCard.required')),
+  cardIssuer: yup
+    .string()
+    .required(i18n.t('BackOffice.VisaCard.required'))
+    .nullable(),
+  cardType: yup
+    .string()
+    .required(i18n.t('BackOffice.VisaCard.required'))
+    .nullable(),
 });

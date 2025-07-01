@@ -57,16 +57,12 @@ exports[`LoginForm snapshot should match 1`] = `
       <div
         class="MuiBox-root css-8atqhb"
       >
-        <div
-          class="MuiBox-root css-k008qs"
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-15da9wh-MuiFormLabel-root-MuiInputLabel-root"
+          for="password"
         >
-          <label
-            class="css-2ogreq"
-            for="password"
-          >
-            Password
-          </label>
-        </div>
+          Password
+        </label>
         <div
           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
         >

@@ -1,15 +1,15 @@
 import { SelectChangeEvent, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
 
-import { CurrencySelect } from '../CurrencySelect/CurrencySelect';
-
 import {
   StyledInputContainer,
   StyledInputLabel,
   StyledInputRow,
-} from './CurrencyInput.styled';
+} from './ExchangeInputBox.styled';
 
-interface CurrencyInputProps {
+import { CurrencySelect, NumericInput } from 'components/molecules';
+
+interface ExchangeInputBoxProps {
   label: string;
   fromCurrency?: string;
   toCurrency?: string;
@@ -19,7 +19,7 @@ interface CurrencyInputProps {
   disabled?: boolean;
 }
 
-export const CurrencyInput = ({
+export const ExchangeInputBox = ({
   label,
   fromCurrency,
   toCurrency,
@@ -27,7 +27,7 @@ export const CurrencyInput = ({
   onCurrencyChange,
   onAmountChange,
   disabled,
-}: CurrencyInputProps) => {
+}: ExchangeInputBoxProps) => {
   function handleCurrencySelectChange(e: SelectChangeEvent<unknown>) {
     onCurrencyChange(e.target.value as string);
   }
@@ -47,8 +47,11 @@ export const CurrencyInput = ({
           size="small"
           type="text"
           sx={{ width: '60%' }}
-          inputProps={{ sx: { textAlign: 'right' } }}
-          InputProps={{ sx: { borderRadius: '8px' } }}
+          inputProps={{ sx: { textAlign: 'right' }, fixedDecimalScale: false }}
+          InputProps={{
+            sx: { borderRadius: '8px', fontFamily: 'Inter', fontWeight: 500 },
+            inputComponent: NumericInput as never,
+          }}
           disabled={disabled}
         />
       </StyledInputRow>

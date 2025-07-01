@@ -25,7 +25,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
           class="MuiBox-root css-161lh0b"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-zj28j3-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-151t58t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
               aria-controls=":r0:"
@@ -41,12 +41,12 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
                 <svg
                   data-testid="currency-flag-icon"
                 >
-                  UsaFlag.svg
+                  EurFlag.svg
                 </svg>
                 <span
-                  style="font-weight: 500;"
+                  class="MuiTypography-root MuiTypography-body1 css-eflgtu-MuiTypography-root"
                 >
-                  USD
+                  EUR
                 </span>
               </div>
             </div>
@@ -55,7 +55,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
               aria-invalid="false"
               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
               tabindex="-1"
-              value="USD"
+              value="EUR"
             />
             <svg
               aria-hidden="true"
@@ -87,12 +87,13 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
             class="MuiFormControl-root MuiTextField-root css-11saer6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-l2lu5h-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-1h3f77n-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-14iqq93-MuiInputBase-input-MuiOutlinedInput-input"
                 id=":r1:"
+                inputmode="numeric"
                 type="text"
                 value=""
               />
@@ -147,7 +148,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
           class="MuiBox-root css-161lh0b"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-zj28j3-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary  css-151t58t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
           >
             <div
               aria-controls=":r2:"
@@ -163,12 +164,12 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
                 <svg
                   data-testid="currency-flag-icon"
                 >
-                  EurFlag.svg
+                  PlnFlag.svg
                 </svg>
                 <span
-                  style="font-weight: 500;"
+                  class="MuiTypography-root MuiTypography-body1 css-eflgtu-MuiTypography-root"
                 >
-                  EUR
+                  PLN
                 </span>
               </div>
             </div>
@@ -177,7 +178,7 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
               aria-invalid="false"
               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
               tabindex="-1"
-              value="EUR"
+              value="PLN"
             />
             <svg
               aria-hidden="true"
@@ -209,12 +210,13 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
             class="MuiFormControl-root MuiTextField-root css-11saer6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-l2lu5h-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-1h3f77n-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-14iqq93-MuiInputBase-input-MuiOutlinedInput-input"
                 id=":r3:"
+                inputmode="numeric"
                 type="text"
                 value=""
               />
@@ -242,12 +244,12 @@ exports[`CurrencyCalculator CurrencyCalculator snapshot 1`] = `
     >
       rate
       : 1 
-      USD
+      EUR
        =
        
       1.1628
        
-      EUR
+      PLN
     </p>
   </div>
 </div>

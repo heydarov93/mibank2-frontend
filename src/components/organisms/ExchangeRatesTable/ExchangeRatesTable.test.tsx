@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@mui/material';
 import { render, screen } from '@testing-library/react';
 
-import { RatesTable } from './RatesTable';
+import { ExchangeRatesTable } from './ExchangeRatesTable';
 
 import {
   useGetCurrentRatesQuery,
@@ -75,7 +75,7 @@ describe('RatesTable component', () => {
 
     const { asFragment } = render(
       <ThemeProvider theme={theme}>
-        <RatesTable />
+        <ExchangeRatesTable />
       </ThemeProvider>,
     );
 
@@ -96,7 +96,7 @@ describe('RatesTable component', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        <RatesTable />
+        <ExchangeRatesTable />
       </ThemeProvider>,
     );
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -116,7 +116,7 @@ describe('RatesTable component', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        <RatesTable />
+        <ExchangeRatesTable />
       </ThemeProvider>,
     );
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -136,7 +136,7 @@ describe('RatesTable component', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        <RatesTable />
+        <ExchangeRatesTable />
       </ThemeProvider>,
     );
 

@@ -11,7 +11,7 @@ import {
 } from './BusinessSignUpForm.styled';
 
 import { InputField, SubmitButton } from 'components/atoms';
-import { InputFieldControlled, PatternInput } from 'components/molecules';
+import { PatternFieldControlled } from 'components/molecules';
 import { NIP_PATTERN } from 'constants/inputPatterns';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/routesName';
 import { businessSignUpFormSchema } from 'validation';
@@ -79,20 +79,14 @@ export const BusinessSignUpForm = () => {
           />
         </Box>
         <Box>
-          <StyledLabel htmlFor="nip">{t('form.fields.nip')}</StyledLabel>
-          <InputFieldControlled
+          <PatternFieldControlled
             name="nip"
             control={control}
+            label={t('form.fields.nip')}
+            error={errors.nip}
+            format={NIP_PATTERN}
+            allowEmptyFormatting={true}
             textFieldProps={{
-              InputProps: {
-                inputComponent: PatternInput as never,
-              },
-              inputProps: {
-                format: NIP_PATTERN,
-                allowEmptyFormatting: true,
-              },
-              error: !!errors.nip,
-              helperText: errors.nip?.message ?? '',
               sx: (theme) => ({
                 animation: errors.nip ? `${theme.animations?.shake} 0.25s` : '',
               }),

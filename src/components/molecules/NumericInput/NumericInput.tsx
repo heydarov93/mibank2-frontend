@@ -12,13 +12,15 @@ export const NumericInput = forwardRef<NumericFormatProps, CustomProps>(
     return (
       <NumericFormat
         getInputRef={ref}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
+        onValueChange={(values, sourceInfo) => {
+          if (sourceInfo.source === 'event') {
+            onChange({
+              target: {
+                name: props.name,
+                value: values.value,
+              },
+            });
+          }
         }}
         decimalSeparator=","
         decimalScale={2}

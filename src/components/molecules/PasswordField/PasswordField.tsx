@@ -1,12 +1,10 @@
 import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { Box, IconButton, InputAdornment, Tooltip } from '@mui/material';
+import { IconButton, InputAdornment, Tooltip } from '@mui/material';
 import { useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react';
 import { Control, FieldErrors, FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { StyledLabel } from './PasswordField.styled';
-
-import { InputField } from 'components/atoms';
+import { FieldLabel, InputField } from 'components/atoms';
 import { ISignupFormInput } from 'models/IAuth';
 
 interface PasswordFieldProps<T extends FieldValues> {
@@ -92,11 +90,9 @@ export const PasswordField = <T extends FieldValues>({
 
   return (
     <>
-      <Box display="flex">
-        <StyledLabel htmlFor={id}>
-          {t(name === 'password' ? 'mainLabel' : 'confirmLabel')}
-        </StyledLabel>
-      </Box>
+      <FieldLabel htmlFor={name}>
+        {t(name === 'password' ? 'mainLabel' : 'confirmLabel')}
+      </FieldLabel>
       <InputField
         name={name}
         id={id}

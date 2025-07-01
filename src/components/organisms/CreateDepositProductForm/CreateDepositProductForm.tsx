@@ -1,20 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Box,
-  Typography,
-  Checkbox,
-  useTheme,
-  FormControlLabel,
-} from '@mui/material';
+import { Box, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import React from 'react';
-import { useForm, Controller, FieldError } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled';
 
 import { BackArrow } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
-import { InputFieldControlled, NumericInput } from 'components/molecules';
+import { NumericFieldControlled } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { DepositFormData } from 'models/IProductInfo';
@@ -24,8 +18,9 @@ import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { lastDepositValidation } from 'validation/lastResortDepositValidation';
 
 const CreateDepositProductForm: React.FC = () => {
-  const theme = useTheme();
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'BackOffice.LastResortDeposit',
+  });
   const dispatch = useAppDispatch();
   const selector = useAppSelector(getProductForm);
 
@@ -58,8 +53,6 @@ const CreateDepositProductForm: React.FC = () => {
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };
 
-  const errorMessage = (error: FieldError | undefined) => error?.message ?? '';
-
   return (
     <Box
       width="75%"
@@ -83,89 +76,49 @@ const CreateDepositProductForm: React.FC = () => {
       <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>
           <Box>
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.minimumDepositSum')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="minimumDepositSum"
+              label={t('minimumDepositSum')}
               control={control}
-              textFieldProps={{
-                error: !!errors.minimumDepositSum,
-                helperText: errorMessage(errors.minimumDepositSum),
-                placeholder: t('LastResortDeposit.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.minimumDepositSum}
             />
           </Box>
           <Box>
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.maximumDepositSum')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="maximumDepositSum"
+              label={t('maximumDepositSum')}
               control={control}
-              textFieldProps={{
-                error: !!errors.maximumDepositSum,
-                helperText: errorMessage(errors.maximumDepositSum),
-                placeholder: t('LastResortDeposit.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.maximumDepositSum}
             />
           </Box>
           <Box>
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.depositTerm')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="depositTerm"
+              label={t('depositTerm')}
               control={control}
-              textFieldProps={{
-                error: !!errors.depositTerm,
-                helperText: errorMessage(errors.depositTerm),
-                placeholder: t('LastResortDeposit.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-                inputProps: { decimalScale: 0 },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.depositTerm}
+              decimalScale={0}
             />
           </Box>
           <Box>
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.depositInterestRate')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="depositInterestRate"
+              label={t('depositInterestRate')}
               control={control}
-              textFieldProps={{
-                error: !!errors.depositInterestRate,
-                helperText: errorMessage(errors.depositInterestRate),
-                placeholder: t('LastResortDeposit.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.depositInterestRate}
             />
           </Box>
           <Box>
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.depositCapitalizationRate')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="depositCapitalizationRate"
+              label={t('depositCapitalizationRate')}
               control={control}
-              textFieldProps={{
-                error: !!errors.depositCapitalizationRate,
-                helperText: errorMessage(errors.depositCapitalizationRate),
-                placeholder: t('LastResortDeposit.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.depositCapitalizationRate}
             />
             <Box display={'flex'} alignItems={'center'} justifyContent={'end'}>
               <Controller
@@ -180,61 +133,31 @@ const CreateDepositProductForm: React.FC = () => {
                         onChange={(e) => field.onChange(e.target.checked)}
                       />
                     }
-                    label={t('LastResortDeposit.earlyWithdrawal')}
+                    label={t('earlyWithdrawal')}
                   />
                 )}
               />
             </Box>
           </Box>
-          <Box
-            color={
-              earlyWithdrawalEnabled
-                ? theme.palette.common.black
-                : theme.palette.grey[300]
-            }
-          >
-            <Typography fontWeight={'bold'} fontSize={14}>
-              {t('LastResortDeposit.earlyWithdrawalLimit')}
-            </Typography>
-            <InputFieldControlled
+          <Box>
+            <NumericFieldControlled
               name="earlyWithdrawalLimit"
+              label={t('earlyWithdrawalLimit')}
               control={control}
-              textFieldProps={{
-                error: !!errors.earlyWithdrawalLimit,
-                helperText: errorMessage(errors.earlyWithdrawalLimit),
-                placeholder: t('LastResortDeposit.enterHere'),
-                disabled: !earlyWithdrawalEnabled,
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.earlyWithdrawalLimit}
+              disabled={!earlyWithdrawalEnabled}
             />
           </Box>
           <Box>
-            <Box
-              color={
-                earlyWithdrawalEnabled
-                  ? theme.palette.common.black
-                  : theme.palette.grey[300]
-              }
-            >
-              <Typography fontWeight={'bold'} fontSize={14}>
-                {t('LastResortDeposit.withdrawalFee')}
-              </Typography>
-              <InputFieldControlled
-                name="earlyWithdrawalFee"
-                control={control}
-                textFieldProps={{
-                  error: !!errors.earlyWithdrawalFee,
-                  helperText: errorMessage(errors.earlyWithdrawalFee),
-                  placeholder: t('LastResortDeposit.enterHere'),
-                  disabled: !earlyWithdrawalEnabled,
-                  InputProps: {
-                    inputComponent: NumericInput as never,
-                  },
-                }}
-              />
-            </Box>
+            <NumericFieldControlled
+              name="earlyWithdrawalFee"
+              label={t('withdrawalFee')}
+              control={control}
+              placeholder={t('enterHere')}
+              error={errors.earlyWithdrawalFee}
+              disabled={!earlyWithdrawalEnabled}
+            />
           </Box>
           <Box display={'flex'} gap={4}>
             <Controller
@@ -249,7 +172,7 @@ const CreateDepositProductForm: React.FC = () => {
                       onChange={(e) => field.onChange(e.target.checked)}
                     />
                   }
-                  label={t('LastResortDeposit.autoRenewable')}
+                  label={t('autoRenewable')}
                 />
               )}
             />
@@ -265,7 +188,7 @@ const CreateDepositProductForm: React.FC = () => {
                       onChange={(e) => field.onChange(e.target.checked)}
                     />
                   }
-                  label={t('LastResortDeposit.addOn')}
+                  label={t('addOn')}
                 />
               )}
             />
@@ -276,7 +199,7 @@ const CreateDepositProductForm: React.FC = () => {
             justifyContent={'end'}
             gap={4}
           >
-            <CancelButton>{t('LastResortDeposit.cancel')}</CancelButton>
+            <CancelButton>{t('cancel')}</CancelButton>
             <StyledButton
               type="submit"
               disabled={!isValid}
@@ -284,7 +207,7 @@ const CreateDepositProductForm: React.FC = () => {
               color="primary"
               size="large"
             >
-              {t('LastResortDeposit.create')}
+              {t('create')}
             </StyledButton>
           </Box>
         </Box>
