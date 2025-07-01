@@ -56,7 +56,7 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
       class="MuiBox-root css-0"
     >
       <label
-        class="css-2ogreq"
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-15da9wh-MuiFormLabel-root-MuiInputLabel-root"
         for="nip"
       >
         NIP

@@ -33,3 +33,14 @@ export const StyledIconButton = styled(IconButton)(
     },
   }),
 );
+
+export const StyledTitle = styled(Typography)(
+  ({ theme: { palette, spacing } }) => ({
+    color: palette.common.black,
+    fontFamily: 'Urbanist',
+    fontWeight: 600,
+    fontSize: '18px',
+    lineHeight: '28px',
+    marginBottom: spacing(1.75),
+  }),
+);

@@ -40,3 +40,6 @@ export { AllCardsSlider } from './AllCardsSlider/AllCardsSlider';
 export { OneTimePasscodeForm } from './OneTimePasscodeForm/OneTimePasscodeForm';
 export * from './IssueCardModal/IssueCardModal';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';
+export { CurrencyCalculator } from './CurrencyCalculator/CurrencyCalculator';
+export { ExchangeRatesTable as RatesTable } from './ExchangeRatesTable/ExchangeRatesTable';
+export { CurrencyExchange } from './CurrencyExchange/CurrencyExchange';

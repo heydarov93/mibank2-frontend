@@ -14,14 +14,16 @@ export const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   borderRadius: '8px',
 }));
 
-export const StyledTableTitle = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.black,
-  fontFamily: 'Urbanist',
-  fontWeight: 600,
-  fontSize: '18px',
-  lineHeight: '28px',
-  marginBottom: '14px',
-}));
+export const StyledTitle = styled(Typography)(
+  ({ theme: { spacing, palette } }) => ({
+    color: palette.common.black,
+    fontFamily: 'Urbanist',
+    fontWeight: 600,
+    fontSize: '18px',
+    lineHeight: '28px',
+    marginBottom: spacing(1.75),
+  }),
+);
 
 export const StyledHeadCell = styled(TableCell)(({ theme }) => ({
   color: theme.palette.grey[400],
@@ -40,8 +42,8 @@ export const StyledCellText = styled(Typography)(({ theme }) => ({
 }));
 
 export const TrendingUpIcon = styled(TrendingUpRoundedIcon)(
-  ({ theme: { palette } }) => ({
-    marginRight: '8px',
+  ({ theme: { palette, spacing } }) => ({
+    marginRight: spacing(1),
     width: '18px',
     height: '18px',
     color: palette.success.main,
@@ -49,8 +51,8 @@ export const TrendingUpIcon = styled(TrendingUpRoundedIcon)(
 );
 
 export const TrendingDownIcon = styled(TrendingDownRoundedIcon)(
-  ({ theme: { palette } }) => ({
-    marginRight: '8px',
+  ({ theme: { palette, spacing } }) => ({
+    marginRight: spacing(1),
     width: '18px',
     height: '18px',
     color: palette.error.main,

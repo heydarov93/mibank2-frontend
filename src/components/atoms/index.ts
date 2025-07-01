@@ -38,3 +38,4 @@ export { TabPanel } from './TabPanel/TabPanel';
 export { LoadingIndicator } from './LoadingIndicator/LoadingIndicator';
 export { SpecialCharactersTooltip } from './SpecialCharactersTooltip/SpecialCharactersTooltip';
 export { NoCardIcon } from './NoCardIcon/NoCardIcon';
+export { FieldLabel } from './FieldLabel/FieldLabel';

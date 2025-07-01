@@ -1,5 +1,12 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, MenuItem, Select, SelectProps, Theme } from '@mui/material';
+import {
+  Box,
+  MenuItem,
+  Select,
+  SelectProps,
+  Theme,
+  Typography,
+} from '@mui/material';
 
 import { CurrencyFlagIcon } from 'components/atoms';
 import currencies from 'constants/currencies';
@@ -15,7 +22,7 @@ export function CurrencySelect(props: CustomSelectProps) {
   const selectSx = {
     width: '120px',
     minWidth: '120px',
-    fieldset: {
+    '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
     },
   };
@@ -59,7 +66,9 @@ export function CurrencySelect(props: CustomSelectProps) {
         >
           <Box display="flex" alignItems="center" gap={1}>
             <CurrencyFlagIcon currency={currency} />
-            <span style={{ fontWeight: 500 }}>{currency}</span>
+            <Typography component="span" fontWeight={500}>
+              {currency}
+            </Typography>
           </Box>
         </MenuItem>
       ))}

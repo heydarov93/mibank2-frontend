@@ -43,3 +43,5 @@ export { CustomTableRow } from './CustomTableRow/CustomTableRow';
 export { DateCalendar } from './DateCalendar/DateCalendar';
 export { PasswordValidationTags } from './PasswordValidationTags/PasswordValidationTags';
 export { CustomCarousel } from './CustomCarousel/CustomCarousel';
+export { NumericFieldControlled } from './NumericFieldControlled/NumericFieldControlled';
+export { PatternFieldControlled } from './PatternFieldControlled/PatternFieldControlled';

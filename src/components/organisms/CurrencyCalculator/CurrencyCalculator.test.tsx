@@ -6,10 +6,13 @@ import {
   fireEvent,
   waitFor,
   cleanup,
+  act,
+  within,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 
-import CurrencyCalculator from './CurrencyCalculator';
+import { CurrencyCalculator } from './CurrencyCalculator';
 
 import { useGetCurrentRatesQuery } from 'api/getExchangeRatesApi';
 import store from 'store';
@@ -57,12 +60,12 @@ jest.mock('react-i18next', () => ({
 describe('CurrencyCalculator', () => {
   const mockRates = [
     {
-      code: 'USD',
+      code: 'EUR',
       bid: 1.0,
       ask: 1.0,
     },
     {
-      code: 'EUR',
+      code: 'PLN',
       bid: 0.85,
       ask: 0.86,
     },
@@ -115,7 +118,7 @@ describe('CurrencyCalculator', () => {
     );
 
     const toAmount = screen.getAllByRole('textbox')[1];
-    await waitFor(() => expect(toAmount).toHaveValue('116.28'));
+    await waitFor(() => expect(toAmount).toHaveValue('116,28'));
   });
 
   test('handles amount change for "to" currency', async () => {
@@ -131,7 +134,7 @@ describe('CurrencyCalculator', () => {
     );
 
     const fromAmount = screen.getAllByRole('textbox')[0];
-    await waitFor(() => expect(fromAmount).toHaveValue('86.00'));
+    await waitFor(() => expect(fromAmount).toHaveValue('86,00'));
   });
 
   test('displays loading spinner', async () => {
@@ -168,12 +171,12 @@ describe('CurrencyCalculator', () => {
     fireEvent.change(fromAmount, { target: { value: '123456,789' } });
 
     await waitFor(() =>
-      expect((fromAmount as HTMLInputElement).value).toBe('123456,789'),
+      expect((fromAmount as HTMLInputElement).value).toBe('123456,78'),
     );
   });
 
   test('displays calculated exchange rate', async () => {
-    const rate = await screen.findByText('rate: 1 USD = 1.1628 EUR');
+    const rate = await screen.findByText(/1 EUR = 1.1628 PLN/i);
     expect(rate).toBeInTheDocument();
   });
 
@@ -183,20 +186,28 @@ describe('CurrencyCalculator', () => {
 
     await waitFor(() => {
       expect(screen.getByDisplayValue('EUR')).toBeInTheDocument();
-      expect(screen.getByDisplayValue('USD')).toBeInTheDocument();
+      expect(screen.getByDisplayValue('PLN')).toBeInTheDocument();
     });
   });
 
   test('handles currency change and triggers conversion', async () => {
-    const currencySelects = screen.getAllByRole('textbox');
-    const fromCurrencySelect = currencySelects[0];
-    fireEvent.change(fromCurrencySelect, { target: { value: 'EUR' } });
+    const fromCurrencySelect = screen.getAllByRole('combobox')[0];
+    const fromAmount = screen.getAllByRole('textbox')[0];
+
+    fireEvent.mouseDown(fromCurrencySelect);
+    const listbox = await screen.findByRole('listbox');
+    const firstOption = within(listbox).getByText('USD');
+    fireEvent.click(firstOption);
+
+    act(() => {
+      userEvent.type(fromAmount, '1');
+    });
 
     await waitFor(() => {
       expect(mockConvertCurrency).toHaveBeenCalledWith({
-        amount: expect.any(Number),
+        amount: 1,
         fromCurrency: 'USD',
-        toCurrency: 'EUR',
+        toCurrency: 'PLN',
         fromAmountProvided: true,
       });
     });

@@ -1,14 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { Controller, FieldError, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { CancelButton } from '../OneTimePasscodeForm/OneTimePasscodeForm.styled';
 
-import { BackArrow } from 'components/atoms';
+import { BackArrow, FieldLabel } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
-import { InputFieldControlled, NumericInput } from 'components/molecules';
+import { NumericFieldControlled } from 'components/molecules';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -22,17 +22,19 @@ interface FormData {
   monthlyFee: number;
   dailyOperationalLimit: number;
   foreignTransactionLimit: number;
-  cardIssuer: string;
-  cardType: string;
+  cardIssuer: string | null;
+  cardType: string | null;
 }
 
 const CreateCardProductForm: React.FC = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'BackOffice.VisaCard',
+  });
   const dispatch = useAppDispatch();
   const selector = useAppSelector(getProductForm);
 
-  const cardIssuerOptions = [t('VisaCard.visa'), t('VisaCard.masterCard')];
-  const cardTypeOptions = [t('VisaCard.digital'), t('VisaCard.plastic')];
+  const cardIssuerOptions = [t('visa'), t('masterCard')];
+  const cardTypeOptions = [t('digital'), t('plastic')];
 
   const {
     control,
@@ -46,8 +48,8 @@ const CreateCardProductForm: React.FC = () => {
       monthlyFee: undefined,
       dailyOperationalLimit: undefined,
       foreignTransactionLimit: undefined,
-      cardIssuer: '',
-      cardType: '',
+      cardIssuer: null,
+      cardType: null,
     },
   });
 
@@ -55,8 +57,6 @@ const CreateCardProductForm: React.FC = () => {
     dispatch(setCardFormData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };
-
-  const errorMessage = (error: FieldError | undefined) => error?.message ?? '';
 
   return (
     <Box
@@ -81,9 +81,7 @@ const CreateCardProductForm: React.FC = () => {
       <form style={{ width: '420px' }} onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={4}>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.cardIssuer')}
-            </Typography>
+            <FieldLabel htmlFor="cardIssuer">{t('cardIssuer')}</FieldLabel>
             <Controller
               name="cardIssuer"
               control={control}
@@ -99,9 +97,7 @@ const CreateCardProductForm: React.FC = () => {
             />
           </Box>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.cardType')}
-            </Typography>
+            <FieldLabel htmlFor="cardType">{t('cardType')}</FieldLabel>
             <Controller
               name="cardType"
               control={control}
@@ -117,75 +113,43 @@ const CreateCardProductForm: React.FC = () => {
             />
           </Box>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.cashbackRate')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="cashbackRate"
+              label={t('cashbackRate')}
               control={control}
-              textFieldProps={{
-                error: !!errors.cashbackRate,
-                helperText: errorMessage(errors.cashbackRate),
-                placeholder: t('VisaCard.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.cashbackRate}
             />
           </Box>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.monthlyFee')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="monthlyFee"
+              label={t('monthlyFee')}
               control={control}
-              textFieldProps={{
-                error: !!errors.monthlyFee,
-                helperText: errorMessage(errors.monthlyFee),
-                placeholder: t('VisaCard.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.monthlyFee}
             />
           </Box>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.dailyOperationalLimit')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="dailyOperationalLimit"
+              label={t('dailyOperationalLimit')}
               control={control}
-              textFieldProps={{
-                error: !!errors.dailyOperationalLimit,
-                helperText: errorMessage(errors.dailyOperationalLimit),
-                placeholder: t('VisaCard.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.dailyOperationalLimit}
             />
           </Box>
           <Box>
-            <Typography fontWeight="bold" fontSize={14}>
-              {t('VisaCard.foreignTransactionLimit')}
-            </Typography>
-            <InputFieldControlled
+            <NumericFieldControlled
               name="foreignTransactionLimit"
+              label={t('foreignTransactionLimit')}
               control={control}
-              textFieldProps={{
-                error: !!errors.foreignTransactionLimit,
-                helperText: errorMessage(errors.foreignTransactionLimit),
-                placeholder: t('VisaCard.enterHere'),
-                InputProps: {
-                  inputComponent: NumericInput as never,
-                },
-              }}
+              placeholder={t('enterHere')}
+              error={errors.foreignTransactionLimit}
             />
           </Box>
           <Box display="flex" alignItems="center" justifyContent="end" gap={4}>
-            <CancelButton>{t('VisaCard.cancel')}</CancelButton>
+            <CancelButton>{t('cancel')}</CancelButton>
             <StyledButton
               type="submit"
               disabled={!isValid}
@@ -193,7 +157,7 @@ const CreateCardProductForm: React.FC = () => {
               color="primary"
               size="large"
             >
-              {t('VisaCard.create')}
+              {t('create')}
             </StyledButton>
           </Box>
         </Box>

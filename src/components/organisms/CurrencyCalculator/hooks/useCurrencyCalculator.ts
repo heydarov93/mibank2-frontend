@@ -11,29 +11,15 @@ interface ConvertedCurrency {
   toCurrency: string;
 }
 
-export const useCurrencyCalculator = () => {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'Homepage.currencyExchange.calculator',
-  });
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [exchange, setExchange] = useState({
-    from: { currency: 'USD', amount: '' },
-    to: { currency: 'EUR', amount: '' },
-  });
-
-  const [
-    convertCurrency,
-    { isLoading: isConvertLoading, isError: isConvertError },
-  ] = useConvertCurrencyMutation();
-
+function useGetExchangeRates() {
   const {
-    data: currentData,
-    isLoading: isLoadingCurrent,
-    isError: isCurrentError,
+    data: exchangeRates,
+    isLoading,
+    isError,
   } = useGetCurrentRatesQuery(null);
 
   const rates = useMemo(() => {
-    return currentData?.[0]?.rates?.reduce(
+    return exchangeRates?.[0]?.rates?.reduce(
       (
         acc: { [key: string]: { buy: number; sell: number } },
         rate: { code: string; bid: number; ask: number },
@@ -46,9 +32,33 @@ export const useCurrencyCalculator = () => {
       },
       { PLN: { buy: 1, sell: 1 } },
     );
-  }, [currentData]);
+  }, [exchangeRates]);
 
-  const isConvertCurrencyError = isCurrentError || isConvertError;
+  return { exchangeRates: rates, isLoading, isError };
+}
+
+export const useCurrencyCalculator = () => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Homepage.currencyExchange.calculator',
+  });
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [exchange, setExchange] = useState({
+    from: { currency: 'EUR', amount: '' },
+    to: { currency: 'PLN', amount: '' },
+  });
+
+  const [
+    convertCurrency,
+    { isLoading: isConvertLoading, isError: isConvertError },
+  ] = useConvertCurrencyMutation();
+
+  const {
+    exchangeRates,
+    isLoading: isRatesLoading,
+    isError: isRatesError,
+  } = useGetExchangeRates();
+
+  const isConvertCurrencyError = isRatesError || isConvertError;
 
   const updateExchangeState = (amountValue: string, isFromAmount: boolean) => {
     setExchange((prev) => ({
@@ -65,10 +75,10 @@ export const useCurrencyCalculator = () => {
     const formattedAmount = formatAmount(convertedAmount);
     setExchange((prev) => ({
       ...prev,
-      to: isFromAmount ? { ...prev.to, amount: formattedAmount } : prev.to,
       from: !isFromAmount
         ? { ...prev.from, amount: formattedAmount }
         : prev.from,
+      to: isFromAmount ? { ...prev.to, amount: formattedAmount } : prev.to,
     }));
   };
 
@@ -134,9 +144,9 @@ export const useCurrencyCalculator = () => {
     isConvertCurrencyError,
     errorMessage,
     exchange,
-    rates,
-    isLoadingCurrent,
-    isConvertLoading,
+    exchangeRates,
+    isLoadingCurrent: isRatesLoading,
+    isConvertLoading: isConvertLoading,
     handleAmountChange,
     handleCurrencyChange,
     handleSwap,

@@ -84,16 +84,12 @@ exports[`LoginPage snapshot should match 1`] = `
           <div
             class="MuiBox-root css-8atqhb"
           >
-            <div
-              class="MuiBox-root css-k008qs"
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-animated MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-animated css-1y331er-MuiFormLabel-root-MuiInputLabel-root"
+              for="password"
             >
-              <label
-                class="css-4hw5h8"
-                for="password"
-              >
-                Password
-              </label>
-            </div>
+              Password
+            </label>
             <div
               class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-3cvbuz-MuiFormControl-root-MuiTextField-root"
             >

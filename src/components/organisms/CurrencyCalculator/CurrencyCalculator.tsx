@@ -3,18 +3,16 @@ import { Alert, Box, CircularProgress } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { StyledTableTitle } from '../CurrencyExchange/Rates/Rates.styled';
-
 import {
   StyledCurrencyText,
   StyledIconButton,
   StyledInputsColumn,
+  StyledTitle,
 } from './CurrencyCalculator.styled';
+import { useCurrencyCalculator } from './hooks/useCurrencyCalculator';
+import { ExchangeInputBox } from './molecules/ExchangeInputBox/ExchangeInputBox';
 
-import { CurrencyInput } from 'components/molecules/CurrencyInput/CurrencyInput';
-import { useCurrencyCalculator } from 'hooks/useCurrencyCalculator';
-
-const CurrencyCalculator = () => {
+export const CurrencyCalculator = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.currencyExchange.calculator',
   });
@@ -22,7 +20,7 @@ const CurrencyCalculator = () => {
     isConvertCurrencyError,
     errorMessage,
     exchange,
-    rates,
+    exchangeRates,
     isLoadingCurrent,
     isConvertLoading,
     handleAmountChange,
@@ -42,7 +40,7 @@ const CurrencyCalculator = () => {
 
   return (
     <Box>
-      <StyledTableTitle>{t('title')}</StyledTableTitle>
+      <StyledTitle>{t('title')}</StyledTitle>
 
       {isConvertCurrencyError && (
         <Alert
@@ -55,7 +53,7 @@ const CurrencyCalculator = () => {
       )}
 
       <StyledInputsColumn>
-        <CurrencyInput
+        <ExchangeInputBox
           label={t('give')}
           fromCurrency={exchange.to.currency}
           toCurrency={exchange.from.currency}
@@ -72,7 +70,7 @@ const CurrencyCalculator = () => {
           <SwapVertIcon />
         </StyledIconButton>
 
-        <CurrencyInput
+        <ExchangeInputBox
           label={t('get')}
           fromCurrency={exchange.from.currency}
           toCurrency={exchange.to.currency}
@@ -83,14 +81,14 @@ const CurrencyCalculator = () => {
         />
       </StyledInputsColumn>
 
-      {rates &&
-        rates[exchange.from.currency] &&
-        rates[exchange.to.currency] && (
+      {exchangeRates &&
+        exchangeRates[exchange.from.currency] &&
+        exchangeRates[exchange.to.currency] && (
           <StyledCurrencyText>
             {t('rate')}: 1 {exchange.from.currency} ={' '}
             {(
-              rates[exchange.from.currency].buy /
-              rates[exchange.to.currency].sell
+              exchangeRates[exchange.from.currency].buy /
+              exchangeRates[exchange.to.currency].sell
             ).toFixed(4)}{' '}
             {exchange.to.currency}
           </StyledCurrencyText>
@@ -98,5 +96,3 @@ const CurrencyCalculator = () => {
     </Box>
   );
 };
-
-export default CurrencyCalculator;
