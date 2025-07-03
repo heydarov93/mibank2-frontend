@@ -21,7 +21,7 @@ import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
-import { validationEmailSchema } from 'validation';
+import { userEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
   const { t } = useTranslation('translation');
@@ -37,7 +37,7 @@ export const SignupFormEmail = () => {
     reset: resetForm,
     setError: setFormError,
   } = useForm<IEmailFormInput>({
-    resolver: yupResolver(validationEmailSchema),
+    resolver: yupResolver(userEmailSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

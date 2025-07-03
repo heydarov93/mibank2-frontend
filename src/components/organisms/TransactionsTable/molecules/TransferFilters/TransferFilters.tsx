@@ -18,7 +18,7 @@ import { StyledSelectField } from './TransferFilters.styled';
 
 import { ETransferTime } from 'enums/ETransferTime';
 import { formatDate } from 'utils/formatDate';
-import { TransactionFiltersFormValues } from 'validation/validationTransactionFilters';
+import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;
@@ -37,7 +37,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
   const theme = useTheme();
   // TODO get from backend
   const firstTransactionDate = dayjs().subtract(3, 'month');
-  const formMethods = useForm<TransactionFiltersFormValues>({
+  const formMethods = useForm<TTransactionFiltersValues>({
     defaultValues: defaultFilters,
   });
   const {

@@ -17,10 +17,7 @@ import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { IErrorData } from 'models/IError';
 import { theme } from 'theme/theme';
-import {
-  employeeRoles,
-  employeeValidationSchema,
-} from 'validation/validationCreateEmployee';
+import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 
 type FormData = {
   firstName: string;
@@ -42,8 +39,8 @@ const CreateEmployee: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<FormData>({
-    resolver: yupResolver(employeeValidationSchema),
+  } = useForm<TEmployeeValues>({
+    resolver: yupResolver(employeeSchema),
     mode: 'all',
     defaultValues: {
       firstName: '',

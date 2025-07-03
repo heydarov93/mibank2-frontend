@@ -20,7 +20,7 @@ import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
-import { validationEmailSchema } from 'validation';
+import { userEmailSchema } from 'validation';
 
 export const ForgotPassword = () => {
   const { t } = useTranslation('translation');
@@ -35,7 +35,7 @@ export const ForgotPassword = () => {
     resetField,
     reset: resetForm,
   } = useForm<IEmailFormInput>({
-    resolver: yupResolver(validationEmailSchema),
+    resolver: yupResolver(userEmailSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

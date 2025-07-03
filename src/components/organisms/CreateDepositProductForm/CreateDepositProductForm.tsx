@@ -15,7 +15,10 @@ import { DepositFormData } from 'models/IProductInfo';
 import { setDepositData } from 'store/reducers/CreateDepositSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
-import { lastDepositValidation } from 'validation/lastResortDepositValidation';
+import {
+  createDepositProductSchema,
+  TCreateDepositProductValues,
+} from 'validation';
 
 const CreateDepositProductForm: React.FC = () => {
   const { t } = useTranslation('translation', {
@@ -29,8 +32,8 @@ const CreateDepositProductForm: React.FC = () => {
     watch,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<DepositFormData>({
-    resolver: yupResolver(lastDepositValidation),
+  } = useForm<TCreateDepositProductValues>({
+    resolver: yupResolver(createDepositProductSchema),
     mode: 'all',
     defaultValues: {
       minimumDepositSum: undefined,

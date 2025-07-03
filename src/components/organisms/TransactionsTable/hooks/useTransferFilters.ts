@@ -4,11 +4,11 @@ import { SelectFieldOption } from 'components/molecules';
 import { filterOptions } from 'components/organisms/TransactionsTable/constants/transactionFilterOptions';
 import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
-import { TransactionFiltersFormValues } from 'validation/validationTransactionFilters';
+import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 type AvailableFilters = Record<
   keyof Pick<
-    TransactionFiltersFormValues,
+    TTransactionFiltersValues,
     'card' | 'template' | 'time' | 'transactionsType'
   >,
   SelectFieldOption[]
@@ -44,7 +44,7 @@ export const useTransferFilters = () => {
     transactionsType: filterOptions.transactionTypes,
   };
 
-  const defaultFilters: TransactionFiltersFormValues = {
+  const defaultFilters: TTransactionFiltersValues = {
     time: ETransferTime.LAST_7_DAYS,
     card: availableFilters.card[0].value,
     template: availableFilters.template[0].value,

@@ -14,7 +14,7 @@ import { InputField, SubmitButton } from 'components/atoms';
 import { PatternFieldControlled } from 'components/molecules';
 import { NIP_PATTERN } from 'constants/inputPatterns';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/routesName';
-import { businessSignUpFormSchema } from 'validation';
+import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
 interface IBusinessSignUpForm {
   companyName: string;
@@ -34,8 +34,8 @@ export const BusinessSignUpForm = () => {
     handleSubmit,
     reset: resetForm,
     formState: { errors, isValid },
-  } = useForm<IBusinessSignUpForm>({
-    resolver: yupResolver(businessSignUpFormSchema),
+  } = useForm<TBusinessSignupValues>({
+    resolver: yupResolver(businessSignupSchema),
     mode: 'onChange',
     defaultValues: {
       companyName: '',

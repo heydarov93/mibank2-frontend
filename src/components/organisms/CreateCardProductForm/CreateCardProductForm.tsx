@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { setCardFormData } from 'store/reducers/CreateCardSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
-import { productCardValidation } from 'validation/productCardValidation';
+import { productCardSchema, TProductCardValues } from 'validation';
 
 interface FormData {
   cashbackRate: number;
@@ -40,8 +40,8 @@ const CreateCardProductForm: React.FC = () => {
     control,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<FormData>({
-    resolver: yupResolver(productCardValidation),
+  } = useForm<TProductCardValues>({
+    resolver: yupResolver(productCardSchema),
     mode: 'all',
     defaultValues: {
       cashbackRate: undefined,

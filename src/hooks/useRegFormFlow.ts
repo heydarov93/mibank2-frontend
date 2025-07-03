@@ -14,30 +14,31 @@ import { TO_HOME, TO_SIGN_IN } from 'constants/routesName';
 import { EErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
-import {
-  IAddress,
-  IDocumentInfo,
-  ILegalStatus,
-  IPersonalInfo,
-} from 'models/IRegistration';
+import { IPersonalInfo } from 'models/IRegistration';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { setError } from 'store/reducers';
 import { checkEUStatus } from 'utils/checkEUStatus';
 import {
-  validationRegistrationSchema,
-  validationLegalStatusSchema,
-  validationDocumentInfoSchema,
-  validationAddressSchema,
+  TUserAddressRegisterValues,
+  TUserDocumentInfoValues,
+  TUserLegalStatusValues,
+  userAddressRegisterSchema,
+  userDocumentInfoSchema,
+  userLegalStatusSchema,
+  userPersonalInfoSchema,
 } from 'validation';
 
 const resolvers: Record<EStepper, ObjectSchema<object>> = {
-  [EStepper.PERSONAL_INFO]: validationRegistrationSchema,
-  [EStepper.LEGAL_STATUS]: validationLegalStatusSchema,
-  [EStepper.DOCUMENT_INFO]: validationDocumentInfoSchema,
-  [EStepper.ADDRESS]: validationAddressSchema,
+  [EStepper.PERSONAL_INFO]: userPersonalInfoSchema,
+  [EStepper.LEGAL_STATUS]: userLegalStatusSchema,
+  [EStepper.DOCUMENT_INFO]: userDocumentInfoSchema,
+  [EStepper.ADDRESS]: userAddressRegisterSchema,
 };
 
-type RegFormData = IPersonalInfo & ILegalStatus & IDocumentInfo & IAddress;
+type RegFormData = IPersonalInfo &
+  TUserLegalStatusValues &
+  TUserDocumentInfoValues &
+  TUserAddressRegisterValues;
 
 const defaultValues: RegFormData = {
   apartment: '',

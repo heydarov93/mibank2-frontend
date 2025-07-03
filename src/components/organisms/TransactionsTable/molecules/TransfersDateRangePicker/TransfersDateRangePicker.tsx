@@ -10,7 +10,7 @@ import { StyledInputField } from './TransferDateRangePicker.styled';
 import { FieldWithLabel } from 'components/atoms';
 import { DateCalendar } from 'components/molecules';
 import { formatDate } from 'utils/formatDate';
-import { TransactionFiltersFormValues } from 'validation/validationTransactionFilters';
+import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 interface TransfersDateRangePickerProps {
   onClose: () => void;
@@ -25,7 +25,7 @@ export const TransfersDateRangePicker = ({
   });
   // TODO get from backend
   const firstTransactionDate = new DateObject().subtract(3, 'month');
-  const { control, setValue } = useFormContext<TransactionFiltersFormValues>();
+  const { control, setValue } = useFormContext<TTransactionFiltersValues>();
   const dateValues = useWatch({
     control,
     name: ['startDate', 'endDate'],

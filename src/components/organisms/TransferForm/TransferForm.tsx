@@ -48,7 +48,7 @@ import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
 import { IErrorData } from 'models/IError';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { TCurrency } from 'types/types';
-import { schema } from 'validation/transferFormSchema';
+import { moneyTransferSchema, TMoneyTransferValues } from 'validation';
 
 export interface ITransferForm {
   fromAccount: string;
@@ -88,8 +88,8 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
     watch,
     formState: { errors },
     handleSubmit,
-  } = useForm<ITransferForm>({
-    resolver: yupResolver(schema(transferMethod)),
+  } = useForm<TMoneyTransferValues>({
+    resolver: yupResolver(moneyTransferSchema(transferMethod)),
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });

@@ -7,9 +7,10 @@ import useDisclosure from './useDisclosure';
 import { OpenBusinessAccountModalProps } from 'components/organisms';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
 import {
-  selectsSchema,
-  validationOpenBusinessAccSchema,
-} from 'validation/validationOpenBusinessAccSchema';
+  businessAccountOptionsSchema,
+  openBusinessAccountSchema,
+  TOpenBusinessAccountValues,
+} from 'validation';
 
 interface UseBusinessAccFlowOptions {
   onClose: OpenBusinessAccountModalProps['onClose'];
@@ -26,8 +27,8 @@ const defaultValues = {
 export type OpenBusinessAccFormValues = typeof defaultValues;
 
 export const useBusinessAccFlow = ({ onClose }: UseBusinessAccFlowOptions) => {
-  const formMethods = useForm({
-    resolver: yupResolver(validationOpenBusinessAccSchema),
+  const formMethods = useForm<TOpenBusinessAccountValues>({
+    resolver: yupResolver(openBusinessAccountSchema),
     defaultValues,
   });
   const { reset, control } = formMethods;
@@ -42,7 +43,7 @@ export const useBusinessAccFlow = ({ onClose }: UseBusinessAccFlowOptions) => {
     const checkValidity = async () => {
       const [currency, cardIssuer, issueType] = watchedFields;
 
-      const isAllDataFilled = await selectsSchema.isValid({
+      const isAllDataFilled = await businessAccountOptionsSchema.isValid({
         currency,
         cardIssuer,
         issueType,

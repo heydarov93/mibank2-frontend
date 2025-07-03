@@ -370,6 +370,7 @@
       "errorPattern": "Please enter your email in format: example@gmail.com",
       "label": "Email"
     },
+    "required": "This field is required",
     "errorTermsPrivacyRequired": "Please, read and agree to our Terms of Use and Privacy Policy to continue",
     "formTitle": "Log in and let's start!",
     "formText": "Remember me",
@@ -379,7 +380,6 @@
     "formSubTitle": "Do you have an account?",
     "formBtnSignUp": "Sign Up",
     "termsText": "I have read and agree to Millennium Bank's",
-    "requiredField": "This field is required",
     "infoHintSpecial": "Allowed special characters:",
     "infoHintSpecialCharacters": "~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \"\" '. , : ;",
     "hide": "Hide",

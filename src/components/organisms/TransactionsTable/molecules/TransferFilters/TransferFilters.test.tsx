@@ -14,7 +14,7 @@ import { TransferFilters } from './TransferFilters';
 import { SelectFieldOption } from 'components/molecules';
 import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
-import { TransactionFiltersFormValues } from 'validation/validationTransactionFilters';
+import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 jest.mock('../../hooks/useTransferFilters', () => ({
   useTransferFilters: jest.fn(),
@@ -95,7 +95,7 @@ const defaultFilters = {
   transactionsType: ETransactionType.ALL,
   startDate: dayjs().subtract(7, 'day').toDate(),
   endDate: new Date(),
-} satisfies TransactionFiltersFormValues;
+} satisfies TTransactionFiltersValues;
 
 const getFilter = (testId: string) =>
   screen.getByTestId(testId).querySelector('[role="combobox"]') as HTMLElement;
