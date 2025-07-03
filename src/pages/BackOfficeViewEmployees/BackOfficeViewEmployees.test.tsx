@@ -4,7 +4,8 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { MemoryRouter } from 'react-router-dom';
 
-import BackOfficeViewEmployees from './BackOfficeViewEmployees';
+
+import { BackOfficeViewEmployees } from './BackOfficeViewEmployees';
 
 import useEmployees from 'hooks/useEmployee';
 import { theme } from 'theme/theme';

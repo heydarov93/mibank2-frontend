@@ -1,9 +1,10 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
+
+import { BackOfficeVerificationErrorPage } from './BackOfficeVerificationErrorPage';
+
 import i18n from 'i18n';
-import BackOfficeVerificationErrorPage from './BackOfficeVerificationErrorPage';
 
 jest.mock('components/atoms/ReloadButton/ReloadButton.tsx', () => ({
   __esModule: true,
