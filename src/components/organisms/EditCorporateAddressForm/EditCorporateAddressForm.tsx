@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { FieldWithLabel, InputField, PostcodeField } from 'components/atoms';
 import { SelectField } from 'components/molecules';
 import {
-  CorporateAddressFormValues,
-  validationEditCorporateAddressSchema,
-} from 'validation/validationEditCorporateAddressSchema';
+  editCorporateAddressSchema,
+  TEditCorporateAddressValues,
+} from 'validation';
 
 const countries = [{ value: 'Poland' }];
 const cities = [{ value: 'Babimost' }, { value: 'Another city' }];
@@ -18,7 +18,7 @@ interface EditCorporateAddressFormProps {
   sx?: SxProps<Theme>;
 }
 
-const defaultValues: CorporateAddressFormValues = {
+const defaultValues: TEditCorporateAddressValues = {
   country: 'Poland',
   city: 'Babimost',
   building: '203',
@@ -36,8 +36,8 @@ export const EditCorporateAddressForm = ({
   const {
     control,
     formState: { isValid, isDirty },
-  } = useForm<CorporateAddressFormValues>({
-    resolver: yupResolver(validationEditCorporateAddressSchema),
+  } = useForm<TEditCorporateAddressValues>({
+    resolver: yupResolver(editCorporateAddressSchema),
     defaultValues,
     mode: 'all',
   });

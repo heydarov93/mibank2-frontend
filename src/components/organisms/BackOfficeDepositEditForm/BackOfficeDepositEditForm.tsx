@@ -15,23 +15,10 @@ import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
-import currencies from 'constants/currencies';
+import { CURRENCIES } from 'constants/currencies';
 import { EErrorStatus } from 'enums';
 import { IBackOfficeErrorData } from 'models/IError';
-import depositEditValidationSchema from 'validation/depositEditFormValidation';
-
-interface FormState {
-  name: string;
-  description: string;
-  currency: string;
-  min: string;
-  max: string;
-  term: string;
-  interestRate: string;
-  capitalization: string;
-  earlyWithdrawalLimit: string;
-  earlyWithdrawalFee: string;
-}
+import { editDepositSchema, TEditDepositValues } from 'validation';
 
 type RefetchProductsFn = ReturnType<typeof useGetProductsQuery>['refetch'];
 
@@ -56,8 +43,8 @@ const BackOfficeDepositEditForm = ({
     control,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<FormState>({
-    resolver: yupResolver(depositEditValidationSchema),
+  } = useForm<TEditDepositValues>({
+    resolver: yupResolver(editDepositSchema),
     mode: 'all',
     defaultValues: {
       name: formData?.productName || '',
@@ -146,7 +133,7 @@ const BackOfficeDepositEditForm = ({
             render={({ field }) => (
               <MiAutoComplete
                 {...field}
-                options={[...currencies]}
+                options={[...CURRENCIES]}
                 onChange={(_, value) => field.onChange(value)}
                 value={field.value}
                 error={!!errors.currency}

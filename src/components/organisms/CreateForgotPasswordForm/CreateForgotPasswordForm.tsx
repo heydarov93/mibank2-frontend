@@ -28,7 +28,7 @@ import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
-import { validationForgotPasswordSchema } from 'validation';
+import { forgotPasswordSchema, TForgotPasswordValues } from 'validation';
 
 export const CreateForgotPasswordForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'ForgotPassword' });
@@ -46,8 +46,8 @@ export const CreateForgotPasswordForm = () => {
     setError: setFormError,
     setValue: setFormInputValue,
     clearErrors,
-  } = useForm<IForgotPasswordFormInput>({
-    resolver: yupResolver(validationForgotPasswordSchema),
+  } = useForm<TForgotPasswordValues>({
+    resolver: yupResolver(forgotPasswordSchema),
     mode: 'onBlur',
     defaultValues: {
       password: '',

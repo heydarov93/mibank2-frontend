@@ -13,13 +13,12 @@ import {
 
 import { SubmitButton } from 'components/atoms';
 import {
-  TOSCheckbox,
   PasswordField,
   PasswordValidationTags,
+  TOSCheckbox,
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/routesName';
-import { ISignupFormInput } from 'models/IAuth';
-import { validationSignupSchema } from 'validation';
+import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
@@ -36,8 +35,8 @@ export const CreatePasswordForm = () => {
     handleSubmit,
     reset: resetForm,
     watch,
-  } = useForm<ISignupFormInput>({
-    resolver: yupResolver(validationSignupSchema),
+  } = useForm<TUserSignupValues>({
+    resolver: yupResolver(userSignupSchema),
     mode: 'onBlur',
     defaultValues: {
       password: '',

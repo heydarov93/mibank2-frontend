@@ -18,7 +18,7 @@ import { buildDepositPayload } from './utils/buildDepositPayload';
 
 import useDisclosure from 'hooks/useDisclosure';
 import { TCurrency } from 'types/types';
-import { openDepositValidationSchema } from 'validation/validationOpenDepositSchema';
+import { openDepositSchema } from 'validation';
 
 interface DepositCreationFormProps {
   modal?: boolean;
@@ -56,7 +56,7 @@ export const DepositCreationForm = ({
     handleSuccessModalClose,
     handleErrorModalClose,
   } = useDepositForm({
-    validationSchema: openDepositValidationSchema,
+    validationSchema: openDepositSchema,
     onSuccess: onBack,
     accountOptions,
     createDeposit: createUserDeposit,

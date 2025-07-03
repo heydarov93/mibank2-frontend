@@ -18,8 +18,7 @@ import {
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE,
 } from 'constants/routesName';
-import { IBackOfficeEmployeeLogin } from 'models/IAuth';
-import { validationBackOfficeEmployeeLoginSchema } from 'validation';
+import { employeeLoginSchema, TEmployeeLoginValues } from 'validation';
 
 export const BackOfficeEmployeeLoginForm = () => {
   const [validateEmail, { isLoading }] = useValidateEmailMutation();
@@ -33,8 +32,8 @@ export const BackOfficeEmployeeLoginForm = () => {
     control,
     handleSubmit,
     resetField,
-  } = useForm<IBackOfficeEmployeeLogin>({
-    resolver: yupResolver(validationBackOfficeEmployeeLoginSchema),
+  } = useForm<TEmployeeLoginValues>({
+    resolver: yupResolver(employeeLoginSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

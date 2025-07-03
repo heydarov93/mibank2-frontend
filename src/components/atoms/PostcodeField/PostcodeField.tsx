@@ -2,7 +2,7 @@ import { FieldValues } from 'react-hook-form';
 
 import { InputField, InputFieldProps } from '../InputField/InputField';
 
-import { REG_EXP } from 'validation/regExp';
+import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
 
 const MAX_VERIFICATION_CODE_LENGTH = 6;
 
@@ -13,7 +13,7 @@ export const PostcodeField = <T extends FieldValues>(
     const target = e.target as HTMLInputElement;
     const formatted = target.value
       .replace(/\D/g, '')
-      .replace(REG_EXP.postcodeMask, '$1-$2');
+      .replace(VALIDATION_PATTERNS.POSTCODE_MASK, '$1-$2');
     target.value = formatted;
   }
 

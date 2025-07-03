@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { TO_WELCOME } from 'constants/routesName';
 import { EWelcomeTab } from 'enums';
-import { ILegalAddress } from 'models/IRegistration';
-import { addressRegisterFormSchema } from 'validation/addressRegisterFormSchema';
+import { legalAddressRegisterSchema, TLegalAddressRegisterValues } from 'validation';
 
 export const useAddressForm = () => {
   const { t } = useTranslation('translation', {
@@ -19,8 +18,8 @@ export const useAddressForm = () => {
     handleSubmit,
     reset,
     formState: { isValid },
-  } = useForm<ILegalAddress>({
-    resolver: yupResolver(addressRegisterFormSchema),
+  } = useForm<TLegalAddressRegisterValues>({
+    resolver: yupResolver(legalAddressRegisterSchema),
     defaultValues: {
       country: t('form.defaultCountryName'),
       city: '',

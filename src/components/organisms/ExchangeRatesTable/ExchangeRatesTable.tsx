@@ -26,7 +26,7 @@ import {
   useGetPreviousRatesQuery,
 } from 'api/getExchangeRatesApi';
 import { CurrencyFlagIcon } from 'components/atoms';
-import currencies from 'constants/currencies';
+import { CURRENCIES } from 'constants/currencies';
 import { TCurrency } from 'types/types';
 
 type TableError = string | null;
@@ -72,7 +72,7 @@ export function ExchangeRatesTable() {
   }
 
   const filteredCurrencies = currentRates[0].rates.filter((rate: Rate) =>
-    currencies.includes(rate.code),
+    CURRENCIES.includes(rate.code),
   );
 
   const previousRatesMap = new Map<string, Rate>(
@@ -127,7 +127,7 @@ export function ExchangeRatesTable() {
                       <StyledCellText
                         sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >
-                        {rate.code == currencies.at(-1)
+                        {rate.code == CURRENCIES.at(-1)
                           ? `100 ${rate.code}`
                           : `1 ${rate.code}`}
                       </StyledCellText>

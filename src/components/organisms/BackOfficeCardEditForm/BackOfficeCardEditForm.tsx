@@ -14,18 +14,8 @@ import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
-import currencies from 'constants/currencies';
-import { cardEditFormSchema } from 'validation/cardEditFormValidation';
-
-interface FormValues {
-  cardName: string;
-  cardDescription: string;
-  cardCurrency: string;
-  cardCashbackRate: string;
-  monthlyFee: string;
-  dailyOperationalLimit: string;
-  foreignTransactionLimit: string;
-}
+import { CURRENCIES } from 'constants/currencies';
+import { editCardSchema, TEditCardValues } from 'validation';
 
 interface BackOfficeCardEditFormProps {
   handleClose: () => void;
@@ -42,8 +32,8 @@ const BackOfficeCardEditForm = ({
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<FormValues>({
-    resolver: yupResolver(cardEditFormSchema),
+  } = useForm<TEditCardValues>({
+    resolver: yupResolver(editCardSchema),
     mode: 'all',
     defaultValues: {
       cardName: formData?.productName,
@@ -114,7 +104,7 @@ const BackOfficeCardEditForm = ({
             control={control}
             render={({ field }) => (
               <MiAutoComplete
-                options={[...currencies]}
+                options={[...CURRENCIES]}
                 value={field.value}
                 onChange={(_, value) => field.onChange(value)}
                 error={!!errors.cardCurrency}
