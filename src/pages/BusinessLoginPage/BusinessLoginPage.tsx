@@ -6,7 +6,7 @@ import {
   LeftLogoSidebar,
 } from 'components/organisms';
 
-const BusinessLoginPage = () => {
+export const BusinessLoginPage = () => {
   return (
     <>
       <StyledContainer>
@@ -17,5 +17,3 @@ const BusinessLoginPage = () => {
     </>
   );
 };
-
-export default BusinessLoginPage;

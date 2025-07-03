@@ -18,7 +18,7 @@ import {
   MainContainer,
 } from 'pages/BackOfficeViewProductsPage/BackOfficeViewProductsPage.styled';
 
-const BackOfficeViewEmployees = () => {
+export const BackOfficeViewEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
   const {
@@ -150,4 +150,3 @@ const BackOfficeViewEmployees = () => {
   );
 };
 
-export default BackOfficeViewEmployees;

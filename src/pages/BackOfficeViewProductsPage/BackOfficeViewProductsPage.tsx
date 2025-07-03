@@ -34,7 +34,7 @@ import { useProductManage } from 'hooks/useProductManage';
 import { IBackOfficeErrorData } from 'models/IError';
 import { DepositBackendData } from 'models/IProductInfo';
 
-const BackOfficeViewProductsPage = () => {
+export const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const { control, setValue, watch } = useForm();
   const searchValue = watch('productSearch');
@@ -234,5 +234,3 @@ const BackOfficeViewProductsPage = () => {
     </Box>
   );
 };
-
-export default BackOfficeViewProductsPage;

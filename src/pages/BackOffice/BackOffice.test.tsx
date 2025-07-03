@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import BackOffice from './BackOffice';
+import { BackOffice } from './BackOffice';
+
 
 jest.mock('./BackOfficeLeftSidebar', () => ({
   __esModule: true,

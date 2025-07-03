@@ -11,7 +11,8 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
+
+import { BackOfficeViewProductsPage } from './BackOfficeViewProductsPage';
 
 import { getProductsApi } from 'api/getProductsApi';
 import { theme } from 'theme/theme';

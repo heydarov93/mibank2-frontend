@@ -27,7 +27,7 @@ type FormData = {
   dateAdded: string;
 };
 
-const CreateEmployee: React.FC = () => {
+export const CreateEmployee: React.FC = () => {
   const { t } = useTranslation('translation');
 
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -193,5 +193,3 @@ const CreateEmployee: React.FC = () => {
     </Box>
   );
 };
-
-export default CreateEmployee;

@@ -10,7 +10,7 @@ import {
 
 import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
 
-const BackOfficeVerificationErrorPage = () => {
+export const BackOfficeVerificationErrorPage = () => {
   const { t } = useTranslation('translation');
 
   return (
@@ -30,4 +30,3 @@ const BackOfficeVerificationErrorPage = () => {
   );
 };
 
-export default BackOfficeVerificationErrorPage;

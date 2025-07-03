@@ -10,7 +10,7 @@ import {
 import { Logo } from 'components/atoms';
 import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
 
-const BackOfficeErrorPage = () => {
+export const BackOfficeErrorPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
   return (
@@ -27,4 +27,3 @@ const BackOfficeErrorPage = () => {
   );
 };
 
-export default BackOfficeErrorPage;

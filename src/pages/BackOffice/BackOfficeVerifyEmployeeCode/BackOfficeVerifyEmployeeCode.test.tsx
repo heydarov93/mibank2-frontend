@@ -9,7 +9,8 @@ import {
 import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import BackOfficeVerifyEmployeeCode from './BackOfficeVerifyEmployeeCode';
+
+import { BackOfficeVerifyEmployeeCode } from './BackOfficeVerifyEmployeeCode';
 
 import { useLogInMutation } from 'api/employeeLogInApi';
 import { theme } from 'theme/theme';

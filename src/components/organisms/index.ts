@@ -43,3 +43,4 @@ export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';
 export { CurrencyCalculator } from './CurrencyCalculator/CurrencyCalculator';
 export { ExchangeRatesTable as RatesTable } from './ExchangeRatesTable/ExchangeRatesTable';
 export { CurrencyExchange } from './CurrencyExchange/CurrencyExchange';
+export { ChooseProductFormWrapper } from './ChooseProductFormWrapper/ChooseProductFormWrapper';

@@ -16,7 +16,7 @@ import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
 import { setEmployeeAuthData } from 'utils/storageAuthHandler';
 import { sessionTokenHandler } from 'utils/tokenHandler';
 
-const BackOfficeVerifyEmployeeCode = () => {
+export const BackOfficeVerifyEmployeeCode = () => {
   const { t } = useTranslation('translation');
 
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
@@ -139,4 +139,3 @@ const BackOfficeVerifyEmployeeCode = () => {
   );
 };
 
-export default BackOfficeVerifyEmployeeCode;

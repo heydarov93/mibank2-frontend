@@ -13,7 +13,7 @@ import {
 
 import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
 import { OneTimePasscodeForm } from 'components/organisms';
-import BackOfficeVerificationErrorPage from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
+import { BackOfficeVerificationErrorPage } from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 export const BackOfficeVerificationPage = () => {
   const { t } = useTranslation('translation');
