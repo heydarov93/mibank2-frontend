@@ -5,13 +5,8 @@ import {
   VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
-import {
-  isMinimumInteger,
-  isMinimumValue,
-  isNonNegative,
-  isPositiveInteger,
-  isPositiveNumber,
-} from 'utils/validationUtils';
+import { isMinimumInteger, isMinimumValue, isNonNegative, isPositiveInteger, isPositiveNumber } from 'utils/helpers/validationHelpers';
+
 
 const VALIDATION_KEY = 'BackOffice.depositEditFormErrors';
 

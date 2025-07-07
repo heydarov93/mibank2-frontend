@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { TO_WELCOME } from 'constants/routesName';
-import { getAuthStatus } from 'utils';
+import { getAuthStatus } from 'utils/auth';
 
 interface AppPrivateRouteProps {
   children: ReactNode;

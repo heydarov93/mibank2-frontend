@@ -29,7 +29,7 @@ import {
 import { useGetTransferFeeQuery } from 'api/accountsApi';
 import { TransferDetailRow } from 'components/molecules';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { formatTransferValue } from 'utils/currencyUtils';
+import { formatTransferValue } from 'utils/formatters/currencyFormatter';
 import { savePaymentSchema, TSavePaymentValues } from 'validation';
 
 interface ConfirmTransferModalProps {

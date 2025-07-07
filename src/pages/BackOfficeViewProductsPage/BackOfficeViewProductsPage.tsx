@@ -32,7 +32,8 @@ import { ProductType } from 'enums/EProductType';
 import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
 import { IBackOfficeErrorData } from 'models/IError';
-import { DepositBackendData } from 'models/IProductInfo';
+import { DepositResponseData } from 'models/IProductInfo';
+import { mapProductData } from 'utils/mapper';
 
 export const BackOfficeViewProductsPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -66,7 +67,7 @@ export const BackOfficeViewProductsPage = () => {
 
   const allProducts = Object.values(
     products ?? {},
-  ).flat() as DepositBackendData[];
+  ).flat() as DepositResponseData[];
 
   const [
     deleteDeposit,
@@ -74,21 +75,7 @@ export const BackOfficeViewProductsPage = () => {
   ] = useDeleteDepositMutation();
 
   const mappedData =
-    allProducts?.map((item: DepositBackendData) => ({
-      id: item.id,
-      productType: item?.type?.split(' ').at(1),
-      productName: item.name,
-      productSubtype: item.type,
-      cardDescription: item.description,
-      cardCurrency: item.currency,
-      minimumDepositSum: item.min?.toString(),
-      maximumDepositSum: item.max?.toString(),
-      depositTerm: item.term?.toString(),
-      depositInterestRate: item.interestRate?.toString(),
-      depositCapitalizationRate: item.capitalization?.toString(),
-      earlyWithdrawalLimit: item.earlyWithdrawalLimit?.toString(),
-      withdrawalFee: item.earlyWithdrawalFee?.toString(),
-    })) || [];
+    allProducts?.map((product) => mapProductData(product)) || [];
 
   const {
     productSubtypes,

@@ -49,17 +49,21 @@ const mockStore = configureStore({
     ]),
 });
 
-jest.mock('utils', () => {
-  return {
-    generateRandomParam: jest.fn().mockReturnValue(''),
-    handleLockedError: jest.fn(),
-    useErrorHandlers: jest.fn,
-    localTokenHandler: {
-      getToken: jest.fn(),
-    },
-    formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
-  };
-});
+jest.mock('utils/auth', () => ({
+  handleLockedError: jest.fn(),
+  useErrorHandlers: jest.fn,
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+}));
+
+jest.mock('utils/formatters/phoneFormatter', () => ({
+  formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
+}));
+
+jest.mock('utils/helpers/randomHelpers', () => ({
+  generateRandomParam: jest.fn().mockReturnValue(''),
+}));
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { convertSecondsToTime } from 'utils';
+import { formatSecondsToTime } from 'utils/formatters';
+
+
 
 interface TimerProps {
   time: number;
@@ -37,13 +39,13 @@ export const Timer = ({
     return () => clearInterval(timer);
   }, [endTime, runTimer]);
 
-  const remainingTimeLabel = convertSecondsToTime(
+  const remainingTimeLabel = formatSecondsToTime(
     Math.ceil(remainingTime / 1000),
   );
 
   const timeLabelResend =
     remainingTime > 0
-      ? ` ${t('resendCodeIn')} ${convertSecondsToTime(Math.ceil(remainingTime / 1000))}`
+      ? ` ${t('resendCodeIn')} ${formatSecondsToTime(Math.ceil(remainingTime / 1000))}`
       : t('resendCode');
 
   return <span>{hasResendBtn ? timeLabelResend : remainingTimeLabel}</span>;

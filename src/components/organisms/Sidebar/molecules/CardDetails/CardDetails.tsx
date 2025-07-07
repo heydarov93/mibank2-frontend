@@ -12,6 +12,8 @@ import { CardInfoButton } from '../../atoms/CardInfoButton/CardInfoButton';
 import { useGetUserCardDetails } from '../../organisms/MyCards/hooks/useGetUserCardDetails';
 import { CardDetailRow } from '../CardDetailRow/CardDetailRow';
 
+import { copyToClipboard } from 'utils/helpers';
+
 interface Props {
   cardId: string | number;
   isCardPrimary: boolean;
@@ -22,12 +24,8 @@ export function CardDetails({ cardId, isCardPrimary }: Props) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar.myCards',
   });
-
   const { data, isLoading } = useGetUserCardDetails(cardId);
 
-  function handleCopy(value: string | number) {
-    navigator.clipboard.writeText(value.toString());
-  }
 
   return (
     <Box>
@@ -80,7 +78,7 @@ export function CardDetails({ cardId, isCardPrimary }: Props) {
               maskFormat={`**** ${data.number.toString().slice(-4)}`}
             />
             <CardDetailRow name="CVV" value={data.cvv} maskFormat="***" />
-            <CardDetailRow name="IBAN" value={data.iban} onCopy={handleCopy} />
+            <CardDetailRow name="IBAN" value={data.iban} onCopy={copyToClipboard} />
             <CardDetailRow name="SWIFT/BIC" value={data.swift} />
             <CardDetailRow name={t('issueDate')} value={data.issueDate} />
             <CardDetailRow

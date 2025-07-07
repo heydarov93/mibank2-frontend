@@ -16,7 +16,7 @@ import { ETokenType } from 'enums';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
-import { getEmail, localTokenHandler, removeAuthData } from 'utils';
+import { getEmail, localTokenHandler, removeAuthData } from 'utils/auth';
 
 export const PersonalMenu = () => {
   const navigate = useNavigate();

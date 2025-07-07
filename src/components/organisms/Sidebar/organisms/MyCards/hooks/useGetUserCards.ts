@@ -2,7 +2,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 
 import { useGetUserIdQuery } from 'api/getUserIdApi';
 import { useGetUserCardsQuery } from 'api/userCardsApi';
-import { adaptUserBankCardResponse } from 'utils/userBankCardApiAdapter';
+import { mapUserBankCardResponse } from 'utils/mapper';
 
 export function useGetUserCards() {
   const {
@@ -24,7 +24,7 @@ export function useGetUserCards() {
   return {
     ...cardsData,
     data: cardsData?.data.map((cardResponse) =>
-      adaptUserBankCardResponse(cardResponse),
+      mapUserBankCardResponse(cardResponse),
     ),
     isLoading: isLoading || isUserIdLoading,
     isError: isError || isUserIdError,

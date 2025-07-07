@@ -1,6 +1,8 @@
+import { FieldError } from 'react-hook-form';
+
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
+  VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 
 export const removeSpaces = (value: string) => value?.replace(/\s+/g, '') || '';
@@ -42,3 +44,7 @@ export const isMinimumInteger = (
   value: string | undefined,
   minimum: number,
 ): boolean => value !== undefined && parseInt(value, 10) >= minimum;
+
+export const getFieldErrorMessage = (error: FieldError | undefined) => {
+  return error?.message ?? '';
+};

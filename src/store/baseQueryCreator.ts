@@ -7,7 +7,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { BASE_URL } from 'api/config';
 import { ETokenType } from 'enums';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 // TODO: add logic for token expired
 // import { setTokenExpired } from './reducers/AuthSlice';

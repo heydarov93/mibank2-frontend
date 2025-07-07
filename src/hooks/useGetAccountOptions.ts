@@ -5,8 +5,8 @@ import { useGetIBANAccountsQuery } from 'api/accountsApi';
 import { useGetUserIdQuery } from 'api/getUserIdApi';
 import { SelectFieldOption } from 'components/molecules';
 import { IBAN_PATTERN } from 'constants/inputPatterns';
-import { formatCurrency } from 'utils/currencyUtils';
-import { formatWithPattern } from 'utils/formatWithPattern';
+import { formatCurrency } from 'utils/formatters/currencyFormatter';
+import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export const useGetAccountOptions = () => {
   const { data: userIdData } = useGetUserIdQuery();

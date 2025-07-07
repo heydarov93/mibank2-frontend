@@ -21,6 +21,8 @@ import { InputField, SubmitButton } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import { LOCALES } from 'constants/date';
+import { formatDateByLocale } from 'utils/formatters';
 import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 
 type EmployeeFormData = {
@@ -65,7 +67,7 @@ const BackOfficeEditEmployee = ({
       role: formData?.role,
       dateAdded:
         formData?.dateAdded &&
-        new Date(formData?.dateAdded || '').toLocaleDateString('en-GB'),
+        formatDateByLocale(formData.dateAdded, LOCALES.ENGLISH_GB),
     },
   });
 

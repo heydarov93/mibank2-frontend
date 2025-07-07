@@ -2,10 +2,10 @@ import * as yup from 'yup';
 
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
+  VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
-import { removeSpaces } from 'utils/validationUtils';
+import { removeSpaces } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'BusinessSignUpPage.form.error';
 const requiredField = `${VALIDATION_KEY}.required`;

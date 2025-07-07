@@ -9,7 +9,8 @@ import { StyledInputField } from './TransferDateRangePicker.styled';
 
 import { FieldWithLabel } from 'components/atoms';
 import { DateCalendar } from 'components/molecules';
-import { formatDate } from 'utils/formatDate';
+import { DATE_FORMATS } from 'constants/date';
+import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 interface TransfersDateRangePickerProps {
@@ -95,7 +96,7 @@ export const TransfersDateRangePicker = ({
             name="startDate"
             control={control}
             id="startDate"
-            value={formatDate(startDate)}
+            value={formatDateByPattern(startDate, DATE_FORMATS.DD_MM_YYYY)}
             active={isSettingStartDate}
             onClick={() => setIsSettingStartDate(true)}
             data-testid="start-date"
@@ -106,7 +107,7 @@ export const TransfersDateRangePicker = ({
             name="endDate"
             control={control}
             id="endDate"
-            value={formatDate(endDate)}
+            value={formatDateByPattern(endDate, DATE_FORMATS.DD_MM_YYYY)}
             active={!isSettingStartDate}
             onClick={() => setIsSettingStartDate(false)}
             data-testid="end-date"

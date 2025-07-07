@@ -16,7 +16,7 @@ import {
   SEARCH_LOWEST_LIMIT,
   SEARCH_VALUE_ZERO,
 } from 'constants/searchInputValues';
-import { getNextSortOrder } from 'utils/sortUtils';
+import { getNextSortOrder } from 'utils/helpers/sortHelpers';
 
 const useEmployees = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });

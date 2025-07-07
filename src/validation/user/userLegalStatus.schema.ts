@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 import { t } from 'i18n';
-import { isValidPeselLength } from 'utils/validationUtils';
+import { isValidPeselLength } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'RegistrationPage';
 const requiredField = `${VALIDATION_KEY}.requiredField`;

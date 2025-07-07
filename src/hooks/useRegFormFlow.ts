@@ -17,7 +17,7 @@ import { IErrorData } from 'models/IError';
 import { IPersonalInfo } from 'models/IRegistration';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { setError } from 'store/reducers';
-import { checkEUStatus } from 'utils/checkEUStatus';
+import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 import {
   TUserAddressRegisterValues,
   TUserDocumentInfoValues,
@@ -108,7 +108,6 @@ export const useRegFormFlow = () => {
 
   const handleBack = () => {
     setStep(stepsSequence.indexOf(step) - 1);
-    // revalidate form on app next tick when the step is updated
     queueMicrotask(trigger);
   };
 

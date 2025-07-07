@@ -5,7 +5,9 @@ import { PatternFormatProps } from 'react-number-format';
 import { InputFieldControlled } from '../InputFieldControlled/InputFieldControlled';
 import { PatternInput } from '../PatternInput/PatternInput';
 
-import { getFieldErrorMessage } from 'utils/getFieldErrorMessage';
+import { getFieldErrorMessage } from 'utils/helpers';
+
+
 
 interface PatternFieldProps<T extends FieldValues> extends PatternFormatProps {
   name: Path<T>;

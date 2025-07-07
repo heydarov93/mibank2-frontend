@@ -1,8 +1,10 @@
 import { Stack, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { getTransactionsByDay } from '../../utils/getTransactionsByDay';
 import { ITransaction, Transaction } from '../Transaction/Transaction';
+
+import { getTransactionsByDay } from 'utils/helpers';
+
 
 const today = new Date().toLocaleDateString('pl-PL');
 

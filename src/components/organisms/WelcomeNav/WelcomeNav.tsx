@@ -27,7 +27,7 @@ export const WelcomeNav = ({ activePanel }: { activePanel: EPanel }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'header.welcomeNavMenu',
   });
-  // TODO - update with actual routes
+  // TODO: update with actual routes
   const isPersonal = activePanel === EPanel.Personal;
   const signIn = {
     label: isPersonal ? t('personalSignIn') : t('businessSignIn'),

@@ -23,12 +23,8 @@ import {
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
 import { getVerifyingTimer } from 'store/selectors';
-import {
-  getAuthStatus,
-  getEmailFromToken,
-  localTokenHandler,
-  setAuthData,
-} from 'utils';
+import { getAuthStatus, getEmailFromToken, localTokenHandler, setAuthData } from 'utils/auth';
+
 
 type VerificationFormProps = {
   disableFields?: boolean;

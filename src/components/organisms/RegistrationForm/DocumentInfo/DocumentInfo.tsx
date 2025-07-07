@@ -9,16 +9,17 @@ import {
 } from '../RegistrationForm.styled';
 
 import {
-  StyledFormTitle,
-  StyledFormContent,
   StyledBoxContainer,
+  StyledFormContent,
+  StyledFormTitle,
   StyledLabel,
 } from './DocumentInfo.styled';
 
-import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
+import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
-import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
 import { FormStepProps, IDocumentInfo } from 'models/IRegistration';
+import { checkAllowedKey } from 'utils/checkers';
 
 export const DocumentInfo = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
@@ -35,7 +36,6 @@ export const DocumentInfo = ({ onBack }: FormStepProps) => {
     control,
   } = useFormContext<IDocumentInfo>();
 
-  const passportRegExp = /^[A-Z0-9]+$/;
 
   return (
     <StyledBoxContainer data-testid="document-info-title">
@@ -56,10 +56,7 @@ export const DocumentInfo = ({ onBack }: FormStepProps) => {
               error={errors.documentNumber}
               placeholder={t('RegistrationPage.placeholder.name')}
               onKeyDown={(e) => {
-                if (
-                  !passportRegExp.test(e.key) &&
-                  !ALLOWED_KEYS.includes(e.key)
-                ) {
+                if (checkAllowedKey(e, VALIDATION_PATTERNS.DOCUMENT_NUMBER)) {
                   e.preventDefault();
                 }
               }}

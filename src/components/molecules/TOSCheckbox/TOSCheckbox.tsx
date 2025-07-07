@@ -12,7 +12,7 @@ import { AgreementContainer, StyledContainer } from './TOSCheckbox.styled';
 
 import { termsLink, policyLink } from 'components/organisms/Footer/constants';
 import { ILoginFormInput } from 'models/IAuth';
-import { generateRandomParam } from 'utils';
+import { generateRandomParam } from 'utils/helpers';
 
 interface TOSCheckboxProps<T extends FieldValues> {
   control?: Control<T>;

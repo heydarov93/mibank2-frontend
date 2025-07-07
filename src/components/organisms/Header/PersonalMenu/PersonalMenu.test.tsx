@@ -54,7 +54,7 @@ const mockStore = configureStore({
   reducer: () => initialValues,
 });
 
-jest.mock('utils', () => ({
+jest.mock('utils/auth', () => ({
   localTokenHandler: {
     clearToken: jest.fn(),
     storeToken: jest.fn(),

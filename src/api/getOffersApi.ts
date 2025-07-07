@@ -4,7 +4,7 @@ import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
 import { ETokenType } from 'enums';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 export interface Offer {
   name: string;

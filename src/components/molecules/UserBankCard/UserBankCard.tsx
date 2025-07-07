@@ -10,7 +10,7 @@ import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
 import { currencySymbol } from 'constants/currencies';
 import { IUserBankCard } from 'models/IUserBankCard';
-import { separateThousands } from 'utils';
+import { separateThousands } from 'utils/formatters';
 
 export const USER_CARD_WIDTH = 288;
 

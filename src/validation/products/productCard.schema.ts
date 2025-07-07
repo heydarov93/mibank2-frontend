@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
-import { isValidDecimalAmount } from 'utils/validationUtils';
+import { isValidDecimalAmount } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'BackOffice.VisaCard';
 const requiredField = `${VALIDATION_KEY}.required`;

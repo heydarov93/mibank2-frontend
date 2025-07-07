@@ -16,8 +16,9 @@ import { useTransferFilters } from '../../hooks/useTransferFilters';
 
 import { StyledSelectField } from './TransferFilters.styled';
 
+import { DATE_FORMATS } from 'constants/date';
 import { ETransferTime } from 'enums/ETransferTime';
-import { formatDate } from 'utils/formatDate';
+import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 interface TransferFiltersProps {
@@ -130,8 +131,8 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
       </Stack>
       <Typography mt={2} color="grey.400" fontWeight={500}>
         {t('periodInfo', {
-          startDate: formatDate(startDate),
-          endDate: formatDate(endDate),
+          startDate: formatDateByPattern(startDate, DATE_FORMATS.DD_MM_YYYY),
+          endDate: formatDateByPattern(endDate, DATE_FORMATS.DD_MM_YYYY),
         })}
       </Typography>
     </Stack>

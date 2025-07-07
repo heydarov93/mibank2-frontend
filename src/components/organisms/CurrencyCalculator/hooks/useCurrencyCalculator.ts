@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useConvertCurrencyMutation } from 'api/convertCurrencyApi';
 import { useGetCurrentRatesQuery } from 'api/getExchangeRatesApi';
-import { formatAmount } from 'utils/currencyUtils';
+import { formatAmount } from 'utils/formatters/currencyFormatter';
 
 interface ConvertedCurrency {
   convertedAmount: number;

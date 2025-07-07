@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 
 export const MAX_DIGITS = 12;
 
@@ -28,4 +27,4 @@ export const formatCurrency = (
   return `${currency} ${formatAmount(amount).replace('.', ',')}`;
 };
 
-export const currentDate = dayjs().format('YYYY-MM-DD');
+

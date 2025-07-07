@@ -13,7 +13,7 @@ import { ETokenType } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
-import { localTokenHandler, removeAuthData } from 'utils';
+import { localTokenHandler, removeAuthData } from 'utils/auth';
 
 jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
@@ -25,17 +25,11 @@ jest.mock('store/selectors', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => {
-    return {
-      t: (str: string) => str,
-      i18n: {
-        changeLanguage: () => new Promise(() => {}),
-      },
-    };
-  },
+  useTranslation: () => ({
+    t: (str: string) => str,
+  }),
   initReactI18next: {
     type: '3rdParty',
-    init: () => {},
   },
 }));
 
@@ -51,7 +45,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-jest.mock('utils', () => ({
+jest.mock('utils/auth', () => ({
   localTokenHandler: {
     clearToken: jest.fn(),
     storeToken: jest.fn(),

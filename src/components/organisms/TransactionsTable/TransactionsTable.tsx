@@ -16,12 +16,12 @@ import {
   StyledTableTitle,
 } from './TransactionsTable.styled';
 import { TransferFilters } from './molecules';
-import { formatCardNumber, formatDateTime } from './utils/formatValueUtils';
 
 import { CustomTableRow } from 'components/molecules';
 import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
 import { usePaginationInfo } from 'hooks';
 import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
+import { formatCardNumber, formatTransactionDate } from 'utils/formatters';
 
 // TODO: this mockdata will replaced by real fetched data from API
 const transactionsList: Transaction[] = [
@@ -272,7 +272,7 @@ export const TransactionsTable = () => {
     return transactionsList
       .slice(startIndex, endIndex)
       .map((transaction: Transaction) => {
-        const { date, time } = formatDateTime(transaction.datetime);
+        const { date, time } = formatTransactionDate(transaction.datetime);
 
         const transformedTransaction: TransformedTransaction = {
           id: transaction.id,

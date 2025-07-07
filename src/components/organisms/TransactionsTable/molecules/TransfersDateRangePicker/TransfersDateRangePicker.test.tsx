@@ -5,8 +5,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { TransfersDateRangePicker } from './TransfersDateRangePicker';
 
+import { DATE_FORMATS } from 'constants/date';
 import { theme } from 'theme/theme';
-import { formatDate } from 'utils/formatDate';
+import { formatDateByPattern } from 'utils/formatters';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -68,8 +69,8 @@ describe('TransfersDateRangePicker', () => {
   it('renders default startDate and endDate', () => {
     const { startDate, endDate } = getDateElements();
 
-    expect(startDate.value).toBe(formatDate(defaultValues.startDate));
-    expect(endDate.value).toBe(formatDate(defaultValues.endDate));
+    expect(startDate.value).toBe(formatDateByPattern(defaultValues.startDate, DATE_FORMATS.DD_MM_YYYY));
+    expect(endDate.value).toBe(formatDateByPattern(defaultValues.endDate, DATE_FORMATS.DD_MM_YYYY));
   });
 
   it('has default dates selected in the calendar', () => {
@@ -94,8 +95,8 @@ describe('TransfersDateRangePicker', () => {
 
     const { startDate, endDate } = getDateElements();
 
-    expect(startDate.value).not.toBe(formatDate(defaultValues.startDate));
-    expect(endDate.value).not.toBe(formatDate(defaultValues.endDate));
+    expect(startDate.value).not.toBe(formatDateByPattern(defaultValues.startDate, DATE_FORMATS.DD_MM_YYYY));
+    expect(endDate.value).not.toBe(formatDateByPattern(defaultValues.endDate, DATE_FORMATS.DD_MM_YYYY));
   });
 
   it('executes onClose callback when user clicks on "Cancel" button', () => {

@@ -5,7 +5,7 @@ import { endpoints } from './endpoints';
 import { ETokenType } from 'enums';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { baseQueryCreator } from 'store/baseQueryCreator';
-import { getEmail, localTokenHandler } from 'utils';
+import { getEmail, localTokenHandler } from 'utils/auth';
 
 export const postRegistrationInfoApi = createApi({
   reducerPath: 'postRegistrationInfoApi',

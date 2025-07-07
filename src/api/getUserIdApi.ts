@@ -4,7 +4,7 @@ import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
 import { ETokenType } from 'enums';
-import { localTokenHandler } from 'utils/tokenHandler';
+import { localTokenHandler } from 'utils/auth/tokenHandler';
 
 export const getUserIdApi = createApi({
   reducerPath: 'getUserIdApi',

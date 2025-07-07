@@ -1,5 +1,6 @@
-import { ThemeProvider } from '@mui/material/styles';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { SelectChangeEvent, ThemeProvider } from '@mui/material';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MouseEvent } from 'react';
 
 import { TransactionsTable } from './TransactionsTable';
 
@@ -9,10 +10,10 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
-        title: 'Transactions',
+        title: 'Transaction History',
         'columnHeaders.card': 'Card',
-        'columnHeaders.sum': 'Sum',
-        'columnHeaders.template': 'Template',
+        'columnHeaders.sum': 'Amount',
+        'columnHeaders.template': 'Type',
         'columnHeaders.date': 'Date',
       };
       return translations[key] || key;
@@ -23,11 +24,32 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('./molecules', () => ({
+  TransferFilters: ({ sx }: { sx?: object }) => (
+    <div data-testid="transfer-filters" />
+  ),
+}));
+
 jest.mock('components/molecules', () => ({
-  CustomTableRow: ({ cardNumber, amount, template }: any) => (
-    <tr data-testid="table-row">
+  CustomTableRow: ({
+    cardNumber,
+    template,
+    amount,
+    currency,
+  }: {
+    cardNumber: string;
+    template: string;
+    isIncome: boolean;
+    date: string;
+    time: string;
+    amount: number;
+    currency: string;
+  }) => (
+    <tr data-testid="custom-table-row">
       <td>{cardNumber}</td>
-      <td>{amount}</td>
+      <td>
+        {amount} {currency}
+      </td>
       <td>{template}</td>
     </tr>
   ),
@@ -35,93 +57,147 @@ jest.mock('components/molecules', () => ({
 
 jest.mock(
   'components/molecules/CustomTablePagination/CustomTablePagination',
-  () => {
-    return function MockCustomTablePagination({
+  () => ({
+    __esModule: true,
+    default: ({
+      page,
+      rowsPerPage,
+      pageDisplayText,
       onPageChange,
       onRowsPerPageChange,
-    }: any) {
-      return (
-        <div data-testid="pagination">
-          <button onClick={() => onPageChange(null, 1)} data-testid="next-page">
-            Next
-          </button>
-          <button
-            onClick={() => onRowsPerPageChange({ target: { value: 20 } })}
-            data-testid="change-rows"
-          >
-            Change Rows
-          </button>
-        </div>
-      );
-    };
-  },
+    }: {
+      totalPages: number;
+      page: number;
+      rowsPerPage: number;
+      pageDisplayText: string;
+      onPageChange: (
+        event: MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+      ) => void;
+      onRowsPerPageChange: (event: SelectChangeEvent<number>) => void;
+    }) => (
+      <div data-testid="custom-table-pagination">
+        <span data-testid="page-display">{pageDisplayText}</span>
+        <button
+          data-testid="next-page"
+          onClick={() => onPageChange(null, page + 1)}
+        >
+          Next
+        </button>
+        <select
+          data-testid="rows-per-page-select"
+          value={rowsPerPage}
+          onChange={(e) =>
+            onRowsPerPageChange({
+              target: { value: e.target.value },
+            } as SelectChangeEvent<number>)
+          }
+        >
+          <option value={10}>10</option>
+          <option value={25}>25</option>
+        </select>
+      </div>
+    ),
+  }),
 );
 
 jest.mock('hooks', () => ({
-  usePaginationInfo: () => ({
-    totalPages: 15,
-    pageDisplayText: '1 - 10 of 15 items',
+  usePaginationInfo: (
+    totalItems: number,
+    page: number,
+    rowsPerPage: number,
+  ) => ({
+    totalPages: Math.ceil(totalItems / rowsPerPage),
+    pageDisplayText: `${page + 1} of ${Math.ceil(totalItems / rowsPerPage)}`,
   }),
 }));
 
-jest.mock('./utils/formatValueUtils', () => ({
-  formatCardNumber: (name: string, number: string) => `${name} - ${number}`,
-  formatDateTime: (datetime: string) => ({
-    date: '2025-03-28',
-    time: '15:21',
+jest.mock('utils/formatters', () => ({
+  formatTransactionDate: (datetime: string) => ({
+    date: datetime.split(' ')[0],
+    time: datetime.split(' ')[1],
   }),
+  formatCardNumber: (cardName: string, cardNumber: string) =>
+    `${cardName} •••• ${cardNumber.slice(-4)}`,
 }));
-
-const renderWithTheme = (component: React.ReactElement) => {
-  return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
-};
 
 describe('TransactionsTable', () => {
-  beforeEach(() => {
-    renderWithTheme(<TransactionsTable />);
-    jest.clearAllMocks();
+  describe('Rendering', () => {
+    it('renders table with basic structure', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByText('Transaction History')).toBeInTheDocument();
+      expect(screen.getByText('Card')).toBeInTheDocument();
+      expect(screen.getByText('Amount')).toBeInTheDocument();
+      expect(screen.getByText('Type')).toBeInTheDocument();
+      expect(screen.getByText('Date')).toBeInTheDocument();
+    });
+
+    it('renders transaction rows', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
+
+      const tableRows = screen.getAllByTestId('custom-table-row');
+      expect(tableRows).toHaveLength(10);
+    });
+
+    it('renders pagination controls', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByTestId('custom-table-pagination')).toBeInTheDocument();
+      expect(screen.getByTestId('page-display')).toHaveTextContent('1 of 2');
+    });
   });
 
-  it('should render table with header and transactions', () => {
-    expect(screen.getByText('Transactions')).toBeInTheDocument();
-    expect(screen.getByText('Card')).toBeInTheDocument();
-    expect(screen.getByText('Sum')).toBeInTheDocument();
-    expect(screen.getByText('Template')).toBeInTheDocument();
-    expect(screen.getByText('Date')).toBeInTheDocument();
-    expect(screen.getAllByTestId('table-row')).toHaveLength(10);
+  describe('Pagination', () => {
+    it('navigates to next page', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
+
+      fireEvent.click(screen.getByTestId('next-page'));
+
+      expect(screen.getByTestId('page-display')).toHaveTextContent('2 of 2');
+    });
+
+    it('changes rows per page', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
+
+      fireEvent.change(screen.getByTestId('rows-per-page-select'), {
+        target: { value: '25' },
+      });
+
+      expect(screen.getByTestId('page-display')).toHaveTextContent('1 of 1');
+    });
   });
 
-  it('should render pagination component', () => {
-    expect(screen.getByTestId('pagination')).toBeInTheDocument();
-    expect(screen.getByTestId('next-page')).toBeInTheDocument();
-  });
+  describe('Data Display', () => {
+    it('displays formatted transaction data', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <TransactionsTable />
+        </ThemeProvider>,
+      );
 
-  it('should handle page changes', async () => {
-    const nextButton = screen.getByTestId('next-page');
-    fireEvent.click(nextButton);
-
-    expect(screen.getByText('Transactions')).toBeInTheDocument();
-  });
-
-  it('should handle rows per page changes', async () => {
-    const changeRowsButton = screen.getByTestId('change-rows');
-    fireEvent.click(changeRowsButton);
-
-    expect(screen.getByText('Transactions')).toBeInTheDocument();
-  });
-
-  it('should render correct table structure', () => {
-    expect(screen.getByRole('table')).toBeInTheDocument();
-    expect(screen.getAllByRole('columnheader')).toHaveLength(5);
-    expect(screen.getAllByTestId('table-row')).toHaveLength(10);
-  });
-
-  it('should display transaction data correctly', () => {
-    const tableRows = screen.getAllByTestId('table-row');
-    expect(tableRows[0]).toBeInTheDocument();
-
-    expect(
-      screen.getByText('Strong Card - 1234 1234 1234 1234'),
-    ).toBeInTheDocument();
+      expect(screen.getByText(/Strong Card •••• 1234/)).toBeInTheDocument();
+      expect(screen.getByText(/132\.4 PLN/)).toBeInTheDocument();
+    });
   });
 });
