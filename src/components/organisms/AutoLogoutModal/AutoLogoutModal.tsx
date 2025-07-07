@@ -18,12 +18,8 @@ import { routes } from 'router';
 import { setError } from 'store/reducers';
 import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
 import { getIsVerifying } from 'store/selectors';
-import {
-  localTokenHandler,
-  getEmail,
-  removeAuthData,
-  getAuthStatus,
-} from 'utils';
+import { getAuthStatus, getEmail, localTokenHandler, removeAuthData } from 'utils/auth';
+
 
 export const AutoLogoutModal = () => {
   const { t } = useTranslation('translation');

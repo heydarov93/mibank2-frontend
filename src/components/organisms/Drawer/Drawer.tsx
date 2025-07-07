@@ -24,7 +24,7 @@ import { ETokenType, EGreeting } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
-import { localTokenHandler, removeAuthData } from 'utils';
+import { localTokenHandler, removeAuthData } from 'utils/auth';
 
 export const TemporaryDrawer = () => {
   const [open, setOpen] = useState(false);

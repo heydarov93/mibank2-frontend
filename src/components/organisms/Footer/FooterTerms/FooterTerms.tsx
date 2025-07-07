@@ -5,7 +5,8 @@ import { termsLink, policyLink } from '../constants';
 
 import { StyledBottomBox, StyledBox } from './FooterTerms.styled';
 
-import { generateRandomParam } from 'utils';
+import { generateRandomParam } from 'utils/helpers';
+
 
 export const FooterTerms = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });

@@ -16,7 +16,7 @@ import {
   setVerifying,
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 interface Props {
   dispatch: (action: Action) => void;

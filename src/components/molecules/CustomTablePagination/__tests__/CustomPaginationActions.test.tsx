@@ -29,7 +29,7 @@ jest.mock('components/atoms/RightArrowEndButton/RightArrowEndButton', () => {
   };
 });
 
-jest.mock('../utils/colorUtils', () => ({
+jest.mock('utils', () => ({
   getButtonColor: jest.fn(() => '#000000'),
   getTextColor: jest.fn(() => '#000000'),
 }));

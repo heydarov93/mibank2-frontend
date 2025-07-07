@@ -6,6 +6,9 @@ import {
   StyledInterestText,
 } from '../DepositCreationForm.styled';
 
+import { calculateInterestAmount } from 'utils/helpers';
+
+
 interface InterestInfoProps {
   amount?: number;
   interestRate?: number;
@@ -20,8 +23,7 @@ const InterestInfo = ({
   term,
 }: InterestInfoProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-  const interestAmount =
-    amount && interestRate ? ((amount * interestRate) / 100).toFixed(2) : null;
+  const interestAmount = calculateInterestAmount(amount ?? 0, interestRate ?? 0);
 
   return (
     <StyledInterestBox data-testid="interest-info">
@@ -34,7 +36,9 @@ const InterestInfo = ({
           : t('calcInstruction')}
       </StyledInterestText>
       <StyledInterestLabel>
-        {interestAmount ? `${currency} ${interestAmount}` : t('calcResultPlaceholder')}
+        {interestAmount
+          ? `${currency} ${interestAmount}`
+          : t('calcResultPlaceholder')}
       </StyledInterestLabel>
     </StyledInterestBox>
   );

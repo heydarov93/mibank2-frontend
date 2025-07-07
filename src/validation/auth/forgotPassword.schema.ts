@@ -2,10 +2,10 @@ import * as yup from 'yup';
 
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
+  VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
-import { isValidVerificationCodeLength } from 'utils/validationUtils';
+import { isValidVerificationCodeLength } from 'utils/helpers/validationHelpers';
 
 export const forgotPasswordSchema = yup.object().shape({
   password: yup

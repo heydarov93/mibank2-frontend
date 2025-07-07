@@ -2,10 +2,10 @@ import * as yup from 'yup';
 
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
+  VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
-import { hasOnlyOneCapitalLetter } from 'utils/validationUtils';
+import { hasOnlyOneCapitalLetter } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'BackOffice.addNewEmployee';
 const requiredField = 'BackOffice.addNewEmployee.errorFieldRequired';
@@ -26,7 +26,10 @@ export const employeeSchema = yup.object().shape({
       hasOnlyOneCapitalLetter,
     )
     .matches(VALIDATION_PATTERNS.NAME, t(`${VALIDATION_KEY}.errorLetters`))
-    .matches(VALIDATION_PATTERNS.CAPITALIZE_LETTERS, t(`${VALIDATION_KEY}.errorFirstLetter`))
+    .matches(
+      VALIDATION_PATTERNS.CAPITALIZE_LETTERS,
+      t(`${VALIDATION_KEY}.errorFirstLetter`),
+    )
     .min(
       VALIDATION_LIMITS.NAME_MIN_LENGTH,
       t(`${VALIDATION_KEY}.errorFirstNameMin`),
@@ -45,7 +48,10 @@ export const employeeSchema = yup.object().shape({
       hasOnlyOneCapitalLetter,
     )
     .matches(VALIDATION_PATTERNS.NAME, t(`${VALIDATION_KEY}.errorLetters`))
-    .matches(VALIDATION_PATTERNS.CAPITALIZE_LETTERS, t(`${VALIDATION_KEY}.errorFirstLetter`))
+    .matches(
+      VALIDATION_PATTERNS.CAPITALIZE_LETTERS,
+      t(`${VALIDATION_KEY}.errorFirstLetter`),
+    )
     .min(
       VALIDATION_LIMITS.NAME_MIN_LENGTH,
       t(`${VALIDATION_KEY}.errorLastNameMin`),

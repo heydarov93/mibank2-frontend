@@ -4,15 +4,19 @@ import { termsLink, policyLink } from '../constants';
 
 import { FooterTerms } from './FooterTerms';
 
-import { generateRandomParam } from 'utils';
+import { generateRandomParam } from 'utils/helpers/randomHelpers';
+
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (str: string) => str,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
-jest.mock('utils', () => ({
+jest.mock('utils/helpers/randomHelpers', () => ({
   generateRandomParam: jest.fn().mockReturnValue('randomParam'),
 }));
 

@@ -6,7 +6,7 @@ import { EUDocumentInfo } from '../EUDocumentInfo/EUDocumentInfo';
 import { StyledBoxContainer } from './DocumentInfoWrapper.styled';
 
 import { FormStepProps } from 'models/IRegistration';
-import { checkEUStatus } from 'utils/checkEUStatus';
+import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 
 export const DocumentInfoWrapper = ({ onBack }: FormStepProps) => {
   const { watch } = useFormContext();

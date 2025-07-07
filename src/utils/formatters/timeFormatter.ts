@@ -1,4 +1,4 @@
-export const convertSecondsToTime = (seconds: number): string => {
+export const formatSecondsToTime = (seconds: number): string => {
   if (seconds <= 0) return '';
 
   const minutes = Math.floor(seconds / 60);

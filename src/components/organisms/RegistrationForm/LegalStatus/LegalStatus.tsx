@@ -8,16 +8,17 @@ import {
 } from '../RegistrationForm.styled';
 
 import {
-  StyledFormTitle,
-  StyledFormContent,
   StyledBoxContainer,
+  StyledFormContent,
+  StyledFormTitle,
   StyledLabel,
 } from './LegalStatus.styled';
 
-import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
+import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { CountrySelectField } from 'components/molecules';
-import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
 import { FormStepProps, ILegalStatus } from 'models/IRegistration';
+import { checkAllowedKey } from 'utils/checkers';
 
 export const LegalStatus = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
@@ -43,10 +44,7 @@ export const LegalStatus = ({ onBack }: FormStepProps) => {
               error={errors.citizenship}
               className={errors.citizenship ? 'shake' : ''}
               onKeyDown={(e) => {
-                if (
-                  !/^[a-zA-Z]+$/.test(e.key) &&
-                  !ALLOWED_KEYS.includes(e.key)
-                ) {
+                if (checkAllowedKey(e, VALIDATION_PATTERNS.LEGAL_STATUS_INPUT)) {
                   e.preventDefault();
                 }
               }}
@@ -62,10 +60,7 @@ export const LegalStatus = ({ onBack }: FormStepProps) => {
               error={errors?.taxResidenceCountry}
               className={errors.taxResidenceCountry ? 'shake' : ''}
               onKeyDown={(e) => {
-                if (
-                  !/^[a-zA-Z]+$/.test(e.key) &&
-                  !ALLOWED_KEYS.includes(e.key)
-                ) {
+                if (checkAllowedKey(e, VALIDATION_PATTERNS.LEGAL_STATUS_INPUT)) {
                   e.preventDefault();
                 }
               }}
@@ -84,7 +79,9 @@ export const LegalStatus = ({ onBack }: FormStepProps) => {
               placeholder={t('RegistrationPage.placeholder.name')}
               maxLength={11}
               onKeyDown={(e) => {
-                if (!/^\d$/.test(e.key) && !ALLOWED_KEYS.includes(e.key)) {
+                if (
+                  checkAllowedKey(e, VALIDATION_PATTERNS.LEGAL_STATUS_INPUT)
+                ) {
                   e.preventDefault();
                 }
               }}

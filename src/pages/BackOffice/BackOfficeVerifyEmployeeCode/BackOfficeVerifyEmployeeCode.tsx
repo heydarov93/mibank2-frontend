@@ -12,9 +12,9 @@ import {
 import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/molecules/OneTimePasscode';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
 import { ETokenType } from 'enums';
-import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
-import { setEmployeeAuthData } from 'utils/storageAuthHandler';
-import { sessionTokenHandler } from 'utils/tokenHandler';
+import { getEmailRoleFromToken } from 'utils/auth/emailFromTokenHandler';
+import { setEmployeeAuthData } from 'utils/auth/storageAuthHandler';
+import { sessionTokenHandler } from 'utils/auth/tokenHandler';
 
 export const BackOfficeVerifyEmployeeCode = () => {
   const { t } = useTranslation('translation');
@@ -138,4 +138,3 @@ export const BackOfficeVerifyEmployeeCode = () => {
     </>
   );
 };
-

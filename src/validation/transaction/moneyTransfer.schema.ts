@@ -4,12 +4,12 @@ import * as yup from 'yup';
 import { CURRENCIES } from 'constants/currencies';
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
+  VALIDATION_PATTERNS,
 } from 'constants/validationPatternConstants';
 import { t } from 'i18n';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { checkValidCardNumber } from 'utils/checkValidCardNumber';
-import { removeSpaces } from 'utils/validationUtils';
+import { checkValidCardNumber } from 'utils/checkers/cardNumberChecker';
+import { removeSpaces } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'TransfersPage.error';
 

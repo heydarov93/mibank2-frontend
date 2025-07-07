@@ -14,7 +14,7 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('utils/dateUtils', () => ({
+jest.mock('utils', () => ({
   getLocaleDateString: () => 'MOCKED_DATE',
   getLocaleTimeString: () => 'MOCKED_TIME',
 }));

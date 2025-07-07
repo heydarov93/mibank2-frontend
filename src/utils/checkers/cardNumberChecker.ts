@@ -1,4 +1,4 @@
-const lookup = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];
+const LOOKUP_VALUES = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];
 
 export function checkValidCardNumber(number: string) {
   if (typeof number !== 'string') throw new TypeError('Expected string input');
@@ -15,7 +15,7 @@ export function checkValidCardNumber(number: string) {
     if (value < 0 || value > 9) return false;
 
     x2 = !x2;
-    sum += x2 ? lookup[value] : value;
+    sum += x2 ? LOOKUP_VALUES[value] : value;
   }
 
   return sum % 10 === 0;

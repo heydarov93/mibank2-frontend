@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthWrapper } from 'components/organisms';
 import { BackOfficeEmployeeLoginForm } from 'components/organisms/BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
 import { ETokenType } from 'enums';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 export const BackOfficeEmployeeLoginPage = () => {
   const navigate = useNavigate();

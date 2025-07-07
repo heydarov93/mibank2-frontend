@@ -4,7 +4,7 @@ import { BASE_URL } from './config';
 import { endpoints } from './endpoints';
 
 import { ETokenType } from 'enums';
-import { sessionTokenHandler } from 'utils/tokenHandler';
+import { sessionTokenHandler } from 'utils/auth/tokenHandler';
 
 export const createDepositApi = createApi({
   reducerPath: 'createDepositApi',

@@ -9,7 +9,7 @@ import {
 
 import { CardIssuerIcon } from 'components/atoms';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
-import { formatWithPattern } from 'utils/formatWithPattern';
+import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export function renderOption(
   props: HTMLAttributes<HTMLLIElement>,

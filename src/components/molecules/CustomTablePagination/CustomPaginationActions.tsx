@@ -9,12 +9,12 @@ import {
   StyledPageCountIndicator,
   StyledSecondaryText,
 } from './CustomPagination.styled';
-import { getButtonColor, getTextColor } from './utils/colorUtils';
 
 import LeftArrowButton from 'components/atoms/LeftArrowButton/LeftArrowButton';
 import LeftArrowEndButton from 'components/atoms/LeftArrowEndButton/LeftArrowEndButton';
 import RightArrowButton from 'components/atoms/RightArrowButton/RightArrowButton';
 import RightArrowEndButton from 'components/atoms/RightArrowEndButton/RightArrowEndButton';
+import { getButtonColor, getTextColor } from 'utils/helpers';
 
 interface PaginationActionsProps {
   totalPages: number;

@@ -56,11 +56,16 @@ jest.mock('react-i18next', () => ({
   initReactI18next: { type: '3rdParty' },
 }));
 
-jest.mock('utils', () => ({
-  generateRandomParam: jest.fn().mockReturnValue(''),
+jest.mock('utils/auth', () => ({
   handleLockedError: jest.fn(),
-  useErrorHandlers: jest.fn,
   localTokenHandler: { getToken: jest.fn() },
+}));
+
+jest.mock('utils/helpers/randomHelpers', () => ({
+  generateRandomParam: jest.fn().mockReturnValue(''),
+}));
+
+jest.mock('utils/formatters/phoneFormatter', () => ({
   formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
 }));
 

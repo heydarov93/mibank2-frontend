@@ -30,7 +30,7 @@ export interface DepositFormData {
   augmentable?: boolean | undefined;
 }
 
-export interface DepositBackendData {
+export interface DepositResponseData {
   id: number;
   name: string;
   type: string;
@@ -43,6 +43,22 @@ export interface DepositBackendData {
   capitalization: number;
   earlyWithdrawalLimit: number;
   earlyWithdrawalFee: number;
+}
+
+export interface DepositData {
+  id: number;
+  productType: string;
+  productName: string;
+  productSubtype: string;
+  cardDescription: string;
+  cardCurrency: string;
+  minimumDepositSum: string;
+  maximumDepositSum: string;
+  depositTerm: string;
+  depositInterestRate: string;
+  depositCapitalizationRate: string;
+  earlyWithdrawalLimit: string;
+  withdrawalFee: string;
 }
 
 export enum ECardType {

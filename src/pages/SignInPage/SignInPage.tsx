@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthWrapper, Footer, LoginForm } from 'components/organisms';
 import { ETokenType } from 'enums';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 export const SignInPage = () => {
   const navigate = useNavigate();

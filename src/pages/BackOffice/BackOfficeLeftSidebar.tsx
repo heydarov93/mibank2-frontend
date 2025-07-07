@@ -25,7 +25,7 @@ import {
   TO_BACK_OFFICE_VIEW_PRODUCTS,
   BACK_OFFICE_EMPLOYEE_SIGN_IN,
 } from 'constants/routesName';
-import { removeEmployeeAuthData } from 'utils/storageAuthHandler';
+import { removeEmployeeAuthData } from 'utils/auth/storageAuthHandler';
 
 const BackOfficeLeftSidebar = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });

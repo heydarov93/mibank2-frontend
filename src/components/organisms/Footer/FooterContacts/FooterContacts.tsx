@@ -20,7 +20,7 @@ import { GooglePlayIcon, AppStoreIcon, Logo } from 'components/atoms';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setContacts } from 'store/reducers';
 import { getContacts } from 'store/selectors';
-import { formatPhoneNumber } from 'utils';
+import { formatPhoneNumber } from 'utils/formatters';
 
 export const FooterContacts = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });

@@ -30,6 +30,7 @@ export const VALIDATION_PATTERNS = {
   LATIN_ONLY: /^[A-Za-z0-9 ]*$/,
   LATIN_ONLY_SPECIAL: /^(?!\s)[a-zA-Z0-9\s!@#$%^&*()]*$/g,
   DOCUMENT_NUMBER: /^[A-Z0-9]+$/,
+  LEGAL_STATUS_INPUT: /^[a-zA-Z]+$/,
 } as const;
 
 export const VALIDATION_LIMITS = {

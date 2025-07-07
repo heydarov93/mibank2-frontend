@@ -11,7 +11,7 @@ import {
   TCardType,
 } from 'types/types';
 
-export function adaptUserBankCardResponse(
+export function mapUserBankCardResponse(
   cardResponse: IUserBankCardResponse,
 ): Omit<IUserBankCard, 'cvv' | 'iban' | 'swift'> {
   return {
@@ -33,11 +33,11 @@ export function adaptUserBankCardResponse(
   };
 }
 
-export function adaptUserBankCardDetailsResponse(
+export function mapUserBankCardDetailsResponse(
   cardDetailsResponse: IUserBankCardDetailsResponse,
-) {
+): IUserBankCard {
   return {
-    ...adaptUserBankCardResponse(cardDetailsResponse.userCardResponse),
+    ...mapUserBankCardResponse(cardDetailsResponse.userCardResponse),
     iban: cardDetailsResponse.ibanNumber,
     swift: cardDetailsResponse.swiftNumber,
     cvv: cardDetailsResponse.cvv,

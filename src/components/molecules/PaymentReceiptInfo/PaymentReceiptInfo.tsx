@@ -6,7 +6,7 @@ import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
 import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
 import { TCurrency } from 'types/types';
-import { formatCurrency } from 'utils/currencyUtils';
+import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
 export interface IPaymentReceipt {
   payerName: string;

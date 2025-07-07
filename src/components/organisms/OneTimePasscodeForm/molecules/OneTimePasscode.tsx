@@ -1,9 +1,8 @@
 import React from 'react';
 
-
 import { DigitInput } from './OneTimePasscode.styled';
 
-import { theme } from 'theme/theme';
+import { getBackgroundColor, getBorderColor } from 'utils/helpers';
 
 interface OneTimePasscodeProps {
   otp: string[];
@@ -23,16 +22,6 @@ const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
   inputRefs,
   hasError,
 }) => {
-  const getBackgroundColor = (value: string) => {
-    if (hasError) return theme.palette.error.light;
-    if (value) return theme.palette.primary.light;
-    return 'transparent';
-  };
-  const getBorderColor = (value: string) => {
-    if (hasError) return theme.palette.error.main;
-    if (value) return theme.palette.primary.dark;
-    return '';
-  };
   return (
     <>
       {otp.map((value, index) => (
@@ -48,8 +37,8 @@ const OneTimePasscode: React.FC<OneTimePasscodeProps> = ({
             (inputRefs.current[index] = element)
           }
           sx={{
-            backgroundColor: getBackgroundColor(value),
-            borderColor: getBorderColor(value),
+            backgroundColor: getBackgroundColor(value, hasError),
+            borderColor: getBorderColor(value, hasError),
           }}
         />
       ))}
