@@ -9,7 +9,7 @@ import {
 } from './OneTimePasscodeForm.styled';
 import OneTimePasscode from './molecules/OneTimePasscode';
 
-import { useValidateOtpMutation } from 'api/validateOtpApi';
+import { useValidateOTPMutation } from 'api/services/employee-service/employees.api';
 import { SubmitButton } from 'components/atoms';
 import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
 import { theme } from 'theme/theme';
@@ -26,7 +26,7 @@ export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
   const [isError, setIsError] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
 
-  const [validateOtp, { isLoading }] = useValidateOtpMutation();
+  const [validateOTP, { isLoading }] = useValidateOTPMutation();
   const navigate = useNavigate();
 
   const handleChange = (value: string, index: number) => {
@@ -65,7 +65,7 @@ export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
     if (!email) return;
 
     try {
-      const response = await validateOtp({
+      const response = await validateOTP({
         email: email,
         code: otp.join(''),
       }).unwrap();

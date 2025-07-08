@@ -11,7 +11,7 @@ import {
   StyledLabel,
 } from './ForgotPassword.styled';
 
-import { useGetCodeForForgotPasswordMutation } from 'api/getCodeForForgotPasswordApi';
+import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
 import { EErrorStatus } from 'enums';

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import BackOfficeDepositEditForm from './BackOfficeDepositEditForm';
 
-import { updateDepositApi } from 'api/updateDepositApi';
+import { depositsApi } from 'api';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 
 jest.mock('react-i18next', () => ({
@@ -18,10 +18,10 @@ jest.mock('react-i18next', () => ({
 
 const mockStore = configureStore({
   reducer: {
-    [updateDepositApi.reducerPath]: updateDepositApi.reducer,
+    [depositsApi.reducerPath]: depositsApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(updateDepositApi.middleware);
+    return getDefaultMiddleware().concat(depositsApi.middleware);
   },
 });
 

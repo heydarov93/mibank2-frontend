@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from './CreateForgotPasswordForm.styled';
 
-import { useConfirmForgotPasswordMutation } from 'api/confirmForgotPasswordApi';
+import { useConfirmForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, SubmitButton } from 'components/atoms';
 import {
   PasswordField,

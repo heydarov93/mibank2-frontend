@@ -2,12 +2,12 @@ import { skipToken } from '@reduxjs/toolkit/query';
 
 import { IUserCardAccount } from './useAccounts';
 
-import { useGetCardAccountsQuery } from 'api/accountsApi';
-import { useGetUserIdQuery } from 'api/getUserIdApi';
+import { useGetAccountByCardQuery } from 'api/services/account-service/accounts.api';
+import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 export function useGetCardAccounts(skipQuery: boolean) {
   const { data } = useGetUserIdQuery();
 
-  const { isLoading, isError } = useGetCardAccountsQuery(
+  const { isLoading, isError } = useGetAccountByCardQuery(
     data && !skipQuery ? { userId: data.userId } : skipToken,
   );
 

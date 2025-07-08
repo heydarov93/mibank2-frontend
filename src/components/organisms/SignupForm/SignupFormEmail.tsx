@@ -11,7 +11,7 @@ import {
   StyledLabel,
 } from './SignupForm.styled';
 
-import { useCheckEmailMutation } from 'api/checkEmailApi';
+import { useCheckEmailMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_PASSWORD, TO_SIGN_IN } from 'constants/routesName';
 import { EErrorStatus } from 'enums';

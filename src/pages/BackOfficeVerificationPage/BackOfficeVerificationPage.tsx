@@ -11,7 +11,7 @@ import {
   StepDescription,
 } from './BackOfficeVerificationPage.styled';
 
-import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
+import { useGetAuthenticateEmployeeQuery } from 'api/services/employee-service/employees.api';
 import { OneTimePasscodeForm } from 'components/organisms';
 import { BackOfficeVerificationErrorPage } from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
@@ -25,7 +25,7 @@ export const BackOfficeVerificationPage = () => {
   const queryParam = useQuery();
   const token = queryParam.get('token');
 
-  const { data, error, isLoading } = useGetAuthenticateEmployeeQuery({ token });
+  const { data, error, isLoading } = useGetAuthenticateEmployeeQuery({ token: token ?? '' });
 
   const email = data?.email || null;
   const imgUrl = data?.qrCodeBaseUrl || null;

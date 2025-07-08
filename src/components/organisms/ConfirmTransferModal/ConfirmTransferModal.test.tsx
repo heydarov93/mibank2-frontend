@@ -3,12 +3,12 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { ConfirmTransferModal } from './ConfirmTransferModal';
 
-import { useGetTransferFeeQuery } from 'api/accountsApi';
+import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { theme } from 'theme/theme';
 import { TCurrency } from 'types/types';
 
-jest.mock('api/accountsApi', () => ({
+jest.mock('api/services/account-service/transfers.api', () => ({
   useGetTransferFeeQuery: jest.fn(),
 }));
 

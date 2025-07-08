@@ -6,7 +6,10 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { Footer } from './Footer';
 
-import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
+import {
+  useGetContactsQuery,
+  useGetContactVersionQuery,
+} from 'api/services/contact-information-service/contacts.api';
 import { useAppSelector } from 'hooks';
 import { theme } from 'theme/theme';
 
@@ -49,8 +52,8 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('api/contactInfoApi', () => ({
-  useGetVersionQuery: jest.fn(),
+jest.mock('api/services/contact-information-service/contacts.api', () => ({
+  useGetContactVersionQuery: jest.fn(),
   useGetContactsQuery: jest.fn(),
 }));
 
@@ -62,7 +65,9 @@ jest.mock('hooks', () => ({
 describe('Footer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useGetVersionQuery as jest.Mock).mockReturnValue({ data: { id: '1' } });
+    (useGetContactVersionQuery as jest.Mock).mockReturnValue({
+      data: { id: '1' },
+    });
     (useGetContactsQuery as jest.Mock).mockReturnValue({
       data: {
         id: '1',

@@ -1,13 +1,13 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { Box, Drawer } from '@mui/material';
 
-import { Deposit } from 'api/getDepositsApi';
 import { DepositCreationForm, DepositInfoCard } from 'components/molecules';
 import { StyledCloseButton } from 'components/molecules/DepositInfoCard/DepositInfoCard.styled';
 import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
+import { IDeposit } from 'models/IDepositInfo';
 
 interface OpenDepositModalProps {
-  deposit: Deposit | null;
+  deposit: IDeposit | null;
   onClose: () => void;
   onBack: () => void;
 }

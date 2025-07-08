@@ -3,13 +3,10 @@ import { render, screen } from '@testing-library/react';
 
 import { ExchangeRatesTable } from './ExchangeRatesTable';
 
-import {
-  useGetCurrentRatesQuery,
-  useGetPreviousRatesQuery,
-} from 'api/getExchangeRatesApi';
+import { useGetCurrentRatesQuery, useGetPreviousRatesQuery } from 'api/services/exchange-rate-service/exchange-rates.api';
 import { theme } from 'theme/theme';
 
-jest.mock('api/getExchangeRatesApi', () => ({
+jest.mock('api/services/exchange-rate-service/exchange-rates.api', () => ({
   useGetCurrentRatesQuery: jest.fn(),
   useGetPreviousRatesQuery: jest.fn(),
 }));

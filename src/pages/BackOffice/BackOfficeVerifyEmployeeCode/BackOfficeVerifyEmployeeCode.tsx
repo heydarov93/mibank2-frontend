@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useLogInMutation } from 'api/employeeLogInApi';
+import { useAuthenticateEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { Logo, SubmitButton } from 'components/atoms';
 import {
   CancelButton,
@@ -24,7 +24,7 @@ export const BackOfficeVerifyEmployeeCode = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
 
-  const [logIn, { isLoading }] = useLogInMutation();
+  const [AuthenticateEmployee, { isLoading }] = useAuthenticateEmployeeMutation();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -66,7 +66,7 @@ export const BackOfficeVerifyEmployeeCode = () => {
     if (!email) return;
 
     try {
-      const response = await logIn({
+      const response = await AuthenticateEmployee({
         email: email,
         code: otp.join(''),
       }).unwrap();

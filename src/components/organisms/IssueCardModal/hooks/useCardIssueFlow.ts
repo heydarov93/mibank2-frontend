@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useLazyGetCardsQuery } from 'api/userCardsApi';
+import { useLazySearchCardsQuery } from 'api/services/card-service/cards.api';
 import { IssueCardModalProps } from 'components/organisms';
 import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
@@ -39,7 +39,7 @@ export const useCardIssueFlow = ({ onClose }: UseIssueFlowOptions) => {
   );
   const confirmationModal = useDisclosure();
   const [getCardsQuery, { data: cardsData, isFetching: isLoadingCards }] =
-    useLazyGetCardsQuery();
+    useLazySearchCardsQuery();
   const cards = cardsData?.data ?? [];
   const isConfirmationStep = step === ECardIssueStepper.CONFIRMATION;
 

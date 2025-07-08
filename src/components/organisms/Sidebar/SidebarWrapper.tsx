@@ -2,20 +2,20 @@ import { useState } from 'react';
 
 import { Sidebar } from './Sidebar';
 
-import { Deposit } from 'api/getDepositsApi';
 import {
   AvailableDepositsWindow,
   IssueCardModal,
   OpenDepositModal
 } from 'components/organisms';
 import useDisclosure from 'hooks/useDisclosure';
+import { IDeposit } from 'models/IDepositInfo';
 
 export function SidebarWrapper() {
-  const [deposit, setDeposit] = useState<Deposit | null>(null);
+  const [deposit, setDeposit] = useState<IDeposit | null>(null);
   const issueCardModal = useDisclosure();
   const depositsModal = useDisclosure();
 
-  function handleSetDeposit(deposit: Deposit) {
+  function handleSetDeposit(deposit: IDeposit) {
     setDeposit(deposit);
     depositsModal.close();
   }

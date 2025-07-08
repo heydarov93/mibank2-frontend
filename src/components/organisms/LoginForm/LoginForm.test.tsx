@@ -15,6 +15,9 @@ jest.mock('utils/auth', () => ({
   localTokenHandler: {
     getToken: jest.fn(),
   },
+  sessionTokenHandler: {
+    getToken: jest.fn(),
+  },
 }));
 
 jest.mock('utils/helpers/randomHelpers', () => ({

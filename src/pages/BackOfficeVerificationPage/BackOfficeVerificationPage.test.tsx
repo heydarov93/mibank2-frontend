@@ -1,17 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 
 import { BackOfficeVerificationPage } from './BackOfficeVerificationPage';
 
-import { useGetAuthenticateEmployeeQuery } from 'api/authenticateEmployeeApi';
+import { useGetAuthenticateEmployeeQuery } from 'api/services/employee-service/employees.api';
 
-jest.mock('api/validateOtpApi', () => ({
-  useValidateOtpMutation: () => [jest.fn(), { isLoading: false }],
-}));
 
-jest.mock('api/authenticateEmployeeApi', () => ({
+jest.mock('api/services/employee-service/employees.api', () => ({
+  useValidateOTPMutation: () => [jest.fn(), { isLoading: false }],
   useGetAuthenticateEmployeeQuery: jest.fn(),
 }));
 

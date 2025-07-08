@@ -21,22 +21,13 @@ import {
   TrendingUpIcon,
 } from './ExchangeRatesTable.styled';
 
-import {
-  useGetCurrentRatesQuery,
-  useGetPreviousRatesQuery,
-} from 'api/getExchangeRatesApi';
+
+import { useGetCurrentRatesQuery, useGetPreviousRatesQuery } from 'api/services/exchange-rate-service/exchange-rates.api';
+import { IExchangeRate } from 'api/services/exchange-rate-service/exchange-rates.types';
 import { CurrencyFlagIcon } from 'components/atoms';
 import { CURRENCIES } from 'constants/currencies';
-import { TCurrency } from 'types/types';
 
 type TableError = string | null;
-
-interface Rate {
-  currency: string;
-  code: TCurrency;
-  bid: number;
-  ask: number;
-}
 
 export function ExchangeRatesTable() {
   const { t } = useTranslation('translation', {
@@ -71,12 +62,12 @@ export function ExchangeRatesTable() {
     return <CircularProgress />;
   }
 
-  const filteredCurrencies = currentRates[0].rates.filter((rate: Rate) =>
+  const filteredCurrencies = currentRates[0].rates.filter(rate =>
     CURRENCIES.includes(rate.code),
   );
 
-  const previousRatesMap = new Map<string, Rate>(
-    previousRates[0].rates.map((rate: Rate) => [rate.code, rate]),
+  const previousRatesMap = new Map<string, IExchangeRate>(
+    previousRates[0].rates.map((rate: IExchangeRate) => [rate.code, rate]),
   );
 
   return (
@@ -99,7 +90,7 @@ export function ExchangeRatesTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredCurrencies.map((rate: Rate, index: number) => {
+            {filteredCurrencies.map((rate: IExchangeRate, index: number) => {
               const previousRate = previousRatesMap.get(rate.code);
 
               const isBidIncreased =

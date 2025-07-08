@@ -10,8 +10,11 @@ import {
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
 
-import { useSendcodeMutation, useVerifyCodeMutation } from 'api/authApi';
-import { useLazyGetUserInfoQuery } from 'api/userInfoApi';
+import {
+  useLazyGetUserInfoQuery,
+  useSendcodeMutation,
+  useVerifyCodeMutation,
+} from 'api/services/user-account-service/user-accounts.api';
 import { Timer } from 'components/molecules';
 import { EErrorStatus, EUserStatus, ETokenType } from 'enums';
 import {

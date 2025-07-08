@@ -2,8 +2,8 @@ import { skipToken } from '@reduxjs/toolkit/query';
 
 import { IUserIBANAccount } from './useAccounts';
 
-import { useGetIBANAccountsQuery } from 'api/accountsApi';
-import { useGetUserIdQuery } from 'api/getUserIdApi';
+import { useGetUserAccountByIBANQuery } from 'api/services/account-service/accounts.api';
+import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 
 export function useGetIBANAccounts(skipQuery: boolean) {
   const { data } = useGetUserIdQuery();
@@ -12,7 +12,7 @@ export function useGetIBANAccounts(skipQuery: boolean) {
     data: accountsResponse,
     isLoading,
     isError,
-  } = useGetIBANAccountsQuery(
+  } = useGetUserAccountByIBANQuery(
     data && !skipQuery ? { userId: data.userId } : skipToken,
   );
 
