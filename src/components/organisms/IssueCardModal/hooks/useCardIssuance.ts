@@ -8,9 +8,9 @@ import {
   useCheckCardIssuanceMutation,
   useCreateUserCardAccountMutation,
   useLinkAccountWithCardMutation,
-} from 'api/accountsApi';
-import { useGetUserIdQuery } from 'api/getUserIdApi';
-import { useIssueUserCardMutation } from 'api/userCardsApi';
+} from 'api/services/account-service/accounts.api';
+import { useIssueUserCardMutation } from 'api/services/card-service/cards.api';
+import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { EAccount } from 'enums/EAccount';
 import { IssuanceCardData } from 'models/IProductInfo';
 

@@ -15,18 +15,21 @@ import {
   StyledFlexOrderBox,
 } from './FooterContacts.styled';
 
-import { useGetContactsQuery, useGetVersionQuery } from 'api/contactInfoApi';
+import {
+  useGetContactsQuery,
+  useGetContactVersionQuery,
+} from 'api/services/contact-information-service/contacts.api';
 import { GooglePlayIcon, AppStoreIcon, Logo } from 'components/atoms';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setContacts } from 'store/reducers';
 import { getContacts } from 'store/selectors';
-import { formatPhoneNumber } from 'utils';
+import { formatPhoneNumber } from 'utils/formatters';
 
 export const FooterContacts = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
   const [skip, setSkip] = useState(true);
   const dispatch = useAppDispatch();
-  const { data: version } = useGetVersionQuery(null);
+  const { data: version } = useGetContactVersionQuery(null);
   const { data: contacts } = useGetContactsQuery(null, { skip });
   const currentContacts = useAppSelector(getContacts);
   const {

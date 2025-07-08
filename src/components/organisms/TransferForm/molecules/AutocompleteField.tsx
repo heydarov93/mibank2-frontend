@@ -42,10 +42,6 @@ export function AutocompleteField<
   const [open, setOpen] = useState(false);
   const { control, name, options, textFieldProps, pattern } = props;
 
-  // function handleOpenDropdown() {
-  //   setOpen(true);
-  // }
-
   function handleCloseDropdown() {
     setOpen(false);
   }
@@ -143,14 +139,12 @@ export function AutocompleteField<
           renderOption={props.renderOption}
           getOptionLabel={getOptionLabel}
           getOptionDisabled={props.getOptionDisabled}
-          // onFocus={handleOpenDropdown}
           open={open}
           options={options}
           sx={autocompleteSx}
           freeSolo
           autoSelect
           handleHomeEndKeys
-          // openOnFocus={true}
           blurOnSelect={true}
           renderInput={(params) => (
             <TextField

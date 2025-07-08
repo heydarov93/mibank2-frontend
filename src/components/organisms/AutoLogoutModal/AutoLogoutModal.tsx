@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledAutoLogoutModal } from './AutoLogoutModal.styled';
 
-import { useGetRefreshTokenMutation } from 'api/refreshTokenApi';
+import { useGetRefreshTokenMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ReactComponent as StopWatch } from 'assets/icons/StopWatch.svg';
 import { ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -18,12 +18,8 @@ import { routes } from 'router';
 import { setError } from 'store/reducers';
 import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
 import { getIsVerifying } from 'store/selectors';
-import {
-  localTokenHandler,
-  getEmail,
-  removeAuthData,
-  getAuthStatus,
-} from 'utils';
+import { getAuthStatus, getEmail, localTokenHandler, removeAuthData } from 'utils/auth';
+
 
 export const AutoLogoutModal = () => {
   const { t } = useTranslation('translation');

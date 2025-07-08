@@ -26,11 +26,11 @@ import {
   StyledFormControlLabel,
 } from './ConfirmTransferModal.styled';
 
-import { useGetTransferFeeQuery } from 'api/accountsApi';
+import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
 import { TransferDetailRow } from 'components/molecules';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { formatTransferValue } from 'utils/currencyUtils';
-import { savePaymentSchema } from 'validation';
+import { formatTransferValue } from 'utils/formatters/currencyFormatter';
+import { savePaymentSchema, TSavePaymentValues } from 'validation';
 
 interface ConfirmTransferModalProps {
   open: boolean;
@@ -74,8 +74,8 @@ export const ConfirmTransferModal = ({
     control,
     formState: { errors, isValid },
     reset,
-  } = useForm({
-    resolver: yupResolver(savePaymentSchema(t)),
+  } = useForm<TSavePaymentValues>({
+    resolver: yupResolver(savePaymentSchema),
     defaultValues: { paymentName: '' },
     mode: 'onBlur',
     reValidateMode: 'onChange',

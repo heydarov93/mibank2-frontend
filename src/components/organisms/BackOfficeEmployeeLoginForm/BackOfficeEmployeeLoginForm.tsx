@@ -12,17 +12,16 @@ import {
   StyledLabel,
 } from './BackOfficeEmployeeLoginForm.styled';
 
-import { useValidateEmailMutation } from 'api/employeeController';
+import { useValidateEmployeeEmailMutation } from 'api/services/employee-service/employees.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import {
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE,
 } from 'constants/routesName';
-import { IBackOfficeEmployeeLogin } from 'models/IAuth';
-import { validationBackOfficeEmployeeLoginSchema } from 'validation';
+import { employeeLoginSchema, TEmployeeLoginValues } from 'validation';
 
 export const BackOfficeEmployeeLoginForm = () => {
-  const [validateEmail, { isLoading }] = useValidateEmailMutation();
+  const [validateEmployeeEmail, { isLoading }] = useValidateEmployeeEmailMutation();
   const [errorMessage, setErrorMessage] = useState('');
   const { t } = useTranslation('translation', {
     keyPrefix: 'EmployeeLoginPage',
@@ -33,8 +32,8 @@ export const BackOfficeEmployeeLoginForm = () => {
     control,
     handleSubmit,
     resetField,
-  } = useForm<IBackOfficeEmployeeLogin>({
-    resolver: yupResolver(validationBackOfficeEmployeeLoginSchema),
+  } = useForm<TEmployeeLoginValues>({
+    resolver: yupResolver(employeeLoginSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',
@@ -50,7 +49,7 @@ export const BackOfficeEmployeeLoginForm = () => {
   const onSubmit = async () => {
     try {
       setErrorMessage('');
-      const res = await validateEmail({
+      const res = await validateEmployeeEmail({
         email: control._formValues.email,
       }).unwrap();
       if (res?.message) {

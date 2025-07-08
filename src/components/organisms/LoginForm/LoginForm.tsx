@@ -23,7 +23,7 @@ import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
 import { useAppDispatch } from 'hooks';
 import { ILoginFormInput } from 'models/IAuth';
 import { setError } from 'store/reducers/AuthSlice';
-import { validationLoginSchema } from 'validation';
+import { TUserLoginValues, userLoginSchema } from 'validation';
 
 export const LoginForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LoginPage' });
@@ -36,8 +36,8 @@ export const LoginForm = () => {
     resetField,
     watch,
     reset: resetForm,
-  } = useForm<ILoginFormInput>({
-    resolver: yupResolver(validationLoginSchema),
+  } = useForm<TUserLoginValues>({
+    resolver: yupResolver(userLoginSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

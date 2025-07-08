@@ -1,2 +1,3 @@
 export { routes } from './routes';
-export { PrivateRoute } from './PrivateRoute';
+export { AppPrivateRoute } from './AppPrivateRoute';
+export { BackOfficePrivateRoute } from './BackOfficePrivateRoute';

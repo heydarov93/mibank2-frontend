@@ -9,7 +9,7 @@ import {
   StyledContainer,
 } from './DepositLearnMorePage.styled';
 
-import { Deposit, useGetDepositsQuery } from 'api/getDepositsApi';
+import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { DepositErrorMessage } from 'components/atoms';
 import { DepositBox, InvestmentBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
@@ -21,6 +21,7 @@ import {
   OpenDepositRow,
 } from 'components/organisms';
 import useDisclosure from 'hooks/useDisclosure';
+import { IDeposit } from 'models/IDepositInfo';
 
 export const DepositLearnMorePage = () => {
   const params = useParams();
@@ -38,7 +39,7 @@ export const DepositLearnMorePage = () => {
     deposits?.content?.findIndex((deposit) => deposit.id === depositId) ?? 0;
   const depositInfo = deposits?.content?.[depositIndex] ?? null;
   const isLoadingDeposits = isLoading || !depositInfo;
-  const [selectedDeposit, setSelectedDeposit] = useState<Deposit | null>(null);
+  const [selectedDeposit, setSelectedDeposit] = useState<IDeposit | null>(null);
   const isViewingAllDepositsRef = useRef(false);
 
   const handleNavigateBack = () => {

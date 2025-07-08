@@ -11,7 +11,7 @@ import {
   StyledLabel,
 } from './ForgotPassword.styled';
 
-import { useGetCodeForForgotPasswordMutation } from 'api/getCodeForForgotPasswordApi';
+import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
 import { EErrorStatus } from 'enums';
@@ -20,7 +20,7 @@ import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
-import { validationEmailSchema } from 'validation';
+import { userEmailSchema } from 'validation';
 
 export const ForgotPassword = () => {
   const { t } = useTranslation('translation');
@@ -35,7 +35,7 @@ export const ForgotPassword = () => {
     resetField,
     reset: resetForm,
   } = useForm<IEmailFormInput>({
-    resolver: yupResolver(validationEmailSchema),
+    resolver: yupResolver(userEmailSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

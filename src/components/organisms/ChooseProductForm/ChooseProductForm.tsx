@@ -12,15 +12,15 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import { SelectField } from 'components/molecules';
-import currencies from 'constants/currencies';
+import { CURRENCIES } from 'constants/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setProductForm } from 'store/reducers/ChooseProductSlice';
 import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
-import { productFormSchema } from 'validation/validationProductFormSchema';
+import { chooseProductSchema, TChooseProductValues } from 'validation';
 
-const currencyOptions = currencies.map((value) => ({ value }));
+const currencyOptions = CURRENCIES.map((value) => ({ value }));
 
 const ChooseProductForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -62,8 +62,8 @@ const ChooseProductForm = () => {
     handleSubmit,
     formState: { errors, isValid },
     watch,
-  } = useForm<formData>({
-    resolver: yupResolver(productFormSchema),
+  } = useForm<TChooseProductValues>({
+    resolver: yupResolver(chooseProductSchema),
     mode: 'onBlur',
     defaultValues: {
       productType: selector.productType,

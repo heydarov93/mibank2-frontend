@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { SelectField } from '..';
 
 import { FieldWithLabel } from 'components/atoms';
-import currencies from 'constants/currencies';
+import { CURRENCIES } from 'constants/currencies';
 import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
 
-const currenciesOptions = currencies.map((value) => ({ value }));
+const currenciesOptions = CURRENCIES.map((value) => ({ value }));
 const cardIssuers = [{ value: 'Visa' }, { value: 'MasterCard' }];
 const issueTypes = [
   { value: 'digital', label: 'Digital' },

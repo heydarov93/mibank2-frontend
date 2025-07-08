@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
-import { useNavigate, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, useNavigate } from 'react-router-dom';
 
 import { ForgotPassword } from './ForgotPassword';
 
-import { useGetCodeForForgotPasswordMutation } from 'api/getCodeForForgotPasswordApi';
+import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { useAppDispatch } from 'hooks';
-import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
 
 const initialValues = {
@@ -42,7 +41,7 @@ jest.mock('hooks', () => ({
   useAppDispatch: jest.fn(),
 }));
 
-jest.mock('api/getCodeForForgotPasswordApi', () => ({
+jest.mock('api/services/user-account-service/user-accounts.api', () => ({
   useGetCodeForForgotPasswordMutation: jest.fn(),
 }));
 
@@ -89,7 +88,9 @@ describe('Forgot Password should match snapshot', () => {
       </Provider>,
     );
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const button = screen.getByRole('button', { name: 'ForgotPassword.EmailPageButton' });
+    const button = screen.getByRole('button', {
+      name: 'ForgotPassword.EmailPageButton',
+    });
 
     waitFor(() => {
       userEvent.type(emailInput, 'BAD_EMAIL');
@@ -116,7 +117,9 @@ describe('Forgot Password should match snapshot', () => {
     );
 
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const submitButton = screen.getByRole('button', { name: 'ForgotPassword.EmailPageButton' });
+    const submitButton = screen.getByRole('button', {
+      name: 'ForgotPassword.EmailPageButton',
+    });
 
     waitFor(() => {
       userEvent.type(emailInput, 'test@example.com');

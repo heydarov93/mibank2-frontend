@@ -15,8 +15,16 @@ export { BackOfficeVerificationPage } from './BackOfficeVerificationPage/BackOff
 export { LegalEntityVerificationPage } from './LegalEntityVerificationPage/LegalEntityVerificationPage';
 export { DepositLearnMorePage } from './DepositLearnMorePage/DepositLearnMorePage';
 export { BusinessSignUpPage } from './BusinessSignUpPage/BusinessSignUpPage';
+export { BusinessLoginPage } from './BusinessLoginPage/BusinessLoginPage';
 export { BusinessCreatePasswordPage } from './BusinessCreatePasswordPage/BusinessCreatePasswordPage';
 export { VerifyEmailPage } from './VerifyEmailPage/VerifyEmailPage';
 export { TransfersPage } from './TransfersPage/TransfersPage';
 export { TransactionsHistoryPage } from './TransactionsHistoryPage/TransactionsHistoryPage';
 export { AllCardsPage } from './AllCardsPage/AllCardsPage';
+export { BackOffice } from './BackOffice/BackOffice';
+export { BackOfficeVerifyEmployeeCode } from './BackOffice/BackOfficeVerifyEmployeeCode/BackOfficeVerifyEmployeeCode';
+export { CreateEmployee } from './BackOffice/CreateEmployee';
+export { BackOfficeErrorPage } from './BackOfficeErrorPage/BackOfficeErrorPage';
+export { BackOfficeVerificationErrorPage } from './BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
+export { BackOfficeViewEmployees } from './BackOfficeViewEmployees/BackOfficeViewEmployees';
+export { BackOfficeViewProductsPage } from './BackOfficeViewProductsPage/BackOfficeViewProductsPage';

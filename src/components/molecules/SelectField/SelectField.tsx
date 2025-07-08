@@ -74,8 +74,6 @@ export const SelectField = <T extends FieldValues>({
   const selectedOption = selectedOptionRef.current;
 
   function handleClose(e: React.SyntheticEvent) {
-    // setTimeout is used to get current value after React has finished updating the state
-    // Otherwise it will reference to previous selected option
     setTimeout(() => {
       const target = e.target as HTMLElement;
       const option = selectedOptionRef.current;

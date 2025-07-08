@@ -9,16 +9,17 @@ import {
 } from '../RegistrationForm.styled';
 
 import {
-  StyledFormTitle,
-  StyledFormContent,
   StyledBoxContainer,
+  StyledFormContent,
+  StyledFormTitle,
   StyledLabel,
 } from './EUDocumentInfo.styled';
 
-import { InputField, SubmitButton, SecondaryButton } from 'components/atoms';
+import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
-import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
 import { FormStepProps, IEUDocumentInfo } from 'models/IRegistration';
+import { checkAllowedKey } from 'utils/checkers';
 
 export const EUDocumentInfo = ({ onBack }: FormStepProps) => {
   const { t } = useTranslation('translation');
@@ -34,8 +35,6 @@ export const EUDocumentInfo = ({ onBack }: FormStepProps) => {
     formState: { errors, isValid },
     control,
   } = useFormContext<IEUDocumentInfo>();
-
-  const idCardRegExp = /^[A-Z0-9]+$/;
 
   return (
     <StyledBoxContainer>
@@ -55,10 +54,7 @@ export const EUDocumentInfo = ({ onBack }: FormStepProps) => {
               className={errors.documentNumber ? 'shake' : ''}
               error={errors.documentNumber}
               onKeyDown={(e) => {
-                if (
-                  !idCardRegExp.test(e.key) &&
-                  !ALLOWED_KEYS.includes(e.key)
-                ) {
+                if (checkAllowedKey(e, VALIDATION_PATTERNS.DOCUMENT_NUMBER)) {
                   e.preventDefault();
                 }
               }}

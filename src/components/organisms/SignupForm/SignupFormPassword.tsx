@@ -11,7 +11,7 @@ import {
   StyledFormTitle,
 } from './SignupForm.styled';
 
-import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
+import { useRegisterNewUserMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,
@@ -24,7 +24,7 @@ import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers/AuthSlice';
-import { validationSignupSchema } from 'validation';
+import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const SignupFormPassword = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'SignupPage' });
@@ -37,8 +37,8 @@ export const SignupFormPassword = () => {
     handleSubmit,
     reset: resetForm,
     watch,
-  } = useForm<ISignupFormInput>({
-    resolver: yupResolver(validationSignupSchema),
+  } = useForm<TUserSignupValues>({
+    resolver: yupResolver(userSignupSchema),
     mode: 'onBlur',
     defaultValues: {
       password: '',

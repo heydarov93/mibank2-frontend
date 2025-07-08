@@ -11,17 +11,17 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-import BackOfficeViewProductsPage from './BackOfficeViewProductsPage';
+import { BackOfficeViewProductsPage } from './BackOfficeViewProductsPage';
 
-import { getProductsApi } from 'api/getProductsApi';
+import { productsApi } from 'api';
 import { theme } from 'theme/theme';
 
 const mockStore = configureStore({
   reducer: {
-    [getProductsApi.reducerPath]: getProductsApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(getProductsApi.middleware),
+    getDefaultMiddleware().concat(productsApi.middleware),
 });
 
 jest.mock('react-i18next', () => ({

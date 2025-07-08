@@ -29,9 +29,18 @@ jest.mock('components/atoms/RightArrowEndButton/RightArrowEndButton', () => {
   };
 });
 
-jest.mock('../utils/colorUtils', () => ({
+jest.mock('utils/helpers/colorHelpers', () => ({
   getButtonColor: jest.fn(() => '#000000'),
   getTextColor: jest.fn(() => '#000000'),
+}));
+
+jest.mock('utils/auth', () => ({
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+  sessionTokenHandler: {
+    getToken: jest.fn(),
+  },
 }));
 
 const defaultProps = {

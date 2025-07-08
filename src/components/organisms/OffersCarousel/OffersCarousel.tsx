@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledStack, StyledCarouselContainer } from './OffersCarousel.styled';
 
-import { Offer, useGetOfferImagesQuery } from 'api/getOffersApi';
+import { useGetOfferImagesQuery } from 'api/services/offer-service/offers.api';
+import { IOffer } from 'api/services/offer-service/offers.types';
 import { CustomCarousel } from 'components/molecules';
 import { OfferSlide } from 'components/molecules/OfferSlide/OfferSlide';
 
@@ -18,7 +19,7 @@ export const OffersCarousel = () => {
     refetch,
   } = useGetOfferImagesQuery();
   // TODO replace these mock offers with real values when api for them is ready
-  const mockOffers: Offer[] =
+  const mockOffers: IOffer[] =
     images?.imageFiles.map((img) => ({
       banner: `data:image/png;base64,${img}`,
       name: 'All Banks in one',

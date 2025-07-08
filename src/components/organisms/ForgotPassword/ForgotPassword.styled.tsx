@@ -1,6 +1,7 @@
 import { styled, Typography, Box } from '@mui/material';
 
-import { defaultBreakpointsStyle } from 'constants/defaultBreakpointsStyle';
+import { defaultBreakpointsStyle } from 'utils/helpers/breakpointHelpers';
+
 
 export const StyledForm = defaultBreakpointsStyle;
 

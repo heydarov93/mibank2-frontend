@@ -18,33 +18,20 @@ import CreateCardReducer from './reducers/CreateCardSlice';
 import CreateDepositReducer from './reducers/CreateDepositSlice';
 import ProductStepperReducer from './reducers/ProductStepperSlice';
 
-import { accountsApi } from 'api/accountsApi';
-import { authApi } from 'api/authApi';
-import { authenticateEmployeeApi } from 'api/authenticateEmployeeApi';
-import { checkEmailApi } from 'api/checkEmailApi';
-import { confirmForgotPasswordApi } from 'api/confirmForgotPasswordApi';
-import { contactInfoApi } from 'api/contactInfoApi';
-import { convertCurrencyApi } from 'api/convertCurrencyApi';
-import { createCardApi } from 'api/createCardApi';
-import { createDepositApi, createUserDepositApi } from 'api/createDepositApi';
-import { deleteDepositApi } from 'api/deleteDepositApi';
-import { employeeControllerApi } from 'api/employeeController';
-import { employeeLogInApi } from 'api/employeeLogInApi';
-import { getCodeForForgotPasswordApi } from 'api/getCodeForForgotPasswordApi';
-import { getDepositsApi } from 'api/getDepositsApi';
-import { getExchangeRatesApi } from 'api/getExchangeRatesApi';
-import { getOffersApi } from 'api/getOffersApi';
-import { getPostcode } from 'api/getPostcode';
-import { getProductsApi } from 'api/getProductsApi';
-import { getUserIdApi } from 'api/getUserIdApi';
-import { postRegistrationInfoApi } from 'api/postRegistrationInfoApi';
-import { refreshToken } from 'api/refreshTokenApi';
-import { registerEmployeeApi } from 'api/registerEmployee';
-import { registerNewUserApi } from 'api/registerNewUserApi';
-import { updateDepositApi } from 'api/updateDepositApi';
-import { userCardsApi } from 'api/userCardsApi';
-import { userInfoApi } from 'api/userInfoApi';
-import { validateOtpApi } from 'api/validateOtpApi';
+import {
+  accountsApi,
+  cardsApi,
+  contactsApi,
+  depositsApi,
+  employeesApi,
+  exchangeRatesApi,
+  getUserIdApi,
+  offersApi,
+  productsApi,
+  userAccountsApi,
+  userDepositsApi,
+} from 'api';
+import { transfersApi } from 'api/services/account-service/transfers.api';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
@@ -53,35 +40,18 @@ const rootReducer = combineReducers({
   productForm: ChooseProductReducer,
   createDeposit: CreateDepositReducer,
   createCard: CreateCardReducer,
-  [authApi.reducerPath]: authApi.reducer,
-  [userInfoApi.reducerPath]: userInfoApi.reducer,
-  [contactInfoApi.reducerPath]: contactInfoApi.reducer,
-  [checkEmailApi.reducerPath]: checkEmailApi.reducer,
-  [getPostcode.reducerPath]: getPostcode.reducer,
-  [registerNewUserApi.reducerPath]: registerNewUserApi.reducer,
-  [postRegistrationInfoApi.reducerPath]: postRegistrationInfoApi.reducer,
-  [getCodeForForgotPasswordApi.reducerPath]:
-    getCodeForForgotPasswordApi.reducer,
-  [confirmForgotPasswordApi.reducerPath]: confirmForgotPasswordApi.reducer,
-  [refreshToken.reducerPath]: refreshToken.reducer,
-  [authenticateEmployeeApi.reducerPath]: authenticateEmployeeApi.reducer,
-  [employeeLogInApi.reducerPath]: employeeLogInApi.reducer,
-  [validateOtpApi.reducerPath]: validateOtpApi.reducer,
-  [employeeControllerApi.reducerPath]: employeeControllerApi.reducer,
-  [registerEmployeeApi.reducerPath]: registerEmployeeApi.reducer,
-  [createDepositApi.reducerPath]: createDepositApi.reducer,
-  [createCardApi.reducerPath]: createCardApi.reducer,
+  [userAccountsApi.reducerPath]: userAccountsApi.reducer,
+  [contactsApi.reducerPath]: contactsApi.reducer,
+  [employeesApi.reducerPath]: employeesApi.reducer,
+  [depositsApi.reducerPath]: depositsApi.reducer,
   [accountsApi.reducerPath]: accountsApi.reducer,
+  [transfersApi.reducerPath]: transfersApi.reducer,
   [getUserIdApi.reducerPath]: getUserIdApi.reducer,
-  [deleteDepositApi.reducerPath]: deleteDepositApi.reducer,
-  [updateDepositApi.reducerPath]: updateDepositApi.reducer,
-  [convertCurrencyApi.reducerPath]: convertCurrencyApi.reducer,
-  [getExchangeRatesApi.reducerPath]: getExchangeRatesApi.reducer,
-  [getProductsApi.reducerPath]: getProductsApi.reducer,
-  [getOffersApi.reducerPath]: getOffersApi.reducer,
-  [getDepositsApi.reducerPath]: getDepositsApi.reducer,
-  [createUserDepositApi.reducerPath]: createUserDepositApi.reducer,
-  [userCardsApi.reducerPath]: userCardsApi.reducer,
+  [exchangeRatesApi.reducerPath]: exchangeRatesApi.reducer,
+  [productsApi.reducerPath]: productsApi.reducer,
+  [offersApi.reducerPath]: offersApi.reducer,
+  [cardsApi.reducerPath]: cardsApi.reducer,
+  [userDepositsApi.reducerPath]: userDepositsApi.reducer,
 });
 
 const persistConfig = {
@@ -89,35 +59,19 @@ const persistConfig = {
   storage,
   whitelist: ['contacts'],
   blacklist: [
-    authApi.reducerPath,
-    userInfoApi.reducerPath,
-    getPostcode.reducerPath,
-    contactInfoApi.reducerPath,
-    checkEmailApi.reducerPath,
-    registerNewUserApi.reducerPath,
-    postRegistrationInfoApi.reducerPath,
-    getCodeForForgotPasswordApi.reducerPath,
-    confirmForgotPasswordApi.reducerPath,
-    refreshToken.reducerPath,
-    authenticateEmployeeApi.reducerPath,
-    employeeLogInApi.reducerPath,
-    validateOtpApi.reducerPath,
-    employeeControllerApi.reducerPath,
-    registerEmployeeApi.reducerPath,
-    createDepositApi.reducerPath,
-    getDepositsApi.reducerPath,
-    createCardApi.reducerPath,
+    userAccountsApi.reducerPath,
+    contactsApi.reducerPath,
+    employeesApi.reducerPath,
+    depositsApi.reducerPath,
     accountsApi.reducerPath,
+    transfersApi.reducerPath,
     getUserIdApi.reducerPath,
-    deleteDepositApi.reducerPath,
-    updateDepositApi.reducerPath,
-    getExchangeRatesApi.reducerPath,
-    convertCurrencyApi.reducerPath,
-    getProductsApi.reducerPath,
-    getOffersApi.reducerPath,
-    createUserDepositApi.reducerPath,
+    exchangeRatesApi.reducerPath,
+    productsApi.reducerPath,
+    offersApi.reducerPath,
     accountsApi.reducerPath,
-    userCardsApi.reducerPath,
+    cardsApi.reducerPath,
+    userDepositsApi.reducerPath,
   ],
 };
 
@@ -131,35 +85,19 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat([
-      authApi.middleware,
-      userInfoApi.middleware,
-      getPostcode.middleware,
-      contactInfoApi.middleware,
-      checkEmailApi.middleware,
-      registerNewUserApi.middleware,
-      postRegistrationInfoApi.middleware,
-      getCodeForForgotPasswordApi.middleware,
-      confirmForgotPasswordApi.middleware,
-      refreshToken.middleware,
-      authenticateEmployeeApi.middleware,
-      employeeLogInApi.middleware,
-      validateOtpApi.middleware,
-      employeeControllerApi.middleware,
-      registerEmployeeApi.middleware,
-      createDepositApi.middleware,
-      getDepositsApi.middleware,
-      createCardApi.middleware,
+      userAccountsApi.middleware,
+      contactsApi.middleware,
+      employeesApi.middleware,
+      depositsApi.middleware,
       accountsApi.middleware,
+      transfersApi.middleware,
       getUserIdApi.middleware,
-      deleteDepositApi.middleware,
-      updateDepositApi.middleware,
-      getExchangeRatesApi.middleware,
-      convertCurrencyApi.middleware,
-      getProductsApi.middleware,
-      getOffersApi.middleware,
-      createUserDepositApi.middleware,
+      exchangeRatesApi.middleware,
+      productsApi.middleware,
+      offersApi.middleware,
       accountsApi.middleware,
-      userCardsApi.middleware,
+      cardsApi.middleware,
+      userDepositsApi.middleware,
     ]),
 });
 

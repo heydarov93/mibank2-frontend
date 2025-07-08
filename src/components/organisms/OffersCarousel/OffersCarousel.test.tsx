@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import { OffersCarousel } from './OffersCarousel';
 
-import { useGetOfferImagesQuery } from 'api/getOffersApi';
+import { useGetOfferImagesQuery } from 'api/services/offer-service/offers.api';
 import { theme } from 'theme/theme';
 
 jest.mock('react-i18next', () => ({
@@ -15,7 +15,7 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('api/getOffersApi', () => ({
+jest.mock('api/services/offer-service/offers.api', () => ({
   useGetOfferImagesQuery: jest.fn(),
 }));
 

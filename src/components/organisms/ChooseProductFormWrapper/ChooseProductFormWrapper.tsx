@@ -15,7 +15,7 @@ import { getCardFormData } from 'store/selectors/CreateCardSelector';
 import { getDepositForm } from 'store/selectors/CreateDepositSelector';
 import { getProductStep } from 'store/selectors/ProductStepperSelector';
 
-const ChooseProductFormWrapper = () => {
+export const ChooseProductFormWrapper = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const [isProductCreated, setIsProductCreated] = useState<boolean>(false);
 
@@ -73,5 +73,3 @@ const ChooseProductFormWrapper = () => {
     </>
   );
 };
-
-export default ChooseProductFormWrapper;

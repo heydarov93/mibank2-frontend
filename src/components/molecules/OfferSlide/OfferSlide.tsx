@@ -10,9 +10,9 @@ import {
   StyledButton,
 } from './OfferSlide.styled';
 
-import { Offer } from 'api/getOffersApi';
+import { IOffer } from 'api/services/offer-service/offers.types';
 
-type OfferSlideProps = Offer;
+type OfferSlideProps = IOffer;
 
 export const OfferSlide = ({ name, description, banner }: OfferSlideProps) => {
   const { t } = useTranslation('translation', {

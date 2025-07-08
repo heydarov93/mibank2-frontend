@@ -15,7 +15,7 @@ import {
   StyledLabel,
 } from './Address.styled';
 
-import { useGetPostcodeMutation } from 'api/getPostcode';
+import { useGetPostcodeMutation } from 'api/services/user-account-service/user-accounts.api';
 import {
   InputField,
   SubmitButton,

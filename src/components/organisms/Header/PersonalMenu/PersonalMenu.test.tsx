@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { PersonalMenu } from './PersonalMenu';
 
-import { useGetUserInfoQuery } from 'api/userInfoApi';
+import { useGetUserInfoQuery } from 'api/services/user-account-service/user-accounts.api';
 import { ETokenType } from 'enums';
 import { useAppSelector } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
@@ -54,7 +54,7 @@ const mockStore = configureStore({
   reducer: () => initialValues,
 });
 
-jest.mock('utils', () => ({
+jest.mock('utils/auth', () => ({
   localTokenHandler: {
     clearToken: jest.fn(),
     storeToken: jest.fn(),
@@ -108,7 +108,7 @@ jest.mock('hooks', () => ({
   useAppDispatch: () => mockDispatch,
 }));
 
-jest.mock('api/userInfoApi', () => ({
+jest.mock('api/services/user-account-service/user-accounts.api', () => ({
   useGetUserInfoQuery: jest.fn().mockReturnValue({
     data: undefined,
     isLoading: false,

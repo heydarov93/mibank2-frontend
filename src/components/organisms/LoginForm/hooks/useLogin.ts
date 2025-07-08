@@ -4,7 +4,10 @@ import { UseFormResetField } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuthorizeMutation, useSendcodeMutation } from 'api/authApi';
+import {
+  useAuthorizeMutation,
+  useSendcodeMutation,
+} from 'api/services/user-account-service/user-accounts.api';
 import { TO_VERIFICATION } from 'constants/routesName';
 import { EErrorStatus, ETokenType } from 'enums';
 import { useErrorHandlers } from 'hooks';
@@ -16,7 +19,7 @@ import {
   setVerifying,
   setVerifyingTimer,
 } from 'store/reducers/AuthSlice';
-import { localTokenHandler } from 'utils';
+import { localTokenHandler } from 'utils/auth';
 
 interface Props {
   dispatch: (action: Action) => void;

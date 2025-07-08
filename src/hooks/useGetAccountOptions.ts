@@ -1,16 +1,16 @@
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useMemo } from 'react';
 
-import { useGetIBANAccountsQuery } from 'api/accountsApi';
-import { useGetUserIdQuery } from 'api/getUserIdApi';
+import { useGetUserAccountByIBANQuery } from 'api/services/account-service/accounts.api';
+import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { SelectFieldOption } from 'components/molecules';
 import { IBAN_PATTERN } from 'constants/inputPatterns';
-import { formatCurrency } from 'utils/currencyUtils';
-import { formatWithPattern } from 'utils/formatWithPattern';
+import { formatCurrency } from 'utils/formatters/currencyFormatter';
+import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export const useGetAccountOptions = () => {
   const { data: userIdData } = useGetUserIdQuery();
-  const { data, isLoading, ...options } = useGetIBANAccountsQuery(
+  const { data, isLoading, ...options } = useGetUserAccountByIBANQuery(
     userIdData?.userId ? { userId: userIdData.userId } : skipToken,
   );
   const accountOptions: SelectFieldOption[] = useMemo(

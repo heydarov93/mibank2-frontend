@@ -12,15 +12,12 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useRegisterEmployeeMutation } from 'api/registerEmployee';
+import { useRegisterEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { IErrorData } from 'models/IError';
 import { theme } from 'theme/theme';
-import {
-  employeeRoles,
-  employeeValidationSchema,
-} from 'validation/validationCreateEmployee';
+import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 
 type FormData = {
   firstName: string;
@@ -30,7 +27,7 @@ type FormData = {
   dateAdded: string;
 };
 
-const CreateEmployee: React.FC = () => {
+export const CreateEmployee: React.FC = () => {
   const { t } = useTranslation('translation');
 
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -42,8 +39,8 @@ const CreateEmployee: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<FormData>({
-    resolver: yupResolver(employeeValidationSchema),
+  } = useForm<TEmployeeValues>({
+    resolver: yupResolver(employeeSchema),
     mode: 'all',
     defaultValues: {
       firstName: '',
@@ -196,5 +193,3 @@ const CreateEmployee: React.FC = () => {
     </Box>
   );
 };
-
-export default CreateEmployee;

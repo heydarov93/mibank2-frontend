@@ -1,9 +1,12 @@
 import { useState, useEffect, ChangeEvent, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useConvertCurrencyMutation } from 'api/convertCurrencyApi';
-import { useGetCurrentRatesQuery } from 'api/getExchangeRatesApi';
-import { formatAmount } from 'utils/currencyUtils';
+import {
+  useConvertCurrencyMutation,
+  useGetCurrentRatesQuery,
+} from 'api/services/exchange-rate-service/exchange-rates.api';
+import { formatAmount } from 'utils/formatters';
+
 
 interface ConvertedCurrency {
   convertedAmount: number;
@@ -111,7 +114,9 @@ export const useCurrencyCalculator = () => {
         to: !isFromCurrency ? { ...prev.to, currency } : prev.to,
       };
 
-      const amount = isFromCurrency ? updated.from.amount : updated.to.amount;
+      const amount = isFromCurrency
+        ? Number(updated.from.amount)
+        : Number(updated.to.amount);
 
       if (amount) {
         const currencyData = {

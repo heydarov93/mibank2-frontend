@@ -21,7 +21,7 @@ export function CardStackCarousel(props: CardStackCarouselProps) {
       duration={400}
       navButtonsAlwaysVisible
       stopAutoPlayOnHover
-      swipe={false} // removes first load scale animation
+      swipe={false}
       navButtonsWrapperProps={{
         style: {
           display: 'flex',

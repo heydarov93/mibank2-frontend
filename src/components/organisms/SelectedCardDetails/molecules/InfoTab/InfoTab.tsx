@@ -7,6 +7,12 @@ import InfoRow from '../InfoRow/InfoRow';
 import { StyledInfoSection } from './InfoRow.styled';
 
 import { IUserBankCard } from 'models/IUserBankCard';
+import {
+  capitalizeFirstLetter,
+  copyToClipboard,
+  getDisplayCardNumber,
+  getDisplayCvv,
+} from 'utils/helpers';
 
 export type TUserBankCardDetails = Pick<
   IUserBankCard,
@@ -41,22 +47,6 @@ const InfoTab = ({
     );
   }
 
-  const getDisplayCardNumber = () =>
-    showCardNumber
-      ? selectedUserCardDetails.number
-      : `**** ${selectedUserCardDetails.number?.toString().slice(-4)}`;
-
-  const getDisplayCvv = () => (showCvv ? selectedUserCardDetails.cvv : '***');
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
-
-  const capitalizeFirstLetter = (text: string): string => {
-    if (!text) return '';
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  };
-
   return (
     <StyledInfoSection data-testid="card-info-section">
       <InfoRow
@@ -73,7 +63,7 @@ const InfoTab = ({
       />
       <InfoRow
         label={t('numberLabel')}
-        value={getDisplayCardNumber()}
+        value={getDisplayCardNumber(selectedUserCardDetails, showCardNumber)}
         masked
         onToggle={() => setShowCardNumber((prev) => !prev)}
         showIcon={showCardNumber}
@@ -81,7 +71,7 @@ const InfoTab = ({
       />
       <InfoRow
         label={t('cvvLabel')}
-        value={getDisplayCvv()}
+        value={getDisplayCvv(selectedUserCardDetails, showCvv)}
         onToggle={() => setShowCvv((prev) => !prev)}
         showIcon={showCvv}
         data-testid="info-row-cvv"

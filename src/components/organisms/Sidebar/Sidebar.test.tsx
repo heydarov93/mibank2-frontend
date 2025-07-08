@@ -14,9 +14,13 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('utils/dateUtils', () => ({
-  getLocaleDateString: () => 'MOCKED_DATE',
-  getLocaleTimeString: () => 'MOCKED_TIME',
+jest.mock('utils/auth', () => ({
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+  sessionTokenHandler: {
+    getToken: jest.fn(),
+  },
 }));
 
 jest.mock('./molecules/Section/Section', () => ({

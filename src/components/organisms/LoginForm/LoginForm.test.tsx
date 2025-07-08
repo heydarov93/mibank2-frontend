@@ -9,16 +9,20 @@ import store from 'store';
 
 const mockNavigate = jest.fn();
 
-jest.mock('utils', () => {
-  return {
-    generateRandomParam: jest.fn().mockReturnValue(''),
-    handleLockedError: jest.fn(),
-    useErrorHandlers: jest.fn,
-    localTokenHandler: {
-      getToken: jest.fn(),
-    },
-  };
-});
+jest.mock('utils/auth', () => ({
+  handleLockedError: jest.fn(),
+  useErrorHandlers: jest.fn,
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+  sessionTokenHandler: {
+    getToken: jest.fn(),
+  },
+}));
+
+jest.mock('utils/helpers/randomHelpers', () => ({
+  generateRandomParam: jest.fn().mockReturnValue(''),
+}));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),

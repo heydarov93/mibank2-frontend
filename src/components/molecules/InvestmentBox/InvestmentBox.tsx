@@ -11,7 +11,10 @@ import {
 import coinInvestingPicture from 'assets/webp/CoinInvesting.webp';
 import { SubmitButton } from 'components/atoms';
 import { INVESTMENT_AMOUNT } from 'constants/learnMorePage';
-import { calculateInterest, calculateProfit } from 'utils/interestRateUtils';
+import {
+  calculateInterest,
+  calculateProfit,
+} from 'utils/helpers/financialHelpers';
 
 interface InvestmentBoxProps {
   interestRate: number;
@@ -38,7 +41,8 @@ export const InvestmentBox = ({
           <Box>
             <SecondaryText>{t('willGive')}</SecondaryText>
             <PrimaryText>
-              ${INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
+              $
+              {INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
             </PrimaryText>
           </Box>
           <Box>
@@ -71,10 +75,10 @@ export const InvestmentBox = ({
             <SecondaryText>{t('interestAmount')}</SecondaryText>
             <PrimaryText>
               USD{' '}
-              {calculateInterest(INVESTMENT_AMOUNT, interestRate).toLocaleString(
-                'en-US',
-                { useGrouping: true },
-              )}
+              {calculateInterest(
+                INVESTMENT_AMOUNT,
+                interestRate,
+              ).toLocaleString('en-US', { useGrouping: true })}
             </PrimaryText>
           </Box>
         </Box>

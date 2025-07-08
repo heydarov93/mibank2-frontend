@@ -9,35 +9,36 @@ import { ObjectSchema } from 'yup';
 import { useAppDispatch } from './useAppDispatch';
 import useDisclosure from './useDisclosure';
 
-import { usePostRegistrationInfoMutation } from 'api/postRegistrationInfoApi';
+import { usePostRegistrationInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { TO_HOME, TO_SIGN_IN } from 'constants/routesName';
 import { EErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
-import {
-  IAddress,
-  IDocumentInfo,
-  ILegalStatus,
-  IPersonalInfo,
-} from 'models/IRegistration';
+import { IPersonalInfo } from 'models/IRegistration';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { setError } from 'store/reducers';
-import { checkEUStatus } from 'utils/checkEUStatus';
+import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 import {
-  validationRegistrationSchema,
-  validationLegalStatusSchema,
-  validationDocumentInfoSchema,
-  validationAddressSchema,
+  TUserAddressRegisterValues,
+  TUserDocumentInfoValues,
+  TUserLegalStatusValues,
+  userAddressRegisterSchema,
+  userDocumentInfoSchema,
+  userLegalStatusSchema,
+  userPersonalInfoSchema,
 } from 'validation';
 
 const resolvers: Record<EStepper, ObjectSchema<object>> = {
-  [EStepper.PERSONAL_INFO]: validationRegistrationSchema,
-  [EStepper.LEGAL_STATUS]: validationLegalStatusSchema,
-  [EStepper.DOCUMENT_INFO]: validationDocumentInfoSchema,
-  [EStepper.ADDRESS]: validationAddressSchema,
+  [EStepper.PERSONAL_INFO]: userPersonalInfoSchema,
+  [EStepper.LEGAL_STATUS]: userLegalStatusSchema,
+  [EStepper.DOCUMENT_INFO]: userDocumentInfoSchema,
+  [EStepper.ADDRESS]: userAddressRegisterSchema,
 };
 
-type RegFormData = IPersonalInfo & ILegalStatus & IDocumentInfo & IAddress;
+type RegFormData = IPersonalInfo &
+  TUserLegalStatusValues &
+  TUserDocumentInfoValues &
+  TUserAddressRegisterValues;
 
 const defaultValues: RegFormData = {
   apartment: '',
@@ -107,7 +108,6 @@ export const useRegFormFlow = () => {
 
   const handleBack = () => {
     setStep(stepsSequence.indexOf(step) - 1);
-    // revalidate form on app next tick when the step is updated
     queueMicrotask(trigger);
   };
 

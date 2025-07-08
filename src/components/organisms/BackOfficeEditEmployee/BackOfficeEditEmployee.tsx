@@ -21,10 +21,9 @@ import { InputField, SubmitButton } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import {
-  employeeRoles,
-  employeeValidationSchema,
-} from 'validation/validationCreateEmployee';
+import { LOCALES } from 'constants/date';
+import { formatDateByLocale } from 'utils/formatters';
+import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 
 type EmployeeFormData = {
   firstName: string;
@@ -58,8 +57,8 @@ const BackOfficeEditEmployee = ({
     setValue,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<EmployeeFormData>({
-    resolver: yupResolver(employeeValidationSchema),
+  } = useForm<TEmployeeValues>({
+    resolver: yupResolver(employeeSchema),
     mode: 'all',
     defaultValues: {
       firstName: formData?.firstName,
@@ -68,7 +67,7 @@ const BackOfficeEditEmployee = ({
       role: formData?.role,
       dateAdded:
         formData?.dateAdded &&
-        new Date(formData?.dateAdded || '').toLocaleDateString('en-GB'),
+        formatDateByLocale(formData.dateAdded, LOCALES.ENGLISH_GB),
     },
   });
 
@@ -199,10 +198,7 @@ const BackOfficeEditEmployee = ({
               maxDate={dayjs()}
             />
           </Box>
-          <SubmitButton
-            isDisabled={!isValid}
-            buttonContent={t('save')}
-          />
+          <SubmitButton isDisabled={!isValid} buttonContent={t('save')} />
         </form>
       </DialogActions>
     </Dialog>

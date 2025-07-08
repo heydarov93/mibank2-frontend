@@ -10,7 +10,7 @@ import {
 } from './Transaction.styled';
 
 import { TCurrency, TTransactionType } from 'types/types';
-import { getLocaleTimeString } from 'utils/dateUtils';
+import { formatLocaleTimeString } from 'utils/formatters';
 
 export interface ITransaction {
   cardName: string;
@@ -35,7 +35,7 @@ export function Transaction({ data }: { data: ITransaction }) {
         </StyledTopRow>
         <StyledBtmRow>
           <StyledTypography>{cardNumber}</StyledTypography>
-          <StyledTypography>{getLocaleTimeString(data.date)}</StyledTypography>
+          <StyledTypography>{formatLocaleTimeString(data.date)}</StyledTypography>
         </StyledBtmRow>
       </Box>
     </StyledContainer>

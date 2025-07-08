@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useLogInMutation } from 'api/employeeLogInApi';
+import { useAuthenticateEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { Logo, SubmitButton } from 'components/atoms';
 import {
   CancelButton,
@@ -12,11 +12,11 @@ import {
 import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/molecules/OneTimePasscode';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
 import { ETokenType } from 'enums';
-import { getEmailRoleFromToken } from 'utils/getEmailFromToken';
-import { setEmployeeAuthData } from 'utils/storageAuthHandler';
-import { sessionTokenHandler } from 'utils/tokenHandler';
+import { getEmailRoleFromToken } from 'utils/auth/emailFromTokenHandler';
+import { setEmployeeAuthData } from 'utils/auth/storageAuthHandler';
+import { sessionTokenHandler } from 'utils/auth/tokenHandler';
 
-const BackOfficeVerifyEmployeeCode = () => {
+export const BackOfficeVerifyEmployeeCode = () => {
   const { t } = useTranslation('translation');
 
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
@@ -24,7 +24,7 @@ const BackOfficeVerifyEmployeeCode = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
 
-  const [logIn, { isLoading }] = useLogInMutation();
+  const [AuthenticateEmployee, { isLoading }] = useAuthenticateEmployeeMutation();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -66,7 +66,7 @@ const BackOfficeVerifyEmployeeCode = () => {
     if (!email) return;
 
     try {
-      const response = await logIn({
+      const response = await AuthenticateEmployee({
         email: email,
         code: otp.join(''),
       }).unwrap();
@@ -138,5 +138,3 @@ const BackOfficeVerifyEmployeeCode = () => {
     </>
   );
 };
-
-export default BackOfficeVerifyEmployeeCode;

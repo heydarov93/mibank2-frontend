@@ -2,41 +2,128 @@ import { render, screen } from '@testing-library/react';
 
 import { Transaction, ITransaction } from './Transaction';
 
-jest.mock('utils/dateUtils', () => ({
-  getLocaleDateString: () => 'MOCKED_DATE',
-  getLocaleTimeString: () => 'MOCKED_TIME',
+jest.mock('utils', () => ({
+  formatLocaleTimeString: jest.fn((date: string) => `Formatted: ${date}`),
 }));
 
-describe('Transaction', () => {
-  const baseTransaction: ITransaction = {
-    cardName: 'My Visa',
-    cardNumber: '1234567890123456',
-    amount: '100.00',
-    currency: 'USD',
-    date: '2024-06-09T12:34:56Z',
-    type: 'income',
-  };
+jest.mock('../../atoms/TransactionIcon/TransactionIcon', () => ({
+  TransactionIcon: ({ type }: { type: string }) => (
+    <div data-testid="transaction-icon" data-type={type}>
+      {type} icon
+    </div>
+  ),
+}));
 
-  it('renders transaction data correctly for income', () => {
-    render(<Transaction data={baseTransaction} />);
+jest.mock('./Transaction.styled', () => ({
+  StyledContainer: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="transaction-container">{children}</div>
+  ),
+  StyledTopRow: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="top-row">{children}</div>
+  ),
+  StyledBtmRow: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="bottom-row">{children}</div>
+  ),
+  StyledTypography: ({ children }: { children: React.ReactNode }) => (
+    <span data-testid="typography">{children}</span>
+  ),
+}));
 
-    expect(screen.getByText('My Visa')).toBeInTheDocument();
-    expect(screen.getByText('+ USD 100.00')).toBeInTheDocument();
+const mockIncomeTransaction: ITransaction = {
+  cardName: 'Visa Card',
+  cardNumber: '1234567890123456',
+  amount: '150.00',
+  currency: 'USD',
+  date: '2024-01-15T10:30:00Z',
+  type: 'income',
+};
 
-    expect(screen.getByText(/3456/)).toBeInTheDocument();
-    expect(screen.getByText('MOCKED_TIME')).toBeInTheDocument();
+const mockExpenseTransaction: ITransaction = {
+  cardName: 'MasterCard',
+  cardNumber: '9876543210987654',
+  amount: '75.50',
+  currency: 'EUR',
+  date: '2024-01-16T14:45:00Z',
+  type: 'expense',
+};
+
+const renderTransaction = (data: ITransaction) => {
+  return render(<Transaction data={data} />);
+};
+
+describe('Transaction Component', () => {
+  describe('Rendering', () => {
+    it('renders all transaction elements', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      expect(screen.getByTestId('transaction-container')).toBeInTheDocument();
+      expect(screen.getByTestId('transaction-icon')).toBeInTheDocument();
+      expect(screen.getByTestId('top-row')).toBeInTheDocument();
+      expect(screen.getByTestId('bottom-row')).toBeInTheDocument();
+      expect(screen.getAllByTestId('typography')).toHaveLength(4);
+    });
+
+    it('displays transaction icon with correct type', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      const icon = screen.getByTestId('transaction-icon');
+      expect(icon).toHaveAttribute('data-type', 'income');
+    });
+
+    it('displays card name', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      expect(screen.getByText('Visa Card')).toBeInTheDocument();
+    });
+
   });
 
-  it('renders transaction data correctly for expense', () => {
-    const expenseTransaction = { ...baseTransaction, type: 'expense' as const };
+  describe('Amount Display', () => {
+    it('displays income amount with plus sign', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      expect(screen.getByText('+ USD 150.00')).toBeInTheDocument();
+    });
 
-    render(<Transaction data={expenseTransaction} />);
-
-    expect(screen.getByText('- USD 100.00')).toBeInTheDocument();
+    it('displays expense amount with minus sign', () => {
+      renderTransaction(mockExpenseTransaction);
+      
+      expect(screen.getByText('- EUR 75.50')).toBeInTheDocument();
+    });
   });
 
-  it('matches snapshot', () => {
-    const { asFragment } = render(<Transaction data={baseTransaction} />);
-    expect(asFragment()).toMatchSnapshot();
+  describe('Card Number Display', () => {
+    it('displays masked card number with last 4 digits', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      expect(screen.getByText('**** 3456')).toBeInTheDocument();
+    });
+
+    it('handles different card number lengths', () => {
+      const shortCardTransaction = {
+        ...mockIncomeTransaction,
+        cardNumber: '1234',
+      };
+      
+      renderTransaction(shortCardTransaction);
+      
+      expect(screen.getByText('**** 1234')).toBeInTheDocument();
+    });
+  });
+
+  describe('Transaction Types', () => {
+    it('renders income transaction correctly', () => {
+      renderTransaction(mockIncomeTransaction);
+      
+      expect(screen.getByTestId('transaction-icon')).toHaveAttribute('data-type', 'income');
+      expect(screen.getByText('+ USD 150.00')).toBeInTheDocument();
+    });
+
+    it('renders expense transaction correctly', () => {
+      renderTransaction(mockExpenseTransaction);
+      
+      expect(screen.getByTestId('transaction-icon')).toHaveAttribute('data-type', 'expense');
+      expect(screen.getByText('- EUR 75.50')).toBeInTheDocument();
+    });
   });
 });

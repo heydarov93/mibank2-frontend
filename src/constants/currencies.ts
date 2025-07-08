@@ -1,6 +1,13 @@
 import { TCurrency } from 'types/types';
 
-const currencies = ['PLN', 'USD', 'EUR', 'CHF', 'GBP', 'JPY'] as const;
+export const CURRENCIES = [
+  'PLN',
+  'USD',
+  'EUR',
+  'CHF',
+  'GBP',
+  'JPY',
+] as const;
 
 export const currencySymbol: Record<TCurrency, string> = {
   CHF: 'Fr',
@@ -10,5 +17,3 @@ export const currencySymbol: Record<TCurrency, string> = {
   PLN: 'zł',
   USD: '$',
 };
-
-export default currencies;

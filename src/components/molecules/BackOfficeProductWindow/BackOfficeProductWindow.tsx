@@ -12,11 +12,12 @@ import {
   StyledTitle,
 } from './BackOfficeProductWindow.styled';
 
-import { useCreateCardMutation } from 'api/createCardApi';
-import { useCreateDepositMutation } from 'api/createDepositApi';
+import { useCreateCardMutation } from 'api/services/card-service/cards.api';
+import { TCardStatus } from 'api/services/card-service/cards.types';
+import { useCreateDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
-import { ProductStatus, ProductType } from 'enums/EProductType';
-import { useAppSelector, useAppDispatch } from 'hooks';
+import { ProductType } from 'enums/EProductType';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import {
   CardFormData,
   DepositFormData,
@@ -28,6 +29,7 @@ import { resetDepositData } from 'store/reducers/CreateDepositSlice';
 import { resetProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { theme } from 'theme/theme';
+import { TCardIssuer, TCardIssueType, TCardType, TCurrency } from 'types/types';
 
 interface BackOfficeProductWindowProps {
   productTypeData: ProductFormData;
@@ -92,20 +94,42 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
       return [key, value === undefined ? 0 : value];
     }),
   );
-  const depositObject = {
+
+  const depositPayload = {
     name: productFormType.name,
     description: productFormType.description,
     currency: productFormType.currency,
     type: productFormType.subtype,
-    ...backendDepositInfo,
+    min: backendDepositInfo.min ?? 0,
+    max: backendDepositInfo.max ?? 0,
+    term: backendDepositInfo.term ?? 0,
+    interestRate: backendDepositInfo.interestRate ?? 0,
+    capitalization: backendDepositInfo.capitalization ?? false,
+    replenishment: backendDepositInfo.replenishment ?? false,
+    withdrawal: backendDepositInfo.withdrawal ?? false,
+    partialWithdrawal: backendDepositInfo.partialWithdrawal ?? false,
+    earlyClosure: backendDepositInfo.earlyClosure ?? false,
+    autoRenewal: backendDepositInfo.autoRenewal ?? false,
+    earlyWithdrawalLimit: backendDepositInfo.earlyWithdrawalLimit ?? 0,
+    earlyWithdrawalFee: backendDepositInfo.earlyWithdrawalFee ?? 0,
+    earlyWithdrawal: backendDepositInfo.earlyWithdrawal ?? false,
+    augmentable: backendDepositInfo.augmentable ?? false,
+    autoRenewable: backendDepositInfo.autoRenewable ?? false,
   };
 
-  const cardObject = {
+  const cardPayload = {
     cardName: productFormType.name,
-    cardCurrency: productFormType.currency,
-    cardType: productFormType.subtype,
-    cardStatus: ProductStatus.ACTIVE,
-    ...productData,
+    cardCurrency: productFormType.currency as TCurrency,
+    cardType: productFormType.subtype as TCardType,
+    cashbackRate: (productData as CardFormData).cashbackRate as number,
+    dailyLimit: (productData as CardFormData).dailyOperationalLimit as number,
+    issueType: (productData as CardFormData).cardType as TCardIssueType,
+    cardIssuer: (productData as CardFormData).cardIssuer as TCardIssuer,
+    issueFee: (productData as CardFormData).monthlyFee as number,
+    foreignTransactionLimit: (productData as CardFormData)
+      .foreignTransactionLimit as number,
+    monthlyFee: (productData as CardFormData).monthlyFee as number,
+    cardStatus: 'ACTIVE' as TCardStatus,
   };
 
   const handleReset = () => {
@@ -119,9 +143,9 @@ const BackOfficeProductWindow: React.FC<BackOfficeProductWindowProps> = ({
   const handleSubmit = async () => {
     try {
       if (productFormType.productType === ProductType.DEPOSIT) {
-        await createDeposit(depositObject).unwrap();
+        await createDeposit(depositPayload).unwrap();
       } else {
-        await createCard(cardObject).unwrap();
+        await createCard(cardPayload).unwrap();
       }
       handleReset();
       onProductCreated();

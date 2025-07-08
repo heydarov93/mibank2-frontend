@@ -11,7 +11,7 @@ import {
   StyledLabel,
 } from './SignupForm.styled';
 
-import { useCheckEmailMutation } from 'api/checkEmailApi';
+import { useCheckEmailMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
 import { TO_CREATE_PASSWORD, TO_SIGN_IN } from 'constants/routesName';
 import { EErrorStatus } from 'enums';
@@ -21,7 +21,7 @@ import { IErrorData } from 'models/IError';
 import { setError } from 'store/reducers';
 import { setEmail } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';
-import { validationEmailSchema } from 'validation';
+import { userEmailSchema } from 'validation';
 
 export const SignupFormEmail = () => {
   const { t } = useTranslation('translation');
@@ -37,7 +37,7 @@ export const SignupFormEmail = () => {
     reset: resetForm,
     setError: setFormError,
   } = useForm<IEmailFormInput>({
-    resolver: yupResolver(validationEmailSchema),
+    resolver: yupResolver(userEmailSchema),
     mode: 'onBlur',
     defaultValues: {
       email: '',

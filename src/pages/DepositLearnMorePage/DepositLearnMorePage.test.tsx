@@ -6,7 +6,7 @@ import { MemoryRouter, useNavigate, useParams } from 'react-router-dom';
 
 import { DepositLearnMorePage } from './DepositLearnMorePage';
 
-import { useGetDepositsQuery } from 'api/getDepositsApi';
+import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { theme } from 'theme/theme';
 
 jest.mock('components/atoms/DepositErrorMessage/DepositErrorMessage', () => ({
@@ -34,7 +34,7 @@ jest.mock(
   }),
 );
 
-jest.mock('api/accountsApi', () => ({
+jest.mock("api/services/account-service/accounts.api", () => ({
   useGetUserAccountsQuery: jest.fn(() => ({
     data: {
       accounts: [
@@ -54,10 +54,10 @@ jest.mock('api/accountsApi', () => ({
   },
 }));
 
-jest.mock('api/getDepositsApi', () => ({
+jest.mock('api/services/deposit-service/deposits.api', () => ({
   useGetDepositsQuery: jest.fn(),
   getDepositsApi: {
-    reducerPath: 'getDepositsApi',
+    reducerPath: 'depositsApi',
     reducer: jest.fn(),
   },
 }));

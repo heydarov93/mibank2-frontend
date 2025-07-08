@@ -6,9 +6,8 @@ import { useNavigate, MemoryRouter } from 'react-router-dom';
 
 import { CreateForgotPasswordPage } from './CreateForgotPasswordPage';
 
-import { authApi } from 'api/authApi';
-import { contactInfoApi } from 'api/contactInfoApi';
-import { userInfoApi } from 'api/userInfoApi';
+import { contactsApi } from 'api';
+import { userAccountsApi } from 'api/services/user-account-service/user-accounts.api';
 import { theme } from 'theme/theme';
 
 const initialValues = {
@@ -37,15 +36,13 @@ const mockStore = configureStore({
   reducer: {
     auth: (state = initialValues.auth) => state,
     contacts: (state = initialValues.contacts) => state,
-    [authApi.reducerPath]: authApi.reducer,
-    [userInfoApi.reducerPath]: userInfoApi.reducer,
-    [contactInfoApi.reducerPath]: contactInfoApi.reducer,
+    [userAccountsApi.reducerPath]: userAccountsApi.reducer,
+    [contactsApi.reducerPath]: contactsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
-      authApi.middleware,
-      userInfoApi.middleware,
-      contactInfoApi.middleware,
+      userAccountsApi.middleware,
+      contactsApi.middleware,
     ]),
 });
 
@@ -56,11 +53,20 @@ jest.mock('react-i18next', () => ({
   initReactI18next: { type: '3rdParty' },
 }));
 
-jest.mock('utils', () => ({
+jest.mock('utils/auth', () => ({
+  localTokenHandler: {
+    getToken: jest.fn(),
+  },
+  sessionTokenHandler: {
+    getToken: jest.fn(),
+  },
+}));
+
+jest.mock('utils/helpers/randomHelpers', () => ({
   generateRandomParam: jest.fn().mockReturnValue(''),
-  handleLockedError: jest.fn(),
-  useErrorHandlers: jest.fn,
-  localTokenHandler: { getToken: jest.fn() },
+}));
+
+jest.mock('utils/formatters/phoneFormatter', () => ({
   formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
 }));
 

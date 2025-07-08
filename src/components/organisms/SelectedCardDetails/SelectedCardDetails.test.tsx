@@ -7,7 +7,7 @@ import { SelectedCardDetails } from './SelectedCardDetails';
 
 import { theme } from 'theme/theme';
 
-jest.mock('api/userCardsApi');
+jest.mock('api/services/card-service/cards.api');
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
   initReactI18next: {

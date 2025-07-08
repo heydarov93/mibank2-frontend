@@ -15,7 +15,8 @@ import {
   StyledPageCountIndicator,
   StyledSecondaryText,
 } from './CustomPagination.styled';
-import { getButtonColor, getTextColor } from './utils/colorUtils';
+
+import { getButtonColor, getTextColor } from 'utils/helpers';
 
 interface PaginationActionsProps {
   totalPages: number;
