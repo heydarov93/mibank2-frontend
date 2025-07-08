@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentReceiptModal.styled';
@@ -27,7 +27,17 @@ export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
 
   return (
     <Stack gap="20px">
-      <StyledTypography mb="12px">{date.toLocaleDateString()}</StyledTypography>
+      <StyledTypography mb="12px">
+        <Box sx={{ display: 'flex', gap: '16px' }}>
+          <Box>{date.toLocaleDateString()}</Box>
+          <Box>
+            {date.toLocaleTimeString('en-GB', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </Box>
+        </Box>
+      </StyledTypography>
       <PaymentReceiptRow
         name={t('TransfersPage.paymentReceiptModal.payer')}
         value={data.payerName}
@@ -39,10 +49,6 @@ export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
       <PaymentReceiptRow
         name={translation.toAccount.label}
         value={data.toAccount}
-      />
-      <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.service')}
-        value={t('TransfersPage.paymentReceiptModal.serviceType')}
       />
       <PaymentReceiptRow
         name={translation.amount.label}

@@ -24,6 +24,7 @@ const defaultValues = {
   cardType: '',
   issueType: '',
   cardIssuer: '',
+  selectedFeatures: [],
 };
 
 export type CardIssueFormValues = typeof defaultValues;

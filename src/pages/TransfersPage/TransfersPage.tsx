@@ -53,8 +53,8 @@ export function TransfersPage() {
         open={navigationModalOpen}
         onConfirm={handleExitForm}
         onCancel={handleCancelNavigation}
-        title={t("warningModal.title")}
-        description={t("warningModal.description")}
+        title={t('warningModal.title')}
+        description={t('warningModal.description')}
       />
 
       <StyledContainer>

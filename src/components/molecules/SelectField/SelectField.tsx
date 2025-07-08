@@ -9,6 +9,8 @@ import {
   SxProps,
   Theme,
   Box,
+  Radio,
+  Checkbox,
 } from '@mui/material';
 import { useRef } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
@@ -25,8 +27,10 @@ export type SelectFieldOption = {
   onClick?: () => void;
 };
 
+export type OptionType = 'checkbox' | 'radio';
+
 export type SelectFieldProps<T extends FieldValues> = Omit<
-  SelectProps<SelectFieldOption['value']>,
+  SelectProps<SelectFieldOption['value'][] | SelectFieldOption['value']>,
   'error'
 > & {
   name: Path<T>;
@@ -36,6 +40,7 @@ export type SelectFieldProps<T extends FieldValues> = Omit<
   disabled?: boolean;
   placeholder?: string;
   optionsLoading?: boolean;
+  optionType?: OptionType;
   containerSx?: SxProps<Theme>;
   menuSx?: SxProps<Theme>;
   openedColor?: string;
@@ -54,6 +59,7 @@ export const SelectField = <T extends FieldValues>({
   menuSx,
   openedColor,
   onChange,
+  optionType,
   ...selectProps
 }: SelectFieldProps<T>) => {
   const { field } = useController({ name, control });
@@ -87,6 +93,7 @@ export const SelectField = <T extends FieldValues>({
         {...field}
         displayEmpty
         disabled={disabled}
+        multiple={optionType === 'checkbox'}
         open={selectState.isOpen}
         onOpen={selectState.open}
         onClose={handleClose}
@@ -123,7 +130,10 @@ export const SelectField = <T extends FieldValues>({
           ...sx,
         }}
         renderValue={(value) => {
-          if (placeholder && !value) {
+          if (
+            placeholder &&
+            (!value || (Array.isArray(value) && value.length === 0))
+          ) {
             return (
               <Typography
                 sx={(theme) => ({
@@ -136,30 +146,43 @@ export const SelectField = <T extends FieldValues>({
             );
           }
 
-          const option = options.find((o) => o.value === value);
+          if (!Array.isArray(value)) {
+            const option = options.find((o) => o.value === value);
+
+            return (
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{ color: valueColor }}
+              >
+                <Typography sx={{ fontSize: 14 }}>
+                  {option?.label ?? option?.value}
+                </Typography>
+                {option?.secondaryLabel && (
+                  <Typography
+                    sx={(theme) => ({
+                      color: theme.palette.grey[400],
+                      fontSize: 14,
+                      mr: '4px',
+                    })}
+                  >
+                    {option.secondaryLabel}
+                  </Typography>
+                )}
+              </Stack>
+            );
+          }
+
+          const selectedLabels = options
+            .filter((o) => value.includes(o.value))
+            .map((o) => o.label ?? o.value)
+            .join(', '); // Join labels with a comma and space
 
           return (
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{ color: valueColor }}
-            >
-              <Typography sx={{ fontSize: 14 }}>
-                {option?.label ?? option?.value}
-              </Typography>
-              {option?.secondaryLabel && (
-                <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.grey[400],
-                    fontSize: 14,
-                    mr: '4px',
-                  })}
-                >
-                  {option.secondaryLabel}
-                </Typography>
-              )}
-            </Stack>
+            <Typography sx={{ fontSize: 14, color: valueColor }}>
+              {selectedLabels}
+            </Typography>
           );
         }}
         {...selectProps}
@@ -188,9 +211,23 @@ export const SelectField = <T extends FieldValues>({
                 direction="row"
                 spacing={1}
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent={optionType ? 'flex-start' : 'space-between'}
+                gap={optionType ? '6px' : ''}
                 sx={{ width: '100%' }}
               >
+                {optionType === 'radio' ? (
+                  <Radio
+                    checked={option.value === field.value}
+                    sx={{ padding: 0 }}
+                  />
+                ) : optionType === 'checkbox' ? (
+                  <Checkbox
+                    checked={field.value.includes(option.value)}
+                    sx={{ padding: 0 }}
+                  />
+                ) : (
+                  ''
+                )}
                 <Typography sx={{ fontSize: 14 }}>
                   {option.label ?? option.value}
                 </Typography>
@@ -206,7 +243,7 @@ export const SelectField = <T extends FieldValues>({
                   {option.secondaryLabel}
                 </Typography>
               </Stack>
-              {option.value === field.value && <DoneIcon />}
+              {optionType ? null : option.value === field.value && <DoneIcon />}
             </MenuItem>
           ))
         )}

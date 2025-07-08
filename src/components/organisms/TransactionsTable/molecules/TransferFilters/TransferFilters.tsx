@@ -55,7 +55,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
     reset();
   }
 
-  function handleDateChange(e: SelectChangeEvent<string>) {
+  function handleDateChange(e: SelectChangeEvent<string | string[]>) {
     const { value } = e.target;
 
     switch (value) {
@@ -89,12 +89,14 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
                   ? CUSTOM_DATE_SELECT_MENU_SIZE
                   : undefined
               }
+              optionType="radio"
               onChange={handleDateChange}
               data-testid="time-filter"
             />
             <StyledSelectField
               name="card"
               control={control}
+              optionType="checkbox"
               options={availableFilters.card}
               containerSx={{ width: '235px' }}
               data-testid="card-filter"
@@ -102,6 +104,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
             <StyledSelectField
               name="template"
               control={control}
+              optionType="radio"
               options={availableFilters.template}
               containerSx={{ width: '185px' }}
               data-testid="template-filter"
@@ -109,6 +112,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
             <StyledSelectField
               name="transactionsType"
               control={control}
+              optionType="checkbox"
               options={availableFilters.transactionsType}
               containerSx={{ width: '170px' }}
               data-testid="transactions-type-filter"

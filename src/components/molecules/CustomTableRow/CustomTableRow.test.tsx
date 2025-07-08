@@ -6,13 +6,15 @@ import { CustomTableRow } from './CustomTableRow';
 import { theme } from 'theme/theme';
 
 const defaultProps = {
-  cardNumber: '1234 **** **** 5678',
+  sourceNumber: '1234 **** **** 5678',
+  transferType: 'Card',
   currency: 'PLN',
   amount: 150.75,
   template: 'Online Payment',
   date: '2024-01-15',
   time: '14:30:00',
   isIncome: false,
+  handleShowPaymentReceipt: jest.fn(),
 };
 
 const renderWithTheme = (component: React.ReactElement) => {

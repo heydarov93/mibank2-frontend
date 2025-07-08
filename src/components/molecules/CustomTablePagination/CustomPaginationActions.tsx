@@ -1,3 +1,9 @@
+import {
+  FirstPageRounded,
+  LastPageRounded,
+  KeyboardArrowLeftRounded,
+  KeyboardArrowRightRounded,
+} from '@mui/icons-material'; // order matters
 import { IconButton } from '@mui/material';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,11 +16,6 @@ import {
   StyledSecondaryText,
 } from './CustomPagination.styled';
 import { getButtonColor, getTextColor } from './utils/colorUtils';
-
-import LeftArrowButton from 'components/atoms/LeftArrowButton/LeftArrowButton';
-import LeftArrowEndButton from 'components/atoms/LeftArrowEndButton/LeftArrowEndButton';
-import RightArrowButton from 'components/atoms/RightArrowButton/RightArrowButton';
-import RightArrowEndButton from 'components/atoms/RightArrowEndButton/RightArrowEndButton';
 
 interface PaginationActionsProps {
   totalPages: number;
@@ -61,10 +62,12 @@ const CustomPaginationActions = ({
           disabled={isFirstPage}
           sx={({ spacing }) => ({ marginRight: spacing(3.5) })}
         >
-          <LeftArrowEndButton sx={{ color: getButtonColor(isFirstPage) }} />
+          <FirstPageRounded sx={{ color: getButtonColor(isFirstPage) }} />
         </IconButton>
         <IconButton onClick={handlePreviousPage} disabled={isFirstPage}>
-          <LeftArrowButton sx={{ color: getButtonColor(isFirstPage) }} />
+          <KeyboardArrowLeftRounded
+            sx={{ color: getButtonColor(isFirstPage) }}
+          />
         </IconButton>
         <StyledSecondaryText sx={{ color: getTextColor(isFirstPage) }}>
           {t('prevBtn')}
@@ -83,14 +86,16 @@ const CustomPaginationActions = ({
           {t('nextBtn')}
         </StyledSecondaryText>
         <IconButton onClick={handleNextPage} disabled={isLastPage}>
-          <RightArrowButton sx={{ color: getButtonColor(isLastPage) }} />
+          <KeyboardArrowRightRounded
+            sx={{ color: getButtonColor(isLastPage) }}
+          />
         </IconButton>
         <IconButton
           onClick={handleLastPage}
           disabled={isLastPage}
           sx={({ spacing }) => ({ marginLeft: spacing(3.5) })}
         >
-          <RightArrowEndButton sx={{ color: getButtonColor(isLastPage) }} />
+          <LastPageRounded sx={{ color: getButtonColor(isLastPage) }} />
         </IconButton>
       </StyledNavButtonRow>
     </StyledActionsContainer>
