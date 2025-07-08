@@ -9,7 +9,7 @@ import { ObjectSchema } from 'yup';
 import { useAppDispatch } from './useAppDispatch';
 import useDisclosure from './useDisclosure';
 
-import { usePostRegistrationInfoMutation } from 'api/postRegistrationInfoApi';
+import { usePostRegistrationInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { TO_HOME, TO_SIGN_IN } from 'constants/routesName';
 import { EErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';

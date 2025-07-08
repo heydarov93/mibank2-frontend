@@ -1,8 +1,8 @@
-import { IUserBankCard } from 'models/IUserBankCard';
 import {
-  IUserBankCardDetailsResponse,
+  IGetUserCardDetailsResponse,
   IUserBankCardResponse,
-} from 'models/userCardsApi';
+} from 'api/services/card-service/cards.types';
+import { IUserBankCard } from 'models/IUserBankCard';
 import {
   TCardIssuer,
   TCardStatus,
@@ -34,7 +34,7 @@ export function mapUserBankCardResponse(
 }
 
 export function mapUserBankCardDetailsResponse(
-  cardDetailsResponse: IUserBankCardDetailsResponse,
+  cardDetailsResponse: IGetUserCardDetailsResponse,
 ): IUserBankCard {
   return {
     ...mapUserBankCardResponse(cardDetailsResponse.userCardResponse),

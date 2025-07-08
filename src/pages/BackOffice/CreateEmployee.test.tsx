@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { CreateEmployee } from './CreateEmployee';
 
-jest.mock('api/registerEmployee', () => ({
+jest.mock("api/services/employee-service/employees.api", () => ({
   useRegisterEmployeeMutation: () => [jest.fn(), { isLoading: false }],
 }));
 

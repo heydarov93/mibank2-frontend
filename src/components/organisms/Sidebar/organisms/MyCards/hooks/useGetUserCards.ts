@@ -1,7 +1,7 @@
 import { skipToken } from '@reduxjs/toolkit/query';
 
-import { useGetUserIdQuery } from 'api/getUserIdApi';
-import { useGetUserCardsQuery } from 'api/userCardsApi';
+import { useGetUserCardsQuery } from 'api/services/card-service/cards.api';
+import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { mapUserBankCardResponse } from 'utils/mapper';
 
 export function useGetUserCards() {

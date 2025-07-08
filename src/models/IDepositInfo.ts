@@ -1,3 +1,5 @@
+import { TCurrency } from "types/types";
+
 export interface Account {
   accountStartDate: string;
   accountStatus: string;
@@ -24,4 +26,22 @@ export interface DepositFormValues {
   amount: number;
   account: string;
   checkbox?: boolean;
+}
+
+export interface IDeposit {
+  augmentable: boolean;
+  autoRenewable: boolean;
+  capitalization: number;
+  currency: TCurrency;
+  description: string;
+  earlyWithdrawal: boolean;
+  earlyWithdrawalFee: number;
+  earlyWithdrawalLimit: number;
+  id: number;
+  interestRate: number;
+  max: number;
+  min: number;
+  name: string;
+  term: number;
+  type: string;
 }

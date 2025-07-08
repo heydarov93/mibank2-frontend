@@ -2,9 +2,11 @@ import { render, screen } from '@testing-library/react';
 
 import { AvailableDepositsWindow } from './AvailableDepositsWindow';
 
-import { useGetDepositsQuery } from 'api/getDepositsApi';
+import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 
-jest.mock('api/getDepositsApi', () => ({
+
+
+jest.mock('api/services/deposit-service/deposits.api', () => ({
   useGetDepositsQuery: jest.fn(),
 }));
 

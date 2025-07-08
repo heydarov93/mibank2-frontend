@@ -12,9 +12,9 @@ import {
 } from './ButtonGroup.styled';
 
 import {
-  useUpdatePrimaryPaymentCardMutation,
-  useUpdateUserCardStatusMutation,
-} from 'api/userCardsApi';
+  useSetPrimaryPaymentCardMutation,
+  useUpdateCardStatusMutation,
+} from 'api/services/card-service/cards.api';
 import { TO_TRANSFERS } from 'constants/routesName';
 
 type ActionButton = 'status' | 'primary';
@@ -33,11 +33,11 @@ const ButtonGroup = ({
   const [
     updateUserCardStatus,
     { isLoading: isUpdatingStatus, isError: isStatusError },
-  ] = useUpdateUserCardStatusMutation();
+  ] = useUpdateCardStatusMutation();
   const [
-    updatePrimaryPaymentCard,
+    setPrimaryPaymentCard,
     { isLoading: isUpdatingPrimary, isError: isPrimaryError },
-  ] = useUpdatePrimaryPaymentCardMutation();
+  ] = useSetPrimaryPaymentCardMutation();
 
   const isCardBlocked = selectedUserCardDetails.status === 'blocked';
   const isPrimaryCard = selectedUserCardDetails.isPrimary;
@@ -60,7 +60,7 @@ const ButtonGroup = ({
 
   const handleSetPrimary = async () => {
     try {
-      await updatePrimaryPaymentCard({
+      await setPrimaryPaymentCard({
         id: selectedUserCardDetails.id,
         isPrimaryPaymentCard: true,
       }).unwrap();

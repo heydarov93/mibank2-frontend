@@ -7,9 +7,9 @@ import { useSearchParams } from 'react-router-dom';
 
 import {
   useDeleteEmployeeMutation,
+  useGetEmployeeListQuery,
   useUpdateEmployeeMutation,
-  useViewEmployeeQuery,
-} from 'api/employeeController';
+} from 'api/services/employee-service/employees.api';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
 import {
@@ -41,14 +41,15 @@ const useEmployees = () => {
     failMsgModal: false,
   });
 
-  const { data: employees, refetch: refetchEmployees } = useViewEmployeeQuery({
-    page,
-    size,
-    sortDateAdded,
-    sortLastName,
-    firstName,
-    lastName,
-  });
+  const { data: employees, refetch: refetchEmployees } =
+    useGetEmployeeListQuery({
+      page: String(page),
+      count: String(size),
+      sortDateAdded,
+      sortLastName,
+      firstName,
+      lastName,
+    });
 
   const [updateEmployee] = useUpdateEmployeeMutation();
   const [deleteEmployee] = useDeleteEmployeeMutation();
@@ -115,7 +116,16 @@ const useEmployees = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await deleteEmployee(state.selectedEmp).unwrap();
+      if (state.selectedEmp.id === undefined) {
+        setState((prev) => ({
+          ...prev,
+          actionMsg: t('ConfirmationWindow.deleteFailed'),
+          actionMsgBody: t('GeneralErrors.wentWrongError'),
+          failMsgModal: true,
+        }));
+        return;
+      }
+      const response = await deleteEmployee(state.selectedEmp.id).unwrap();
       if (response === null) {
         setState((prev) => ({ ...prev, showDelModal: false }));
       }

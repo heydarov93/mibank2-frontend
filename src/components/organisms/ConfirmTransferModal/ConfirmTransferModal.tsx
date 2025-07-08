@@ -26,7 +26,7 @@ import {
   StyledFormControlLabel,
 } from './ConfirmTransferModal.styled';
 
-import { useGetTransferFeeQuery } from 'api/accountsApi';
+import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
 import { TransferDetailRow } from 'components/molecules';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { formatTransferValue } from 'utils/formatters/currencyFormatter';

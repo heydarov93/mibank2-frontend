@@ -12,10 +12,10 @@ import {
   StyledInfoCardTitle,
 } from './DepositInfoCard.styled';
 
-import { Deposit } from 'api/getDepositsApi';
 import DepositCardSvg from 'assets/icons/DepositCardImg.svg';
+import { IDeposit } from 'models/IDepositInfo';
 
-type DepositInfoCardProps = Deposit;
+type DepositInfoCardProps = IDeposit;
 
 export const DepositInfoCard = ({
   name,

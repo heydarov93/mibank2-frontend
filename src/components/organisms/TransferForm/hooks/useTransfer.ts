@@ -1,11 +1,13 @@
 import { ITransferForm } from '../TransferForm';
 
 import {
-  ITransferRequestCard,
-  ITransferRequestIBAN,
   useTransferToCardMutation,
   useTransferToIBANMutation,
-} from 'api/accountsApi';
+} from 'api/services/account-service/transfers.api';
+import {
+  ITransferToCardRequest,
+  ITransferToIBANRequest,
+} from 'api/services/account-service/types/transfers.types';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 
 export function useTransfer(method: TTransferMethod) {
@@ -38,7 +40,7 @@ export function useTransfer(method: TTransferMethod) {
         amount: formData.amount,
         currency: formData.currency,
         message: formData.message,
-      } as ITransferRequestIBAN;
+      } as ITransferToIBANRequest;
 
       return transferToIBAN(requestData);
     } else {
@@ -48,7 +50,7 @@ export function useTransfer(method: TTransferMethod) {
         amount: formData.amount,
         currency: formData.currency,
         message: formData.message,
-      } as ITransferRequestCard;
+      } as ITransferToCardRequest;
 
       return transferToCard(requestData);
     }

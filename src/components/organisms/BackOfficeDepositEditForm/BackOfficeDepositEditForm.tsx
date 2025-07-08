@@ -9,8 +9,8 @@ import {
   StyledLabel,
 } from './BackOfficeDepositEditForm.styled';
 
-import { useGetProductsQuery } from 'api/getProductsApi';
-import { useUpdateDepositMutation } from 'api/updateDepositApi';
+import { useUpdateDepositMutation } from 'api/services/deposit-service/deposits.api';
+import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
 import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
@@ -62,9 +62,25 @@ const BackOfficeDepositEditForm = ({
 
   const [updateDeposit, { isLoading }] = useUpdateDepositMutation();
 
-  const onSubmit = async (data: Partial<TableData>) => {
+  const onSubmit = async (data: TEditDepositValues) => {
     try {
-      await updateDeposit({ id: formData?.id, ...data }).unwrap();
+      if (formData?.id === undefined) {
+        throw new Error('Deposit ID is missing');
+      }
+      const payload = {
+        id: formData.id,
+        name: data.name,
+        description: data.description,
+        currency: data.currency,
+        min: Number(data.min),
+        max: Number(data.max),
+        term: Number(data.term),
+        interestRate: Number(data.interestRate),
+        capitalization: Number(data.capitalization),
+        earlyWithdrawalLimit: Number(data.earlyWithdrawalLimit),
+        earlyWithdrawalFee: Number(data.earlyWithdrawalFee),
+      };
+      await updateDeposit(payload).unwrap();
       if (onSuccess) {
         refetchProducts?.();
         onSuccess();

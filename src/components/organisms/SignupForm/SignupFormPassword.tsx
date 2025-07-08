@@ -11,7 +11,7 @@ import {
   StyledFormTitle,
 } from './SignupForm.styled';
 
-import { useRegisterNewUserMutation } from 'api/registerNewUserApi';
+import { useRegisterNewUserMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,

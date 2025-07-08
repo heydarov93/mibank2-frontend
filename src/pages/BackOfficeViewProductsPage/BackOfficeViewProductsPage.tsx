@@ -8,8 +8,8 @@ import {
   MainContainer,
 } from './BackOfficeViewProductsPage.styled';
 
-import { useDeleteDepositMutation } from 'api/deleteDepositApi';
-import { useGetProductsQuery } from 'api/getProductsApi';
+import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
+import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
 import {
   BackOfficeViewHeader,
   BackOfficeWarningWindow,
@@ -89,9 +89,12 @@ export const BackOfficeViewProductsPage = () => {
   const handleDeleteDeposit = async (
     product: Partial<TableData> | undefined,
   ) => {
-    if (product?.productType === ProductType.DEPOSIT) {
+    if (
+      product?.productType === ProductType.DEPOSIT &&
+      typeof product.id === 'number'
+    ) {
       try {
-        await deleteDeposit(product.id).unwrap();
+        await deleteDeposit({ id: product.id }).unwrap();
         refetchProducts();
         handleDeleteSuccess();
       } catch (e) {

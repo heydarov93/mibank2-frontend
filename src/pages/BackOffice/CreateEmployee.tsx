@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useRegisterEmployeeMutation } from 'api/registerEmployee';
+import { useRegisterEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { IErrorData } from 'models/IError';

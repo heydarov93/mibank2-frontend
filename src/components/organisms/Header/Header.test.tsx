@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { Header } from './Header';
 
-import { useGetUserInfoQuery } from 'api/userInfoApi';
+import { useGetUserInfoQuery } from 'api/services/user-account-service/user-accounts.api';
 import { theme } from 'theme/theme';
 
 const initialValues = {
@@ -38,7 +38,7 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('api/userInfoApi', () => ({
+jest.mock('api/services/user-account-service/user-accounts.api', () => ({
   useGetUserInfoQuery: jest.fn().mockReturnValue({
     data: {
       firstName: 'John',

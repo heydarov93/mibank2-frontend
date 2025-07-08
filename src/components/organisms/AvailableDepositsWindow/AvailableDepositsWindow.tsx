@@ -8,7 +8,7 @@ import {
   StyledHeader,
 } from './AvailableDepositsWindow.styled';
 
-import { Deposit, useGetDepositsQuery } from 'api/getDepositsApi';
+import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { DepositErrorMessage } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositBox } from 'components/molecules';
@@ -17,11 +17,12 @@ import {
   DRAWER_HEIGHT_CALC_SIZE,
   LEARN_MORE_PAGE_BASE_URL,
 } from 'constants/learnMorePage';
+import { IDeposit } from 'models/IDepositInfo';
 import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
   open: boolean;
-  onSetDeposit: (deposit: Deposit) => void;
+  onSetDeposit: (deposit: IDeposit) => void;
   onClose: () => void;
 }
 

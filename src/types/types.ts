@@ -6,3 +6,4 @@ export type TCardStatus = 'active' | 'blocked' | 'expired';
 export type TCardIssueType = 'digital' | 'plastic';
 export type TCardType = 'debit' | 'credit';
 export type TTransactionType = 'income' | 'expense';
+export type TId = string | number;

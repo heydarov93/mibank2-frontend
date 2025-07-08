@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import { BackOfficeEmployeeLoginForm } from './BackOfficeEmployeeLoginForm';
 
-import { useValidateEmailMutation } from 'api/employeeController';
+import { useValidateEmployeeEmailMutation } from 'api/services/employee-service/employees.api';
 import { theme } from 'theme/theme';
 
 const mockNavigate = jest.fn();
@@ -13,8 +13,8 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-jest.mock('api/employeeController', () => ({
-  useValidateEmailMutation: jest.fn(),
+jest.mock("api/services/employee-service/employees.api", () => ({
+  useValidateEmployeeEmailMutation: jest.fn(),
 }));
 
 describe('BackOfficeEmployeeLoginForm', () => {
@@ -25,7 +25,7 @@ describe('BackOfficeEmployeeLoginForm', () => {
     mockValidateEmail = jest
       .fn()
       .mockResolvedValue({ message: 'The email provided is valid' });
-    (useValidateEmailMutation as jest.Mock).mockReturnValue([
+    (useValidateEmployeeEmailMutation as jest.Mock).mockReturnValue([
       mockValidateEmail,
       { isLoading: false },
     ]);

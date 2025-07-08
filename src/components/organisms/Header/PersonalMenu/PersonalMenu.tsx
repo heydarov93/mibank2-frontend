@@ -10,7 +10,7 @@ import {
   StyledPersonalMenu,
 } from './PersonalMenu.styled';
 
-import { useGetUserInfoQuery } from 'api/userInfoApi';
+import { useGetUserInfoQuery } from 'api/services/user-account-service/user-accounts.api';
 import { UserCard } from 'components/molecules';
 import { ETokenType } from 'enums';
 import { useAppSelector, useAppDispatch } from 'hooks';

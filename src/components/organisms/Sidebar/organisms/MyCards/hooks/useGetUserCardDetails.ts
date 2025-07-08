@@ -1,4 +1,5 @@
-import { useGetUserCardDetailsQuery } from 'api/userCardsApi';
+
+import { useGetUserCardDetailsQuery } from 'api/services/card-service/cards.api';
 import { mapUserBankCardDetailsResponse } from 'utils/mapper';
 
 export function useGetUserCardDetails(cardId: number | string) {
