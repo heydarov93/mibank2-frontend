@@ -5,6 +5,7 @@ import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentRec
 import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
 import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
+import { theme } from 'theme/theme';
 import { TCurrency } from 'types/types';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
@@ -26,9 +27,9 @@ export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
   const date = new Date(data.date);
 
   return (
-    <Stack gap="20px">
-      <StyledTypography mb="12px">
-        <Box sx={{ display: 'flex', gap: '16px' }}>
+    <Stack sx={(theme) => ({ gap: theme.spacing(2.5) })}>
+      <StyledTypography sx={(theme) => ({ marginBottom: theme.spacing(1.5) })}>
+        <Box sx={(theme) => ({ display: 'flex', gap: theme.spacing(2) })}>
           <Box>{date.toLocaleDateString()}</Box>
           <Box>
             {date.toLocaleTimeString('en-GB', {
