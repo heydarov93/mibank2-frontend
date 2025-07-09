@@ -79,6 +79,6 @@ describe('CustomTableRow', () => {
     renderWithTheme(<CustomTableRow {...defaultProps} />);
 
     const tableCells = screen.getAllByRole('cell');
-    expect(tableCells).toHaveLength(5);
+    expect(tableCells).toHaveLength(6);
   });
 });

@@ -154,9 +154,9 @@ describe('TransferFilters', () => {
     const { time, card, template, transactionsType } = getFilters().inputs;
 
     expect(time).toHaveValue(defaultFilters.time);
-    expect(card).toHaveValue(defaultFilters.card);
+    expect(card).toHaveValue(defaultFilters.card[0]);
     expect(template).toHaveValue(defaultFilters.template);
-    expect(transactionsType).toHaveValue(defaultFilters.transactionsType);
+    expect(transactionsType).toHaveValue(defaultFilters.transactionsType[0]);
   });
 
   it('allows to select different filters', async () => {
@@ -166,14 +166,17 @@ describe('TransferFilters', () => {
     const templateValue = availableFilters.template[valueIndex].value;
     const transactionsTypeValue =
       availableFilters.transactionsType[valueIndex].value;
-
     await selectValues(valueIndex);
     const { inputs } = getFilters();
 
     expect(inputs.time).toHaveValue(timeValue);
-    expect(inputs.card).toHaveValue(cardValue);
+    expect(inputs.card).toHaveDisplayValue(
+      `${availableFilters.card[0].value},${cardValue}`,
+    );
     expect(inputs.template).toHaveValue(templateValue);
-    expect(inputs.transactionsType).toHaveValue(transactionsTypeValue);
+    expect(inputs.transactionsType).toHaveValue(
+      `${availableFilters.transactionsType[0].value},${transactionsTypeValue}`,
+    );
   });
 
   it('has disabled "Clear filters" button when default values are selected', () => {
@@ -199,10 +202,10 @@ describe('TransferFilters', () => {
     act(() => fireEvent.click(getClearFiltersButton()));
 
     expect(inputs.time).toHaveValue(defaultFilters.time);
-    expect(inputs.card).toHaveValue(defaultFilters.card);
+    expect(inputs.card).toHaveValue(defaultFilters.card[0]);
     expect(inputs.template).toHaveValue(defaultFilters.template);
     expect(inputs.transactionsType).toHaveValue(
-      defaultFilters.transactionsType,
+      defaultFilters.transactionsType[0],
     );
   });
 
