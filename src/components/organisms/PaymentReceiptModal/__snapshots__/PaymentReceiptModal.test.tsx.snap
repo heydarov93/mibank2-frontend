@@ -64,7 +64,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
           class="MuiStack-root css-1or57tr-MuiStack-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1jaymit-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-bkmj8s-MuiTypography-root"
           >
             <div
               class="MuiBox-root css-10egq61"
