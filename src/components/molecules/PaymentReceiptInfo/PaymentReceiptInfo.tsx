@@ -5,7 +5,6 @@ import { StyledTypography } from '../../organisms/PaymentReceiptModal/PaymentRec
 import { PaymentReceiptRow } from '../PaymentReceiptRow/PaymentReceiptRow';
 
 import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
-import { theme } from 'theme/theme';
 import { TCurrency } from 'types/types';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
