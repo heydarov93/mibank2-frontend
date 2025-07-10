@@ -22,14 +22,14 @@ import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
   open: boolean;
-  onSetDeposit: (deposit: IDeposit) => void;
+  onSelectDeposit: (deposit: IDeposit) => void;
   onClose: () => void;
 }
 
 export const AvailableDepositsWindow = ({
   open,
   onClose,
-  onSetDeposit,
+  onSelectDeposit,
 }: AvailableDepositsWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
   const {
@@ -94,7 +94,7 @@ export const AvailableDepositsWindow = ({
                       </Link>
                     }
                     onOpenDepositForm={() => {
-                      onSetDeposit(item);
+                      onSelectDeposit(item);
                     }}
                   />
                 </ListItem>

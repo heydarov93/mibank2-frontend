@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 
-export const UnderDevPageWrapper = styled(Box)(
+export const StyledPageWrapper = styled(Box)(
   ({ theme: { breakpoints, spacing } }) => ({
     display: 'flex',
     justifyContent: 'center',
@@ -63,9 +63,12 @@ export const StyledTitleContainer = styled(Box)(
 );
 
 export const StyledTitle = styled(Typography)(
-  ({ theme: { breakpoints, palette } }) => ({
+  ({ theme: { breakpoints, palette, typography } }) => ({
+    fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: '22px',
     color: palette.common.black,
+    textAlign: 'center',
+    fontWeight: 500,
 
     [breakpoints.up('sm')]: {
       fontSize: '28px',
@@ -78,9 +81,11 @@ export const StyledTitle = styled(Typography)(
 );
 
 export const StyledDescription = styled(Typography)(
-  ({ theme: { breakpoints, palette } }) => ({
-    fontSize: '14px',
+  ({ theme: { breakpoints, palette, typography } }) => ({
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontSize: typography.mediumLogo?.fontSize,
     color: palette.grey[400],
+    textAlign: 'center',
 
     [breakpoints.up('sm')]: {
       fontSize: '16px',
@@ -88,25 +93,28 @@ export const StyledDescription = styled(Typography)(
   }),
 );
 
-export const StyledButton = styled(Button)(({ theme: { breakpoints } }) => ({
-  fontSize: '16px',
-  padding: '10px 22px',
-  height: '39px',
-  borderRadius: '8px',
+export const StyledButton = styled(Button)(
+  ({ theme: { breakpoints, palette, spacing } }) => ({
+    fontSize: '16px',
+    padding: spacing(1.25, 3),
+    height: '39px',
+    borderRadius: '8px',
+    background: palette.primary.main,
 
-  [breakpoints.up('xs')]: {
-    maxWidth: '80%',
-  },
+    [breakpoints.up('xs')]: {
+      maxWidth: '80%',
+    },
 
-  [breakpoints.up('sm')]: {
-    height: '56px',
-  },
+    [breakpoints.up('sm')]: {
+      height: '56px',
+    },
 
-  [breakpoints.up('md')]: {
-    maxWidth: '60%',
-  },
+    [breakpoints.up('md')]: {
+      maxWidth: '60%',
+    },
 
-  [breakpoints.up('lg')]: {
-    maxWidth: '77%',
-  },
-}));
+    [breakpoints.up('lg')]: {
+      maxWidth: '77%',
+    },
+  }),
+);

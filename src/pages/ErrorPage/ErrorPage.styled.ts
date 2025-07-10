@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-export const ErrorPageWrapper = styled(Box)(() => ({
+export const StyledPageWrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

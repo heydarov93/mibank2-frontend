@@ -26,7 +26,7 @@ jest.mock('react-i18next', () => ({
 const mockOnSetActiveTab = jest.fn();
 const defaultProps = {
   activeTab: 0,
-  onSetActiveTab: mockOnSetActiveTab,
+  onTabChange: mockOnSetActiveTab,
 };
 
 const renderWithTheme = (props = defaultProps) => {

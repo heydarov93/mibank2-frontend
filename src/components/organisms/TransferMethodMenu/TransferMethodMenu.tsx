@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
 import {
-  transferMethods,
+  TRANSFER_METHODS,
   TTransferMethod,
 } from 'pages/TransfersPage/TransfersPage';
 
@@ -56,7 +56,7 @@ export function TransferMethodMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        {Object.values(transferMethods).map((item) => (
+        {Object.values(TRANSFER_METHODS).map((item) => (
           <MenuItem
             sx={{
               paddingBlock: 1,

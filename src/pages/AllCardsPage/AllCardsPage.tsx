@@ -1,7 +1,7 @@
 import { Fade, Collapse, Box } from '@mui/material';
 import { useState } from 'react';
 
-import { PageContainer } from './AllCardsPage.styled';
+import { StyledContainer } from './AllCardsPage.styled';
 
 import { AllCardsSlider, SelectedCardDetails } from 'components/organisms';
 import { IUserBankCard } from 'models/IUserBankCard';
@@ -16,7 +16,7 @@ export const AllCardsPage = () => {
   };
 
   return (
-    <PageContainer>
+    <StyledContainer>
       <AllCardsSlider
         onCardIdSelect={handleCardIdSelect}
         selectedCardId={selectedCardId}
@@ -36,6 +36,6 @@ export const AllCardsPage = () => {
           </Box>
         </Fade>
       </Collapse>
-    </PageContainer>
+    </StyledContainer>
   );
 };
