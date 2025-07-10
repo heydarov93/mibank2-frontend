@@ -5,7 +5,7 @@ export const App = lazy(() =>
 );
 
 export const HomePage = lazy(() =>
-  import('pages').then((module) => ({ default: module.Homepage })),
+  import('pages').then((module) => ({ default: module.HomePage })),
 );
 
 export const TransfersPage = lazy(() =>

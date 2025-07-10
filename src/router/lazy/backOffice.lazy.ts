@@ -1,18 +1,18 @@
 import { lazy } from 'react';
 
-export const BackOffice = lazy(() =>
-  import('pages').then((module) => ({ default: module.BackOffice })),
+export const BackOfficePage = lazy(() =>
+  import('pages').then((module) => ({ default: module.BackOfficePage })),
 );
 
-export const BackOfficeEmployeeLoginPage = lazy(() =>
+export const EmployeeLoginPage = lazy(() =>
   import('pages').then((module) => ({
-    default: module.BackOfficeEmployeeLoginPage,
+    default: module.EmployeeLoginPage,
   })),
 );
 
-export const BackOfficeVerifyEmployeeCode = lazy(() =>
+export const VerifyEmployeeCodePage = lazy(() =>
   import('pages').then((module) => ({
-    default: module.BackOfficeVerifyEmployeeCode,
+    default: module.VerifyEmployeeCodePage,
   })),
 );
 
@@ -22,19 +22,19 @@ export const BackOfficeVerificationPage = lazy(() =>
   })),
 );
 
-export const CreateEmployee = lazy(() =>
-  import('pages').then((module) => ({ default: module.CreateEmployee })),
+export const CreateEmployeePage = lazy(() =>
+  import('pages').then((module) => ({ default: module.CreateEmployeePage })),
 );
 
-export const BackOfficeViewEmployees = lazy(() =>
+export const ViewEmployeesPage = lazy(() =>
   import('pages').then((module) => ({
-    default: module.BackOfficeViewEmployees,
+    default: module.ViewEmployeesPage,
   })),
 );
 
-export const BackOfficeViewProductsPage = lazy(() =>
+export const ViewProductsPage = lazy(() =>
   import('pages').then((module) => ({
-    default: module.BackOfficeViewProductsPage,
+    default: module.ViewProductsPage,
   })),
 );
 

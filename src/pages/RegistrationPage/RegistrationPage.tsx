@@ -1,4 +1,4 @@
-import { PageWrapper } from './RegistrationPage.styled';
+import { StyledPageWrapper } from './RegistrationPage.styled';
 
 import { RegistrationSideBar } from 'components/molecules';
 import { Footer } from 'components/organisms';
@@ -7,10 +7,10 @@ import { RegistrationFormWrapper } from 'components/organisms/';
 export const RegistrationPage = () => {
   return (
     <>
-      <PageWrapper>
+      <StyledPageWrapper>
         <RegistrationSideBar />
         <RegistrationFormWrapper />
-      </PageWrapper>
+      </StyledPageWrapper>
       <Footer />
     </>
   );

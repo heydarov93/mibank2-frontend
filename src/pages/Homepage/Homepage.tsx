@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
-import { AllCardsPage } from '..';
 
 import { CurrencyExchange, OffersCarousel } from 'components/organisms';
+import { AllCardsPage } from 'pages/AllCardsPage/AllCardsPage';
 
-export const Homepage = () => {
+export const HomePage = () => {
   const [searchParams] = useSearchParams();
   const viewParam = searchParams.get('view');
 
@@ -19,4 +19,4 @@ export const Homepage = () => {
       <CurrencyExchange />
     </Box>
   );
-}
+};

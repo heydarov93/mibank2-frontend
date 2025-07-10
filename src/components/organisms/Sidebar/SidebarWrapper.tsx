@@ -38,7 +38,7 @@ export function SidebarWrapper() {
       <AvailableDepositsWindow
         open={depositsModal.isOpen}
         onClose={depositsModal.close}
-        onSetDeposit={handleSetDeposit}
+        onSelectDeposit={handleSetDeposit}
       />
       <OpenDepositModal
         deposit={deposit}

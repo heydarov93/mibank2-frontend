@@ -15,18 +15,18 @@ exports[`UnderDevPage snapshot should match 1`] = `
         class="MuiBox-root css-411q4v"
       >
         <h5
-          class="MuiTypography-root MuiTypography-h5 css-an0ph6-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h5 css-1iw6wkd-MuiTypography-root"
         >
           title
         </h5>
         <p
-          class="MuiTypography-root MuiTypography-body2 css-1phg0rf-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body2 css-dcxloo-MuiTypography-root"
         >
           description
         </p>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-a4gmad-MuiButtonBase-root-MuiButton-root"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1uozj2q-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >

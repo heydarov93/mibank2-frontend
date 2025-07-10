@@ -1,110 +1,56 @@
-import { Box, CircularProgress } from '@mui/material';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import {
-  Header,
-  ImageContainer,
-  MainContainer,
-  StepBox,
-  StepContainer,
-  StepDescription,
+  StyledContainer,
+  StyledImage,
 } from './BackOfficeVerificationPage.styled';
 
 import { useGetAuthenticateEmployeeQuery } from 'api/services/employee-service/employees.api';
-import { OneTimePasscodeForm } from 'components/organisms';
+import {
+  BackOfficeVerificationStep,
+  OneTimePasscodeForm,
+} from 'components/organisms';
 import { BackOfficeVerificationErrorPage } from 'pages/BackOfficeVerificationErrorPage/BackOfficeVerificationErrorPage';
 
 export const BackOfficeVerificationPage = () => {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'OTPVerificationPage',
+  });
+  const [searchParams] = useSearchParams();
+  const token = useMemo(() => searchParams.get('token') ?? '', [searchParams]);
+  const { data, error, isLoading } = useGetAuthenticateEmployeeQuery({ token });
 
-  const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-  };
+  if (error) return <BackOfficeVerificationErrorPage />;
 
-  const queryParam = useQuery();
-  const token = queryParam.get('token');
-
-  const { data, error, isLoading } = useGetAuthenticateEmployeeQuery({ token: token ?? '' });
-
-  const email = data?.email || null;
-  const imgUrl = data?.qrCodeBaseUrl || null;
-
-  if (error) {
-    return <BackOfficeVerificationErrorPage />;
-  }
+  const email = data?.email ?? '';
+  const qrCode = data?.qrCodeBaseUrl ?? '';
+  const isFetching = isLoading || !data;
 
   return (
-    <MainContainer data-testid="main-container">
-      <StepBox>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <StepContainer>{t('OTPVerificationPage.stepOne')}</StepContainer>
-          <Header data-testid="step-one">
-            {t('OTPVerificationPage.qrCodeTitle')}
-          </Header>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '24px',
-          }}
-        >
-          <StepDescription data-testid="qr-code-title">
-            {t('OTPVerificationPage.qrCodeText')}
-          </StepDescription>
-          {isLoading || !imgUrl ? (
-            <CircularProgress />
-          ) : (
-            <ImageContainer
-              src={`data:image/png;base64,${imgUrl}`}
-              alt="QR Code"
-              width="200"
-              height="200"
-            />
-          )}
-        </Box>
-      </StepBox>
-      <StepBox>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <StepContainer>{t('OTPVerificationPage.stepTwo')}</StepContainer>
-          <Header data-testid="step-two">
-            {t('OTPVerificationPage.verificationTitle')}
-          </Header>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '24px',
-          }}
-        >
-          <StepDescription data-testid="step-two-text">
-            {t('OTPVerificationPage.verificationText')}
-          </StepDescription>
-          {isLoading || !email ? (
-            <CircularProgress />
-          ) : (
-            <OneTimePasscodeForm email={email} />
-          )}
-        </Box>
-      </StepBox>
-    </MainContainer>
+    <StyledContainer data-testid="main-container">
+      <BackOfficeVerificationStep
+        stepLabel={t('stepOne')}
+        headerLabel={t('qrCodeTitle')}
+        descriptionLabel={t('qrCodeText')}
+        loading={isFetching || qrCode === ''}
+      >
+        <StyledImage
+          src={`data:image/png;base64,${qrCode}`}
+          alt="QR Code"
+          width="200"
+          height="200"
+        />
+      </BackOfficeVerificationStep>
+      <BackOfficeVerificationStep
+        stepLabel={t('stepTwo')}
+        headerLabel={t('verificationTitle')}
+        descriptionLabel={t('verificationText')}
+        loading={isFetching || email === ''}
+      >
+        <OneTimePasscodeForm email={email} />
+      </BackOfficeVerificationStep>
+    </StyledContainer>
   );
 };

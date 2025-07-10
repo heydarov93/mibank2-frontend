@@ -86,7 +86,7 @@ const renderComponent = () =>
     </Provider>,
   );
 
-describe('CreateForgotPasswordPage', () => {
+describe('PasswordResetSuccessPage', () => {
   it('should match snapshot', () => {
     const { asFragment } = renderComponent();
     expect(asFragment()).toMatchSnapshot();

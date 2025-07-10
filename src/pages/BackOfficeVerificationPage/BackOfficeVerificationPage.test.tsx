@@ -1,9 +1,11 @@
+import { ThemeProvider } from '@mui/material';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 
 import { BackOfficeVerificationPage } from './BackOfficeVerificationPage';
 
 import { useGetAuthenticateEmployeeQuery } from 'api/services/employee-service/employees.api';
+import { theme } from 'theme/theme';
 
 
 jest.mock('api/services/employee-service/employees.api', () => ({
@@ -48,7 +50,9 @@ describe('BackOfficeVerificationPage visual snapshots', () => {
 
     const { container } = render(
       <MemoryRouter>
-        <BackOfficeVerificationPage />
+        <ThemeProvider theme={theme}>
+          <BackOfficeVerificationPage />
+        </ThemeProvider>
       </MemoryRouter>,
     );
 

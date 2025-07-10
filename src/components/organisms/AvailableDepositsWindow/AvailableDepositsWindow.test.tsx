@@ -35,7 +35,7 @@ describe('AvailableDepositsWindow', () => {
       <AvailableDepositsWindow
         open={true}
         onClose={jest.fn()}
-        onSetDeposit={jest.fn()}
+        onSelectDeposit={jest.fn()}
       />,
     );
     expect(screen.getByText('availableDeposits')).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe('AvailableDepositsWindow', () => {
       <AvailableDepositsWindow
         open={false}
         onClose={jest.fn()}
-        onSetDeposit={jest.fn()}
+        onSelectDeposit={jest.fn()}
       />,
     );
     expect(screen.queryByText('availableDeposits')).not.toBeInTheDocument();
@@ -68,7 +68,7 @@ describe('AvailableDepositsWindow', () => {
       <AvailableDepositsWindow
         open={true}
         onClose={jest.fn()}
-        onSetDeposit={jest.fn()}
+        onSelectDeposit={jest.fn()}
       />,
     );
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -84,7 +84,7 @@ describe('AvailableDepositsWindow', () => {
       <AvailableDepositsWindow
         open={true}
         onClose={jest.fn()}
-        onSetDeposit={jest.fn()}
+        onSelectDeposit={jest.fn()}
       />,
     );
     expect(screen.getByText('error')).toBeInTheDocument();

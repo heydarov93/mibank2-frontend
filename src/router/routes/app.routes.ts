@@ -6,13 +6,7 @@ import {
   TO_PAYMENTS,
   TO_TRANSFERS,
 } from 'constants/routesName';
-import {
-  DepositLearnMorePage,
-  HomePage,
-  TransactionsHistoryPage,
-  TransfersPage,
-  UnderDevPage,
-} from 'router/lazy/app.lazy';
+import { DepositLearnMorePage, HomePage, TransactionsHistoryPage, TransfersPage, UnderDevPage } from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
 export const protectedAppRoutes: RouteObject[] = [
