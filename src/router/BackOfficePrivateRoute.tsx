@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+
+import { useAuthGuard } from './hooks/useAuthGuard';
 
 import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
 import { getEmployeeAuthStatus } from 'utils/auth/storageAuthHandler';
+
 
 interface BackOfficePrivateRouteProps {
   children: ReactNode;
@@ -11,10 +13,13 @@ interface BackOfficePrivateRouteProps {
 export const BackOfficePrivateRoute = ({
   children,
 }: BackOfficePrivateRouteProps) => {
-  const isAuthenticated = getEmployeeAuthStatus();
+  const shouldRedirect = useAuthGuard({
+    authCheck: getEmployeeAuthStatus,
+    redirectTo: BACK_OFFICE_EMPLOYEE_SIGN_IN,
+  });
 
-  if (!isAuthenticated) {
-    return <Navigate to={BACK_OFFICE_EMPLOYEE_SIGN_IN} replace />;
+  if (shouldRedirect) {
+    return shouldRedirect;
   }
 
   return <>{children}</>;

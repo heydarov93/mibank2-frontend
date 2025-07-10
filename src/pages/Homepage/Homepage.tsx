@@ -5,7 +5,7 @@ import { AllCardsPage } from '..';
 
 import { CurrencyExchange, OffersCarousel } from 'components/organisms';
 
-export function Homepage() {
+export const Homepage = () => {
   const [searchParams] = useSearchParams();
   const viewParam = searchParams.get('view');
 

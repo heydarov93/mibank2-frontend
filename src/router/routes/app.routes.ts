@@ -1,19 +1,24 @@
 import { RouteObject } from 'react-router-dom';
 
-
 import {
   TO_DEPOSIT_LEARN_MORE,
   TO_HISTORY,
   TO_PAYMENTS,
   TO_TRANSFERS,
 } from 'constants/routesName';
-import { DepositLearnMorePage, Homepage, TransactionsHistoryPage, TransfersPage, UnderDevPage } from 'router/lazy/app.lazy';
+import {
+  DepositLearnMorePage,
+  HomePage,
+  TransactionsHistoryPage,
+  TransfersPage,
+  UnderDevPage,
+} from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
 export const protectedAppRoutes: RouteObject[] = [
   {
     index: true,
-    element: withSuspense(Homepage),
+    element: withSuspense(HomePage),
   },
   {
     path: TO_PAYMENTS,

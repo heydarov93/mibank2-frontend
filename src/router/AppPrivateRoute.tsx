@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+
+import { useAuthGuard } from './hooks/useAuthGuard';
 
 import { TO_WELCOME } from 'constants/routesName';
 import { getAuthStatus } from 'utils/auth';
@@ -9,10 +10,13 @@ interface AppPrivateRouteProps {
 }
 
 export const AppPrivateRoute = ({ children }: AppPrivateRouteProps) => {
-  const isAuthenticated = getAuthStatus();
+  const shouldRedirect = useAuthGuard({
+    authCheck: getAuthStatus,
+    redirectTo: TO_WELCOME,
+  });
 
-  if (!isAuthenticated) {
-    return <Navigate to={TO_WELCOME} replace />;
+  if (shouldRedirect) {
+    return shouldRedirect;
   }
 
   return <>{children}</>;

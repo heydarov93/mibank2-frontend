@@ -1,5 +1,5 @@
-export { Homepage } from './Homepage/Homepage';
 export { SignInPage } from './SignInPage/SignInPage';
+export { Homepage } from './Homepage/Homepage';
 export { WelcomePage } from './WelcomePage/WelcomePage';
 export { ErrorPage } from './ErrorPage/ErrorPage';
 export { UnderDevPage } from './UnderDevPage/UnderDevPage';
