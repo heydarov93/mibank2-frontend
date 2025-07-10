@@ -48,10 +48,6 @@ export const PasswordField = <T extends FieldValues>({
     }
   };
 
-  const onPaste = (event: SyntheticEvent) => {
-    event.preventDefault();
-  };
-
   const preventChange = (e: SyntheticEvent) => {
     e.preventDefault();
   };
@@ -109,7 +105,6 @@ export const PasswordField = <T extends FieldValues>({
         onKeyUp={onKeyUpHandler}
         onFocus={onFocus}
         onKeyDown={onKeyDownHandler}
-        onPaste={onPaste}
       />
     </>
   );
