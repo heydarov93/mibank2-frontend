@@ -4,7 +4,7 @@ export const App = lazy(() =>
   import('App').then((module) => ({ default: module.App })),
 );
 
-export const Homepage = lazy(() =>
+export const HomePage = lazy(() =>
   import('pages').then((module) => ({ default: module.Homepage })),
 );
 

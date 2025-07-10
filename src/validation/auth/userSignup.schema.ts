@@ -14,7 +14,7 @@ export const userSignupSchema = yup.object().shape({
     .string()
     .trim()
     .required(t(`${passwordField}.required`))
-    .matches(VALIDATION_PATTERNS.EMAIL, t(`${passwordField}.errorPattern`))
+    .matches(VALIDATION_PATTERNS.PASSWORD, t(`${passwordField}.errorPattern`))
     .max(
       VALIDATION_LIMITS.PASSWORD_MAX_LENGTH,
       t(`${passwordField}.errorMaxLen`),
@@ -23,7 +23,7 @@ export const userSignupSchema = yup.object().shape({
     .string()
     .trim()
     .required(t(`${passwordField}.required`))
-    .matches(VALIDATION_PATTERNS.EMAIL, t(`${passwordField}.errorPattern`))
+    .matches(VALIDATION_PATTERNS.PASSWORD, t(`${passwordField}.errorPattern`))
     .oneOf([yup.ref('password')], t(`${passwordField}.errorMatch`))
     .max(
       VALIDATION_LIMITS.CONFIRM_PASSWORD_MAX_LENGTH,

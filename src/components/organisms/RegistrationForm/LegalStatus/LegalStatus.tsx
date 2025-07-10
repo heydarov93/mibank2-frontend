@@ -80,7 +80,7 @@ export const LegalStatus = ({ onBack }: FormStepProps) => {
               maxLength={11}
               onKeyDown={(e) => {
                 if (
-                  checkAllowedKey(e, VALIDATION_PATTERNS.LEGAL_STATUS_INPUT)
+                  checkAllowedKey(e, VALIDATION_PATTERNS.DIGITS_ONLY)
                 ) {
                   e.preventDefault();
                 }
