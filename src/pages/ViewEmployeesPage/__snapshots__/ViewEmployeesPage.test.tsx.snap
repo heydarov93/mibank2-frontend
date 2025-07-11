@@ -1,0 +1,464 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders BackOfficeViewEmployees correctly 1`] = `
+<div
+  aria-hidden="true"
+>
+  <div
+    class="MuiBox-root css-kgct6v"
+  >
+    <div
+      class="MuiBox-root css-147x205"
+    >
+      <div
+        class="MuiBox-root css-1821gv5"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1h1bz7i-MuiTypography-root"
+        >
+          Employees List
+        </p>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1p9swwr-MuiTypography-root"
+        >
+          Employee Information
+        </p>
+      </div>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-cx9nr4-MuiButtonBase-root-MuiButton-root"
+        data-testid="save-button"
+        tabindex="0"
+        type="submit"
+      >
+        <span
+          class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeLarge css-vpap0f-MuiButton-startIcon"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 15 16"
+          >
+            <svg>
+              ButtonPlusIcon.svg
+            </svg>
+          </svg>
+        </span>
+        Add Employee
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      class="MuiBox-root css-f1p1an"
+    >
+      <div
+        class="MuiBox-root css-10ug5gj"
+      >
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1f8rytt-MuiFormControl-root-MuiTextField-root"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart css-er8hls-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="SearchIcon"
+              focusable="false"
+              style="margin-right: 8px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"
+              />
+            </svg>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input"
+              id="searchEmployee"
+              maxlength="16"
+              name="searchEmployee"
+              placeholder="Search for employees"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-ihdtdm"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiTableContainer-root css-x226ax-MuiTableContainer-root"
+    >
+      <table
+        class="MuiTable-root css-rqglhn-MuiTable-root"
+      >
+        <thead
+          class="MuiTableHead-root css-13pymb6-MuiTableHead-root"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-head css-u7li8u-MuiTableRow-root"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                >
+                  First Name
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                >
+                  Last Name
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                >
+                  Role
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                >
+                  Email
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            >
+              <div
+                class="MuiBox-root css-vvn7zl"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1k1vu4x-MuiTypography-root"
+                >
+                  Date Added
+                </p>
+              </div>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-sqchu1-MuiTableCell-root"
+              scope="col"
+            />
+          </tr>
+        </thead>
+        <tbody
+          class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+        >
+          <tr
+            class="MuiTableRow-root css-mwyjpb-MuiTableRow-root"
+            data-testid="table-row"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              John
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              Doe
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              Admin
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              john.doe@example.com
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              2024-04-01
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-j2v8qg-MuiTableCell-root"
+            >
+              <div
+                class="MuiBox-root css-1i27l4i"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-l7gs37-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 12 12"
+                  >
+                    <svg>
+                      EditIcon.svg
+                    </svg>
+                  </svg>
+                  Edit
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-15lltck-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 12 12"
+                  >
+                    <svg>
+                      TrashIcon.svg
+                    </svg>
+                  </svg>
+                  Delete
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="MuiBox-root css-5xhpq3"
+        data-testid="main-container"
+      >
+        <div
+          class="MuiBox-root css-69mwjq"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+          >
+            itemsPerPage
+          </p>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-1ikgd6f-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            data-testid="count-select"
+          >
+            <div
+              aria-controls=":r1:"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1d3ddih-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              role="combobox"
+              tabindex="0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+              >
+                10
+              </p>
+            </div>
+            <input
+              aria-hidden="true"
+              aria-invalid="false"
+              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              tabindex="-1"
+              value="10"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1cfjwb3-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="KeyboardArrowDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-ihdtdm"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+          >
+            pageDisplayText
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-aabovo"
+          data-testid="pagination-actions"
+        >
+          <div
+            class="MuiBox-root css-wxfvax"
+          >
+            <button
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-x5rw2m-MuiButtonBase-root-MuiIconButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                data-testid="FirstPageRoundedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17.7 15.89 13.82 12l3.89-3.89c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0l-4.59 4.59c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.38.38-1.02-.01-1.4M7 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
+                />
+              </svg>
+            </button>
+            <button
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                data-testid="KeyboardArrowLeftRoundedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M14.71 15.88 10.83 12l3.88-3.88c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.39.39-1.03 0-1.42"
+                />
+              </svg>
+            </button>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
+            >
+              prevBtn
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1bc9qkb"
+          >
+            <div
+              class="MuiBox-root css-rewt5a"
+              data-testid="current-page"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+              >
+                1
+              </p>
+            </div>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-kpfygk-MuiTypography-root"
+            >
+              of 
+              1
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-wxfvax"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-17z9iwv-MuiTypography-root"
+            >
+              nextBtn
+            </p>
+            <button
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                data-testid="KeyboardArrowRightRoundedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.29 15.88 13.17 12 9.29 8.12a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42"
+                />
+              </svg>
+            </button>
+            <button
+              class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-1hzwo8z-MuiButtonBase-root-MuiIconButton-root"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+                data-testid="LastPageRoundedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.29 8.11 10.18 12l-3.89 3.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L7.7 6.7a.9959.9959 0 0 0-1.41 0c-.38.39-.38 1.03 0 1.41M17 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

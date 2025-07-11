@@ -1,5 +1,11 @@
 import { Box } from '@mui/material';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { StyledContainer, StyledHeader } from './WelcomePage.styled';
@@ -9,53 +15,50 @@ import { Footer, WelcomeHeader, WelcomeNav } from 'components/organisms';
 import { EWelcomeTab } from 'enums';
 import { UnderDevPage } from 'pages/UnderDevPage/UnderDevPage';
 
-const TAB_INDEX: Record<EWelcomeTab, number> = {
-  [EWelcomeTab.Personal]: 0,
-  [EWelcomeTab.Business]: 1,
-  [EWelcomeTab.About]: 2,
-};
-
-const INDEX_TAB: Record<number, EWelcomeTab> = {
-  0: EWelcomeTab.Personal,
-  1: EWelcomeTab.Business,
-  2: EWelcomeTab.About,
-};
+const WELCOME_TABS: EWelcomeTab[] = [
+  EWelcomeTab.Personal,
+  EWelcomeTab.Business,
+  EWelcomeTab.About,
+];
 
 export const WelcomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tabParam = searchParams.get('tab') as EWelcomeTab;
-  const initialTab = tabParam && TAB_INDEX[tabParam] ? TAB_INDEX[tabParam] : 0;
-  const [tabValue, setTabValue] = useState<number>(initialTab);
+
+  const defaultIndex = useMemo(() => {
+    const tab = searchParams.get('tab') as EWelcomeTab;
+    const idx = tab ? WELCOME_TABS.indexOf(tab) : -1;
+    return idx >= 0 ? idx : 0;
+  }, [searchParams]);
+
+  const [activeTab, setActiveTab] = useState<number>(defaultIndex);
 
   useEffect(() => {
-    const tabIdx = tabParam && TAB_INDEX[tabParam] ? TAB_INDEX[tabParam] : 0;
-    setTabValue(tabIdx);
-  }, [tabParam]);
+    setActiveTab(defaultIndex);
+  }, [defaultIndex]);
 
-  const handleTabChange = (_event: SyntheticEvent, newTabValue: number) => {
-    setTabValue(newTabValue);
-    setSearchParams({ tab: INDEX_TAB[newTabValue] });
-  };
+  const handleTabChange = useCallback(
+    (_event: SyntheticEvent, newIndex: number) => {
+      setActiveTab(newIndex);
+      setSearchParams({ tab: WELCOME_TABS[newIndex] });
+    },
+    [setSearchParams],
+  );
 
   return (
     <>
       <StyledHeader>
-        <WelcomeHeader activeTab={tabValue} onSetActiveTab={handleTabChange} />
+        <WelcomeHeader activeTab={activeTab} onTabChange={handleTabChange} />
         <StyledContainer>
           <Logo size="md" />
-          <WelcomeNav activePanel={tabValue} />
+          <WelcomeNav activePanel={activeTab} />
         </StyledContainer>
       </StyledHeader>
-      <Box marginTop={15}>
-        <TabPanel value={tabValue} index={TAB_INDEX[EWelcomeTab.Personal]}>
-          Personal Page
-        </TabPanel>
-        <TabPanel value={tabValue} index={TAB_INDEX[EWelcomeTab.Business]}>
-          Business Page
-        </TabPanel>
-        <TabPanel value={tabValue} index={TAB_INDEX[EWelcomeTab.About]}>
-          <UnderDevPage />
-        </TabPanel>
+      <Box mt={15}>
+        {WELCOME_TABS.map((tab, index) => (
+          <TabPanel key={tab} value={activeTab} index={index}>
+            <UnderDevPage />
+          </TabPanel>
+        ))}
       </Box>
       <Footer />
     </>

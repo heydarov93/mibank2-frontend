@@ -1,29 +1,31 @@
-import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import {
-  MainContainer,
-  SecondaryText,
-  MainHeader,
+  StyledContainer,
+  StyledFlexColumn,
+  StyledLogoContainer,
+  StyledSecondaryText,
+  StyledTitle,
 } from './BackOfficeErrorPage.styled';
 
 import { Logo } from 'components/atoms';
 import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
 
 export const BackOfficeErrorPage = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'BackOffice.ErrorPage',
+  });
 
   return (
-    <MainContainer sx={{ position: 'relative' }}>
-      <Box position="absolute" left="40px" top="40px">
+    <StyledContainer>
+      <StyledLogoContainer>
         <Logo color="white" />
-      </Box>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={1.5}>
-        <MainHeader>{t('ErrorPage.serviceUnavailable')}</MainHeader>
-        <SecondaryText>{t('ErrorPage.refresh')}</SecondaryText>
+      </StyledLogoContainer>
+      <StyledFlexColumn>
+        <StyledTitle>{t('serviceUnavailable')}</StyledTitle>
+        <StyledSecondaryText>{t('refresh')}</StyledSecondaryText>
         <ReloadButton sx={{ color: 'white' }} />
-      </Box>
-    </MainContainer>
+      </StyledFlexColumn>
+    </StyledContainer>
   );
 };
-

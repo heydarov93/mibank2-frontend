@@ -6,21 +6,21 @@ import {
   TO_BACK_OFFICE_VERIFICATION,
 } from 'constants/routesName';
 import {
-  BackOfficeEmployeeLoginPage,
+  EmployeeLoginPage,
   BackOfficeVerificationErrorPage,
   BackOfficeVerificationPage,
-  BackOfficeVerifyEmployeeCode,
+  VerifyEmployeeCodePage,
 } from 'router/lazy/backOffice.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
 export const backOfficeAuthRoutes: RouteObject[] = [
   {
     path: BACK_OFFICE_EMPLOYEE_SIGN_IN,
-    element: withSuspense(BackOfficeEmployeeLoginPage),
+    element: withSuspense(EmployeeLoginPage),
   },
   {
     path: BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
-    element: withSuspense(BackOfficeVerifyEmployeeCode),
+    element: withSuspense(VerifyEmployeeCodePage),
   },
   {
     path: TO_BACK_OFFICE_VERIFICATION,

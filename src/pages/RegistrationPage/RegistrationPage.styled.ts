@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-export const PageWrapper = styled(Box)(
+export const StyledPageWrapper = styled(Box)(
   ({ theme: { palette, breakpoints } }) => ({
     display: 'flex',
     flex: 1,

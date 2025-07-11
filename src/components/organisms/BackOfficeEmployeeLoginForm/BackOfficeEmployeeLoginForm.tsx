@@ -21,7 +21,8 @@ import {
 import { employeeLoginSchema, TEmployeeLoginValues } from 'validation';
 
 export const BackOfficeEmployeeLoginForm = () => {
-  const [validateEmployeeEmail, { isLoading }] = useValidateEmployeeEmailMutation();
+  const [validateEmployeeEmail, { isLoading }] =
+    useValidateEmployeeEmailMutation();
   const [errorMessage, setErrorMessage] = useState('');
   const { t } = useTranslation('translation', {
     keyPrefix: 'EmployeeLoginPage',
@@ -88,6 +89,7 @@ export const BackOfficeEmployeeLoginForm = () => {
           onClick={handleCleanField}
           buttonContent={t('submitButton')}
           isDisabled={!isValid || isLoading}
+          sx={{ marginTop: 2 }}
         />
       </StyledForm>
     </>

@@ -17,10 +17,10 @@ import {
   CreateForgotPasswordPage,
   CreatePasswordPage,
   ForgotPasswordPage,
-  ForgotPasswordPageFinished,
+  ForgotPasswordConfirmationPage,
   LegalEntityVerificationPage,
   RegistrationPage,
-  SignInPage,
+  LoginPage,
   SignUpPage,
   VerificationPage,
   VerifyEmailPage,
@@ -35,7 +35,7 @@ export const authRoutes: RouteObject[] = [
   },
   {
     path: TO_SIGN_IN,
-    element: withSuspense(SignInPage),
+    element: withSuspense(LoginPage),
   },
   {
     path: TO_SIGN_UP,
@@ -71,6 +71,6 @@ export const authRoutes: RouteObject[] = [
   },
   {
     path: TO_CREATE_FORGOT_PASSWORD_FINISHED,
-    element: withSuspense(ForgotPasswordPageFinished),
+    element: withSuspense(ForgotPasswordConfirmationPage),
   },
 ];

@@ -16,10 +16,10 @@ import {
 
 export const WelcomeHeader = ({
   activeTab,
-  onSetActiveTab,
+  onTabChange,
 }: {
   activeTab: number;
-  onSetActiveTab: (event: React.SyntheticEvent, value: number) => void;
+  onTabChange: (event: React.SyntheticEvent, value: number) => void;
 }) => {
   const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation('translation', {
@@ -36,7 +36,7 @@ export const WelcomeHeader = ({
 
   return (
     <StyledContainer>
-      <StyledTabs value={activeTab} onChange={onSetActiveTab} data-testid="header-tab-list">
+      <StyledTabs value={activeTab} onChange={onTabChange} data-testid="header-tab-list">
         {[t('personal'), t('business'), t('aboutUs')].map((tab, index) => (
           <StyledTab
             key={tab}

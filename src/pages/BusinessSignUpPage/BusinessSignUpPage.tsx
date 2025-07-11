@@ -1,9 +1,9 @@
 import { AuthPageWrapper, BusinessSignUpForm } from 'components/organisms';
 
-export function BusinessSignUpPage() {
+export const BusinessSignUpPage = () => {
   return (
     <AuthPageWrapper>
       <BusinessSignUpForm />
     </AuthPageWrapper>
   );
-}
+};

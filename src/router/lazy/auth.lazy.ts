@@ -4,8 +4,8 @@ export const WelcomePage = lazy(() =>
   import('pages').then((module) => ({ default: module.WelcomePage })),
 );
 
-export const SignInPage = lazy(() =>
-  import('pages').then((module) => ({ default: module.SignInPage })),
+export const LoginPage = lazy(() =>
+  import('pages').then((module) => ({ default: module.LoginPage })),
 );
 
 export const SignUpPage = lazy(() =>
@@ -38,9 +38,9 @@ export const CreateForgotPasswordPage = lazy(() =>
   })),
 );
 
-export const ForgotPasswordPageFinished = lazy(() =>
+export const ForgotPasswordConfirmationPage = lazy(() =>
   import('pages').then((module) => ({
-    default: module.ForgotPasswordPageFinished,
+    default: module.ForgotPasswordConfirmationPage,
   })),
 );
 

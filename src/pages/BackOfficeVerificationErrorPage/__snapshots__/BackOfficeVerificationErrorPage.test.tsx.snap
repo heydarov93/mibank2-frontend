@@ -9,7 +9,7 @@ exports[`BackOfficeVerificationErrorPage matches the snapshot 1`] = `
       class="MuiBox-root css-0"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-4jir3w-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-1iv3euw-MuiTypography-root"
         data-testid="title-text"
       >
         QR Code has expired

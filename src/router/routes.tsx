@@ -4,7 +4,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { AppPrivateRoute } from './AppPrivateRoute';
 import { BackOfficePrivateRoute } from './BackOfficePrivateRoute';
 import { App, ErrorPage } from './lazy/app.lazy';
-import { BackOffice, BackOfficeErrorPage } from './lazy/backOffice.lazy';
+import { BackOfficePage, BackOfficeErrorPage } from './lazy/backOffice.lazy';
 import { protectedAppRoutes } from './routes/app.routes';
 import { authRoutes } from './routes/appAuth.routes';
 import { protectedBackOfficeRoutes } from './routes/backOffice.routes';
@@ -34,7 +34,7 @@ export const routes = createBrowserRouter([
     element: (
       <BackOfficePrivateRoute>
         <Suspense fallback={<LoadingSpinner />}>
-          <BackOffice />
+          <BackOfficePage />
         </Suspense>
       </BackOfficePrivateRoute>
     ),

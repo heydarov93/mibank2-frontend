@@ -6,13 +6,14 @@ import { TO_SIGN_IN } from 'constants/routesName';
 
 export const ForgotPasswordPage = () => {
   const navigate = useNavigate();
-  const backToLogIn = () => {
+  const handleBackClick = () => {
     navigate(TO_SIGN_IN);
   };
+
   return (
     <>
       <AuthWrapper>
-        <BackArrow onBackClick={backToLogIn} />
+        <BackArrow onBackClick={handleBackClick} />
         <ForgotPassword />
       </AuthWrapper>
       <Footer />

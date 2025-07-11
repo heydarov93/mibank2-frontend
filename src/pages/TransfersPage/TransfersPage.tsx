@@ -1,106 +1,68 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { Box, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Box, Button } from '@mui/material';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { createSearchParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-import {
-  StyledBackButton,
-  StyledButtonsContainer,
-  StyledContainer,
-} from './TransfersPage.styled';
+import { StyledContainer } from './TransfersPage.styled';
 
 import { NavigationWarningModal } from 'components/atoms';
-import { TransferButton } from 'components/molecules/TransferButton/TransferButton';
-import { TransferForm } from 'components/organisms/TransferForm/TransferForm';
-import { TransferMethodMenu } from 'components/organisms/TransferMethodMenu/TransferMethodMenu';
+import { SelectView } from 'components/organisms/SelectView/SelectView';
+import { TransferView } from 'components/organisms/TransferView/TransferView';
 
-export const transferMethods = ['iban', 'card', 'owncards'] as const;
-export type TTransferMethod = (typeof transferMethods)[number];
+export const TRANSFER_METHODS = ['iban', 'card', 'owncards'] as const;
+export type TTransferMethod = (typeof TRANSFER_METHODS)[number];
 
-export function TransfersPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const transferMethod = searchParams.get('method') as TTransferMethod;
+export const TransfersPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
-  const [navigationModalOpen, setNavigationModalOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
-  function handleCancelConfirm() {
-    setNavigationModalOpen(true);
-  }
+  const transferMethod = useMemo<TTransferMethod | null>(() => {
+    const method = searchParams.get('method');
+    return TRANSFER_METHODS.includes(method as TTransferMethod)
+      ? (method as TTransferMethod)
+      : null;
+  }, [searchParams]);
 
-  function handleExitForm() {
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+  const handleConfirmExit = () => {
+    setModalOpen(false);
     setSearchParams({});
-    handleCancelNavigation();
-  }
-
-  function handleCancelNavigation() {
-    setNavigationModalOpen(false);
-  }
+  };
 
   return (
     <Box width="100%">
       {transferMethod && (
-        <StyledBackButton
-          onClick={handleCancelConfirm}
+        <Button
           variant="text"
+          onClick={handleOpenModal}
           startIcon={<ArrowBackIosNewIcon />}
+          sx={({ palette }) => ({ color: palette.common.black })}
         >
           {t('goBack')}
-        </StyledBackButton>
+        </Button>
       )}
 
       <NavigationWarningModal
-        open={navigationModalOpen}
-        onConfirm={handleExitForm}
-        onCancel={handleCancelNavigation}
+        open={isModalOpen}
+        onConfirm={handleConfirmExit}
+        onCancel={handleCloseModal}
         title={t('warningModal.title')}
         description={t('warningModal.description')}
       />
 
       <StyledContainer>
-        {!transferMethod && (
-          <>
-            <Typography
-              variant="h1"
-              fontSize={26}
-              fontWeight={600}
-              color="common.black"
-            >
-              {t('title')}
-            </Typography>
-
-            <StyledButtonsContainer>
-              {Object.values(transferMethods).map((method) => (
-                <TransferButton
-                  key={method}
-                  to={{
-                    search: createSearchParams({ method: method }).toString(),
-                  }}
-                  label={t(method)}
-                  transferMethod={method}
-                />
-              ))}
-            </StyledButtonsContainer>
-          </>
-        )}
-
-        {transferMethod && (
-          <>
-            <Box display="flex" gap={1}>
-              <Typography
-                variant="h1"
-                fontSize={26}
-                fontWeight={600}
-                color="common.black"
-              >
-                {t('formTitle')}
-              </Typography>
-              <TransferMethodMenu />
-            </Box>
-            <TransferForm key={transferMethod} onCancel={handleCancelConfirm} />
-          </>
+        {transferMethod ? (
+          <TransferView
+            transferMethod={transferMethod}
+            onCancel={handleOpenModal}
+          />
+        ) : (
+          <SelectView />
         )}
       </StyledContainer>
     </Box>
   );
-}
+};
