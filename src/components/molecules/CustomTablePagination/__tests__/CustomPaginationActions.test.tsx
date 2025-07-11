@@ -5,25 +5,25 @@ import CustomPaginationActions from '../CustomPaginationActions';
 
 import { theme } from 'theme/theme';
 
-jest.mock('components/atoms/LeftArrowButton/LeftArrowButton', () => {
+jest.mock('@mui/icons-material/KeyboardArrowLeftRounded', () => {
   return function LeftArrowButton() {
     return <div data-testid="left-arrow" />;
   };
 });
 
-jest.mock('components/atoms/LeftArrowEndButton/LeftArrowEndButton', () => {
+jest.mock('@mui/icons-material/FirstPageRounded', () => {
   return function LeftArrowEndButton() {
     return <div data-testid="left-arrow-end" />;
   };
 });
 
-jest.mock('components/atoms/RightArrowButton/RightArrowButton', () => {
+jest.mock('@mui/icons-material/KeyboardArrowRightRounded', () => {
   return function RightArrowButton() {
     return <div data-testid="right-arrow" />;
   };
 });
 
-jest.mock('components/atoms/RightArrowEndButton/RightArrowEndButton', () => {
+jest.mock('@mui/icons-material/LastPageRounded', () => {
   return function RightArrowEndButton() {
     return <div data-testid="right-arrow-end" />;
   };

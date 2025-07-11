@@ -64,9 +64,22 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
           class="MuiStack-root css-1or57tr-MuiStack-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1jaymit-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-bkmj8s-MuiTypography-root"
           >
-            Invalid Date
+            <div
+              class="MuiBox-root css-10egq61"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                Invalid Date
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                Invalid Date
+              </div>
+            </div>
           </p>
           <div
             class="MuiStack-root css-17i0r5w-MuiStack-root"
@@ -108,20 +121,6 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
             >
               6543210987654321
-            </p>
-          </div>
-          <div
-            class="MuiStack-root css-17i0r5w-MuiStack-root"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
-            >
-              TransfersPage.paymentReceiptModal.service
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-            >
-              TransfersPage.paymentReceiptModal.serviceType
             </p>
           </div>
           <div

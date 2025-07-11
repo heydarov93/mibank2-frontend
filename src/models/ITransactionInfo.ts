@@ -1,6 +1,7 @@
 export interface Transaction {
   id: string;
   Type: 'Income' | 'Expense';
+  transfer_type: 'card' | 'account';
   currency: string;
   amount: number;
   fee: number;
@@ -16,8 +17,9 @@ export interface Transaction {
 
 export interface TransformedTransaction {
   id: string;
-  card: string;
+  sourceNumber: string;
   amount: number;
+  transferType: string;
   isIncome: boolean;
   template: string;
   date: string;

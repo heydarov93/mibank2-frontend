@@ -1,3 +1,4 @@
+import { UnfoldMore } from '@mui/icons-material';
 import {
   Box,
   SelectChangeEvent,
@@ -7,6 +8,8 @@ import {
 } from '@mui/material';
 import { MouseEvent, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { PaymentReceiptModal } from '../PaymentReceiptModal/PaymentReceiptModal';
 
 import {
   StyledContainer,
@@ -19,15 +22,21 @@ import { TransferFilters } from './molecules';
 
 import { CustomTableRow } from 'components/molecules';
 import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
+import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 import { usePaginationInfo } from 'hooks';
 import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
-import { formatCardNumber, formatTransactionDate } from 'utils/formatters';
+import {
+  formatCardNumber,
+  formatTransactionDate,
+  formatIbanNumber,
+} from 'utils/formatters';
 
 // TODO: this mockdata will replaced by real fetched data from API
 const transactionsList: Transaction[] = [
   {
     id: '527f5dce-2983-4adb-b5f5-eff580c094b6',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 112.4,
     fee: 20,
@@ -43,6 +52,7 @@ const transactionsList: Transaction[] = [
   {
     id: '627f5dce-2983-4adb-b5f5-eff580c094b7',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 85.6,
     fee: 15,
@@ -58,6 +68,7 @@ const transactionsList: Transaction[] = [
   {
     id: '727f5dce-2983-4adb-b5f5-eff580c094b8',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 250.0,
     fee: 12.5,
@@ -73,6 +84,7 @@ const transactionsList: Transaction[] = [
   {
     id: '827f5dce-2983-4adb-b5f5-eff580c094b9',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 175.3,
     fee: 8.75,
@@ -88,6 +100,7 @@ const transactionsList: Transaction[] = [
   {
     id: '927f5dce-2983-4adb-b5f5-eff580c094c0',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 320.8,
     fee: 16.04,
@@ -103,6 +116,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'a27f5dce-2983-4adb-b5f5-eff580c094c1',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 95.25,
     fee: 4.76,
@@ -118,6 +132,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'b27f5dce-2983-4adb-b5f5-eff580c094c2',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 450.0,
     fee: 22.5,
@@ -133,6 +148,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'c27f5dce-2983-4adb-b5f5-eff580c094c3',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 67.89,
     fee: 3.39,
@@ -148,6 +164,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'd27f5dce-2983-4adb-b5f5-eff580c094c4',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 189.75,
     fee: 9.49,
@@ -163,6 +180,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'e27f5dce-2983-4adb-b5f5-eff580c094c5',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 298.44,
     fee: 14.92,
@@ -178,6 +196,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'f27f5dce-2983-4adb-b5f5-eff580c094c6',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 525.0,
     fee: 26.25,
@@ -193,6 +212,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'g27f5dce-2983-4adb-b5f5-eff580c094c7',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 142.15,
     fee: 7.11,
@@ -208,6 +228,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'h27f5dce-2983-4adb-b5f5-eff580c094c8',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 275.6,
     fee: 13.78,
@@ -223,6 +244,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'i27f5dce-2983-4adb-b5f5-eff580c094c9',
     Type: 'Expense',
+    transfer_type: 'account',
     currency: 'PLN',
     amount: 87.32,
     fee: 4.37,
@@ -238,6 +260,7 @@ const transactionsList: Transaction[] = [
   {
     id: 'j27f5dce-2983-4adb-b5f5-eff580c094d0',
     Type: 'Income',
+    transfer_type: 'card',
     currency: 'PLN',
     amount: 412.8,
     fee: 20.64,
@@ -252,8 +275,24 @@ const transactionsList: Transaction[] = [
   },
 ];
 
+const FakePaymentReceiptData: IPaymentReceipt = {
+  payerName: 'Yashar Aliyev',
+  date: '2025-03-28T15:21:11Z',
+  fromAccount: 'PL61109010140000071219812874',
+  toAccount: 'PL61109010140000071219812875',
+  amount: '112.40',
+  currency: 'PLN',
+  fee: 20,
+  totalAmount: 132.4,
+  transferMethod: 'card',
+};
+
 export const TransactionsTable = () => {
   const [page, setPage] = useState(0);
+  const [showPaymentReceipt, setShowPaymentReceipt] = useState(false);
+  const [paymentReceiptData, setPaymentReceiptData] = useState<IPaymentReceipt>(
+    FakePaymentReceiptData,
+  );
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { totalPages, pageDisplayText } = usePaginationInfo(
     transactionsList.length,
@@ -276,11 +315,17 @@ export const TransactionsTable = () => {
 
         const transformedTransaction: TransformedTransaction = {
           id: transaction.id,
-          card: formatCardNumber(
-            transaction.user_card_name,
-            transaction.user_card_number,
-          ),
+          sourceNumber:
+            transaction.transfer_type === 'card'
+              ? formatCardNumber(
+                  transaction.user_card_name,
+                  transaction.user_card_number,
+                )
+              : formatIbanNumber(transaction.third_party_IBAN),
           amount: transaction.total_amount,
+          transferType:
+            transaction.transfer_type.charAt(0).toUpperCase() +
+            transaction.transfer_type.slice(1),
           isIncome: transaction.Type === 'Income',
           template: transaction.Type,
           date,
@@ -308,6 +353,11 @@ export const TransactionsTable = () => {
     setPage(0);
   };
 
+  const handleShowPaymentReceipt = (paymentInfo: IPaymentReceipt) => {
+    setShowPaymentReceipt(true);
+    setPaymentReceiptData(paymentInfo);
+  };
+
   return (
     <StyledContainer>
       <StyledTableTitle variant="h3">{t('title')}</StyledTableTitle>
@@ -317,12 +367,19 @@ export const TransactionsTable = () => {
           <Table>
             <StyledTableHead>
               <TableRow>
-                <StyledHeaderCell>{t('columnHeaders.card')}</StyledHeaderCell>
+                <StyledHeaderCell>{t('columnHeaders.source')}</StyledHeaderCell>
+                <StyledHeaderCell>
+                  {t('columnHeaders.transferType')}
+                </StyledHeaderCell>
                 <StyledHeaderCell>{t('columnHeaders.sum')}</StyledHeaderCell>
                 <StyledHeaderCell>
                   {t('columnHeaders.template')}
                 </StyledHeaderCell>
-                <StyledHeaderCell>{t('columnHeaders.date')}</StyledHeaderCell>
+                <StyledHeaderCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    {t('columnHeaders.date')} <UnfoldMore sx={{}} />
+                  </Box>
+                </StyledHeaderCell>
                 <StyledHeaderCell></StyledHeaderCell>
               </TableRow>
             </StyledTableHead>
@@ -330,13 +387,15 @@ export const TransactionsTable = () => {
               {paginatedData.map((transaction: TransformedTransaction) => (
                 <CustomTableRow
                   key={transaction.id}
-                  cardNumber={transaction.card}
+                  sourceNumber={transaction.sourceNumber}
+                  transferType={transaction.transferType}
                   template={transaction.template}
                   isIncome={transaction.isIncome}
                   date={transaction.date}
                   time={transaction.time}
                   amount={transaction.amount}
                   currency={transaction.currency}
+                  handleShowPaymentReceipt={handleShowPaymentReceipt}
                 />
               ))}
             </TableBody>
@@ -352,6 +411,12 @@ export const TransactionsTable = () => {
           />
         </StyledTableContainer>
       </Box>
+
+      <PaymentReceiptModal
+        open={showPaymentReceipt}
+        receiptInfo={paymentReceiptData}
+        onClose={() => setShowPaymentReceipt(false)}
+      />
     </StyledContainer>
   );
 };

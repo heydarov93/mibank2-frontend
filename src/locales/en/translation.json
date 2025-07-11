@@ -227,15 +227,15 @@
       }
     },
     "paymentReceiptModal": {
-      "title": "Transfer Sent",
-      "payer": "Payer",
-      "fromAccount": "From Account",
+      "title": "Transaction details",
+      "payer": "Sender",
+      "fromAccount": "From IBAN",
       "toAccount": "To IBAN",
       "service": "Service",
       "serviceType": "Bank Transfer",
       "amount": "Amount",
       "fee": "Fee",
-      "totalAmount": "Total to pay",
+      "totalAmount": "Total amount",
       "status": "Status",
       "confirmed": "Confirmed",
       "download": "Download",
@@ -272,7 +272,8 @@
   "TransactionsHistoryPage": {
     "title": "Transactions",
     "columnHeaders": {
-      "card": "Card",
+      "source": "Source",
+      "transferType": "Transfer type",
       "sum": "Sum",
       "template": "Template",
       "date": "Date"

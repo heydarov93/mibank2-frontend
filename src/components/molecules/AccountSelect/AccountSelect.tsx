@@ -11,7 +11,7 @@ interface AccountSelectProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   withNewAccount?: boolean;
-  onChange?: SelectProps<string>['onChange'];
+  onChange?: SelectProps<string | string[]>['onChange'];
 }
 
 export const AccountSelect = <T extends FieldValues>({

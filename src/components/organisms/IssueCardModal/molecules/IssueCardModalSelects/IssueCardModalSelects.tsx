@@ -36,11 +36,11 @@ export const IssueCardModalSelects = ({ sx }: IssueCardModalSelectsProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const { control, setValue } = useFormContext<CardIssueFormValues>();
 
-  function handleAccountChange(e: SelectChangeEvent<string>) {
+  function handleAccountChange(e: SelectChangeEvent<string | string[]>) {
     const { value } = e.target;
 
     if (value !== EAccount.NEW_ACCOUNT) {
-      setValue('paymentAccount', value);
+      setValue('paymentAccount', value as string);
     }
   }
 

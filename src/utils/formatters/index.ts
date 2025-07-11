@@ -21,3 +21,5 @@ export { formatWithPattern } from './textFormatter';
 export { formatSecondsToTime } from './timeFormatter';
 
 export { formatCardNumber } from './cardNumberFormatter';
+
+export { formatIbanNumber } from './ibanNumberFormatter';
