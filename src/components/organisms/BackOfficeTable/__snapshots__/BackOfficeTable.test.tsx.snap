@@ -345,12 +345,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-14fiv90-MuiSvgIcon-root"
+              data-testid="FirstPageRoundedIcon"
               focusable="false"
-              viewBox="0 0 16 20"
+              viewBox="0 0 24 24"
             >
-              <svg>
-                LeftArrowEnd.svg
-              </svg>
+              <path
+                d="M17.7 15.89 13.82 12l3.89-3.89c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0l-4.59 4.59c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.38.38-1.02-.01-1.4M7 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
+              />
             </svg>
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -364,12 +365,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-14fiv90-MuiSvgIcon-root"
+              data-testid="KeyboardArrowLeftRoundedIcon"
               focusable="false"
-              viewBox="0 0 12 20"
+              viewBox="0 0 24 24"
             >
-              <svg>
-                LeftArrow.svg
-              </svg>
+              <path
+                d="M14.71 15.88 10.83 12l3.88-3.88c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0L8.71 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .38-.39.39-1.03 0-1.42"
+              />
             </svg>
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -418,12 +420,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+              data-testid="KeyboardArrowRightRoundedIcon"
               focusable="false"
-              viewBox="0 0 12 20"
+              viewBox="0 0 24 24"
             >
-              <svg>
-                RightArrow.svg
-              </svg>
+              <path
+                d="M9.29 15.88 13.17 12 9.29 8.12a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42"
+              />
             </svg>
           </button>
           <button
@@ -435,12 +438,13 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-utp5fs-MuiSvgIcon-root"
+              data-testid="LastPageRoundedIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
-              <svg>
-                RightArrowEnd.svg
-              </svg>
+              <path
+                d="M6.29 8.11 10.18 12l-3.89 3.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L7.7 6.7a.9959.9959 0 0 0-1.41 0c-.38.39-.38 1.03 0 1.41M17 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1"
+              />
             </svg>
           </button>
         </div>

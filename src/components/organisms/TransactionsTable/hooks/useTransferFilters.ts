@@ -20,12 +20,15 @@ export const useTransferFilters = () => {
   const cardOptions: SelectFieldOption[] = [
     {
       value: 'All cards',
+      preventClosing: true,
     },
     {
       value: 'Strong Card **** 5678',
+      preventClosing: true,
     },
     {
       value: 'Strong Card **** 1234',
+      preventClosing: true,
     },
   ];
 
@@ -46,9 +49,9 @@ export const useTransferFilters = () => {
 
   const defaultFilters: TTransactionFiltersValues = {
     time: ETransferTime.LAST_7_DAYS,
-    card: availableFilters.card[0].value,
+    card: [availableFilters.card[0].value],
     template: availableFilters.template[0].value,
-    transactionsType: ETransactionType.ALL,
+    transactionsType: [ETransactionType.ALL],
     startDate: dayjs().subtract(7, 'day').toDate(),
     endDate: new Date(),
   };

@@ -11,9 +11,10 @@ jest.mock('react-i18next', () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
         title: 'Transaction History',
-        'columnHeaders.card': 'Card',
-        'columnHeaders.sum': 'Amount',
-        'columnHeaders.template': 'Type',
+        'columnHeaders.source': 'Source',
+        'columnHeaders.transferType': 'Transfer type',
+        'columnHeaders.sum': 'Sum',
+        'columnHeaders.template': 'Template',
         'columnHeaders.date': 'Date',
       };
       return translations[key] || key;
@@ -32,12 +33,12 @@ jest.mock('./molecules', () => ({
 
 jest.mock('components/molecules', () => ({
   CustomTableRow: ({
-    cardNumber,
+    sourceNumber,
     template,
     amount,
     currency,
   }: {
-    cardNumber: string;
+    sourceNumber: string;
     template: string;
     isIncome: boolean;
     date: string;
@@ -46,7 +47,7 @@ jest.mock('components/molecules', () => ({
     currency: string;
   }) => (
     <tr data-testid="custom-table-row">
-      <td>{cardNumber}</td>
+      <td>{sourceNumber}</td>
       <td>
         {amount} {currency}
       </td>
@@ -119,6 +120,11 @@ jest.mock('utils/formatters', () => ({
   }),
   formatCardNumber: (cardName: string, cardNumber: string) =>
     `${cardName} •••• ${cardNumber.slice(-4)}`,
+  formatIbanNumber: (iban: string) => {
+    const firstFour = iban.slice(0, 4);
+    const lastFour = iban.slice(-4);
+    return `${firstFour} **** ${lastFour}`;
+  },
 }));
 
 describe('TransactionsTable', () => {
@@ -131,9 +137,10 @@ describe('TransactionsTable', () => {
       );
 
       expect(screen.getByText('Transaction History')).toBeInTheDocument();
-      expect(screen.getByText('Card')).toBeInTheDocument();
-      expect(screen.getByText('Amount')).toBeInTheDocument();
-      expect(screen.getByText('Type')).toBeInTheDocument();
+      expect(screen.getByText('Source')).toBeInTheDocument();
+      expect(screen.getByText('Transfer type')).toBeInTheDocument();
+      expect(screen.getByText('Sum')).toBeInTheDocument();
+      expect(screen.getByText('Template')).toBeInTheDocument();
       expect(screen.getByText('Date')).toBeInTheDocument();
     });
 
