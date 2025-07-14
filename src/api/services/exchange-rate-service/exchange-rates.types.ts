@@ -1,4 +1,5 @@
-import { TCurrency } from "types/types";
+import { EXCHANGE_RATE_TAGS } from 'api/constants/tags';
+import { TCurrency } from 'types/types';
 
 interface ICurrencyConversionBase {
   fromCurrency: string;
@@ -31,3 +32,5 @@ export interface IExchangeRateTable {
 
 export type TGetCurrentRatesResponse = IExchangeRateTable[];
 export type TGetPreviousRatesResponse = IExchangeRateTable[];
+export type TExchangeRateTag =
+  (typeof EXCHANGE_RATE_TAGS)[keyof typeof EXCHANGE_RATE_TAGS];

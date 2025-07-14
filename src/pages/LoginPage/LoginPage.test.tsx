@@ -4,7 +4,6 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-
 import { LoginPage } from './LoginPage';
 
 import { contactsApi } from 'api';
@@ -48,6 +47,7 @@ const mockStore = configureStore({
 });
 
 jest.mock('utils/auth', () => ({
+  getEmail: jest.fn(() => 'test@example.com'),
   localTokenHandler: {
     getToken: jest.fn(),
   },

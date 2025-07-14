@@ -1,3 +1,4 @@
+import { EMPLOYEE_TAGS } from 'api/constants/tags';
 import { TId } from 'types/types';
 
 interface IEmployeeApiRequest {
@@ -76,3 +77,4 @@ export type TRegisterEmployeeResponse = IEmployeeApiResponse;
 export type TValidateEmployeeEmailResponse = IEmployeeApiResponse;
 export type TUpdateEmployeeResponse = Partial<IUpdateEmployee>;
 export type TUpdateEmployeeRequest = Partial<IUpdateEmployee>;
+export type TEmployeeTag = (typeof EMPLOYEE_TAGS)[keyof typeof EMPLOYEE_TAGS];

@@ -9,9 +9,12 @@ import {
   IGetAccountByTokenResponse,
   IGetUserAccountByIBANResponse,
   ILinkAccountWithCardRequest,
+  TAccountsTag,
 } from './types/accounts.types';
 
 import { BASE_URL } from 'api/config/api.config';
+import { CACHE_DURATION } from 'api/constants/durations';
+import { ACCOUNT_TAGS } from 'api/constants/tags';
 import { endpoints } from 'api/endpoints';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
@@ -23,7 +26,11 @@ export const accountsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
-  tagTypes: ['IBANAccounts', 'CardAccounts', 'UserAccountsByToken'],
+  tagTypes: Object.values(ACCOUNT_TAGS) as TAccountsTag[],
+  keepUnusedDataFor: CACHE_DURATION.DEFAULT,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     getUserAccountByIBAN: builder.query<
       IGetUserAccountByIBANResponse[],
@@ -33,7 +40,10 @@ export const accountsApi = createApi({
         url: endpoints.accounts.getUserAccountByIBAN,
         params: { userId },
       }),
-      providesTags: ['IBANAccounts'],
+      providesTags: (_result, _error, { userId }) => [
+        { type: ACCOUNT_TAGS.IBAN, id: userId },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
 
     getAccountByCard: builder.query<
@@ -48,7 +58,10 @@ export const accountsApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
-      providesTags: ['CardAccounts'],
+      providesTags: (_result, _error, { userId }) => [
+        { type: ACCOUNT_TAGS.CARD, id: userId },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
 
     getAccountByToken: builder.query<
@@ -60,6 +73,9 @@ export const accountsApi = createApi({
         method: 'GET',
         params: { token },
       }),
+      providesTags: (_result, _error, { token }) => [
+        { type: ACCOUNT_TAGS.USER_BY_TOKEN, id: token },
+      ],
     }),
 
     linkAccountWithCard: builder.mutation<void, ILinkAccountWithCardRequest>({
@@ -68,6 +84,13 @@ export const accountsApi = createApi({
         body: data,
         method: 'PATCH',
       }),
+      invalidatesTags: (_result, _error, { cardId, accountId }) => [
+        { type: ACCOUNT_TAGS.CARD, id: accountId },
+        { type: ACCOUNT_TAGS.IBAN, id: accountId },
+        { type: ACCOUNT_TAGS.CARD, id: cardId },
+        { type: ACCOUNT_TAGS.IBAN, id: cardId },
+        ACCOUNT_TAGS.LINK_ACCOUNT,
+      ],
     }),
 
     checkCardIssuance: builder.mutation<
@@ -79,6 +102,10 @@ export const accountsApi = createApi({
         body: data,
         method: 'POST',
       }),
+      invalidatesTags: (_result, _error, { paymentAccount }) => [
+        { type: ACCOUNT_TAGS.CARD, id: paymentAccount },
+        ACCOUNT_TAGS.CARD_ISSUANCE,
+      ],
     }),
 
     createUserCardAccount: builder.mutation<
@@ -90,7 +117,11 @@ export const accountsApi = createApi({
         body: data,
         method: 'POST',
       }),
-      invalidatesTags: ['IBANAccounts'],
+      invalidatesTags: (_result, _error, { userId }) => [
+        { type: ACCOUNT_TAGS.CARD, id: userId },
+        { type: ACCOUNT_TAGS.IBAN, id: userId },
+        ACCOUNT_TAGS.USER_CARD_ACCOUNT,
+      ],
     }),
   }),
 });

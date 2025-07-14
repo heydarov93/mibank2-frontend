@@ -57,6 +57,7 @@ jest.mock('react-i18next', () => ({
 }));
 
 jest.mock('utils/auth', () => ({
+  getEmail: jest.fn(() => 'test@example.com'),
   localTokenHandler: {
     getToken: jest.fn(),
   },

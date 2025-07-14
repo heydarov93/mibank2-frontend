@@ -1,3 +1,4 @@
+import { CARD_TAGS } from 'api/constants/tags';
 import {
   ECardIssuer,
   ECardIssueType,
@@ -113,3 +114,4 @@ export type TGetUserCardsResponse = IPaginatedResponse<IUserBankCardResponse>;
 export type TSearchCardsResponse = IPaginatedResponse<IssuanceCardData>;
 export type TCreateCardResponse = ICreateCard;
 export type TCreateCardRequest = ICreateCard;
+export type TCardTag = (typeof CARD_TAGS)[keyof typeof CARD_TAGS];
