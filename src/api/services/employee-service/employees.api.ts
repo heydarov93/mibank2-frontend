@@ -8,14 +8,17 @@ import {
   IRegisterEmployeeRequest,
   TAuthenticateEmployeeRequest,
   TDeleteEmployeeRequest,
+  TEmployeeTag,
   TRegisterEmployeeResponse,
   TUpdateEmployeeRequest,
   TUpdateEmployeeResponse,
   TValidateEmployeeEmailResponse,
   TValidateOTPRequest,
-  TValidateOTPResponse
+  TValidateOTPResponse,
 } from './employees.types';
 
+import { CACHE_DURATION } from 'api/constants/durations';
+import { EMPLOYEE_TAGS } from 'api/constants/tags';
 import { endpoints } from 'api/endpoints';
 import { baseQueryCreator } from 'store/baseQueryCreator';
 import { TId } from 'types/types';
@@ -23,6 +26,11 @@ import { TId } from 'types/types';
 export const employeesApi = createApi({
   reducerPath: 'employeesApi',
   baseQuery: baseQueryCreator(),
+  tagTypes: Object.values(EMPLOYEE_TAGS) as TEmployeeTag[],
+  keepUnusedDataFor: CACHE_DURATION.DEFAULT,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     validateEmployeeEmail: builder.mutation<
       TValidateEmployeeEmailResponse,
@@ -33,6 +41,7 @@ export const employeesApi = createApi({
         method: 'POST',
         params: { email },
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.EMAIL],
     }),
     getEmployeeList: builder.query<
       IGetEmployeeListResponse,
@@ -57,6 +66,14 @@ export const employeesApi = createApi({
           lastName,
         },
       }),
+      providesTags: (result) => [
+        ...(result?.data || []).map(({ id }) => ({
+          type: EMPLOYEE_TAGS.EMPLOYEE,
+          id,
+        })),
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
     getAuthenticateEmployee: builder.query<
       IGetAuthenticateEmployeeResponse,
@@ -69,6 +86,9 @@ export const employeesApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
+      providesTags: (_result, _error, { token }) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: token },
+      ],
     }),
     updateEmployee: builder.mutation<
       TUpdateEmployeeResponse,
@@ -79,12 +99,20 @@ export const employeesApi = createApi({
         method: 'PATCH',
         body: data,
       }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id },
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     deleteEmployee: builder.mutation<void, TDeleteEmployeeRequest>({
       query: (id) => ({
         url: endpoints.employees.deleteEmployee(id),
         method: 'DELETE',
       }),
+      invalidatesTags: (_result, _error, id) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id },
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     validateOTP: builder.mutation<TValidateOTPResponse, TValidateOTPRequest>({
       query: (data) => ({
@@ -92,6 +120,7 @@ export const employeesApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.OTP],
     }),
     registerEmployee: builder.mutation<
       TRegisterEmployeeResponse,
@@ -102,6 +131,9 @@ export const employeesApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     authenticateEmployee: builder.mutation<
       IAuthenticateEmployeeResponse,
@@ -112,6 +144,7 @@ export const employeesApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.AUTH],
     }),
   }),
 });

@@ -1,3 +1,5 @@
+import { OFFER_TAGS } from 'api/constants/tags';
+
 export interface IOffer {
   name: string;
   description: string;
@@ -24,3 +26,5 @@ export interface IGetOfferPageResponse {
 export interface IGetOfferImagesResponse {
   imageFiles: string[];
 }
+
+export type TOfferTag = (typeof OFFER_TAGS)[keyof typeof OFFER_TAGS];

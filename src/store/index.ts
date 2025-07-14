@@ -28,10 +28,10 @@ import {
   getUserIdApi,
   offersApi,
   productsApi,
+  transfersApi,
   userAccountsApi,
   userDepositsApi,
 } from 'api';
-import { transfersApi } from 'api/services/account-service/transfers.api';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,

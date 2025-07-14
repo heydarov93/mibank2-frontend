@@ -3,10 +3,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   IGetOfferImagesResponse,
   IGetOfferPageResponse,
-  IGetOffersParams
+  IGetOffersParams,
+  TOfferTag,
 } from './offers.types';
 
 import { BASE_URL } from 'api/config/api.config';
+import { CACHE_DURATION } from 'api/constants/durations';
+import { OFFER_TAGS } from 'api/constants/tags';
 import { endpoints } from 'api/endpoints';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
@@ -18,7 +21,11 @@ export const offersApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
-  tagTypes: ['Offers', 'OfferImages'],
+  tagTypes: Object.values(OFFER_TAGS) as TOfferTag[],
+  keepUnusedDataFor: CACHE_DURATION.DEFAULT,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     getOfferPage: builder.query<IGetOfferPageResponse, IGetOffersParams>({
       query: ({ page, size }) => ({
@@ -26,7 +33,8 @@ export const offersApi = createApi({
         method: 'GET',
         params: { page, size },
       }),
-      providesTags: ['Offers'],
+      providesTags: [OFFER_TAGS.OFFER],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
     getOfferImages: builder.query<IGetOfferImagesResponse, void>({
       query: () => ({
@@ -37,7 +45,8 @@ export const offersApi = createApi({
           Authorization: `Bearer ${token}`,
         },
       }),
-      providesTags: ['OfferImages'],
+      providesTags: [OFFER_TAGS.OFFER_IMAGE],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
   }),
 });

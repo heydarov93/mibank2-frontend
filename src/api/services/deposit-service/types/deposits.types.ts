@@ -1,3 +1,4 @@
+import { DEPOSIT_TAGS } from 'api/constants/tags';
 import { IDeposit } from 'models/IDepositInfo';
 
 export interface IGetDepositsRequest {
@@ -39,3 +40,4 @@ export interface IUpdateDepositRequest extends ICreateDeposit {
 export type TCreateDepositRequest = ICreateDeposit;
 export type TCreateDepositResponse = ICreateDeposit;
 export type TUpdateDepositResponse = ICreateDeposit;
+export type TDepositTag = (typeof DEPOSIT_TAGS)[keyof typeof DEPOSIT_TAGS];
