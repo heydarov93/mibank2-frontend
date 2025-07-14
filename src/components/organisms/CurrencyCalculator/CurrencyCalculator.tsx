@@ -1,6 +1,6 @@
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import { Alert, Box, CircularProgress } from '@mui/material';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -16,6 +16,7 @@ export const CurrencyCalculator = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.currencyExchange.calculator',
   });
+  const [isGetFocused, setIsGetFocused] = useState(false);
   const {
     isConvertCurrencyError,
     errorMessage,
@@ -35,8 +36,10 @@ export const CurrencyCalculator = () => {
     handleCurrencyChange(isFromCurrency, currency);
 
   const onAmountChange =
-    (isFromCurrency: boolean) => (e: ChangeEvent<HTMLInputElement>) =>
+    (isFromCurrency: boolean) => (e: ChangeEvent<HTMLInputElement>) => {
       handleAmountChange(e, isFromCurrency);
+      isFromCurrency ? setIsGetFocused(false) : setIsGetFocused(true);
+    };
 
   return (
     <Box>
@@ -77,7 +80,7 @@ export const CurrencyCalculator = () => {
           amount={exchange.to.amount}
           onCurrencyChange={onCurrencyChange(false)}
           onAmountChange={onAmountChange(false)}
-          disabled={isConvertLoading}
+          disabled={!isGetFocused && isConvertLoading}
         />
       </StyledInputsColumn>
 
