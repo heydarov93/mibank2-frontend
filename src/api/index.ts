@@ -1,5 +1,4 @@
 export { accountsApi } from './services/account-service/accounts.api';
-export { transfersApi } from './services/account-service/transfers.api';
 export { cardsApi } from './services/card-service/cards.api';
 export { depositsApi } from './services/deposit-service/deposits.api';
 export { transfersApi } from './services/account-service/transfers.api';
