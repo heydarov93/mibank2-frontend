@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { CarouselProps } from 'react-material-ui-carousel/dist/components/types';
 
+import { CARD_STACK_CAROUSEL_DURATION } from 'constants/ui/layout';
+
 type CardStackCarouselProps = CarouselProps & {
   children: ReactNode[];
 };
@@ -18,7 +20,7 @@ export function CardStackCarousel(props: CardStackCarouselProps) {
       autoPlay={false}
       indicators={false}
       animation="fade"
-      duration={400}
+      duration={CARD_STACK_CAROUSEL_DURATION}
       navButtonsAlwaysVisible
       stopAutoPlayOnHover
       swipe={false}

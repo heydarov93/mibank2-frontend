@@ -21,7 +21,7 @@ import { InputField, SubmitButton } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { LOCALES } from 'constants/date';
+import { DATE_FORMATS, LOCALES } from 'constants/business/date';
 import { formatDateByLocale } from 'utils/formatters';
 import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 
@@ -75,7 +75,7 @@ const BackOfficeEditEmployee = ({
     const formattedData = {
       ...data,
       id: formData?.id,
-      dateAdded: dayjs(data.dateAdded).format('YYYY-MM-DD'),
+      dateAdded: dayjs(data.dateAdded).format(DATE_FORMATS.YYYY_MM_DD),
     };
     handleUpdate?.(formattedData);
     handleClose();

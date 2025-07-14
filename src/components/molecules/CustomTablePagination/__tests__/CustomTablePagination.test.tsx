@@ -6,7 +6,7 @@ import CustomTablePagination from '../CustomTablePagination';
 
 import { theme } from 'theme/theme';
 
-jest.mock('constants/itemsPerPageValues', () => ({
+jest.mock("constants/business/pagination", () => ({
   ITEMS_PER_PAGE_OPTIONS: [10, 20, 30],
 }));
 

@@ -1,9 +1,8 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { Box, Drawer } from '@mui/material';
+import { Box, Drawer, useTheme } from '@mui/material';
 
 import { DepositCreationForm, DepositInfoCard } from 'components/molecules';
 import { StyledCloseButton } from 'components/molecules/DepositInfoCard/DepositInfoCard.styled';
-import { DRAWER_HEIGHT_CALC_SIZE } from 'constants/learnMorePage';
 import { IDeposit } from 'models/IDepositInfo';
 
 interface OpenDepositModalProps {
@@ -17,6 +16,8 @@ export const OpenDepositModal = ({
   onBack,
   deposit,
 }: OpenDepositModalProps) => {
+  const { spacing } = useTheme();
+
   return (
     <Drawer
       anchor="right"
@@ -24,7 +25,7 @@ export const OpenDepositModal = ({
       onClose={onClose}
       PaperProps={{
         sx: {
-          height: `calc(100vh - ${DRAWER_HEIGHT_CALC_SIZE}px)`,
+          height: `calc(100vh - ${spacing(7.5)}px)`,
           maxHeight: 'min-content',
           top: '60px',
           borderTopLeftRadius: '8px',

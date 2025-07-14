@@ -9,7 +9,7 @@ import { Section } from './molecules/Section/Section';
 import { MyCards } from './organisms/MyCards/MyCards';
 import { MyTransactions } from './organisms/MyTransactions/MyTransactions';
 
-import { TO_HISTORY } from 'constants/routesName';
+import { TO_HISTORY, TO_HOME } from 'constants/navigation/routePaths';
 
 interface SidebarProps {
   onIssueCardModalOpen: () => void;
@@ -40,14 +40,14 @@ export function Sidebar({
       <Section
         title={t('myLoans.title')}
         onAddProduct={() => ''}
-        seeAllRoute="/"
+        seeAllRoute={TO_HOME}
       >
         <EmptySection />
       </Section>
       <Section
         title={t('myDeposits.title')}
         onAddProduct={onDepositsModalOpen}
-        seeAllRoute="/"
+        seeAllRoute={TO_HOME}
       >
         <EmptySection />
       </Section>

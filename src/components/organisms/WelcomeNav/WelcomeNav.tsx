@@ -9,13 +9,13 @@ import {
   StyledNavContainer,
 } from './WelcomeNav.styled';
 
+import { WELCOME_NAV_LINKS } from 'constants/navigation/navigation';
 import {
-  TO_SIGN_IN,
-  TO_SIGN_UP,
   TO_BUSINESS_LOG_IN,
   TO_BUSINESS_SIGN_UP,
-} from 'constants/routesName';
-import { navMenuLinks } from 'constants/welcomeNavigation';
+  TO_SIGN_IN,
+  TO_SIGN_UP,
+} from 'constants/navigation/routePaths';
 
 enum EPanel {
   Personal,
@@ -41,10 +41,10 @@ export const WelcomeNav = ({ activePanel }: { activePanel: EPanel }) => {
   return (
     <StyledNavContainer>
       <List sx={{ display: 'flex', gap: '16px' }}>
-        {navMenuLinks.map(({ content, path }) => (
-          <ListItem key={content}>
+        {WELCOME_NAV_LINKS.map(({ label, path }) => (
+          <ListItem key={label}>
             <StyledLink underline="hover" component={NavLink} to={path}>
-              {t(content)}
+              {t(label)}
             </StyledLink>
           </ListItem>
         ))}

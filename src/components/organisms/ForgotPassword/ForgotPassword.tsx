@@ -13,7 +13,8 @@ import {
 
 import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
-import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
+import { TO_CREATE_FORGOT_PASSWORD } from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
@@ -46,7 +47,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = async (data: IEmailFormInput) => {
     try {
-      localStorage.setItem('email', data.email);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.Email, data.email);
       const response = await getCodeForForgotPassword(data).unwrap();
 
       if (response !== null) {

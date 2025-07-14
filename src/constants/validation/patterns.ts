@@ -76,3 +76,8 @@ export const PASSWORD_VALIDATION_RULES = {
   [EValidationKey.SPECIAL_CHAR]: (v: string) =>
     /[~!?@#$%^&*_\-+()[\]{}<>/|\\"'.,:;`=]/.test(v),
 } as const;
+
+export const CARD_PATTERN = '#### #### #### ####';
+export const IBAN_PATTERN = 'PL## #### #### #### #### #### ####';
+export const NIP_PATTERN = 'PL-NIP-##########';
+export const SPECIAL_CHARACTERS = `~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | "" ' . , : ;`;

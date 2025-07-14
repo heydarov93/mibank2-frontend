@@ -1,11 +1,11 @@
 import { IBAN } from 'ibankit';
 import * as yup from 'yup';
 
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
-} from 'constants/validationPatternConstants';
+} from 'constants/validation/patterns';
 import { t } from 'i18n';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { checkValidCardNumber } from 'utils/checkers/cardNumberChecker';
@@ -92,7 +92,7 @@ export const moneyTransferSchema = (mode: TTransferMethod) =>
         return true;
       }),
 
-    currency: yup.string().required().oneOf(CURRENCIES),
+    currency: yup.string().required().oneOf(SUPPORTED_CURRENCIES),
     message: yup
       .string()
       .transform((value) => value ?? '')

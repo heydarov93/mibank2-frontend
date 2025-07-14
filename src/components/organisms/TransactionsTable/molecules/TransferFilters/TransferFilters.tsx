@@ -16,7 +16,8 @@ import { useTransferFilters } from '../../hooks/useTransferFilters';
 
 import { StyledSelectField } from './TransferFilters.styled';
 
-import { DATE_FORMATS } from 'constants/date';
+import { DATE_FORMATS } from 'constants/business/date';
+import { DATE_SELECT_MENU_SIZE } from 'constants/ui/layout';
 import { ETransferTime } from 'enums/ETransferTime';
 import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
@@ -24,11 +25,6 @@ import { TTransactionFiltersValues } from 'validation/transaction/transactionFil
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;
 }
-
-const CUSTOM_DATE_SELECT_MENU_SIZE = {
-  width: '829px',
-  height: '604px',
-};
 
 export const TransferFilters = ({ sx }: TransferFiltersProps) => {
   const { availableFilters, defaultFilters } = useTransferFilters();
@@ -87,7 +83,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
               containerSx={{ width: '156px' }}
               menuSx={
                 timeSelectValue === ETransferTime.CUSTOM
-                  ? CUSTOM_DATE_SELECT_MENU_SIZE
+                  ? DATE_SELECT_MENU_SIZE
                   : undefined
               }
               optionType="radio"

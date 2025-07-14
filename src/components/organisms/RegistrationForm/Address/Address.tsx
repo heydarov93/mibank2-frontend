@@ -23,7 +23,7 @@ import {
   PostcodeField,
 } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
-import { ALLOWED_KEYS } from 'constants/allowedKeys';
+import { ALLOWED_KEYS } from 'constants/security/permissions';
 import { EErrorStatus } from 'enums';
 import { IErrorData } from 'models/IError';
 import { FormStepProps, IAddress } from 'models/IRegistration';

@@ -15,6 +15,11 @@ interface OpenDepositRowProps {
   depositName: string;
 }
 
+export interface IDepositStep {
+  id: number;
+  title: string;
+}
+
 export const OpenDepositRow = ({
   onBack,
   depositName,
@@ -23,29 +28,31 @@ export const OpenDepositRow = ({
   interestRate,
   depositCurrency,
 }: OpenDepositRowProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-  const steps = [
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'LearnMorePage',
+  });
+
+  const OPEN_DEPOSIT_STEPS: IDepositStep[] = [
     {
       id: 1,
-      title: t('chooseAmountStep'),
+      title: t(`chooseAmountStep`),
     },
     {
       id: 2,
-      title: t('selectAccountStep'),
+      title: t(`selectAccountStep`),
     },
     {
       id: 3,
-      title: t('acceptTermsStep'),
+      title: t(`acceptTermsStep`),
     },
     {
       id: 4,
-      title: t('openDepositStep'),
+      title: t(`openDepositStep`),
     },
   ];
-
   return (
     <StyledDepositContainer data-testid="deposit-container">
-      <DepositSteps steps={steps} />
+      <DepositSteps openDepositSteps={OPEN_DEPOSIT_STEPS} />
       <DepositCreationForm
         depositName={depositName}
         onBack={onBack}

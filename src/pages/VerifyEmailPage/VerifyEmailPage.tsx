@@ -11,7 +11,7 @@ import {
 } from './VerifyEmailPage.styled';
 
 import { AuthPageWrapper } from 'components/organisms';
-import { TO_WELCOME } from 'constants/routesName';
+import { TO_WELCOME } from 'constants/navigation/routePaths';
 
 export const VerifyEmailPage = () => {
   const navigate = useNavigate();

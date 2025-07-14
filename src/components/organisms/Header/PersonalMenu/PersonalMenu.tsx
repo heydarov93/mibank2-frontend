@@ -12,6 +12,7 @@ import {
 
 import { useGetUserInfoQuery } from 'api/services/user-account-service/user-accounts.api';
 import { UserCard } from 'components/molecules';
+import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
@@ -30,7 +31,7 @@ export const PersonalMenu = () => {
 
   const logoutHandler = () => {
     dispatch(logoutFromApp());
-    navigate('/signin');
+    navigate(TO_SIGN_IN);
     localTokenHandler.clearToken(ETokenType.ACCESS);
     removeAuthData();
   };

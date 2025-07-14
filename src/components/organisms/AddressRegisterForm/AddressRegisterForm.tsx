@@ -18,7 +18,7 @@ import { CityField } from './molecules/CityField';
 import { FormField } from './molecules/FormField';
 
 import { NavigationWarningModal } from 'components/atoms';
-import { TO_VERIFY_EMAIL } from 'constants/routesName';
+import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
 import { useNavigationWarning } from 'hooks';
 
 export const AddressRegisterForm = () => {
@@ -48,7 +48,6 @@ export const AddressRegisterForm = () => {
 
       <StyledFormContainer>
         <StyledRegisterForm>
-          
           <StyledFormHeader>
             <StyledFormTitle>{t('form.title')}</StyledFormTitle>
           </StyledFormHeader>
@@ -58,7 +57,7 @@ export const AddressRegisterForm = () => {
               name="country"
               control={control}
               label={t('form.fields.country')}
-              type='select'
+              type="select"
               disabled
               options={[
                 {
@@ -116,7 +115,6 @@ export const AddressRegisterForm = () => {
               {t('form.submitButton')}
             </StyledButton>
           </StyledFormContent>
-
         </StyledRegisterForm>
       </StyledFormContainer>
 

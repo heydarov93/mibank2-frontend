@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
+import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
 import { t } from 'i18n';
 import { isValidDecimalAmount } from 'utils/helpers/validationHelpers';
 

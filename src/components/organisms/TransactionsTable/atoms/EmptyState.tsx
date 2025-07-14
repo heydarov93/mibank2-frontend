@@ -3,7 +3,8 @@ import {
   StyledEmptyStateContent,
 } from '../TransactionsTable.styled';
 
-import { TRANSACTION_EMPTY_STATE_CONTENTS } from 'components/organisms/TransactionsTable/constants/transactionEmptyStateContents';
+import { TRANSACTION_EMPTY_STATE_CONTENTS } from 'constants/business/transaction';
+
 
 type EmptyStateType = 'no-matches' | 'no-transactions' | 'offline';
 

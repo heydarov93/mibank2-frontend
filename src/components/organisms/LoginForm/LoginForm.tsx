@@ -19,7 +19,10 @@ import {
   Timer,
   PasswordValidationTags,
 } from 'components/molecules';
-import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
+import {
+  TO_FORGOT_PASSWORD,
+  TO_SIGN_UP,
+} from 'constants/navigation/routePaths';
 import { useAppDispatch } from 'hooks';
 import { ILoginFormInput } from 'models/IAuth';
 import { setError } from 'store/reducers/AuthSlice';

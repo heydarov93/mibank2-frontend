@@ -8,7 +8,16 @@ import {
   StyledVerificationBox,
 } from './VerificationCode.styled';
 
+import {
+  CODE_RESET_TIMEOUT,
+  DIGIT_NAVIGATION_TIMEOUT,
+  ERROR_CLEAR_TIMEOUT,
+  PASTE_ERROR_DISPLAY_TIMEOUT,
+  PASTE_FOCUS_TIMEOUT,
+} from 'constants/ui/layout';
+import { OTP_INPUT_KEY } from 'constants/validation/otp';
 import { useOtp } from 'hooks';
+import { TOtpInputKey } from 'types/types';
 
 interface VerificationCodeProps {
   separator: React.ReactNode;
@@ -66,20 +75,20 @@ export const VerificationCode = ({
       handleNavigation(-1);
     };
 
-    switch (event.key) {
-      case ' ':
+    switch (event.key as TOtpInputKey) {
+      case OTP_INPUT_KEY.Space:
         event.preventDefault();
         break;
-      case 'ArrowLeft':
+      case OTP_INPUT_KEY.ArrowLeft:
         event.preventDefault();
         handleNavigation(-1);
         break;
-      case 'ArrowRight':
+      case OTP_INPUT_KEY.ArrowRight:
         event.preventDefault();
         handleNavigation(1);
         break;
-      case 'Delete':
-      case 'Backspace':
+      case OTP_INPUT_KEY.Delete:
+      case OTP_INPUT_KEY.Backspace:
         event.preventDefault();
         handleDeletion();
         break;
@@ -87,7 +96,8 @@ export const VerificationCode = ({
       default:
         if (
           (event.ctrlKey || event.metaKey) &&
-          (event.key === 'v' || event.key === 'V')
+          (event.key === OTP_INPUT_KEY.Paste ||
+            event.key === OTP_INPUT_KEY.Paste.toUpperCase())
         ) {
           break;
         }
@@ -98,13 +108,13 @@ export const VerificationCode = ({
           setError(true);
           setIsNonDigit(true);
           event.preventDefault();
-          setTimeout(() => setError(false), 1000);
+          setTimeout(() => setError(false), ERROR_CLEAR_TIMEOUT);
           break;
         } else {
           setIsNonDigit(false);
         }
 
-        setTimeout(() => handleNavigation(1), 100);
+        setTimeout(() => handleNavigation(1), DIGIT_NAVIGATION_TIMEOUT);
         break;
     }
   };
@@ -149,7 +159,10 @@ export const VerificationCode = ({
       const pastedTextWithoutSymbols = pastedText.replace(/[^0-9]/g, '');
       if (!pastedText || /([a-zA-Zа-яА-Я])/g.test(pastedText)) {
         setError(true), setIsNonDigit(true);
-        setTimeout(() => (setError(false), setIsNonDigit(false)), 2000);
+        setTimeout(
+          () => (setError(false), setIsNonDigit(false)),
+          PASTE_ERROR_DISPLAY_TIMEOUT,
+        );
         return;
       }
 
@@ -170,7 +183,7 @@ export const VerificationCode = ({
             ? currentIndex + pastedTextWithoutSymbols.length
             : length - 1,
         );
-      }, 0);
+      }, PASTE_FOCUS_TIMEOUT);
     }
   };
 
@@ -180,7 +193,7 @@ export const VerificationCode = ({
         resetField();
         onResetCodeWrong();
         queueMicrotask(() => focusInput(0));
-      }, 1000);
+      }, CODE_RESET_TIMEOUT);
 
       return () => clearTimeout(timer);
     }

@@ -11,7 +11,8 @@ import {
 } from './CustomPagination.styled';
 import CustomPaginationActions from './CustomPaginationActions';
 
-import { ITEMS_PER_PAGE_OPTIONS } from 'constants/itemsPerPageValues';
+import { ITEMS_PER_PAGE_OPTIONS } from 'constants/business/pagination';
+
 
 interface CustomTablePaginationProps {
   pageDisplayText?: string;

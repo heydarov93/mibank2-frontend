@@ -11,7 +11,8 @@ import OneTimePasscode from './molecules/OneTimePasscode';
 
 import { useValidateOTPMutation } from 'api/services/employee-service/employees.api';
 import { SubmitButton } from 'components/atoms';
-import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
+import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/navigation/routePaths';
+import { OTP_CODE_LENGHT } from 'constants/validation/otp';
 import { theme } from 'theme/theme';
 
 interface OneTimePasscodeFormProps {
@@ -21,10 +22,12 @@ interface OneTimePasscodeFormProps {
 export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
   const { t } = useTranslation('translation');
 
-  const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
+  const [otp, setOtp] = useState<string[]>(new Array(OTP_CODE_LENGHT).fill(''));
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isError, setIsError] = useState<boolean>(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>(Array(6).fill(''));
+  const inputRefs = useRef<(HTMLInputElement | null)[]>(
+    Array(OTP_CODE_LENGHT).fill(''),
+  );
 
   const [validateOTP, { isLoading }] = useValidateOTPMutation();
   const navigate = useNavigate();
@@ -55,7 +58,7 @@ export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
     }
   };
   const handleCancel = () => {
-    setOtp(new Array(6).fill(''));
+    setOtp(new Array(OTP_CODE_LENGHT).fill(''));
     inputRefs.current[0]?.focus();
   };
 
@@ -118,7 +121,7 @@ export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
         </StyledCancelContainer>
         <SubmitButton
           buttonContent={t('OTPVerificationPage.confirmButtonText')}
-          isDisabled={otp.join('').length < 6}
+          isDisabled={otp.join('').length < OTP_CODE_LENGHT}
         />
       </Box>
       {isLoading && (

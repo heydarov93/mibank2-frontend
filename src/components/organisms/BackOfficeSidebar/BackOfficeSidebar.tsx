@@ -2,10 +2,7 @@ import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  StyledHeader,
-  ProductsContainer,
-} from './BackOfficeSidebar.styled';
+import { StyledHeader, ProductsContainer } from './BackOfficeSidebar.styled';
 
 import { ReactComponent as PlusIcon } from 'assets/icons/PlusIcon.svg';
 import { ReactComponent as ViewClientsIcon } from 'assets/icons/ViewClientsIcon.svg';
@@ -16,14 +13,15 @@ import LogoutButton from 'components/atoms/LogoutButton/LogoutButton';
 import SettingsButton from 'components/atoms/SettingsButton/SettingsButton';
 import BackOfficeNavigationLink from 'components/molecules/BackOfficeNavigationLinks/BackOfficeNavigationLink';
 import {
+  BACK_OFFICE_EMPLOYEE_SIGN_IN,
   TO_BACK_OFFICE_CREATE_CLIENT,
   TO_BACK_OFFICE_CREATE_EMPLOYEE,
+  TO_BACK_OFFICE_CREATE_PRODUCT,
   TO_BACK_OFFICE_VIEW_CLIENTS,
   TO_BACK_OFFICE_VIEW_EMPLOYEES,
-  TO_BACK_OFFICE_CREATE_PRODUCT,
   TO_BACK_OFFICE_VIEW_PRODUCTS,
-  BACK_OFFICE_EMPLOYEE_SIGN_IN,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
+import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 import { removeEmployeeAuthData } from 'utils/auth/storageAuthHandler';
 
 export const BackOfficeSidebar = () => {
@@ -37,7 +35,7 @@ export const BackOfficeSidebar = () => {
 
   return (
     <Box display="flex" flexDirection="column" gap={8} width="100%">
-      <Logo color="white" size="xl" labelOnTop={true} />
+      <Logo color="white" size={DEFAULT_BREAKPOINT_KEYS.xl} labelOnTop={true} />
       <Box display="flex" flexDirection="column" gap={4}>
         <ProductsContainer>
           <StyledHeader>{t('SideBar.productHeader')}</StyledHeader>

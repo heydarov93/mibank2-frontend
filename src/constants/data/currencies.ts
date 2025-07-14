@@ -1,15 +1,15 @@
 import { TCurrency } from 'types/types';
 
-export const CURRENCIES = [
+export const SUPPORTED_CURRENCIES: readonly TCurrency[] = [
   'PLN',
   'USD',
   'EUR',
   'CHF',
   'GBP',
   'JPY',
-] as const;
+];
 
-export const currencySymbol: Record<TCurrency, string> = {
+export const CURRENCY_SYMBOLS: Record<TCurrency, string> = {
   CHF: 'Fr',
   EUR: '€',
   GBP: '£',

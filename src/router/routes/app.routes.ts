@@ -1,11 +1,7 @@
+
 import { RouteObject } from 'react-router-dom';
 
-import {
-  TO_DEPOSIT_LEARN_MORE,
-  TO_HISTORY,
-  TO_PAYMENTS,
-  TO_TRANSFERS,
-} from 'constants/routesName';
+import { TO_DEPOSIT_LEARN_MORE, TO_HISTORY, TO_PAYMENTS, TO_TRANSFERS } from 'constants/navigation/routePaths';
 import { DepositLearnMorePage, HomePage, TransactionsHistoryPage, TransfersPage, UnderDevPage } from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 

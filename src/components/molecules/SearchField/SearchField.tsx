@@ -4,7 +4,8 @@ import { Control, Controller, FieldValues } from 'react-hook-form';
 
 import { StyledSearchField } from './SearchField.styled';
 
-import { SEARCH_FIELD_MAX_LENGTH } from 'constants/searchInputValues';
+import { SEARCH_FIELD_MAX_LENGTH } from 'constants/ui/search';
+
 
 interface SearchFieldProps {
   name: string;

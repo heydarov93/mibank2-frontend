@@ -15,7 +15,8 @@ import {
   useSetPrimaryPaymentCardMutation,
   useUpdateCardStatusMutation,
 } from 'api/services/card-service/cards.api';
-import { TO_TRANSFERS } from 'constants/routesName';
+import { CARD_STATUS } from 'constants/business/card';
+import { TO_TRANSFERS } from 'constants/navigation/routePaths';
 
 type ActionButton = 'status' | 'primary';
 
@@ -45,7 +46,7 @@ const ButtonGroup = ({
   const handleTransfer = () => navigate(TO_TRANSFERS);
 
   const handleStatusToggle = async () => {
-    const newStatus = isCardBlocked ? 'ACTIVE' : 'BLOCKED';
+    const newStatus = isCardBlocked ? CARD_STATUS.active : CARD_STATUS.blocked;
     const action = isCardBlocked ? 'unblock' : 'block';
 
     try {

@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 
 import { SelectFieldOption } from 'components/molecules';
 import { filterOptions } from 'components/organisms/TransactionsTable/constants/transactionFilterOptions';
+import { CARD_OPTIONS, TEMPLATE_OPTIONS } from 'constants/business/transaction';
 import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
@@ -17,32 +18,9 @@ type AvailableFilters = Record<
 export const useTransferFilters = () => {
   // TODO replace mock data with api calls when it is ready
 
-  const cardOptions: SelectFieldOption[] = [
-    {
-      value: 'All cards',
-      preventClosing: true,
-    },
-    {
-      value: 'Strong Card **** 5678',
-      preventClosing: true,
-    },
-    {
-      value: 'Strong Card **** 1234',
-      preventClosing: true,
-    },
-  ];
-
-  const templateOptions: SelectFieldOption[] = [
-    { value: 'All templates' },
-    { value: 'Template 1' },
-    { value: 'Template 2' },
-    { value: 'Template 3' },
-    { value: 'Template 4' },
-  ];
-
   const availableFilters: AvailableFilters = {
-    card: cardOptions,
-    template: templateOptions,
+    card: CARD_OPTIONS,
+    template: TEMPLATE_OPTIONS,
     time: filterOptions.time,
     transactionsType: filterOptions.transactionTypes,
   };

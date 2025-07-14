@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledAlert, StyledLink } from './ErrorNotification.styled';
 
-import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { clearError } from 'store/reducers/AuthSlice';
 import { errorMessage } from 'store/selectors';

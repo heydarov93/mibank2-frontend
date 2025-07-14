@@ -1,0 +1,3 @@
+export const COUNT_DOWN_SECONDS = 60;
+export const COUNTDOWN_LEADING_ZERO_THRESHOLD = 10;
+export const INVESTMENT_AMOUNT = 10000;

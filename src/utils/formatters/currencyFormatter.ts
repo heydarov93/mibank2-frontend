@@ -1,4 +1,3 @@
-
 export const MAX_DIGITS = 12;
 
 export const formatAmount = (value: string | number): string => {
@@ -11,7 +10,7 @@ export const formatAmount = (value: string | number): string => {
 
 export const removeExtraDot = (value: string): string => {
   const formattedValue = formatAmount(value);
-  if (formattedValue.length === 12 && formattedValue[11] === '.') {
+  if (formattedValue.length === MAX_DIGITS && formattedValue[11] === '.') {
     return formattedValue.slice(0, 11) + formattedValue.slice(12);
   }
   return formattedValue;
@@ -26,5 +25,3 @@ export const formatCurrency = (
 ): string => {
   return `${currency} ${formatAmount(amount).replace('.', ',')}`;
 };
-
-

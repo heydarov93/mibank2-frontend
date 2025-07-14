@@ -12,24 +12,31 @@ import { StyledAutoLogoutModal } from './AutoLogoutModal.styled';
 
 import { useGetRefreshTokenMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ReactComponent as StopWatch } from 'assets/icons/StopWatch.svg';
+import {
+  COUNT_DOWN_SECONDS,
+  COUNTDOWN_LEADING_ZERO_THRESHOLD,
+} from 'constants/business/numbers';
+import { TIMER_TIMEOUT_IN_MILLISECONDS } from 'constants/ui/layout';
 import { ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { routes } from 'router';
 import { setError } from 'store/reducers';
 import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
 import { getIsVerifying } from 'store/selectors';
-import { getAuthStatus, getEmail, localTokenHandler, removeAuthData } from 'utils/auth';
-
+import {
+  getAuthStatus,
+  getEmail,
+  localTokenHandler,
+  removeAuthData,
+} from 'utils/auth';
 
 export const AutoLogoutModal = () => {
   const { t } = useTranslation('translation');
 
   type UserChoice = 'logout' | 'extend';
 
-  const In_Activity_Timeout_In_Milliseconds: number = 9 * 60 * 1000;
-
   const [isPopupVisible, setIsPopupVisible] = useState<boolean>(false);
-  const [countdown, setCountdown] = useState<number>(60);
+  const [countdown, setCountdown] = useState<number>(COUNT_DOWN_SECONDS);
 
   const countdownRef = useRef<number>(60);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,7 +52,7 @@ export const AutoLogoutModal = () => {
     }
     const newTimer = setTimeout(() => {
       setIsPopupVisible(true);
-    }, In_Activity_Timeout_In_Milliseconds);
+    }, TIMER_TIMEOUT_IN_MILLISECONDS);
     intervalRef.current = newTimer;
   };
 
@@ -59,8 +66,8 @@ export const AutoLogoutModal = () => {
     }
     setIsPopupVisible(false);
     resetInactivityTimer();
-    countdownRef.current = 60;
-    setCountdown(60);
+    countdownRef.current = COUNT_DOWN_SECONDS;
+    setCountdown(COUNT_DOWN_SECONDS);
     if (sixtySecondTimerInterval.current) {
       clearInterval(sixtySecondTimerInterval.current);
     }
@@ -70,15 +77,15 @@ export const AutoLogoutModal = () => {
     if (sixtySecondTimerInterval.current) {
       clearInterval(sixtySecondTimerInterval.current);
     }
-    if (countdownRef.current <= 60) {
-      countdownRef.current = 60;
-      setCountdown(60);
+    if (countdownRef.current <= COUNT_DOWN_SECONDS) {
+      countdownRef.current = COUNT_DOWN_SECONDS;
+      setCountdown(COUNT_DOWN_SECONDS);
     }
     const interval = setInterval(() => {
       countdownRef.current -= 1;
       setCountdown(countdownRef.current);
       if (countdownRef.current <= 0) {
-        countdownRef.current = 60;
+        countdownRef.current = COUNT_DOWN_SECONDS;
         handleUserChoice('logout');
         clearInterval(interval);
         sixtySecondTimerInterval.current = null;
@@ -115,8 +122,8 @@ export const AutoLogoutModal = () => {
       if (sixtySecondTimerInterval.current) {
         clearInterval(sixtySecondTimerInterval.current);
       }
-      setCountdown(60);
-      countdownRef.current = 60;
+      setCountdown(COUNT_DOWN_SECONDS);
+      countdownRef.current = COUNT_DOWN_SECONDS;
     };
   }, [isAuth, isVerifying]);
 
@@ -173,7 +180,10 @@ export const AutoLogoutModal = () => {
       <Box className="timer">
         <StopWatch />
         <p style={{ paddingLeft: '10px' }}>
-          00: {countdown >= 10 ? countdown : `0${countdown}`}
+          00:{' '}
+          {countdown >= COUNTDOWN_LEADING_ZERO_THRESHOLD
+            ? countdown
+            : `0${countdown}`}
         </p>
       </Box>
       <DialogActions>

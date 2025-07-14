@@ -1,4 +1,4 @@
-export const ALLOWED_KEYS = [
+export const ALLOWED_KEYS: readonly string[] = [
   'Backspace',
   'Tab',
   'ArrowLeft',

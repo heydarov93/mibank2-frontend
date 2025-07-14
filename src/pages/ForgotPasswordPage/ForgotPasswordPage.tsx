@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { BackArrow } from 'components/atoms';
 import { AuthWrapper, Footer, ForgotPassword } from 'components/organisms';
-import { TO_SIGN_IN } from 'constants/routesName';
+import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
 export const ForgotPasswordPage = () => {
   const navigate = useNavigate();

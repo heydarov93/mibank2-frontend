@@ -12,7 +12,7 @@ import {
 import { SubmitButton } from 'components/atoms';
 import { InputField } from 'components/atoms';
 import { SelectField } from 'components/molecules';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setProductForm } from 'store/reducers/ChooseProductSlice';
@@ -20,7 +20,7 @@ import { setProductStep } from 'store/reducers/ProductStepperSlice';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';
 import { chooseProductSchema, TChooseProductValues } from 'validation';
 
-const currencyOptions = CURRENCIES.map((value) => ({ value }));
+const currencyOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
 const ChooseProductForm = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });

@@ -2,7 +2,7 @@ import { FieldValues } from 'react-hook-form';
 
 import { InputField, InputFieldProps } from '../InputField/InputField';
 
-import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
+import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
 
 const MAX_VERIFICATION_CODE_LENGTH = 6;
 

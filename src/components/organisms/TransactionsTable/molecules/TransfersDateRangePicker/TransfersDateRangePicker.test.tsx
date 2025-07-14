@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { TransfersDateRangePicker } from './TransfersDateRangePicker';
 
-import { DATE_FORMATS } from 'constants/date';
+import { DATE_FORMATS } from 'constants/business/date';
 import { theme } from 'theme/theme';
 import { formatDateByPattern } from 'utils/formatters';
 

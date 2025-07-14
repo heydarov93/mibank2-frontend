@@ -2,7 +2,6 @@ import { styled, Typography, Box } from '@mui/material';
 
 import { defaultBreakpointsStyle } from 'utils/helpers/breakpointHelpers';
 
-
 export const StyledForm = defaultBreakpointsStyle;
 
 export const StyledFormContent = styled(Box)(({ theme: { spacing } }) => ({

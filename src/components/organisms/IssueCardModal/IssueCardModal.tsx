@@ -13,16 +13,17 @@ import {
   SelectedCardForm,
 } from './molecules';
 
-import { LoadingIndicator, StyledDialog } from 'components/atoms';
 import {
   IssuanceCardInfo,
+  IssueCardModalBottomAlert,
+  LoadingIndicator,
   ModalHeader,
   NavigationWarningModal,
+  StyledDialog,
 } from 'components/atoms';
-import { IssueCardModalBottomAlert } from 'components/atoms';
 import { useCardIssuance } from 'components/organisms/IssueCardModal/hooks/useCardIssuance';
 import { useCardIssueFlow } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
-import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
 import useDisclosure from 'hooks/useDisclosure';
 
@@ -69,7 +70,7 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
   function handleCloseSuccessAlert() {
     successAlert.close();
     handleClose();
-    setTimeout(reset, DIALOGS_ANIMATION_TIME);
+    setTimeout(reset, MODAL_DISPLAY_TIMEOUT);
   }
 
   function handleCloseErrorAlert() {

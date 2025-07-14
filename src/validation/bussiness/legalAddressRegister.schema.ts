@@ -1,7 +1,10 @@
 import * as yup from 'yup';
 
-import { citiesInPoland } from 'constants/citiesInPoland';
-import { VALIDATION_LIMITS, VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
+import { POLISH_CITIES } from 'constants/data/geo';
+import {
+  VALIDATION_LIMITS,
+  VALIDATION_PATTERNS,
+} from 'constants/validation/patterns';
 import { t } from 'i18n';
 
 const VALIDATION_KEY = 'BusinessLoginPage.form.validation';
@@ -13,7 +16,7 @@ export const legalAddressRegisterSchema = yup.object().shape({
     .string()
     .required(t(requiredField))
     .oneOf(
-      citiesInPoland.map((city) => city.city),
+      POLISH_CITIES.map((city) => city.city),
       t(`${VALIDATION_KEY}.cityNotFound`),
     ),
   street: yup
@@ -49,4 +52,6 @@ export const legalAddressRegisterSchema = yup.object().shape({
     ),
 });
 
-export type TLegalAddressRegisterValues = yup.InferType<typeof legalAddressRegisterSchema>;
+export type TLegalAddressRegisterValues = yup.InferType<
+  typeof legalAddressRegisterSchema
+>;

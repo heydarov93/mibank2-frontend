@@ -8,7 +8,7 @@ import {
 } from '../interfaces/IUserAccountOption';
 
 import { CardIssuerIcon } from 'components/atoms';
-import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
+import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
 import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export function renderOption(

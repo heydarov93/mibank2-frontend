@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -8,47 +7,52 @@ import {
 } from './DepositBenefitsGrid.styled';
 
 import {
+  BankIcon,
   ClockIcon,
+  MoneyBagIcon,
   ShieldCheckIcon,
   ShieldIcon,
   SmileyFaceIcon,
-  BankIcon,
-  MoneyBagIcon,
 } from 'components/atoms';
 import { DepositBenefitsBox } from 'components/molecules';
 
 export const DepositBenefitsGrid = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
-
-  const depositBenefits = [
+  const DEPOSIT_BENEFITS = [
     {
+      id: 1,
       icon: <MoneyBagIcon />,
-      mainText: t('attractiveInterestRate'),
+      primaryText: t('attractiveInterestRate'),
       secondaryText: t('interestRateText'),
     },
     {
+      id: 2,
       icon: <ClockIcon />,
-      mainText: t('shortTermGrowth'),
+      primaryText: t('shortTermGrowth'),
       secondaryText: t('shortTermGrowthText'),
     },
     {
+      id: 3,
       icon: <ShieldIcon />,
-      mainText: t('secureRiskFree'),
+      primaryText: t('secureRiskFree'),
       secondaryText: t('secureRiskFreeText'),
     },
     {
+      id: 4,
       icon: <BankIcon />,
-      mainText: t('flexibleOptions'),
+      primaryText: t('flexibleOptions'),
       secondaryText: t('flexibleOptionsText'),
     },
     {
+      id: 5,
       icon: <SmileyFaceIcon />,
-      mainText: t('hassleFree'),
+      primaryText: t('hassleFree'),
       secondaryText: t('hassleFreeText'),
     },
     {
+      id: 6,
       icon: <ShieldCheckIcon />,
-      mainText: t('guaranteedPayout'),
+      primaryText: t('guaranteedPayout'),
       secondaryText: t('guaranteedPayoutText'),
     },
   ];
@@ -57,12 +61,12 @@ export const DepositBenefitsGrid = () => {
     <MainContainer>
       <StyledHeader>{t('depositBenefits')}</StyledHeader>
       <StyledContainer>
-        {depositBenefits.map((item) => (
+        {DEPOSIT_BENEFITS.map(({ icon, primaryText, secondaryText, id }) => (
           <DepositBenefitsBox
-            key={item.mainText}
-            primaryHeader={item.mainText}
-            secondaryText={item.secondaryText}
-            svg={item.icon}
+            key={id}
+            primaryText={primaryText}
+            secondaryText={secondaryText}
+            icon={icon}
           />
         ))}
       </StyledContainer>

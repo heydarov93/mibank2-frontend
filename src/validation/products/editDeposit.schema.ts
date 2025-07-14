@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
-} from 'constants/validationPatternConstants';
+} from 'constants/validation/patterns';
 import { t } from 'i18n';
 import { isMinimumInteger, isMinimumValue, isNonNegative, isPositiveInteger, isPositiveNumber } from 'utils/helpers/validationHelpers';
 

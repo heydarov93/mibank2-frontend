@@ -5,15 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { SelectField } from '..';
 
 import { FieldWithLabel } from 'components/atoms';
-import { CURRENCIES } from 'constants/currencies';
+import { CARD_ISSUERS, ISSUE_TYPES } from 'constants/business/card';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
 
-const currenciesOptions = CURRENCIES.map((value) => ({ value }));
-const cardIssuers = [{ value: 'Visa' }, { value: 'MasterCard' }];
-const issueTypes = [
-  { value: 'digital', label: 'Digital' },
-  { value: 'plastic', label: 'Plastic' },
-];
+const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
 interface OpenBusinessAccountSelectsProps {
   sx?: SxProps<Theme>;
@@ -48,7 +44,7 @@ export const OpenBusinessAccountSelects = ({
       </FieldWithLabel>
       <FieldWithLabel label={t('cardIssuer')}>
         <SelectField
-          options={cardIssuers}
+          options={CARD_ISSUERS}
           name="cardIssuer"
           control={control}
           placeholder={t('selectIssuer')}
@@ -58,7 +54,7 @@ export const OpenBusinessAccountSelects = ({
         <SelectField
           control={control}
           name="issueType"
-          options={issueTypes}
+          options={ISSUE_TYPES}
           placeholder={t('selectCardType')}
           onChange={handleIssueTypeChange}
           data-testid="card-type-select"

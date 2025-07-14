@@ -15,3 +15,5 @@ export const TIME_FORMATS = {
   HH_MM: 'HH:mm',
   HH_MM_SS: 'HH:mm:ss',
 } as const;
+
+export const WEEK_START_DAY_INDEX = 1;

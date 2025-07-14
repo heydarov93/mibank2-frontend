@@ -1,16 +1,16 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  StyledContainer,
   PrimaryText,
   SecondaryText,
+  StyledContainer,
 } from './InvestmentBox.styled';
 
 import coinInvestingPicture from 'assets/webp/CoinInvesting.webp';
 import { SubmitButton } from 'components/atoms';
-import { INVESTMENT_AMOUNT } from 'constants/learnMorePage';
+import { LOCALES } from 'constants/business/date';
+import { INVESTMENT_AMOUNT } from 'constants/business/numbers';
 import {
   calculateInterest,
   calculateProfit,
@@ -42,7 +42,9 @@ export const InvestmentBox = ({
             <SecondaryText>{t('willGive')}</SecondaryText>
             <PrimaryText>
               $
-              {INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
+              {INVESTMENT_AMOUNT.toLocaleString(LOCALES.ENGLISH_US, {
+                useGrouping: true,
+              })}
             </PrimaryText>
           </Box>
           <Box>
@@ -50,7 +52,7 @@ export const InvestmentBox = ({
             <PrimaryText>
               $
               {calculateProfit(INVESTMENT_AMOUNT, interestRate).toLocaleString(
-                'en-US',
+                LOCALES.ENGLISH_US,
                 { useGrouping: true },
               )}
             </PrimaryText>
@@ -64,7 +66,9 @@ export const InvestmentBox = ({
             <SecondaryText>{t('depositAmount')}</SecondaryText>
             <SecondaryText>
               USD{' '}
-              {INVESTMENT_AMOUNT.toLocaleString('en-US', { useGrouping: true })}
+              {INVESTMENT_AMOUNT.toLocaleString(LOCALES.ENGLISH_US, {
+                useGrouping: true,
+              })}
             </SecondaryText>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -78,7 +82,7 @@ export const InvestmentBox = ({
               {calculateInterest(
                 INVESTMENT_AMOUNT,
                 interestRate,
-              ).toLocaleString('en-US', { useGrouping: true })}
+              ).toLocaleString(LOCALES.ENGLISH_US, { useGrouping: true })}
             </PrimaryText>
           </Box>
         </Box>

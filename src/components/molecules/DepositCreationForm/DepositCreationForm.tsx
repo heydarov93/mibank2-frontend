@@ -20,7 +20,7 @@ import useDisclosure from 'hooks/useDisclosure';
 import { TCurrency } from 'types/types';
 import { openDepositSchema } from 'validation';
 
-interface DepositCreationFormProps {
+export interface DepositCreationFormProps {
   modal?: boolean;
   currency: TCurrency;
   onBack: () => void;

@@ -1,4 +1,4 @@
-import { Menu, LogoutOutlined } from '@mui/icons-material';
+import { LogoutOutlined, Menu } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -19,8 +19,12 @@ import {
 } from './Drawer.styled';
 
 import { UserCard } from 'components/molecules';
-import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
-import { ETokenType, EGreeting } from 'enums';
+import {
+  MAIN_NAV_LINKS,
+  PERSONAL_NAV_LINKS,
+} from 'constants/navigation/navigation';
+import { TO_SIGN_IN } from 'constants/navigation/routePaths';
+import { EGreeting, ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
 import { getUser } from 'store/selectors';
@@ -38,7 +42,7 @@ export const TemporaryDrawer = () => {
   const navigate = useNavigate();
   const logoutHandler = () => {
     dispatch(logoutFromApp());
-    navigate('/signin');
+    navigate(TO_SIGN_IN);
     localTokenHandler.clearToken(ETokenType.ACCESS);
     removeAuthData();
   };
@@ -54,22 +58,22 @@ export const TemporaryDrawer = () => {
       </StyledUserCardContainer>
       <Divider />
       <List>
-        {navMenuLinks.map(({ path, content, icon }) => (
-          <ListItem key={content} disablePadding>
+        {MAIN_NAV_LINKS.map(({ path, label, icon }) => (
+          <ListItem key={label} disablePadding>
             <ListItemButton component={StyledListItemButton} to={path}>
               <ListItemIcon sx={{ minWidth: '40px' }}>{icon}</ListItemIcon>
-              <ListItemText primary={t(content)} />
+              <ListItemText primary={t(label)} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {personalMenuLinks.map(({ path, content, icon }) => (
-          <ListItem key={content} disablePadding>
+        {PERSONAL_NAV_LINKS.map(({ path, label, icon }) => (
+          <ListItem key={label} disablePadding>
             <ListItemButton component={NavLink} to={path}>
               <ListItemIcon sx={{ minWidth: '40px' }}>{icon}</ListItemIcon>
-              <ListItemText primary={t(content)} />
+              <ListItemText primary={t(label)} />
             </ListItemButton>
           </ListItem>
         ))}

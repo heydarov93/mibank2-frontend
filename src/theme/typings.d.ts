@@ -29,26 +29,16 @@ declare module '@mui/material/styles/createTypography' {
 }
 
 declare module '@mui/material/styles' {
-  type LogoSize = 'sm' | 'md' | 'lg' | 'xl';
-
-  interface LogoSizeConfig {
-    iconSize: string;
-    fontSize: string;
-  }
-
-  type LogoSizes = Record<LogoSize, LogoSizeConfig>;
   interface Theme {
     animations?: {
       shake?: Keyframes;
     };
-    logo: LogoSizes;
   }
 
   interface ThemeOptions {
     animations?: {
       shake?: Keyframes;
     };
-    logo?: Partial<LogoSizes>;
   }
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthWrapper } from 'components/organisms';
 import { BackOfficeEmployeeLoginForm } from 'components/organisms/BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
-import { TO_HOME } from 'constants/routesName';
+import { TO_HOME } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';
 

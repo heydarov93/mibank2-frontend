@@ -9,7 +9,7 @@ import { StyledInputField } from './TransferDateRangePicker.styled';
 
 import { FieldWithLabel } from 'components/atoms';
 import { DateCalendar } from 'components/molecules';
-import { DATE_FORMATS } from 'constants/date';
+import { DATE_FORMATS } from 'constants/business/date';
 import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 

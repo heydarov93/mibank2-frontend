@@ -1,7 +1,6 @@
 import { Breakpoints, styled } from '@mui/material';
 
-import { DEFAULT_BREAKPOINT_WIDTHS } from 'constants/breakpoints';
-
+import { DEFAULT_BREAKPOINT_WIDTHS } from 'constants/ui/layout';
 
 
 export const getDefaultBreakpointsStyle = (breakpoints: Breakpoints) => ({

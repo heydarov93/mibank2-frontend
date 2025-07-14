@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { DepositPayload } from '../utils/buildDepositPayload';
 
-import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
 
 interface UseDepositFormProps {

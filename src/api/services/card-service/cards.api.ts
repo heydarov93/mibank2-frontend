@@ -19,6 +19,7 @@ import {
 
 import { BASE_URL } from 'api/config/api.config';
 import { endpoints } from 'api/endpoints';
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
 import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/auth';
 
@@ -88,8 +89,8 @@ export const cardsApi = createApi({
         url: endpoints.cards.searchCards,
         method: 'GET',
         params: {
-          page: 0,
-          count: 10,
+          page: DEFAULT_PAGE_INDEX,
+          count: DEFAULT_PAGE_SIZE,
           ...params,
         },
       }),
