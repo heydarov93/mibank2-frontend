@@ -10,6 +10,10 @@ import { BackArrow, FieldLabel } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
 import { NumericFieldControlled } from 'components/molecules';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
+import {
+  CARD_ISSUER_OPTIONS,
+  CARD_TYPE_OPTIONS,
+} from 'constants/business/card';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setCardFormData } from 'store/reducers/CreateCardSlice';
@@ -32,9 +36,6 @@ const CreateCardProductForm: React.FC = () => {
   });
   const dispatch = useAppDispatch();
   const selector = useAppSelector(getProductForm);
-
-  const cardIssuerOptions = [t('visa'), t('masterCard')];
-  const cardTypeOptions = [t('digital'), t('plastic')];
 
   const {
     control,
@@ -87,7 +88,7 @@ const CreateCardProductForm: React.FC = () => {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <MiAutoComplete
-                  options={cardIssuerOptions}
+                  options={CARD_ISSUER_OPTIONS}
                   value={field.value}
                   onChange={(_, value) => field.onChange(value)}
                   error={!!error}
@@ -103,7 +104,7 @@ const CreateCardProductForm: React.FC = () => {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <MiAutoComplete
-                  options={cardTypeOptions}
+                  options={CARD_TYPE_OPTIONS}
                   value={field.value}
                   onChange={(_, value) => field.onChange(value)}
                   error={!!error}

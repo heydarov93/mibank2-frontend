@@ -1,9 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { TIMER_TIMEOUT } from 'constants/ui/layout';
 import { formatSecondsToTime } from 'utils/formatters';
-
-
 
 interface TimerProps {
   time: number;
@@ -34,7 +33,7 @@ export const Timer = ({
         clearInterval(timer);
         setTime ? setTime(0) : runTimer(false);
       }
-    }, 1000);
+    }, TIMER_TIMEOUT);
 
     return () => clearInterval(timer);
   }, [endTime, runTimer]);

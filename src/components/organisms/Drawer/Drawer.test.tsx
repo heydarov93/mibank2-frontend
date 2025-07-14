@@ -1,14 +1,17 @@
 import {
-  render,
-  screen,
   fireEvent,
+  render,
   RenderResult,
+  screen,
 } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { TemporaryDrawer } from './Drawer';
 
-import { navMenuLinks, personalMenuLinks } from 'constants/navigation';
+import {
+  MAIN_NAV_LINKS,
+  PERSONAL_NAV_LINKS
+} from 'constants/navigation/navigation';
 import { ETokenType } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { logoutFromApp } from 'store/reducers/AuthSlice';
@@ -86,12 +89,12 @@ describe('TemporaryDrawer', () => {
     const openButton = screen.getByRole('button', { name: /open drawer/i });
     fireEvent.click(openButton);
 
-    navMenuLinks.forEach((link) => {
-      expect(screen.getByText(link.content)).toBeInTheDocument();
+    MAIN_NAV_LINKS.forEach((link) => {
+      expect(screen.getByText(link.label)).toBeInTheDocument();
     });
 
-    personalMenuLinks.forEach((link) => {
-      expect(screen.getByText(link.content)).toBeInTheDocument();
+    PERSONAL_NAV_LINKS.forEach((link) => {
+      expect(screen.getByText(link.label)).toBeInTheDocument();
     });
   });
 

@@ -8,11 +8,10 @@ import {
 
 import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
-import { currencySymbol } from 'constants/currencies';
+import { CURRENCY_SYMBOLS } from 'constants/data/currencies';
+import { USER_CARD_WIDTH } from 'constants/ui/layout';
 import { IUserBankCard } from 'models/IUserBankCard';
 import { separateThousands } from 'utils/formatters';
-
-export const USER_CARD_WIDTH = 288;
 
 export type TUserBankCardComponent = Pick<
   IUserBankCard,
@@ -47,7 +46,7 @@ export function UserBankCard({ data, size = USER_CARD_WIDTH }: Props) {
         />
       </StyledTopBox>
       <Typography fontSize="24em" fontWeight={600} marginTop="0.5em">
-        {currencySymbol[data.currency]}{' '}
+        {CURRENCY_SYMBOLS[data.currency]}{' '}
         {separateThousands(Number(data.balance), ' ')}
       </Typography>
       <StyledBtmBox>

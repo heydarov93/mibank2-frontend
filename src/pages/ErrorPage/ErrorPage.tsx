@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledBox, StyledPageWrapper } from './ErrorPage.styled';
 
-import { TO_HOME } from 'constants/routesName';
+import { TO_HOME } from 'constants/navigation/routePaths';
+
 
 export const ErrorPage = () => {
   const { t } = useTranslation('translation', {

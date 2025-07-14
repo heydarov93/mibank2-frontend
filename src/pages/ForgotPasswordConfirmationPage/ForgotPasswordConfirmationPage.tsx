@@ -10,7 +10,7 @@ import {
 
 import { BackArrow, ButtonLink } from 'components/atoms';
 import { AuthWrapper, Footer } from 'components/organisms';
-import { TO_SIGN_IN } from 'constants/routesName';
+import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
 export const ForgotPasswordConfirmationPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'ForgotPassword' });

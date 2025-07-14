@@ -22,7 +22,8 @@ import {
 import {
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_SIGN_IN,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
@@ -87,7 +88,7 @@ export const CreateForgotPasswordForm = () => {
 
   const onSubmit = async (data: IForgotPasswordFormInput) => {
     const userData = {
-      email: localStorage.getItem('email'),
+      email: localStorage.getItem(LOCAL_STORAGE_KEYS.Email),
       code: data.verificationCode,
       newPassword: data.password,
     };

@@ -15,9 +15,10 @@ import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EErrorStatus } from 'enums';
 import { IBackOfficeErrorData } from 'models/IError';
+import { THttpStatus } from 'types/types';
 import { editDepositSchema, TEditDepositValues } from 'validation';
 
 type RefetchProductsFn = ReturnType<typeof useGetProductsQuery>['refetch'];
@@ -88,7 +89,7 @@ const BackOfficeDepositEditForm = ({
     } catch (e) {
       const error = e as IBackOfficeErrorData;
       if (error.originalStatus && typeof error.originalStatus === 'number') {
-        switch (error.originalStatus) {
+        switch (error.originalStatus as THttpStatus) {
           case EErrorStatus.UNAUTHORIZED:
             onError(t('GeneralErrors.errorUnauthorized'));
             break;
@@ -149,7 +150,7 @@ const BackOfficeDepositEditForm = ({
             render={({ field }) => (
               <MiAutoComplete
                 {...field}
-                options={[...CURRENCIES]}
+                options={[...SUPPORTED_CURRENCIES]}
                 onChange={(_, value) => field.onChange(value)}
                 value={field.value}
                 error={!!errors.currency}

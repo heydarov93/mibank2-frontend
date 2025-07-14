@@ -10,7 +10,7 @@ import {
 } from './LeaveRegistrationModal.styled';
 
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
-import { TO_WELCOME } from 'constants/routesName';
+import { TO_WELCOME } from 'constants/navigation/routePaths';
 
 interface LeaveRegistrationModalProps {
   open: boolean;

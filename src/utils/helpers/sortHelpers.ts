@@ -1,14 +1,16 @@
 import { ITransaction } from 'components/organisms/Sidebar/molecules/Transaction/Transaction';
-import { LOCALES } from 'constants/date';
+import { LOCALES } from 'constants/business/date';
+import { SORT_ORDER } from 'constants/business/sortOrder';
+import { TSortOrder } from 'types/types';
 import { formatDateByLocale } from 'utils/formatters';
 
-export const getNextSortOrder = (currentSort: string) => {
-  if (currentSort === 'ASC') {
-    return 'DESC';
-  } else if (currentSort === 'DESC') {
+export const getNextSortOrder = (currentSort: TSortOrder) => {
+  if (currentSort === SORT_ORDER.ASC) {
+    return SORT_ORDER.DESC;
+  } else if (currentSort === SORT_ORDER.DESC) {
     return '';
   } else {
-    return 'ASC';
+    return SORT_ORDER.ASC;
   }
 };
 

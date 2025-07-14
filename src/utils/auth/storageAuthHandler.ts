@@ -1,21 +1,26 @@
+import {
+  LOCAL_STORAGE_KEYS,
+  SESSION_STORAGE_KEYS,
+} from 'constants/security/storageAuthKeys';
+
 export const setAuthData = (isAuth: boolean, email?: string) => {
-  localStorage.setItem('isAuth', isAuth ? 'true' : 'false');
+  localStorage.setItem(LOCAL_STORAGE_KEYS.IsAuth, isAuth ? 'true' : 'false');
   if (email) {
-    localStorage.setItem('email', email);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.Email, email);
   }
 };
 
 export const removeAuthData = () => {
-  localStorage.removeItem('isAuth');
-  localStorage.removeItem('email');
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.IsAuth);
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.Email);
 };
 
 export const getAuthStatus = () => {
-  return localStorage.getItem('isAuth') === 'true';
+  return localStorage.getItem(LOCAL_STORAGE_KEYS.IsAuth) === 'true';
 };
 
 export const getEmail = () => {
-  return localStorage.getItem('email');
+  return localStorage.getItem(LOCAL_STORAGE_KEYS.Email);
 };
 
 export const setEmployeeAuthData = (
@@ -23,29 +28,32 @@ export const setEmployeeAuthData = (
   email?: string,
   role?: string,
 ) => {
-  sessionStorage.setItem('isEmployeeAuth', isAuth ? 'true' : 'false');
+  sessionStorage.setItem(
+    SESSION_STORAGE_KEYS.IsEmployeeAuth,
+    isAuth ? 'true' : 'false',
+  );
   if (email) {
-    sessionStorage.setItem('employeeEmail', email);
+    sessionStorage.setItem(SESSION_STORAGE_KEYS.EmployeeEmail, email);
   }
   if (role) {
-    sessionStorage.setItem('employeeRole', role);
+    sessionStorage.setItem(SESSION_STORAGE_KEYS.EmployeeRole, role);
   }
 };
 
 export const getEmployeeAuthStatus = () => {
-  return sessionStorage.getItem('isEmployeeAuth') === 'true';
+  return sessionStorage.getItem(SESSION_STORAGE_KEYS.IsEmployeeAuth) === 'true';
 };
 
 export const getEmployeeEmail = () => {
-  return sessionStorage.getItem('employeeEmail');
+  return sessionStorage.getItem(SESSION_STORAGE_KEYS.EmployeeEmail);
 };
 
 export const getEmployeeRole = () => {
-  return sessionStorage.getItem('employeeRole');
+  return sessionStorage.getItem(SESSION_STORAGE_KEYS.EmployeeRole);
 };
 
 export const removeEmployeeAuthData = () => {
-  sessionStorage.removeItem('isEmployeeAuth');
-  sessionStorage.removeItem('employeeEmail');
-  sessionStorage.removeItem('employeeRole');
+  sessionStorage.removeItem(SESSION_STORAGE_KEYS.IsEmployeeAuth);
+  sessionStorage.removeItem(SESSION_STORAGE_KEYS.EmployeeEmail);
+  sessionStorage.removeItem(SESSION_STORAGE_KEYS.EmployeeRole);
 };

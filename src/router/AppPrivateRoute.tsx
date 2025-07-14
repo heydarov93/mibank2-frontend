@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { useAuthGuard } from './hooks/useAuthGuard';
 
-import { TO_WELCOME } from 'constants/routesName';
+import { TO_WELCOME } from 'constants/navigation/routePaths';
 import { getAuthStatus } from 'utils/auth';
 
 interface AppPrivateRouteProps {

@@ -14,7 +14,7 @@ import {
   StyledCityText,
 } from './CitySelectField.styled';
 
-import { citiesInPoland } from 'constants/citiesInPoland';
+import { POLISH_CITIES } from 'constants/data/geo';
 
 interface CountrySelectFieldProps<T extends FieldValues> {
   name: Path<T>;
@@ -59,7 +59,7 @@ export const CitySelectField = <T extends FieldValues>({
         return (
           <Autocomplete<CityOptionType>
             {...field}
-            options={citiesInPoland}
+            options={POLISH_CITIES}
             filterOptions={filterOptions}
             getOptionLabel={(option) => `${option.city}, ${option.voivodeship}`}
             onChange={(_, value) => field.onChange(value?.city || '')}
@@ -67,7 +67,7 @@ export const CitySelectField = <T extends FieldValues>({
               option.city === (value as CityOptionType)?.city
             }
             value={
-              citiesInPoland.find((option) => option.city === field.value) ||
+              POLISH_CITIES.find((option) => option.city === field.value) ||
               null
             }
             renderOption={(props, option) => (

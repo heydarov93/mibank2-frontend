@@ -12,7 +12,7 @@ import {
   TO_VERIFICATION,
   TO_VERIFY_EMAIL,
   TO_WELCOME,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
 import {
   CreateForgotPasswordPage,
   CreatePasswordPage,

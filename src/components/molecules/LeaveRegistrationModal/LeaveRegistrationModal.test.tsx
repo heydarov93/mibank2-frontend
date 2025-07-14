@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import { LeaveRegistrationModal } from './LeaveRegistrationModal';
 
-import { TO_WELCOME } from 'constants/routesName';
+import { TO_WELCOME } from 'constants/navigation/routePaths';
 
 const mockNavigate = jest.fn();
 

@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledCountrySelectField } from './CountrySelectField.styled';
 
-import { countries } from 'constants/countries';
+import { countries } from 'constants/data/geo';
 
 interface CountrySelectFieldProps<T extends FieldValues> {
   name: Path<T>;

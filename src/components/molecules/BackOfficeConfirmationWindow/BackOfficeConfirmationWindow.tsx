@@ -7,12 +7,12 @@ import {
   SecondaryText,
   StyledBackButton,
   StyledButtonsRow,
-  StyledHeader
+  StyledHeader,
 } from './BackOfficeConfirmationWindow.styled';
 
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import SuccessfulCreationIcon from 'components/atoms/SuccessfulCreationIcon/SuccessfulCreationIcon';
-import { LEARN_MORE_PAGE_BASE_URL } from 'constants/learnMorePage';
+import { TO_DEPOSIT_LEARN_MORE_BASE } from 'constants/navigation/routePaths';
 
 interface BackOfficeConfirmationWindowProps {
   onClose: () => void;
@@ -37,7 +37,7 @@ const BackOfficeConfirmationWindow = ({
   const navigate = useNavigate();
 
   const onNavigate = () => {
-    if (depositId) navigate(`${LEARN_MORE_PAGE_BASE_URL}${depositId}`);
+    if (depositId) navigate(`${TO_DEPOSIT_LEARN_MORE_BASE}${depositId}`);
   };
 
   return (
@@ -84,7 +84,7 @@ const BackOfficeConfirmationWindow = ({
           )}
         </Box>
       </Box>
-        <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
+      <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
     </MainContainer>
   );
 };

@@ -17,7 +17,7 @@ import { InputField, SubmitButton } from 'components/atoms';
 import {
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
 import { employeeLoginSchema, TEmployeeLoginValues } from 'validation';
 
 export const BackOfficeEmployeeLoginForm = () => {

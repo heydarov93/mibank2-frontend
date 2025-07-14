@@ -44,7 +44,7 @@ import {
   NumericFieldControlled,
 } from 'components/molecules';
 import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
-import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
+import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
 import { IErrorData } from 'models/IError';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { TCurrency } from 'types/types';

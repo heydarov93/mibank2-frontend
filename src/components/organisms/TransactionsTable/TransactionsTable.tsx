@@ -23,6 +23,7 @@ import { TransferFilters } from './molecules';
 import { CustomTableRow } from 'components/molecules';
 import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
 import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
+import { DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
 import { usePaginationInfo } from 'hooks';
 import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
 import {
@@ -293,7 +294,7 @@ export const TransactionsTable = () => {
   const [paymentReceiptData, setPaymentReceiptData] = useState<IPaymentReceipt>(
     FakePaymentReceiptData,
   );
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(DEFAULT_PAGE_SIZE);
   const { totalPages, pageDisplayText } = usePaginationInfo(
     transactionsList.length,
     page,

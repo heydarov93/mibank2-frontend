@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { Section } from './Section';
 
-import { TO_HISTORY } from 'constants/routesName';
+import { TO_HISTORY } from 'constants/navigation/routePaths';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

@@ -6,6 +6,7 @@ import {
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { BASE_URL } from 'api/config/api.config';
+import { HTTP_HEADERS } from 'constants/security/httpHeaders';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';
 
@@ -22,10 +23,10 @@ export const baseQueryCreator =
         const accessToken = localTokenHandler.getToken(ETokenType.ACCESS);
         const temporaryToken = localTokenHandler.getToken(ETokenType.TEMPORARY);
         if (accessToken) {
-          headers.set('authorization', `Bearer ${accessToken}`);
+          headers.set(HTTP_HEADERS.Authorization, `Bearer ${accessToken}`);
         }
         if (temporaryToken) {
-          headers.set('Temporary-Token', `${temporaryToken}`);
+          headers.set(HTTP_HEADERS.TemporaryToken, `${temporaryToken}`);
         }
         return headers;
       },

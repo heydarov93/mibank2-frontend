@@ -11,6 +11,8 @@ import {
   StyledPaginationIndicator,
 } from './UserBankCardsCarousel.styled';
 
+import { MIN_PAGES_FOR_PAGINATION } from 'constants/business/pagination';
+
 const GAP_BETWEEN = 65;
 const CARDS_PER_VIEW = 3;
 
@@ -87,7 +89,7 @@ export const UserBankCardsCarousel = ({
         <ChevronRightRounded />
       </StyledNavigationButton>
 
-      {totalPages > 1 && (
+      {totalPages > MIN_PAGES_FOR_PAGINATION && (
         <StyledPaginationContainer data-testid="pagination-container">
           {Array.from({ length: totalPages }, (_, index) => (
             <StyledPaginationIndicator

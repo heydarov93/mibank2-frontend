@@ -2,6 +2,8 @@ import { SxProps, useTheme } from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
 import Carousel from 'react-material-ui-carousel';
 
+import { CAROUSEL_INTERVAL_TIMEOUT } from 'constants/ui/layout';
+
 interface CustomCarouselProps {
   children: ReactNode[];
   indicatorIconButtonStyles?: CSSProperties;
@@ -23,7 +25,7 @@ export const CustomCarousel: React.FC<CustomCarouselProps> = ({
     <Carousel
       indicators
       animation="slide"
-      interval={3000}
+      interval={CAROUSEL_INTERVAL_TIMEOUT}
       navButtonsAlwaysVisible
       stopAutoPlayOnHover
       swipe
@@ -67,4 +69,3 @@ export const CustomCarousel: React.FC<CustomCarouselProps> = ({
     </Carousel>
   );
 };
-

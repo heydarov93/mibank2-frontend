@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { TO_SIGN_IN, TO_WELCOME } from 'constants/routesName';
+import { TO_SIGN_IN, TO_WELCOME } from 'constants/navigation/routePaths';
 import { EWelcomeTab } from 'enums';
 
 export const useNavigationWarning = ({

@@ -2,7 +2,7 @@ import { t } from 'i18next';
 
 import { FilterGroup } from 'models/IFilterInfo';
 
-export const initialProductSubtypes: FilterGroup[] = [
+export const INITIAL_PRODUCT_SUB_TYPES: FilterGroup[] = [
   {
     groupTitle: t('BackOffice.CreateProduct.card'),
     options: [
@@ -45,7 +45,7 @@ export const initialProductSubtypes: FilterGroup[] = [
   },
 ];
 
-export const initialProductTypes = [
+export const INITIAL_PRODUCT_TYPES = [
   {
     options: [
       {
@@ -62,7 +62,7 @@ export const initialProductTypes = [
   },
 ];
 
-export const tableHead = [
+export const TABLE_HEAD = [
   { label: t('BackOffice.CreateProduct.productName'), key: 'productName' },
   {
     label: t('BackOffice.CreateProduct.productSubtype'),

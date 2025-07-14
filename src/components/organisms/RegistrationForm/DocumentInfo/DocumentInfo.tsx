@@ -17,7 +17,7 @@ import {
 
 import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
-import { VALIDATION_PATTERNS } from 'constants/validationPatternConstants';
+import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
 import { FormStepProps, IDocumentInfo } from 'models/IRegistration';
 import { checkAllowedKey } from 'utils/checkers';
 
@@ -35,7 +35,6 @@ export const DocumentInfo = ({ onBack }: FormStepProps) => {
     formState: { errors, isValid },
     control,
   } = useFormContext<IDocumentInfo>();
-
 
   return (
     <StyledBoxContainer data-testid="document-info-title">

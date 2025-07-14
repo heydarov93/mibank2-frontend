@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import { OpenDepositRow } from './OpenDepositRow';
+import { IDepositStep, OpenDepositRow } from './OpenDepositRow';
 
+import { DepositCreationFormProps } from 'components/molecules/DepositCreationForm/DepositCreationForm';
 import { TCurrency } from 'types/types';
 
 jest.mock('react-i18next', () => ({
@@ -23,14 +24,14 @@ jest.mock('react-i18next', () => ({
 
 jest.mock('components/molecules/DepositSteps/DepositSteps', () => ({
   DepositSteps: ({
-    steps,
+    openDepositSteps,
   }: {
-    steps: Array<{ id: number; title: string }>;
+    openDepositSteps: IDepositStep[];
   }) => (
     <div data-testid="deposit-steps">
-      {steps.map((step) => (
-        <div key={step.id} data-testid={`step-${step.id}`}>
-          {step.title}
+      {openDepositSteps.map(({ id, title }) => (
+        <div key={id} data-testid={`step-${id}`}>
+          {title}
         </div>
       ))}
     </div>
@@ -45,8 +46,8 @@ jest.mock('components/molecules', () => ({
     interestRate,
     currency,
     term,
-    modal,
-  }: any) => (
+    modal = false,
+  }: DepositCreationFormProps) => (
     <div data-testid="deposit-creation-form">
       <div data-testid="form-deposit-name">{depositName}</div>
       <div data-testid="form-deposit-id">{depositId}</div>

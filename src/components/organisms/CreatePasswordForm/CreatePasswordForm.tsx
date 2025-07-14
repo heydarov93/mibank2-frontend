@@ -17,7 +17,7 @@ import {
   PasswordValidationTags,
   TOSCheckbox,
 } from 'components/molecules';
-import { TO_VERIFY_EMAIL } from 'constants/routesName';
+import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const CreatePasswordForm = () => {

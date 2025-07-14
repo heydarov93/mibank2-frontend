@@ -7,20 +7,20 @@ import {
 } from './DepostiBenefitsBox.styled';
 
 interface DepositBenefitsBoxProps {
-  svg: ReactNode;
-  primaryHeader: string;
+  icon: ReactNode;
+  primaryText: string;
   secondaryText: string;
 }
 
 export const DepositBenefitsBox = ({
-  svg,
-  primaryHeader,
+  icon,
+  primaryText,
   secondaryText,
 }: DepositBenefitsBoxProps) => {
   return (
     <StyledContainer>
-      {svg}
-      <PrimaryHeader>{primaryHeader}</PrimaryHeader>
+      {icon}
+      <PrimaryHeader>{primaryText}</PrimaryHeader>
       <SecondaryText>{secondaryText}</SecondaryText>
     </StyledContainer>
   );

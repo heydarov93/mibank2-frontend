@@ -1,4 +1,4 @@
-import { countries } from 'constants/countries';
+import { countries } from 'constants/data/geo';
 
 export const checkEUStatus = (countryLabel: string) => {
   return countries.some(

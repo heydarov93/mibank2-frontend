@@ -13,7 +13,7 @@ import { businessAuthRoutes } from './routes/businessAuth.routes';
 import { withSuspense } from './utils/withSuspense';
 
 import { LoadingSpinner } from 'components/atoms';
-import { TO_BACK_OFFICE, TO_HOME } from 'constants/routesName';
+import { TO_BACK_OFFICE, TO_HOME } from 'constants/navigation/routePaths';
 
 export const routes = createBrowserRouter([
   {

@@ -21,6 +21,7 @@ import {
   StyledErrorText,
 } from './DateOfBirthField.styled';
 
+import { DATE_FORMATS, WEEK_START_DAY_INDEX } from 'constants/business/date';
 import { IPersonalInfo } from 'models/IRegistration';
 
 dayjs.extend(updateLocale);
@@ -28,7 +29,7 @@ const today = dayjs();
 const minDate = today.subtract(16, 'year');
 const maxAge = today.subtract(120, 'year');
 dayjs.updateLocale('en', {
-  weekStart: 1,
+  weekStart: WEEK_START_DAY_INDEX,
 });
 
 interface DateOfBirthFieldProps<T extends FieldValues> {
@@ -64,7 +65,7 @@ export const DateOfBirthField = <T extends FieldValues>({
               minDate={maxAge}
               dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
               showDaysOutsideCurrentMonth
-              format="DD/MM/YYYY"
+              format={DATE_FORMATS.DD_MM_YYYY}
               className={className}
               slots={{
                 openPickerIcon: CalendarTodayOutlinedIcon,

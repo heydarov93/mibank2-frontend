@@ -12,10 +12,12 @@ import {
 } from './AllCardsSlider.styled';
 import { CardsContent } from './molecules/CardsContent/CardsContent';
 
+import {
+  DEFAULT_ELEMENT_SCALE,
+  SELECTED_ELEMENT_SCALE,
+} from 'constants/ui/layout';
 import useDisclosure from 'hooks/useDisclosure';
 import { IUserBankCard } from 'models/IUserBankCard';
-
-const SELECTED_CARD_SCALE = 1.12;
 
 interface AllCardsSliderProps {
   onCardIdSelect: (id: IUserBankCard['id']) => void;
@@ -36,7 +38,9 @@ export const AllCardsSlider = ({
 
   const getCardTransform = (cardId: IUserBankCard['id']) => ({
     transform:
-      selectedCardId === cardId ? `scale(${SELECTED_CARD_SCALE})` : 'scale(1)',
+      selectedCardId === cardId
+        ? `scale(${SELECTED_ELEMENT_SCALE})`
+        : `scale(${DEFAULT_ELEMENT_SCALE})`,
   });
 
   return (

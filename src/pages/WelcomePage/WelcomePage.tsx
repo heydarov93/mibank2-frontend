@@ -12,14 +12,10 @@ import { StyledContainer, StyledHeader } from './WelcomePage.styled';
 
 import { Logo, TabPanel } from 'components/atoms';
 import { Footer, WelcomeHeader, WelcomeNav } from 'components/organisms';
+import { WELCOME_TABS } from 'constants/ui/content';
+import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 import { EWelcomeTab } from 'enums';
 import { UnderDevPage } from 'pages/UnderDevPage/UnderDevPage';
-
-const WELCOME_TABS: EWelcomeTab[] = [
-  EWelcomeTab.Personal,
-  EWelcomeTab.Business,
-  EWelcomeTab.About,
-];
 
 export const WelcomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,7 +45,7 @@ export const WelcomePage = () => {
       <StyledHeader>
         <WelcomeHeader activeTab={activeTab} onTabChange={handleTabChange} />
         <StyledContainer>
-          <Logo size="md" />
+          <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
           <WelcomeNav activePanel={activeTab} />
         </StyledContainer>
       </StyledHeader>

@@ -18,7 +18,8 @@ import {
   PasswordField,
   PasswordValidationTags,
 } from 'components/molecules';
-import { TO_SIGN_IN, TO_VERIFY_EMAIL } from 'constants/routesName';
+import { TO_SIGN_IN, TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
@@ -56,7 +57,7 @@ export const SignupFormPassword = () => {
 
   const onSubmit = async (data: ISignupFormInput) => {
     const userData = {
-      email: localStorage.getItem('email'),
+      email: localStorage.getItem(LOCAL_STORAGE_KEYS.Email),
       password: data.password,
     };
     try {
@@ -73,7 +74,10 @@ export const SignupFormPassword = () => {
       }
     }
     navigate(TO_VERIFY_EMAIL, {
-      state: { email: localStorage.getItem('email'), from: location.pathname },
+      state: {
+        email: localStorage.getItem(LOCAL_STORAGE_KEYS.Email),
+        from: location.pathname,
+      },
     });
     resetForm();
   };

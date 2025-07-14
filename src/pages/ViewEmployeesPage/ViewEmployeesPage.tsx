@@ -12,7 +12,7 @@ import BackOfficeFailWindow from 'components/molecules/BackOfficeFailWindow/Back
 import { ViewEmployeesSearchContainer } from 'components/organisms';
 import BackOfficeEditEmployee from 'components/organisms/BackOfficeEditEmployee/BackOfficeEditEmployee';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
-import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/routesName';
+import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/navigation/routePaths';
 import useEmployees from 'hooks/useEmployee';
 
 export const ViewEmployeesPage = () => {

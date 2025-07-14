@@ -2,6 +2,7 @@ import { KeyboardEvent, SyntheticEvent } from 'react';
 import { Control, FieldErrors, FieldValues, Path } from 'react-hook-form';
 
 import { InputField } from 'components/atoms';
+import { OTP_INPUT_KEY } from 'constants/validation/otp';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 
 interface VerificationCodeInputFieldProps<T extends FieldValues> {
@@ -22,7 +23,7 @@ export const VerificationCodeInputField = <T extends FieldValues>({
   onPaste,
 }: VerificationCodeInputFieldProps<T>) => {
   const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === ' ') {
+    if (event.key === OTP_INPUT_KEY.Space) {
       event.preventDefault();
     }
   };

@@ -1,13 +1,13 @@
-import { Icon, Typography, useTheme } from '@mui/material';
+import { Icon, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import { StyledContainer } from './Logo.styled';
 
 import { ReactComponent as LogoSvgBlue } from 'assets/icons/Logo.svg';
 import { ReactComponent as LogoSvgWhite } from 'assets/icons/LogoWhite.svg';
-import { theme } from 'theme/theme';
+import { DEFAULT_BREAKPOINT_KEYS, LOGO_SIZES } from 'constants/ui/layout';
+import { TLogoSize } from 'types/types';
 
-type TLogoSize = keyof typeof theme.logo;
 type TLogoColor = 'blue' | 'white';
 
 interface ILogoProps {
@@ -27,16 +27,15 @@ const LogoSvg = ({ color }: { color: TLogoColor }) => {
 };
 
 export function Logo({
-  size = 'sm',
+  size = DEFAULT_BREAKPOINT_KEYS.sm,
   color = 'blue',
   labelOnTop = false,
 }: ILogoProps) {
   const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  const theme = useTheme();
-  const logo = theme.logo[size];
+  const logo = LOGO_SIZES[size];
 
   const isWhite = color === 'white';
-  const isCompact = ['sm', 'md'].includes(size);
+  const isCompact = (['sm', 'md'] as TLogoSize[]).includes(size);
   const flexColumn = labelOnTop ? 'column-reverse' : 'column';
   const flexDirection = isCompact ? 'row' : flexColumn;
   const textWidth = isCompact ? 'min-content' : 'max-content';

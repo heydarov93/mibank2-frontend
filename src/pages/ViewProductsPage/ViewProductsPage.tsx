@@ -17,12 +17,9 @@ import { ViewProductsSearchContainer } from 'components/organisms';
 import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
 import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
 import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
-import { tableHead } from 'constants/productTableHead';
-import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/routesName';
-import {
-  SEARCH_LOWEST_LIMIT,
-  SEARCH_VALUE_ZERO,
-} from 'constants/searchInputValues';
+import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/navigation/routePaths';
+import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
+import { TABLE_HEAD } from 'constants/ui/table';
 import { ProductType } from 'enums/EProductType';
 import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
@@ -85,7 +82,8 @@ export const ViewProductsPage = () => {
     { isLoading: isDeleteLoading, isError: isDeleteError },
   ] = useDeleteDepositMutation();
 
-  const mappedData = allProducts?.map((product) => mapProductData(product)) || [];
+  const mappedData =
+    allProducts?.map((product) => mapProductData(product)) || [];
   const { filteredTableBody } = useProductFilters(mappedData);
 
   const handleDeleteDeposit = async (
@@ -152,7 +150,7 @@ export const ViewProductsPage = () => {
           control={control}
         />
         <BackOfficeTable
-          tableHead={tableHead}
+          tableHead={TABLE_HEAD}
           tableBody={filteredTableBody()}
           totalItems={allProducts.length || 0}
           page={page}

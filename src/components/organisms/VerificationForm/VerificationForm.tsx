@@ -16,6 +16,12 @@ import {
   useVerifyCodeMutation,
 } from 'api/services/user-account-service/user-accounts.api';
 import { Timer } from 'components/molecules';
+import { TO_HOME, TO_REGISTRATION } from 'constants/navigation/routePaths';
+import {
+  TIMER_TIMEOUT,
+  VERIFICATION_REDIRECT_TIMEOUT,
+} from 'constants/ui/layout';
+import { OTP_CODE_LENGHT } from 'constants/validation/otp';
 import { EErrorStatus, EUserStatus, ETokenType } from 'enums';
 import {
   useAppDispatch,
@@ -26,8 +32,12 @@ import {
 import { IErrorData } from 'models/IError';
 import { setError, setVerifying } from 'store/reducers';
 import { getVerifyingTimer } from 'store/selectors';
-import { getAuthStatus, getEmailFromToken, localTokenHandler, setAuthData } from 'utils/auth';
-
+import {
+  getAuthStatus,
+  getEmailFromToken,
+  localTokenHandler,
+  setAuthData,
+} from 'utils/auth';
 
 type VerificationFormProps = {
   disableFields?: boolean;
@@ -99,15 +109,15 @@ export const VerificationForm = ({
         localTokenHandler.clearToken(ETokenType.TEMPORARY);
         if (userInfoResult.status === EUserStatus.ACTIVE) {
           setTimeout(() => {
-            navigate('/registration');
+            navigate(TO_REGISTRATION);
             dispatch(setVerifying(false));
-          }, 1000);
+          }, VERIFICATION_REDIRECT_TIMEOUT);
         }
         if (userInfoResult.status === EUserStatus.REGISTRED) {
           setTimeout(() => {
-            navigate('/');
+            navigate(TO_HOME);
             dispatch(setVerifying(false));
-          }, 1000);
+          }, VERIFICATION_REDIRECT_TIMEOUT);
         }
       }
     } catch (e) {
@@ -192,7 +202,7 @@ export const VerificationForm = ({
 
     const isAuth = getAuthStatus();
     if (isAuth) {
-      const timer = setTimeout(() => navigate('/'), 1000);
+      const timer = setTimeout(() => navigate(TO_HOME), TIMER_TIMEOUT);
 
       return () => clearTimeout(timer);
     }
@@ -217,7 +227,7 @@ export const VerificationForm = ({
             onResetCodeWrong={handleResetCodeWrong}
             isCodeCorrect={isCodeCorrect}
             separator={<span>-</span>}
-            length={6}
+            length={OTP_CODE_LENGHT}
             shouldClearFields={shouldClearFields}
           />
         </StyledVerificationFormContent>

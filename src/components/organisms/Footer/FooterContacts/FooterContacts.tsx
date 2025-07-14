@@ -3,23 +3,23 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { googlePlayLink, appStoreLink } from '../constants';
 
 import {
   LogoWrapper,
-  StyledLink,
   StyledBox,
   StyledFlexBox,
-  TypographyGrey,
-  StyledTypographyWorkingHours,
   StyledFlexOrderBox,
+  StyledLink,
+  StyledTypographyWorkingHours,
+  TypographyGrey,
 } from './FooterContacts.styled';
 
 import {
   useGetContactsQuery,
   useGetContactVersionQuery,
 } from 'api/services/contact-information-service/contacts.api';
-import { GooglePlayIcon, AppStoreIcon, Logo } from 'components/atoms';
+import { AppStoreIcon, GooglePlayIcon, Logo } from 'components/atoms';
+import { TO_APP_STORE, TO_GOOGLE_PLAY } from 'constants/navigation/routePaths';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setContacts } from 'store/reducers';
 import { getContacts } from 'store/selectors';
@@ -77,7 +77,7 @@ export const FooterContacts = () => {
           <StyledBox>
             <Box>
               <RouterLink
-                to={googlePlayLink}
+                to={TO_GOOGLE_PLAY}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -86,7 +86,7 @@ export const FooterContacts = () => {
             </Box>
             <Box>
               <RouterLink
-                to={appStoreLink}
+                to={TO_APP_STORE}
                 target="_blank"
                 rel="noopener noreferrer"
               >

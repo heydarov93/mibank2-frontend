@@ -19,6 +19,10 @@ import BackOfficeTableItem, {
 } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
 import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
+import {
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from 'constants/business/pagination';
 import { usePaginationInfo } from 'hooks';
 
 interface TableHeadItem {
@@ -69,8 +73,8 @@ const BackOfficeTable = ({
 }: BackOfficeTableProps) => {
   const { totalPages, pageDisplayText } = usePaginationInfo(
     tableBody.length,
-    page ?? 1,
-    pageSize ?? 10,
+    page ?? DEFAULT_PAGE_INDEX + 1,
+    pageSize ?? DEFAULT_PAGE_SIZE,
   );
 
   const handlePageChange = (
@@ -135,8 +139,8 @@ const BackOfficeTable = ({
       <CustomTablePagination
         pageDisplayText={pageDisplayText}
         totalPages={totalPages}
-        page={page || 0}
-        rowsPerPage={pageSize || 10}
+        page={page || DEFAULT_PAGE_INDEX}
+        rowsPerPage={pageSize || DEFAULT_PAGE_SIZE}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
       />

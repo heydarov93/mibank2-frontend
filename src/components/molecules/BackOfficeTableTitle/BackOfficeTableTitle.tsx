@@ -1,11 +1,12 @@
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Box } from '@mui/material';
-import React from 'react';
 
 import { StyledTableTitle } from './BackOfficeTableTitle.styled';
 
 import TableFilterIcon from 'components/atoms/TableFilterIcon/TableFilterIcon';
+import { SORT_ORDER } from 'constants/business/sortOrder';
+import { TSortOrder } from 'types/types';
 
 interface BackOfficeTableTitleProps {
   title: string;
@@ -14,11 +15,11 @@ interface BackOfficeTableTitleProps {
   onSort?: () => void;
 }
 
-export const renderSort = (order: string) => {
+export const renderSort = (order: TSortOrder) => {
   switch (order) {
-    case 'ASC':
+    case SORT_ORDER.ASC:
       return <ArrowUpwardIcon fontSize="small" />;
-    case 'DESC':
+    case SORT_ORDER.DESC:
       return <ArrowDownwardIcon fontSize="small" />;
     default:
       return <TableFilterIcon />;
@@ -42,7 +43,7 @@ const BackOfficeTableTitle = ({
       onClick={onSort}
     >
       <StyledTableTitle>{title}</StyledTableTitle>
-      {sortable && renderSort(order || '')}
+      {sortable && renderSort(order as TSortOrder)}
     </Box>
   );
 };

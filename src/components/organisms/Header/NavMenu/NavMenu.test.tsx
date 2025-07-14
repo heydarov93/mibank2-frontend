@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { NavMenu } from './NavMenu';
 
-import { navMenuLinks } from 'constants/navigation';
+import { MAIN_NAV_LINKS } from 'constants/navigation/navigation';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -31,8 +31,8 @@ describe('NavMenu', () => {
     const navMenu = getByTestId('nav-menu');
     expect(navMenu).toBeInTheDocument();
 
-    navMenuLinks.forEach(({ content }) => {
-      const translatedContent = content;
+    MAIN_NAV_LINKS.forEach(({ label }) => {
+      const translatedContent = label;
       const linkElement = getByText(translatedContent);
       expect(linkElement).toBeInTheDocument();
     });

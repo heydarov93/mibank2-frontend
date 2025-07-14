@@ -19,11 +19,12 @@ import {
   StyledTextButtons,
 } from './DocumentDatePicker.styled';
 
+import { DATE_FORMATS, WEEK_START_DAY_INDEX } from 'constants/business/date';
 import { IDocumentInfo } from 'models/IRegistration';
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
-  weekStart: 1,
+  weekStart: WEEK_START_DAY_INDEX,
 });
 
 interface PassportExpFieldProps<T extends FieldValues> {
@@ -61,7 +62,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
             maxDate={maxDate}
             dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
             showDaysOutsideCurrentMonth
-            format="DD/MM/YYYY"
+            format={DATE_FORMATS.DD_MM_YYYY}
             slots={{
               openPickerIcon: CalendarTodayOutlinedIcon,
               actionBar: StyledTextButtons,

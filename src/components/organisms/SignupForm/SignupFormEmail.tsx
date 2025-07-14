@@ -13,7 +13,11 @@ import {
 
 import { useCheckEmailMutation } from 'api/services/user-account-service/user-accounts.api';
 import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
-import { TO_CREATE_PASSWORD, TO_SIGN_IN } from 'constants/routesName';
+import {
+  TO_CREATE_PASSWORD,
+  TO_SIGN_IN,
+} from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
@@ -48,7 +52,7 @@ export const SignupFormEmail = () => {
 
   const onSubmit = async (data: IEmailFormInput) => {
     try {
-      localStorage.setItem('email', data.email);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.Email, data.email);
       const response = await checkEmail(data).unwrap();
 
       if (response !== null) {

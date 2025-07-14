@@ -3,9 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { TO_WELCOME } from 'constants/routesName';
+import { TO_WELCOME } from 'constants/navigation/routePaths';
 import { EWelcomeTab } from 'enums';
-import { legalAddressRegisterSchema, TLegalAddressRegisterValues } from 'validation';
+import {
+  legalAddressRegisterSchema,
+  TLegalAddressRegisterValues,
+} from 'validation';
 
 export const useAddressForm = () => {
   const { t } = useTranslation('translation', {

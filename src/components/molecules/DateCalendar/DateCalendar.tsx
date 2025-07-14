@@ -3,7 +3,7 @@ import { Calendar, CalendarProps } from 'react-multi-date-picker';
 import { CalendarButton } from './CalendarButton';
 import { CalendarWrapper } from './DateCalendar.styled';
 
-const MONDAY_START_DAY_INDEX = 1;
+import { WEEK_START_DAY_INDEX } from 'constants/business/date';
 
 export const DateCalendar = <
   Multiple extends boolean = false,
@@ -16,7 +16,7 @@ export const DateCalendar = <
       <Calendar<Multiple, Range>
         shadow={false}
         renderButton={<CalendarButton />}
-        weekStartDayIndex={MONDAY_START_DAY_INDEX}
+        weekStartDayIndex={WEEK_START_DAY_INDEX}
         {...props}
       />
     </CalendarWrapper>

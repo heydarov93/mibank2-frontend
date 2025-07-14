@@ -1,18 +1,17 @@
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { termsLink, policyLink } from '../constants';
 
 import { StyledBottomBox, StyledBox } from './FooterTerms.styled';
 
+import { POLICY_LINK, TERMS_LINK } from 'constants/ui/content';
 import { generateRandomParam } from 'utils/helpers';
-
 
 export const FooterTerms = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'footer' });
 
-  const urlTerms = `${termsLink}${generateRandomParam()}`;
-  const urlPolicy = `${policyLink}${generateRandomParam()}`;
+  const urlTerms = `${TERMS_LINK}${generateRandomParam()}`;
+  const urlPolicy = `${POLICY_LINK}${generateRandomParam()}`;
   return (
     <StyledBox>
       <StyledBottomBox sx={{ order: { xs: 0, sm: 2 } }}>

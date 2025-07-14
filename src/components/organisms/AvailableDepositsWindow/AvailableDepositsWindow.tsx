@@ -1,4 +1,10 @@
-import { Box, CircularProgress, Drawer, ListItem } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Drawer,
+  ListItem,
+  useTheme,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -13,10 +19,7 @@ import { DepositErrorMessage } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import {
-  DRAWER_HEIGHT_CALC_SIZE,
-  LEARN_MORE_PAGE_BASE_URL,
-} from 'constants/learnMorePage';
+import { TO_DEPOSIT_LEARN_MORE_BASE } from 'constants/navigation/routePaths';
 import { IDeposit } from 'models/IDepositInfo';
 import { theme } from 'theme/theme';
 
@@ -37,6 +40,7 @@ export const AvailableDepositsWindow = ({
     isLoading: isLoadingDeposits,
     isError: isDepositsError,
   } = useGetDepositsQuery({});
+  const { spacing } = useTheme();
 
   return (
     <Drawer
@@ -45,7 +49,7 @@ export const AvailableDepositsWindow = ({
       onClose={onClose}
       PaperProps={{
         sx: {
-          height: `calc(100vh - ${DRAWER_HEIGHT_CALC_SIZE}px)`,
+          height: `calc(100vh - ${spacing(7.5)}px)`,
           maxHeight: 'min-content',
           top: '60px',
           borderTopLeftRadius: '8px',
@@ -86,7 +90,7 @@ export const AvailableDepositsWindow = ({
                     }
                     secondaryButton={
                       <Link
-                        to={`${LEARN_MORE_PAGE_BASE_URL}${id}`}
+                        to={`${TO_DEPOSIT_LEARN_MORE_BASE}${id}`}
                         style={{ color: theme.palette.primary.main }}
                         onClick={onClose}
                       >

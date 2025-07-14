@@ -12,8 +12,8 @@ import {
 
 import { InputField, SubmitButton } from 'components/atoms';
 import { PatternFieldControlled } from 'components/molecules';
-import { NIP_PATTERN } from 'constants/inputPatterns';
-import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/routesName';
+import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
+import { NIP_PATTERN } from 'constants/validation/patterns';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
 interface IBusinessSignUpForm {

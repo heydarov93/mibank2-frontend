@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { useAuthGuard } from './hooks/useAuthGuard';
 
-import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/routesName';
+import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/navigation/routePaths';
 import { getEmployeeAuthStatus } from 'utils/auth/storageAuthHandler';
 
 

@@ -9,6 +9,7 @@ import { StyledTab, StyledTabs } from './MyTransactions.styled';
 import { useGetTransactions } from './hooks/useGetTransactions';
 
 import { TabPanel } from 'components/atoms';
+import { TRANSACTION_FILTER_OPTIONS } from 'constants/business/transaction';
 
 export function MyTransactions() {
   const { t } = useTranslation('translation', {
@@ -46,11 +47,7 @@ export function MyTransactions() {
         variant="fullWidth"
         data-testid="my-transactions"
       >
-        {[
-          t('myTransactions.all'),
-          t('myTransactions.income'),
-          t('myTransactions.expenses'),
-        ].map((tab, index) => (
+        {TRANSACTION_FILTER_OPTIONS.map((tab, index) => (
           <StyledTab
             key={tab}
             label={tab}

@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { CurrencyFlagIcon } from 'components/atoms';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { TCurrency } from 'types/types';
 
 type CustomSelectProps = SelectProps & {
@@ -57,7 +57,7 @@ export function CurrencySelect(props: CustomSelectProps) {
       sx={{ ...selectSx, ...restProps.sx }}
       IconComponent={KeyboardArrowDownIcon}
     >
-      {CURRENCIES.map((currency: TCurrency) => (
+      {SUPPORTED_CURRENCIES.map((currency: TCurrency) => (
         <MenuItem
           sx={menuItemSx}
           key={currency}

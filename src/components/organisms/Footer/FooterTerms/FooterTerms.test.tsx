@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import { termsLink, policyLink } from '../constants';
-
 import { FooterTerms } from './FooterTerms';
 
+import { POLICY_LINK, TERMS_LINK } from 'constants/ui/content';
 import { generateRandomParam } from 'utils/helpers/randomHelpers';
-
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -37,10 +35,13 @@ describe('FooterTerms', () => {
     expect(policyLinkElement).toBeInTheDocument();
     expect(copyrightElement).toBeInTheDocument();
 
-    expect(termsLinkElement).toHaveAttribute('href', `${termsLink}randomParam`);
+    expect(termsLinkElement).toHaveAttribute(
+      'href',
+      `${TERMS_LINK}randomParam`,
+    );
     expect(policyLinkElement).toHaveAttribute(
       'href',
-      `${policyLink}randomParam`,
+      `${POLICY_LINK}randomParam`,
     );
   });
 

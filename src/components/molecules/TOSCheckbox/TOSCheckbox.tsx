@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AgreementContainer, StyledContainer } from './TOSCheckbox.styled';
 
-import { termsLink, policyLink } from 'components/organisms/Footer/constants';
+import { POLICY_LINK, TERMS_LINK } from 'constants/ui/content';
 import { ILoginFormInput } from 'models/IAuth';
 import { generateRandomParam } from 'utils/helpers';
 
@@ -30,8 +30,8 @@ export const TOSCheckbox = <T extends FieldValues>({
   const { t } = useTranslation('translation');
   const theme = useTheme();
 
-  const urlTerms = `${termsLink}${generateRandomParam()}`;
-  const urlPolicy = `${policyLink}${generateRandomParam()}`;
+  const urlTerms = `${TERMS_LINK}${generateRandomParam()}`;
+  const urlPolicy = `${POLICY_LINK}${generateRandomParam()}`;
 
   return (
     <StyledContainer className={errors.checkbox ? 'shake' : ''}>

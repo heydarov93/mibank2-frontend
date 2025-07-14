@@ -5,7 +5,7 @@ import {
   TO_BACK_OFFICE_CREATE_PRODUCT,
   TO_BACK_OFFICE_VIEW_EMPLOYEES,
   TO_BACK_OFFICE_VIEW_PRODUCTS,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
 import {
   ViewEmployeesPage,
   ViewProductsPage,

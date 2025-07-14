@@ -21,11 +21,13 @@ import {
   TrendingUpIcon,
 } from './ExchangeRatesTable.styled';
 
-
-import { useGetCurrentRatesQuery, useGetPreviousRatesQuery } from 'api/services/exchange-rate-service/exchange-rates.api';
+import {
+  useGetCurrentRatesQuery,
+  useGetPreviousRatesQuery,
+} from 'api/services/exchange-rate-service/exchange-rates.api';
 import { IExchangeRate } from 'api/services/exchange-rate-service/exchange-rates.types';
 import { CurrencyFlagIcon } from 'components/atoms';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 
 type TableError = string | null;
 
@@ -62,8 +64,8 @@ export function ExchangeRatesTable() {
     return <CircularProgress />;
   }
 
-  const filteredCurrencies = currentRates[0].rates.filter(rate =>
-    CURRENCIES.includes(rate.code),
+  const filteredCurrencies = currentRates[0].rates.filter(
+    (rate: IExchangeRate) => SUPPORTED_CURRENCIES.includes(rate.code),
   );
 
   const previousRatesMap = new Map<string, IExchangeRate>(
@@ -118,7 +120,7 @@ export function ExchangeRatesTable() {
                       <StyledCellText
                         sx={{ fontWeight: 500, marginLeft: '12px' }}
                       >
-                        {rate.code == CURRENCIES.at(-1)
+                        {rate.code == SUPPORTED_CURRENCIES.at(-1)
                           ? `100 ${rate.code}`
                           : `1 ${rate.code}`}
                       </StyledCellText>

@@ -2,7 +2,8 @@ import { Tooltip, Typography } from '@mui/material';
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { specialCharacters } from 'constants/specialCharacters';
+import { SPECIAL_CHARACTERS } from 'constants/validation/patterns';
+
 
 export function SpecialCharactersTooltip({
   children,
@@ -30,7 +31,7 @@ export function SpecialCharactersTooltip({
           fontSize={14}
           width="max-content"
         >
-          {`${t('allowedSpecialChars')}:\n ${specialCharacters}`}
+          {`${t('allowedSpecialChars')}:\n ${SPECIAL_CHARACTERS}`}
         </Typography>
       }
       placement="top"

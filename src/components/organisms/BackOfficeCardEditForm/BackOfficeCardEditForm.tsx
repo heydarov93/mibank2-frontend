@@ -14,7 +14,7 @@ import { InputField } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { editCardSchema, TEditCardValues } from 'validation';
 
 interface BackOfficeCardEditFormProps {
@@ -104,7 +104,7 @@ const BackOfficeCardEditForm = ({
             control={control}
             render={({ field }) => (
               <MiAutoComplete
-                options={[...CURRENCIES]}
+                options={[...SUPPORTED_CURRENCIES]}
                 value={field.value}
                 onChange={(_, value) => field.onChange(value)}
                 error={!!errors.cardCurrency}

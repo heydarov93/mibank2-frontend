@@ -2,7 +2,13 @@ import { t } from 'i18next';
 import { useState } from 'react';
 
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import { HTTP_STATUS } from 'constants/business/httpStatus';
+import {
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from 'constants/business/pagination';
 import { IBackOfficeErrorData } from 'models/IError';
+import { THttpStatus } from 'types/types';
 
 interface BackOfficeState {
   isDeleteVisible: boolean;
@@ -32,8 +38,8 @@ export const useProductManage = () => {
     isEditFormVisible: false,
     isDepositFormVisible: false,
     formData: {},
-    page: 0,
-    pageSize: 10,
+    page: DEFAULT_PAGE_INDEX,
+    pageSize: DEFAULT_PAGE_SIZE,
     errorMessage: '',
   };
 
@@ -123,12 +129,12 @@ export const useProductManage = () => {
 
     getErrorMessage: (error: IBackOfficeErrorData) => {
       if (error.originalStatus && typeof error.originalStatus === 'number') {
-        switch (error.originalStatus) {
-          case 401:
+        switch (error.originalStatus as THttpStatus) {
+          case HTTP_STATUS.Unauthorized:
             return t('BackOffice.GeneralErrors.errorUnauthorized');
-          case 500:
+          case HTTP_STATUS.ServerError:
             return t('BackOffice.GeneralErrors.serverError');
-          case 404:
+          case HTTP_STATUS.NotFound:
             return t('BackOffice.GeneralErrors.notFound');
           default:
             return t('BackOffice.GeneralErrors.generalError');

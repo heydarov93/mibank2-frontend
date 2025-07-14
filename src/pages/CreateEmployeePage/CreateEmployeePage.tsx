@@ -21,6 +21,7 @@ import {
 import { useRegisterEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
+import { DATE_FORMATS } from 'constants/business/date';
 import { IErrorData } from 'models/IError';
 import { theme } from 'theme/theme';
 import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
@@ -55,7 +56,7 @@ export const CreateEmployeePage = () => {
     const formattedData = {
       ...data,
       role: data.role.toUpperCase(),
-      dateAdded: dayjs(data.dateAdded).format('YYYY-MM-DD'),
+      dateAdded: dayjs(data.dateAdded).format(DATE_FORMATS.YYYY_MM_DD),
     };
 
     try {

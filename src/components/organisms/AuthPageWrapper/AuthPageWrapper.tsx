@@ -16,8 +16,9 @@ import {
   TO_BUSINESS_LOG_IN,
   TO_BUSINESS_SIGN_UP,
   TO_SIGN_IN,
-  TO_VERIFY_EMAIL
-} from 'constants/routesName';
+  TO_VERIFY_EMAIL,
+} from 'constants/navigation/routePaths';
+import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 import { useNavigationWarning } from 'hooks';
 
 export function AuthPageWrapper({ children }: { children: ReactNode }) {
@@ -56,7 +57,7 @@ export function AuthPageWrapper({ children }: { children: ReactNode }) {
         onCancel={handleCancelNavigateBack}
       />
       <StyledContainer>
-        <Logo size="lg" />
+        <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
         {children}
         <ButtonLink
           message={t('doesAccountExist')}

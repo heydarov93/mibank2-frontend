@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChangeEvent, MouseEvent } from 'react';
 import { Control, useController } from 'react-hook-form';
 
-import { citiesInPoland } from 'constants/citiesInPoland';
+import { POLISH_CITIES } from 'constants/data/geo';
 import { ILegalAddress } from 'models/IRegistration';
 
 export const useCityDropdown = (
@@ -11,7 +11,7 @@ export const useCityDropdown = (
 ) => {
   const [cityInput, setCityInput] = useState<string>('');
   const [cities] = useState<string[]>(
-    citiesInPoland
+    POLISH_CITIES
       .map((cityObj) => cityObj.city)
       .sort((a, b) => a.localeCompare(b, 'pl', { sensitivity: 'base' })),
   );
@@ -77,7 +77,7 @@ export const useCityDropdown = (
   };
 
   const getCityData = (cityName: string) => {
-    return citiesInPoland.find((cityObj) => cityObj.city === cityName);
+    return POLISH_CITIES.find((cityObj) => cityObj.city === cityName);
   };
 
   return {

@@ -9,23 +9,21 @@ import {
   StepsRowContainer,
 } from './DepositSteps.styled';
 
-export interface StepItem {
-  id: number;
-  title: string;
-}
+import { IDepositStep } from 'components/organisms/OpenDepositRow/OpenDepositRow';
+
 
 export interface DepositStepsProps {
-  steps: StepItem[];
+  openDepositSteps: IDepositStep[];
 }
 
-export const DepositSteps = ({ steps }: DepositStepsProps) => {
+export const DepositSteps = ({ openDepositSteps }: DepositStepsProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
   return (
     <StepsContainer>
       <StepsHeader>{t('howToOpenDeposit')}</StepsHeader>
       <StepsRowContainer>
-        {steps.map(({ id, title }) => (
+        {openDepositSteps.map(({ id, title }) => (
           <DepositStep id={id} title={title} key={id} />
         ))}
       </StepsRowContainer>

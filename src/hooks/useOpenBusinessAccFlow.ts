@@ -5,6 +5,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import useDisclosure from './useDisclosure';
 
 import { OpenBusinessAccountModalProps } from 'components/organisms';
+import { STEP_RESET_TIMEOUT } from 'constants/ui/layout';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
 import {
   businessAccountOptionsSchema,
@@ -63,7 +64,7 @@ export const useBusinessAccFlow = ({ onClose }: UseBusinessAccFlowOptions) => {
     setTimeout(() => {
       reset();
       setStep(EOpenBusinessAccStepper.DATA_SELECTION);
-    }, 300);
+    }, STEP_RESET_TIMEOUT);
   }
 
   function handleEdit() {

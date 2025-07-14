@@ -6,12 +6,12 @@ import { CardIssueFormValues } from '../../hooks/useCardIssueFlow';
 
 import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EAccount } from 'enums/EAccount';
 import { t } from 'i18n';
 import { ECardType, ECardIssueType, ECardIssuer } from 'models/IProductInfo';
 
-const currenciesOptions = CURRENCIES.map((value) => ({ value }));
+const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
 const cardTypes = [
   { value: ECardType.DEBIT, label: t('IssueCardModal.debitCard') },

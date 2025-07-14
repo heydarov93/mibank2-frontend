@@ -3,9 +3,13 @@ export const TO_WELCOME = '/welcome';
 export const TO_PAYMENTS = '/payments';
 export const TO_TRANSFERS = '/transfers';
 export const TO_HISTORY = '/history';
+export const TO_CARDS = '/cards';
+export const TO_DEPOSITS = '/deposits';
+export const TO_LOANS = '/loans';
+export const TO_SERVICES = '/services';
+export const TO_CURRENCY = '/currency';
 export const TO_DEPOSIT_LEARN_MORE = '/deposits/learn-more/:id';
-
-//Auth and registration
+export const TO_DEPOSIT_LEARN_MORE_BASE = '/deposits/learn-more/';
 export const TO_SIGN_IN = '/signin';
 export const TO_SIGN_UP = '/signup';
 export const TO_CREATE_PASSWORD = '/create-password';
@@ -31,3 +35,5 @@ export const TO_BACK_OFFICE_CREATE_PRODUCT = '/back-office/create-product';
 export const TO_BACK_OFFICE_VIEW_PRODUCTS = '/back-office/products';
 export const TO_BACK_OFFICE_CREATE_CLIENT = '/back-office/create-client';
 export const TO_BACK_OFFICE_VIEW_CLIENTS = '/back-office/clients';
+export const TO_GOOGLE_PLAY = 'https://play.google.com/store/apps';
+export const TO_APP_STORE = 'https://www.apple.com/app-store/';
