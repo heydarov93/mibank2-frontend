@@ -41,7 +41,7 @@ interface BackOfficeEditEmployeeProps {
   handleUpdate?: (employee: Partial<TableData>) => Promise<void>;
 }
 
-const BackOfficeEditEmployee = ({
+export const BackOfficeEditEmployee = ({
   open,
   sx,
   handleClose,
@@ -205,4 +205,3 @@ const BackOfficeEditEmployee = ({
   );
 };
 
-export default BackOfficeEditEmployee;

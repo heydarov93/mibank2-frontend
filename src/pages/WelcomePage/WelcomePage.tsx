@@ -45,7 +45,7 @@ export const WelcomePage = () => {
       <StyledHeader>
         <WelcomeHeader activeTab={activeTab} onTabChange={handleTabChange} />
         <StyledContainer>
-          <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
+          <Logo size={DEFAULT_BREAKPOINT_KEYS.md} />
           <WelcomeNav activePanel={activeTab} />
         </StyledContainer>
       </StyledHeader>

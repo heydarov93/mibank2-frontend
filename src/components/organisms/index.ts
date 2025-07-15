@@ -50,5 +50,12 @@ export { DepositLearnMoreContent } from './DepositLearnMoreContent/DepositLearnM
 export { BackOfficeVerificationStep } from './BackOfficeVerificationStep/BackOfficeVerificationStep';
 export { ViewEmployeesSearchContainer } from './ViewEmployeesSearchContainer/ViewEmployeesSearchContainer';
 export { ViewProductsSearchContainer } from './ViewProductsSearchContainer/ViewProductsSearchContainer';
+export { BackOfficeEmployeeLoginForm } from './BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
+export { SelectView } from './SelectView/SelectView';
+export { TransferView } from './TransferView/TransferView';
+export { BackOfficeTable } from './BackOfficeTable/BackOfficeTable';
+export { BackOfficeDepositEditForm } from './BackOfficeDepositEditForm/BackOfficeDepositEditForm';
+export { BackOfficeCardEditForm } from './BackOfficeCardEditForm/BackOfficeCardEditForm';
+export { BackOfficeEditEmployee } from './BackOfficeEditEmployee/BackOfficeEditEmployee';
 export * from './OpenBusinessAccountModal/OpenBusinessAccountModal';
 export * from './IssueCardModal/IssueCardModal';

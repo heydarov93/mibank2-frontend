@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { BackOfficeVerificationErrorPage } from './BackOfficeVerificationErrorPage';
+import { BackOfficeErrorPage } from './BackOfficeErrorPage';
 
 import { theme } from 'theme/theme';
 
@@ -19,19 +19,20 @@ const renderPage = () => {
   return render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <BackOfficeVerificationErrorPage />
+        <BackOfficeErrorPage />
       </ThemeProvider>
     </BrowserRouter>,
   );
 };
 
-describe('BackOfficeVerificationErrorPage', () => {
+describe('BackOfficeErrorPage', () => {
   it('renders the page components correctly', () => {
     renderPage();
 
-    expect(screen.getByText('QRCodeExpired')).toBeInTheDocument();
-    expect(screen.getByText('RefreshPage')).toBeInTheDocument();
+    expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('reload-button')).toBeInTheDocument();
+    expect(screen.getByText('serviceUnavailable')).toBeInTheDocument();
+    expect(screen.getByText('refresh')).toBeInTheDocument();
   });
 
   it('matches snapshot', () => {

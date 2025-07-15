@@ -103,7 +103,7 @@ export const VerifyEmployeeCodePage = () => {
         <StyledSubTitle>{t('verifyCodeMessage')}</StyledSubTitle>
       </StyledTitleContainer>
 
-      <StyledPasswordRow>
+      <StyledPasswordRow date-testid="one-time-passcode-row">
         <OneTimePasscode
           otp={otp}
           inputRefs={inputRefs}

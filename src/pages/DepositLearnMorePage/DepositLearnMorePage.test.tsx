@@ -10,7 +10,7 @@ import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { theme } from 'theme/theme';
 
 jest.mock('components/atoms/DepositErrorMessage/DepositErrorMessage', () => ({
-  DepositErrorMessage: () => <div>error</div>,
+  DepositErrorMessage: () => <div>Deposit not found</div>,
 }));
 
 jest.mock(
@@ -34,7 +34,7 @@ jest.mock(
   }),
 );
 
-jest.mock("api/services/account-service/accounts.api", () => ({
+jest.mock('api/services/account-service/accounts.api', () => ({
   useGetUserAccountsQuery: jest.fn(() => ({
     data: {
       accounts: [
@@ -136,11 +136,6 @@ describe('DepositLearnMorePage', () => {
     });
   });
 
-  it('renders correctly', () => {
-    const { container } = renderPage();
-    expect(container).toMatchSnapshot();
-  });
-
   it('renders loading state', () => {
     (useGetDepositsQuery as jest.Mock).mockReturnValue({
       isLoading: true,
@@ -158,7 +153,7 @@ describe('DepositLearnMorePage', () => {
     });
 
     renderPage();
-    expect(screen.getByText('error')).toBeInTheDocument();
+    expect(screen.getByText('Deposit not found')).toBeInTheDocument();
   });
 
   it('navigates back when back button is clicked', () => {

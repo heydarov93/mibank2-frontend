@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-import BackOfficeCardEditForm from './BackOfficeCardEditForm';
+
+import { BackOfficeCardEditForm } from './BackOfficeCardEditForm';
 
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 

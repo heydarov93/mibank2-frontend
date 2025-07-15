@@ -1,3 +1,4 @@
+
 import { Box, debounce } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,15 +9,17 @@ import { StyledContainer } from './ViewProductsPage.styled';
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
 import {
+  BackOfficeConfirmationWindow,
   BackOfficeViewHeader,
   BackOfficeWarningWindow,
 } from 'components/molecules';
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { ViewProductsSearchContainer } from 'components/organisms';
-import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
-import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
+import {
+  BackOfficeDepositEditForm,
+  BackOfficeTable,
+  ViewProductsSearchContainer,
+  BackOfficeCardEditForm,
+} from 'components/organisms';
 import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/navigation/routePaths';
 import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
 import { TABLE_HEAD } from 'constants/ui/table';

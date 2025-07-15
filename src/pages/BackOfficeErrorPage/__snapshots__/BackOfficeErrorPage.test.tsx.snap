@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeErrorPage matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-sje80f"
+  >
+    <div
+      class="MuiBox-root css-lwpydm"
+    >
+      <div
+        class="MuiBox-root css-ybpx8d"
+        data-testid="logo"
+      >
+        <span
+          aria-hidden="true"
+          class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-1ygk0ui-MuiIcon-root"
+        >
+          <svg
+            height="100%"
+            width="100%"
+          >
+            LogoWhite.svg
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-yqevd0-MuiTypography-root"
+        >
+          logoTitle
+        </p>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-i1zxs9"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-4818ec-MuiTypography-root"
+      >
+        serviceUnavailable
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1xv9qfa-MuiTypography-root"
+      >
+        refresh
+      </p>
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-mimmgx-MuiSvgIcon-root"
+        data-testid="reload-button"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <svg
+          aria-label="Reload current page"
+          role="button"
+        >
+          Reload.svg
+        </svg>
+      </svg>
+    </div>
+  </div>
+</div>
+`;

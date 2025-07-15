@@ -14,7 +14,8 @@ import {
   StyledTableRow,
 } from './BackOfficeTable.styled';
 
-import BackOfficeTableItem, {
+import {
+  BackOfficeTableItem,
   TableData,
 } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
@@ -60,7 +61,7 @@ interface BackOfficeTableProps {
   isLoading?: boolean;
 }
 
-const BackOfficeTable = ({
+export const BackOfficeTable = ({
   tableHead,
   tableBody,
   page,
@@ -148,4 +149,3 @@ const BackOfficeTable = ({
   );
 };
 
-export default BackOfficeTable;

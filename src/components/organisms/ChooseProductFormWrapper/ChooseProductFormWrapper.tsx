@@ -7,7 +7,7 @@ import ChooseProductForm from '../ChooseProductForm/ChooseProductForm';
 import CreateCardProductForm from '../CreateCardProductForm/CreateCardProductForm';
 import CreateDepositProductForm from '../CreateDepositProductForm/CreateDepositProductForm';
 
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
+import { BackOfficeConfirmationWindow } from 'components/molecules';
 import BackOfficeProductWindow from 'components/molecules/BackOfficeProductWindow/BackOfficeProductWindow';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { getProductForm } from 'store/selectors/ChooseProductSelector';

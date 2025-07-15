@@ -21,7 +21,7 @@ interface BackOfficeFailWindowProps {
   depositFail?: boolean;
 }
 
-const BackOfficeFailWindow = ({
+export const BackOfficeFailWindow = ({
   onClose,
   sx,
   title,
@@ -76,4 +76,3 @@ const BackOfficeFailWindow = ({
   );
 };
 
-export default BackOfficeFailWindow;
