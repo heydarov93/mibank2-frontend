@@ -19,12 +19,12 @@ export const BackOfficeErrorPage = () => {
   return (
     <StyledContainer>
       <StyledLogoContainer>
-        <Logo color="white" />
+        <Logo color="white"/>
       </StyledLogoContainer>
       <StyledFlexColumn>
         <StyledTitle>{t('serviceUnavailable')}</StyledTitle>
         <StyledSecondaryText>{t('refresh')}</StyledSecondaryText>
-        <ReloadButton sx={{ color: 'white' }} />
+        <ReloadButton sx={{ color: 'white' }} data-testid="reload-button"/>
       </StyledFlexColumn>
     </StyledContainer>
   );

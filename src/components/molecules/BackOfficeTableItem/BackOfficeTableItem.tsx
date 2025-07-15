@@ -44,7 +44,7 @@ interface BackOfficeTableItemProps {
   onEditClick?: (product: Partial<TableData>) => void;
 }
 
-const BackOfficeTableItem = ({
+export const BackOfficeTableItem = ({
   tableData,
   tableHead,
   onDeleteClick,
@@ -75,4 +75,3 @@ const BackOfficeTableItem = ({
   );
 };
 
-export default BackOfficeTableItem;

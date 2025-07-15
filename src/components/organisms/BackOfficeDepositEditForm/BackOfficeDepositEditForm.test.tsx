@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import BackOfficeDepositEditForm from './BackOfficeDepositEditForm';
+
+import { BackOfficeDepositEditForm } from './BackOfficeDepositEditForm';
 
 import { depositsApi } from 'api';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';

@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button } from '@mui/material';
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -22,7 +21,7 @@ interface BackOfficeCardEditFormProps {
   formData?: Partial<TableData>;
 }
 
-const BackOfficeCardEditForm = ({
+export const BackOfficeCardEditForm = ({
   handleClose,
   formData,
 }: BackOfficeCardEditFormProps) => {
@@ -187,4 +186,3 @@ const BackOfficeCardEditForm = ({
   );
 };
 
-export default BackOfficeCardEditForm;

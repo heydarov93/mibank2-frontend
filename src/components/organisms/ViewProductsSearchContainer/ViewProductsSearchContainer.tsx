@@ -42,6 +42,7 @@ export const ViewProductsSearchContainer = ({
           control={control}
           placeholder={t('header.searchProducts')}
           onKeyDown={onSearchEnter}
+          data-testid="product-search"
         />
         {showNoMatches && (
           <NoMatchesFound

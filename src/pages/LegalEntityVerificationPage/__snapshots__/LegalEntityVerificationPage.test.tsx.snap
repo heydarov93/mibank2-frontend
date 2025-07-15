@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LegalEntityVerificationPage matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-pqy660"
+  >
+    <button
+      data-testid="back-button"
+    >
+      Back
+    </button>
+    <div
+      class="MuiBox-root css-8ohavg"
+      data-testid="content-wrapper"
+    >
+      <div
+        data-testid="legal-entity-verification-content"
+      >
+        Legal Entity Verification Content
+      </div>
+    </div>
+    <footer
+      data-testid="footer"
+    >
+      Footer
+    </footer>
+  </div>
+</div>
+`;

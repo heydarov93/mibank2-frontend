@@ -31,7 +31,7 @@ interface BackOfficeDepositFormProps {
   refetchProducts?: RefetchProductsFn;
 }
 
-const BackOfficeDepositEditForm = ({
+export const BackOfficeDepositEditForm = ({
   formData,
   onClose,
   onSuccess,
@@ -257,4 +257,3 @@ const BackOfficeDepositEditForm = ({
   );
 };
 
-export default BackOfficeDepositEditForm;

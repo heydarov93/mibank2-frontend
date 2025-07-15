@@ -1,28 +1,14 @@
-import { ThemeProvider } from '@mui/material';
-import { configureStore } from '@reduxjs/toolkit';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
+import * as ReactHookForm from 'react-hook-form';
 
 import { ViewProductsPage } from './ViewProductsPage';
 
-import { productsApi } from 'api';
-import { theme } from 'theme/theme';
-
-const mockStore = configureStore({
-  reducer: {
-    [productsApi.reducerPath]: productsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productsApi.middleware),
-});
+import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
+import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
+import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
+import { useProductFilters } from 'hooks/useProductFilters';
+import { useProductManage } from 'hooks/useProductManage';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -32,64 +18,239 @@ jest.mock('react-i18next', () => ({
     type: '3rdParty',
   },
 }));
+jest.mock('react-hook-form', () => ({
+  useForm: jest.fn(),
+}));
 
-const renderComponent = () =>
-  render(
-    <Provider store={mockStore}>
-      <ThemeProvider theme={theme}>
-        <MemoryRouter>
-          <ViewProductsPage />
-        </MemoryRouter>
-      </ThemeProvider>
-    </Provider>,
-  );
+jest.mock('api/services/deposit-service/products.api');
+jest.mock('api/services/deposit-service/deposits.api');
+jest.mock('hooks/useProductManage');
+jest.mock('hooks/useProductFilters');
+
+jest.mock('@mui/material', () => {
+  const actual = jest.requireActual('@mui/material');
+  return { ...actual, debounce: (fn: (inputValue: string) => void) => fn };
+});
+
+jest.mock('components/molecules', () => ({
+  BackOfficeViewHeader: ({
+    btnContent,
+    primaryHeader,
+    secondaryHeader,
+  }: {
+    btnContent: string;
+    primaryHeader: string;
+    secondaryHeader: string;
+  }) => (
+    <div>
+      <h1>{primaryHeader}</h1>
+      <h3>{secondaryHeader}</h3>
+      <button>{btnContent}</button>
+    </div>
+  ),
+  BackOfficeWarningWindow: ({
+    onCancelClick,
+    isError,
+    errorMessage,
+    title,
+    body,
+  }: {
+    isError: boolean;
+    errorMessage: string;
+    onCancelClick: () => void;
+    title: string;
+    body: string;
+  }) => (
+    <div data-testid="warning-window">
+      <button onClick={onCancelClick}>Cancel</button>
+      <h1>{title}</h1>
+      <p>{body}</p>
+      {isError && <p>{errorMessage}</p>}
+    </div>
+  ),
+  BackOfficeConfirmationWindow: ({
+    onClose,
+    title,
+    body,
+  }: {
+    onClose: () => void;
+    title: string;
+    body: string;
+  }) => (
+    <div data-testid="confirmation-window">
+      <button onClick={onClose}>Back</button>
+      <h1>{title}</h1>
+      <p>{body}</p>
+    </div>
+  ),
+}));
+jest.mock('components/organisms', () => ({
+  ViewProductsSearchContainer: ({
+    showNoMatches,
+    onSearchEnter,
+    onViewAll,
+  }: {
+    showNoMatches: boolean;
+    onSearchEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    onViewAll: () => void;
+  }) => (
+    <div>
+      <button onClick={onViewAll}>View All</button>
+      <input data-testid="search-input" onKeyDown={onSearchEnter} />
+      {showNoMatches && <div>No matches found</div>}
+    </div>
+  ),
+  BackOfficeTable: ({
+    tableBody,
+    isLoading,
+    onDeleteClick,
+    onEditClick,
+  }: {
+    tableBody: Partial<TableData>[];
+    isLoading: boolean;
+    onDeleteClick: (product: Partial<TableData>) => void;
+    onEditClick: (product: Partial<TableData>) => void;
+  }) => (
+    <div data-testid="table">
+      {isLoading
+        ? 'Loading...'
+        : tableBody.map((product: Partial<TableData>) => (
+            <div key={product.id}>
+              <span>{product.productName}</span>
+              <button onClick={() => onDeleteClick(product)}>Delete</button>
+              <button onClick={() => onEditClick(product)}>Edit</button>
+            </div>
+          ))}
+    </div>
+  ),
+  BackOfficeDepositEditForm: ({ handleClose }: { handleClose: () => void }) => (
+    <div data-testid="deposit-edit-form">
+      <button onClick={handleClose}>Close</button>
+    </div>
+  ),
+  BackOfficeCardEditForm: ({ handleClose }: { handleClose: () => void }) => (
+    <div data-testid="card-edit-form">
+      <button onClick={handleClose}>Close</button>
+    </div>
+  ),
+}));
+
+const mockProducts = [
+  { id: 1, productName: 'Product A', productType: 'DEPOSIT' },
+];
+const refetchMock = jest.fn();
+const deleteMock = jest.fn().mockResolvedValue({});
+const manageHandlers = {
+  handleDelete: jest.fn(),
+  handleDeleteSuccess: jest.fn(),
+  handleDeleteError: jest.fn(),
+  handleEdit: jest.fn(),
+  handleSuccessfulUpdate: jest.fn(),
+  handleError: jest.fn(),
+  handleClose: jest.fn(),
+  handlePageChange: jest.fn(),
+  handlePageSizeChange: jest.fn(),
+  closeDeleteWindow: jest.fn(),
+  closeConfirmationWindow: jest.fn(),
+};
+const defaultState = {
+  page: 1,
+  pageSize: 10,
+  isDepositFormVisible: false,
+  isEditFormVisible: false,
+  isConfirmationWindowVisible: false,
+  warningBody: '',
+  warningTitle: '',
+  errorMessage: '',
+  isDeleteVisible: false,
+  confirmationBody: '',
+  confirmationTitle: '',
+  formData: null,
+  selectedProduct: null,
+};
 
 describe('ViewProductsPage', () => {
   beforeEach(() => {
-    renderComponent();
-  });
+    jest.clearAllMocks();
 
-  test('renders search input', () => {
-    const input = screen.getByPlaceholderText('header.searchProducts');
-    expect(input).toBeInTheDocument();
-  });
+    (useGetProductsQuery as jest.Mock).mockReturnValue({
+      data: { 1: mockProducts },
+      isLoading: false,
+      refetch: refetchMock,
+    });
 
-  test('typing and pressing enter in search triggers debounce logic', async () => {
-    const input = screen.getByPlaceholderText('header.searchProducts');
-    act(() => userEvent.type(input, 'Gold Product'));
-    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    (useDeleteDepositMutation as jest.Mock).mockReturnValue([
+      deleteMock,
+      { isLoading: false, isError: false },
+    ]);
 
-    await waitFor(() => {
-      expect(
-        screen.getByPlaceholderText('header.searchProducts'),
-      ).toBeInTheDocument();
+    (useProductManage as jest.Mock).mockReturnValue({
+      state: defaultState,
+      ...manageHandlers,
+    });
+
+    (useProductFilters as jest.Mock).mockReturnValue({
+      filteredTableBody: () => mockProducts,
+    });
+
+    (ReactHookForm.useForm as jest.Mock).mockReturnValue({
+      control: {},
+      setValue: jest.fn(),
+      watch: () => 'foo',
     });
   });
 
-  test('shows filter boxes', () => {
-    expect(screen.getByText('header.products')).toBeInTheDocument();
-    expect(screen.getByText('header.productSubtypes')).toBeInTheDocument();
-  });
-
-  test('renders primary and secondary headers', () => {
-    expect(screen.getByText('header.finProducts')).toBeInTheDocument();
-    expect(screen.getByText('header.viewProducts')).toBeInTheDocument();
-  });
-
-  test('shows "NoMatchesFound" component when no products and query exists', async () => {
-    const input = screen.getByPlaceholderText('header.searchProducts');
-    act(() => userEvent.type(input, 'NonMatchingProduct'));
-    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
-
-    await waitFor(() => {
+  describe('Layout', () => {
+    it('renders header with create button', () => {
+      render(<ViewProductsPage />);
       expect(
-        screen.getByText('noMatchesFound.viewAllProducts'),
+        screen.getByRole('button', { name: 'header.createBtnContent' }),
       ).toBeInTheDocument();
+    });
+
+    it('renders the search container and table', () => {
+      render(<ViewProductsPage />);
+      expect(screen.getByRole('button', { name: 'View All' })).toBeVisible();
+      expect(screen.getByTestId('table')).toBeInTheDocument();
     });
   });
 
-  test('matches snapshot', () => {
-    const { asFragment } = renderComponent();
-    expect(asFragment()).toMatchSnapshot();
+  describe('Data & Table', () => {
+    it('shows loading state in table when products are loading', () => {
+      (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
+        data: undefined,
+        isLoading: true,
+        refetch: refetchMock,
+      });
+      render(<ViewProductsPage />);
+      expect(screen.getByTestId('table')).toHaveTextContent('Loading...');
+    });
+
+    it('renders a row for each product', () => {
+      render(<ViewProductsPage />);
+      expect(screen.getByText('Product A')).toBeInTheDocument();
+    });
+  });
+
+  describe('Search', () => {
+    it('calls refetch when "View All" is clicked', () => {
+      render(<ViewProductsPage />);
+      fireEvent.click(screen.getByRole('button', { name: 'View All' }));
+      expect(refetchMock).toHaveBeenCalled();
+    });
+  });
+
+  describe('Actions', () => {
+    it('calls handleDelete when Delete button is clicked', () => {
+      render(<ViewProductsPage />);
+      fireEvent.click(screen.getByRole('button', { name: /Delete/i }));
+      expect(manageHandlers.handleDelete).toHaveBeenCalledWith(mockProducts[0]);
+    });
+
+    it('calls handleEdit when Edit button is clicked', () => {
+      render(<ViewProductsPage />);
+      fireEvent.click(screen.getByRole('button', { name: /Edit/i }));
+      expect(manageHandlers.handleEdit).toHaveBeenCalledWith(mockProducts[0]);
+    });
   });
 });

@@ -45,3 +45,6 @@ export { PasswordValidationTags } from './PasswordValidationTags/PasswordValidat
 export { CustomCarousel } from './CustomCarousel/CustomCarousel';
 export { NumericFieldControlled } from './NumericFieldControlled/NumericFieldControlled';
 export { PatternFieldControlled } from './PatternFieldControlled/PatternFieldControlled';
+export { BackOfficeConfirmationWindow } from './BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
+export { BackOfficeTableItem } from './BackOfficeTableItem/BackOfficeTableItem';
+export { BackOfficeFailWindow } from './BackOfficeFailWindow/BackOfficeFailWindow';

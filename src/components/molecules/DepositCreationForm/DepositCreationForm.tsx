@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import BackOfficeConfirmationWindow from '../BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import BackOfficeFailWindow from '../BackOfficeFailWindow/BackOfficeFailWindow';
+import { BackOfficeConfirmationWindow } from '../BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
+import { BackOfficeFailWindow } from '../BackOfficeFailWindow/BackOfficeFailWindow';
 import { BackOfficeWarningWindow } from '../BackOfficeWarningWindow/BackOfficeWarningWindow';
 
 import { StyledContainer, StyledTermsLink } from './DepositCreationForm.styled';

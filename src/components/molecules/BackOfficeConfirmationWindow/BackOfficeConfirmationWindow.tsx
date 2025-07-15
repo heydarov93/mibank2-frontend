@@ -23,7 +23,7 @@ interface BackOfficeConfirmationWindowProps {
   depositSuccess?: boolean;
 }
 
-const BackOfficeConfirmationWindow = ({
+export const BackOfficeConfirmationWindow = ({
   onClose,
   sx,
   title,
@@ -89,4 +89,3 @@ const BackOfficeConfirmationWindow = ({
   );
 };
 
-export default BackOfficeConfirmationWindow;

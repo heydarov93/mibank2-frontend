@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthWrapper } from 'components/organisms';
-import { BackOfficeEmployeeLoginForm } from 'components/organisms/BackOfficeEmployeeLoginForm/BackOfficeEmployeeLoginForm';
+import { AuthWrapper, BackOfficeEmployeeLoginForm } from 'components/organisms';
 import { TO_HOME } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';

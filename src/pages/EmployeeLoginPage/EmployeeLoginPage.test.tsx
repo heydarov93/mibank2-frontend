@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { LoginPage } from './LoginPage';
+import { EmployeeLoginPage } from './EmployeeLoginPage';
 
 import { localTokenHandler } from 'utils/auth';
 
@@ -10,8 +10,9 @@ jest.mock('components/organisms', () => ({
   AuthWrapper: ({ children }: { children: ReactNode }) => (
     <div data-testid="auth-wrapper">{children}</div>
   ),
-  LoginForm: () => <form data-testid="login-form">Login Form</form>,
-  Footer: () => <div data-testid="footer">Footer</div>,
+  BackOfficeEmployeeLoginForm: () => (
+    <form data-testid="employee-login-form">Employee Login Form</form>
+  ),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -20,13 +21,12 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('utils/auth', () => ({
-  getEmail: jest.fn(() => 'test@example.com'),
   localTokenHandler: {
     getToken: jest.fn(),
   },
 }));
 
-describe('LoginPage', () => {
+describe('EmployeeLoginPage', () => {
   const mockNavigate = jest.fn();
 
   beforeEach(() => {
@@ -39,11 +39,11 @@ describe('LoginPage', () => {
       (localTokenHandler.getToken as jest.Mock).mockReturnValue('');
     });
 
-    it('renders AuthWrapper and LoginForm', () => {
-      render(<LoginPage />);
+    it('renders AuthWrapper and BackOfficeEmployeeLoginForm', () => {
+      render(<EmployeeLoginPage />);
 
       expect(screen.getByTestId('auth-wrapper')).toBeInTheDocument();
-      expect(screen.getByTestId('login-form')).toBeInTheDocument();
+      expect(screen.getByTestId('employee-login-form')).toBeInTheDocument();
       expect(mockNavigate).not.toHaveBeenCalled();
     });
   });
@@ -54,7 +54,7 @@ describe('LoginPage', () => {
     });
 
     it('redirects to home and renders nothing', () => {
-      const { container } = render(<LoginPage />);
+      const { container } = render(<EmployeeLoginPage />);
 
       expect(mockNavigate).toHaveBeenCalledWith('/');
       expect(container.firstChild).toBeNull();

@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +23,6 @@ import { InputField, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { DATE_FORMATS } from 'constants/business/date';
 import { IErrorData } from 'models/IError';
-import { theme } from 'theme/theme';
 import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
 export const CreateEmployeePage = () => {
   const { t } = useTranslation('translation', {
@@ -31,6 +30,7 @@ export const CreateEmployeePage = () => {
   });
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [responseMessage, setResponseMessage] = useState<string>('');
+  const [registerEmployee, { isLoading }] = useRegisterEmployeeMutation();
 
   const {
     control,
@@ -50,38 +50,41 @@ export const CreateEmployeePage = () => {
     },
   });
 
-  const [registerEmployee, { isLoading }] = useRegisterEmployeeMutation();
-
-  const onSubmit = async (data: TEmployeeValues) => {
-    const formattedData = {
-      ...data,
-      role: data.role.toUpperCase(),
-      dateAdded: dayjs(data.dateAdded).format(DATE_FORMATS.YYYY_MM_DD),
-    };
-
-    try {
-      const response = await registerEmployee(formattedData).unwrap();
-      setResponseMessage(response.message);
-      setErrorMessage('');
-      reset(data);
-    } catch (e: unknown) {
-      let errorMsg = '';
-      if (e instanceof Error) {
-        errorMsg = e.message;
-      } else if (
-        typeof e === 'object' &&
-        e !== null &&
-        'data' in e &&
-        (e as IErrorData).data.exceptionMessage
-      ) {
-        errorMsg = (e as IErrorData).data.exceptionMessage;
-      } else {
-        errorMsg = t('errors.errorCommon');
-      }
-      setErrorMessage(errorMsg);
-      setResponseMessage('');
+  const handleError = (error: unknown) => {
+    if (error instanceof Error) {
+      return error.message;
     }
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'data' in error &&
+      (error as IErrorData).data?.exceptionMessage
+    ) {
+      return (error as IErrorData).data.exceptionMessage;
+    }
+    return t('errors.errorCommon');
   };
+  const onSubmit = useCallback(
+    async (data: TEmployeeValues) => {
+      const formattedData = {
+        ...data,
+        role: data.role.toUpperCase(),
+        dateAdded: dayjs(data.dateAdded).format(DATE_FORMATS.YYYY_MM_DD),
+      };
+
+      try {
+        const response = await registerEmployee(formattedData).unwrap();
+        setResponseMessage(response.message);
+        setErrorMessage('');
+        reset(data);
+      } catch (error) {
+        const errorMsg = handleError(error);
+        setErrorMessage(errorMsg);
+        setResponseMessage('');
+      }
+    },
+    [registerEmployee, handleError, reset],
+  );
 
   return (
     <StyledContainer>
@@ -159,14 +162,30 @@ export const CreateEmployeePage = () => {
         </Box>
         {errorMessage && (
           <Typography
-            sx={{ color: theme.palette.error.main, textAlign: 'center' }}
+            sx={({ palette }) => ({
+              color: palette.error.main,
+              textAlign: 'center',
+            })}
+            data-testid="error-message"
           >
             {errorMessage}
           </Typography>
         )}
-        {responseMessage && <Alert>{responseMessage}</Alert>}
-        <SubmitButton isDisabled={!isValid} buttonContent="Save" />
+        {responseMessage && (
+          <Alert
+            severity="success"
+            sx={{ mb: 2 }}
+            data-testid="success-message"
+          >
+            {responseMessage}
+          </Alert>
+        )}
+        <SubmitButton
+          isDisabled={!isValid || isLoading}
+          buttonContent={isLoading ? 'Saving...' : 'Save'}
+        />
       </form>
+
       {isLoading && <CircularProgress sx={{ marginTop: '10px' }} />}
     </StyledContainer>
   );

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BackOfficeVerificationErrorPage matches the snapshot 1`] = `
-<DocumentFragment>
+exports[`BackOfficeVerificationErrorPage matches snapshot 1`] = `
+<div>
   <div
     class="MuiBox-root css-hc9d5v"
   >
@@ -9,27 +9,34 @@ exports[`BackOfficeVerificationErrorPage matches the snapshot 1`] = `
       class="MuiBox-root css-0"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-1iv3euw-MuiTypography-root"
-        data-testid="title-text"
+        class="MuiTypography-root MuiTypography-body1 css-14ayh1n-MuiTypography-root"
       >
-        QR Code has expired
+        QRCodeExpired
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body1 css-1aj66-MuiTypography-root"
-        data-testid="secondary-text"
+        class="MuiTypography-root MuiTypography-body1 css-dmh1ns-MuiTypography-root"
       >
-        Refresh the page to generate a new one
+        RefreshPage
       </p>
     </div>
     <div
       class="MuiBox-root css-4g6ai3"
     >
-      <div
-        data-testid="reload-icon"
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-lw08pq-MuiSvgIcon-root"
+        data-testid="reload-button"
+        focusable="false"
+        viewBox="0 0 24 24"
       >
-        Reload Button
-      </div>
+        <svg
+          aria-label="Reload current page"
+          role="button"
+        >
+          Reload.svg
+        </svg>
+      </svg>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;

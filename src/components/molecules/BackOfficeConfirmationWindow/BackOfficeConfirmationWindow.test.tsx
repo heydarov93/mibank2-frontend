@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import BackOfficeConfirmationWindow from './BackOfficeConfirmationWindow';
+import { BackOfficeConfirmationWindow } from './BackOfficeConfirmationWindow';
+
 
 const mockOnClose = jest.fn();
 

@@ -4,14 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { StyledContainer } from './ViewEmployeesPage.styled';
 
 import {
+  BackOfficeConfirmationWindow,
+  BackOfficeFailWindow,
   BackOfficeViewHeader,
   BackOfficeWarningWindow,
 } from 'components/molecules';
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import BackOfficeFailWindow from 'components/molecules/BackOfficeFailWindow/BackOfficeFailWindow';
-import { ViewEmployeesSearchContainer } from 'components/organisms';
-import BackOfficeEditEmployee from 'components/organisms/BackOfficeEditEmployee/BackOfficeEditEmployee';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
+import {
+  BackOfficeEditEmployee,
+  BackOfficeTable,
+  ViewEmployeesSearchContainer,
+} from 'components/organisms';
 import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/navigation/routePaths';
 import useEmployees from 'hooks/useEmployee';
 

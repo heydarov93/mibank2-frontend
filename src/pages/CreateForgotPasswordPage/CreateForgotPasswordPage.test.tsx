@@ -1,107 +1,57 @@
-import { ThemeProvider } from '@mui/material';
-import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { useNavigate, MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { CreateForgotPasswordPage } from './CreateForgotPasswordPage';
-
-import { contactsApi } from 'api';
-import { userAccountsApi } from 'api/services/user-account-service/user-accounts.api';
-import { theme } from 'theme/theme';
-
-const initialValues = {
-  auth: {
-    isAuth: false,
-    user: null,
-    error: null,
-    loading: false,
-  },
-  contacts: {
-    info: {
-      id: 0,
-      email: '',
-      phoneNumber: '',
-      contactCenterWorkingDays: '',
-      contactCenterShortenedDays: '',
-      contactCenterWorkingDayBeginTime: '',
-      contactCenterWorkingDayEndTime: '',
-      contactCenterShortenedDayBeginTime: '',
-      contactCenterShortenedDayEndTime: '',
-    },
-  },
-};
-
-const mockStore = configureStore({
-  reducer: {
-    auth: (state = initialValues.auth) => state,
-    contacts: (state = initialValues.contacts) => state,
-    [userAccountsApi.reducerPath]: userAccountsApi.reducer,
-    [contactsApi.reducerPath]: contactsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([
-      userAccountsApi.middleware,
-      contactsApi.middleware,
-    ]),
-});
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-  initReactI18next: { type: '3rdParty' },
-}));
-
-jest.mock('utils/auth', () => ({
-  getEmail: jest.fn(() => 'test@example.com'),
-  localTokenHandler: {
-    getToken: jest.fn(),
-  },
-  sessionTokenHandler: {
-    getToken: jest.fn(),
-  },
-}));
-
-jest.mock('utils/helpers/randomHelpers', () => ({
-  generateRandomParam: jest.fn().mockReturnValue(''),
-}));
-
-jest.mock('utils/formatters/phoneFormatter', () => ({
-  formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
-}));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: jest.fn(),
 }));
 
-const renderComponent = () =>
-  render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <ThemeProvider theme={theme}>
-          <CreateForgotPasswordPage />
-        </ThemeProvider>
-      </MemoryRouter>
-    </Provider>,
-  );
+jest.mock('components/atoms/BackArrow/BackArrow', () => ({
+  BackArrow: ({ onBackClick }: { onBackClick: () => void }) => (
+    <button onClick={onBackClick} data-testid="back-arrow">
+      Back
+    </button>
+  ),
+}));
 
-describe('PasswordResetSuccessPage', () => {
-  it('should match snapshot', () => {
-    const { asFragment } = renderComponent();
-    expect(asFragment()).toMatchSnapshot();
+jest.mock('components/organisms', () => ({
+  AuthWrapper: ({ children }: { children: ReactNode }) => (
+    <div data-testid="auth-wrapper">{children}</div>
+  ),
+  Footer: () => <div data-testid="footer">Footer</div>,
+  CreateForgotPasswordForm: () => (
+    <form data-testid="forgot-password-form">Form</form>
+  ),
+}));
+
+describe('CreateForgotPasswordPage', () => {
+  const mockNavigate = jest.fn();
+
+  beforeEach(() => {
+    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+    jest.clearAllMocks();
   });
 
-  it('should navigate back when back button is clicked', () => {
-    const mockNavigate = jest.fn();
-    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+  describe('initial render', () => {
+    it('renders BackArrow, AuthWrapper, ForgotPasswordForm, and Footer', () => {
+      render(<CreateForgotPasswordPage />);
 
-    renderComponent();
-    const backButton = screen.getByRole('button', {
-      name: 'RegistrationPage.buttonBackArrow',
+      expect(screen.getByTestId('back-arrow')).toBeInTheDocument();
+      expect(screen.getByTestId('auth-wrapper')).toBeInTheDocument();
+      expect(screen.getByTestId('forgot-password-form')).toBeInTheDocument();
+      expect(screen.getByTestId('footer')).toBeInTheDocument();
     });
-    fireEvent.click(backButton);
-    expect(mockNavigate).toHaveBeenCalledWith(-1);
+  });
+
+  describe('navigation behavior', () => {
+    it('navigates back when BackArrow is clicked', async () => {
+      render(<CreateForgotPasswordPage />);
+      await userEvent.click(screen.getByTestId('back-arrow'));
+      expect(mockNavigate).toHaveBeenCalledWith(-1);
+    });
   });
 });

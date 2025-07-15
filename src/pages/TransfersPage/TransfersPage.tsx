@@ -7,8 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { StyledContainer } from './TransfersPage.styled';
 
 import { NavigationWarningModal } from 'components/atoms';
-import { SelectView } from 'components/organisms/SelectView/SelectView';
-import { TransferView } from 'components/organisms/TransferView/TransferView';
+import { SelectView, TransferView } from 'components/organisms';
 
 export const TRANSFER_METHODS = ['iban', 'card', 'owncards'] as const;
 export type TTransferMethod = (typeof TRANSFER_METHODS)[number];

@@ -17,15 +17,15 @@ export const BackOfficeVerificationErrorPage = () => {
   return (
     <StyledContainer>
       <Box>
-        <StyledTitleText data-testid="title-text">
+        <StyledTitleText>
           {t('QRCodeExpired')}
         </StyledTitleText>
-        <StyledSecondaryText data-testid="secondary-text">
+        <StyledSecondaryText>
           {t('RefreshPage')}
         </StyledSecondaryText>
       </Box>
       <Box sx={{ cursor: 'pointer' }}>
-        <ReloadButton data-testid="reload-icon" />
+        <ReloadButton data-testid="reload-button" />
       </Box>
     </StyledContainer>
   );

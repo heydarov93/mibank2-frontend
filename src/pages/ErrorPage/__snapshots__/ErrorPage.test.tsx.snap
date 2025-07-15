@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorPage Component snapshot should match 1`] = `
-<DocumentFragment>
+exports[`ErrorPage matches snapshot 1`] = `
+<div>
   <div
     class="MuiBox-root css-d9hbcc"
   >
@@ -11,25 +11,26 @@ exports[`ErrorPage Component snapshot should match 1`] = `
       <h2
         class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
       >
-        404 - Page Not Found
+        title
       </h2>
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
       >
-        The page you are looking for might have been removed or is temporary unavailable.
+        subTitle
       </p>
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
       >
-        Go back to 
+        text
+         
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-t4ge91-MuiTypography-root-MuiLink-root"
           href="/"
         >
-          Home
+          linkText
         </a>
       </p>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;
