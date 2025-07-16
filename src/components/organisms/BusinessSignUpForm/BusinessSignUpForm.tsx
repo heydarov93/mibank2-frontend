@@ -48,7 +48,7 @@ export const BusinessSignUpForm = () => {
     defaultValues: {
       companyName: '',
       companyEmail: '',
-      nip: 'PL-NIP-',
+      nip: '',
       ownerName: '',
     },
   });
@@ -62,6 +62,7 @@ export const BusinessSignUpForm = () => {
         LOCAL_STORAGE_KEYS.LegalEntityValues,
         JSON.stringify(data),
       );
+      console.log(data);
       const response = await postValidationLegalEntityInfo(data).unwrap();
       const validity = Object.values(response).every(
         (taken) => taken === false,
@@ -69,7 +70,6 @@ export const BusinessSignUpForm = () => {
       if (!validity) {
         throw {
           originalStatus: EErrorStatus.BAD_REQUEST,
-          name: response,
           body: response,
         };
       }
@@ -129,7 +129,8 @@ export const BusinessSignUpForm = () => {
             label={t('form.fields.nip')}
             error={errors.nip}
             format={NIP_PATTERN}
-            allowEmptyFormatting={true}
+            // allowEmptyFormatting={true}
+            placeholder="1234567890"
             textFieldProps={{
               sx: (theme) => ({
                 animation: errors.nip ? `${theme.animations?.shake} 0.25s` : '',

@@ -126,6 +126,13 @@ export const userAccountsApi = createApi({
         body: data,
       }),
     }),
+    postRegistrationLegalEntityInfo: builder.mutation({
+      query: (data) => ({
+        url: endpoints.legalEntities.registerLegalEntity,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -143,4 +150,5 @@ export const {
   useGetPostcodeMutation,
   useGetCodeForForgotPasswordMutation,
   usePostValidationLegalEntityInfoMutation,
+  usePostRegistrationLegalEntityInfoMutation,
 } = userAccountsApi;

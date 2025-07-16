@@ -12,6 +12,7 @@ import {
   StyledFormTitle,
 } from './CreatePasswordForm.styled';
 
+import { usePostRegistrationLegalEntityInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { SubmitButton } from 'components/atoms';
 import {
   PasswordField,
@@ -19,8 +20,15 @@ import {
   TOSCheckbox,
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
+import { ILegaLEntity } from 'models/ILegalEntity';
 import { getLegalEntity } from 'store/selectors/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
+
+interface IBusinessPasswordForm {
+  password: string;
+  confirmPassword: string;
+  checkbox?: boolean | undefined;
+}
 
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
@@ -51,10 +59,31 @@ export const CreatePasswordForm = () => {
   const isValidConfirm = !errors?.password && touchedFields.password;
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
   // TODO: substitute with real submit when BE is ready
-  const legalEntityData = useSelector(getLegalEntity);
-  console.log(legalEntityData);
-  const onFormSubmit = async () => {
+  const [postRegistrationLegalEntityInfo] =
+    usePostRegistrationLegalEntityInfoMutation();
+  const { ownerName, email, nip, companyName } = useSelector(
+    getLegalEntity,
+  ) as ILegaLEntity;
+
+  const onFormSubmit = async (data: IBusinessPasswordForm) => {
     try {
+      console.log({
+        companyEmail: email,
+        ownerFullName: ownerName,
+        nip,
+        companyName,
+        password: data.password,
+      });
+      const response = await postRegistrationLegalEntityInfo({
+        companyEmail: email,
+        ownerFullName: ownerName,
+        nip,
+        companyName,
+        password: data.password,
+      }).unwrap();
+
+      console.log(response);
+
       resetForm();
       navigate(TO_VERIFY_EMAIL, {
         state: { email: location.state?.email, from: location.pathname },
