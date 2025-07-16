@@ -15,6 +15,8 @@ export const endpoints = {
     confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
     refreshAuthToken: '/uas/api/user/refresh-token',
     getUserId: (token: string) => `/uas/api/user/id?token=${token}`,
+    checkLegalEntityUniques: '/api/legal-entities/validate',
+    registerLegalEntity: '/api/legal-entities/signup',
   },
   employees: {
     setup2FA: '/emg/api/employee/2fa-setup',
