@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ProductFormData } from 'models/IProductInfo';
+import { SLICE_NAMES } from 'store/constants/sliceNames';
 
 const initialState: ProductFormData = {
   productType: '',
@@ -11,7 +12,7 @@ const initialState: ProductFormData = {
 };
 
 const ChooseProductSlice = createSlice({
-  name: 'chooseProductSlice',
+  name: SLICE_NAMES.CHOOSE_PRODUCT,
   initialState,
   reducers: {
     setProductForm(state, action: PayloadAction<ProductFormData>) {

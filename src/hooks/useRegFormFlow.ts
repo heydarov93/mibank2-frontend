@@ -17,7 +17,7 @@ import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
 import { IPersonalInfo } from 'models/IRegistration';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
-import { setError } from 'store/reducers';
+import { setError } from 'store/slices/auth';
 import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 import {
   TUserAddressRegisterValues,

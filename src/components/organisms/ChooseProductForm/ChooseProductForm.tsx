@@ -15,9 +15,9 @@ import { SelectField } from 'components/molecules';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { setProductForm } from 'store/reducers/ChooseProductSlice';
-import { setProductStep } from 'store/reducers/ProductStepperSlice';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { setProductForm } from 'store/slices/products/ChooseProductSlice';
+import { setProductStep } from 'store/slices/products/ProductStepperSlice';
 import { chooseProductSchema, TChooseProductValues } from 'validation';
 
 const currencyOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));

@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import ChooseProductForm from './ChooseProductForm';
 
 import i18n from 'i18n';
-import chooseProductReducer from 'store/reducers/ChooseProductSlice';
-import productStepperReducer from 'store/reducers/ProductStepperSlice';
+import chooseProductReducer from 'store/slices/products/ChooseProductSlice';
+import productStepperReducer from 'store/slices/products/ProductStepperSlice';
 
 interface ProductStepperState {
   step: number;

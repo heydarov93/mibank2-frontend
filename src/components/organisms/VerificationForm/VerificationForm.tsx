@@ -30,8 +30,7 @@ import {
   useErrorHandlers,
 } from 'hooks';
 import { IErrorData } from 'models/IError';
-import { setError, setVerifying } from 'store/reducers';
-import { getVerifyingTimer } from 'store/selectors';
+import { getVerifyingTimer, setError, setVerifying } from 'store/slices/auth';
 import {
   getAuthStatus,
   getEmailFromToken,

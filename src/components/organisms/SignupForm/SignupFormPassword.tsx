@@ -24,7 +24,7 @@ import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ISignupFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers/AuthSlice';
+import { setError } from 'store/slices/auth/AuthSlice';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const SignupFormPassword = () => {

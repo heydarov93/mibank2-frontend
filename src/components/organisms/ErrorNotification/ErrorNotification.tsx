@@ -5,8 +5,8 @@ import { StyledAlert, StyledLink } from './ErrorNotification.styled';
 
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { clearError } from 'store/reducers/AuthSlice';
-import { errorMessage } from 'store/selectors';
+import { errorMessage } from 'store/slices/auth';
+import { clearError } from 'store/slices/auth/AuthSlice';
 
 export const ErrorNotification = () => {
   const { t } = useTranslation('translation', {

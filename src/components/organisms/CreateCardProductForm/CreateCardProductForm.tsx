@@ -16,9 +16,9 @@ import {
 } from 'constants/business/card';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { setCardFormData } from 'store/reducers/CreateCardSlice';
-import { setProductStep } from 'store/reducers/ProductStepperSlice';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
+import { setCardFormData } from 'store/slices/cards/CreateCardSlice';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { setProductStep } from 'store/slices/products/ProductStepperSlice';
 import { productCardSchema, TProductCardValues } from 'validation';
 
 interface FormData {
