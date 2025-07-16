@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -18,6 +19,7 @@ import {
   TOSCheckbox,
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
+import { getLegalEntity } from 'store/selectors/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const CreatePasswordForm = () => {
@@ -49,6 +51,8 @@ export const CreatePasswordForm = () => {
   const isValidConfirm = !errors?.password && touchedFields.password;
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
   // TODO: substitute with real submit when BE is ready
+  const legalEntityData = useSelector(getLegalEntity);
+  console.log(legalEntityData);
   const onFormSubmit = async () => {
     try {
       resetForm();

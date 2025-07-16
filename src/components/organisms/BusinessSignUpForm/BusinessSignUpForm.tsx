@@ -18,9 +18,9 @@ import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
+import { IErrorData } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/reducers/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
-import { IErrorData } from 'models/IError';
 
 interface IBusinessSignUpForm {
   companyName: string;
@@ -69,6 +69,8 @@ export const BusinessSignUpForm = () => {
       if (!validity) {
         throw {
           originalStatus: EErrorStatus.BAD_REQUEST,
+          name: response,
+          body: response,
         };
       }
       dispatch(setLegalEntityInfo(data));
@@ -78,7 +80,7 @@ export const BusinessSignUpForm = () => {
 
       resetForm();
     } catch (e) {
-      //!make more appropriate
+      //!make more appropriate warning message
       const error = e as IErrorData;
       switch (error.status) {
         case EErrorStatus.BAD_REQUEST:

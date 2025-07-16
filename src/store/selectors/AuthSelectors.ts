@@ -8,3 +8,5 @@ export const getVerifyingTimer = (state: RootState) =>
 
 export const errorMessage = (state: RootState) => state.auth.error;
 export const getIsAutoLogout = (state: RootState) => state.auth.isAutoLogout;
+
+export const getLegalEntity = (state: RootState) => state.auth.legalEntity;
