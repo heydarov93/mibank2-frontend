@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { useAppDispatch } from 'hooks';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers/AuthSlice';
+import { setError } from 'store/slices/auth/AuthSlice';
 
 export const useErrorHandlers = () => {
   const dispatch = useAppDispatch();

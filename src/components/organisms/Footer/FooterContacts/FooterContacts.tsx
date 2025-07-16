@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
-
 import {
   LogoWrapper,
   StyledBox,
@@ -21,8 +20,7 @@ import {
 import { AppStoreIcon, GooglePlayIcon, Logo } from 'components/atoms';
 import { TO_APP_STORE, TO_GOOGLE_PLAY } from 'constants/navigation/routePaths';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { setContacts } from 'store/reducers';
-import { getContacts } from 'store/selectors';
+import { getContacts, setContacts } from 'store/slices/contacts';
 import { formatPhoneNumber } from 'utils/formatters';
 
 export const FooterContacts = () => {

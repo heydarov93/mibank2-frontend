@@ -23,11 +23,11 @@ import {
   DepositFormData,
   ProductFormData,
 } from 'models/IProductInfo';
-import { resetProductForm } from 'store/reducers/ChooseProductSlice';
-import { resetCardData } from 'store/reducers/CreateCardSlice';
-import { resetDepositData } from 'store/reducers/CreateDepositSlice';
-import { resetProductStep } from 'store/reducers/ProductStepperSlice';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
+import { resetCardData } from 'store/slices/cards/CreateCardSlice';
+import { resetDepositData } from 'store/slices/deposits/CreateDepositSlice';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { resetProductForm } from 'store/slices/products/ChooseProductSlice';
+import { resetProductStep } from 'store/slices/products/ProductStepperSlice';
 import { theme } from 'theme/theme';
 import { TCardIssuer, TCardIssueType, TCardType, TCurrency } from 'types/types';
 

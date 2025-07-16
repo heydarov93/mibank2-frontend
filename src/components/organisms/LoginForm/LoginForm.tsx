@@ -25,7 +25,7 @@ import {
 } from 'constants/navigation/routePaths';
 import { useAppDispatch } from 'hooks';
 import { ILoginFormInput } from 'models/IAuth';
-import { setError } from 'store/reducers/AuthSlice';
+import { setError } from 'store/slices/auth/AuthSlice';
 import { TUserLoginValues, userLoginSchema } from 'validation';
 
 export const LoginForm = () => {

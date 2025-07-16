@@ -18,7 +18,7 @@ import {
   setLoading,
   setVerifying,
   setVerifyingTimer,
-} from 'store/reducers/AuthSlice';
+} from 'store/slices/auth/AuthSlice';
 import { localTokenHandler } from 'utils/auth';
 
 interface Props {

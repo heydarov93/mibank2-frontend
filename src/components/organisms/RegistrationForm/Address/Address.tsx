@@ -27,7 +27,7 @@ import { ALLOWED_KEYS } from 'constants/security/permissions';
 import { EErrorStatus } from 'enums';
 import { IErrorData } from 'models/IError';
 import { FormStepProps, IAddress } from 'models/IRegistration';
-import { setError } from 'store/reducers';
+import { setError } from 'store/slices/auth';
 
 interface IPostCodeAddress {
   postcode: string;

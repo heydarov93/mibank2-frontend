@@ -26,8 +26,8 @@ import {
 import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 import { EGreeting, ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { logoutFromApp } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors';
+import { getUser } from 'store/slices/auth';
+import { logoutFromApp } from 'store/slices/auth/AuthSlice';
 import { localTokenHandler, removeAuthData } from 'utils/auth';
 
 export const TemporaryDrawer = () => {

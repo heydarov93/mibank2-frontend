@@ -28,7 +28,7 @@ import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers';
+import { setError } from 'store/slices/auth';
 import { forgotPasswordSchema, TForgotPasswordValues } from 'validation';
 
 export const CreateForgotPasswordForm = () => {

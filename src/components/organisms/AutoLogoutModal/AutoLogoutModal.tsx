@@ -20,9 +20,12 @@ import { TIMER_TIMEOUT_IN_MILLISECONDS } from 'constants/ui/layout';
 import { ETokenType } from 'enums';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { routes } from 'router';
-import { setError } from 'store/reducers';
-import { logoutFromApp, setIsAutoLogout } from 'store/reducers/AuthSlice';
-import { getIsVerifying } from 'store/selectors';
+import {
+  getIsVerifying,
+  logoutFromApp,
+  setError,
+  setIsAutoLogout,
+} from 'store/slices/auth';
 import {
   getAuthStatus,
   getEmail,
