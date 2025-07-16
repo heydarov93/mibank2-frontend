@@ -54,7 +54,6 @@ export const SignupFormEmail = () => {
     try {
       localStorage.setItem(LOCAL_STORAGE_KEYS.Email, data.email);
       const response = await checkEmail(data).unwrap();
-
       if (response !== null) {
         throw {
           originalStatus: EErrorStatus.BAD_REQUEST,

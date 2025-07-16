@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, isAction, PayloadAction } from '@reduxjs/toolkit';
 
+import { ILegaLEntity } from 'models/ILegalEntity';
 import { IUserInfo } from 'models/IUserInfo';
 
 interface AuthState {
@@ -7,6 +8,7 @@ interface AuthState {
   email: string;
   verifyingTimer: number;
   user: IUserInfo | undefined;
+  legalEntity: ILegaLEntity | undefined;
   error: string | null;
   loading: boolean;
   isAutoLogout: boolean;
@@ -22,6 +24,12 @@ const initialState: AuthState = {
     email: '',
     status: '0',
     isBlocked: null,
+  },
+  legalEntity: {
+    email: '',
+    companyName: '',
+    nip: '',
+    ownerName: '',
   },
   error: null,
   loading: false,
@@ -41,6 +49,7 @@ const AuthSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+
     setVerifyingTimer: (state, action) => {
       state.verifyingTimer = action.payload;
     },
@@ -59,6 +68,13 @@ const AuthSlice = createSlice({
     setIsAutoLogout: (state, action) => {
       state.isAutoLogout = action.payload;
     },
+    setLegalEntityInfo(state, action) {
+      if (!state.legalEntity) return state;
+      state.legalEntity.email = action.payload.companyEmail;
+      state.legalEntity.companyName = action.payload.companyName;
+      state.legalEntity.nip = action.payload.nip;
+      state.legalEntity.ownerName = action.payload.ownerName;
+    },
   },
 });
 
@@ -72,5 +88,6 @@ export const {
   setUserData,
   logoutFromApp,
   setIsAutoLogout,
+  setLegalEntityInfo,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;

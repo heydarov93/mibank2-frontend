@@ -119,6 +119,13 @@ export const userAccountsApi = createApi({
       }),
       invalidatesTags: [USER_ACCOUNT_TAGS.FORGOT_PASSWORD],
     }),
+    postValidationLegalEntityInfo: builder.mutation({
+      query: (data) => ({
+        url: endpoints.legalEntities.checkLegalEntityUniques,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -135,4 +142,5 @@ export const {
   usePostRegistrationInfoMutation,
   useGetPostcodeMutation,
   useGetCodeForForgotPasswordMutation,
+  usePostValidationLegalEntityInfoMutation,
 } = userAccountsApi;

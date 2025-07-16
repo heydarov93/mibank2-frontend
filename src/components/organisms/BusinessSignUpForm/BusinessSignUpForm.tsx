@@ -10,11 +10,17 @@ import {
   StyledLabel,
 } from './BusinessSignUpForm.styled';
 
+import { usePostValidationLegalEntityInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { PatternFieldControlled } from 'components/molecules';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { NIP_PATTERN } from 'constants/validation/patterns';
+import { EErrorStatus } from 'enums';
+import { useAppDispatch } from 'hooks';
+import { setError, setLegalEntityInfo } from 'store/reducers/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
+import { IErrorData } from 'models/IError';
 
 interface IBusinessSignUpForm {
   companyName: string;
@@ -25,6 +31,7 @@ interface IBusinessSignUpForm {
 
 export const BusinessSignUpForm = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation('translation', {
     keyPrefix: 'BusinessSignUpPage',
   });
@@ -34,6 +41,7 @@ export const BusinessSignUpForm = () => {
     handleSubmit,
     reset: resetForm,
     formState: { errors, isValid },
+    setError: setFormError,
   } = useForm<TBusinessSignupValues>({
     resolver: yupResolver(businessSignupSchema),
     mode: 'onChange',
@@ -45,14 +53,48 @@ export const BusinessSignUpForm = () => {
     },
   });
   // TODO: substitute with real submit when BE is ready
+  const [postValidationLegalEntityInfo] =
+    usePostValidationLegalEntityInfoMutation();
+
   const onSubmit = async (data: IBusinessSignUpForm) => {
     try {
+      localStorage.setItem(
+        LOCAL_STORAGE_KEYS.LegalEntityValues,
+        JSON.stringify(data),
+      );
+      const response = await postValidationLegalEntityInfo(data).unwrap();
+      const validity = Object.values(response).every(
+        (taken) => taken === false,
+      );
+      if (!validity) {
+        throw {
+          originalStatus: EErrorStatus.BAD_REQUEST,
+        };
+      }
+      dispatch(setLegalEntityInfo(data));
       navigate(TO_BUSINESS_CREATE_PASSWORD, {
         state: { email: data.companyEmail },
       });
+
       resetForm();
     } catch (e) {
-      //
+      //!make more appropriate
+      const error = e as IErrorData;
+      switch (error.status) {
+        case EErrorStatus.BAD_REQUEST:
+          setFormError(
+            'companyEmail',
+            {
+              type: 'focus',
+              message: t('SignupPage.email.errorEmailRegistered'),
+            },
+            { shouldFocus: true },
+          );
+          break;
+        default:
+          dispatch(setError(t('LoginPage.serverError')));
+          break;
+      }
     }
   };
 
