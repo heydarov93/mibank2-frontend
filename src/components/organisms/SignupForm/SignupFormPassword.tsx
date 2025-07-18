@@ -72,6 +72,9 @@ export const SignupFormPassword = () => {
       if (error.originalStatus) {
         dispatch(setError(t('serverError')));
       }
+      if (error.status) {
+        dispatch(setError(t('serverError')));
+      }
     }
     navigate(TO_VERIFY_EMAIL, {
       state: {

@@ -64,12 +64,12 @@ export const BusinessSignUpForm = () => {
         LOCAL_STORAGE_KEYS.LegalEntityValues,
         JSON.stringify(data),
       );
-      const response = {
-        isEmailAlreadyTaken: false,
-        isNipAlreadyTaken: false,
-      };
-      // const response: { string: boolean } =
-      //   await postValidationLegalEntityInfo(data).unwrap();
+      // const response = {
+      //   isEmailAlreadyTaken: false,
+      //   isNipAlreadyTaken: false,
+      // };
+      const response: { string: boolean } =
+        await postValidationLegalEntityInfo(data).unwrap();
 
       const existCheck = Object.entries(response).filter(
         ([, isExist]: [string, boolean]) => isExist === true,
