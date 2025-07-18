@@ -30,7 +30,7 @@ interface VerificationCodeProps {
   shouldClearFields: boolean;
 }
 
-const VerificationCode = ({
+export const VerificationCode = ({
   separator,
   length,
   isCodeCorrect,
@@ -283,5 +283,3 @@ const VerificationCode = ({
     </StyledBoxContainer>
   );
 };
-
-export default VerificationCode;

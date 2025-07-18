@@ -7,8 +7,8 @@ import {
   StyledVerificationForm,
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
-import VerificationCode from './molecules/VerificationCode/VerificationCode';
-import VerificationTitle from './molecules/VerificationTitle/VerificationTitle';
+import { VerificationCode } from './molecules/VerificationCode/VerificationCode';
+import { VerificationTitle } from './molecules/VerificationTitle/VerificationTitle';
 
 import {
   useLazyGetUserInfoQuery,
@@ -110,7 +110,7 @@ export const VerificationForm = ({
         if (userInfoResult.status === EUserStatus.ACTIVE) {
           setTimeout(() => {
             navigate(TO_REGISTRATION);
-            dispatch(setVerifying(false));
+            dispatch(setVerifying(true));
           }, VERIFICATION_REDIRECT_TIMEOUT);
         }
         if (userInfoResult.status === EUserStatus.REGISTRED) {
