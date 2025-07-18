@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 
-import { VerificationTitle } from './VerificationTitle';
+import VerificationTitle from './VerificationTitle';
+
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

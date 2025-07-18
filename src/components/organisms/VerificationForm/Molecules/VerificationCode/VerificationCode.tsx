@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, memo } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -30,7 +30,7 @@ interface VerificationCodeProps {
   shouldClearFields: boolean;
 }
 
-export const VerificationCode = ({
+const VerificationCode = ({
   separator,
   length,
   isCodeCorrect,
@@ -284,4 +284,4 @@ export const VerificationCode = ({
   );
 };
 
-export const MemoizedVerificationCode = memo(VerificationCode);
+export default VerificationCode;
