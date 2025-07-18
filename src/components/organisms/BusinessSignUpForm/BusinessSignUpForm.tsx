@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import { FieldError, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -21,7 +20,6 @@ import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ILegalEntityValidationError } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/reducers/AuthSlice';
-import { errorMessage } from 'store/selectors';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
 // import { ComponentPropsToStylePropsMap } from '@aws-amplify/ui-react';
