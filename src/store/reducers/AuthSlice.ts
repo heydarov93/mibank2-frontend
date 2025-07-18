@@ -1,4 +1,4 @@
-import { createSlice, isAction, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ILegaLEntity } from 'models/ILegalEntity';
 import { IUserInfo } from 'models/IUserInfo';
