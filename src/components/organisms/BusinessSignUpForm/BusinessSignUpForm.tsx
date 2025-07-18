@@ -88,9 +88,10 @@ export const BusinessSignUpForm = () => {
     } catch (e) {
       const error = e as ILegalEntityValidationError;
       const { status, existError } = error;
-      const errorKeys = existError.map(([key]: [string, boolean]) => key);
+
       switch (status) {
-        case EErrorStatus.BAD_REQUEST:
+        case EErrorStatus.BAD_REQUEST: {
+          const errorKeys = existError.map(([key]: [string, boolean]) => key);
           if (errorKeys.includes('isEmailAlreadyTaken')) {
             dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
             setFormError(
@@ -126,6 +127,10 @@ export const BusinessSignUpForm = () => {
               { shouldFocus: true },
             );
           }
+          break;
+        }
+        case EErrorStatus.TOO_MANY_REQUESTS:
+          dispatch(setError(`Too many requests`));
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
