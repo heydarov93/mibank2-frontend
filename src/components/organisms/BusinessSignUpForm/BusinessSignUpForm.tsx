@@ -64,8 +64,12 @@ export const BusinessSignUpForm = () => {
         LOCAL_STORAGE_KEYS.LegalEntityValues,
         JSON.stringify(data),
       );
-      const response: { string: boolean } =
-        await postValidationLegalEntityInfo(data).unwrap();
+      const response = {
+        isEmailAlreadyTaken: false,
+        isNipAlreadyTaken: false,
+      };
+      // const response: { string: boolean } =
+      //   await postValidationLegalEntityInfo(data).unwrap();
 
       const existCheck = Object.entries(response).filter(
         ([, isExist]: [string, boolean]) => isExist === true,
@@ -88,7 +92,7 @@ export const BusinessSignUpForm = () => {
       switch (status) {
         case EErrorStatus.BAD_REQUEST:
           if (errorKeys.includes('isEmailAlreadyTaken')) {
-            dispatch(setError('Your email has already taken'));
+            dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
             setFormError(
               'companyEmail',
               {
@@ -99,7 +103,7 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isNipAlreadyTaken')) {
-            dispatch(setError('Your NIP already taken'));
+            dispatch(setError(`${t('form.error.nipAlreadyRegistered')}`));
             setFormError(
               'nip',
               {
@@ -110,7 +114,9 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isCompanyNameAlreadyTaken')) {
-            dispatch(setError('Your company name already taken'));
+            dispatch(
+              setError(`${t('form.error.companyNameAlreadyRegistered')}`),
+            );
             setFormError(
               'companyName',
               {

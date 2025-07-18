@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -20,7 +20,9 @@ import {
   TOSCheckbox,
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
+import { IErrorData } from 'models/IError';
 import { ILegaLEntity } from 'models/ILegalEntity';
+import { setError } from 'store/reducers';
 import { getLegalEntity } from 'store/selectors/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
@@ -33,6 +35,7 @@ interface IBusinessPasswordForm {
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { t } = useTranslation('translation', {
     keyPrefix: 'common.form.createPassword',
   });
@@ -67,14 +70,7 @@ export const CreatePasswordForm = () => {
 
   const onFormSubmit = async (data: IBusinessPasswordForm) => {
     try {
-      console.log({
-        companyEmail: email,
-        ownerFullName: ownerName,
-        nip,
-        companyName,
-        password: data.password,
-      });
-      const response = await postRegistrationLegalEntityInfo({
+      await postRegistrationLegalEntityInfo({
         companyEmail: email,
         ownerFullName: ownerName,
         nip,
@@ -82,14 +78,15 @@ export const CreatePasswordForm = () => {
         password: data.password,
       }).unwrap();
 
-      console.log(response);
-
       resetForm();
       navigate(TO_VERIFY_EMAIL, {
         state: { email: location.state?.email, from: location.pathname },
       });
     } catch (e) {
-      //
+      const error = e as IErrorData;
+      if (error.originalStatus) {
+        dispatch(setError(t('serverError')));
+      }
     }
   };
 
