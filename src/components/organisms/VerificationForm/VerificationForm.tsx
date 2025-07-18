@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { MemoizedVerificationCode } from './Molecules/VerificationCode/VerificationCode';
-import { VerificationTitle } from './Molecules/VerificationTitle/VerificationTitle';
 import {
   StyledButton,
   StyledVerificationForm,
   StyledVerificationFormContent,
 } from './VerificationForm.styled';
+import VerificationCode from './molecules/VerificationCode/VerificationCode';
+import VerificationTitle from './molecules/VerificationTitle/VerificationTitle';
 
 import {
   useLazyGetUserInfoQuery,
@@ -37,6 +37,7 @@ import {
   localTokenHandler,
   setAuthData,
 } from 'utils/auth';
+
 
 type VerificationFormProps = {
   disableFields?: boolean;
@@ -115,7 +116,7 @@ export const VerificationForm = ({
         if (userInfoResult.status === EUserStatus.REGISTRED) {
           setTimeout(() => {
             navigate(TO_HOME);
-            dispatch(setVerifying(false));
+            dispatch(setVerifying(true));
           }, VERIFICATION_REDIRECT_TIMEOUT);
         }
       }
@@ -219,7 +220,7 @@ export const VerificationForm = ({
       <VerificationTitle email={email} />
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <MemoizedVerificationCode
+          <VerificationCode
             onReady={handleVerificationCode}
             isFormDisabled={isFormDisabled}
             isCodeWrong={isCodeWrong}

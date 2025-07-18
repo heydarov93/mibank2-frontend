@@ -10,7 +10,7 @@ interface VerificationTitleProprs {
   email: string | null;
 }
 
-export const VerificationTitle = ({ email }: VerificationTitleProprs) => {
+const VerificationTitle = ({ email }: VerificationTitleProprs) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'VerificationPage',
   });
@@ -28,3 +28,5 @@ export const VerificationTitle = ({ email }: VerificationTitleProprs) => {
     </>
   );
 };
+
+export default VerificationTitle;

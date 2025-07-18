@@ -16,7 +16,7 @@ jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
 }));
 
-jest.mock('store/selectors', () => ({
+jest.mock('store/slices/auth', () => ({
   getIsVerifying: jest.fn(),
 }));
 
