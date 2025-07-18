@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-
-import VerificationCode from './VerificationCode';
+import { VerificationCode } from './VerificationCode';
 
 import { useOtp } from 'hooks';
 
