@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Box } from '@mui/material';
 import { FieldError, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -18,9 +19,12 @@ import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
-import { IErrorData } from 'models/IError';
+import { ILegalEntityValidationError } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/reducers/AuthSlice';
+import { errorMessage } from 'store/selectors';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
+
+// import { ComponentPropsToStylePropsMap } from '@aws-amplify/ui-react';
 
 interface IBusinessSignUpForm {
   companyName: string;
@@ -62,36 +66,62 @@ export const BusinessSignUpForm = () => {
         LOCAL_STORAGE_KEYS.LegalEntityValues,
         JSON.stringify(data),
       );
-      console.log(data);
-      const response = await postValidationLegalEntityInfo(data).unwrap();
-      const validity = Object.values(response).every(
-        (taken) => taken === false,
+      const response: { string: boolean } =
+        await postValidationLegalEntityInfo(data).unwrap();
+
+      const existCheck = Object.entries(response).filter(
+        ([, isExist]: [string, boolean]) => isExist === true,
       );
-      if (!validity) {
+      if (existCheck.length) {
         throw {
-          originalStatus: EErrorStatus.BAD_REQUEST,
-          body: response,
+          status: EErrorStatus.BAD_REQUEST,
+          existError: existCheck,
         };
       }
       dispatch(setLegalEntityInfo(data));
       navigate(TO_BUSINESS_CREATE_PASSWORD, {
         state: { email: data.companyEmail },
       });
-
       resetForm();
     } catch (e) {
-      //!make more appropriate warning message
-      const error = e as IErrorData;
-      switch (error.status) {
+      const error = e as ILegalEntityValidationError;
+      const { status, existError } = error;
+      const errorKeys = existError.map(([key]: [string, boolean]) => key);
+      switch (status) {
         case EErrorStatus.BAD_REQUEST:
-          setFormError(
-            'companyEmail',
-            {
-              type: 'focus',
-              message: t('SignupPage.email.errorEmailRegistered'),
-            },
-            { shouldFocus: true },
-          );
+          if (errorKeys.includes('isEmailAlreadyTaken')) {
+            dispatch(setError('Your email has already taken'));
+            setFormError(
+              'companyEmail',
+              {
+                type: 'focus',
+                message: t('form.error.errorEmailRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
+          if (errorKeys.includes('isNipAlreadyTaken')) {
+            dispatch(setError('Your NIP already taken'));
+            setFormError(
+              'nip',
+              {
+                type: 'focus',
+                message: t('form.error.nipAlreadyRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
+          if (errorKeys.includes('isCompanyNameAlreadyTaken')) {
+            dispatch(setError('Your company name already taken'));
+            setFormError(
+              'companyName',
+              {
+                type: 'focus',
+                message: t('form.error.companyNameAlreadyRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
@@ -129,7 +159,6 @@ export const BusinessSignUpForm = () => {
             label={t('form.fields.nip')}
             error={errors.nip}
             format={NIP_PATTERN}
-            // allowEmptyFormatting={true}
             placeholder="1234567890"
             textFieldProps={{
               sx: (theme) => ({
