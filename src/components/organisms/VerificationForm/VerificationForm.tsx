@@ -2,20 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  StyledButton,
-  StyledVerificationForm,
-  StyledVerificationFormContent,
-} from './VerificationForm.styled';
-import { VerificationCode } from './molecules/VerificationCode/VerificationCode';
-import { VerificationTitle } from './molecules/VerificationTitle/VerificationTitle';
+import { StyledButton, StyledVerificationForm, StyledVerificationFormContent } from './VerificationForm.styled';
 
 import {
   useLazyGetUserInfoQuery,
   useSendcodeMutation,
   useVerifyCodeMutation,
 } from 'api/services/user-account-service/user-accounts.api';
-import { Timer } from 'components/molecules';
+import { Timer, VerificationCode, VerificationTitle } from 'components/molecules';
 import { TO_HOME, TO_REGISTRATION } from 'constants/navigation/routePaths';
 import {
   TIMER_TIMEOUT,
