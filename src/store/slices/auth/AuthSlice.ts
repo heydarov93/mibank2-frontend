@@ -1,20 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ILegaLEntity } from 'models/ILegalEntity';
+import { IAuthState } from './auth.types';
+
 import { IUserInfo } from 'models/IUserInfo';
+import { SLICE_NAMES } from 'store/constants/sliceNames';
 
-interface AuthState {
-  isVerifying: boolean;
-  email: string;
-  verifyingTimer: number;
-  user: IUserInfo | undefined;
-  legalEntity: ILegaLEntity | undefined;
-  error: string | null;
-  loading: boolean;
-  isAutoLogout: boolean;
-}
-
-const initialState: AuthState = {
+const initialState: IAuthState = {
   isVerifying: false,
   email: '',
   verifyingTimer: 0,
@@ -37,7 +28,7 @@ const initialState: AuthState = {
 };
 
 const AuthSlice = createSlice({
-  name: 'Auth',
+  name: SLICE_NAMES.AUTH,
   initialState,
   reducers: {
     setError(state, action: PayloadAction<string>) {
@@ -90,4 +81,5 @@ export const {
   setIsAutoLogout,
   setLegalEntityInfo,
 } = AuthSlice.actions;
+
 export default AuthSlice.reducer;

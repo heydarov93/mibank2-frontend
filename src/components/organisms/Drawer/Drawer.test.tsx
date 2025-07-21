@@ -4,27 +4,23 @@ import {
   RenderResult,
   screen,
 } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { TemporaryDrawer } from './Drawer';
 
 import {
   MAIN_NAV_LINKS,
-  PERSONAL_NAV_LINKS
+  PERSONAL_NAV_LINKS,
 } from 'constants/navigation/navigation';
 import { ETokenType } from 'enums';
 import { useAppDispatch } from 'hooks';
-import { logoutFromApp } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors';
+import { getUser } from 'store/slices/auth';
+import { logoutFromApp } from 'store/slices/auth/AuthSlice';
 import { localTokenHandler, removeAuthData } from 'utils/auth';
 
 jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
   useAppDispatch: jest.fn(),
-}));
-
-jest.mock('store/selectors', () => ({
-  getUser: jest.fn(),
 }));
 
 jest.mock('react-i18next', () => ({
@@ -36,9 +32,13 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('store/reducers/AuthSlice', () => ({
-  ...jest.requireActual('store/reducers/AuthSlice'),
+jest.mock('store/slices/auth/AuthSlice', () => ({
+  ...jest.requireActual('store/slices/auth/AuthSlice'),
   logoutFromApp: jest.fn().mockReturnValue({ type: 'Auth/logoutFromApp' }),
+}));
+
+jest.mock('store/slices/auth/AuthSelectors', () => ({
+  getUser: jest.fn(),
 }));
 
 const mockNavigate = jest.fn();
@@ -66,9 +66,9 @@ describe('TemporaryDrawer', () => {
     (getUser as jest.Mock).mockReturnValue(null);
 
     renderResult = render(
-      <Router>
+      <BrowserRouter>
         <TemporaryDrawer />
-      </Router>,
+      </BrowserRouter>,
     );
   });
 

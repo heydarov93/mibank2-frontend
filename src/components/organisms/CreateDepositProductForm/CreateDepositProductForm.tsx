@@ -12,9 +12,9 @@ import { NumericFieldControlled } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { DepositFormData } from 'models/IProductInfo';
-import { setDepositData } from 'store/reducers/CreateDepositSlice';
-import { setProductStep } from 'store/reducers/ProductStepperSlice';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
+import { setDepositData } from 'store/slices/deposits/CreateDepositSlice';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { setProductStep } from 'store/slices/products/ProductStepperSlice';
 import {
   createDepositProductSchema,
   TCreateDepositProductValues,

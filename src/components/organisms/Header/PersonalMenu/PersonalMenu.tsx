@@ -15,8 +15,8 @@ import { UserCard } from 'components/molecules';
 import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { logoutFromApp, setUserData } from 'store/reducers/AuthSlice';
-import { getUser } from 'store/selectors';
+import { getUser } from 'store/slices/auth';
+import { logoutFromApp, setUserData } from 'store/slices/auth/AuthSlice';
 import { getEmail, localTokenHandler, removeAuthData } from 'utils/auth';
 
 export const PersonalMenu = () => {

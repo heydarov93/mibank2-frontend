@@ -9,7 +9,7 @@ import { PersonalMenu } from './PersonalMenu';
 import { useGetUserInfoQuery } from 'api/services/user-account-service/user-accounts.api';
 import { ETokenType } from 'enums';
 import { useAppSelector } from 'hooks';
-import { logoutFromApp } from 'store/reducers/AuthSlice';
+import { logoutFromApp } from 'store/slices/auth/AuthSlice';
 import { localTokenHandler, removeAuthData } from 'utils';
 
 jest.mock('react-i18next', () => ({
@@ -27,7 +27,7 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('store/reducers/AuthSlice', () => ({
+jest.mock('store/slices/auth', () => ({
   ...jest.requireActual('store/reducers/AuthSlice'),
   logoutFromApp: jest.fn().mockReturnValue({ type: 'Auth/logoutFromApp' }),
 }));
@@ -84,7 +84,7 @@ jest.mock('hooks', () => ({
   useAppDispatch: jest.fn().mockReturnValue(jest.fn()),
 }));
 
-jest.mock('store/selectors/AuthSelectors', () => ({
+jest.mock('store/slices/auth', () => ({
   getUser: () => ({
     firstName: 'John',
     lastName: 'Doe',

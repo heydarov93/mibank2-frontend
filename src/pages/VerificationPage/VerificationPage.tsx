@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { BackButton } from 'components/atoms';
 import { AuthWrapper, Footer, VerificationForm } from 'components/organisms';
 import { useAppSelector } from 'hooks';
-import { getIsVerifying } from 'store/selectors';
+import { getIsVerifying } from 'store/slices/auth';
 
 export const VerificationPage = () => {
   const location = useLocation();

@@ -21,7 +21,7 @@ jest.mock('hooks', () => ({
   useAppSelector: jest.fn(),
 }));
 
-jest.mock('store/reducers/AuthSlice', () => ({
+jest.mock('store/slices/auth', () => ({
   clearError: jest.fn(),
 }));
 

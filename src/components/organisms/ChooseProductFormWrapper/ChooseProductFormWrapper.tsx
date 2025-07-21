@@ -10,10 +10,10 @@ import CreateDepositProductForm from '../CreateDepositProductForm/CreateDepositP
 import { BackOfficeConfirmationWindow } from 'components/molecules';
 import BackOfficeProductWindow from 'components/molecules/BackOfficeProductWindow/BackOfficeProductWindow';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
-import { getCardFormData } from 'store/selectors/CreateCardSelector';
-import { getDepositForm } from 'store/selectors/CreateDepositSelector';
-import { getProductStep } from 'store/selectors/ProductStepperSelector';
+import { getCardFormData } from 'store/slices/cards/CreateCardSelector';
+import { getDepositForm } from 'store/slices/deposits/CreateDepositSelector';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { getProductStep } from 'store/slices/products/ProductStepperSelector';
 
 export const ChooseProductFormWrapper = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });

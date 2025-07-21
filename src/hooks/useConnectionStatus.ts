@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { clearError, setError } from 'store/reducers';
-import { errorMessage } from 'store/selectors';
+import { clearError, errorMessage, setError } from 'store/slices/auth';
 
 export const useConnectionStatus = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);

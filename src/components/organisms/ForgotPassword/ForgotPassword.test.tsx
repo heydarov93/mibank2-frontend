@@ -8,7 +8,7 @@ import { ForgotPassword } from './ForgotPassword';
 
 import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { useAppDispatch } from 'hooks';
-import { setEmail } from 'store/reducers/AuthSlice';
+import { setEmail } from 'store/slices/auth/AuthSlice';
 
 const initialValues = {
   auth: {
@@ -45,7 +45,7 @@ jest.mock('api/services/user-account-service/user-accounts.api', () => ({
   useGetCodeForForgotPasswordMutation: jest.fn(),
 }));
 
-jest.mock('store/reducers', () => ({
+jest.mock('store/slices/auth', () => ({
   setError: jest.fn(),
   setEmail: jest.fn(),
 }));

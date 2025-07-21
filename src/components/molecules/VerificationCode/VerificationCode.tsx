@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, memo } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -283,5 +283,3 @@ export const VerificationCode = ({
     </StyledBoxContainer>
   );
 };
-
-export const MemoizedVerificationCode = memo(VerificationCode);

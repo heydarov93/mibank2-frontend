@@ -2,20 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { MemoizedVerificationCode } from './Molecules/VerificationCode/VerificationCode';
-import { VerificationTitle } from './Molecules/VerificationTitle/VerificationTitle';
-import {
-  StyledButton,
-  StyledVerificationForm,
-  StyledVerificationFormContent,
-} from './VerificationForm.styled';
+import { StyledButton, StyledVerificationForm, StyledVerificationFormContent } from './VerificationForm.styled';
 
 import {
   useLazyGetUserInfoQuery,
   useSendcodeMutation,
   useVerifyCodeMutation,
 } from 'api/services/user-account-service/user-accounts.api';
-import { Timer } from 'components/molecules';
+import { Timer, VerificationCode, VerificationTitle } from 'components/molecules';
 import { TO_HOME, TO_REGISTRATION } from 'constants/navigation/routePaths';
 import {
   TIMER_TIMEOUT,
@@ -30,14 +24,14 @@ import {
   useErrorHandlers,
 } from 'hooks';
 import { IErrorData } from 'models/IError';
-import { setError, setVerifying } from 'store/reducers';
-import { getVerifyingTimer } from 'store/selectors';
+import { getVerifyingTimer, setError, setVerifying } from 'store/slices/auth';
 import {
   getAuthStatus,
   getEmailFromToken,
   localTokenHandler,
   setAuthData,
 } from 'utils/auth';
+
 
 type VerificationFormProps = {
   disableFields?: boolean;
@@ -110,13 +104,13 @@ export const VerificationForm = ({
         if (userInfoResult.status === EUserStatus.ACTIVE) {
           setTimeout(() => {
             navigate(TO_REGISTRATION);
-            dispatch(setVerifying(false));
+            dispatch(setVerifying(true));
           }, VERIFICATION_REDIRECT_TIMEOUT);
         }
         if (userInfoResult.status === EUserStatus.REGISTRED) {
           setTimeout(() => {
             navigate(TO_HOME);
-            dispatch(setVerifying(false));
+            dispatch(setVerifying(true));
           }, VERIFICATION_REDIRECT_TIMEOUT);
         }
       }
@@ -220,7 +214,7 @@ export const VerificationForm = ({
       <VerificationTitle email={email} />
       <StyledVerificationForm>
         <StyledVerificationFormContent>
-          <MemoizedVerificationCode
+          <VerificationCode
             onReady={handleVerificationCode}
             isFormDisabled={isFormDisabled}
             isCodeWrong={isCodeWrong}

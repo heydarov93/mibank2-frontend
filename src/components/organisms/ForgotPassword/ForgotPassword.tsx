@@ -19,8 +19,7 @@ import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers';
-import { setEmail } from 'store/reducers/AuthSlice';
+import { setEmail, setError } from 'store/slices/auth';
 import { userEmailSchema } from 'validation';
 
 export const ForgotPassword = () => {

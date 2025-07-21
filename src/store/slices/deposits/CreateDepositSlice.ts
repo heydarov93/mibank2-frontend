@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { DepositFormData } from 'models/IProductInfo';
+import { SLICE_NAMES } from 'store/constants/sliceNames';
 
 const initialState: DepositFormData = {
   minimumDepositSum: 0,
@@ -16,7 +17,7 @@ const initialState: DepositFormData = {
 };
 
 const CreateDepositSlice = createSlice({
-  name: 'createDeposit',
+  name: SLICE_NAMES.CREATE_DEPOSIT,
   initialState,
   reducers: {
     setDepositData(state, action: PayloadAction<DepositFormData>) {

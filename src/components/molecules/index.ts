@@ -48,3 +48,5 @@ export { PatternFieldControlled } from './PatternFieldControlled/PatternFieldCon
 export { BackOfficeConfirmationWindow } from './BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
 export { BackOfficeTableItem } from './BackOfficeTableItem/BackOfficeTableItem';
 export { BackOfficeFailWindow } from './BackOfficeFailWindow/BackOfficeFailWindow';
+export { VerificationCode } from './VerificationCode/VerificationCode';
+export { VerificationTitle } from './VerificationTitle/VerificationTitle';

@@ -1,17 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { IProductStep } from './products.types';
+
 import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { SLICE_NAMES } from 'store/constants/sliceNames';
 
-interface ProductStep {
-  step: EProductFormStepper;
-}
-
-const initialState: ProductStep = {
+const initialState: IProductStep = {
   step: EProductFormStepper.PRODUCT_INFO,
 };
 
 const ProductStepperSlice = createSlice({
-  name: 'productStepper',
+  name: SLICE_NAMES.PRODUCT_STEPPER,
   initialState,
   reducers: {
     setProductStep(state, action: PayloadAction<EProductFormStepper>) {
