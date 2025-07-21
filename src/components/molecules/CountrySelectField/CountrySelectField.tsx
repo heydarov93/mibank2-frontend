@@ -61,8 +61,8 @@ export const CountrySelectField = <T extends FieldValues>({
             value={
               countries.find((country) => country.label === field.value) || null
             }
-            renderOption={(_, option) => (
-              <Box key={option.label} component="li">
+            renderOption={(props, option) => (
+              <Box key={option.label} component="li" {...props}>
                 {option.label}
               </Box>
             )}
