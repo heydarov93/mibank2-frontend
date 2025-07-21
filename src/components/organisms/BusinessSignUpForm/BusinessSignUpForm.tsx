@@ -54,7 +54,6 @@ export const BusinessSignUpForm = () => {
       ownerName: '',
     },
   });
-  // TODO: substitute with real submit when BE is ready
   const [postValidationLegalEntityInfo] =
     usePostValidationLegalEntityInfoMutation();
 
@@ -64,10 +63,7 @@ export const BusinessSignUpForm = () => {
         LOCAL_STORAGE_KEYS.LegalEntityValues,
         JSON.stringify(data),
       );
-      // const response = {
-      //   isEmailAlreadyTaken: false,
-      //   isNipAlreadyTaken: false,
-      // };
+
       const response: { string: boolean } =
         await postValidationLegalEntityInfo(data).unwrap();
 
@@ -76,7 +72,7 @@ export const BusinessSignUpForm = () => {
       );
       if (existCheck.length) {
         throw {
-          status: EErrorStatus.BAD_REQUEST,
+          originalStatus: EErrorStatus.BAD_REQUEST,
           existError: existCheck,
         };
       }
@@ -87,9 +83,8 @@ export const BusinessSignUpForm = () => {
       resetForm();
     } catch (e) {
       const error = e as ILegalEntityValidationError;
-      const { status, existError } = error;
-
-      switch (status) {
+      const { originalStatus, existError } = error;
+      switch (originalStatus) {
         case EErrorStatus.BAD_REQUEST: {
           const errorKeys = existError.map(([key]: [string, boolean]) => key);
           if (errorKeys.includes('isEmailAlreadyTaken')) {
@@ -130,7 +125,7 @@ export const BusinessSignUpForm = () => {
           break;
         }
         case EErrorStatus.TOO_MANY_REQUESTS:
-          dispatch(setError(`Too many requests`));
+          dispatch(setError(t('LoginPage.serverError')));
           break;
         default:
           dispatch(setError(t('LoginPage.serverError')));
