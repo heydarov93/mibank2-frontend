@@ -19,7 +19,7 @@ import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { ILegalEntityValidationError } from 'models/IError';
-import { setError, setLegalEntityInfo } from 'store/reducers/AuthSlice';
+import { setError, setLegalEntityInfo } from 'store/slices/auth/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
 // import { ComponentPropsToStylePropsMap } from '@aws-amplify/ui-react';

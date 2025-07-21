@@ -22,8 +22,8 @@ import {
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
 import { IErrorData } from 'models/IError';
 import { ILegaLEntity } from 'models/ILegalEntity';
-import { setError } from 'store/reducers';
-import { getLegalEntity } from 'store/selectors/AuthSelectors';
+import { setError } from 'store/slices/auth';
+import { getLegalEntity } from 'store/slices/auth/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
 interface IBusinessPasswordForm {
