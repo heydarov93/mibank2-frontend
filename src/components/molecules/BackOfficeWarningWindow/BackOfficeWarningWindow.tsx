@@ -21,7 +21,7 @@ import {
   StyledBox,
 } from './BackOfficeWarningWindow.styled';
 
-import { BackOfficeWarningIcon } from 'components/atoms';
+import { WarningIcon } from 'components/atoms';
 import { theme } from 'theme/theme';
 
 interface BackOfficeWarningWindowProps {
@@ -89,7 +89,7 @@ export const BackOfficeWarningWindow = ({
       <DialogTitle sx={{ padding: 0, mb: 2 }}>
         <Box sx={{ display: 'flex', gap: 3 }}>
           <StyledBox>
-            <BackOfficeWarningIcon />
+            <WarningIcon />
           </StyledBox>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <MainHeader>{title}</MainHeader>

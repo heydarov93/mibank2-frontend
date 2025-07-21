@@ -21,6 +21,7 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
         Company Name
       </label>
       <div
+        aria-invalid="false"
         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
       >
         <div
@@ -103,6 +104,7 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
         Company Email
       </label>
       <div
+        aria-invalid="false"
         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
       >
         <div
@@ -144,6 +146,7 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
         Owner's full name
       </label>
       <div
+        aria-invalid="false"
         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
       >
         <div
@@ -176,7 +179,9 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
       </div>
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1lwh4uh-MuiButtonBase-root-MuiButton-root"
+      aria-disabled="true"
+      aria-label="Submit"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1phwrsg-MuiButtonBase-root-MuiButton-root"
       data-testid="save-button"
       disabled=""
       tabindex="-1"

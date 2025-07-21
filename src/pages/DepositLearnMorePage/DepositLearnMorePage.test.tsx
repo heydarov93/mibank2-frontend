@@ -9,8 +9,8 @@ import { DepositLearnMorePage } from './DepositLearnMorePage';
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { theme } from 'theme/theme';
 
-jest.mock('components/atoms/DepositErrorMessage/DepositErrorMessage', () => ({
-  DepositErrorMessage: () => <div>Deposit not found</div>,
+jest.mock('components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage', () => ({
+  ErrorMessage: () => <div>Deposit not found</div>,
 }));
 
 jest.mock(

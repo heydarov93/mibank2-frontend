@@ -13,10 +13,10 @@ import {
   StyledDepositList,
   StyledHeader,
 } from './AvailableDepositsWindow.styled';
+import { ErrorMessage } from './atoms/ErrorMessage/ErrorMessage';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
-import { DepositErrorMessage } from 'components/atoms';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { CloseButton } from 'components/atoms';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
 import { TO_DEPOSIT_LEARN_MORE_BASE } from 'constants/navigation/routePaths';
@@ -65,11 +65,11 @@ export const AvailableDepositsWindow = ({
           marginBottom={2}
         >
           <StyledHeader>{t('availableDeposits')}</StyledHeader>
-          <CloseButtonX onClick={onClose} />
+          <CloseButton onClick={onClose} />
         </Box>
         <StyledDepositList>
           {isDepositsError ? (
-            <DepositErrorMessage />
+            <ErrorMessage />
           ) : isLoadingDeposits ? (
             <CircularProgress />
           ) : (

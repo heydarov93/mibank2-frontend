@@ -1,6 +1,6 @@
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
-export const StyledContainer = styled('div')(
+export const StyledContainer = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
     display: 'flex',
     alignItems: 'center',

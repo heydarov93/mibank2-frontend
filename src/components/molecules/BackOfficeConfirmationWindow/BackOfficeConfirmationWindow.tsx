@@ -10,8 +10,7 @@ import {
   StyledHeader,
 } from './BackOfficeConfirmationWindow.styled';
 
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
-import SuccessfulCreationIcon from 'components/atoms/SuccessfulCreationIcon/SuccessfulCreationIcon';
+import { CloseButton, SuccessfulCreationIcon } from 'components/atoms';
 import { TO_DEPOSIT_LEARN_MORE_BASE } from 'constants/navigation/routePaths';
 
 interface BackOfficeConfirmationWindowProps {
@@ -84,7 +83,7 @@ export const BackOfficeConfirmationWindow = ({
           )}
         </Box>
       </Box>
-      <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
+      <CloseButton onClick={onClose} sx={{ cursor: 'pointer' }} />
     </MainContainer>
   );
 };

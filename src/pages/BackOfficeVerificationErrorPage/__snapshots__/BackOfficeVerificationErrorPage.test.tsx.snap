@@ -22,20 +22,11 @@ exports[`BackOfficeVerificationErrorPage matches snapshot 1`] = `
     <div
       class="MuiBox-root css-4g6ai3"
     >
-      <svg
-        aria-hidden="true"
-        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-lw08pq-MuiSvgIcon-root"
+      <button
         data-testid="reload-button"
-        focusable="false"
-        viewBox="0 0 24 24"
       >
-        <svg
-          aria-label="Reload current page"
-          role="button"
-        >
-          Reload.svg
-        </svg>
-      </svg>
+        Reload Button
+      </button>
     </div>
   </div>
 </div>

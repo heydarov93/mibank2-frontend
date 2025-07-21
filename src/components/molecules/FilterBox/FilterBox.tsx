@@ -9,7 +9,7 @@ import {
   StyledLabel,
 } from './FilterBox.styled';
 
-import FilterIcon from 'components/atoms/FilterIcon/FilterIcon';
+import { FilterIcon } from 'components/atoms';
 import { FilterGroupOptionsProps, FilterGroup } from 'models/IFilterInfo';
 
 export interface FilterBoxProps {

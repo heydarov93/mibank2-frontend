@@ -12,7 +12,7 @@ import {
 } from './LoginForm.styled';
 import { useLogin } from './hooks/useLogin';
 
-import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import { LinkButton, InputField, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,
   PasswordField,
@@ -140,10 +140,10 @@ export const LoginForm = () => {
           errors={errors}
           isFormDisabled={isFormDisabled}
         />
-        <ButtonLink
+        <LinkButton
           message=""
           linkText="LoginPage.formBtnForgotPassword"
-          href={TO_FORGOT_PASSWORD}
+          to={TO_FORGOT_PASSWORD}
         />
         <SubmitButton
           onClick={handleCleanField}
@@ -152,10 +152,10 @@ export const LoginForm = () => {
           sx={{ marginTop: 1, marginBottom: 3 }}
         />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="LoginPage.signUpLink"
         linkText="LoginPage.formBtnSignUp"
-        href={TO_SIGN_UP}
+        to={TO_SIGN_UP}
       />
     </>
   );

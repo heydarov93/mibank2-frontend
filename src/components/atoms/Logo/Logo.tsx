@@ -1,57 +1,67 @@
 import { Icon, Typography } from '@mui/material';
+import { memo, useId, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { LogoSvg } from '../LogoSvg/LogoSvg';
 
 import { StyledContainer } from './Logo.styled';
 
-import { ReactComponent as LogoSvgBlue } from 'assets/icons/Logo.svg';
-import { ReactComponent as LogoSvgWhite } from 'assets/icons/LogoWhite.svg';
 import { DEFAULT_BREAKPOINT_KEYS, LOGO_SIZES } from 'constants/ui/layout';
-import { TLogoSize } from 'types/types';
+import { TLogoSize, TLogoSvgColor } from 'types/types';
 
-type TLogoColor = 'blue' | 'white';
+type TFlexDirection = 'row' | 'column-reverse' | 'column';
 
-interface ILogoProps {
+interface LogoProps {
   size?: TLogoSize;
-  color?: TLogoColor;
+  color?: TLogoSvgColor;
   labelOnTop?: boolean;
 }
 
-const LogoSvg = ({ color }: { color: TLogoColor }) => {
-  const props = { width: '100%', height: '100%' };
-  return (
-    <>
-      {color === 'blue' && <LogoSvgBlue {...props} />}
-      {color === 'white' && <LogoSvgWhite {...props} />}
-    </>
-  );
-};
+export const Logo = memo<LogoProps>(
+  ({
+    size = DEFAULT_BREAKPOINT_KEYS.sm,
+    color = 'blue',
+    labelOnTop = false,
+  }: LogoProps) => {
+    const { t } = useTranslation('translation', { keyPrefix: 'header' });
+    const { iconSize, fontSize } = LOGO_SIZES[size];
+    const labelId = useId();
+    const { textColor, textWidth, flexDirection } = useMemo(() => {
+      const isWhite = color === 'white';
+      const isCompact = (['sm', 'md'] as TLogoSize[]).includes(size);
+      const flexColumn = labelOnTop ? 'column-reverse' : 'column';
+      const flexDirection = isCompact ? 'row' : flexColumn;
+      const textWidth = isCompact ? 'min-content' : 'max-content';
+      const textColor = isWhite ? 'common.white' : 'common.black';
 
-export function Logo({
-  size = DEFAULT_BREAKPOINT_KEYS.sm,
-  color = 'blue',
-  labelOnTop = false,
-}: ILogoProps) {
-  const { t } = useTranslation('translation', { keyPrefix: 'header' });
-  const logo = LOGO_SIZES[size];
+      return {
+        flexDirection,
+        textWidth,
+        textColor,
+      };
+    }, [color, size, labelOnTop]);
 
-  const isWhite = color === 'white';
-  const isCompact = (['sm', 'md'] as TLogoSize[]).includes(size);
-  const flexColumn = labelOnTop ? 'column-reverse' : 'column';
-  const flexDirection = isCompact ? 'row' : flexColumn;
-  const textWidth = isCompact ? 'min-content' : 'max-content';
-
-  return (
-    <StyledContainer flexDirection={flexDirection} data-testid="logo">
-      <Icon sx={{ width: logo.iconSize, height: logo.iconSize }}>
-        <LogoSvg color={color} />
-      </Icon>
-      <Typography
-        fontSize={logo.fontSize}
-        width={textWidth}
-        color={isWhite ? 'common.white' : 'common.black'}
+    return (
+      <StyledContainer
+        flexDirection={flexDirection as TFlexDirection}
+        data-testid="logo"
+        role="img"
+        aria-labelledby={labelId}
       >
-        {t('logoTitle')}
-      </Typography>
-    </StyledContainer>
-  );
-}
+        <Icon sx={{ width: iconSize, height: iconSize }}>
+          <LogoSvg color={color} aria-hidden="true" />
+        </Icon>
+        <Typography
+          id={labelId}
+          fontSize={fontSize}
+          width={textWidth}
+          color={textColor}
+        >
+          {t('logoTitle')}
+        </Typography>
+      </StyledContainer>
+    );
+  },
+);
+
+Logo.displayName = 'Logo';

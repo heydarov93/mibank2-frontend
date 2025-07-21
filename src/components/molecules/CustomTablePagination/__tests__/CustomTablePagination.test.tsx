@@ -50,7 +50,7 @@ describe('CustomTablePagination', () => {
     expect(screen.getByTestId('main-container')).toBeInTheDocument();
     expect(screen.getByTestId('count-select')).toBeInTheDocument();
     expect(screen.getByTestId('pagination-actions')).toBeInTheDocument();
-    expect(screen.getByText('Items per page')).toBeInTheDocument();
+    expect(screen.getByText('itemsPerPage')).toBeInTheDocument();
     expect(screen.getByText('21 - 30 of 100 items')).toBeInTheDocument();
   });
 

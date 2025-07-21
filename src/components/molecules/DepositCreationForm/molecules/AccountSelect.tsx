@@ -3,7 +3,7 @@ import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { StyledLabel } from '../DepositCreationForm.styled';
-import AccountItem from '../atoms/AccountItem';
+import { AccountItem } from '../atoms/AccountItem';
 
 import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
 

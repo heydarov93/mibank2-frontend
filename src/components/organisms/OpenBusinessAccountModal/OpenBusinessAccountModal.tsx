@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { EditCorporateAddressForm } from '../EditCorporateAddressForm/EditCorporateAddressForm';
 import { OpenBusinessAccountForm } from '../OpenBusinessAccountForm/OpenBusinessAccountForm';
 
+import { StyledDialog } from './OpenBusinessAccountModal.styled';
+
 import {
   ModalHeader,
   NavigationWarningModal,
-  StyledDialog,
 } from 'components/atoms';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
 import { useBusinessAccFlow } from 'hooks/useOpenBusinessAccFlow';

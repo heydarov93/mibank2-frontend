@@ -1,10 +1,12 @@
+import { SyntheticEvent } from 'react';
 import { FieldValues } from 'react-hook-form';
 
 import { InputField, InputFieldProps } from '../InputField/InputField';
 
-import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
-
-const MAX_VERIFICATION_CODE_LENGTH = 6;
+import {
+  VALIDATION_LIMITS,
+  VALIDATION_PATTERNS,
+} from 'constants/validation/patterns';
 
 export const PostcodeField = <T extends FieldValues>(
   props: InputFieldProps<T>,
@@ -17,16 +19,16 @@ export const PostcodeField = <T extends FieldValues>(
     target.value = formatted;
   }
 
-  function handleChange(e: React.SyntheticEvent) {
+  const handleChange = (e: SyntheticEvent) => {
     props.onChange?.(e);
     postcodeInputMask(e);
-  }
+  };
 
   return (
     <InputField
-      maxLength={MAX_VERIFICATION_CODE_LENGTH}
-      {...props}
+      maxLength={VALIDATION_LIMITS.VERIFICATION_CODE_LENGTH}
       onChange={handleChange}
+      {...props}
     />
   );
 };

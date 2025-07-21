@@ -2,13 +2,15 @@ import { SxProps, Theme } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { StyledActionsWrapper, StyledModalButton } from 'components/atoms';
+import { StyledActionsWrapper, StyledModalButton } from './OpenBusinessAccountActions.styled';
+
 import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
 
 interface OpenBusinessAccountActionsProps {
   onCancel: () => void;
   sx?: SxProps<Theme>;
 }
+
 
 export const OpenBusinessAccountActions = ({
   sx,

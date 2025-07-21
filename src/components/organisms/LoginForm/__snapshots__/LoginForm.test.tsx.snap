@@ -23,6 +23,7 @@ exports[`LoginForm snapshot should match 1`] = `
           Email
         </label>
         <div
+          aria-invalid="false"
           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
         >
           <div
@@ -64,6 +65,8 @@ exports[`LoginForm snapshot should match 1`] = `
           Password
         </label>
         <div
+          aria-describedby="password-helper-text"
+          aria-invalid="false"
           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root  css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
         >
           <div
@@ -186,7 +189,9 @@ exports[`LoginForm snapshot should match 1`] = `
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
       />
       <a
+        aria-label="Link"
         class="css-mej8ck"
+        data-testid="link-button"
         href="/forgot-password"
         sx="[object Object]"
       >
@@ -194,7 +199,9 @@ exports[`LoginForm snapshot should match 1`] = `
       </a>
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-rnkzl7-MuiButtonBase-root-MuiButton-root"
+      aria-disabled="false"
+      aria-label="Submit"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1rv7oya-MuiButtonBase-root-MuiButton-root"
       data-testid="save-button"
       tabindex="0"
       type="submit"
@@ -214,7 +221,9 @@ exports[`LoginForm snapshot should match 1`] = `
       Don't have an account?
     </p>
     <a
+      aria-label="Link"
       class="css-5ujym"
+      data-testid="link-button"
       href="/signup"
       sx="[object Object]"
     >

@@ -1,31 +1,37 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { IconButton, InputAdornment } from '@mui/material';
-import { MouseEvent } from 'react';
+import { memo, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface InputArrowDownIconProps {
   onDropdownToggle: (event: MouseEvent) => void;
   isDropdownOpen: boolean;
 }
 
-const InputArrowDownIcon = ({
-  onDropdownToggle,
-  isDropdownOpen,
-}: InputArrowDownIconProps) => {
-  return (
-    <InputAdornment position="end">
-      <IconButton
-        onClick={onDropdownToggle}
-        size="small"
-        sx={({ spacing }) => ({
-          transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          transition: 'transform 0.2s ease-in-out',
-          padding: spacing(0.5),
-        })}
-      >
-        <KeyboardArrowDownIcon />
-      </IconButton>
-    </InputAdornment>
-  );
-};
+export const InputArrowDownIcon = memo<InputArrowDownIconProps>(
+  ({ onDropdownToggle, isDropdownOpen }: InputArrowDownIconProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
 
-export default InputArrowDownIcon;
+    return (
+      <InputAdornment position="end">
+        <IconButton
+          onClick={onDropdownToggle}
+          size="small"
+          aria-label={t('label.arrowDown')}
+          aria-expanded={isDropdownOpen}
+          sx={({ spacing }) => ({
+            transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease-in-out',
+            padding: spacing(0.5),
+          })}
+        >
+          <KeyboardArrowDownIcon aria-hidden="true" focusable="false" />
+        </IconButton>
+      </InputAdornment>
+    );
+  },
+);
+
+InputArrowDownIcon.displayName = 'InputArrowDownIcon';

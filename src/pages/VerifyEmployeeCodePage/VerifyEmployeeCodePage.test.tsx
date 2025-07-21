@@ -81,16 +81,12 @@ describe('VerifyEmployeeCodePage', () => {
       const inputs = screen.getAllByRole('textbox');
       expect(inputs).toHaveLength(6);
 
-      expect(
-        screen.getByRole('button', { name: 'confirmButtonText' }),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('save-button')).toBeInTheDocument();
     });
 
     it('disables submit button if OTP input is incomplete', () => {
       renderPage();
-      expect(
-        screen.getByRole('button', { name: 'confirmButtonText' }),
-      ).toBeDisabled();
+      expect(screen.getByTestId('save-button')).toBeDisabled();
     });
   });
 
@@ -108,7 +104,7 @@ describe('VerifyEmployeeCodePage', () => {
         await userEvent.type(inputs[i], `${i + 1}`);
       }
 
-      const button = screen.getByRole('button', { name: 'confirmButtonText' });
+      const button = screen.getByTestId('save-button');
       await userEvent.click(button);
 
       await waitFor(() => {
@@ -131,7 +127,7 @@ describe('VerifyEmployeeCodePage', () => {
         await userEvent.type(inputs[i], `${i + 1}`);
       }
 
-      const button = screen.getByRole('button', { name: 'confirmButtonText' });
+      const button = screen.getByTestId('save-button');
       await userEvent.click(button);
 
       expect(await screen.findByRole('alert')).toHaveTextContent(

@@ -63,9 +63,9 @@ describe('CustomPaginationActions', () => {
     renderWithTheme(<CustomPaginationActions {...defaultProps} />);
 
     expect(screen.getByTestId('pagination-actions')).toBeInTheDocument();
-    expect(screen.getByText('Previous')).toBeInTheDocument();
-    expect(screen.getByText('Next')).toBeInTheDocument();
-    expect(screen.getByText('6')).toBeInTheDocument(); // page + 1
+    expect(screen.getByText('prevBtn')).toBeInTheDocument();
+    expect(screen.getByText('nextBtn')).toBeInTheDocument();
+    expect(screen.getByText('6')).toBeInTheDocument();
     expect(screen.getByText('of 10')).toBeInTheDocument();
     expect(screen.getByTestId('current-page')).toBeInTheDocument();
   });

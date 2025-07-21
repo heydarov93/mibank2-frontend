@@ -6,7 +6,7 @@ import { StyledContainer } from './AuthPageWrapper.styled';
 
 import {
   BackArrow,
-  ButtonLink,
+  LinkButton,
   Logo,
   NavigationWarningModal,
 } from 'components/atoms';
@@ -59,10 +59,10 @@ export function AuthPageWrapper({ children }: { children: ReactNode }) {
       <StyledContainer>
         <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
         {children}
-        <ButtonLink
+        <LinkButton
           message={t('doesAccountExist')}
           linkText={t('logIn')}
-          href={loginRoute}
+          to={loginRoute}
         />
       </StyledContainer>
       <Footer />

@@ -30,8 +30,8 @@ export const StyledSwitch = styled(Switch)(({ theme: { palette } }) => ({
   },
 }));
 
-export const SwitchTitle = styled(Typography)(({ theme: { typography } }) => ({
+export const StyledSwitchTitle = styled(Typography)(({ theme: { typography } }) => ({
   fontFamily: typography.mediumLogo?.fontFamily,
-  fontWeight: '500',
+  fontWeight: 500,
   fontSize: typography.mediumLogo?.fontSize,
 }));
