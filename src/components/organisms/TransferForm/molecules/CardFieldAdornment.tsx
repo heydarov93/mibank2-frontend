@@ -3,8 +3,7 @@ import { InputAdornment } from '@mui/material';
 import { ISavedCardAccount } from '../hooks/useAccounts';
 import { IUserCardAccountOption } from '../interfaces/IUserAccountOption';
 
-import { CardIssuerIcon } from 'components/atoms';
-import WalletIcon from 'components/atoms/WalletIcon/WalletIcon';
+import { CardIssuerIcon, WalletIcon } from 'components/atoms';
 
 export function CardFieldAdornment({
   options,

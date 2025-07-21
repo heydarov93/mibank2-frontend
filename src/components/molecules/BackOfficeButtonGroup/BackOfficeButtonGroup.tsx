@@ -1,13 +1,11 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TableData } from '../BackOfficeTableItem/BackOfficeTableItem';
 
 import { StyledButton } from './BackOfficeButtonGroup.styled';
 
-import PenIcon from 'components/atoms/PenIcon/PenIcon';
-import TrashIcon from 'components/atoms/TrashIcon/TrashIcon';
+import { PenIcon, TrashIcon } from 'components/atoms';
 import { theme } from 'theme/theme';
 
 interface BackOfficeButtonGroupProps {

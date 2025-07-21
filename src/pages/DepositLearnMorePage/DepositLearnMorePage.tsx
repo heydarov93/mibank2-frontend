@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { StyledContainer } from './DepositLearnMorePage.styled';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
-import { DepositErrorMessage } from 'components/atoms';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
 import {
   AvailableDepositsWindow,
@@ -14,6 +13,7 @@ import {
   DepositLearnMoreHeader,
   OpenDepositModal,
 } from 'components/organisms';
+import { ErrorMessage } from 'components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage';
 import useDisclosure from 'hooks/useDisclosure';
 import { IDeposit } from 'models/IDepositInfo';
 
@@ -29,7 +29,7 @@ export const DepositLearnMorePage = () => {
     isLoading,
     isError: isDepositError,
   } = useGetDepositsQuery({});
-  
+
   const depositsData = deposits?.content || [];
   const deposit = useMemo(() => {
     return depositsData.find((deposit) => deposit.id === depositId) || null;
@@ -65,7 +65,7 @@ export const DepositLearnMorePage = () => {
   if (isDepositError) {
     return (
       <StyledContainer>
-        <DepositErrorMessage />
+        <ErrorMessage />
       </StyledContainer>
     );
   }

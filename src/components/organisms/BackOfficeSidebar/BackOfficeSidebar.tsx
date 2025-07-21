@@ -8,9 +8,7 @@ import { ReactComponent as PlusIcon } from 'assets/icons/PlusIcon.svg';
 import { ReactComponent as ViewClientsIcon } from 'assets/icons/ViewClientsIcon.svg';
 import { ReactComponent as ViewEmployeesIcon } from 'assets/icons/ViewEmployeesIcon.svg';
 import { ReactComponent as WalletIcon } from 'assets/icons/WalletIcon.svg';
-import { Logo } from 'components/atoms';
-import LogoutButton from 'components/atoms/LogoutButton/LogoutButton';
-import SettingsButton from 'components/atoms/SettingsButton/SettingsButton';
+import { Logo, LogoutButton, SettingsButton } from 'components/atoms';
 import BackOfficeNavigationLink from 'components/molecules/BackOfficeNavigationLinks/BackOfficeNavigationLink';
 import {
   BACK_OFFICE_EMPLOYEE_SIGN_IN,

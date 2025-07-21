@@ -10,8 +10,7 @@ import {
   StyledIcon,
 } from './BackOfficeFailWindow.styled';
 
-import { BackOfficeWarningIcon } from 'components/atoms/BackOfficeWarningIcon/BackOfficeWarningIcon';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { WarningIcon, CloseButton } from 'components/atoms';
 
 interface BackOfficeFailWindowProps {
   onClose: () => void;
@@ -43,7 +42,7 @@ export const BackOfficeFailWindow = ({
         })}
       >
         <StyledIcon>
-          <BackOfficeWarningIcon sx={{ color: theme.palette.error.main }} />
+          <WarningIcon />
         </StyledIcon>
         <Box
           sx={{
@@ -71,7 +70,7 @@ export const BackOfficeFailWindow = ({
           )}
         </Box>
       </Box>
-      <CloseButtonX onClick={onClose} sx={{ cursor: 'pointer' }} />
+      <CloseButton onClick={onClose} sx={{ cursor: 'pointer' }} />
     </MainContainer>
   );
 };

@@ -15,6 +15,14 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('components/atoms', () => ({
+  ReloadButton: ({ onClick }: { onClick: () => void }) => (
+    <button data-testid="reload-button" onClick={onClick}>
+      Reload Button
+    </button>
+  ),
+}));
+
 const renderPage = () => {
   return render(
     <BrowserRouter>

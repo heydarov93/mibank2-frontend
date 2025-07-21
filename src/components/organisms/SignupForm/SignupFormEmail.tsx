@@ -12,7 +12,7 @@ import {
 } from './SignupForm.styled';
 
 import { useCheckEmailMutation } from 'api/services/user-account-service/user-accounts.api';
-import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import { LinkButton, InputField, SubmitButton } from 'components/atoms';
 import {
   TO_CREATE_PASSWORD,
   TO_SIGN_IN,
@@ -114,10 +114,10 @@ export const SignupFormEmail = () => {
           sx={{ mt: 2 }}
         />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href={TO_SIGN_IN}
+        to={TO_SIGN_IN}
         delay={0.5}
         shake={isShake}
       />

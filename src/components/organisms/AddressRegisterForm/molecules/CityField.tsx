@@ -6,10 +6,10 @@ import {
   ErrorMessage,
   StyledCityAutocomplete,
   StyledCityDropdown,
-  StyledFieldLabel
+  StyledFieldLabel,
 } from '../AddressRegisterForm.styled';
-import CityMenuItem from '../atoms/CityMenuItem';
-import InputArrowDownIcon from '../atoms/InputArrowDownIcon';
+import { CityMenuItem } from '../atoms/CityMenuItem';
+import { InputArrowDownIcon } from '../atoms/InputArrowDownIcon';
 import { useCityDropdown } from '../hooks/useCityDropdown';
 
 import { ILegalAddress } from 'models/IRegistration';

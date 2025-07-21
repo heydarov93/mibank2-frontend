@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button, SxProps } from '@mui/material';
-import { SetStateAction } from 'react';
+import { SetStateAction, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function CardInfoButton({
@@ -19,23 +19,31 @@ export function CardInfoButton({
     keyPrefix: 'Homepage.sidebar.myCards',
   });
 
-  function handleVisibilityToggle() {
+  const handleVisibilityToggle = () => {
     onClick((v) => !v);
-  }
+  };
+
+  const Icon = useMemo(
+    () => (clicked ? KeyboardArrowUpIcon : KeyboardArrowDownIcon),
+    [clicked],
+  );
+
+  const ariaLabel = useMemo(() => (clicked ? 'Collapse' : 'Expand'), [clicked]);
 
   return (
     <Button
-      disableRipple
       sx={{
         fontFamily: 'inherit',
         fontWeight: 500,
         background: 'unset !important',
         ...sx,
       }}
-      onClick={handleVisibilityToggle}
-      aria-label="expand"
+      disableRipple
       size="small"
-      endIcon={clicked ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      aria-expanded={clicked}
+      aria-label={ariaLabel}
+      onClick={handleVisibilityToggle}
+      endIcon={<Icon aria-hidden="true" focusable="false" />}
       disabled={disabled}
     >
       {t('cardInfo')}

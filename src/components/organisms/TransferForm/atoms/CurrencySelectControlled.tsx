@@ -1,4 +1,5 @@
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { CurrencySelect } from 'components/molecules';
 
@@ -11,12 +12,18 @@ export function CurrencySelectControlled<T extends FieldValues>({
   name,
   control,
 }: CurrencySelectControlledProps<T>) {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Accessibility',
+  });
+
   return (
     <Controller
       name={name}
       control={control}
       defaultValue={'PLN' as never}
-      render={({ field }) => <CurrencySelect {...field} />}
+      render={({ field }) => (
+        <CurrencySelect {...field} aria-label={t('label.currencySelector')} />
+      )}
     />
   );
 }

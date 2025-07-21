@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import { StyledTableTitle } from './BackOfficeTableTitle.styled';
 
-import TableFilterIcon from 'components/atoms/TableFilterIcon/TableFilterIcon';
+import { TableFilterIcon } from 'components/atoms';
 import { SORT_ORDER } from 'constants/business/sortOrder';
 import { TSortOrder } from 'types/types';
 

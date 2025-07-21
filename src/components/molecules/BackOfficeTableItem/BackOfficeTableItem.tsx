@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import BackOfficeButtonGroup from '../BackOfficeButtonGroup/BackOfficeButtonGroup';
 
 import { StyledTableCell } from './BackOfficeTableItem.styled';
 
-import RaddioButton from 'components/atoms/SwitchButton/SwitchButton';
+import { SwitchButton } from 'components/atoms';
 
 export interface TableData {
   id: number;
@@ -50,14 +50,14 @@ export const BackOfficeTableItem = ({
   onDeleteClick,
   onEditClick,
 }: BackOfficeTableItemProps) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   return (
     <>
       {tableHead.map(({ key }) => (
         <StyledTableCell key={key}>
           {key === 'productStatus' ? (
-            <RaddioButton isActive={isActive} setIsActive={setIsActive} />
+            <SwitchButton isChecked={isChecked} setIsChecked={setIsChecked} />
           ) : (
             tableData[key as keyof TableData] || ''
           )}
@@ -65,7 +65,7 @@ export const BackOfficeTableItem = ({
       ))}
       <StyledTableCell>
         <BackOfficeButtonGroup
-          isDisabled={isActive}
+          isDisabled={isChecked}
           product={tableData}
           onEditClick={onEditClick}
           onDeleteClick={onDeleteClick}
@@ -74,4 +74,3 @@ export const BackOfficeTableItem = ({
     </>
   );
 };
-

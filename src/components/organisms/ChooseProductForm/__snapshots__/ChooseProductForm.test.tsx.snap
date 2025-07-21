@@ -222,6 +222,7 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
           Product Name
         </p>
         <div
+          aria-invalid="false"
           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
         >
           <div
@@ -300,7 +301,9 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
         </div>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+        aria-disabled="true"
+        aria-label="Submit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1muif41-MuiButtonBase-root-MuiButton-root"
         data-testid="save-button"
         disabled=""
         tabindex="-1"
@@ -535,6 +538,7 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
           Product Name
         </p>
         <div
+          aria-invalid="false"
           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1gnt9ig-MuiFormControl-root-MuiTextField-root"
         >
           <div
@@ -613,7 +617,9 @@ exports[`ChooseProductForm - Visual Rendering renders correctly and matches snap
         </div>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1llcp5k-MuiButtonBase-root-MuiButton-root"
+        aria-disabled="true"
+        aria-label="Submit"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-fullWidth css-1muif41-MuiButtonBase-root-MuiButton-root"
         data-testid="save-button"
         disabled=""
         tabindex="-1"

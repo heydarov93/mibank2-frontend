@@ -1,21 +1,30 @@
+import { memo, ReactNode } from 'react';
+
 interface TabPanelProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   index: number;
   value: number;
 }
 
-export const TabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
+export const TabPanel = memo<TabPanelProps>(
+  ({ children, index, value, ...props }: TabPanelProps) => {
+    const isActive = value === index;
+    const tabId = `tab-${index}`;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      {...other}
-    >
-      {value === index && children}
-    </div>
-  );
-};
+    return (
+      <div
+        role="tabpanel"
+        hidden={!isActive}
+        id={tabId}
+        aria-labelledby={tabId}
+        aria-hidden={!isActive}
+        tabIndex={isActive ? 0 : -1}
+        {...props}
+      >
+        {isActive && children}
+      </div>
+    );
+  },
+);
+
+TabPanel.displayName = 'TabPanel';

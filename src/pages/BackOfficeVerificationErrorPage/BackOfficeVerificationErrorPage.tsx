@@ -7,7 +7,8 @@ import {
   StyledTitleText,
 } from './BackOfficeVerificationErrorPage.styled';
 
-import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
+import { ReloadButton } from 'components/atoms';
+
 
 export const BackOfficeVerificationErrorPage = () => {
   const { t } = useTranslation('translation', {

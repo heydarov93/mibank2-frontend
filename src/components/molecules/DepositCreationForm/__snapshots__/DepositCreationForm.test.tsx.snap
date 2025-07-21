@@ -63,20 +63,24 @@ exports[`DepositCreationForm matches snapshot 1`] = `
             <div
               class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
             >
-              <div
+              <span
+                aria-label="USD"
                 class="MuiBox-root css-axw7ok"
+                role="text"
               >
                 <svg
+                  aria-label="label.currencyFlag"
                   data-testid="currency-flag-icon"
+                  role="img"
                 >
                   UsaFlag.svg
                 </svg>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1v0y3wm-MuiTypography-root"
+                <span
+                  class="MuiTypography-root MuiTypography-body2 css-84o3q7-MuiTypography-root"
                 >
                   USD
-                </p>
-              </div>
+                </span>
+              </span>
             </div>
             <fieldset
               aria-hidden="true"

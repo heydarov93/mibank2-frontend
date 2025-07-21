@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PrimaryHeader, SecondaryHeader } from './BackOfficeViewHeader.styled';
 
-import { SubmitButton } from 'components/atoms';
-import ButtonPlusIcon from 'components/atoms/ButtonPlusIcon/ButtonPlusIcon';
+import { PlusIcon, SubmitButton } from 'components/atoms';
 
 interface BackOfficeViewHeaderProps {
   primaryHeader: string;
@@ -43,7 +42,7 @@ export const BackOfficeViewHeader = ({
           letterSpacing: 0,
         }}
         buttonContent={btnContent}
-        startIcon={<ButtonPlusIcon />}
+        startIcon={<PlusIcon />}
         onClick={() => {
           navigate(path);
         }}

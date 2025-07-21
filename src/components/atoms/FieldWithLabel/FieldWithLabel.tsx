@@ -1,20 +1,35 @@
 import { Stack, SxProps, Theme, Typography } from '@mui/material';
+import { memo, ReactNode, useId } from 'react';
 
 interface FieldWithLabelProps {
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
   sx?: SxProps<Theme>;
 }
 
-export const FieldWithLabel = ({
-  label,
-  sx,
-  children,
-}: FieldWithLabelProps) => {
-  return (
-    <Stack gap={0.5} sx={{ '.MuiInputBase-input': { fontSize: 14 }, ...sx }}>
-      <Typography sx={{ fontWeight: 500, fontSize: 14 }}>{label}</Typography>
-      {children}
-    </Stack>
-  );
-};
+export const FieldWithLabel = memo<FieldWithLabelProps>(
+  ({ label, sx, children }: FieldWithLabelProps) => {
+    const id = useId();
+    const labelId = `${id}-field-label`;
+
+    return (
+      <Stack
+        sx={{ '.MuiInputBase-input': { fontSize: 14 }, gap: 0.5, ...sx }}
+        role="group"
+        aria-labelledby={labelId}
+      >
+        <Typography
+          id={labelId}
+          component="span"
+          variant="subtitle2"
+          sx={{ fontWeight: 500, fontSize: 14 }}
+        >
+          {label}
+        </Typography>
+        {children}
+      </Stack>
+    );
+  },
+);
+
+FieldWithLabel.displayName = 'FieldWithLabel';
