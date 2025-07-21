@@ -70,8 +70,8 @@ export const CitySelectField = <T extends FieldValues>({
               POLISH_CITIES.find((option) => option.city === field.value) ||
               null
             }
-            renderOption={(_, option) => (
-              <Box key={option.city} component="li">
+            renderOption={(props, option) => (
+              <Box key={option.city} component="li" {...props}>
                 <StyledCityText>
                   <span>{option.city} </span>
                   <span className="voivodeship-text">{option.voivodeship}</span>
