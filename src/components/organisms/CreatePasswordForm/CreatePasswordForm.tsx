@@ -20,16 +20,9 @@ import {
   TOSCheckbox,
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
-import { IErrorData } from 'models/IError';
 import { setError } from 'store/slices/auth';
 import { getLegalEntity } from 'store/slices/auth/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
-
-interface IBusinessPasswordForm {
-  password: string;
-  confirmPassword: string;
-  checkbox?: boolean | undefined;
-}
 
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
@@ -62,10 +55,12 @@ export const CreatePasswordForm = () => {
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
   const [postRegistrationLegalEntityInfo] =
     usePostRegistrationLegalEntityInfoMutation();
-  const { ownerFullName, email, nip, companyName } =
-    useSelector(getLegalEntity);
 
-  const onFormSubmit = async (data: IBusinessPasswordForm) => {
+  const legalEntity = useSelector(getLegalEntity);
+  if (!legalEntity) return null;
+  const { ownerFullName, email, nip, companyName } = legalEntity;
+
+  const onFormSubmit = async (data: TUserSignupValues) => {
     try {
       await postRegistrationLegalEntityInfo({
         companyEmail: email,
@@ -79,10 +74,11 @@ export const CreatePasswordForm = () => {
       navigate(TO_VERIFY_EMAIL, {
         state: { email: location.state?.email, from: location.pathname },
       });
-    } catch (e) {
-      const error = e as IErrorData;
-      if (error.originalStatus) {
+    } catch (err) {
+      if (typeof err === 'object' && err !== null && 'status' in err) {
         dispatch(setError(t('serverError')));
+      } else {
+        dispatch(setError(t('unexpectedError')));
       }
     }
   };

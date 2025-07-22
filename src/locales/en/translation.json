@@ -332,7 +332,8 @@
         "emailMaxLen": "Maximum 320 characters",
         "nipAlreadyRegistered": "This NIP is already registered",
         "companyNameAlreadyRegistered": "This company name is already registered",
-        "errorEmailRegistered": "This email is already registered"
+        "errorEmailRegistered": "This email is already registered",
+        "serverError": "Unknown Server Error, Please try again later"
       }
     }
   },

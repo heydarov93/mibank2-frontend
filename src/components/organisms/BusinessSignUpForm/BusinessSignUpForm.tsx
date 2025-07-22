@@ -51,7 +51,7 @@ export const BusinessSignUpForm = () => {
       ownerName: '',
     },
   });
-  const [postValidationLegalEntityInfo] =
+  const [postValidationLegalEntityInfo, { isLoading }] =
     usePostValidationLegalEntityInfoMutation();
 
   const onSubmit = async (data: IBusinessSignUpForm) => {
@@ -75,9 +75,16 @@ export const BusinessSignUpForm = () => {
       resetForm();
     } catch (e) {
       const error = e as ILegalEntityValidationError;
-      const { originalStatus, existError } = error;
+      const { originalStatus } = error;
+      const existError = Array.isArray(error.existError)
+        ? error.existError
+        : [];
       switch (originalStatus) {
         case EErrorStatus.BAD_REQUEST: {
+          if (existError.length === 0) {
+            dispatch(setError(t('form.error.serverError')));
+            break;
+          }
           const errorKeys = existError.map(([key]: [string, boolean]) => key);
           if (errorKeys.includes('isEmailAlreadyTaken')) {
             dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
@@ -117,10 +124,10 @@ export const BusinessSignUpForm = () => {
           break;
         }
         case EErrorStatus.TOO_MANY_REQUESTS:
-          dispatch(setError(t('LoginPage.serverError')));
+          dispatch(setError(t('form.error.serverError')));
           break;
         default:
-          dispatch(setError(t('LoginPage.serverError')));
+          dispatch(setError(t('form.error.serverError')));
           break;
       }
     }
@@ -191,7 +198,7 @@ export const BusinessSignUpForm = () => {
         </Box>
         <SubmitButton
           buttonContent={t('form.submitLabel')}
-          isDisabled={!isValid}
+          isDisabled={!isValid || isLoading}
           sx={{ marginBottom: 3 }}
         />
       </StyledForm>

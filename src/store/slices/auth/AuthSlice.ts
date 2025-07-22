@@ -54,16 +54,25 @@ const AuthSlice = createSlice({
     },
     logoutFromApp(state) {
       state.user = initialState.user;
+      state.legalEntity = initialState.legalEntity;
     },
     setIsAutoLogout: (state, action) => {
       state.isAutoLogout = action.payload;
     },
-    setLegalEntityInfo(state, action) {
-      if (!state.legalEntity) return;
-      state.legalEntity.email = action.payload.companyEmail;
-      state.legalEntity.companyName = action.payload.companyName;
-      state.legalEntity.nip = action.payload.nip;
-      state.legalEntity.ownerFullName = action.payload.ownerName;
+    setLegalEntityInfo(
+      state,
+      action: PayloadAction<{
+        companyEmail: string;
+        companyName: string;
+        nip: string;
+        ownerName: string;
+      }>,
+    ) {
+      const { companyEmail, companyName, nip, ownerName } = action.payload;
+      state.legalEntity.email = companyEmail;
+      state.legalEntity.companyName = companyName;
+      state.legalEntity.nip = nip;
+      state.legalEntity.ownerFullName = ownerName;
     },
   },
 });
