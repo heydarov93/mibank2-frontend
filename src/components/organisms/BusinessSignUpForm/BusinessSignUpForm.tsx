@@ -14,7 +14,6 @@ import { usePostValidationLegalEntityInfoMutation } from 'api/services/user-acco
 import { InputField, SubmitButton } from 'components/atoms';
 import { PatternFieldControlled } from 'components/molecules';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
-import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
@@ -57,12 +56,7 @@ export const BusinessSignUpForm = () => {
 
   const onSubmit = async (data: IBusinessSignUpForm) => {
     try {
-      localStorage.setItem(
-        LOCAL_STORAGE_KEYS.LegalEntityValues,
-        JSON.stringify(data),
-      );
-
-      const response: { string: boolean } =
+      const response: Record<string, boolean> =
         await postValidationLegalEntityInfo(data).unwrap();
 
       const existCheck = Object.entries(response).filter(

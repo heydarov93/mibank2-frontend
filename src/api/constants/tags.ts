@@ -74,4 +74,6 @@ export const USER_ACCOUNT_TAGS = {
   USER_INFO: 'UserInfo',
   REFERSH_TOKEN: 'RefreshToken',
   REGISTRATION: 'Registration',
+  LEGAL_ENTITY_VALIDATION: 'ValidateLegalEntity',
+  LEGAL_ENTITY_SIGN_UP: 'SgnUpLegalEntity',
 } as const;

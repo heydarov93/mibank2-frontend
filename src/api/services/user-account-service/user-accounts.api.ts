@@ -127,6 +127,7 @@ export const userAccountsApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [USER_ACCOUNT_TAGS.LEGAL_ENTITY_VALIDATION],
     }),
     postRegistrationLegalEntityInfo: builder.mutation({
       query: (data: ILegalEntitySignUpRequest) => ({
@@ -134,6 +135,7 @@ export const userAccountsApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [USER_ACCOUNT_TAGS.LEGAL_ENTITY_SIGN_UP],
     }),
   }),
 });

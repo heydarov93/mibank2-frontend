@@ -1,4 +1,4 @@
-export interface ILegaLEntity {
+export interface ILegalEntity {
   ownerFullName: string;
   companyName: string;
   email: string;

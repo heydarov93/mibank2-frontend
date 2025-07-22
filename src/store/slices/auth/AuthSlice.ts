@@ -40,7 +40,6 @@ const AuthSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
-
     setVerifyingTimer: (state, action) => {
       state.verifyingTimer = action.payload;
     },
@@ -60,7 +59,7 @@ const AuthSlice = createSlice({
       state.isAutoLogout = action.payload;
     },
     setLegalEntityInfo(state, action) {
-      if (!state.legalEntity) return state;
+      if (!state.legalEntity) return;
       state.legalEntity.email = action.payload.companyEmail;
       state.legalEntity.companyName = action.payload.companyName;
       state.legalEntity.nip = action.payload.nip;
