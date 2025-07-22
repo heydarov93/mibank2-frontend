@@ -1,4 +1,4 @@
-import { EXCHANGE_RATE_TAGS } from 'api/constants/tags';
+import { EXCHANGE_RATE_TAGS } from 'constants/api/tags';
 import { TCurrency } from 'types/types';
 
 interface ICurrencyConversionBase {

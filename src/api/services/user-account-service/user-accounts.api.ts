@@ -5,13 +5,13 @@ import {
   TUserAccountTag,
 } from './user-acounts.types';
 
-import { CACHE_DURATION } from 'api/constants/durations';
-import { USER_ACCOUNT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { createBaseQuery } from 'api/core/base-query';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { USER_ACCOUNT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { IAuth, ILoginData } from 'models/IAuth';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
-import { baseQueryCreator } from 'store/baseQueryCreator';
 import { getEmail, localTokenHandler } from 'utils/auth';
 
 const email = getEmail();
@@ -19,7 +19,7 @@ const token = localTokenHandler.getToken(ETokenType.ACCESS);
 
 export const userAccountsApi = createApi({
   reducerPath: 'userAccountsApi',
-  baseQuery: baseQueryCreator(),
+  baseQuery: createBaseQuery(),
   tagTypes: Object.values(USER_ACCOUNT_TAGS) as TUserAccountTag[],
   keepUnusedDataFor: CACHE_DURATION.DEFAULT,
   refetchOnMountOrArgChange: true,
@@ -28,7 +28,7 @@ export const userAccountsApi = createApi({
   endpoints: (builder) => ({
     getUserInfo: builder.query({
       query: (data) => ({
-        url: endpoints.users.getUserDetails(data.email),
+        url: API_ENDPOINTS.users.getUserDetails(data.email),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${data.token}`,
@@ -39,7 +39,7 @@ export const userAccountsApi = createApi({
     }),
     authorize: builder.mutation<IAuth, ILoginData>({
       query: (credentials) => ({
-        url: endpoints.users.authenticateUser,
+        url: API_ENDPOINTS.users.authenticateUser,
         method: 'POST',
         body: credentials,
       }),
@@ -47,14 +47,14 @@ export const userAccountsApi = createApi({
     }),
     sendcode: builder.mutation({
       query: () => ({
-        url: endpoints.users.sendLoginCode,
+        url: API_ENDPOINTS.users.sendLoginCode,
         method: 'GET',
       }),
       invalidatesTags: [USER_ACCOUNT_TAGS.CODE],
     }),
     verifyCode: builder.mutation({
       query: (code) => ({
-        url: endpoints.users.verifyLoginCode,
+        url: API_ENDPOINTS.users.verifyLoginCode,
         method: 'POST',
         body: code,
       }),
@@ -62,7 +62,7 @@ export const userAccountsApi = createApi({
     }),
     checkEmail: builder.mutation({
       query: (email) => ({
-        url: endpoints.users.checkUserEmail,
+        url: API_ENDPOINTS.users.checkUserEmail,
         method: 'POST',
         body: email,
       }),
@@ -70,7 +70,7 @@ export const userAccountsApi = createApi({
     }),
     confirmForgotPassword: builder.mutation({
       query: (data: IConfirmForgotPasswordRequest) => ({
-        url: endpoints.users.confirmForgotPassword,
+        url: API_ENDPOINTS.users.confirmForgotPassword,
         method: 'POST',
         body: data,
       }),
@@ -78,7 +78,7 @@ export const userAccountsApi = createApi({
     }),
     registerNewUser: builder.mutation({
       query: (data) => ({
-        url: endpoints.users.registerUser,
+        url: API_ENDPOINTS.users.registerUser,
         method: 'POST',
         body: data,
       }),
@@ -86,7 +86,7 @@ export const userAccountsApi = createApi({
     }),
     getRefreshToken: builder.mutation({
       query: ({ email, refreshToken }) => ({
-        url: endpoints.users.refreshAuthToken,
+        url: API_ENDPOINTS.users.refreshAuthToken,
         method: 'POST',
         body: { email, refreshToken },
       }),
@@ -94,7 +94,7 @@ export const userAccountsApi = createApi({
     }),
     postRegistrationInfo: builder.mutation({
       query: (data: IRegistrationForApi) => ({
-        url: endpoints.users.addUserDetails(email ?? ''),
+        url: API_ENDPOINTS.users.addUserDetails(email ?? ''),
         method: 'POST',
         body: data,
         headers: {
@@ -105,7 +105,7 @@ export const userAccountsApi = createApi({
     }),
     getPostcode: builder.mutation({
       query: (address) => ({
-        url: endpoints.users.getUserPostcode,
+        url: API_ENDPOINTS.users.getUserPostcode,
         method: 'POST',
         body: address,
       }),
@@ -113,7 +113,7 @@ export const userAccountsApi = createApi({
     }),
     getCodeForForgotPassword: builder.mutation({
       query: (data) => ({
-        url: endpoints.users.sendForgotPasswordCode,
+        url: API_ENDPOINTS.users.sendForgotPasswordCode,
         method: 'POST',
         body: data,
       }),

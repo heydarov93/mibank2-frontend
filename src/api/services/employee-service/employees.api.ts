@@ -17,15 +17,15 @@ import {
   TValidateOTPResponse,
 } from './employees.types';
 
-import { CACHE_DURATION } from 'api/constants/durations';
-import { EMPLOYEE_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
-import { baseQueryCreator } from 'store/baseQueryCreator';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { createBaseQuery } from 'api/core/base-query';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { EMPLOYEE_TAGS } from 'constants/api/tags';
 import { TId } from 'types/types';
 
 export const employeesApi = createApi({
   reducerPath: 'employeesApi',
-  baseQuery: baseQueryCreator(),
+  baseQuery: createBaseQuery(),
   tagTypes: Object.values(EMPLOYEE_TAGS) as TEmployeeTag[],
   keepUnusedDataFor: CACHE_DURATION.DEFAULT,
   refetchOnMountOrArgChange: true,
@@ -37,7 +37,7 @@ export const employeesApi = createApi({
       { email: string }
     >({
       query: ({ email }) => ({
-        url: endpoints.employees.validateEmployeeEmail,
+        url: API_ENDPOINTS.employees.validateEmployeeEmail,
         method: 'POST',
         params: { email },
       }),
@@ -55,7 +55,7 @@ export const employeesApi = createApi({
         firstName,
         lastName,
       }) => ({
-        url: endpoints.employees.getEmployeeList,
+        url: API_ENDPOINTS.employees.getEmployeeList,
         method: 'GET',
         params: {
           page,
@@ -80,7 +80,7 @@ export const employeesApi = createApi({
       { token: string }
     >({
       query: ({ token }) => ({
-        url: endpoints.employees.setup2FA,
+        url: API_ENDPOINTS.employees.setup2FA,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ export const employeesApi = createApi({
       TUpdateEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.updateEmployee(data.id as TId),
+        url: API_ENDPOINTS.employees.updateEmployee(data.id as TId),
         method: 'PATCH',
         body: data,
       }),
@@ -106,7 +106,7 @@ export const employeesApi = createApi({
     }),
     deleteEmployee: builder.mutation<void, TDeleteEmployeeRequest>({
       query: (id) => ({
-        url: endpoints.employees.deleteEmployee(id),
+        url: API_ENDPOINTS.employees.deleteEmployee(id),
         method: 'DELETE',
       }),
       invalidatesTags: (_result, _error, id) => [
@@ -116,7 +116,7 @@ export const employeesApi = createApi({
     }),
     validateOTP: builder.mutation<TValidateOTPResponse, TValidateOTPRequest>({
       query: (data) => ({
-        url: endpoints.employees.validateOTP,
+        url: API_ENDPOINTS.employees.validateOTP,
         method: 'POST',
         body: data,
       }),
@@ -127,7 +127,7 @@ export const employeesApi = createApi({
       IRegisterEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.registerEmployee,
+        url: API_ENDPOINTS.employees.registerEmployee,
         method: 'POST',
         body: data,
       }),
@@ -140,7 +140,7 @@ export const employeesApi = createApi({
       TAuthenticateEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.authenticateEmployee,
+        url: API_ENDPOINTS.employees.authenticateEmployee,
         method: 'POST',
         body: data,
       }),
