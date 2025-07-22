@@ -9,6 +9,7 @@ export const DepositContainer = styled('div')(
     padding: spacing(0, 5),
     backgroundColor: palette.common.white,
     borderRadius: spacing(2),
+    boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
   }),
 );
 

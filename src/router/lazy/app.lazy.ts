@@ -18,10 +18,6 @@ export const TransactionsHistoryPage = lazy(() =>
   })),
 );
 
-export const DepositLearnMorePage = lazy(() =>
-  import('pages').then((module) => ({ default: module.DepositLearnMorePage })),
-);
-
 export const UnderDevPage = lazy(() =>
   import('pages').then((module) => ({ default: module.UnderDevPage })),
 );

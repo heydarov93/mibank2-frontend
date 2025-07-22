@@ -4,11 +4,11 @@ export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
     backgroundColor: palette.common.white,
     borderRadius: spacing(1),
-    padding: spacing(5, 6),
+    padding: spacing(4),
     display: 'flex',
     flexDirection: 'column',
     gap: spacing(4),
-    minWidth: '416px',
+    minWidth: '310px',
   }),
 );
 

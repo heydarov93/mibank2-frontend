@@ -13,7 +13,6 @@ export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
 export { EmployeeLoginPage } from './EmployeeLoginPage/EmployeeLoginPage';
 export { BackOfficeVerificationPage } from './BackOfficeVerificationPage/BackOfficeVerificationPage';
 export { LegalEntityVerificationPage } from './LegalEntityVerificationPage/LegalEntityVerificationPage';
-export { DepositLearnMorePage } from './DepositLearnMorePage/DepositLearnMorePage';
 export { BusinessSignUpPage } from './BusinessSignUpPage/BusinessSignUpPage';
 export { BusinessLoginPage } from './BusinessLoginPage/BusinessLoginPage';
 export { BusinessCreatePasswordPage } from './BusinessCreatePasswordPage/BusinessCreatePasswordPage';

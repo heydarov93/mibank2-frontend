@@ -3,10 +3,11 @@ import { Box, styled } from '@mui/material';
 export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({
     backgroundColor: palette.primary.light,
-    minHeight: '100dvh',
-    padding: '50px 72px 120px 72px',
+    padding: spacing(5),
+    paddingTop: spacing(3.75),
+    paddingBottom: '76px',
     display: 'flex',
     flexDirection: 'column',
-    gap: spacing(14),
+    gap: spacing(8),
   }),
 );

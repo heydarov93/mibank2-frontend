@@ -70,7 +70,7 @@ export const DepositCreationForm = ({
   return (
     <StyledContainer data-testid="deposit-creation-form">
       <Box component="form" onSubmit={onDepositSubmit}>
-        <FormHeader onBack={onBack} />
+        <FormHeader />
 
         <AmountField control={control} errors={errors} currency={currency} />
 

@@ -19,20 +19,21 @@ import { DepositErrorMessage } from 'components/atoms';
 import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import { TO_DEPOSIT_LEARN_MORE_BASE } from 'constants/navigation/routePaths';
+import { TO_HOME } from 'constants/navigation/routePaths';
 import { IDeposit } from 'models/IDepositInfo';
-import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
   open: boolean;
   onSelectDeposit: (deposit: IDeposit) => void;
   onClose: () => void;
+  onSetLearnDeposit: (deposit: IDeposit) => void;
 }
 
 export const AvailableDepositsWindow = ({
   open,
   onClose,
   onSelectDeposit,
+  onSetLearnDeposit,
 }: AvailableDepositsWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
   const {
@@ -40,7 +41,7 @@ export const AvailableDepositsWindow = ({
     isLoading: isLoadingDeposits,
     isError: isDepositsError,
   } = useGetDepositsQuery({});
-  const { spacing } = useTheme();
+  const { spacing, palette } = useTheme();
 
   return (
     <Drawer
@@ -49,8 +50,8 @@ export const AvailableDepositsWindow = ({
       onClose={onClose}
       PaperProps={{
         sx: {
-          height: `calc(100vh - ${spacing(7.5)}px)`,
-          maxHeight: 'min-content',
+          maxHeight: `calc(100vh - ${spacing(7.5)})`,
+          height: 'auto',
           top: '60px',
           borderTopLeftRadius: '8px',
           borderBottomLeftRadius: '8px',
@@ -90,9 +91,12 @@ export const AvailableDepositsWindow = ({
                     }
                     secondaryButton={
                       <Link
-                        to={`${TO_DEPOSIT_LEARN_MORE_BASE}${id}`}
-                        style={{ color: theme.palette.primary.main }}
-                        onClick={onClose}
+                        to={`${TO_HOME}`}
+                        style={{ color: palette.primary.main }}
+                        onClick={() => {
+                          onSetLearnDeposit(item);
+                          onClose();
+                        }}
                       >
                         {t('learnMore')}
                       </Link>

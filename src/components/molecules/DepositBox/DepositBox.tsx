@@ -25,7 +25,7 @@ interface DepositBoxProps {
   depositDuration: number;
   depositCurrency: string;
   depositImgSrc: string;
-  secondaryButton: ReactElement;
+  secondaryButton?: ReactElement;
   onOpenDepositForm: () => void;
 }
 

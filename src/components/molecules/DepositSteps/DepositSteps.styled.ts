@@ -1,24 +1,26 @@
 import { Box, styled, Typography } from '@mui/material';
 
-export const StepsContainer = styled(Box)(() => ({
+export const StepsContainer = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
-  maxWidth: '520px',
-  marginLeft: '50px',
+  maxWidth: '474px',
+  padding: spacing(5),
+  paddingBottom: '0px',
 }));
 
-export const StepsRowContainer = styled(Box)(() => ({
+export const StepsRowContainer = styled(Box)(({ theme: { spacing } }) => ({
   display: 'flex',
   flexDirection: 'column',
-  padding: '32px 95px 32px 0px',
+  padding: spacing(4, 0),
 }));
 
 export const StepsHeader = styled(Box)(({ theme: { typography } }) => ({
   fontFamily: typography.mediumLogo?.fontFamily,
   fontWeight: 500,
-  fontSize: '40px',
+  fontSize: '32px',
+  lineHeight: '125%',
   letterSpacing: 0,
 }));
 
@@ -27,9 +29,8 @@ export const StepsFooterText = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     color: palette.grey[400],
     fontWeight: 500,
-    fontSize: '32px',
+    fontSize: '16px',
     lineHeight: '125%',
     letterSpacing: 0,
-    width: '470px',
   }),
 );

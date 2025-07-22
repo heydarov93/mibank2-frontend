@@ -8,7 +8,6 @@ import {
 } from './InvestmentBox.styled';
 
 import coinInvestingPicture from 'assets/webp/CoinInvesting.webp';
-import { SubmitButton } from 'components/atoms';
 import { LOCALES } from 'constants/business/date';
 import { INVESTMENT_AMOUNT } from 'constants/business/numbers';
 import {
@@ -18,51 +17,62 @@ import {
 
 interface InvestmentBoxProps {
   interestRate: number;
-  setOpenDeposit: (openDeposit: boolean) => void;
 }
 
-export const InvestmentBox = ({
-  interestRate,
-  setOpenDeposit,
-}: InvestmentBoxProps) => {
+export const InvestmentBox = ({ interestRate }: InvestmentBoxProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
   return (
     <Box
-      sx={{
+      sx={({ spacing, palette }) => ({
         display: 'flex',
         flexDirection: 'column',
-        gap: '32px',
+        gap: spacing(4),
         alignItems: 'flex-end',
-      }}
+        boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
+        maxHeight: 'fit-content',
+      })}
     >
       <StyledContainer>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box>
-            <SecondaryText>{t('willGive')}</SecondaryText>
-            <PrimaryText>
-              $
-              {INVESTMENT_AMOUNT.toLocaleString(LOCALES.ENGLISH_US, {
-                useGrouping: true,
-              })}
-            </PrimaryText>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Box>
+              <SecondaryText>{t('willGive')}</SecondaryText>
+              <PrimaryText>
+                $
+                {INVESTMENT_AMOUNT.toLocaleString(LOCALES.ENGLISH_US, {
+                  useGrouping: true,
+                })}
+              </PrimaryText>
+            </Box>
+            <Box>
+              <SecondaryText>{t('willTake')}</SecondaryText>
+              <PrimaryText>
+                $
+                {calculateProfit(
+                  INVESTMENT_AMOUNT,
+                  interestRate,
+                ).toLocaleString(LOCALES.ENGLISH_US, { useGrouping: true })}
+              </PrimaryText>
+            </Box>
           </Box>
-          <Box>
-            <SecondaryText>{t('willTake')}</SecondaryText>
-            <PrimaryText>
-              $
-              {calculateProfit(INVESTMENT_AMOUNT, interestRate).toLocaleString(
-                LOCALES.ENGLISH_US,
-                { useGrouping: true },
-              )}
-            </PrimaryText>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <img
+              src={coinInvestingPicture}
+              alt={t('coinInvestingPictureAlt')}
+              style={{ display: 'block', width: 110 }}
+            />
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={coinInvestingPicture} />
-        </Box>
+
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <SecondaryText>{t('depositAmount')}</SecondaryText>
             <SecondaryText>
               USD{' '}
@@ -71,11 +81,23 @@ export const InvestmentBox = ({
               })}
             </SecondaryText>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <SecondaryText>{t('interestRate')}</SecondaryText>
             <SecondaryText>{interestRate.toFixed(2)}%</SecondaryText>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <SecondaryText>{t('interestAmount')}</SecondaryText>
             <PrimaryText>
               USD{' '}
@@ -87,10 +109,6 @@ export const InvestmentBox = ({
           </Box>
         </Box>
       </StyledContainer>
-      <SubmitButton
-        buttonContent={t('openDeposit')}
-        onClick={() => setOpenDeposit(true)}
-      />
     </Box>
   );
 };

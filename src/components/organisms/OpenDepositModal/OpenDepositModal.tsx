@@ -25,7 +25,7 @@ export const OpenDepositModal = ({
       onClose={onClose}
       PaperProps={{
         sx: {
-          height: `calc(100vh - ${spacing(7.5)}px)`,
+          height: `calc(100vh - ${spacing(7.5)})`,
           maxHeight: 'min-content',
           top: '60px',
           borderTopLeftRadius: '8px',

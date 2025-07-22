@@ -4,8 +4,6 @@ import { AvailableDepositsWindow } from './AvailableDepositsWindow';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 
-
-
 jest.mock('api/services/deposit-service/deposits.api', () => ({
   useGetDepositsQuery: jest.fn(),
 }));
@@ -36,6 +34,7 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.getByText('availableDeposits')).toBeInTheDocument();
@@ -53,6 +52,7 @@ describe('AvailableDepositsWindow', () => {
         open={false}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.queryByText('availableDeposits')).not.toBeInTheDocument();
@@ -69,6 +69,7 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -85,6 +86,7 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.getByText('error')).toBeInTheDocument();

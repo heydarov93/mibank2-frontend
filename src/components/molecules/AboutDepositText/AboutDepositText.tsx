@@ -18,15 +18,15 @@ export const AboutDepositText = ({
       <BlueTickIcon
         sx={{
           color: theme.palette.primary.main,
-          width: '36px',
-          height: '36px',
+          width: '24px',
+          height: '24px',
         }}
       />
       <Typography
         sx={{
-          fontWeight: 600,
+          fontWeight: 400,
           fontFamily: theme.typography.mediumLogo?.fontFamily,
-          fontSize: '20px',
+          fontSize: '16px',
         }}
       >
         {mainText}
@@ -36,7 +36,7 @@ export const AboutDepositText = ({
           fontFamily: theme.typography.mediumLogo?.fontFamily,
           fontWeight: 400,
           color: theme.palette.grey[400],
-          fontSize: '20px',
+          fontSize: '16px',
         }}
       >
         {secondaryText}
