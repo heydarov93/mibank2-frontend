@@ -11,9 +11,9 @@ import {
 } from './types/deposits.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { DEPOSIT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { DEPOSIT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/auth';
 
@@ -35,7 +35,7 @@ export const depositsApi = createApi({
       IUpdateDepositRequest
     >({
       query: ({ id, ...body }) => ({
-        url: endpoints.productManagement.deposits.updateDeposit,
+        url: API_ENDPOINTS.productManagement.deposits.updateDeposit,
         params: { id },
         method: 'PUT',
         body: body,
@@ -54,7 +54,7 @@ export const depositsApi = createApi({
       TCreateDepositRequest
     >({
       query: (data) => ({
-        url: endpoints.productManagement.deposits.createDeposit,
+        url: API_ENDPOINTS.productManagement.deposits.createDeposit,
         method: 'POST',
         body: data,
         headers: {
@@ -66,7 +66,7 @@ export const depositsApi = createApi({
     }),
     deleteDeposit: builder.mutation<void, { id: number }>({
       query: ({ id }) => ({
-        url: endpoints.productManagement.deposits.deleteDeposit,
+        url: API_ENDPOINTS.productManagement.deposits.deleteDeposit,
         params: { id },
         method: 'DELETE',
         headers: {
@@ -81,7 +81,7 @@ export const depositsApi = createApi({
     }),
     getDeposits: builder.query<IGetDepositsResponse, IGetDepositsRequest>({
       query: ({ page, size }) => ({
-        url: endpoints.productManagement.deposits.getDeposits,
+        url: API_ENDPOINTS.productManagement.deposits.getDeposits,
         method: 'GET',
         params: { page, size },
       }),

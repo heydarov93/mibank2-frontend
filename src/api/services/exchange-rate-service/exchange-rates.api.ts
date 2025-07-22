@@ -9,9 +9,9 @@ import {
 } from './exchange-rates.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { EXCHANGE_RATE_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { EXCHANGE_RATE_TAGS } from 'constants/api/tags';
 
 export const exchangeRatesApi = createApi({
   reducerPath: 'exchangeRatesApi',
@@ -26,7 +26,7 @@ export const exchangeRatesApi = createApi({
   endpoints: (builder) => ({
     getCurrentRates: builder.query<TGetCurrentRatesResponse, null>({
       query: () => ({
-        url: endpoints.exchangeRates.getCurrentRates,
+        url: API_ENDPOINTS.exchangeRates.getCurrentRates,
         method: 'GET',
       }),
       providesTags: [EXCHANGE_RATE_TAGS.EXCHANGE_RATE],
@@ -34,7 +34,7 @@ export const exchangeRatesApi = createApi({
     }),
     getPreviousRates: builder.query<TGetPreviousRatesResponse, null>({
       query: () => ({
-        url: endpoints.exchangeRates.getPreviousRates,
+        url: API_ENDPOINTS.exchangeRates.getPreviousRates,
         method: 'GET',
       }),
       providesTags: [EXCHANGE_RATE_TAGS.EXCHANGE_RATE],
@@ -45,7 +45,7 @@ export const exchangeRatesApi = createApi({
       IConvertCurrencyRequest
     >({
       query: (data) => ({
-        url: endpoints.exchangeRates.convertCurrency,
+        url: API_ENDPOINTS.exchangeRates.convertCurrency,
         method: 'POST',
         body: data,
       }),

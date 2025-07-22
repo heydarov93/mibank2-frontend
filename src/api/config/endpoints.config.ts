@@ -1,6 +1,6 @@
 import { TId } from 'types/types';
 
-export const endpoints = {
+export const API_ENDPOINTS = {
   users: {
     authenticateUser: '/uas/api/user/authenticate',
     sendLoginCode: '/uas/api/user/login/send-code',
@@ -14,7 +14,7 @@ export const endpoints = {
     sendForgotPasswordCode: '/uas/api/user/forgot-password',
     confirmForgotPassword: '/uas/api/user/confirm-forgot-password',
     refreshAuthToken: '/uas/api/user/refresh-token',
-    getUserId: (token: string) => `/uas/api/user/id?token=${token}`,
+    getUserId: `/uas/api/user/id`,
   },
   employees: {
     setup2FA: '/emg/api/employee/2fa-setup',
@@ -60,7 +60,7 @@ export const endpoints = {
     searchCards: '/cs/api/card/detailed-search',
     createCard: '/cs/api/card/create-card',
     issueUserCard: '/cs/api/issue-user-card',
-    getUserCards: '/cs/api/user-cards',
+    getUserCards: (cardId: TId) => `/cs/api/user-cards/${cardId}`,
     getUserCardDetails: (cardId: TId) =>
       `/cs/api/user-cards/${cardId}/detailed-response`,
     updateCardStatus: (cardId: TId) =>

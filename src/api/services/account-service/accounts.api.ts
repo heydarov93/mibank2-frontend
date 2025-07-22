@@ -13,9 +13,9 @@ import {
 } from './types/accounts.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { ACCOUNT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { ACCOUNT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
@@ -37,7 +37,7 @@ export const accountsApi = createApi({
       { userId: number }
     >({
       query: ({ userId }) => ({
-        url: endpoints.accounts.getUserAccountByIBAN,
+        url: API_ENDPOINTS.accounts.getUserAccountByIBAN,
         params: { userId },
       }),
       providesTags: (_result, _error, { userId }) => [
@@ -51,7 +51,7 @@ export const accountsApi = createApi({
       { userId: number }
     >({
       query: ({ userId }) => ({
-        url: endpoints.accounts.getAccountByCard,
+        url: API_ENDPOINTS.accounts.getAccountByCard,
         params: { userId },
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const accountsApi = createApi({
       { token: string }
     >({
       query: ({ token }) => ({
-        url: endpoints.accounts.getAccountByToken,
+        url: API_ENDPOINTS.accounts.getAccountByToken,
         method: 'GET',
         params: { token },
       }),
@@ -80,7 +80,7 @@ export const accountsApi = createApi({
 
     linkAccountWithCard: builder.mutation<void, ILinkAccountWithCardRequest>({
       query: (data) => ({
-        url: endpoints.accounts.linkAccountWithCard,
+        url: API_ENDPOINTS.accounts.linkAccountWithCard,
         body: data,
         method: 'PATCH',
       }),
@@ -98,7 +98,7 @@ export const accountsApi = createApi({
       ICheckCardIssuanceRequest
     >({
       query: (data) => ({
-        url: endpoints.accounts.checkCardIssuance,
+        url: API_ENDPOINTS.accounts.checkCardIssuance,
         body: data,
         method: 'POST',
       }),
@@ -113,7 +113,7 @@ export const accountsApi = createApi({
       ICreateUserCardAccountRequest
     >({
       query: (data) => ({
-        url: endpoints.accounts.createUserCardAccount,
+        url: API_ENDPOINTS.accounts.createUserCardAccount,
         body: data,
         method: 'POST',
       }),

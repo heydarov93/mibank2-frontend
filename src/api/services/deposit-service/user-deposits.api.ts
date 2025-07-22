@@ -7,9 +7,9 @@ import {
 } from './types/user-deposits.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { USER_DEPOSIT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { USER_DEPOSIT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';
 
@@ -29,7 +29,7 @@ export const userDepositsApi = createApi({
     getUserDeposits: builder.query<IUserDepositResponse, { accountId: string }>(
       {
         query: ({ accountId }) => ({
-          url: endpoints.productManagement.userDeposits.getUserDeposits(
+          url: API_ENDPOINTS.productManagement.userDeposits.getUserDeposits(
             accountId,
           ),
           method: 'GET',
@@ -51,7 +51,7 @@ export const userDepositsApi = createApi({
       TCreateUserDepositRequest
     >({
       query: (data) => ({
-        url: endpoints.productManagement.userDeposits.createUserDeposit,
+        url: API_ENDPOINTS.productManagement.userDeposits.createUserDeposit,
         method: 'POST',
         body: data,
       }),

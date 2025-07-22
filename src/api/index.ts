@@ -11,4 +11,5 @@ export { offersApi } from './services/offer-service/offers.api';
 export { getUserIdApi } from './services/user-account-service/get-user-id.api';
 export { userAccountsApi } from './services/user-account-service/user-accounts.api';
 export { BASE_URL } from './config/api.config';
-export { endpoints } from './endpoints';
+export { API_ENDPOINTS } from './config/endpoints.config';
+export { createBaseQuery } from './core/base-query';

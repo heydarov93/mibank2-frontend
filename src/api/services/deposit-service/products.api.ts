@@ -7,9 +7,9 @@ import {
 } from './types/products.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { PRODUCT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { PRODUCT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/auth/tokenHandler';
 
@@ -27,7 +27,7 @@ export const productsApi = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query<IGetProductsResponse, IGetProductsRequest>({
       query: ({ page, size, search }) => ({
-        url: endpoints.productManagement.products.getProducts,
+        url: API_ENDPOINTS.productManagement.products.getProducts,
         method: 'GET',
         params: { page, size, search },
         headers: {

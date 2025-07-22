@@ -1,4 +1,4 @@
-import { USER_DEPOSIT_TAGS } from 'api/constants/tags';
+import { USER_DEPOSIT_TAGS } from 'constants/api/tags';
 
 interface IDepositBase {
   accountId: string;

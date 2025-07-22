@@ -3,4 +3,5 @@ export const CACHE_DURATION = {
   DEFAULT: 60,
   MEDIUM: 180,
   LONG: 300,
+  TOKEN: 1000,
 } as const;

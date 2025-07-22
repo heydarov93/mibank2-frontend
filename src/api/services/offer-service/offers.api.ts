@@ -8,9 +8,9 @@ import {
 } from './offers.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { OFFER_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { OFFER_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils';
 
@@ -29,7 +29,7 @@ export const offersApi = createApi({
   endpoints: (builder) => ({
     getOfferPage: builder.query<IGetOfferPageResponse, IGetOffersParams>({
       query: ({ page, size }) => ({
-        url: endpoints.offers.getOfferPage,
+        url: API_ENDPOINTS.offers.getOfferPage,
         method: 'GET',
         params: { page, size },
       }),
@@ -38,7 +38,7 @@ export const offersApi = createApi({
     }),
     getOfferImages: builder.query<IGetOfferImagesResponse, void>({
       query: () => ({
-        url: endpoints.offers.getOfferImages,
+        url: API_ENDPOINTS.offers.getOfferImages,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
