@@ -22,8 +22,6 @@ import { ILegalEntityValidationError } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/slices/auth/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
-// import { ComponentPropsToStylePropsMap } from '@aws-amplify/ui-react';
-
 interface IBusinessSignUpForm {
   companyName: string;
   companyEmail: string;

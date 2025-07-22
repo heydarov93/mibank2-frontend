@@ -2,6 +2,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import {
   IConfirmForgotPasswordRequest,
+  ILegalEntitySignUpRequest,
+  ILegalEntityValidationRequest,
   TUserAccountTag,
 } from './user-acounts.types';
 
@@ -120,14 +122,14 @@ export const userAccountsApi = createApi({
       invalidatesTags: [USER_ACCOUNT_TAGS.FORGOT_PASSWORD],
     }),
     postValidationLegalEntityInfo: builder.mutation({
-      query: (data) => ({
+      query: (data: ILegalEntityValidationRequest) => ({
         url: endpoints.legalEntities.checkLegalEntityUniques,
         method: 'POST',
         body: data,
       }),
     }),
     postRegistrationLegalEntityInfo: builder.mutation({
-      query: (data) => ({
+      query: (data: ILegalEntitySignUpRequest) => ({
         url: endpoints.legalEntities.registerLegalEntity,
         method: 'POST',
         body: data,
