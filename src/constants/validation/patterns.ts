@@ -15,7 +15,7 @@ export const VALIDATION_PATTERNS = {
   STREET: /^[A-Za-zА-Яа-яЁё0-9 -]+$/g,
   DIGITS_ONLY: /^[0-9]+$/,
   COMPANY_NAME: /^[A-Za-z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ'.,\\/&()\\+\-\s]+$/,
-  POLISH_NIP: /^PL-NIP-\d{10}$/,
+  POLISH_NIP: /^\d{10}$/,
   STREET_ADDRESS: /^[A-Za-z0-9\s\-.,]+$/,
   BUILDING_NUMBER: /^[A-Za-z0-9\s-]+$/,
   OFFICE_NUMBER: /^[A-Za-z0-9\s-]+$/,
@@ -79,5 +79,5 @@ export const PASSWORD_VALIDATION_RULES = {
 
 export const CARD_PATTERN = '#### #### #### ####';
 export const IBAN_PATTERN = 'PL## #### #### #### #### #### ####';
-export const NIP_PATTERN = 'PL-NIP-##########';
+export const NIP_PATTERN = '##########';
 export const SPECIAL_CHARACTERS = `~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | "" ' . , : ;`;

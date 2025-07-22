@@ -16,6 +16,12 @@ const initialState: IAuthState = {
     status: '0',
     isBlocked: null,
   },
+  legalEntity: {
+    email: '',
+    companyName: '',
+    nip: '',
+    ownerFullName: '',
+  },
   error: null,
   loading: false,
   isAutoLogout: false,
@@ -48,9 +54,25 @@ const AuthSlice = createSlice({
     },
     logoutFromApp(state) {
       state.user = initialState.user;
+      state.legalEntity = initialState.legalEntity;
     },
     setIsAutoLogout: (state, action) => {
       state.isAutoLogout = action.payload;
+    },
+    setLegalEntityInfo(
+      state,
+      action: PayloadAction<{
+        companyEmail: string;
+        companyName: string;
+        nip: string;
+        ownerName: string;
+      }>,
+    ) {
+      const { companyEmail, companyName, nip, ownerName } = action.payload;
+      state.legalEntity.email = companyEmail;
+      state.legalEntity.companyName = companyName;
+      state.legalEntity.nip = nip;
+      state.legalEntity.ownerFullName = ownerName;
     },
   },
 });
@@ -65,6 +87,7 @@ export const {
   setUserData,
   logoutFromApp,
   setIsAutoLogout,
+  setLegalEntityInfo,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

@@ -2,6 +2,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import {
   IConfirmForgotPasswordRequest,
+  ILegalEntitySignUpRequest,
+  ILegalEntityValidationRequest,
   TUserAccountTag,
 } from './user-acounts.types';
 
@@ -119,6 +121,22 @@ export const userAccountsApi = createApi({
       }),
       invalidatesTags: [USER_ACCOUNT_TAGS.FORGOT_PASSWORD],
     }),
+    postValidationLegalEntityInfo: builder.mutation({
+      query: (data: ILegalEntityValidationRequest) => ({
+        url: endpoints.legalEntities.checkLegalEntityUniques,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: [USER_ACCOUNT_TAGS.LEGAL_ENTITY_VALIDATION],
+    }),
+    postRegistrationLegalEntityInfo: builder.mutation({
+      query: (data: ILegalEntitySignUpRequest) => ({
+        url: endpoints.legalEntities.registerLegalEntity,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: [USER_ACCOUNT_TAGS.LEGAL_ENTITY_SIGN_UP],
+    }),
   }),
 });
 
@@ -135,4 +153,6 @@ export const {
   usePostRegistrationInfoMutation,
   useGetPostcodeMutation,
   useGetCodeForForgotPasswordMutation,
+  usePostValidationLegalEntityInfoMutation,
+  usePostRegistrationLegalEntityInfoMutation,
 } = userAccountsApi;
