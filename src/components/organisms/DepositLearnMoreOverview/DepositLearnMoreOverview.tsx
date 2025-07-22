@@ -7,13 +7,11 @@ interface MainContentProps {
   deposit: IDeposit;
   imageSrc: string;
   onOpenForm: () => void;
-  viewAllButton: JSX.Element;
 }
 export const DepositLearnMoreOverview = ({
   deposit,
   imageSrc,
   onOpenForm,
-  viewAllButton,
 }: MainContentProps) => (
   <Box>
     <DepositBox
@@ -23,7 +21,6 @@ export const DepositLearnMoreOverview = ({
       depositName={deposit.name}
       depositRate={deposit.interestRate}
       depositImgSrc={imageSrc}
-      secondaryButton={viewAllButton}
       onOpenDepositForm={onOpenForm}
     />
   </Box>

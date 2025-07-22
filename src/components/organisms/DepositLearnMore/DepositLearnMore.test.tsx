@@ -4,10 +4,11 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter, useNavigate, useParams } from 'react-router-dom';
 
-import { DepositLearnMorePage } from './DepositLearnMorePage';
+import { DepositLearnMore } from './DepositLearnMore';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { theme } from 'theme/theme';
+import type { TCurrency } from 'types/types';
 
 jest.mock('components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage', () => ({
   ErrorMessage: () => <div>Deposit not found</div>,
@@ -97,12 +98,31 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+const onBackMock = jest.fn();
+const mockDepositData = {
+  id: 1,
+  augmentable: true,
+  autoRenewable: true,
+  capitalization: 10,
+  currency: 'PLN' as TCurrency,
+  description: 'Some cool description',
+  earlyWithdrawal: true,
+  earlyWithdrawalFee: 5,
+  earlyWithdrawalLimit: 15,
+  interestRate: 3,
+  max: 99,
+  min: 0,
+  name: 'Cool name',
+  term: 1,
+  type: 'good',
+};
+
 const renderPage = () =>
   render(
     <ThemeProvider theme={theme}>
       <Provider store={mockStore}>
         <MemoryRouter>
-          <DepositLearnMorePage />
+          <DepositLearnMore depositData={mockDepositData} onBack={onBackMock} />
         </MemoryRouter>
       </Provider>
     </ThemeProvider>,
@@ -157,12 +177,11 @@ describe('DepositLearnMorePage', () => {
   });
 
   it('navigates back when back button is clicked', () => {
-    const navigate = jest.fn();
-    (useNavigate as jest.Mock).mockReturnValue(navigate);
-
     renderPage();
-    fireEvent.click(screen.getByTestId('back-button'));
-    expect(navigate).toHaveBeenCalledWith(-1);
+    const btn = screen.getByTestId('back-button');
+    fireEvent.click(btn);
+
+    expect(onBackMock).toHaveBeenCalled();
   });
 
   it('opens deposit form when "Open Deposit" button is clicked', async () => {
@@ -171,17 +190,6 @@ describe('DepositLearnMorePage', () => {
 
     await waitFor(() =>
       expect(screen.getByTestId('open-deposit-modal-form')).toBeInTheDocument(),
-    );
-  });
-
-  it('opens available deposits window when "View All Deposits" button is clicked', async () => {
-    renderPage();
-    fireEvent.click(screen.getByTestId('open-all-deposits-button'));
-
-    await waitFor(() =>
-      expect(
-        screen.getByTestId('available-deposits-window'),
-      ).toBeInTheDocument(),
     );
   });
 });

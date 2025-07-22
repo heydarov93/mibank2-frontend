@@ -6,4 +6,3 @@ export const StyledDepositContainer = styled(Box)(() => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
 }));
-
