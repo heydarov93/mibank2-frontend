@@ -75,5 +75,5 @@ export const USER_ACCOUNT_TAGS = {
   REFERSH_TOKEN: 'RefreshToken',
   REGISTRATION: 'Registration',
   LEGAL_ENTITY_VALIDATION: 'ValidateLegalEntity',
-  LEGAL_ENTITY_SIGN_UP: 'SgnUpLegalEntity',
+  LEGAL_ENTITY_SIGN_UP: 'SignUpLegalEntity',
 } as const;
