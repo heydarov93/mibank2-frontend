@@ -21,7 +21,6 @@ import {
 } from 'components/molecules';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
 import { IErrorData } from 'models/IError';
-import { ILegaLEntity } from 'models/ILegalEntity';
 import { setError } from 'store/slices/auth';
 import { getLegalEntity } from 'store/slices/auth/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
@@ -61,18 +60,16 @@ export const CreatePasswordForm = () => {
   const passwordValue = watch('password');
   const isValidConfirm = !errors?.password && touchedFields.password;
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
-  // TODO: substitute with real submit when BE is ready
   const [postRegistrationLegalEntityInfo] =
     usePostRegistrationLegalEntityInfoMutation();
-  const { ownerName, email, nip, companyName } = useSelector(
-    getLegalEntity,
-  ) as ILegaLEntity;
+  const { ownerFullName, email, nip, companyName } =
+    useSelector(getLegalEntity);
 
   const onFormSubmit = async (data: IBusinessPasswordForm) => {
     try {
       await postRegistrationLegalEntityInfo({
         companyEmail: email,
-        ownerFullName: ownerName,
+        ownerFullName,
         nip,
         companyName,
         password: data.password,

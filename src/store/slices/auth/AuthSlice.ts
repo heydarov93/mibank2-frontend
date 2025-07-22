@@ -20,7 +20,7 @@ const initialState: IAuthState = {
     email: '',
     companyName: '',
     nip: '',
-    ownerName: '',
+    ownerFullName: '',
   },
   error: null,
   loading: false,
@@ -64,7 +64,7 @@ const AuthSlice = createSlice({
       state.legalEntity.email = action.payload.companyEmail;
       state.legalEntity.companyName = action.payload.companyName;
       state.legalEntity.nip = action.payload.nip;
-      state.legalEntity.ownerName = action.payload.ownerName;
+      state.legalEntity.ownerFullName = action.payload.ownerName;
     },
   },
 });
