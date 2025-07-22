@@ -74,8 +74,9 @@ exports[`BusinessSignUpForm snapshot should match 1`] = `
             id="nip"
             inputmode="numeric"
             name="nip"
+            placeholder="1234567890"
             type="text"
-            value="PL-NIP-          "
+            value=""
           />
           <fieldset
             aria-hidden="true"

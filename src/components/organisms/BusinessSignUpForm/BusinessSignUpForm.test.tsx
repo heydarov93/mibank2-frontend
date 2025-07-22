@@ -1,6 +1,9 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
 
 import { BusinessSignUpForm } from './BusinessSignUpForm';
+
+import store from 'store';
 
 const mockNavigate = jest.fn();
 jest.mock('react-router', () => {
@@ -11,12 +14,20 @@ jest.mock('react-router', () => {
 
 describe('BusinessSignUpForm', () => {
   it('snapshot should match', () => {
-    const { asFragment } = render(<BusinessSignUpForm />);
+    const { asFragment } = render(
+      <Provider store={store}>
+        <BusinessSignUpForm />
+      </Provider>,
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should enable the submit button only when the form is valid', async () => {
-    const { container } = render(<BusinessSignUpForm />);
+    const { container } = render(
+      <Provider store={store}>
+        <BusinessSignUpForm />
+      </Provider>,
+    );
 
     const companyName = container.querySelector(
       'input[name="companyName"]',

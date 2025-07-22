@@ -10,10 +10,15 @@ import {
   StyledLabel,
 } from './BusinessSignUpForm.styled';
 
+import { usePostValidationLegalEntityInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
 import { PatternFieldControlled } from 'components/molecules';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
 import { NIP_PATTERN } from 'constants/validation/patterns';
+import { EErrorStatus } from 'enums';
+import { useAppDispatch } from 'hooks';
+import { ILegalEntityValidationError } from 'models/IError';
+import { setError, setLegalEntityInfo } from 'store/slices/auth/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
 
 interface IBusinessSignUpForm {
@@ -25,6 +30,7 @@ interface IBusinessSignUpForm {
 
 export const BusinessSignUpForm = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation('translation', {
     keyPrefix: 'BusinessSignUpPage',
   });
@@ -34,25 +40,96 @@ export const BusinessSignUpForm = () => {
     handleSubmit,
     reset: resetForm,
     formState: { errors, isValid },
+    setError: setFormError,
   } = useForm<TBusinessSignupValues>({
     resolver: yupResolver(businessSignupSchema),
     mode: 'onChange',
     defaultValues: {
       companyName: '',
       companyEmail: '',
-      nip: 'PL-NIP-',
+      nip: '',
       ownerName: '',
     },
   });
-  // TODO: substitute with real submit when BE is ready
+  const [postValidationLegalEntityInfo, { isLoading }] =
+    usePostValidationLegalEntityInfoMutation();
+
   const onSubmit = async (data: IBusinessSignUpForm) => {
     try {
+      const response: Record<string, boolean> =
+        await postValidationLegalEntityInfo(data).unwrap();
+
+      const existCheck = Object.entries(response).filter(
+        ([, isExist]: [string, boolean]) => isExist === true,
+      );
+      if (existCheck.length) {
+        throw {
+          originalStatus: EErrorStatus.BAD_REQUEST,
+          existError: existCheck,
+        };
+      }
+      dispatch(setLegalEntityInfo(data));
       navigate(TO_BUSINESS_CREATE_PASSWORD, {
         state: { email: data.companyEmail },
       });
       resetForm();
     } catch (e) {
-      //
+      const error = e as ILegalEntityValidationError;
+      const { originalStatus } = error;
+      const existError = Array.isArray(error.existError)
+        ? error.existError
+        : [];
+      switch (originalStatus) {
+        case EErrorStatus.BAD_REQUEST: {
+          if (existError.length === 0) {
+            dispatch(setError(t('form.error.serverError')));
+            break;
+          }
+          const errorKeys = existError.map(([key]: [string, boolean]) => key);
+          if (errorKeys.includes('isEmailAlreadyTaken')) {
+            dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
+            setFormError(
+              'companyEmail',
+              {
+                type: 'focus',
+                message: t('form.error.errorEmailRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
+          if (errorKeys.includes('isNipAlreadyTaken')) {
+            dispatch(setError(`${t('form.error.nipAlreadyRegistered')}`));
+            setFormError(
+              'nip',
+              {
+                type: 'focus',
+                message: t('form.error.nipAlreadyRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
+          if (errorKeys.includes('isCompanyNameAlreadyTaken')) {
+            dispatch(
+              setError(`${t('form.error.companyNameAlreadyRegistered')}`),
+            );
+            setFormError(
+              'companyName',
+              {
+                type: 'focus',
+                message: t('form.error.companyNameAlreadyRegistered'),
+              },
+              { shouldFocus: true },
+            );
+          }
+          break;
+        }
+        case EErrorStatus.TOO_MANY_REQUESTS:
+          dispatch(setError(t('form.error.serverError')));
+          break;
+        default:
+          dispatch(setError(t('form.error.serverError')));
+          break;
+      }
     }
   };
 
@@ -85,7 +162,7 @@ export const BusinessSignUpForm = () => {
             label={t('form.fields.nip')}
             error={errors.nip}
             format={NIP_PATTERN}
-            allowEmptyFormatting={true}
+            placeholder="1234567890"
             textFieldProps={{
               sx: (theme) => ({
                 animation: errors.nip ? `${theme.animations?.shake} 0.25s` : '',
@@ -121,7 +198,7 @@ export const BusinessSignUpForm = () => {
         </Box>
         <SubmitButton
           buttonContent={t('form.submitLabel')}
-          isDisabled={!isValid}
+          isDisabled={!isValid || isLoading}
           sx={{ marginBottom: 3 }}
         />
       </StyledForm>

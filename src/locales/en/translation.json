@@ -305,6 +305,7 @@
       "cancelBtn": "Cancel",
       "confirmBtn": "Confirm"
     },
+    "business": {},
     "buttonLabelSignup": "Sign Up",
     "buttonLabelContinue": "Continue",
     "errorTermsPrivacyRequired": "Please, read and agree to our Terms of Use and Privacy Policy to continue",
@@ -329,7 +330,11 @@
         "emailPattern": "Please enter your email in format: example@company.com",
         "ownerNamePattern": "Invalid full name format. At least two words required",
         "maxLen": "Maximum 100 characters",
-        "emailMaxLen": "Maximum 320 characters"
+        "emailMaxLen": "Maximum 320 characters",
+        "nipAlreadyRegistered": "This NIP is already registered",
+        "companyNameAlreadyRegistered": "This company name is already registered",
+        "errorEmailRegistered": "This email is already registered",
+        "serverError": "Unknown Server Error, Please try again later"
       }
     }
   },
