@@ -20,10 +20,6 @@ export const API_ENDPOINTS = {
     checkLegalEntityUniques: '/uas/api/legal-entities/validate',
     registerLegalEntity: '/uas/api/legal-entities/signup',
   },
-  legalEntities: {
-    checkLegalEntityUniques: '/uas/api/legal-entities/validate',
-    registerLegalEntity: '/uas/api/legal-entities/signup',
-  },
   employees: {
     setup2FA: '/emg/api/employee/2fa-setup',
     validateOTP: '/emg/api/employee/validate-otp',
