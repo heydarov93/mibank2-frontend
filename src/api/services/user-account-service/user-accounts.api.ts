@@ -123,7 +123,7 @@ export const userAccountsApi = createApi({
     }),
     postValidationLegalEntityInfo: builder.mutation({
       query: (data: ILegalEntityValidationRequest) => ({
-        url: endpoints.legalEntities.checkLegalEntityUniques,
+        url: API_ENDPOINTS.legalEntities.checkLegalEntityUniques,
         method: 'POST',
         body: data,
       }),
@@ -131,7 +131,7 @@ export const userAccountsApi = createApi({
     }),
     postRegistrationLegalEntityInfo: builder.mutation({
       query: (data: ILegalEntitySignUpRequest) => ({
-        url: endpoints.legalEntities.registerLegalEntity,
+        url: API_ENDPOINTS.legalEntities.registerLegalEntity,
         method: 'POST',
         body: data,
       }),
