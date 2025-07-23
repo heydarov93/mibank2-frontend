@@ -1,4 +1,4 @@
-import { ACCOUNT_TAGS } from "api/constants/tags";
+import { ACCOUNT_TAGS } from "constants/api/tags";
 
 export interface IGetUserAccountByIBANResponse {
   userAccountId: string;

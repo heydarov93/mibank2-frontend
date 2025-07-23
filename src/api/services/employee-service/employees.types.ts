@@ -1,4 +1,4 @@
-import { EMPLOYEE_TAGS } from 'api/constants/tags';
+import { EMPLOYEE_TAGS } from 'constants/api/tags';
 import { TId } from 'types/types';
 
 interface IEmployeeApiRequest {

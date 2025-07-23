@@ -1,4 +1,4 @@
-import { TRANSFER_TAGS } from "api/constants/tags";
+import { TRANSFER_TAGS } from "constants/api/tags";
 
 export interface ITransferToIBANRequest {
   senderIbanNumber: string;

@@ -167,7 +167,7 @@ theme.components = {
     styleOverrides: {
       paper: {
         borderRadius: '8px',
-        boxShadow: `0 4px 24px 0 ${theme.palette.shadow.shadowLight};`,
+        boxShadow: `0 4px 24px 0 ${theme.palette.shadow.shadowLight}`,
         background: theme.palette.common.white,
         border: `1px solid ${theme.palette.grey[200]}`,
         marginTop: '4px',

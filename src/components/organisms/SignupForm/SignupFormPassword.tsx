@@ -12,7 +12,7 @@ import {
 } from './SignupForm.styled';
 
 import { useRegisterNewUserMutation } from 'api/services/user-account-service/user-accounts.api';
-import { ButtonLink, SubmitButton } from 'components/atoms';
+import { LinkButton, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,
   PasswordField,
@@ -119,10 +119,10 @@ export const SignupFormPassword = () => {
           sx={{ marginBottom: 3 }}
         />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href={TO_SIGN_IN}
+        to={TO_SIGN_IN}
       />
     </>
   );

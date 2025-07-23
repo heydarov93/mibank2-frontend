@@ -3,9 +3,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TContactTag } from './contacts.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { CONTACT_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { CONTACT_TAGS } from 'constants/api/tags';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
@@ -20,14 +20,14 @@ export const contactsApi = createApi({
   endpoints: (builder) => ({
     getContactVersion: builder.query<{ id: number }, null>({
       query: () => ({
-        url: endpoints.contacts.getContactVersion,
+        url: API_ENDPOINTS.contacts.getContactVersion,
         method: 'GET',
       }),
       providesTags: [CONTACT_TAGS.CONTACT_VERSION],
     }),
     getContacts: builder.query({
       query: () => ({
-        url: endpoints.contacts.getContacts,
+        url: API_ENDPOINTS.contacts.getContacts,
         method: 'GET',
       }),
       providesTags: [CONTACT_TAGS.CONTACTS],

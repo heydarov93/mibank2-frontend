@@ -9,8 +9,7 @@ import {
   MainHeader,
 } from './BackOfficeCardEditForm.styled';
 
-import { InputField } from 'components/atoms';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { CloseButton, InputField } from 'components/atoms';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
@@ -59,7 +58,7 @@ export const BackOfficeCardEditForm = ({
         }}
       >
         <MainHeader>{t('cardEditForm.editCard')}</MainHeader>
-        <CloseButtonX onClick={handleClose} />
+        <CloseButton onClick={handleClose} />
       </Box>
       <form
         onSubmit={handleSubmit(onSubmit)}

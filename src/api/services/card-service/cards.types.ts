@@ -1,4 +1,4 @@
-import { CARD_TAGS } from 'api/constants/tags';
+import { CARD_TAGS } from 'constants/api/tags';
 import {
   ECardIssuer,
   ECardIssueType,

@@ -1,7 +1,7 @@
 import { Dialog, styled } from '@mui/material';
 
-export const StyledNavigationWarningModal = styled(Dialog)(
-  ({ theme, theme: { palette } }) => ({
+export const StyledDialog = styled(Dialog)(
+  ({ theme, theme: { palette, spacing } }) => ({
     '& .MuiDialog-paper': {
       width: '100%',
       height: '100%',
@@ -21,10 +21,10 @@ export const StyledNavigationWarningModal = styled(Dialog)(
       fontSize: '32px',
       display: 'flex',
       justifyContent: 'center',
-      marginTop: '40px',
+      marginTop: spacing(5),
       [theme.breakpoints.down('sm')]: {
         fontSize: '20px',
-        marginTop: '20px',
+        marginTop: spacing(2.5),
       },
     },
     '& .MuiDialogContentText-root': {
@@ -46,7 +46,7 @@ export const StyledNavigationWarningModal = styled(Dialog)(
       fontSize: '16px',
       width: '196px',
       height: '56px',
-      margin: '0px 8px 35px 8px',
+      margin: spacing(0, 1, 4.375, 1),
       border: `2px solid ${palette.primary.main}`,
       borderRadius: '8px',
       [theme.breakpoints.down('sm')]: {

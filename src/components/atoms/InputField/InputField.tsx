@@ -115,39 +115,47 @@ export const InputField = <T extends FieldValues>({
   <Controller
     name={name}
     control={control}
-    render={({ field, fieldState }) => (
-      <StyledTextField
-        fullWidth
-        id={id}
-        helperText={helperText || error?.message || fieldState.error?.message}
-        className={className}
-        error={!!error}
-        placeholder={placeholder}
-        type={type}
-        disabled={disabled}
-        onCut={onCut}
-        onCopy={onCopy}
-        onKeyUp={onKeyUp}
-        onFocus={onFocus}
-        onKeyDown={onKeyDown}
-        onPaste={onPaste}
-        onClick={onClick}
-        InputProps={{
-          ...InputProps,
-          inputProps: {
-            maxLength,
-            onChange: onChange,
-          },
-          readOnly,
-        }}
-        multiline={multiline}
-        rows={rows}
-        sx={sx}
-        data-testid={testId}
-        active={active}
-        {...field}
-        value={value || field.value}
-      />
-    )}
+    render={({ field, fieldState }) => {
+      const hasError = Boolean(error) || Boolean(fieldState.error);
+      const helper = helperText ?? error?.message ?? fieldState.error?.message;
+      const fieldId = id ?? name;
+
+      return (
+        <StyledTextField
+          fullWidth
+          id={id}
+          helperText={helperText || error?.message || fieldState.error?.message}
+          className={className}
+          error={!!error}
+          placeholder={placeholder}
+          type={type}
+          disabled={disabled}
+          onCut={onCut}
+          onCopy={onCopy}
+          onKeyUp={onKeyUp}
+          onFocus={onFocus}
+          onKeyDown={onKeyDown}
+          onPaste={onPaste}
+          onClick={onClick}
+          InputProps={{
+            ...InputProps,
+            inputProps: {
+              maxLength,
+              onChange: onChange,
+            },
+            readOnly,
+          }}
+          aria-invalid={hasError}
+          aria-describedby={helper ? `${fieldId}-helper-text` : undefined}
+          multiline={multiline}
+          rows={rows}
+          sx={sx}
+          data-testid={testId}
+          active={active}
+          {...field}
+          value={value || field.value}
+        />
+      );
+    }}
   />
 );

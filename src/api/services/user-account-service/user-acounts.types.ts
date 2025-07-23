@@ -1,4 +1,4 @@
-import { USER_ACCOUNT_TAGS } from 'api/constants/tags';
+import { USER_ACCOUNT_TAGS } from "constants/api/tags";
 
 export interface IConfirmForgotPasswordRequest {
   email: string | null;

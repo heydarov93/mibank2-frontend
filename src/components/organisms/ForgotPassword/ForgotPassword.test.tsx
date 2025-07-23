@@ -88,9 +88,7 @@ describe('Forgot Password should match snapshot', () => {
       </Provider>,
     );
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const button = screen.getByRole('button', {
-      name: 'ForgotPassword.EmailPageButton',
-    });
+    const button = screen.getByTestId('save-button');
 
     waitFor(() => {
       userEvent.type(emailInput, 'BAD_EMAIL');
@@ -117,9 +115,7 @@ describe('Forgot Password should match snapshot', () => {
     );
 
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const submitButton = screen.getByRole('button', {
-      name: 'ForgotPassword.EmailPageButton',
-    });
+    const submitButton = screen.getByTestId('save-button');
 
     waitFor(() => {
       userEvent.type(emailInput, 'test@example.com');

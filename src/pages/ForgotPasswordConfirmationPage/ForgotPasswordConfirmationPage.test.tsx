@@ -25,17 +25,19 @@ jest.mock('components/atoms', () => ({
       Back
     </button>
   ),
-  ButtonLink: ({
+  LinkButton: ({
     message,
     linkText,
   }: {
     message: string;
     linkText: string;
   }) => (
-    <button data-testid="button-link">
+    <div data-testid="link-container">
       <p>{message}</p>
-      <a href="/signin">{linkText}</a>
-    </button>
+      <a role="button" href="/signin" data-testid="link-button">
+        {linkText}
+      </a>
+    </div>
   ),
 }));
 
@@ -60,7 +62,7 @@ describe('ForgotPasswordConfirmationPage', () => {
 
       expect(screen.getByTestId('back-arrow')).toBeInTheDocument();
       expect(screen.getByTestId('auth-wrapper')).toBeInTheDocument();
-      expect(screen.getByTestId('button-link')).toBeInTheDocument();
+      expect(screen.getByTestId('link-container')).toBeInTheDocument();
       expect(screen.getByTestId('footer')).toBeInTheDocument();
     });
   });
@@ -70,6 +72,15 @@ describe('ForgotPasswordConfirmationPage', () => {
       render(<ForgotPasswordConfirmationPage />);
       await userEvent.click(screen.getByTestId('back-arrow'));
       expect(mockNavigate).toHaveBeenCalledWith('/signin');
+    });
+
+    it('navigates to sign-in when link button is clicked', async () => {
+      render(<ForgotPasswordConfirmationPage />);
+      await userEvent.click(screen.getByTestId('link-button'));
+      expect(screen.getByTestId('link-button')).toHaveAttribute(
+        'href',
+        '/signin',
+      );
     });
   });
 });

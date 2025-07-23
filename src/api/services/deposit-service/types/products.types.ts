@@ -1,4 +1,4 @@
-import { PRODUCT_TAGS } from 'api/constants/tags';
+import { PRODUCT_TAGS } from 'constants/api/tags';
 
 interface ICard {
   cardName: string;

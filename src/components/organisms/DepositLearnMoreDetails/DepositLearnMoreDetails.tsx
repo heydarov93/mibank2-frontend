@@ -12,7 +12,6 @@ interface DepositLearnMoreDetailsProps {
 
 export const DepositLearnMoreDetails = ({
   deposit,
-  onOpenDeposit,
 }: DepositLearnMoreDetailsProps) => {
   return (
     <Box display="flex" justifyContent="space-between">
@@ -25,10 +24,7 @@ export const DepositLearnMoreDetails = ({
         wdLimit={deposit.earlyWithdrawalLimit}
         minDeposit={deposit.min}
       />
-      <InvestmentBox
-        interestRate={deposit.interestRate}
-        setOpenDeposit={() => onOpenDeposit(deposit)}
-      />
+      <InvestmentBox interestRate={deposit.interestRate} />
     </Box>
   );
 };

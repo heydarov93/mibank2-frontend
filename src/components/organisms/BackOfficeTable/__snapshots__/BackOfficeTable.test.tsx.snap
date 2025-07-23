@@ -81,7 +81,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               class="MuiStack-root css-kdc3n8-MuiStack-root"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-12i77ga-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Closed
               </p>
@@ -89,6 +89,8 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-12lw3wk-MuiSwitch-root"
               >
                 <span
+                  aria-checked="false"
+                  aria-label="label.switch"
                   class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-byenzh-MuiButtonBase-root-MuiSwitch-switchBase"
                 >
                   <input
@@ -126,15 +128,17 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                  aria-label="label.pen"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
                     EditIcon.svg
                   </svg>
                 </svg>
-                Edit
+                LastResortDeposit.edit
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -146,15 +150,17 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                  aria-label="label.trash"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
                     TrashIcon.svg
                   </svg>
                 </svg>
-                Delete
+                LastResortDeposit.delete
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -178,7 +184,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               class="MuiStack-root css-kdc3n8-MuiStack-root"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-12i77ga-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Closed
               </p>
@@ -186,6 +192,8 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-12lw3wk-MuiSwitch-root"
               >
                 <span
+                  aria-checked="false"
+                  aria-label="label.switch"
                   class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-byenzh-MuiButtonBase-root-MuiSwitch-switchBase"
                 >
                   <input
@@ -223,15 +231,17 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                  aria-label="label.pen"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
                     EditIcon.svg
                   </svg>
                 </svg>
-                Edit
+                LastResortDeposit.edit
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -243,15 +253,17 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                  aria-label="label.trash"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
                     TrashIcon.svg
                   </svg>
                 </svg>
-                Delete
+                LastResortDeposit.delete
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -271,7 +283,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
         <p
           class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
         >
-          Items per page
+          itemsPerPage
         </p>
         <div
           class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall css-wyfja0-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
@@ -327,7 +339,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
         <p
           class="MuiTypography-root MuiTypography-body1 css-6kkdj7-MuiTypography-root"
         >
-          1 - 2 of 2 items
+          pageDisplayText
         </p>
       </div>
       <div
@@ -380,7 +392,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-1s40ryi-MuiTypography-root"
           >
-            Previous
+            prevBtn
           </p>
         </div>
         <div
@@ -409,7 +421,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-1vinusq-MuiTypography-root"
           >
-            Next
+            nextBtn
           </p>
           <button
             class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"

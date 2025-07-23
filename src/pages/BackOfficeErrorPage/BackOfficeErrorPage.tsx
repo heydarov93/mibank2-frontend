@@ -8,8 +8,7 @@ import {
   StyledTitle,
 } from './BackOfficeErrorPage.styled';
 
-import { Logo } from 'components/atoms';
-import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
+import { Logo, ReloadButton } from 'components/atoms';
 
 export const BackOfficeErrorPage = () => {
   const { t } = useTranslation('translation', {

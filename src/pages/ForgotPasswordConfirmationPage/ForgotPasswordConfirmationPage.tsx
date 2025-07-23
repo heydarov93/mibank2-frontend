@@ -8,7 +8,7 @@ import {
   StyledDescription,
 } from './ForgotPasswordConfirmationPage.styled';
 
-import { BackArrow, ButtonLink } from 'components/atoms';
+import { BackArrow, LinkButton } from 'components/atoms';
 import { AuthWrapper, Footer } from 'components/organisms';
 import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
@@ -27,10 +27,10 @@ export const ForgotPasswordConfirmationPage = () => {
           <StyledTitleContainer>
             <StyledTitle variant="h5">{t('PasswordUpdated')}</StyledTitle>
             <StyledDescription>
-              <ButtonLink
+              <LinkButton
                 message={t('PasswordUpdatedDescription')}
                 linkText="SignupPage.moveToLoginLink"
-                href={TO_SIGN_IN}
+                to={TO_SIGN_IN}
               />
             </StyledDescription>
           </StyledTitleContainer>

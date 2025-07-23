@@ -1,4 +1,4 @@
-import { OFFER_TAGS } from 'api/constants/tags';
+import { OFFER_TAGS } from 'constants/api/tags';
 
 export interface IOffer {
   name: string;

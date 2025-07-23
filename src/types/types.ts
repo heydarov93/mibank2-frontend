@@ -11,6 +11,7 @@ export type TSortOrder = (typeof SORT_ORDER)[keyof typeof SORT_ORDER];
 export type THttpStatus = (typeof HTTP_STATUS)[keyof typeof HTTP_STATUS];
 export type TLogoSize = keyof typeof LOGO_SIZES;
 export type TCurrency = keyof typeof FLAG_ICONS;
+export type TLogoSvgColor = 'blue' | 'white';
 export type TCardIssuer = 'visa' | 'mastercard' | 'unionpay';
 export type TCardStatus = 'active' | 'blocked' | 'expired';
 export type TCardIssueType = 'digital' | 'plastic';

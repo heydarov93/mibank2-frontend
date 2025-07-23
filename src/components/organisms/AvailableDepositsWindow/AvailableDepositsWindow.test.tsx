@@ -4,8 +4,6 @@ import { AvailableDepositsWindow } from './AvailableDepositsWindow';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 
-
-
 jest.mock('api/services/deposit-service/deposits.api', () => ({
   useGetDepositsQuery: jest.fn(),
 }));
@@ -19,8 +17,27 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('./atoms/ErrorMessage/ErrorMessage', () => ({
+  ErrorMessage: () => <div>Deposit Not Found</div>,
+}));
+
+jest.mock('components/molecules', () => ({
+  DepositBox: ({
+    depositName,
+    depositDescription,
+  }: {
+    depositName: string;
+    depositDescription: string;
+  }) => (
+    <div>
+      <h1>{depositName}</h1>
+      <p>{depositDescription}</p>
+    </div>
+  ),
+}));
+
 jest.mock('components/atoms', () => ({
-  DepositErrorMessage: () => <div>error</div>,
+  CloseButton: () => <button data-testid="close-button"> Close</button>,
 }));
 
 describe('AvailableDepositsWindow', () => {
@@ -36,6 +53,7 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.getByText('availableDeposits')).toBeInTheDocument();
@@ -53,6 +71,7 @@ describe('AvailableDepositsWindow', () => {
         open={false}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.queryByText('availableDeposits')).not.toBeInTheDocument();
@@ -69,6 +88,7 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -85,8 +105,9 @@ describe('AvailableDepositsWindow', () => {
         open={true}
         onClose={jest.fn()}
         onSelectDeposit={jest.fn()}
+        onSetLearnDeposit={jest.fn()}
       />,
     );
-    expect(screen.getByText('error')).toBeInTheDocument();
+    expect(screen.getByText('Deposit Not Found')).toBeInTheDocument();
   });
 });

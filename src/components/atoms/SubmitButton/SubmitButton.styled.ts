@@ -1,9 +1,9 @@
 import { Button, styled } from '@mui/material';
 
 export const StyledButton = styled(Button)(
-  ({ theme: { palette, breakpoints } }) => ({
+  ({ theme: { palette, breakpoints, spacing } }) => ({
     fontSize: '16px',
-    padding: '12px 22px',
+    padding: spacing(1.5, 3),
     height: '43px',
     borderRadius: '8px',
 
@@ -14,7 +14,7 @@ export const StyledButton = styled(Button)(
     },
 
     [breakpoints.up('sm')]: {
-      padding: '10px 22px',
+      padding: spacing(1.25, 3),
       height: '56px',
     },
   }),

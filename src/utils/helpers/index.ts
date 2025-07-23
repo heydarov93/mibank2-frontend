@@ -39,3 +39,5 @@ export {
   copyToClipboard,
   capitalizeFirstLetter,
 } from './cardDetailsHelpers';
+
+export { isAuthError } from './errorHelpers';

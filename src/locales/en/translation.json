@@ -128,6 +128,7 @@
     "viewAllDeposits": "View all deposits",
     "back": "Back",
     "cancelDeposit": "Cancel",
+    "coinInvestingPictureAlt": "watering the money flowers",
     "openDepositFormSubTitle": "Calculate your earnings and open deposit in 1 easy step",
     "attractiveInterestRate": "Attractive Interest Rate",
     "interestRateText": "Earn a competitive 5.00% annual interest to grow your savings.",
@@ -871,7 +872,7 @@
             "oneLowerCase": "One letter in lowercase",
             "oneDigit": "One digit",
             "specialChar": "One special character",
-            "allowedSpecialChars": "Allowed special characters"
+            "allowedSpecialChars": "Allowed special characters: {{specialChars}}"
           }
         }
       }
@@ -1031,6 +1032,59 @@
         "failedToLoadCardDetails": "Failed to load user card details! Please try again later.",
         "notFoundCardDetails": "User card details not found! Please try again later."
       }
+    }
+  },
+  "Accessibility": {
+    "label": {
+      "warning": "Warning",
+      "wallet": "Wallet",
+      "visa": "Visa",
+      "unionPay": "UnionPay",
+      "trash": "Trash",
+      "check": "Check",
+      "clear": "Clear",
+      "validationTag": "Validation {{tag}}",
+      "info": "Info",
+      "tableFilter": "TableFilter",
+      "switch": "Switch",
+      "successfulCreation": "SuccessfulCreation",
+      "submit": "Submit",
+      "charactersTooltip": "CharactersTooltip",
+      "smileyFace": "SmileyFace",
+      "shield": "Shield",
+      "shieldCheck": "ShieldCheck",
+      "share": "Share",
+      "settings": "Settings",
+      "reload": "Reload current page",
+      "plus": "Plus",
+      "pen": "Pen",
+      "noCard": "NoCard",
+      "close": "Close",
+      "cancel": "Cancel",
+      "moneyBag": "MoneyBag",
+      "goBack": "Go Back",
+      "masterCard": "Mastercard",
+      "logout": "Logout",
+      "loading": "Loading",
+      "link": "Link",
+      "greenPlus": "GreenPlus",
+      "googlePlay": "GooglePlay",
+      "appStore": "AppStore",
+      "filter": "Filter",
+      "expandMore": "ExpandMore",
+      "download": "Download",
+      "currencyFlag": "Flag of {{currency}}",
+      "clock": "Clock",
+      "svgLogo": "SvgLogo",
+      "blueTick": "BlueTick",
+      "bank": "Bank",
+      "backArrow": "Back arrow",
+      "edit": "Edit",
+      "currencySelector": "Currency selector",
+      "transaction": "Transaction",
+      "cityMenu": "CityMenu",
+      "ArrowDown": "ArrowDown",
+      "cardIssuer": "{{label}} card issuer"
     }
   }
 }

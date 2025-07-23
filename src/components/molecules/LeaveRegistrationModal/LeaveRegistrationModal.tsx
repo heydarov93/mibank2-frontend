@@ -9,7 +9,7 @@ import {
   StyledTitle,
 } from './LeaveRegistrationModal.styled';
 
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { CloseButton } from 'components/atoms';
 import { TO_WELCOME } from 'constants/navigation/routePaths';
 
 interface LeaveRegistrationModalProps {
@@ -38,7 +38,7 @@ export const LeaveRegistrationModal = ({
     >
       <Box>
         <StyledTitle variant="h3">{t('leaveRegisterModal.title')}</StyledTitle>
-        <CloseButtonX
+        <CloseButton
           onClick={onCloseModal}
           sx={{ position: 'absolute', top: '25px', right: '15px' }}
         />

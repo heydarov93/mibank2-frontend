@@ -32,10 +32,7 @@ export const StyledTitle = styled(Typography)(({ theme: { palette } }) => ({
 }));
 
 export const StyledCloseButton = styled(IconButton)(
-  ({ theme: { palette, spacing } }) => ({
-    position: 'absolute',
-    top: spacing(5),
-    right: spacing(5),
+  ({ theme: { palette } }) => ({
     color: palette.grey[400],
     width: '28px',
     height: '28px',

@@ -19,14 +19,17 @@ import {
 } from './cards.types';
 
 import { BASE_URL } from 'api/config/api.config';
-import { CACHE_DURATION } from 'api/constants/durations';
-import { CARD_TAGS } from 'api/constants/tags';
-import { endpoints } from 'api/endpoints';
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { CARD_TAGS } from 'constants/api/tags';
+import {
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from 'constants/business/pagination';
 import { ETokenType } from 'enums';
 import { sessionTokenHandler } from 'utils/auth';
 
-const token = sessionTokenHandler.getToken(ETokenType.ACCESS);
+const sessionToken = sessionTokenHandler.getToken(ETokenType.ACCESS);
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
@@ -40,14 +43,9 @@ export const cardsApi = createApi({
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     getUserCards: builder.query<TGetUserCardsResponse, IGetUserCardsRequest>({
-      query: ({ userId, page, count }) => ({
-        url: endpoints.cards.getUserCards,
+      query: ({ userId }) => ({
+        url: API_ENDPOINTS.cards.getUserCards(userId),
         method: 'GET',
-        params: {
-          userId,
-          page,
-          count,
-        },
       }),
       providesTags: (_result, _error, { userId }) => [
         { type: CARD_TAGS.USER_CARDS, id: userId },
@@ -59,7 +57,7 @@ export const cardsApi = createApi({
       IGetUserCardDetailsRequest
     >({
       query: (id) => ({
-        url: endpoints.cards.getUserCardDetails(id),
+        url: API_ENDPOINTS.cards.getUserCardDetails(id),
         method: 'GET',
       }),
       providesTags: (_result, _error, id) => [
@@ -72,7 +70,7 @@ export const cardsApi = createApi({
       IUpdateCardStatusRequest
     >({
       query: ({ status, id }) => ({
-        url: endpoints.cards.updateCardStatus(id),
+        url: API_ENDPOINTS.cards.updateCardStatus(id),
         method: 'PATCH',
         params: { status },
       }),
@@ -87,7 +85,7 @@ export const cardsApi = createApi({
       ISetPrimaryPaymentCardRequest
     >({
       query: ({ id, isPrimaryPaymentCard }) => ({
-        url: endpoints.cards.setPrimaryPaymentCard(id),
+        url: API_ENDPOINTS.cards.setPrimaryPaymentCard(id),
         method: 'PATCH',
         params: { isPrimaryPaymentCard },
       }),
@@ -99,7 +97,7 @@ export const cardsApi = createApi({
     }),
     searchCards: builder.query<TSearchCardsResponse, ISearchCardsRequest>({
       query: (params) => ({
-        url: endpoints.cards.searchCards,
+        url: API_ENDPOINTS.cards.searchCards,
         method: 'GET',
         params: {
           page: DEFAULT_PAGE_INDEX,
@@ -118,7 +116,7 @@ export const cardsApi = createApi({
     }),
     issueUserCard: builder.mutation<string, IIssueUserCardRequest>({
       query: (data) => ({
-        url: endpoints.cards.issueUserCard,
+        url: API_ENDPOINTS.cards.issueUserCard,
         body: data,
         method: 'POST',
         responseHandler: 'text',
@@ -136,12 +134,12 @@ export const cardsApi = createApi({
     }),
     createCard: builder.mutation<TCreateCardResponse, TCreateCardRequest>({
       query: (data) => ({
-        url: endpoints.cards.createCard,
+        url: API_ENDPOINTS.cards.createCard,
         method: 'POST',
         body: data,
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${sessionToken}`,
         },
       }),
       invalidatesTags: [CARD_TAGS.CREATE_CARD, CARD_TAGS.USER_CARDS],

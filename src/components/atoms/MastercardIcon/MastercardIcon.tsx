@@ -1,11 +1,28 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ReactComponent } from 'assets/icons/Mastercard.svg';
+import { ReactComponent as MasterCardSVG } from 'assets/icons/Mastercard.svg';
 
 interface MastercardIconProps {
   style?: CSSProperties;
 }
 
-export const MastercardIcon = ({ style }: MastercardIconProps) => (
-  <ReactComponent style={style} data-testid="card-issuer-icon" />
+export const MastercardIcon = memo<MastercardIconProps>(
+  ({ style, ...props }: MastercardIconProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
+
+    return (
+      <MasterCardSVG
+        style={style}
+        data-testid="card-issuer-icon"
+        role="img"
+        aria-label={t('label.masterCard')}
+        {...props}
+      />
+    );
+  },
 );
+
+MastercardIcon.displayName = 'MastercardIcon';

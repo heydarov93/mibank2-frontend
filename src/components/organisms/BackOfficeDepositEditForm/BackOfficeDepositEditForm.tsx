@@ -11,8 +11,7 @@ import {
 
 import { useUpdateDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
-import { InputField } from 'components/atoms';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { InputField, CloseButton } from 'components/atoms';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import MiAutoComplete from 'components/molecules/MiAutoComplete/MiAutoComplete';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
@@ -112,7 +111,7 @@ export const BackOfficeDepositEditForm = ({
     <StyledContainer>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <StyledHeader>{t('depositEditForm.editDep')}</StyledHeader>
-        <CloseButtonX onClick={onClose} />
+        <CloseButton onClick={onClose} />
       </Box>
       <form
         style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}

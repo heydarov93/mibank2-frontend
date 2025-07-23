@@ -34,8 +34,10 @@ exports[`BackOfficeConfirmationWindow matches snapshot 1`] = `
     </div>
     <svg
       aria-hidden="true"
+      aria-label="label.close"
       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-lw08pq-MuiSvgIcon-root"
       focusable="false"
+      role="button"
       viewBox="0 0 24 24"
     >
       <svg

@@ -2,15 +2,16 @@ import { Box, styled, Typography } from '@mui/material';
 
 export const StyledContainer = styled(Box)(
   ({ theme: { spacing, palette } }) => ({
-    width: '416px',
-    minHeight: '276px',
+    maxWidth: '310px',
+    minHeight: '312px',
     display: 'flex',
     flexDirection: 'column',
     gap: spacing(4),
-    padding: spacing(4, 4, 8, 4),
+    padding: spacing(3),
     borderRadius: spacing(1),
     backgroundColor: palette.common.white,
-    alignItems: 'center',
+    textAlign: 'left',
+    boxShadow: `0px 4px 24px 0px ${palette.shadow.shadowLight}`,
   }),
 );
 
@@ -29,6 +30,5 @@ export const SecondaryText = styled(Typography)(
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: typography.mediumLogo?.fontFamily,
     color: palette.common.black,
-    textAlign: 'center',
   }),
 );

@@ -17,8 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 import { MainHeader } from '../BackOfficeCardEditForm/BackOfficeCardEditForm.styled';
 
-import { InputField, SubmitButton } from 'components/atoms';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { InputField, SubmitButton, CloseButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import { DATE_FORMATS, LOCALES } from 'constants/business/date';
@@ -112,7 +111,7 @@ export const BackOfficeEditEmployee = ({
           }}
         >
           <MainHeader>{t('editEmployee')}</MainHeader>
-          <CloseButtonX onClick={handleClose} />
+          <CloseButton onClick={handleClose} />
         </Box>
       </DialogTitle>
       <DialogActions>

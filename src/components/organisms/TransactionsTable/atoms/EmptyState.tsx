@@ -1,3 +1,4 @@
+
 import {
   StyledEmptyStateContainer,
   StyledEmptyStateContent,
@@ -5,11 +6,10 @@ import {
 
 import { TRANSACTION_EMPTY_STATE_CONTENTS } from 'constants/business/transaction';
 
-
-type EmptyStateType = 'no-matches' | 'no-transactions' | 'offline';
+type TEmptyStateType = 'no-matches' | 'no-transactions' | 'offline';
 
 interface EmptyStateProps {
-  type: EmptyStateType;
+  type: TEmptyStateType;
   customTitle?: string;
   customMessage?: string;
 }
@@ -20,14 +20,14 @@ export const EmptyState = ({
   customMessage,
 }: EmptyStateProps) => {
   const content = TRANSACTION_EMPTY_STATE_CONTENTS[type];
+  const title = customTitle || content.title;
+  const message = customMessage || content.message;
 
   return (
-    <StyledEmptyStateContainer>
-      <StyledEmptyStateContent variant="body1">
-        {customTitle || content.title}
-      </StyledEmptyStateContent>
+    <StyledEmptyStateContainer role="status">
+      <StyledEmptyStateContent variant="body1">{title}</StyledEmptyStateContent>
       <StyledEmptyStateContent variant="body2">
-        {customMessage || content.message}
+        {message}
       </StyledEmptyStateContent>
     </StyledEmptyStateContainer>
   );

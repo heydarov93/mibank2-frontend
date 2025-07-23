@@ -13,7 +13,7 @@ import {
 } from './CreateForgotPasswordForm.styled';
 
 import { useConfirmForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
-import { ButtonLink, SubmitButton } from 'components/atoms';
+import { LinkButton, SubmitButton } from 'components/atoms';
 import {
   PasswordField,
   PasswordValidationTags,
@@ -168,10 +168,10 @@ export const CreateForgotPasswordForm = () => {
         </StyledFormContent>
         <SubmitButton buttonContent={t('Confirm')} isDisabled={!isValid} />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href={TO_SIGN_IN}
+        to={TO_SIGN_IN}
       />
     </>
   );

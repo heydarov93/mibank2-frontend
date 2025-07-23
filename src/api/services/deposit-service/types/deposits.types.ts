@@ -1,4 +1,4 @@
-import { DEPOSIT_TAGS } from 'api/constants/tags';
+import { DEPOSIT_TAGS } from 'constants/api/tags';
 import { IDeposit } from 'models/IDepositInfo';
 
 export interface IGetDepositsRequest {

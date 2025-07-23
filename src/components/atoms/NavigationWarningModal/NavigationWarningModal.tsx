@@ -5,9 +5,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { StyledNavigationWarningModal } from './NavigationWarningModal.styled';
+import { StyledDialog } from './NavigationWarningModal.styled';
 
 interface NavigationWarningModalProps {
   open: boolean;
@@ -21,47 +22,65 @@ interface NavigationWarningModalProps {
   onCancel: () => void;
 }
 
-export const NavigationWarningModal = ({
-  open,
-  title,
-  description,
-  confirmLabel,
-  cancelLabel,
-  testId,
-  sx,
-  onConfirm,
-  onCancel,
-}: NavigationWarningModalProps) => {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'common',
-  });
+export const NavigationWarningModal = memo<NavigationWarningModalProps>(
+  ({
+    open,
+    title,
+    description,
+    confirmLabel,
+    cancelLabel,
+    testId,
+    sx,
+    onConfirm,
+    onCancel,
+  }: NavigationWarningModalProps) => {
+    const { t } = useTranslation('translation');
+    const translatedTexts = {
+      title: title || t('warning.title'),
+      description: description || t('warning.contentText'),
+      cancel: cancelLabel || t('warning.cancel'),
+      confirm: confirmLabel || t('warning.confirm'),
+    };
 
-  return (
-    <StyledNavigationWarningModal
-      open={open}
-      onClose={onCancel}
-      data-testid={testId}
-      sx={sx}
-    >
-      <DialogTitle>
-        {title || t('warning.title')}
-        <IconButton onClick={onCancel}>
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          {description || t('warning.contentText')}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onCancel} className="cancelButton">
-          {cancelLabel || t('warning.cancel')}
-        </Button>
-        <Button onClick={onConfirm} className="confirmButton">
-          {confirmLabel || t('warning.confirm')}
-        </Button>
-      </DialogActions>
-    </StyledNavigationWarningModal>
-  );
-};
+    return (
+      <StyledDialog
+        aria-hidden={open}
+        open={open}
+        onClose={onCancel}
+        data-testid={testId}
+        sx={sx}
+      >
+        <DialogTitle>
+          {translatedTexts.title}
+          <IconButton
+            onClick={onCancel}
+            aria-label={t('Accessibility.label.close')}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>{translatedTexts.description}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={onCancel}
+            className="cancelButton"
+            aria-label={t('Accessibility.label.cancel')}
+          >
+            {translatedTexts.cancel}
+          </Button>
+          <Button
+            onClick={onConfirm}
+            className="confirmButton"
+            aria-label={t('Accessibility.label.submit')}
+          >
+            {translatedTexts.confirm}
+          </Button>
+        </DialogActions>
+      </StyledDialog>
+    );
+  },
+);
+
+NavigationWarningModal.displayName = 'NavigationWarningModal';

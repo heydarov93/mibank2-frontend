@@ -3,7 +3,7 @@ import {
   LastPageRounded,
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded,
-} from '@mui/icons-material'; // order matters
+} from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
