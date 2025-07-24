@@ -7,7 +7,7 @@ import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
-type AvailableFilters = Record<
+export type AvailableFilters = Record<
   keyof Pick<
     TTransactionFiltersValues,
     'card' | 'template' | 'time' | 'transactionsType'
@@ -28,8 +28,8 @@ export const useTransferFilters = () => {
   const defaultFilters: TTransactionFiltersValues = {
     time: ETransferTime.LAST_7_DAYS,
     card: [availableFilters.card[0].value],
-    template: availableFilters.template[0].value,
-    transactionsType: [ETransactionType.ALL],
+    template: [availableFilters.template[0].value],
+    transactionsType: ETransactionType.ALL,
     startDate: dayjs().subtract(7, 'day').toDate(),
     endDate: new Date(),
   };

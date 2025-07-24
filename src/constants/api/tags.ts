@@ -15,6 +15,11 @@ export const TRANSFER_TAGS = {
   LIST: 'LIST',
 } as const;
 
+export const TRANSACTION_TAGS = {
+  LIST: 'TransactionList',
+  DETAILS: 'TransactionDetails',
+} as const;
+
 export const CARD_TAGS = {
   USER_CARDS: 'UserCards',
   USER_CARD_DETAILS: 'UserCardDetails',
