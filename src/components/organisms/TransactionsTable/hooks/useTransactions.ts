@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetTransactionsByUserIdMutation } from 'api/services/account-service/transactions.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { DATE_FORMATS } from 'constants/business/date';
+import { SORT_ORDER } from 'constants/business/sortOrder';
 import { Transaction } from 'models/ITransactionInfo';
 import { formatDateByPattern } from 'utils';
 import { TTransactionFiltersValues } from 'validation';
@@ -38,7 +39,9 @@ export function useTransactions({
   const [numberOfAllTransactionsInDb, setNumberOfAllTransactionsInDb] =
     useState(0);
 
-  const [dataSortOrder, setDataSortOrder] = useState<'ASC' | 'DESC'>('DESC');
+  const [dataSortOrder, setDataSortOrder] = useState<'ASC' | 'DESC'>(
+    SORT_ORDER.DESC,
+  );
 
   const { data: userIdObject, isLoading: isGetUserIdLoading } =
     useGetUserIdQuery();
@@ -92,12 +95,12 @@ export function useTransactions({
     }).then((res) => {
       'data' in res && setNumberOfAllTransactionsInDb(res.data.totalElements);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userIdObject]);
 
+  // TODO: Send `templatesId` as well when it's supported by the backend
+  const { card, transactionsType, startDate, endDate } = currentFilters;
   useEffect(() => {
-    // TODO: Send `templatesId` as well when it's supported by the backend
-    const { card, transactionsType, startDate, endDate } = currentFilters;
-
     const sources = card?.filter(
       (c): c is string => typeof c === 'string' && c !== 'All cards',
     );
@@ -113,8 +116,8 @@ export function useTransactions({
         count,
         sources,
         transactionType,
-        fromDate: formatDateByPattern(startDate, DATE_FORMATS.YYYY_MM_DD),
-        toDate: formatDateByPattern(endDate, DATE_FORMATS.YYYY_MM_DD),
+        fromDate: formatDateByPattern(startDate || '', DATE_FORMATS.YYYY_MM_DD),
+        toDate: formatDateByPattern(endDate || '', DATE_FORMATS.YYYY_MM_DD),
         dataSortOrder,
       });
 
@@ -125,7 +128,17 @@ export function useTransactions({
     }
 
     fetchTransactionsHistory();
-  }, [page, count, userIdObject, currentFilters, dataSortOrder]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    page,
+    count,
+    userIdObject,
+    card,
+    transactionsType,
+    startDate,
+    endDate,
+    dataSortOrder,
+  ]);
 
   return {
     transactionsList,

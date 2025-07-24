@@ -1,6 +1,6 @@
 import {
   Box,
-  Button,
+  IconButton,
   styled,
   TableCell,
   TableContainer,
@@ -62,7 +62,7 @@ export const StyledEmptyStateContent = styled(Typography)(
   }),
 );
 
-export const StyledEmptyStateContainer = styled(Typography)(
+export const StyledEmptyStateContainer = styled(Box)(
   ({ theme: { spacing } }) => ({
     width: '100%',
     display: 'flex',
@@ -81,10 +81,7 @@ export const StyledLoadingSpinnerWrapper = styled(Box)({
   flexGrow: 1,
 });
 
-export const StyledSortIconButton = styled(Button)(({ theme }) => ({
-  minWidth: 0,
-  padding: 0,
-  margin: 0,
+export const StyledSortIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.common.black,
   backgroundColor: 'transparent',
   boxShadow: 'none',

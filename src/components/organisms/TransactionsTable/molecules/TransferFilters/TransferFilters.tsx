@@ -60,7 +60,7 @@ export const TransferFilters = ({
     handleFiltersChange(formMethods.getValues());
   }
 
-  function handleDateChange(e: SelectChangeEvent<string | string[]>) {
+  function handleFilterInputsChange(e: SelectChangeEvent<string | string[]>) {
     const { value } = e.target;
 
     switch (value) {
@@ -77,15 +77,6 @@ export const TransferFilters = ({
         setValue('endDate', new Date());
         break;
     }
-
-    handleFiltersChange(formMethods.getValues());
-  }
-
-  function handleCardChange() {
-    handleFiltersChange(formMethods.getValues());
-  }
-
-  function handleTransactionsTypeChange() {
     handleFiltersChange(formMethods.getValues());
   }
 
@@ -105,7 +96,7 @@ export const TransferFilters = ({
                   : undefined
               }
               optionType="radio"
-              onChange={handleDateChange}
+              onChange={handleFilterInputsChange}
               data-testid="time-filter"
             />
             <StyledSelectField
@@ -114,7 +105,7 @@ export const TransferFilters = ({
               optionType="checkbox"
               options={availableFilters.card}
               containerSx={{ width: '235px' }}
-              onChange={handleCardChange}
+              onChange={handleFilterInputsChange}
               data-testid="card-filter"
             />
             <StyledSelectField
@@ -123,6 +114,9 @@ export const TransferFilters = ({
               optionType="checkbox"
               options={availableFilters.template}
               containerSx={{ width: '185px' }}
+              onChange={() => {
+                'use strict';
+              }}
               data-testid="template-filter"
             />
             <StyledSelectField
@@ -131,7 +125,7 @@ export const TransferFilters = ({
               optionType="radio"
               options={availableFilters.transactionsType}
               containerSx={{ width: '170px' }}
-              onChange={handleTransactionsTypeChange}
+              onChange={handleFilterInputsChange}
               data-testid="transactions-type-filter"
             />
           </FormProvider>

@@ -17,7 +17,6 @@ import {
   StyledEmptyStateContent,
   StyledEmptyTableCell,
   StyledHeaderCell,
-  StyledLoadingSpinnerWrapper,
   StyledSortIconButton,
   StyledTableContainer,
   StyledTableHead,
@@ -27,11 +26,11 @@ import { useTransactions } from './hooks/useTransactions';
 import { useTransferFilters } from './hooks/useTransferFilters';
 import { TransferFilters } from './molecules';
 
-import { LoadingSpinner } from 'components/atoms';
 import { CustomTableRow } from 'components/molecules';
 import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
 import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 import { DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
+import { SORT_ORDER } from 'constants/business/sortOrder';
 import { usePaginationInfo } from 'hooks';
 import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
 import {
@@ -68,7 +67,6 @@ export const TransactionsTable = () => {
     transactionsLength,
     emptyTransactionsTableText,
     setDataSortOrder,
-    isLoading,
   } = useTransactions({
     page,
     count: rowsPerPage,
@@ -106,18 +104,14 @@ export const TransactionsTable = () => {
 
       return transformedTransaction;
     });
-  }, [page, rowsPerPage, transactionsList]);
+  }, [transactionsList]);
 
-  if (isLoading) {
-    return (
-      <StyledLoadingSpinnerWrapper>
-        <LoadingSpinner />
-      </StyledLoadingSpinnerWrapper>
+  const handleSortByDate = () => {
+    setPage(0);
+    setDataSortOrder((prev) =>
+      prev === SORT_ORDER.ASC ? SORT_ORDER.DESC : SORT_ORDER.ASC,
     );
-  }
-
-  const handleSortByDate = () =>
-    setDataSortOrder((prev) => (prev === 'ASC' ? 'DESC' : 'ASC'));
+  };
 
   const handlePageChange = (
     _event: MouseEvent<HTMLButtonElement> | null,
