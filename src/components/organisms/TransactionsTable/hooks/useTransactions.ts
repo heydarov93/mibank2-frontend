@@ -86,7 +86,7 @@ export function useTransactions({
     // Request API and see whether user has transactions at all
     // Display a specific message if user doesn't have any transaction
     getTransactions({
-      userId: 1001,
+      userId: userIdObject.userId,
       page: 0,
       count: 10,
     }).then((res) => {
@@ -108,7 +108,7 @@ export function useTransactions({
       if (!userIdObject) return;
 
       const response = await getTransactions({
-        userId: 1001,
+        userId: userIdObject.userId,
         page,
         count,
         sources,
