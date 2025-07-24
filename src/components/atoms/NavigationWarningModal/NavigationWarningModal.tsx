@@ -34,7 +34,7 @@ export const NavigationWarningModal = memo<NavigationWarningModalProps>(
     onConfirm,
     onCancel,
   }: NavigationWarningModalProps) => {
-    const { t } = useTranslation('translation');
+    const { t } = useTranslation('translation', { keyPrefix: 'common' });
     const translatedTexts = {
       title: title || t('warning.title'),
       description: description || t('warning.contentText'),
