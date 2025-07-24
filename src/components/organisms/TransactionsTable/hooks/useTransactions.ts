@@ -95,7 +95,6 @@ export function useTransactions({
     }).then((res) => {
       'data' in res && setNumberOfAllTransactionsInDb(res.data.totalElements);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userIdObject]);
 
   // TODO: Send `templatesId` as well when it's supported by the backend
@@ -128,7 +127,6 @@ export function useTransactions({
     }
 
     fetchTransactionsHistory();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     page,
     count,
