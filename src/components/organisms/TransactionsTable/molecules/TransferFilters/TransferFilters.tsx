@@ -12,7 +12,7 @@ import dayjs from 'dayjs';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useTransferFilters } from '../../hooks/useTransferFilters';
+import { AvailableFilters } from '../../hooks/useTransferFilters';
 
 import { StyledSelectField } from './TransferFilters.styled';
 
@@ -24,10 +24,17 @@ import { TTransactionFiltersValues } from 'validation/transaction/transactionFil
 
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;
+  availableFilters: AvailableFilters;
+  defaultFilters: TTransactionFiltersValues;
+  handleFiltersChange: (currentFIlters: TTransactionFiltersValues) => void;
 }
 
-export const TransferFilters = ({ sx }: TransferFiltersProps) => {
-  const { availableFilters, defaultFilters } = useTransferFilters();
+export const TransferFilters = ({
+  sx,
+  availableFilters,
+  defaultFilters,
+  handleFiltersChange,
+}: TransferFiltersProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Transfers.filters',
   });
@@ -50,9 +57,10 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
 
   function clearFilters() {
     reset();
+    handleFiltersChange(formMethods.getValues());
   }
 
-  function handleDateChange(e: SelectChangeEvent<string | string[]>) {
+  function handleFilterInputsChange(e: SelectChangeEvent<string | string[]>) {
     const { value } = e.target;
 
     switch (value) {
@@ -69,6 +77,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
         setValue('endDate', new Date());
         break;
     }
+    handleFiltersChange(formMethods.getValues());
   }
 
   return (
@@ -87,7 +96,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
                   : undefined
               }
               optionType="radio"
-              onChange={handleDateChange}
+              onChange={handleFilterInputsChange}
               data-testid="time-filter"
             />
             <StyledSelectField
@@ -96,22 +105,27 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
               optionType="checkbox"
               options={availableFilters.card}
               containerSx={{ width: '235px' }}
+              onChange={handleFilterInputsChange}
               data-testid="card-filter"
             />
             <StyledSelectField
               name="template"
               control={control}
-              optionType="radio"
+              optionType="checkbox"
               options={availableFilters.template}
               containerSx={{ width: '185px' }}
+              onChange={() => {
+                'use strict';
+              }}
               data-testid="template-filter"
             />
             <StyledSelectField
               name="transactionsType"
               control={control}
-              optionType="checkbox"
+              optionType="radio"
               options={availableFilters.transactionsType}
               containerSx={{ width: '170px' }}
+              onChange={handleFilterInputsChange}
               data-testid="transactions-type-filter"
             />
           </FormProvider>

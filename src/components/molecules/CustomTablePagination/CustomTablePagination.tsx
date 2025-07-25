@@ -13,7 +13,6 @@ import CustomPaginationActions from './CustomPaginationActions';
 
 import { ITEMS_PER_PAGE_OPTIONS } from 'constants/business/pagination';
 
-
 interface CustomTablePaginationProps {
   pageDisplayText?: string;
   totalPages: number;
@@ -38,14 +37,10 @@ const CustomTablePagination = ({
     keyPrefix: 'TablePagination',
   });
 
-  if (totalPages === 0) {
-    return null;
-  }
-
   return (
     <StyledMainContainer data-testid="main-container">
       <StyledItemsCountContainer>
-        <StyledSecondaryText>{t("itemsPerPage")}</StyledSecondaryText>
+        <StyledSecondaryText>{t('itemsPerPage')}</StyledSecondaryText>
         <StyledSelect
           value={rowsPerPage}
           onChange={onRowsPerPageChange}

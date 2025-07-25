@@ -9,6 +9,7 @@ import {
   offersApi,
   productsApi,
   transfersApi,
+  transactionsApi,
   userAccountsApi,
   userDepositsApi,
 } from 'api';
@@ -20,6 +21,7 @@ export const API_SLICES = [
   depositsApi,
   accountsApi,
   transfersApi,
+  transactionsApi,
   getUserIdApi,
   exchangeRatesApi,
   productsApi,
@@ -28,4 +30,4 @@ export const API_SLICES = [
   userDepositsApi,
 ] as const;
 
-export const API_REDUCER_PATHS = API_SLICES.map((slice) => slice.reducerPath)
+export const API_REDUCER_PATHS = API_SLICES.map((slice) => slice.reducerPath);

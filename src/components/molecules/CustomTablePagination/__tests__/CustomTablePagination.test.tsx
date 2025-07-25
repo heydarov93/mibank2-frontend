@@ -6,7 +6,7 @@ import CustomTablePagination from '../CustomTablePagination';
 
 import { theme } from 'theme/theme';
 
-jest.mock("constants/business/pagination", () => ({
+jest.mock('constants/business/pagination', () => ({
   ITEMS_PER_PAGE_OPTIONS: [10, 20, 30],
 }));
 
@@ -54,12 +54,6 @@ describe('CustomTablePagination', () => {
     expect(screen.getByText('21 - 30 of 100 items')).toBeInTheDocument();
   });
 
-  it('should not render when totalPages is 0', () => {
-    renderWithTheme(<CustomTablePagination {...defaultProps} totalPages={0} />);
-
-    expect(screen.queryByTestId('main-container')).not.toBeInTheDocument();
-  });
-
   it('should display select component and options', async () => {
     renderWithTheme(<CustomTablePagination {...defaultProps} />);
 
@@ -67,9 +61,9 @@ describe('CustomTablePagination', () => {
     expect(select).toBeInTheDocument();
 
     await userEvent.click(select);
-    
+
     const option = await screen.findByText('10');
-    
+
     expect(option).toBeInTheDocument();
   });
 

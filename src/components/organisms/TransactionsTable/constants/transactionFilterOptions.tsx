@@ -34,17 +34,14 @@ export const filterOptions = {
     {
       label: t(`${path}.transactionTypes.all`),
       value: ETransactionType.ALL,
-      preventClosing: true,
     },
     {
       label: t(`${path}.transactionTypes.income`),
       value: ETransactionType.INCOME,
-      preventClosing: true,
     },
     {
       label: t(`${path}.transactionTypes.expense`),
       value: ETransactionType.EXPENSE,
-      preventClosing: true,
     },
   ],
 } satisfies Record<string, SelectFieldOption[]>;
