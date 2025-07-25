@@ -91,8 +91,8 @@ const availableFilters = {
 const defaultFilters = {
   time: ETransferTime.LAST_7_DAYS,
   card: [availableFilters.card[0].value],
-  template: availableFilters.template[0].value,
-  transactionsType: [ETransactionType.ALL],
+  template: [availableFilters.template[0].value],
+  transactionsType: ETransactionType.ALL,
   startDate: dayjs().subtract(7, 'day').toDate(),
   endDate: new Date(),
 } satisfies TTransactionFiltersValues;
@@ -147,7 +147,13 @@ describe('TransferFilters', () => {
       isError: false,
       error: null,
     });
-    render(<TransferFilters />);
+    render(
+      <TransferFilters
+        availableFilters={availableFilters}
+        defaultFilters={defaultFilters}
+        handleFiltersChange={jest.fn()}
+      />,
+    );
   });
 
   it('renders with default values selected', () => {
@@ -155,8 +161,8 @@ describe('TransferFilters', () => {
 
     expect(time).toHaveValue(defaultFilters.time);
     expect(card).toHaveValue(defaultFilters.card[0]);
-    expect(template).toHaveValue(defaultFilters.template);
-    expect(transactionsType).toHaveValue(defaultFilters.transactionsType[0]);
+    expect(template).toHaveValue(defaultFilters.template[0]);
+    expect(transactionsType).toHaveValue(defaultFilters.transactionsType);
   });
 
   it('allows to select different filters', async () => {
@@ -173,10 +179,10 @@ describe('TransferFilters', () => {
     expect(inputs.card).toHaveDisplayValue(
       `${availableFilters.card[0].value},${cardValue}`,
     );
-    expect(inputs.template).toHaveValue(templateValue);
-    expect(inputs.transactionsType).toHaveValue(
-      `${availableFilters.transactionsType[0].value},${transactionsTypeValue}`,
+    expect(inputs.template).toHaveValue(
+      `${availableFilters.template[0].value},${templateValue}`,
     );
+    expect(inputs.transactionsType).toHaveValue(transactionsTypeValue);
   });
 
   it('has disabled "Clear filters" button when default values are selected', () => {
@@ -203,9 +209,9 @@ describe('TransferFilters', () => {
 
     expect(inputs.time).toHaveValue(defaultFilters.time);
     expect(inputs.card).toHaveValue(defaultFilters.card[0]);
-    expect(inputs.template).toHaveValue(defaultFilters.template);
+    expect(inputs.template).toHaveValue(defaultFilters.template[0]);
     expect(inputs.transactionsType).toHaveValue(
-      defaultFilters.transactionsType[0],
+      defaultFilters.transactionsType,
     );
   });
 

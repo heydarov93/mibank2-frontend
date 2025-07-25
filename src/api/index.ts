@@ -2,6 +2,7 @@ export { accountsApi } from './services/account-service/accounts.api';
 export { cardsApi } from './services/card-service/cards.api';
 export { depositsApi } from './services/deposit-service/deposits.api';
 export { transfersApi } from './services/account-service/transfers.api';
+export { transactionsApi } from './services/account-service/transactions.api';
 export { userDepositsApi } from './services/deposit-service/user-deposits.api';
 export { productsApi } from './services/deposit-service/products.api';
 export { employeesApi } from './services/employee-service/employees.api';

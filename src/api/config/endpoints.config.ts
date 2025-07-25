@@ -84,5 +84,9 @@ export const API_ENDPOINTS = {
     linkAccountWithCard: '/as/api/account/link-account-with-card',
     checkCardIssuance: '/as/api/account/check-card-issuance',
     createUserCardAccount: '/as/api/account/create-user-card-account',
+    transactions: {
+      getTransactionsByUserId: (userId: TId) =>
+        `/as/api/transactions/${userId}`,
+    },
   },
 } as const;

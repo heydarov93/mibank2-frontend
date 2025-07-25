@@ -11,6 +11,7 @@ import {
   offersApi,
   productsApi,
   transfersApi,
+  transactionsApi,
   userAccountsApi,
   userDepositsApi,
 } from 'api';
@@ -22,6 +23,7 @@ export const API_MIDDLEWARES: Middleware[] = [
   depositsApi.middleware,
   accountsApi.middleware,
   transfersApi.middleware,
+  transactionsApi.middleware,
   getUserIdApi.middleware,
   exchangeRatesApi.middleware,
   productsApi.middleware,
