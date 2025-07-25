@@ -1,4 +1,5 @@
-import { Stack, SxProps, Theme } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
 import { InfoPanel } from '../../atoms';

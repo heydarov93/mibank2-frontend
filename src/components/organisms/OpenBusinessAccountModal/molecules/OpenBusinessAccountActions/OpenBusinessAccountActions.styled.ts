@@ -1,4 +1,6 @@
-import { Button, Stack, styled } from '@mui/material';
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
 
 export const StyledModalButton = styled(Button)(({ theme: { spacing } }) => ({
   paddingTop: spacing(1.625),

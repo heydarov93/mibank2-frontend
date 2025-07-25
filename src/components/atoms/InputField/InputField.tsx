@@ -1,4 +1,4 @@
-import { SxProps, Theme } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
 import { SyntheticEvent, KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,

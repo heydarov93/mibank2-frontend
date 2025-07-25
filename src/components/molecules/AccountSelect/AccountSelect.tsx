@@ -1,4 +1,6 @@
-import { SelectProps, Stack, Typography } from '@mui/material';
+import { SelectProps } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { useMemo } from 'react';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

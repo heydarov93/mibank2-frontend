@@ -1,4 +1,6 @@
-import { Stack, SxProps, Theme, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material/styles';
 
 import { StyledName } from './PaymentReceiptRow.styled';
 

@@ -1,5 +1,6 @@
-import { ChevronLeftRounded, ChevronRightRounded } from '@mui/icons-material';
-import { Box } from '@mui/material';
+import ChevronLeftRounded from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRounded from '@mui/icons-material/ChevronRightRounded';
+import Box from '@mui/material/Box';
 import { Children, ReactNode, useState, useCallback, useMemo } from 'react';
 
 import { SLIDE_USER_CARD_WIDTH } from '../CardsContent/CardsContent';

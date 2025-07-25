@@ -1,4 +1,5 @@
-import { Box, Dialog } from '@mui/material';
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
 
 import { StyledDialogBody } from './PaymentReceiptModal.styled';
 import {

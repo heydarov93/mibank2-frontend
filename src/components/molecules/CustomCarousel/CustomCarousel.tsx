@@ -1,4 +1,4 @@
-import { SxProps, useTheme } from '@mui/material';
+import { SxProps, useTheme } from '@mui/material/styles';
 import { CSSProperties, ReactNode } from 'react';
 import Carousel from 'react-material-ui-carousel';
 

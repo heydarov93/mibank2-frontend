@@ -1,4 +1,4 @@
-import { Switch } from '@mui/material';
+import Switch from '@mui/material/Switch';
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

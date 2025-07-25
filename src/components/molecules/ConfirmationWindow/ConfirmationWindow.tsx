@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material';
+import Box from '@mui/material/Box';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 

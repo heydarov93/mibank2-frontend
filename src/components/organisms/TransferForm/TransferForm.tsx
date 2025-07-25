@@ -1,13 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import {
-  AlertProps,
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  InputAdornment,
-} from '@mui/material';
+import { AlertProps } from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
@@ -51,6 +49,7 @@ import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { TCurrency } from 'types/types';
 import { moneyTransferSchema, TMoneyTransferValues } from 'validation';
+
 
 export interface ITransferForm {
   fromAccount: string;

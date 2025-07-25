@@ -1,5 +1,8 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Button, Fade, Menu, MenuItem } from '@mui/material';
+import Button from '@mui/material/Button';
+import Fade from '@mui/material/Fade';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';

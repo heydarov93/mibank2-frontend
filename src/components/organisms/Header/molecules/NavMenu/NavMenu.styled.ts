@@ -1,4 +1,5 @@
-import { Box, styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 
 export const StyledNavMenu = styled(Box)(({ theme: { breakpoints } }) => ({

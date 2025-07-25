@@ -1,4 +1,6 @@
-import { Fade, Collapse, Box } from '@mui/material';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
 import { useState } from 'react';
 
 import { StyledContainer } from './AllCardsPage.styled';

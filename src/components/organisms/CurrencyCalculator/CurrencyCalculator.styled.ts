@@ -1,4 +1,7 @@
-import { Box, IconButton, styled, Typography } from '@mui/material';
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledInputsColumn = styled(Box)(({ theme: { spacing } }) => ({
   position: 'relative',

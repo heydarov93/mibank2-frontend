@@ -1,6 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Stack, Typography, Button, SxProps, Theme } from '@mui/material';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

@@ -1,5 +1,6 @@
-import { ChevronRight } from '@mui/icons-material';
-import { Box, IconButton } from '@mui/material';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 
 import {
   StyledAmountText,

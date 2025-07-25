@@ -1,4 +1,5 @@
-import { Alert, styled } from '@mui/material';
+import Alert from "@mui/material/Alert";
+import { styled } from "@mui/material/styles";
 
 export const StyledAlert = styled(Alert)(({ theme: { palette } }) => ({
   width: '100%',

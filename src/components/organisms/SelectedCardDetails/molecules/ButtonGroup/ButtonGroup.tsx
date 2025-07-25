@@ -1,4 +1,4 @@
-import { Alert } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';

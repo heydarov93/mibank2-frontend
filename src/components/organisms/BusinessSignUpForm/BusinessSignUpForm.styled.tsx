@@ -1,4 +1,5 @@
-import { styled, Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 import { defaultBreakpointsStyle } from 'utils/helpers/breakpointHelpers';
 

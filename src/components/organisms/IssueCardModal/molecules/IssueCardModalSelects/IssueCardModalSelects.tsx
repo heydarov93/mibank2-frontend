@@ -1,4 +1,6 @@
-import { SelectChangeEvent, Stack, SxProps, Theme } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

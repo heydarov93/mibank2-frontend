@@ -1,10 +1,7 @@
-import {
-  CircularProgress,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-} from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
 import { SmallIssuanceCard } from '../../atoms';

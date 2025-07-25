@@ -1,4 +1,7 @@
-import { IconButton, Link, LinkProps, styled, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Link, { LinkProps } from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import { LinkProps as RouterLinkProps } from 'react-router-dom';
 
 export const StyledIconButton = styled(IconButton)(

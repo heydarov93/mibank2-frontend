@@ -1,11 +1,7 @@
-import {
-  Stack,
-  Typography,
-  Switch,
-  SwitchProps,
-  Theme,
-  SxProps,
-} from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material/styles';
 import { memo } from 'react';
 import { Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

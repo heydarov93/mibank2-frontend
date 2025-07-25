@@ -1,4 +1,6 @@
-import { Icon, Typography } from '@mui/material';
+
+import Icon from '@mui/material/Icon';
+import Typography from '@mui/material/Typography';
 import { memo, useId, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 

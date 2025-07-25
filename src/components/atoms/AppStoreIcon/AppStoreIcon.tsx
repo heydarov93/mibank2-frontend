@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { CSSProperties, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 

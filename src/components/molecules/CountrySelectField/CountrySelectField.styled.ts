@@ -1,4 +1,5 @@
-import { styled, TextField } from '@mui/material';
+import TextField from "@mui/material/TextField";
+import { styled } from "@mui/material/styles";
 
 export const StyledCountrySelectField = styled(TextField)(
   ({ theme: { palette, animations } }) => ({

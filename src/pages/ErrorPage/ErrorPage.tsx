@@ -1,4 +1,5 @@
-import { Link, Typography } from '@mui/material';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
 import { StyledBox, StyledPageWrapper } from './ErrorPage.styled';

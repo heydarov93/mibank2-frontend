@@ -1,5 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, CircularProgress } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

@@ -1,9 +1,8 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 import { StyledStaticCard } from './StaticCardStack.styled';
 
 import { USER_CARD_WIDTH } from 'constants/ui/layout';
-
 
 export function StaticCardStack({
   userCardsCount,

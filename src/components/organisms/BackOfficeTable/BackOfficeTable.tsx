@@ -1,11 +1,9 @@
-import {
-  CircularProgress,
-  SelectChangeEvent,
-  Table,
-  TableBody,
-  TableContainer,
-  TableRow,
-} from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 import { MouseEvent } from 'react';
 
 import {

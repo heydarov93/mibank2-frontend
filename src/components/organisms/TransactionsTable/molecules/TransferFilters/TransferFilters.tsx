@@ -1,13 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Button,
-  SelectChangeEvent,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +17,7 @@ import { DATE_SELECT_MENU_SIZE } from 'constants/ui/layout';
 import { ETransferTime } from 'enums/ETransferTime';
 import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
+
 
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;

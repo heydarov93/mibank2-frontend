@@ -1,6 +1,6 @@
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 import { StyledTableTitle } from './BackOfficeTableTitle.styled';
 

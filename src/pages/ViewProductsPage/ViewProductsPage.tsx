@@ -1,4 +1,5 @@
-import { Box, debounce } from '@mui/material';
+import Box from '@mui/material/Box';
+import { debounce } from '@mui/material/utils';
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

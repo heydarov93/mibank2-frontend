@@ -1,5 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Typography, Checkbox, FormControlLabel } from '@mui/material';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

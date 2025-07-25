@@ -1,5 +1,6 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Button, styled } from '@mui/material';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 
 export const StyledBackButton = styled(Button)(({ theme: { palette } }) => ({
   position: 'absolute',

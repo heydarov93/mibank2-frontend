@@ -1,4 +1,5 @@
-import { Dialog, styled } from '@mui/material';
+import Dialog from "@mui/material/Dialog";
+import { styled } from "@mui/material/styles";
 
 export const StyledAutoLogoutModal = styled(Dialog)(
   ({ theme, theme: { palette } }) => ({

@@ -1,10 +1,9 @@
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { CSSProperties, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as GooglePlaySVG } from 'assets/icons/GooglePlay.svg';
 import { ICON_SIZES } from 'constants/ui/layout';
-
 
 interface GooglePlayIconProps {
   style?: CSSProperties;

@@ -1,5 +1,7 @@
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { Alert, Box, CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 

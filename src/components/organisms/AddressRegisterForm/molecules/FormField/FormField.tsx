@@ -1,4 +1,5 @@
-import { FormControl, SxProps, Theme } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import { SxProps, Theme } from '@mui/material/styles';
 import { Control, Controller } from 'react-hook-form';
 
 import {

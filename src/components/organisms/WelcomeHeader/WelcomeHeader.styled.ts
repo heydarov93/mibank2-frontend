@@ -1,4 +1,8 @@
-import { Box, styled, Tab, Tabs, Typography } from '@mui/material';
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({

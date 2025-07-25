@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import { BlueTickIcon } from 'components/atoms';
 import { theme } from 'theme/theme';

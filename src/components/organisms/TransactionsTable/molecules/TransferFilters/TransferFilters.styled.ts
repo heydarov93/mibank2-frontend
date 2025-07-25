@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import { ReactComponent as ExpandMoreIcon } from 'assets/icons/ExpandMoreIconSmall.svg';
 import { SelectField } from 'components/molecules/SelectField/SelectField';

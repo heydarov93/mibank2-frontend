@@ -1,6 +1,7 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Button, SxProps } from '@mui/material';
+import Button from '@mui/material/Button';
+import { SxProps } from '@mui/material/styles';
 import { SetStateAction, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 

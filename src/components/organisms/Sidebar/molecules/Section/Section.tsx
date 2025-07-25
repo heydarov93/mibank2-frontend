@@ -1,6 +1,8 @@
 import AddIcon from '@mui/icons-material/Add';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Icon, Stack, Typography } from '@mui/material';
+import Icon from '@mui/material/Icon';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, To } from 'react-router-dom';

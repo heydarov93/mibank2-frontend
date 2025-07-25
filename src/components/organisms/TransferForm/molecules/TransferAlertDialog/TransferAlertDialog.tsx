@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { useTranslation } from 'react-i18next';
 
 import { StyledButton } from './TransferAlertDialog.styled';

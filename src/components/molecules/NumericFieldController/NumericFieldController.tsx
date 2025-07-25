@@ -1,4 +1,4 @@
-import { TextFieldProps } from '@mui/material';
+import { TextFieldProps } from '@mui/material/TextField';
 import { Control, FieldError, FieldValues, Path } from 'react-hook-form';
 import { NumericFormatProps } from 'react-number-format';
 

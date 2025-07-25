@@ -1,4 +1,6 @@
-import { Dialog, Stack, styled } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 
 import { ReactComponent as LoadingIndicatorSVG } from 'assets/icons/LoadingIndicatorIcon.svg';
 

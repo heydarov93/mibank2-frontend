@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import TriangleIcon from 'assets/icons/TriangleIcon.svg';
 

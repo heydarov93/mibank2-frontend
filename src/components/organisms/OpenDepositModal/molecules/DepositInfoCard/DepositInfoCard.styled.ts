@@ -1,4 +1,8 @@
-import { Box, IconButton, List, styled, Typography } from '@mui/material';
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledCardContainer = styled(Box)(
   ({ theme: { spacing, palette } }) => ({

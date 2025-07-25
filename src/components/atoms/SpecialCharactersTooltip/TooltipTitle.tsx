@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
 import { SPECIAL_CHARACTERS } from 'constants/validation/patterns';

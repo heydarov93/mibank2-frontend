@@ -1,4 +1,4 @@
-import { Snackbar, SnackbarProps } from '@mui/material';
+import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { ReactElement } from 'react';
 
 import { StyledContainer } from './SimpleAlert.styled';

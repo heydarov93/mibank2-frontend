@@ -1,5 +1,9 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { AlertProps, Box, Dialog, Stack, Typography } from '@mui/material';
+import { AlertProps } from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 

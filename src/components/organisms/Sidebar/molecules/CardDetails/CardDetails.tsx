@@ -1,10 +1,8 @@
-import {
-  Box,
-  CircularProgress,
-  Collapse,
-  Stack,
-  Typography,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Collapse from '@mui/material/Collapse';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +23,6 @@ export function CardDetails({ cardId, isCardPrimary }: Props) {
     keyPrefix: 'Homepage.sidebar.myCards',
   });
   const { data, isLoading } = useGetUserCardDetails(cardId);
-
 
   return (
     <Box>
@@ -78,7 +75,11 @@ export function CardDetails({ cardId, isCardPrimary }: Props) {
               maskFormat={`**** ${data.number.toString().slice(-4)}`}
             />
             <CardDetailRow name="CVV" value={data.cvv} maskFormat="***" />
-            <CardDetailRow name="IBAN" value={data.iban} onCopy={copyToClipboard} />
+            <CardDetailRow
+              name="IBAN"
+              value={data.iban}
+              onCopy={copyToClipboard}
+            />
             <CardDetailRow name="SWIFT/BIC" value={data.swift} />
             <CardDetailRow name={t('issueDate')} value={data.issueDate} />
             <CardDetailRow

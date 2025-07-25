@@ -1,11 +1,9 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Drawer,
-  ListItem,
-  useTheme,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Drawer from '@mui/material/Drawer';
+import ListItem from '@mui/material/ListItem';
+import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
 import {

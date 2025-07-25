@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 

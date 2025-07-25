@@ -1,12 +1,9 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {
-  Box,
-  MenuItem,
-  Select,
-  SelectProps,
-  Theme,
-  Typography,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectProps } from '@mui/material/Select';
+import Typography from '@mui/material/Typography';
+import { Theme } from '@mui/material/styles';
 
 import { CurrencyFlagIcon } from 'components/atoms';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
