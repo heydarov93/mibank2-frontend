@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { BackArrow } from 'components/atoms';
-import { AuthWrapper, Footer, ForgotPassword } from 'components/organisms';
+import { UserAuthWrapper, Footer, ForgotPassword } from 'components/organisms';
 import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
 export const ForgotPasswordPage = () => {
@@ -12,10 +12,10 @@ export const ForgotPasswordPage = () => {
 
   return (
     <>
-      <AuthWrapper>
+      <UserAuthWrapper>
         <BackArrow onBackClick={handleBackClick} />
         <ForgotPassword />
-      </AuthWrapper>
+      </UserAuthWrapper>
       <Footer />
     </>
   );

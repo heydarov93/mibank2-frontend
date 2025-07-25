@@ -27,7 +27,7 @@ dayjs.updateLocale('en', {
   weekStart: WEEK_START_DAY_INDEX,
 });
 
-interface PassportExpFieldProps<T extends FieldValues> {
+interface DocumentDatePickerProps<T extends FieldValues> {
   name: Path<T>;
   id: string;
   control: Control<T>;
@@ -45,7 +45,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
   minDate,
   maxDate,
   placeholder,
-}: PassportExpFieldProps<T>) => {
+}: DocumentDatePickerProps<T>) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(500));
   const { t } = useTranslation('translation');

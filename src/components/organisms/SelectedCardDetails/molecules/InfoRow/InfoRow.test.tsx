@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { ReactNode } from 'react';
 
-import InfoRow from './InfoRow';
+import { InfoRow } from './InfoRow';
 
 import { theme } from 'theme/theme';
 

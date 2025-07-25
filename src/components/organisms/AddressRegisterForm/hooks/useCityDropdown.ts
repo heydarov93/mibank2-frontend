@@ -11,9 +11,9 @@ export const useCityDropdown = (
 ) => {
   const [cityInput, setCityInput] = useState<string>('');
   const [cities] = useState<string[]>(
-    POLISH_CITIES
-      .map((cityObj) => cityObj.city)
-      .sort((a, b) => a.localeCompare(b, 'pl', { sensitivity: 'base' })),
+    POLISH_CITIES.map((cityObj) => cityObj.city).sort((a, b) =>
+      a.localeCompare(b, 'pl', { sensitivity: 'base' }),
+    ),
   );
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);

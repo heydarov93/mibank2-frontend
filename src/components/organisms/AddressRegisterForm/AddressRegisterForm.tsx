@@ -3,6 +3,8 @@ import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
+import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
+
 import {
   StyledBackButton,
   StyledBackButtonText,
@@ -14,10 +16,8 @@ import {
   StyledFormContainer,
 } from './AddressRegisterForm.styled';
 import { useAddressForm } from './hooks/useAddressForm';
-import { CityField } from './molecules/CityField';
-import { FormField } from './molecules/FormField';
+import { CityField, FormField } from './molecules';
 
-import { NavigationWarningModal } from 'components/atoms';
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
 import { useNavigationWarning } from 'hooks';
 

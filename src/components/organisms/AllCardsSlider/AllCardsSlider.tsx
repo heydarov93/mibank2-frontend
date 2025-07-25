@@ -2,7 +2,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 
 import { IssueCardModal } from '../IssueCardModal/IssueCardModal';
-import { useGetUserCards } from '../Sidebar/organisms/MyCards/hooks/useGetUserCards';
 
 import {
   StyledContainer,
@@ -10,13 +9,14 @@ import {
   StyledTitle,
   StyledTitleContainer,
 } from './AllCardsSlider.styled';
-import { CardsContent } from './molecules/CardsContent/CardsContent';
+import { CardsContent } from './molecules';
 
 import {
   DEFAULT_ELEMENT_SCALE,
   SELECTED_ELEMENT_SCALE,
 } from 'constants/ui/layout';
 import useDisclosure from 'hooks/useDisclosure';
+import { useGetUserCards } from 'hooks/useGetUserCards';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 interface AllCardsSliderProps {

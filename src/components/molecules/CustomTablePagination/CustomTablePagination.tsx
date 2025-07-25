@@ -3,13 +3,14 @@ import { MenuItem, SelectChangeEvent } from '@mui/material';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { CustomPaginationActions } from '../CustomPaginationActions/CustomPaginationActions';
+
 import {
   StyledItemsCountContainer,
   StyledMainContainer,
   StyledSecondaryText,
   StyledSelect,
 } from './CustomPagination.styled';
-import CustomPaginationActions from './CustomPaginationActions';
 
 import { ITEMS_PER_PAGE_OPTIONS } from 'constants/business/pagination';
 
@@ -25,7 +26,7 @@ interface CustomTablePaginationProps {
   onRowsPerPageChange: (event: SelectChangeEvent<number>) => void;
 }
 
-const CustomTablePagination = ({
+export const CustomTablePagination = ({
   totalPages,
   page,
   rowsPerPage,
@@ -67,5 +68,3 @@ const CustomTablePagination = ({
     </StyledMainContainer>
   );
 };
-
-export default CustomTablePagination;

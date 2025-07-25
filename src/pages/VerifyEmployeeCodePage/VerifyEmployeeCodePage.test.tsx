@@ -41,6 +41,7 @@ jest.mock('utils/auth/storageAuthHandler', () => ({
 jest.mock('utils/auth/tokenHandler', () => ({
   sessionTokenHandler: {
     storeToken: jest.fn(),
+    getToken: jest.fn(),
   },
   localTokenHandler: {
     getToken: jest.fn(),

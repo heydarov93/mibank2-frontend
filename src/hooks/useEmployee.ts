@@ -10,13 +10,13 @@ import {
   useGetEmployeeListQuery,
   useUpdateEmployeeMutation,
 } from 'api/services/employee-service/employees.api';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import {
   DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
 } from 'constants/business/pagination';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
+import { TableData } from 'models/ITableData';
 import { TSortOrder } from 'types/types';
 import { getNextSortOrder } from 'utils/helpers/sortHelpers';
 

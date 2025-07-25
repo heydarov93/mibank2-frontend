@@ -16,7 +16,7 @@ import {
 
 import { POLISH_CITIES } from 'constants/data/geo';
 
-interface CountrySelectFieldProps<T extends FieldValues> {
+interface CitySelectFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
   error?: FieldError;
@@ -48,7 +48,7 @@ export const CitySelectField = <T extends FieldValues>({
   className,
   helperText,
   onKeyDown,
-}: CountrySelectFieldProps<T>) => {
+}: CitySelectFieldProps<T>) => {
   const { t } = useTranslation('translation');
 
   return (

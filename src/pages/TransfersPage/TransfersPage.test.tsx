@@ -1,21 +1,10 @@
-import { ThemeProvider } from '@mui/material';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { ThemeProvider } from '@mui/material/styles';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { TransfersPage, TTransferMethod } from './TransfersPage';
 
 import { theme } from 'theme/theme';
-
-interface NavigationWarningModalProps {
-  open: boolean;
-  title: string;
-  description: string;
-  confirmLabel: string;
-  cancelLabel: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-}
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -23,26 +12,35 @@ jest.mock('react-i18next', () => ({
       const translations: Record<string, string> = {
         goBack: 'Go Back',
         'warningModal.title': 'Warning',
-        'warningModal.description': 'Are you sure you want to go back?',
+        'warningModal.description':
+          'Are you sure you want to go back? Your progress will be lost.',
       };
       return translations[key] || key;
     },
-    initReactI18next: {
-      type: '3rdParty',
-    },
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
-jest.mock('components/atoms', () => ({
+jest.mock('components/organisms', () => ({
   NavigationWarningModal: ({
     open,
     onConfirm,
     onCancel,
     title,
     description,
-  }: NavigationWarningModalProps) =>
+    testId,
+  }: {
+    open: boolean;
+    onConfirm: () => void;
+    onCancel: () => void;
+    title: string;
+    description: string;
+    testId: string;
+  }) =>
     open ? (
-      <div data-testid="warning-modal">
+      <div data-testid={testId}>
         <h2>{title}</h2>
         <p>{description}</p>
         <button onClick={onConfirm} data-testid="confirm-button">
@@ -53,39 +51,58 @@ jest.mock('components/atoms', () => ({
         </button>
       </div>
     ) : null,
-}));
-
-jest.mock('components/organisms', () => ({
-  SelectView: () => <div data-testid="select-view">Select Transfer Method</div>,
+  SelectView: ({ 'data-testid': testId }: { 'data-testid': string }) => (
+    <div data-testid={testId}>Select Transfer Method</div>
+  ),
   TransferView: ({
     transferMethod,
     onCancel,
+    'data-testid': testId,
   }: {
     transferMethod: TTransferMethod;
     onCancel: () => void;
+    'data-testid': string;
   }) => (
-    <div data-testid="transfer-view">
-      <p>Transfer Method: {transferMethod}</p>
-      <button onClick={onCancel} data-testid="cancel-transfer">
-        Cancel
+    <div data-testid={testId}>
+      <div>Transfer Method: {transferMethod}</div>
+      <button onClick={onCancel} data-testid="transfer-cancel-button">
+        Cancel Transfer
       </button>
     </div>
   ),
 }));
 
-const renderPage = () => {
-  return render(
+// Setup i18n mock
+const mockTranslations = {
+  goBack: 'Go Back',
+  'warningModal.title': 'Warning',
+  'warningModal.description':
+    'Are you sure you want to go back? Your progress will be lost.',
+};
+
+interface TestWrapperProps {
+  children: React.ReactNode;
+  initialUrl?: string;
+}
+
+const TestWrapper = ({ children, initialUrl = '/' }: TestWrapperProps) => {
+  if (initialUrl !== '/') {
+    window.history.pushState({}, '', initialUrl);
+  }
+
+  return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <TransfersPage />
-      </ThemeProvider>
-    </BrowserRouter>,
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </BrowserRouter>
   );
 };
 
-const renderWithSearchParams = (searchParams: string) => {
-  window.history.pushState({}, '', `/?${searchParams}`);
-  return renderPage();
+const renderTransfersPage = (initialUrl?: string) => {
+  return render(
+    <TestWrapper initialUrl={initialUrl}>
+      <TransfersPage />
+    </TestWrapper>,
+  );
 };
 
 describe('TransfersPage', () => {
@@ -93,136 +110,154 @@ describe('TransfersPage', () => {
     window.history.pushState({}, '', '/');
   });
 
-  describe('Rendering', () => {
-    it('renders SelectView when no transfer method is specified', () => {
-      renderPage();
+  describe('Initial render without transfer method', () => {
+    it('should render SelectView when no transfer method is specified', () => {
+      renderTransfersPage();
 
       expect(screen.getByTestId('select-view')).toBeInTheDocument();
-      expect(
-        screen.queryByRole('button', { name: /go back/i }),
-      ).not.toBeInTheDocument();
+      expect(screen.getByText('Select Transfer Method')).toBeInTheDocument();
     });
 
-    it('does not show warning modal initially', () => {
-      renderPage();
+    it('should not render back button when no transfer method is specified', () => {
+      renderTransfersPage();
+
+      expect(screen.queryByTestId('back-button')).not.toBeInTheDocument();
+    });
+
+    it('should not render warning modal initially', () => {
+      renderTransfersPage();
 
       expect(screen.queryByTestId('warning-modal')).not.toBeInTheDocument();
     });
   });
 
-  describe('Transfer Method Views', () => {
-    it('renders TransferView when valid transfer method is provided', () => {
-      renderWithSearchParams('method=iban');
+  describe('Render with valid transfer methods', () => {
+    const validMethods: TTransferMethod[] = ['iban', 'card', 'owncards'];
 
-      expect(screen.getByTestId('transfer-view')).toBeInTheDocument();
-      expect(screen.getByText('Transfer Method: iban')).toBeInTheDocument();
-      expect(screen.queryByTestId('select-view')).not.toBeInTheDocument();
-    });
-
-    it('shows go back button when transfer method is active', () => {
-      renderWithSearchParams('method=card');
-
-      expect(
-        screen.getByRole('button', { name: /go back/i }),
-      ).toBeInTheDocument();
-    });
-
-    it('renders SelectView when invalid transfer method is provided', () => {
-      renderWithSearchParams('method=invalid');
-
-      expect(screen.getByTestId('select-view')).toBeInTheDocument();
-      expect(screen.queryByTestId('transfer-view')).not.toBeInTheDocument();
-      expect(
-        screen.queryByRole('button', { name: /go back/i }),
-      ).not.toBeInTheDocument();
-    });
-
-    it('handles all valid transfer methods', () => {
-      const validMethods = ['iban', 'card', 'owncards'];
-
-      validMethods.forEach((method) => {
-        const { unmount } = renderWithSearchParams(`method=${method}`);
+    validMethods.forEach((method) => {
+      it(`should render TransferView and back button when method is ${method}`, () => {
+        renderTransfersPage(`/?method=${method}`);
 
         expect(screen.getByTestId('transfer-view')).toBeInTheDocument();
         expect(
           screen.getByText(`Transfer Method: ${method}`),
         ).toBeInTheDocument();
-
-        unmount();
+        expect(screen.getByTestId('back-button')).toBeInTheDocument();
+        expect(screen.getByText('Go Back')).toBeInTheDocument();
       });
+    });
+
+    it('should not render SelectView when valid transfer method is specified', () => {
+      renderTransfersPage('/?method=iban');
+
+      expect(screen.queryByTestId('select-view')).not.toBeInTheDocument();
     });
   });
 
-  describe('Navigation Warning Modal', () => {
-    it('opens warning modal when go back button is clicked', async () => {
-      renderWithSearchParams('method=iban');
+  describe('Invalid transfer method handling', () => {
+    it('should render SelectView when invalid transfer method is specified', () => {
+      renderTransfersPage('/?method=invalid');
 
-      const goBackButton = screen.getByRole('button', { name: /go back/i });
-      await userEvent.click(goBackButton);
+      expect(screen.getByTestId('select-view')).toBeInTheDocument();
+      expect(screen.queryByTestId('transfer-view')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('back-button')).not.toBeInTheDocument();
+    });
 
-      expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+    it('should render SelectView when empty method parameter is provided', () => {
+      renderTransfersPage('/?method=');
+
+      expect(screen.getByTestId('select-view')).toBeInTheDocument();
+      expect(screen.queryByTestId('transfer-view')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Navigation warning modal interactions', () => {
+    it('should open warning modal when back button is clicked', async () => {
+      renderTransfersPage('/?method=iban');
+
+      const backButton = screen.getByTestId('back-button');
+      fireEvent.click(backButton);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+      });
+
       expect(screen.getByText('Warning')).toBeInTheDocument();
       expect(
-        screen.getByText('Are you sure you want to go back?'),
+        screen.getByText(
+          'Are you sure you want to go back? Your progress will be lost.',
+        ),
       ).toBeInTheDocument();
     });
 
-    it('opens warning modal when cancel is clicked from TransferView', async () => {
-      renderWithSearchParams('method=card');
+    it('should open warning modal when transfer cancel button is clicked', async () => {
+      renderTransfersPage('/?method=card');
 
-      const cancelButton = screen.getByTestId('cancel-transfer');
-      await userEvent.click(cancelButton);
+      const cancelButton = screen.getByTestId('transfer-cancel-button');
+      fireEvent.click(cancelButton);
 
-      expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+      });
     });
 
-    it('closes modal when cancel is clicked in modal', async () => {
-      renderWithSearchParams('method=iban');
+    it('should close warning modal when cancel button in modal is clicked', async () => {
+      renderTransfersPage('/?method=iban');
 
-      const goBackButton = screen.getByRole('button', { name: /go back/i });
-      await userEvent.click(goBackButton);
+      const backButton = screen.getByTestId('back-button');
+      fireEvent.click(backButton);
 
-      const cancelModalButton = screen.getByTestId('cancel-button');
-      await userEvent.click(cancelModalButton);
+      await waitFor(() => {
+        expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+      });
 
-      expect(screen.queryByTestId('warning-modal')).not.toBeInTheDocument();
+      const modalCancelButton = screen.getByTestId('cancel-button');
+      fireEvent.click(modalCancelButton);
+
+      await waitFor(() => {
+        expect(screen.queryByTestId('warning-modal')).not.toBeInTheDocument();
+      });
+
+      expect(screen.getByTestId('transfer-view')).toBeInTheDocument();
     });
 
-    it('navigates back to SelectView when confirm is clicked in modal', async () => {
-      renderWithSearchParams('method=iban');
+    it('should redirect to SelectView when confirm button in modal is clicked', async () => {
+      renderTransfersPage('/?method=owncards');
 
-      const goBackButton = screen.getByRole('button', { name: /go back/i });
-      await userEvent.click(goBackButton);
+      expect(screen.getByTestId('transfer-view')).toBeInTheDocument();
+
+      const backButton = screen.getByTestId('back-button');
+      fireEvent.click(backButton);
+
+      await waitFor(() => {
+        expect(screen.getByTestId('warning-modal')).toBeInTheDocument();
+      });
 
       const confirmButton = screen.getByTestId('confirm-button');
-      await userEvent.click(confirmButton);
+      fireEvent.click(confirmButton);
 
       await waitFor(() => {
         expect(screen.queryByTestId('warning-modal')).not.toBeInTheDocument();
         expect(screen.getByTestId('select-view')).toBeInTheDocument();
         expect(screen.queryByTestId('transfer-view')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('back-button')).not.toBeInTheDocument();
       });
     });
   });
 
-  describe('URL Parameter Handling', () => {
-    it('updates view when URL search params change', () => {
-      const { rerender } = renderPage();
-
-      expect(screen.getByTestId('select-view')).toBeInTheDocument();
-
-      renderWithSearchParams('method=iban');
-
-      rerender(
-        <BrowserRouter>
-          <ThemeProvider theme={theme}>
-            <TransfersPage />
-          </ThemeProvider>
-        </BrowserRouter>,
-      );
+  describe('URL parameter handling', () => {
+    it('should handle multiple URL parameters correctly', () => {
+      renderTransfersPage('/?method=iban&other=value');
 
       expect(screen.getByTestId('transfer-view')).toBeInTheDocument();
       expect(screen.getByText('Transfer Method: iban')).toBeInTheDocument();
+    });
+
+    it('should be case sensitive for transfer method validation', () => {
+      renderTransfersPage('/?method=IBAN');
+
+      expect(screen.getByTestId('select-view')).toBeInTheDocument();
+      expect(screen.queryByTestId('transfer-view')).not.toBeInTheDocument();
     });
   });
 });

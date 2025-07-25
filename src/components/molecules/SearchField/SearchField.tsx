@@ -6,7 +6,6 @@ import { StyledSearchField } from './SearchField.styled';
 
 import { SEARCH_FIELD_MAX_LENGTH } from 'constants/ui/search';
 
-
 interface SearchFieldProps {
   name: string;
   placeholder: string;
@@ -14,7 +13,7 @@ interface SearchFieldProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const SearchField = ({
+export const SearchField = ({
   name,
   placeholder,
   control,
@@ -47,5 +46,3 @@ const SearchField = ({
     />
   );
 };
-
-export default SearchField;

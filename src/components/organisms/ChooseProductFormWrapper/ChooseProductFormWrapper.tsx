@@ -1,14 +1,16 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import ChooseProductForm from '../ChooseProductForm/ChooseProductForm';
-import CreateCardProductForm from '../CreateCardProductForm/CreateCardProductForm';
-import CreateDepositProductForm from '../CreateDepositProductForm/CreateDepositProductForm';
+import {
+  ChooseProductForm,
+  CreateCardProductForm,
+  CreateDepositProductForm,
+  ProductWindow,
+} from './molecules';
 
-import { BackOfficeConfirmationWindow } from 'components/molecules';
-import BackOfficeProductWindow from 'components/molecules/BackOfficeProductWindow/BackOfficeProductWindow';
+import { ConfirmationWindow } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { getCardFormData } from 'store/slices/cards/CreateCardSelector';
 import { getDepositForm } from 'store/slices/deposits/CreateDepositSelector';
@@ -41,7 +43,7 @@ export const ChooseProductFormWrapper = () => {
         return <CreateCardProductForm />;
       case EProductFormStepper.FINISHED:
         return (
-          <BackOfficeProductWindow
+          <ProductWindow
             productTypeData={productTypeData}
             cardData={creditTypeData}
             depositData={depositTypeData}
@@ -54,7 +56,7 @@ export const ChooseProductFormWrapper = () => {
   return (
     <>
       {isProductCreated && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           onClose={handleProductCancel}
           sx={{ top: '40px', right: '40px' }}
           title={t('ConfirmationWindow.confirmationTitle')}

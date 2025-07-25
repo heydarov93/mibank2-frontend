@@ -2,10 +2,12 @@ import { Box, Button, Link, Stack, Typography } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { IssuanceCardProps } from '../../../../molecules/IssuanceCard/IssuanceCard';
-
 import { SwitchWithLabel } from 'components/atoms';
-import { AccountSelect, IssuanceCard } from 'components/molecules';
+import {
+  AccountSelect,
+  IssuanceCard,
+  IssuanceCardProps,
+} from 'components/molecules';
 import { CardIssueFormValues } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
 import useDisclosure from 'hooks/useDisclosure';
 

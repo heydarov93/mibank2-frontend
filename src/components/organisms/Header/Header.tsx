@@ -4,11 +4,10 @@ import {
   StyledLink,
   StyledPersonalMenuContainer,
 } from './Header.styled';
-import { NavMenu } from './NavMenu';
-import { PersonalMenu } from './PersonalMenu';
+import { NavMenu, PersonalMenu } from './molecules';
 
 import { Logo } from 'components/atoms';
-import { Drawer } from 'components/organisms';
+import { SideNavDrawer } from 'components/organisms';
 import { TO_HOME } from 'constants/navigation/routePaths';
 
 export const Header = () => {
@@ -22,7 +21,7 @@ export const Header = () => {
       </StyledBox>
       <StyledPersonalMenuContainer>
         <PersonalMenu />
-        <Drawer />
+        <SideNavDrawer />
       </StyledPersonalMenuContainer>
     </StyledHeader>
   );

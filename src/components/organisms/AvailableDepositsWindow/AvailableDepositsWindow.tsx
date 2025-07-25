@@ -1,25 +1,24 @@
 import {
   Box,
+  Button,
   CircularProgress,
   Drawer,
   ListItem,
   useTheme,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 import {
   MainContainer,
   StyledDepositList,
   StyledHeader,
 } from './AvailableDepositsWindow.styled';
-import { ErrorMessage } from './atoms/ErrorMessage/ErrorMessage';
+import { ErrorMessage } from './atoms';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { CloseButton } from 'components/atoms';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import { TO_HOME } from 'constants/navigation/routePaths';
 import { IDeposit } from 'models/IDepositInfo';
 
 interface AvailableDepositsWindowProps {
@@ -90,8 +89,7 @@ export const AvailableDepositsWindow = ({
                       depositBoxImages[i % depositBoxImages.length]
                     }
                     secondaryButton={
-                      <Link
-                        to={`${TO_HOME}`}
+                      <Button
                         style={{ color: palette.primary.main }}
                         onClick={() => {
                           onSetLearnDeposit(item);
@@ -99,7 +97,7 @@ export const AvailableDepositsWindow = ({
                         }}
                       >
                         {t('learnMore')}
-                      </Link>
+                      </Button>
                     }
                     onOpenDepositForm={() => {
                       onSelectDeposit(item);

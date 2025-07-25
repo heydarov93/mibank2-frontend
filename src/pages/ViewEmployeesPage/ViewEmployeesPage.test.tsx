@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 
 import { ViewEmployeesPage } from './ViewEmployeesPage';
 
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import useEmployees from 'hooks/useEmployee';
+import { TableData } from 'models/ITableData';
 
 jest.mock('hooks/useEmployee');
 jest.mock('react-i18next', () => ({
@@ -19,13 +19,7 @@ jest.mock('constants/navigation/routePaths', () => ({
 }));
 
 jest.mock('components/molecules', () => ({
-  BackOfficeConfirmationWindow: ({
-    title,
-    body,
-  }: {
-    title: string;
-    body: string;
-  }) => (
+  ConfirmationWindow: ({ title, body }: { title: string; body: string }) => (
     <div>
       <h1>{title}</h1>
       <p>{body}</p>
@@ -46,8 +40,8 @@ jest.mock('components/molecules', () => ({
       <button>{btnContent}</button>
     </div>
   ),
-  BackOfficeWarningWindow: () => <div>Warning Window</div>,
-  BackOfficeFailWindow: ({ title, body }: { title: string; body: string }) => (
+  WarningWindow: () => <div>Warning Window</div>,
+  FailWindow: ({ title, body }: { title: string; body: string }) => (
     <div>
       <h1>{title}</h1>
       <p>{body}</p>
@@ -58,12 +52,12 @@ jest.mock('components/organisms', () => ({
   BackOfficeTable: ({ tableBody }: { tableBody: Partial<TableData>[] }) => (
     <div>Table rows: {tableBody.length}</div>
   ),
-  ViewEmployeesSearchContainer: ({
+  EmployeesSearchContainer: ({
     showNoMatches,
   }: {
     showNoMatches: boolean;
   }) => (showNoMatches ? <div>No matches found</div> : null),
-  BackOfficeEditEmployee: () => <div>Edit Form</div>,
+  EmployeeEditForm: () => <form>Edit Form</form>,
 }));
 
 const defaultState = {

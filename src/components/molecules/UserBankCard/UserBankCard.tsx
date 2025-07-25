@@ -6,7 +6,7 @@ import {
   StyledTopBox,
 } from './UserBankCard.styled';
 
-import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
+import { ReactComponent as SimpleLogoSVG } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
 import { CURRENCY_SYMBOLS } from 'constants/data/currencies';
 import { USER_CARD_WIDTH } from 'constants/ui/layout';
@@ -25,12 +25,15 @@ export type TUserBankCardComponent = Pick<
   | 'issueType'
 >;
 
-interface Props {
+interface UserBankCardProps {
   data: TUserBankCardComponent;
   size?: number;
 }
 
-export function UserBankCard({ data, size = USER_CARD_WIDTH }: Props) {
+export function UserBankCard({
+  data,
+  size = USER_CARD_WIDTH,
+}: UserBankCardProps) {
   const fontSize = size / USER_CARD_WIDTH;
   const width = size / fontSize;
 
@@ -40,7 +43,7 @@ export function UserBankCard({ data, size = USER_CARD_WIDTH }: Props) {
         <Typography fontSize="14em" whiteSpace="nowrap">
           {data.name}
         </Typography>
-        <SimpleLogo
+        <SimpleLogoSVG
           data-testid="simple-logo"
           style={{ width: '24em', height: '24em' }}
         />

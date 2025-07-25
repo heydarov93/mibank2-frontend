@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { BackButton } from 'components/atoms';
-import { AuthWrapper, Footer, VerificationForm } from 'components/organisms';
+import { UserAuthWrapper, Footer, OtpVerificationForm } from 'components/organisms';
 import { useAppSelector } from 'hooks';
 import { getIsVerifying } from 'store/slices/auth';
 
@@ -25,9 +25,9 @@ export const VerificationPage = () => {
   return (
     <>
       <BackButton />
-      <AuthWrapper>
-        <VerificationForm disableFields={shouldDisableFields} />
-      </AuthWrapper>
+      <UserAuthWrapper>
+        <OtpVerificationForm disableFields={shouldDisableFields} />
+      </UserAuthWrapper>
       <Footer />
     </>
   );

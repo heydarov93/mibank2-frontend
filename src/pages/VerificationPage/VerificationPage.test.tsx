@@ -25,10 +25,10 @@ jest.mock('components/atoms', () => ({
 }));
 
 jest.mock('components/organisms', () => ({
-  AuthWrapper: ({ children }: { children: ReactNode }) => (
+  UserAuthWrapper: ({ children }: { children: ReactNode }) => (
     <div data-testid="auth-wrapper">{children}</div>
   ),
-  VerificationForm: ({ disableFields }: { disableFields: boolean }) => (
+  OtpVerificationForm: ({ disableFields }: { disableFields: boolean }) => (
     <div data-testid="verification-form">
       {disableFields ? 'disabled' : 'enabled'}
     </div>

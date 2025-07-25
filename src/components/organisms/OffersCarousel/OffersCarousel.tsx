@@ -2,11 +2,11 @@ import { Button, CircularProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import { StyledStack, StyledCarouselContainer } from './OffersCarousel.styled';
+import { OfferSlide } from './molecules/OfferSlide/OfferSlide';
 
 import { useGetOfferImagesQuery } from 'api/services/offer-service/offers.api';
 import { IOffer } from 'api/services/offer-service/offers.types';
 import { CustomCarousel } from 'components/molecules';
-import { OfferSlide } from 'components/molecules/OfferSlide/OfferSlide';
 
 export const OffersCarousel = () => {
   const { t } = useTranslation('translation', {

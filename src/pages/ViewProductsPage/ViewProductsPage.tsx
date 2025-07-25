@@ -1,4 +1,3 @@
-
 import { Box, debounce } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,16 +8,15 @@ import { StyledContainer } from './ViewProductsPage.styled';
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
 import {
-  BackOfficeConfirmationWindow,
   BackOfficeViewHeader,
-  BackOfficeWarningWindow,
+  ConfirmationWindow,
+  WarningWindow,
 } from 'components/molecules';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import {
-  BackOfficeDepositEditForm,
+  DepositEditForm,
   BackOfficeTable,
-  ViewProductsSearchContainer,
-  BackOfficeCardEditForm,
+  ProductsSearchContainer,
+  CardEditForm,
 } from 'components/organisms';
 import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/navigation/routePaths';
 import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
@@ -28,6 +26,7 @@ import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
 import { IBackOfficeErrorData } from 'models/IError';
 import { DepositResponseData } from 'models/IProductInfo';
+import { TableData } from 'models/ITableData';
 import { mapProductData } from 'utils/mapper';
 
 export const ViewProductsPage = () => {
@@ -145,7 +144,7 @@ export const ViewProductsPage = () => {
           secondaryHeader={t('header.viewProducts')}
           btnContent={t('header.createBtnContent')}
         />
-        <ViewProductsSearchContainer
+        <ProductsSearchContainer
           productsData={mappedData}
           showNoMatches={showNoMatches}
           onSearchEnter={handleSearchEnter}
@@ -164,7 +163,7 @@ export const ViewProductsPage = () => {
           onEditClick={handleEdit}
           isLoading={isProductsLoading}
         />
-        <BackOfficeWarningWindow
+        <WarningWindow
           sx={{ left: '150px' }}
           product={selectedProduct}
           onCancelClick={closeDeleteWindow}
@@ -178,10 +177,10 @@ export const ViewProductsPage = () => {
         />
       </StyledContainer>
       {isEditFormVisible && (
-        <BackOfficeCardEditForm handleClose={handleClose} formData={formData} />
+        <CardEditForm handleClose={handleClose} formData={formData} />
       )}
       {isDepositFormVisible && (
-        <BackOfficeDepositEditForm
+        <DepositEditForm
           onClose={handleClose}
           formData={formData}
           onSuccess={handleSuccessfulUpdate}
@@ -190,7 +189,7 @@ export const ViewProductsPage = () => {
         />
       )}
       {isConfirmationWindowVisible && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           sx={{ top: '50px', left: '520px' }}
           onClose={closeConfirmationWindow}
           title={confirmationTitle}

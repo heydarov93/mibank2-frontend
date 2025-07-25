@@ -25,9 +25,9 @@ import {
   StyledInputLabel,
   StyledFormControlLabel,
 } from './ConfirmTransferModal.styled';
+import { TransferDetailRow } from './molecules';
 
 import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
-import { TransferDetailRow } from 'components/molecules';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { formatTransferValue } from 'utils/formatters/currencyFormatter';
 import { savePaymentSchema, TSavePaymentValues } from 'validation';

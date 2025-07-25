@@ -1,2 +1,2 @@
-export * from './TransferFilters/TransferFilters';
-export * from './TransfersDateRangePicker/TransfersDateRangePicker';
+export { TransferFilters } from './TransferFilters/TransferFilters';
+export { TransfersDateRangePicker } from './TransfersDateRangePicker/TransfersDateRangePicker';

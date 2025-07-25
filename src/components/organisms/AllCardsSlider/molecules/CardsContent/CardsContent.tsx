@@ -10,7 +10,7 @@ import {
   StyledCardsContainer,
 } from './CardsContent.styled';
 
-import { UserBankCard } from 'components/molecules/UserBankCard/UserBankCard';
+import { UserBankCard } from 'components/molecules';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 interface CardsContentProps {

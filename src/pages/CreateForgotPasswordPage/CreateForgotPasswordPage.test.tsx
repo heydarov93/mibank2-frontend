@@ -19,7 +19,7 @@ jest.mock('components/atoms/BackArrow/BackArrow', () => ({
 }));
 
 jest.mock('components/organisms', () => ({
-  AuthWrapper: ({ children }: { children: ReactNode }) => (
+  UserAuthWrapper: ({ children }: { children: ReactNode }) => (
     <div data-testid="auth-wrapper">{children}</div>
   ),
   Footer: () => <div data-testid="footer">Footer</div>,

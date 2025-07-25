@@ -123,7 +123,7 @@ jest.mock('../IssueCardModal/IssueCardModal', () => ({
 
 const mockUseGetUserCards = jest.fn<UseGetUserCardsReturn, []>();
 
-jest.mock('../Sidebar/organisms/MyCards/hooks/useGetUserCards', () => ({
+jest.mock('hooks/useGetUserCards', () => ({
   useGetUserCards: () => mockUseGetUserCards(),
 }));
 
@@ -147,6 +147,9 @@ jest.mock('react-i18next', () => ({
       return translations[key] || key;
     }) as TranslationFunction,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 const mockOnCardIdSelect = jest.fn<void, [IUserBankCard['id']]>();

@@ -9,17 +9,8 @@ import {
   StyledTypography,
 } from './Transaction.styled';
 
-import { TCurrency, TTransactionType } from 'types/types';
+import { ITransaction } from 'models/ITransactionInfo';
 import { formatLocaleTimeString } from 'utils/formatters';
-
-export interface ITransaction {
-  cardName: string;
-  cardNumber: string;
-  amount: string;
-  currency: TCurrency;
-  date: string;
-  type: TTransactionType;
-}
 
 export function Transaction({ data }: { data: ITransaction }) {
   const amountLabel = `${data.type === 'income' ? '+' : '-'} ${data.currency} ${data.amount}`;
@@ -35,7 +26,9 @@ export function Transaction({ data }: { data: ITransaction }) {
         </StyledTopRow>
         <StyledBtmRow>
           <StyledTypography>{cardNumber}</StyledTypography>
-          <StyledTypography>{formatLocaleTimeString(data.date)}</StyledTypography>
+          <StyledTypography>
+            {formatLocaleTimeString(data.date)}
+          </StyledTypography>
         </StyledBtmRow>
       </Box>
     </StyledContainer>

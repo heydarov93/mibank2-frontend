@@ -16,8 +16,8 @@ import { LinkButton, InputField, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,
   PasswordField,
-  Timer,
   PasswordValidationTags,
+  ResendCodeTimer,
 } from 'components/molecules';
 import {
   TO_FORGOT_PASSWORD,
@@ -93,7 +93,7 @@ export const LoginForm = () => {
         <>
           <span>&nbsp;</span>
           <span>{'('}</span>
-          <Timer
+          <ResendCodeTimer
             time={remainingTime}
             endTime={lockoutEndTime}
             runTimer={setIsFormDisabled}

@@ -2,9 +2,9 @@ import { CircularProgress } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import InfoRow from '../InfoRow/InfoRow';
+import { InfoRow } from '../InfoRow/InfoRow';
 
-import { StyledInfoSection } from './InfoRow.styled';
+import { StyledInfoSection } from './InfoTab.styled';
 
 import { IUserBankCard } from 'models/IUserBankCard';
 import {
@@ -28,7 +28,7 @@ export type TUserBankCardDetails = Pick<
   | 'isPrimary'
 >;
 
-const InfoTab = ({
+export const InfoTab = ({
   selectedUserCardDetails,
 }: {
   selectedUserCardDetails: TUserBankCardDetails;
@@ -101,5 +101,3 @@ const InfoTab = ({
     </StyledInfoSection>
   );
 };
-
-export default InfoTab;
