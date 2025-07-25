@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackOfficeVerificationErrorLayout matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-hc9d5v"
+  >
+    <div
+      class="MuiBox-root css-0"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-14ayh1n-MuiTypography-root"
+      >
+        QRCodeExpired
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-dmh1ns-MuiTypography-root"
+      >
+        RefreshPage
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-4g6ai3"
+    >
+      <button
+        data-testid="reload-button"
+      >
+        Reload Button
+      </button>
+    </div>
+  </div>
+</div>
+`;
