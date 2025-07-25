@@ -1,4 +1,5 @@
-import { Box, Popover } from '@mui/material';
+import Box from '@mui/material/Box';
+import Popover from '@mui/material/Popover';
 import React, { useEffect, useState } from 'react';
 
 import { FilterGroupOptions } from '../FilterGroupOptions/FilterGroupOptions';

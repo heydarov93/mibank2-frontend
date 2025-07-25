@@ -1,4 +1,4 @@
-import { TextFieldProps } from '@mui/material';
+import { TextFieldProps } from '@mui/material/TextField';
 import { Control, FieldError, FieldValues, Path } from 'react-hook-form';
 import { PatternFormatProps } from 'react-number-format';
 
@@ -7,7 +7,8 @@ import { PatternInput } from '../PatternInput/PatternInput';
 
 import { getFieldErrorMessage } from 'utils/helpers';
 
-interface PatternFieldControllerProps<T extends FieldValues> extends PatternFormatProps {
+interface PatternFieldControllerProps<T extends FieldValues>
+  extends PatternFormatProps {
   name: Path<T>;
   control: Control<T>;
   error?: FieldError;

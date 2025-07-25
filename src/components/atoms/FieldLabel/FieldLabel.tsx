@@ -1,4 +1,4 @@
-import { InputLabel } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
 import { memo, ReactNode } from 'react';
 
 interface FieldLabelProps {

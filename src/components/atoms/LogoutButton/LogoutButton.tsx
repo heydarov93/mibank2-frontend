@@ -1,4 +1,5 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
+import SvgIcon from '@mui/material/SvgIcon';
+import { SxProps, Theme } from '@mui/material/styles';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 

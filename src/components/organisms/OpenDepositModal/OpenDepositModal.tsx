@@ -1,5 +1,7 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { Box, Drawer, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import { useTheme } from '@mui/material/styles';
 
 import { DepositInfoCard } from './molecules';
 import { StyledCloseButton } from './molecules/DepositInfoCard/DepositInfoCard.styled';

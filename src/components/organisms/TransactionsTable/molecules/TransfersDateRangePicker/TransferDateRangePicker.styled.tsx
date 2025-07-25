@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import { ReactComponent as CalendarIcon } from 'assets/icons/Calendar.svg';
 import { InputField } from 'components/atoms/InputField/InputField';

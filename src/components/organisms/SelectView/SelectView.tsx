@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { createSearchParams } from 'react-router-dom';
 
-
 import { StyledButtonsContainer } from './SelectView.styled';
 
 import { TransferButton } from 'components/molecules';

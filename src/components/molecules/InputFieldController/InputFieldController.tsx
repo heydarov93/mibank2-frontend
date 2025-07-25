@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from '@mui/material';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { Controller, Path, FieldValues, Control } from 'react-hook-form';
 
 import { FieldLabel } from 'components/atoms';

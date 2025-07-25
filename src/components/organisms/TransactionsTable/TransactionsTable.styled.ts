@@ -1,12 +1,10 @@
-import {
-  Box,
-  IconButton,
-  styled,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 export const StyledContainer = styled(Box)(() => ({
   display: 'flex',

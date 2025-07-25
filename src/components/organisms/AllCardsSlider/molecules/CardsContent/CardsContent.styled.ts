@@ -1,4 +1,6 @@
-import { Box, Stack, styled } from '@mui/material';
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
 
 export const StyledCardContainer = styled(Box)(() => ({
   transition: 'all 0.3s ease',

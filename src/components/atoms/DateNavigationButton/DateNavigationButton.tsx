@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 import { ReactComponent as DateNavigationArrowSVG } from 'assets/icons/DateNavigationArrow.svg';
 

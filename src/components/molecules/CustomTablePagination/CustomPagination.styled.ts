@@ -1,4 +1,7 @@
-import { Box, Select, styled, Typography } from '@mui/material';
+import Box from "@mui/material/Box";
+import Select from "@mui/material/Select";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledMainContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({

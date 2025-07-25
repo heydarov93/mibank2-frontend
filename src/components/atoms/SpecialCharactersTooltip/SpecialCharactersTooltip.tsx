@@ -1,4 +1,4 @@
-import { Tooltip, TooltipProps } from '@mui/material';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import { memo, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 

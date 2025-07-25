@@ -1,5 +1,6 @@
-import { styled } from '@mui/material';
-import { DatePicker, PickersActionBar } from '@mui/x-date-pickers';
+import { styled } from '@mui/material/styles';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { PickersActionBar } from '@mui/x-date-pickers/PickersActionBar';
 
 export const StyledDatePicker = styled(DatePicker)(
   ({ theme: { palette } }) => ({

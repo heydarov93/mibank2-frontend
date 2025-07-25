@@ -1,4 +1,6 @@
-import { styled, Switch, Typography } from '@mui/material';
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledSwitch = styled(Switch)(({ theme: { palette } }) => ({
   width: 34,

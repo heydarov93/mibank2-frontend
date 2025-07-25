@@ -1,4 +1,5 @@
-import { Button, Stack, StackProps } from '@mui/material';
+import Button from '@mui/material/Button';
+import Stack, { StackProps } from '@mui/material/Stack';
 import { useTranslation } from 'react-i18next';
 
 import { DownloadIcon, ShareIcon } from 'components/atoms';

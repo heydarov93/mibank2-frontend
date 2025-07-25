@@ -1,4 +1,5 @@
-import { Alert, CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslation } from 'react-i18next';
 
 import { StyledSubTitle } from '../../AllCardsSlider.styled';

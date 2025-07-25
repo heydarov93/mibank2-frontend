@@ -1,16 +1,11 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import {
-  Autocomplete,
-  autocompleteClasses,
-  AutocompleteProps,
-  Grow,
-  Paper,
-  TextField,
-  TextFieldProps,
-  Theme,
-  Typography,
-} from '@mui/material';
+import Autocomplete, { autocompleteClasses, AutocompleteProps } from '@mui/material/Autocomplete';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { Theme } from '@mui/material/styles';
 import { useState } from 'react';
 import {
   Control,
@@ -22,6 +17,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { PatternInput } from 'components/molecules';
+
 
 interface AutocompleteFieldProps<
   Options extends { id: string; label: string },

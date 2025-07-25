@@ -1,4 +1,4 @@
-import { SxProps, Theme } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
 import { memo, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 

@@ -1,4 +1,6 @@
-import { Box, Button, ButtonProps, styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button, { ButtonProps } from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 import { LinkProps } from 'react-router-dom';
 
 export const StyledIconContainer = styled(Box)(({ theme: { palette } }) => ({

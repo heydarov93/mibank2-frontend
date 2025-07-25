@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 import {
   StyledMessageTypography,

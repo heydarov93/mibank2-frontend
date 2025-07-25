@@ -1,4 +1,5 @@
-import { AlertTitle, Snackbar } from '@mui/material';
+import AlertTitle from '@mui/material/AlertTitle';
+import Snackbar from '@mui/material/Snackbar';
 import { useTranslation } from 'react-i18next';
 
 import { StyledAlert, StyledLink } from './ErrorNotification.styled';

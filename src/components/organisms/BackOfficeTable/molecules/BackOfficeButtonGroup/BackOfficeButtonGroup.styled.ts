@@ -1,4 +1,5 @@
-import { Button, styled } from '@mui/material';
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 export const StyledButton = styled(Button)(({ theme: { typography } }) => ({
   padding: '6px 8px',

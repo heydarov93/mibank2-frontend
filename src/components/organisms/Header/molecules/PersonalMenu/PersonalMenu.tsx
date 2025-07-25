@@ -1,5 +1,6 @@
 import { SettingsOutlined, LogoutOutlined } from '@mui/icons-material';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

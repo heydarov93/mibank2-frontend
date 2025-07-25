@@ -1,4 +1,6 @@
-import { Button, styled, ButtonProps, Link, LinkProps } from '@mui/material';
+import Button, { ButtonProps } from '@mui/material/Button';
+import Link, { LinkProps } from '@mui/material/Link';
+import { styled } from '@mui/material/styles';
 import { LinkProps as RouterLinkProps } from 'react-router-dom';
 
 export const StyledNavButton = styled(Button)<ButtonProps & RouterLinkProps>(

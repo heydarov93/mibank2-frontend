@@ -1,12 +1,11 @@
 import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
 import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
-import {
-  Box,
-  styled,
-  TableCell,
-  TableContainer,
-  Typography,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+
 
 export const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   border: `1px solid ${theme.palette.border.lightBlue}`,

@@ -1,11 +1,6 @@
-import {
-  Autocomplete,
-  TextField,
-  SxProps,
-  Theme,
-  AutocompleteProps,
-} from '@mui/material';
-import React from 'react';
+import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { SxProps, Theme } from '@mui/material/styles';
 
 export interface CustomAutocompleteProps<T>
   extends Omit<AutocompleteProps<T, false, false, false>, 'renderInput'> {

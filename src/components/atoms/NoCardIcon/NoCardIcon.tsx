@@ -1,4 +1,4 @@
-import { SvgIconProps } from '@mui/material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 

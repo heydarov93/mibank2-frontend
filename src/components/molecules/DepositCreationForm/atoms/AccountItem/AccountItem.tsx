@@ -1,4 +1,4 @@
-import { MenuItem } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
 import { HTMLAttributes, memo } from 'react';
 
 import {

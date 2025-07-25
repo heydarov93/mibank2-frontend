@@ -1,14 +1,13 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledPageWrapper,
   StyledBox,
-  StyledTitleContainer,
-  StyledTitle,
-  StyledDescription,
   StyledButton,
+  StyledDescription,
+  StyledPageWrapper,
+  StyledTitle,
+  StyledTitleContainer,
 } from './UnderDevPage.styled';
 
 import { ReactComponent as UnderDevelopmentImage } from 'assets/icons/Under_development.svg';

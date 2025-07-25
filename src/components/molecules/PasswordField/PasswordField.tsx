@@ -1,5 +1,8 @@
-import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { IconButton, InputAdornment, Tooltip } from '@mui/material';
+import VisibilityOffOutlined from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Tooltip from '@mui/material/Tooltip';
 import { useState, KeyboardEvent, MouseEvent, SyntheticEvent } from 'react';
 import { Control, FieldErrors, FieldValues, Path } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';

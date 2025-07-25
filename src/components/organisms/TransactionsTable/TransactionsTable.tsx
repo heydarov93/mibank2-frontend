@@ -1,11 +1,9 @@
-import { UnfoldMore } from '@mui/icons-material';
-import {
-  Box,
-  SelectChangeEvent,
-  Table,
-  TableBody,
-  TableRow,
-} from '@mui/material';
+import UnfoldMore from '@mui/icons-material/UnfoldMore';
+import Box from '@mui/material/Box';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
 import { MouseEvent, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

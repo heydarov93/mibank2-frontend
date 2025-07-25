@@ -1,14 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Backdrop,
-  Box,
-  Button,
-  Checkbox,
-  CircularProgress,
-  Fade,
-  Stack,
-} from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import CircularProgress from '@mui/material/CircularProgress';
+import Fade from '@mui/material/Fade';
+import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +29,7 @@ import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.a
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { formatTransferValue } from 'utils/formatters/currencyFormatter';
 import { savePaymentSchema, TSavePaymentValues } from 'validation';
+
 
 interface ConfirmTransferModalProps {
   open: boolean;

@@ -1,7 +1,7 @@
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import LoopIcon from '@mui/icons-material/Loop';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 

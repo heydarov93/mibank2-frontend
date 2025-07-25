@@ -1,4 +1,5 @@
-import { List, ListItem } from '@mui/material';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import { useTranslation } from 'react-i18next';
 import { NavLink, Link as RouterLink } from 'react-router-dom';
 

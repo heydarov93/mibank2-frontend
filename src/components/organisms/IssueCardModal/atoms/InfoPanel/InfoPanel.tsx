@@ -1,5 +1,8 @@
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Box, BoxProps, Stack, Typography, useTheme } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import { ReactNode } from 'react';
 
 interface InfoPanelProps extends BoxProps {

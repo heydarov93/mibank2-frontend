@@ -1,5 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
 import { StyledTitle } from '../../PaymentReceiptModal.styled';

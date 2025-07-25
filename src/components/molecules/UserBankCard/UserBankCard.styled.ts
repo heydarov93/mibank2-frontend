@@ -1,7 +1,8 @@
-import { Box, styled } from '@mui/material';
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
 
 export const StyledContainer = styled(Box)(({ theme: { palette } }) => ({
-  backgroundColor: '#28438B', //!TODO need to get the actual background from server
+  backgroundColor: '#28438B',
   color: palette.common.white,
   padding: '16em',
   borderRadius: '12em',

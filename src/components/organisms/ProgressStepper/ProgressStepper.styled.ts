@@ -1,4 +1,7 @@
-import { Step, StepLabel, Stepper, styled } from '@mui/material';
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import { styled } from "@mui/material/styles";
 
 export const StyledStepper = styled(Stepper)(
   ({ theme: { breakpoints, palette, spacing } }) => ({

@@ -1,6 +1,10 @@
-import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Box, IconButton, SxProps, Typography } from '@mui/material';
+import VisibilityOffOutlined from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { SxProps } from '@mui/material/styles';
 import { useState } from 'react';
 
 interface CardDetailRowProps {

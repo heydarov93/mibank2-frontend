@@ -1,4 +1,6 @@
-import { styled, Tab, Tabs } from '@mui/material';
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { styled } from "@mui/material/styles";
 
 export const StyledTabs = styled(Tabs)(({ theme: { palette } }) => ({
   minHeight: 0,

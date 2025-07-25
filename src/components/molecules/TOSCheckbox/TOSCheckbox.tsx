@@ -1,4 +1,6 @@
-import { Checkbox, Link, useTheme } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material/styles';
 import {
   Control,
   Controller,

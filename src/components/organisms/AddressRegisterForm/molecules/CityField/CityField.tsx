@@ -1,4 +1,7 @@
-import { Box, ClickAwayListener, FormControl, Popper } from '@mui/material';
+import Box from '@mui/material/Box';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import FormControl from '@mui/material/FormControl';
+import Popper from '@mui/material/Popper';
 import { MouseEvent } from 'react';
 import type { Control } from 'react-hook-form';
 

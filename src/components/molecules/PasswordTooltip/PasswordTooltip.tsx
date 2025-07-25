@@ -1,5 +1,6 @@
-import { ErrorOutline } from '@mui/icons-material';
-import { Box, ClickAwayListener } from '@mui/material';
+import ErrorOutline from '@mui/icons-material/ErrorOutline';
+import Box from '@mui/material/Box';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

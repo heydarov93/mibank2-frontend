@@ -1,4 +1,5 @@
-import { Snackbar, SnackbarProps, Typography } from '@mui/material';
+import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
 import { StyledAlert } from './InfoAlert.styled';

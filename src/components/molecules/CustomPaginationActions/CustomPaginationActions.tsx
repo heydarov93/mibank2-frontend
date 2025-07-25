@@ -1,10 +1,8 @@
-import {
-  FirstPageRounded,
-  LastPageRounded,
-  KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded,
-} from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import FirstPageRounded from '@mui/icons-material/FirstPageRounded';
+import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import LastPageRounded from '@mui/icons-material/LastPageRounded';
+import IconButton from '@mui/material/IconButton';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 

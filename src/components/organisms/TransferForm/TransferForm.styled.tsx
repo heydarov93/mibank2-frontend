@@ -1,4 +1,6 @@
-import { Box, Icon, styled } from '@mui/material';
+import Box from "@mui/material/Box";
+import Icon from "@mui/material/Icon";
+import { styled } from "@mui/material/styles";
 
 export const StyledForm = styled('form')(({ theme: { spacing } }) => ({
   fontSize: '14px',

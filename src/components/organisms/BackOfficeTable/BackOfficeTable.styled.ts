@@ -1,4 +1,7 @@
-import { styled, TableCell, TableHead, TableRow } from '@mui/material';
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { styled } from "@mui/material/styles";
 
 export const StyledTableHead = styled(TableHead)(({ theme: { palette } }) => ({
   backgroundColor: palette.primary.light,

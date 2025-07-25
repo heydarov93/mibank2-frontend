@@ -1,5 +1,7 @@
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Stack, StackProps, Typography, useTheme } from '@mui/material';
+import Stack, { StackProps } from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
