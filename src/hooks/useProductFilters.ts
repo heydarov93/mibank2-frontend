@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import {
   INITIAL_PRODUCT_SUB_TYPES,
   INITIAL_PRODUCT_TYPES,
 } from 'constants/ui/table';
 import { ProductType } from 'enums/EProductType';
 import { FilterGroup } from 'models/IFilterInfo';
+import { TableData } from 'models/ITableData';
 
 export const useProductFilters = (mappedData: Partial<TableData>[]) => {
   const [productSubtypes, setProductSubtypes] = useState<FilterGroup[]>(

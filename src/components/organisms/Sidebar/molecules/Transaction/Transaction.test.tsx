@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import { Transaction, ITransaction } from './Transaction';
+import { Transaction } from './Transaction';
+
+import { ITransaction } from 'models/ITransactionInfo';
 
 jest.mock('utils', () => ({
   formatLocaleTimeString: jest.fn((date: string) => `Formatted: ${date}`),

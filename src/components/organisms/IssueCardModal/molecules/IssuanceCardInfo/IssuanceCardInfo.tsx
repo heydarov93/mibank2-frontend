@@ -1,9 +1,10 @@
 import { Stack, SxProps, Theme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
+import { InfoPanel } from '../../atoms';
+
 import { StyledTypography } from './IssuanceCardInfo.styled';
 
-import { Information } from 'components/molecules';
 import { IssuanceCardData } from 'models/IProductInfo';
 
 interface IssuanceCardInfoProps
@@ -26,7 +27,7 @@ export const IssuanceCardInfo = ({
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
 
   return (
-    <Information
+    <InfoPanel
       title={cardName}
       sx={sx}
       data-testid="issue-card-modal-selected-card-info"
@@ -50,6 +51,6 @@ export const IssuanceCardInfo = ({
           <StyledTypography fontWeight={500}>{cashbackRate}%</StyledTypography>
         </Stack>
       </Stack>
-    </Information>
+    </InfoPanel>
   );
 };

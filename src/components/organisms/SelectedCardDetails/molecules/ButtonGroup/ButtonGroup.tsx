@@ -20,7 +20,7 @@ import { TO_TRANSFERS } from 'constants/navigation/routePaths';
 
 type ActionButton = 'status' | 'primary';
 
-const ButtonGroup = ({
+export const ButtonGroup = ({
   selectedUserCardDetails,
 }: {
   selectedUserCardDetails: TUserBankCardDetails;
@@ -127,5 +127,3 @@ const ButtonGroup = ({
     </>
   );
 };
-
-export default ButtonGroup;

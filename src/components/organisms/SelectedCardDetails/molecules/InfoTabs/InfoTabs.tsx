@@ -1,7 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-
 import { StyledTab, StyledTabs } from './InfoTabs.styled';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
@@ -11,11 +10,12 @@ interface InfoTabsProps {
   onTabChange: (_: SyntheticEvent, newValue: string) => void;
 }
 
-const InfoTabs = ({ activeTab, onTabChange }: InfoTabsProps) => {
+export const InfoTabs = ({ activeTab, onTabChange }: InfoTabsProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'AllCards.selectedCard',
   });
-  const displayOption = activeTab === ECardInfoTab.Information ? 'block' : 'none';
+  const displayOption =
+    activeTab === ECardInfoTab.Information ? 'block' : 'none';
 
   return (
     <StyledTabs
@@ -53,5 +53,3 @@ const InfoTabs = ({ activeTab, onTabChange }: InfoTabsProps) => {
     </StyledTabs>
   );
 };
-
-export default InfoTabs;

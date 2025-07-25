@@ -1,9 +1,9 @@
-import { AuthPageWrapper, BusinessSignUpForm } from 'components/organisms';
+import { BusinessAuthWrapper, BusinessSignUpForm } from 'components/organisms';
 
 export const BusinessSignUpPage = () => {
   return (
-    <AuthPageWrapper>
+    <BusinessAuthWrapper>
       <BusinessSignUpForm />
-    </AuthPageWrapper>
+    </BusinessAuthWrapper>
   );
 };

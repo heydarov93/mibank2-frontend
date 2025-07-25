@@ -21,7 +21,7 @@ import {
   StyledForm,
   StyledLabel,
 } from './TransferForm.styled';
-import { CurrencySelectControlled } from './atoms/CurrencySelectControlled';
+import { CurrencySelectController } from './atoms';
 import {
   ISavedCardAccount,
   ISavedIBANAccount,
@@ -33,19 +33,21 @@ import {
   IUserCardAccountOption,
   IUserIBANAccountOption,
 } from './interfaces/IUserAccountOption';
-import { AutocompleteField } from './molecules/AutocompleteField';
-import { CardFieldAdornment } from './molecules/CardFieldAdornment';
-import { TransferAlertDialog } from './molecules/TransferAlertDialog/TransferAlertDialog';
+import {
+  AutoCompleteField,
+  CardFieldAdornment,
+  TransferAlertDialog,
+} from './molecules';
 import { createOptions } from './utils/createOptions';
 import { renderOption } from './utils/renderOptions';
 
 import {
-  InputFieldControlled,
-  NumericFieldControlled,
+  InputFieldController,
+  NumericFieldController,
 } from 'components/molecules';
-import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
 import { IErrorData } from 'models/IError';
+import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { TCurrency } from 'types/types';
 import { moneyTransferSchema, TMoneyTransferValues } from 'validation';
@@ -197,7 +199,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
           <StyledLabel htmlFor="fromAccount">
             {translation.fromAccount.label}
           </StyledLabel>
-          <AutocompleteField<
+          <AutoCompleteField<
             IUserCardAccountOption | IUserIBANAccountOption,
             ITransferForm
           >
@@ -223,7 +225,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
           />
         </Box>
         <Box gridColumn={1} gridRow={2}>
-          <NumericFieldControlled
+          <NumericFieldController
             name="amount"
             label={translation.amount.label}
             control={control}
@@ -233,7 +235,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
               InputProps: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <CurrencySelectControlled
+                    <CurrencySelectController
                       name="currency"
                       control={control}
                     />
@@ -260,7 +262,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
             <StyledLabel htmlFor="message">
               {translation.message.label}
             </StyledLabel>
-            <InputFieldControlled
+            <InputFieldController
               name="message"
               control={control}
               textFieldProps={{
@@ -285,7 +287,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
           <StyledLabel htmlFor="toAccount">
             {translation.toAccount.label}
           </StyledLabel>
-          <AutocompleteField
+          <AutoCompleteField
             name="toAccount"
             control={control}
             options={toAccountsOptions}

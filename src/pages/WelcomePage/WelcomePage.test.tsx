@@ -57,7 +57,7 @@ jest.mock('components/organisms', () => ({
       </button>
     </div>
   ),
-  WelcomeNav: ({ activePanel }: { activePanel: number }) => (
+  WelcomeNavbar: ({ activePanel }: { activePanel: number }) => (
     <div data-testid="welcome-nav">Nav {activePanel}</div>
   ),
 }));

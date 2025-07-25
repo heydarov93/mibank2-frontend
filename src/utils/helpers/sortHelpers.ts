@@ -1,6 +1,6 @@
-import { ITransaction } from 'components/organisms/Sidebar/molecules/Transaction/Transaction';
 import { LOCALES } from 'constants/business/date';
 import { SORT_ORDER } from 'constants/business/sortOrder';
+import { ITransaction } from 'models/ITransactionInfo';
 import { TSortOrder } from 'types/types';
 import { formatDateByLocale } from 'utils/formatters';
 

@@ -9,9 +9,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CardInfoButton } from '../../atoms/CardInfoButton/CardInfoButton';
-import { useGetUserCardDetails } from '../../organisms/MyCards/hooks/useGetUserCardDetails';
 import { CardDetailRow } from '../CardDetailRow/CardDetailRow';
 
+import { useGetUserCardDetails } from 'hooks/useGetUserCardDetails';
 import { copyToClipboard } from 'utils/helpers';
 
 interface Props {

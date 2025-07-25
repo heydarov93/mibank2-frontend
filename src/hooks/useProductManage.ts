@@ -1,13 +1,13 @@
 import { t } from 'i18next';
 import { useState } from 'react';
 
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import { HTTP_STATUS } from 'constants/business/httpStatus';
 import {
   DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
 } from 'constants/business/pagination';
 import { IBackOfficeErrorData } from 'models/IError';
+import { TableData } from 'models/ITableData';
 import { THttpStatus } from 'types/types';
 
 interface BackOfficeState {

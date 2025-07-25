@@ -10,7 +10,7 @@ import {
   StyledTitle,
 } from './VerifyEmailPage.styled';
 
-import { AuthPageWrapper } from 'components/organisms';
+import { BusinessAuthWrapper } from 'components/organisms';
 import { TO_WELCOME } from 'constants/navigation/routePaths';
 
 export const VerifyEmailPage = () => {
@@ -32,7 +32,7 @@ export const VerifyEmailPage = () => {
   }
 
   return (
-    <AuthPageWrapper>
+    <BusinessAuthWrapper>
       <StyledTitle variant="h2">{t('title')}</StyledTitle>
       <StyledText variant="body1">
         {t('emailSent')}
@@ -49,6 +49,6 @@ export const VerifyEmailPage = () => {
         <Typography>{t('notReceived')}</Typography>
         <StyledButton>{t('resend')}</StyledButton>
       </StyledFlexRow>
-    </AuthPageWrapper>
+    </BusinessAuthWrapper>
   );
 };

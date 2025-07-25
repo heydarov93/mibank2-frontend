@@ -1,3 +1,5 @@
+import { TCurrency, TTransactionType } from "types/types";
+
 export interface Transaction {
   id: string;
   type: 'INCOME' | 'EXPENSE';
@@ -18,4 +20,13 @@ export interface TransformedTransaction {
   date: string;
   time: string;
   currency: string;
+}
+
+export interface ITransaction {
+  cardName: string;
+  cardNumber: string;
+  amount: string;
+  currency: TCurrency;
+  date: string;
+  type: TTransactionType;
 }

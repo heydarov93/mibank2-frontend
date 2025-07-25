@@ -26,12 +26,11 @@ import { useTransactions } from './hooks/useTransactions';
 import { useTransferFilters } from './hooks/useTransferFilters';
 import { TransferFilters } from './molecules';
 
-import { CustomTableRow } from 'components/molecules';
-import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
-import { IPaymentReceipt } from 'components/molecules/PaymentReceiptInfo/PaymentReceiptInfo';
+import { CustomTablePagination, CustomTableRow } from 'components/molecules';
 import { DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
 import { SORT_ORDER } from 'constants/business/sortOrder';
 import { usePaginationInfo } from 'hooks';
+import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
 import {
   formatCardNumber,

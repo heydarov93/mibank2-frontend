@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthWrapper, BackOfficeEmployeeLoginForm } from 'components/organisms';
+import { UserAuthWrapper, EmployeeLoginForm } from 'components/organisms';
 import { TO_HOME } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';
@@ -20,9 +20,9 @@ export const EmployeeLoginPage = () => {
 
   return (
     <>
-      <AuthWrapper>
-        <BackOfficeEmployeeLoginForm />
-      </AuthWrapper>
+      <UserAuthWrapper>
+        <EmployeeLoginForm />
+      </UserAuthWrapper>
     </>
   );
 };

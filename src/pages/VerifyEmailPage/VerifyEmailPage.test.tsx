@@ -20,8 +20,8 @@ jest.mock('react-i18next', () => ({
 }));
 
 jest.mock('components/organisms', () => ({
-  AuthPageWrapper: ({ children }: { children: ReactNode }) => (
-    <div data-testid="auth-wrapper">{children}</div>
+  BusinessAuthWrapper: ({ children }: { children: ReactNode }) => (
+    <div data-testid="business-auth-wrapper">{children}</div>
   ),
 }));
 
@@ -55,7 +55,7 @@ describe('VerifyEmailPage', () => {
     it('renders wrapper and displays email', () => {
       render(<VerifyEmailPage />);
 
-      expect(screen.getByTestId('auth-wrapper')).toBeInTheDocument();
+      expect(screen.getByTestId('business-auth-wrapper')).toBeInTheDocument();
       expect(screen.getByText(/title/i)).toBeInTheDocument();
       expect(screen.getByText(email)).toBeInTheDocument();
       expect(screen.getByText(/notReceived/i)).toBeInTheDocument();

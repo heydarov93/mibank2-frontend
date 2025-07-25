@@ -20,7 +20,7 @@ import {
 
 import { useAuthenticateEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { Logo, SubmitButton } from 'components/atoms';
-import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/molecules/OneTimePasscode';
+import { OneTimePasscode } from 'components/molecules';
 import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/navigation/routePaths';
 import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 import { OTP_CODE_LENGHT, OTP_INPUT_KEY } from 'constants/validation/otp';

@@ -11,7 +11,7 @@ import { useSearchParams } from 'react-router-dom';
 import { StyledContainer, StyledHeader } from './WelcomePage.styled';
 
 import { Logo, TabPanel } from 'components/atoms';
-import { Footer, WelcomeHeader, WelcomeNav } from 'components/organisms';
+import { Footer, WelcomeHeader, WelcomeNavbar } from 'components/organisms';
 import { WELCOME_TABS } from 'constants/ui/content';
 import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 import { EWelcomeTab } from 'enums';
@@ -46,7 +46,7 @@ export const WelcomePage = () => {
         <WelcomeHeader activeTab={activeTab} onTabChange={handleTabChange} />
         <StyledContainer>
           <Logo size={DEFAULT_BREAKPOINT_KEYS.md} />
-          <WelcomeNav activePanel={activeTab} />
+          <WelcomeNavbar activePanel={activeTab} />
         </StyledContainer>
       </StyledHeader>
       <Box mt={15}>

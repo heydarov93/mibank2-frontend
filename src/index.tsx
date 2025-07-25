@@ -16,9 +16,10 @@ import store, { persistor } from './store';
 import { theme } from './theme/theme';
 
 import './assets/css/global.css';
-
-import { AutoLogoutMessageModal } from 'components/organisms/AutoLogoutModal/AutoLogoutMessageModal';
-import { AutoLogoutModal } from 'components/organisms/AutoLogoutModal/AutoLogoutModal';
+import {
+  SessionExpiredModal,
+  SessionTimeoutWarningModal,
+} from 'components/organisms';
 
 dayjs.extend(isBetween);
 
@@ -32,8 +33,8 @@ root.render(
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
             <RouterProvider router={routes} />
-            <AutoLogoutModal />
-            <AutoLogoutMessageModal />
+            <SessionTimeoutWarningModal />
+            <SessionExpiredModal />
             <CssBaseline />
           </ThemeProvider>
         </PersistGate>

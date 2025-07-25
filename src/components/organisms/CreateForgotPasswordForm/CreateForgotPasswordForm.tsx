@@ -11,14 +11,11 @@ import {
   StyledFormTitle,
   StyledLabel,
 } from './CreateForgotPasswordForm.styled';
+import { VerificationCodeInput } from './molecules';
 
 import { useConfirmForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { LinkButton, SubmitButton } from 'components/atoms';
-import {
-  PasswordField,
-  PasswordValidationTags,
-  VerificationCodeInputField,
-} from 'components/molecules';
+import { PasswordField, PasswordValidationTags } from 'components/molecules';
 import {
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_SIGN_IN,
@@ -155,7 +152,7 @@ export const CreateForgotPasswordForm = () => {
                 {t('EnterVerificatonCode')}
               </StyledLabel>
             </Box>
-            <VerificationCodeInputField
+            <VerificationCodeInput
               control={control}
               name="verificationCode"
               errors={errors}

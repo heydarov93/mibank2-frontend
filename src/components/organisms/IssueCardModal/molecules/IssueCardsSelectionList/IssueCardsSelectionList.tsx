@@ -7,7 +7,8 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { SmallIssuanceCard } from 'components/molecules';
+import { SmallIssuanceCard } from '../../atoms';
+
 import { IssuanceCardData } from 'models/IProductInfo';
 
 interface IssueCardsSelectionListProps {

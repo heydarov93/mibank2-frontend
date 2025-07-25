@@ -13,18 +13,15 @@ import {
   StyledTableHead,
   StyledTableRow,
 } from './BackOfficeTable.styled';
+import { BackOfficeTableItem, BackOfficeTableTitle } from './molecules';
 
-import {
-  BackOfficeTableItem,
-  TableData,
-} from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
-import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
+import { CustomTablePagination } from 'components/molecules';
 import {
   DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_SIZE,
 } from 'constants/business/pagination';
 import { usePaginationInfo } from 'hooks';
+import { TableData } from 'models/ITableData';
 
 interface TableHeadItem {
   label: string;
@@ -148,4 +145,3 @@ export const BackOfficeTable = ({
     </TableContainer>
   );
 };
-

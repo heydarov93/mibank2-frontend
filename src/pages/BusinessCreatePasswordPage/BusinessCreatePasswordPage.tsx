@@ -1,9 +1,9 @@
-import { AuthPageWrapper, CreatePasswordForm } from 'components/organisms';
+import { BusinessAuthWrapper, CreatePasswordForm } from 'components/organisms';
 
 export const BusinessCreatePasswordPage = () => {
   return (
-    <AuthPageWrapper>
+    <BusinessAuthWrapper>
       <CreatePasswordForm />
-    </AuthPageWrapper>
+    </BusinessAuthWrapper>
   );
 };

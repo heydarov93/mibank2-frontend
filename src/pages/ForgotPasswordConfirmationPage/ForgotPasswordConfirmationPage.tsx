@@ -9,7 +9,7 @@ import {
 } from './ForgotPasswordConfirmationPage.styled';
 
 import { BackArrow, LinkButton } from 'components/atoms';
-import { AuthWrapper, Footer } from 'components/organisms';
+import { UserAuthWrapper, Footer } from 'components/organisms';
 import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
 export const ForgotPasswordConfirmationPage = () => {
@@ -22,7 +22,7 @@ export const ForgotPasswordConfirmationPage = () => {
   return (
     <>
       <BackArrow onBackClick={handleBackClick} />
-      <AuthWrapper>
+      <UserAuthWrapper>
         <StyledContainer>
           <StyledTitleContainer>
             <StyledTitle variant="h5">{t('PasswordUpdated')}</StyledTitle>
@@ -35,7 +35,7 @@ export const ForgotPasswordConfirmationPage = () => {
             </StyledDescription>
           </StyledTitleContainer>
         </StyledContainer>
-      </AuthWrapper>
+      </UserAuthWrapper>
       <Footer />
     </>
   );

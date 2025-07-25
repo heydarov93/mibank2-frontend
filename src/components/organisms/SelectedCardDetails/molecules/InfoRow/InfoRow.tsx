@@ -25,7 +25,7 @@ interface InfoRowProps {
   status?: TCardStatus;
 }
 
-const InfoRow = ({
+export const InfoRow = ({
   label,
   value,
   masked,
@@ -66,4 +66,3 @@ const InfoRow = ({
   </StyledInfoRow>
 );
 
-export default InfoRow;

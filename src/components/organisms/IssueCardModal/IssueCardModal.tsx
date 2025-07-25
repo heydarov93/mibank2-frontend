@@ -4,19 +4,20 @@ import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { InfoAlert } from '../InfoAlert/InfoAlert';
-import { SimpleAlert } from '../SimpleAlert/SimpleAlert';
+import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
 
 import { LoadingIndicator, StyledDialog } from './IssueCardModal.styled';
-import { IssueCardModalBottomAlert } from './atoms/IssueCardModalBottomAlert/IssueCardModalBottomAlert';
+import { IssueCardModalBottomAlert } from './atoms';
 import {
+  IssuanceCardInfo,
   IssueCardModalActions,
   IssueCardModalSelects,
   IssueCardsSelectionList,
   SelectedCardForm,
 } from './molecules';
-import { IssuanceCardInfo } from './molecules/IssuanceCardInfo/IssuanceCardInfo';
 
-import { ModalHeader, NavigationWarningModal } from 'components/atoms';
+import { ModalHeader } from 'components/atoms';
+import { SimpleAlert } from 'components/molecules';
 import { useCardIssuance } from 'components/organisms/IssueCardModal/hooks/useCardIssuance';
 import { useCardIssueFlow } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';

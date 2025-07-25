@@ -7,7 +7,7 @@ import { LoginPage } from './LoginPage';
 import { localTokenHandler } from 'utils/auth';
 
 jest.mock('components/organisms', () => ({
-  AuthWrapper: ({ children }: { children: ReactNode }) => (
+  UserAuthWrapper: ({ children }: { children: ReactNode }) => (
     <div data-testid="auth-wrapper">{children}</div>
   ),
   LoginForm: () => <form data-testid="login-form">Login Form</form>,

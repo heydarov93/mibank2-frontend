@@ -29,7 +29,7 @@ describe('buildDepositPayload', () => {
     const result = buildDepositPayload(formData, mockAccounts, depositId);
 
     expect(result).toEqual({
-      accountId: "102",
+      accountId: '102',
       depositId: 7,
       amount: 1500,
     });

@@ -6,8 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { StyledContainer } from './TransfersPage.styled';
 
-import { NavigationWarningModal } from 'components/atoms';
-import { SelectView, TransferView } from 'components/organisms';
+import { NavigationWarningModal, SelectView, TransferView } from 'components/organisms';
 
 export const TRANSFER_METHODS = ['iban', 'card', 'owncards'] as const;
 export type TTransferMethod = (typeof TRANSFER_METHODS)[number];
@@ -39,6 +38,7 @@ export const TransfersPage = () => {
           onClick={handleOpenModal}
           startIcon={<ArrowBackIosNewIcon />}
           sx={({ palette }) => ({ color: palette.common.black })}
+          data-testid="back-button"
         >
           {t('goBack')}
         </Button>
@@ -50,6 +50,7 @@ export const TransfersPage = () => {
         onCancel={handleCloseModal}
         title={t('warningModal.title')}
         description={t('warningModal.description')}
+        testId="warning-modal"
       />
 
       <StyledContainer>
@@ -57,9 +58,10 @@ export const TransfersPage = () => {
           <TransferView
             transferMethod={transferMethod}
             onCancel={handleOpenModal}
+            data-testid="transfer-view"
           />
         ) : (
-          <SelectView />
+          <SelectView data-testid="select-view" />
         )}
       </StyledContainer>
     </Box>

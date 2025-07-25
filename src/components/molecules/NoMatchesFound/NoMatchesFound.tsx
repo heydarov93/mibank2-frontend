@@ -21,7 +21,7 @@ export const NoMatchesFound = ({
   errorSubTitle,
   errorTitle,
 }: NoMatchesFoundProps) => {
-  const theme = useTheme();
+  const { palette } = useTheme();
 
   return (
     <StyledWhiteBox>
@@ -31,7 +31,7 @@ export const NoMatchesFound = ({
       <StyledViewAllBox onClick={onViewAll}>
         <SearchIcon
           sx={{
-            color: theme.palette.primary.main,
+            color: palette.primary.main,
             width: '24px',
             height: '24px',
           }}

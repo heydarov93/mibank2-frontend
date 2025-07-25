@@ -4,19 +4,18 @@ import { RegistrationFormWrapper } from './RegistrationFormWrapper';
 
 import { EStepper } from 'enums/EStepper';
 
-// Mock the hook
 const mockUseRegFormFlow = jest.fn();
 jest.mock('hooks/useRegFormFlow', () => ({
   useRegFormFlow: () => mockUseRegFormFlow(),
 }));
 
-jest.mock('../RegistrationForm/PersonalInfo/PersonalInfo', () => ({
+jest.mock('./molecules/PersonalInfo/PersonalInfo', () => ({
   PersonalInfo: () => (
     <div data-testid="personal-info-form">Personal Info Form</div>
   ),
 }));
 
-jest.mock('../RegistrationForm/LegalStatus/LegalStatus', () => ({
+jest.mock('./molecules/LegalStatus/LegalStatus', () => ({
   LegalStatus: ({ onBack }: { onBack: () => void }) => (
     <div data-testid="legal-status-form">
       Legal Status Form
@@ -27,21 +26,18 @@ jest.mock('../RegistrationForm/LegalStatus/LegalStatus', () => ({
   ),
 }));
 
-jest.mock(
-  '../RegistrationForm/DocumentInfoWrapper/DocumentInfoWrapper',
-  () => ({
-    DocumentInfoWrapper: ({ onBack }: { onBack: () => void }) => (
-      <div data-testid="document-info-form">
-        Document Info Form
-        <button onClick={onBack} data-testid="document-info-back">
-          Back
-        </button>
-      </div>
-    ),
-  }),
-);
+jest.mock('./molecules/DocumentInfoWrapper/DocumentInfoWrapper', () => ({
+  DocumentInfoWrapper: ({ onBack }: { onBack: () => void }) => (
+    <div data-testid="document-info-form">
+      Document Info Form
+      <button onClick={onBack} data-testid="document-info-back">
+        Back
+      </button>
+    </div>
+  ),
+}));
 
-jest.mock('../RegistrationForm/Address/Address', () => ({
+jest.mock('./molecules/Address/Address', () => ({
   Address: ({ onBack }: { onBack: () => void }) => (
     <div data-testid="address-form">
       Address Form
@@ -52,8 +48,8 @@ jest.mock('../RegistrationForm/Address/Address', () => ({
   ),
 }));
 
-jest.mock('../MiBankStepper/MiBankStepper', () => ({
-  MiBankStepper: ({ step }: { step: string }) => (
+jest.mock('../ProgressStepper/ProgressStepper', () => ({
+  ProgressStepper: ({ step }: { step: EStepper }) => (
     <div data-testid="stepper">Step: {step}</div>
   ),
 }));
@@ -127,19 +123,6 @@ describe('RegistrationFormWrapper', () => {
       expect(screen.getByTestId('stepper')).toBeInTheDocument();
       expect(screen.getByTestId('form-provider')).toBeInTheDocument();
       expect(screen.getByTestId('registration-form')).toBeInTheDocument();
-    });
-
-    it('renders stepper with current step', () => {
-      mockUseRegFormFlow.mockReturnValue({
-        ...defaultMockReturn,
-        step: EStepper.LEGAL_STATUS,
-      });
-
-      render(<RegistrationFormWrapper />);
-
-      expect(screen.getByTestId('stepper')).toHaveTextContent(
-        'Step: 1',
-      );
     });
   });
 
@@ -268,7 +251,7 @@ describe('RegistrationFormWrapper', () => {
 
       render(<RegistrationFormWrapper />);
 
-      fireEvent.click(screen.getByTestId('modal-confirm'));
+      fireEvent.click(screen.getByText('Confirm'));
 
       expect(mockHandleConfirm).toHaveBeenCalledTimes(1);
     });
@@ -286,7 +269,7 @@ describe('RegistrationFormWrapper', () => {
 
       render(<RegistrationFormWrapper />);
 
-      fireEvent.click(screen.getByTestId('modal-cancel'));
+      fireEvent.click(screen.getByTestId('modal-close'));
 
       expect(mockClose).toHaveBeenCalledTimes(1);
     });

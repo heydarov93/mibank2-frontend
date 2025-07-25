@@ -7,10 +7,10 @@ import {
   CancelButton,
   StyledCancelContainer,
 } from './OneTimePasscodeForm.styled';
-import OneTimePasscode from './molecules/OneTimePasscode';
 
 import { useValidateOTPMutation } from 'api/services/employee-service/employees.api';
 import { SubmitButton } from 'components/atoms';
+import { OneTimePasscode } from 'components/molecules';
 import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/navigation/routePaths';
 import { OTP_CODE_LENGHT } from 'constants/validation/otp';
 import { theme } from 'theme/theme';

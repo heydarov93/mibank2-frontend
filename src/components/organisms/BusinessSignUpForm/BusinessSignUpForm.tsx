@@ -12,7 +12,7 @@ import {
 
 import { usePostValidationLegalEntityInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
-import { PatternFieldControlled } from 'components/molecules';
+import { PatternFieldController } from 'components/molecules';
 import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
@@ -156,7 +156,7 @@ export const BusinessSignUpForm = () => {
           />
         </Box>
         <Box>
-          <PatternFieldControlled
+          <PatternFieldController
             name="nip"
             control={control}
             label={t('form.fields.nip')}

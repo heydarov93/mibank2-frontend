@@ -10,7 +10,7 @@ import {
   StyledTitle,
 } from './CurrencyCalculator.styled';
 import { useCurrencyCalculator } from './hooks/useCurrencyCalculator';
-import { ExchangeInputBox } from './molecules/ExchangeInputBox/ExchangeInputBox';
+import { ExchangeInputBox } from './molecules';
 
 export const CurrencyCalculator = () => {
   const { t } = useTranslation('translation', {

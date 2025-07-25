@@ -6,9 +6,9 @@ import { ViewProductsPage } from './ViewProductsPage';
 
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
 import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
+import { TableData } from 'models/ITableData';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -48,7 +48,7 @@ jest.mock('components/molecules', () => ({
       <button>{btnContent}</button>
     </div>
   ),
-  BackOfficeWarningWindow: ({
+  WarningWindow: ({
     onCancelClick,
     isError,
     errorMessage,
@@ -68,7 +68,7 @@ jest.mock('components/molecules', () => ({
       {isError && <p>{errorMessage}</p>}
     </div>
   ),
-  BackOfficeConfirmationWindow: ({
+  ConfirmationWindow: ({
     onClose,
     title,
     body,
@@ -85,7 +85,7 @@ jest.mock('components/molecules', () => ({
   ),
 }));
 jest.mock('components/organisms', () => ({
-  ViewProductsSearchContainer: ({
+  ProductsSearchContainer: ({
     showNoMatches,
     onSearchEnter,
     onViewAll,
@@ -123,12 +123,12 @@ jest.mock('components/organisms', () => ({
           ))}
     </div>
   ),
-  BackOfficeDepositEditForm: ({ handleClose }: { handleClose: () => void }) => (
+  DepositEditForm: ({ handleClose }: { handleClose: () => void }) => (
     <div data-testid="deposit-edit-form">
       <button onClick={handleClose}>Close</button>
     </div>
   ),
-  BackOfficeCardEditForm: ({ handleClose }: { handleClose: () => void }) => (
+  CardEditForm: ({ handleClose }: { handleClose: () => void }) => (
     <div data-testid="card-edit-form">
       <button onClick={handleClose}>Close</button>
     </div>
