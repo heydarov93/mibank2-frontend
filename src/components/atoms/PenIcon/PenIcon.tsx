@@ -1,22 +1,29 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as Pen } from 'assets/icons/EditIcon.svg';
+import { ReactComponent as EditSVG } from 'assets/icons/EditIcon.svg';
 
-interface PenIconProps {
-  color?: string;
-  sx?: SxProps<Theme>;
+interface PenIconProps extends Omit<SvgIconProps, 'children'> {
+  sx?: SvgIconProps['sx'];
 }
 
-const PenIcon = ({ color, sx, ...props }: PenIconProps) => {
+export const PenIcon = memo<PenIconProps>(({ sx, ...props }: PenIconProps) => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Accessibility',
+  });
+
   return (
     <SvgIcon
       viewBox="0 0 12 12"
-      sx={{ color: color, height: '12px', width: '12px', ...sx }}
+      sx={{ height: '12px', width: '12px', ...sx }}
+      role="img"
+      aria-label={t('label.pen')}
       {...props}
     >
-      <Pen />
+      <EditSVG />
     </SvgIcon>
   );
-};
+});
 
-export default PenIcon;
+PenIcon.displayName = 'PenIcon';

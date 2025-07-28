@@ -1,4 +1,5 @@
-import { Box, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { HTMLAttributes } from 'react';
 
 import { ISavedCardAccount, ISavedIBANAccount } from '../hooks/useAccounts';
@@ -8,7 +9,7 @@ import {
 } from '../interfaces/IUserAccountOption';
 
 import { CardIssuerIcon } from 'components/atoms';
-import { CARD_PATTERN, IBAN_PATTERN } from 'constants/inputPatterns';
+import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
 import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export function renderOption(

@@ -1,8 +1,8 @@
-import { Alert, CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 import { SyntheticEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useGetUserCardDetails } from '../Sidebar/organisms/MyCards/hooks/useGetUserCardDetails';
 
 import {
   StyledContainer,
@@ -10,11 +10,10 @@ import {
   StyledPrimaryLabel,
   StyledTitle,
 } from './SelectedCardDetails.styled';
-import ButtonGroup from './molecules/ButtonGroup/ButtonGroup';
-import InfoTab from './molecules/InfoTab/InfoTab';
-import InfoTabs from './molecules/InfoTabs/InfoTabs';
+import { ButtonGroup, InfoTab, InfoTabs } from './molecules';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
+import { useGetUserCardDetails } from 'hooks/useGetUserCardDetails';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 export const SelectedCardDetails = ({
@@ -81,7 +80,11 @@ export const SelectedCardDetails = ({
         />
       </StyledHeader>
 
-      <InfoTabs activeTab={activeTab} onTabChange={handleTabChange} />
+      <InfoTabs
+        data-active={activeTab}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
 
       {showInformationTab && (
         <InfoTab selectedUserCardDetails={userCardDetails} />

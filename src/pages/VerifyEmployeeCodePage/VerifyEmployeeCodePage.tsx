@@ -1,4 +1,6 @@
-import { Alert, Box, CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import React, {
   FormEvent,
   useCallback,
@@ -20,14 +22,14 @@ import {
 
 import { useAuthenticateEmployeeMutation } from 'api/services/employee-service/employees.api';
 import { Logo, SubmitButton } from 'components/atoms';
-import OneTimePasscode from 'components/organisms/OneTimePasscodeForm/molecules/OneTimePasscode';
-import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/routesName';
+import { OneTimePasscode } from 'components/molecules';
+import { TO_BACK_OFFICE_VIEW_EMPLOYEES } from 'constants/navigation/routePaths';
+import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
+import { OTP_CODE_LENGHT, OTP_INPUT_KEY } from 'constants/validation/otp';
 import { ETokenType } from 'enums';
 import { getEmailRoleFromToken } from 'utils/auth/emailFromTokenHandler';
 import { setEmployeeAuthData } from 'utils/auth/storageAuthHandler';
 import { sessionTokenHandler } from 'utils/auth/tokenHandler';
-
-const OTP_LENGTH = 6;
 
 export const VerifyEmployeeCodePage = () => {
   const { t } = useTranslation('translation', {
@@ -36,15 +38,15 @@ export const VerifyEmployeeCodePage = () => {
   const navigate = useNavigate();
   const email = (useLocation().state as { email?: string })?.email;
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''));
+  const [otp, setOtp] = useState<string[]>(Array(OTP_CODE_LENGHT).fill(''));
   const inputRefs = useRef<Array<HTMLInputElement | null>>(
-    Array(OTP_LENGTH).fill(null),
+    Array(OTP_CODE_LENGHT).fill(null),
   );
   const [authenticate, { isLoading }] = useAuthenticateEmployeeMutation();
 
   const otpValue = useMemo(() => otp.join(''), [otp]);
   const isError = Boolean(errorMessage);
-  const isSubmitDisabled = otpValue.length < OTP_LENGTH || isLoading;
+  const isSubmitDisabled = otpValue.length < OTP_CODE_LENGHT || isLoading;
 
   const handleChange = (value: string, idx: number) => {
     if (!/^[0-9]?$/.test(value)) return;
@@ -53,7 +55,7 @@ export const VerifyEmployeeCodePage = () => {
       next[idx] = value;
       return next;
     });
-    if (value && idx < OTP_LENGTH - 1) {
+    if (value && idx < OTP_CODE_LENGHT - 1) {
       inputRefs.current[idx + 1]?.focus();
     }
   };
@@ -62,7 +64,7 @@ export const VerifyEmployeeCodePage = () => {
     e: React.KeyboardEvent<HTMLInputElement>,
     idx: number,
   ) => {
-    if (e.key !== 'Backspace') return;
+    if (e.key !== OTP_INPUT_KEY.Backspace) return;
     e.preventDefault();
     setOtp((prev) => {
       const next = [...prev];
@@ -97,13 +99,13 @@ export const VerifyEmployeeCodePage = () => {
 
   return (
     <StyledFormContainer onSubmit={handleSubmit} data-testid="verify-form">
-      <Logo size="lg" />
+      <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
       <StyledTitleContainer>
         <StyledTitle>{t('verifyTitle')}</StyledTitle>
         <StyledSubTitle>{t('verifyCodeMessage')}</StyledSubTitle>
       </StyledTitleContainer>
 
-      <StyledPasswordRow>
+      <StyledPasswordRow date-testid="one-time-passcode-row">
         <OneTimePasscode
           otp={otp}
           inputRefs={inputRefs}

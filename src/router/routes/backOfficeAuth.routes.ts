@@ -4,7 +4,7 @@ import {
   BACK_OFFICE_EMPLOYEE_SIGN_IN,
   BACK_OFFICE_EMPLOYEE_VERIFY_CODE,
   TO_BACK_OFFICE_VERIFICATION,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
 import {
   EmployeeLoginPage,
   BackOfficeVerificationErrorPage,

@@ -2,14 +2,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 import { createSearchParams } from 'react-router-dom';
 
-import { StyledButton } from './Sidebar.styled';
-import { Container } from './molecules/Container/Container';
-import { EmptySection } from './molecules/EmptySection/EmptySection';
-import { Section } from './molecules/Section/Section';
-import { MyCards } from './organisms/MyCards/MyCards';
-import { MyTransactions } from './organisms/MyTransactions/MyTransactions';
+import { MyCardsSection } from '../MyCardsSection/MyCardsSection';
+import { MyTransactionsSection } from '../MyTransactionsSection/MyTransactionsSection';
 
-import { TO_HISTORY } from 'constants/routesName';
+import { StyledButton } from './Sidebar.styled';
+import { Container, EmptySection, Section } from './molecules';
+
+import { TO_HISTORY, TO_HOME } from 'constants/navigation/routePaths';
 
 interface SidebarProps {
   onIssueCardModalOpen: () => void;
@@ -32,22 +31,22 @@ export function Sidebar({
         onAddProduct={onIssueCardModalOpen}
         seeAllRoute={{ search: cardsViewSearchParam }}
       >
-        <MyCards />
+        <MyCardsSection />
       </Section>
       <Section title={t('myTransactions.title')} seeAllRoute={TO_HISTORY}>
-        <MyTransactions />
+        <MyTransactionsSection />
       </Section>
       <Section
         title={t('myLoans.title')}
         onAddProduct={() => ''}
-        seeAllRoute="/"
+        seeAllRoute={TO_HOME}
       >
         <EmptySection />
       </Section>
       <Section
         title={t('myDeposits.title')}
         onAddProduct={onDepositsModalOpen}
-        seeAllRoute="/"
+        seeAllRoute={TO_HOME}
       >
         <EmptySection />
       </Section>

@@ -1,6 +1,5 @@
 import { StyledFooterWrapper } from './Footer.styled';
-import { FooterContacts } from './FooterContacts';
-import { FooterTerms } from './FooterTerms';
+import { FooterContacts, FooterTerms } from './molecules';
 
 export const Footer = () => {
   return (

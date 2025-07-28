@@ -1,4 +1,5 @@
-import { Autocomplete, Box, createFilterOptions } from '@mui/material';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
 import { KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,
@@ -11,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledCountrySelectField } from './CountrySelectField.styled';
 
-import { countries } from 'constants/countries';
+import { countries } from 'constants/data/geo';
 
 interface CountrySelectFieldProps<T extends FieldValues> {
   name: Path<T>;

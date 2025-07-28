@@ -1,8 +1,6 @@
-import {
-  ContentCopy,
-  VisibilityOutlined,
-  VisibilityOffOutlined,
-} from '@mui/icons-material';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import VisibilityOffOutlined from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
 
 import {
   StyledActionIcon,
@@ -25,7 +23,7 @@ interface InfoRowProps {
   status?: TCardStatus;
 }
 
-const InfoRow = ({
+export const InfoRow = ({
   label,
   value,
   masked,
@@ -66,4 +64,3 @@ const InfoRow = ({
   </StyledInfoRow>
 );
 
-export default InfoRow;

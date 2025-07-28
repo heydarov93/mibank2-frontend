@@ -1,8 +1,16 @@
-import { RouteObject } from "react-router-dom";
+import { RouteObject } from 'react-router-dom';
 
-import { TO_BUSINESS_CREATE_PASSWORD, TO_BUSINESS_LOG_IN, TO_BUSINESS_SIGN_UP } from "constants/routesName";
-import { BusinessCreatePasswordPage, BusinessLoginPage, BusinessSignUpPage } from "router/lazy/business.lazy";
-import { withSuspense } from "router/utils/withSuspense";
+import {
+  TO_BUSINESS_CREATE_PASSWORD,
+  TO_BUSINESS_LOG_IN,
+  TO_BUSINESS_SIGN_UP,
+} from 'constants/navigation/routePaths';
+import {
+  BusinessCreatePasswordPage,
+  BusinessLoginPage,
+  BusinessSignUpPage,
+} from 'router/lazy/business.lazy';
+import { withSuspense } from 'router/utils/withSuspense';
 
 export const businessAuthRoutes: RouteObject[] = [
   {

@@ -2,8 +2,8 @@ import * as yup from 'yup';
 
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
-} from 'constants/validationPatternConstants';
+  VALIDATION_PATTERNS,
+} from 'constants/validation/patterns';
 import { t } from 'i18n';
 
 const VALIDATION_KEY = 'RegistrationPage';

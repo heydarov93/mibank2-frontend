@@ -55,7 +55,9 @@ exports[`RatesTable component matches snapshot 1`] = `
                 class="MuiBox-root css-yeouz0"
               >
                 <svg
+                  aria-label="label.currencyFlag"
                   data-testid="currency-flag-icon"
+                  role="img"
                 >
                   UsaFlag.svg
                 </svg>
@@ -127,7 +129,9 @@ exports[`RatesTable component matches snapshot 1`] = `
                 class="MuiBox-root css-yeouz0"
               >
                 <svg
+                  aria-label="label.currencyFlag"
                   data-testid="currency-flag-icon"
+                  role="img"
                 >
                   EurFlag.svg
                 </svg>

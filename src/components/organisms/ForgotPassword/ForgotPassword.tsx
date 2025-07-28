@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -13,13 +13,13 @@ import {
 
 import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { InputField, SubmitButton } from 'components/atoms';
-import { TO_CREATE_FORGOT_PASSWORD } from 'constants/routesName';
+import { TO_CREATE_FORGOT_PASSWORD } from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IEmailFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers';
-import { setEmail } from 'store/reducers/AuthSlice';
+import { setEmail, setError } from 'store/slices/auth';
 import { userEmailSchema } from 'validation';
 
 export const ForgotPassword = () => {
@@ -46,7 +46,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = async (data: IEmailFormInput) => {
     try {
-      localStorage.setItem('email', data.email);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.Email, data.email);
       const response = await getCodeForForgotPassword(data).unwrap();
 
       if (response !== null) {

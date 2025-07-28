@@ -7,6 +7,7 @@ export interface FilterGroup {
   groupTitle?: string;
   options: FilterOption[];
 }
+
 export interface FilterGroupOptionsProps {
   group: FilterGroup;
   groupIndex: number;

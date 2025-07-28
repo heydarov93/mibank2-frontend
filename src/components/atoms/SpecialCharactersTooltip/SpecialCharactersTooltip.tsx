@@ -1,41 +1,41 @@
-import { Tooltip, Typography } from '@mui/material';
-import { ReactElement } from 'react';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import { memo, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { specialCharacters } from 'constants/specialCharacters';
+import { TooltipTitle } from './TooltipTitle';
 
-export function SpecialCharactersTooltip({
-  children,
-}: {
+export interface SpecialCharactersTooltipProps
+  extends Omit<TooltipProps, 'title'> {
   children: ReactElement;
-}) {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'common.form.field.password.requirement',
-  });
-  return (
-    <Tooltip
-      slotProps={{
-        tooltip: {
-          sx: (theme) => ({
-            maxWidth: 'max-content',
-            backgroundColor: theme.palette.grey[400],
-            padding: theme.spacing(1, 2),
-          }),
-        },
-      }}
-      title={
-        <Typography
-          lineHeight={1.6}
-          whiteSpace="break-spaces"
-          fontSize={14}
-          width="max-content"
-        >
-          {`${t('allowedSpecialChars')}:\n ${specialCharacters}`}
-        </Typography>
-      }
-      placement="top"
-    >
-      {children}
-    </Tooltip>
-  );
 }
+
+export const SpecialCharactersTooltip = memo<SpecialCharactersTooltipProps>(
+  ({ children, ...tooltipProps }: SpecialCharactersTooltipProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
+
+    return (
+      <Tooltip
+        slotProps={{
+          tooltip: {
+            sx: ({ palette, spacing }) => ({
+              maxWidth: 'max-content',
+              backgroundColor: palette.grey[400],
+              padding: spacing(1, 2),
+            }),
+          },
+        }}
+        role="status"
+        aria-label={t('label.charactersTooltip')}
+        title={<TooltipTitle />}
+        placement="top"
+        {...tooltipProps}
+      >
+        {children}
+      </Tooltip>
+    );
+  },
+);
+
+SpecialCharactersTooltip.displayName = 'SpecialCharactersTooltip';

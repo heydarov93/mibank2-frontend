@@ -1,7 +1,9 @@
-import { Button, SxProps, Theme } from '@mui/material';
+import Button from '@mui/material/Button';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
-import { StyledActionsWrapper } from 'components/atoms';
+import { StyledActionsWrapper } from '../../IssueCardModal.styled';
+
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
 
 interface IssueCardModalActionsProps {

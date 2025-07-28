@@ -8,31 +8,40 @@ import {
   IRegisterEmployeeRequest,
   TAuthenticateEmployeeRequest,
   TDeleteEmployeeRequest,
+  TEmployeeTag,
   TRegisterEmployeeResponse,
   TUpdateEmployeeRequest,
   TUpdateEmployeeResponse,
   TValidateEmployeeEmailResponse,
   TValidateOTPRequest,
-  TValidateOTPResponse
+  TValidateOTPResponse,
 } from './employees.types';
 
-import { endpoints } from 'api/endpoints';
-import { baseQueryCreator } from 'store/baseQueryCreator';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { createBaseQuery } from 'api/core/base-query';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { EMPLOYEE_TAGS } from 'constants/api/tags';
 import { TId } from 'types/types';
 
 export const employeesApi = createApi({
   reducerPath: 'employeesApi',
-  baseQuery: baseQueryCreator(),
+  baseQuery: createBaseQuery(),
+  tagTypes: Object.values(EMPLOYEE_TAGS) as TEmployeeTag[],
+  keepUnusedDataFor: CACHE_DURATION.DEFAULT,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     validateEmployeeEmail: builder.mutation<
       TValidateEmployeeEmailResponse,
       { email: string }
     >({
       query: ({ email }) => ({
-        url: endpoints.employees.validateEmployeeEmail,
+        url: API_ENDPOINTS.employees.validateEmployeeEmail,
         method: 'POST',
         params: { email },
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.EMAIL],
     }),
     getEmployeeList: builder.query<
       IGetEmployeeListResponse,
@@ -46,7 +55,7 @@ export const employeesApi = createApi({
         firstName,
         lastName,
       }) => ({
-        url: endpoints.employees.getEmployeeList,
+        url: API_ENDPOINTS.employees.getEmployeeList,
         method: 'GET',
         params: {
           page,
@@ -57,61 +66,85 @@ export const employeesApi = createApi({
           lastName,
         },
       }),
+      providesTags: (result) => [
+        ...(result?.data || []).map(({ id }) => ({
+          type: EMPLOYEE_TAGS.EMPLOYEE,
+          id,
+        })),
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
     }),
     getAuthenticateEmployee: builder.query<
       IGetAuthenticateEmployeeResponse,
       { token: string }
     >({
       query: ({ token }) => ({
-        url: endpoints.employees.setup2FA,
+        url: API_ENDPOINTS.employees.setup2FA,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       }),
+      providesTags: (_result, _error, { token }) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: token },
+      ],
     }),
     updateEmployee: builder.mutation<
       TUpdateEmployeeResponse,
       TUpdateEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.updateEmployee(data.id as TId),
+        url: API_ENDPOINTS.employees.updateEmployee(data.id as TId),
         method: 'PATCH',
         body: data,
       }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id },
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     deleteEmployee: builder.mutation<void, TDeleteEmployeeRequest>({
       query: (id) => ({
-        url: endpoints.employees.deleteEmployee(id),
+        url: API_ENDPOINTS.employees.deleteEmployee(id),
         method: 'DELETE',
       }),
+      invalidatesTags: (_result, _error, id) => [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id },
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     validateOTP: builder.mutation<TValidateOTPResponse, TValidateOTPRequest>({
       query: (data) => ({
-        url: endpoints.employees.validateOTP,
+        url: API_ENDPOINTS.employees.validateOTP,
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.OTP],
     }),
     registerEmployee: builder.mutation<
       TRegisterEmployeeResponse,
       IRegisterEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.registerEmployee,
+        url: API_ENDPOINTS.employees.registerEmployee,
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [
+        { type: EMPLOYEE_TAGS.EMPLOYEE, id: EMPLOYEE_TAGS.LIST },
+      ],
     }),
     authenticateEmployee: builder.mutation<
       IAuthenticateEmployeeResponse,
       TAuthenticateEmployeeRequest
     >({
       query: (data) => ({
-        url: endpoints.employees.authenticateEmployee,
+        url: API_ENDPOINTS.employees.authenticateEmployee,
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: [EMPLOYEE_TAGS.AUTH],
     }),
   }),
 });

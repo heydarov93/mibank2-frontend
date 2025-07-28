@@ -1,4 +1,6 @@
-import { SelectChangeEvent, Stack, SxProps, Theme } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -6,12 +8,12 @@ import { CardIssueFormValues } from '../../hooks/useCardIssueFlow';
 
 import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';
-import { CURRENCIES } from 'constants/currencies';
+import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EAccount } from 'enums/EAccount';
 import { t } from 'i18n';
 import { ECardType, ECardIssueType, ECardIssuer } from 'models/IProductInfo';
 
-const currenciesOptions = CURRENCIES.map((value) => ({ value }));
+const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
 const cardTypes = [
   { value: ECardType.DEBIT, label: t('IssueCardModal.debitCard') },

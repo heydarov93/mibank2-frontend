@@ -1,0 +1,47 @@
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+
+export const StyledGreetingsContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isViceversa',
+})<{ isViceversa: boolean }>(({ isViceversa, theme: { spacing } }) => ({
+  display: 'inline-flex',
+  flexDirection: isViceversa ? 'row-reverse' : 'row',
+  alignItems: 'center',
+  gap: spacing(1),
+  padding: spacing(1),
+}));
+
+export const StyledGreetings = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isViceversa',
+})<{ isViceversa: boolean }>(({ isViceversa, theme: { palette } }) => ({
+  display: 'flex',
+  justifyContent: isViceversa ? 'flex-start' : 'flex-end',
+  color: palette.grey[400],
+}));
+
+export const StyledTypography = styled(Typography)(() => ({
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontFamily: 'Inter',
+}));
+
+export const StyledTypographyName = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'isViceversa',
+})<{ isViceversa: boolean }>(({ isViceversa, theme: { palette } }) => ({
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontFamily: 'Inter',
+  color: palette.common.black,
+  fontWeight: isViceversa ? 500 : 400,
+}));
+
+export const StyledGreetingsName = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'flex-start',
+}));
+
+export const StyledAvatar = styled(Avatar)(({ theme: { palette } }) => ({
+  backgroundColor: palette.primary.main,
+}));

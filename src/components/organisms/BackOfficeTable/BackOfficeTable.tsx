@@ -1,11 +1,9 @@
-import {
-  CircularProgress,
-  SelectChangeEvent,
-  Table,
-  TableBody,
-  TableContainer,
-  TableRow,
-} from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 import { MouseEvent } from 'react';
 
 import {
@@ -13,13 +11,15 @@ import {
   StyledTableHead,
   StyledTableRow,
 } from './BackOfficeTable.styled';
+import { BackOfficeTableItem, BackOfficeTableTitle } from './molecules';
 
-import BackOfficeTableItem, {
-  TableData,
-} from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import BackOfficeTableTitle from 'components/molecules/BackOfficeTableTitle/BackOfficeTableTitle';
-import CustomTablePagination from 'components/molecules/CustomTablePagination/CustomTablePagination';
+import { CustomTablePagination } from 'components/molecules';
+import {
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from 'constants/business/pagination';
 import { usePaginationInfo } from 'hooks';
+import { TableData } from 'models/ITableData';
 
 interface TableHeadItem {
   label: string;
@@ -56,7 +56,7 @@ interface BackOfficeTableProps {
   isLoading?: boolean;
 }
 
-const BackOfficeTable = ({
+export const BackOfficeTable = ({
   tableHead,
   tableBody,
   page,
@@ -69,8 +69,8 @@ const BackOfficeTable = ({
 }: BackOfficeTableProps) => {
   const { totalPages, pageDisplayText } = usePaginationInfo(
     tableBody.length,
-    page ?? 1,
-    pageSize ?? 10,
+    page ?? DEFAULT_PAGE_INDEX + 1,
+    pageSize ?? DEFAULT_PAGE_SIZE,
   );
 
   const handlePageChange = (
@@ -135,13 +135,11 @@ const BackOfficeTable = ({
       <CustomTablePagination
         pageDisplayText={pageDisplayText}
         totalPages={totalPages}
-        page={page || 0}
-        rowsPerPage={pageSize || 10}
+        page={page || DEFAULT_PAGE_INDEX}
+        rowsPerPage={pageSize || DEFAULT_PAGE_SIZE}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
       />
     </TableContainer>
   );
 };
-
-export default BackOfficeTable;

@@ -15,4 +15,10 @@ export {
   getEmployeeRole,
 } from './storageAuthHandler';
 
-export { localTokenHandler, sessionTokenHandler } from './tokenHandler';
+export {
+  localTokenHandler,
+  sessionTokenHandler,
+  clearAllTokens,
+  getTokenValues,
+  prepareAuthHeaders,
+} from './tokenHandler';

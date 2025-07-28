@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledContainer } from './PasswordValidationTags.styled';
 
 import { ValidationTag } from 'components/atoms';
-import { PASSWORD_VALIDATION_RULES } from 'constants/validationPatternConstants';
+import { PASSWORD_VALIDATION_RULES } from 'constants/validation/patterns';
 import { EValidationKey } from 'enums';
 
 export function PasswordValidationTags({ password }: { password: string }) {

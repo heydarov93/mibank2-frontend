@@ -8,7 +8,7 @@ import { ForgotPassword } from './ForgotPassword';
 
 import { useGetCodeForForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
 import { useAppDispatch } from 'hooks';
-import { setEmail } from 'store/reducers/AuthSlice';
+import { setEmail } from 'store/slices/auth/AuthSlice';
 
 const initialValues = {
   auth: {
@@ -45,7 +45,7 @@ jest.mock('api/services/user-account-service/user-accounts.api', () => ({
   useGetCodeForForgotPasswordMutation: jest.fn(),
 }));
 
-jest.mock('store/reducers', () => ({
+jest.mock('store/slices/auth', () => ({
   setError: jest.fn(),
   setEmail: jest.fn(),
 }));
@@ -88,9 +88,7 @@ describe('Forgot Password should match snapshot', () => {
       </Provider>,
     );
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const button = screen.getByRole('button', {
-      name: 'ForgotPassword.EmailPageButton',
-    });
+    const button = screen.getByTestId('save-button');
 
     waitFor(() => {
       userEvent.type(emailInput, 'BAD_EMAIL');
@@ -117,9 +115,7 @@ describe('Forgot Password should match snapshot', () => {
     );
 
     const emailInput = screen.getByLabelText('LoginPage.email.label');
-    const submitButton = screen.getByRole('button', {
-      name: 'ForgotPassword.EmailPageButton',
-    });
+    const submitButton = screen.getByTestId('save-button');
 
     waitFor(() => {
       userEvent.type(emailInput, 'test@example.com');
@@ -134,46 +130,4 @@ describe('Forgot Password should match snapshot', () => {
       expect(mockNavigate).toHaveBeenCalledWith('/create-forgot-password');
     });
   });
-
-  // it('should call handleSubmit and show an error message if the API call fails', async () => {
-  //   jest.clearAllMocks();
-  //   (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-  //   (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
-  //   mockGetCodeForForgotPassword({
-  //     data: {
-  //       exceptionMessage: 'Server Error',
-  //       blockTimeRemaining: 100,
-  //       blocked: false,
-  //       expiredTimer: 100,
-  //     },
-  //     status: 500,
-  //     originalStatus: 500,
-  //   });
-
-  //   render(
-  //     <Provider store={mockStore}>
-  //       <MemoryRouter>
-  //         <ForgotPassword />
-  //       </MemoryRouter>
-  //     </Provider>,
-  //   );
-
-  //   const emailInput = screen.getByLabelText('Email');
-  //   const submitButton = screen.getByRole('button', { name: 'Send code' });
-  //   submitButton.style.pointerEvents = 'auto';
-
-  //   waitFor(() => {
-  //     userEvent.type(emailInput, 'test123@gmail.com');
-  //   });
-  //   waitFor(() => {
-  //     userEvent.click(submitButton);
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockDispatch).toHaveBeenCalledWith(
-  //       setError(
-  //         "The action can't be completed because of the system issue. Please, try again later or contact us",
-  //       ),
-  //     );
-  //   });
-  // });
 });

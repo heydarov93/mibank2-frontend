@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -7,7 +7,8 @@ import {
   StyledTitleText,
 } from './BackOfficeVerificationErrorPage.styled';
 
-import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
+import { ReloadButton } from 'components/atoms';
+
 
 export const BackOfficeVerificationErrorPage = () => {
   const { t } = useTranslation('translation', {
@@ -17,15 +18,15 @@ export const BackOfficeVerificationErrorPage = () => {
   return (
     <StyledContainer>
       <Box>
-        <StyledTitleText data-testid="title-text">
+        <StyledTitleText>
           {t('QRCodeExpired')}
         </StyledTitleText>
-        <StyledSecondaryText data-testid="secondary-text">
+        <StyledSecondaryText>
           {t('RefreshPage')}
         </StyledSecondaryText>
       </Box>
       <Box sx={{ cursor: 'pointer' }}>
-        <ReloadButton data-testid="reload-icon" />
+        <ReloadButton data-testid="reload-button" />
       </Box>
     </StyledContainer>
   );

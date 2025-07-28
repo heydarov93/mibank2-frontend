@@ -1,3 +1,5 @@
+import { USER_DEPOSIT_TAGS } from 'constants/api/tags';
+
 interface IDepositBase {
   accountId: string;
   depositId: number;
@@ -5,6 +7,8 @@ interface IDepositBase {
 }
 
 export type TCreateUserDepositRequest = IDepositBase;
+export type TUserDepositTag =
+  (typeof USER_DEPOSIT_TAGS)[keyof typeof USER_DEPOSIT_TAGS];
 
 export interface IUserDepositResponse extends IDepositBase {
   id: number;

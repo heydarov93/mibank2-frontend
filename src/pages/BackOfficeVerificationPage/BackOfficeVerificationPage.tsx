@@ -41,6 +41,7 @@ export const BackOfficeVerificationPage = () => {
           alt="QR Code"
           width="200"
           height="200"
+          loading="lazy"
         />
       </BackOfficeVerificationStep>
       <BackOfficeVerificationStep

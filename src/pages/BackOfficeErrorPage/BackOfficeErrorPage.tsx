@@ -8,8 +8,7 @@ import {
   StyledTitle,
 } from './BackOfficeErrorPage.styled';
 
-import { Logo } from 'components/atoms';
-import ReloadButton from 'components/atoms/ReloadButton/ReloadButton';
+import { Logo, ReloadButton } from 'components/atoms';
 
 export const BackOfficeErrorPage = () => {
   const { t } = useTranslation('translation', {
@@ -19,12 +18,12 @@ export const BackOfficeErrorPage = () => {
   return (
     <StyledContainer>
       <StyledLogoContainer>
-        <Logo color="white" />
+        <Logo color="white"/>
       </StyledLogoContainer>
       <StyledFlexColumn>
         <StyledTitle>{t('serviceUnavailable')}</StyledTitle>
         <StyledSecondaryText>{t('refresh')}</StyledSecondaryText>
-        <ReloadButton sx={{ color: 'white' }} />
+        <ReloadButton sx={{ color: 'white' }} data-testid="reload-button"/>
       </StyledFlexColumn>
     </StyledContainer>
   );

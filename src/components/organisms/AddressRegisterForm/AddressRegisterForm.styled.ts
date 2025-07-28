@@ -1,12 +1,11 @@
-import {
-  Box,
-  Button,
-  TextField,
-  Select,
-  Typography,
-  styled,
-  Paper,
-} from '@mui/material';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+
 
 export const StyledFormContainer = styled(Box)(() => ({
   display: 'flex',

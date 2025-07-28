@@ -1,4 +1,5 @@
-import { FormHelperText, styled } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
+import { styled } from '@mui/material/styles';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 

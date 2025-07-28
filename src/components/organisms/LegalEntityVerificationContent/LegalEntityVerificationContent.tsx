@@ -11,6 +11,7 @@ import {
 } from './LegalEntityVerificationContent.styled';
 
 import { Logo } from 'components/atoms';
+import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
 
 export const LegalEntityVerificationContent = () => {
   const { t } = useTranslation('translation', {
@@ -19,7 +20,7 @@ export const LegalEntityVerificationContent = () => {
 
   return (
     <StyledContent>
-      <Logo size="lg" />
+      <Logo size={DEFAULT_BREAKPOINT_KEYS.lg} />
 
       <StyledActions>
         <StyledActionsTop>

@@ -1,37 +1,37 @@
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Button,
-  SelectChangeEvent,
-  Stack,
-  SxProps,
-  Theme,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import { SelectChangeEvent } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useTransferFilters } from '../../hooks/useTransferFilters';
+import { AvailableFilters } from '../../hooks/useTransferFilters';
 
 import { StyledSelectField } from './TransferFilters.styled';
 
-import { DATE_FORMATS } from 'constants/date';
+import { DATE_FORMATS } from 'constants/business/date';
+import { DATE_SELECT_MENU_SIZE } from 'constants/ui/layout';
 import { ETransferTime } from 'enums/ETransferTime';
 import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
+
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;
+  availableFilters: AvailableFilters;
+  defaultFilters: TTransactionFiltersValues;
+  handleFiltersChange: (currentFIlters: TTransactionFiltersValues) => void;
 }
 
-const CUSTOM_DATE_SELECT_MENU_SIZE = {
-  width: '829px',
-  height: '604px',
-};
-
-export const TransferFilters = ({ sx }: TransferFiltersProps) => {
-  const { availableFilters, defaultFilters } = useTransferFilters();
+export const TransferFilters = ({
+  sx,
+  availableFilters,
+  defaultFilters,
+  handleFiltersChange,
+}: TransferFiltersProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Transfers.filters',
   });
@@ -54,9 +54,10 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
 
   function clearFilters() {
     reset();
+    handleFiltersChange(formMethods.getValues());
   }
 
-  function handleDateChange(e: SelectChangeEvent<string | string[]>) {
+  function handleFilterInputsChange(e: SelectChangeEvent<string | string[]>) {
     const { value } = e.target;
 
     switch (value) {
@@ -73,6 +74,7 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
         setValue('endDate', new Date());
         break;
     }
+    handleFiltersChange(formMethods.getValues());
   }
 
   return (
@@ -87,11 +89,11 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
               containerSx={{ width: '156px' }}
               menuSx={
                 timeSelectValue === ETransferTime.CUSTOM
-                  ? CUSTOM_DATE_SELECT_MENU_SIZE
+                  ? DATE_SELECT_MENU_SIZE
                   : undefined
               }
               optionType="radio"
-              onChange={handleDateChange}
+              onChange={handleFilterInputsChange}
               data-testid="time-filter"
             />
             <StyledSelectField
@@ -100,22 +102,27 @@ export const TransferFilters = ({ sx }: TransferFiltersProps) => {
               optionType="checkbox"
               options={availableFilters.card}
               containerSx={{ width: '235px' }}
+              onChange={handleFilterInputsChange}
               data-testid="card-filter"
             />
             <StyledSelectField
               name="template"
               control={control}
-              optionType="radio"
+              optionType="checkbox"
               options={availableFilters.template}
               containerSx={{ width: '185px' }}
+              onChange={() => {
+                'use strict';
+              }}
               data-testid="template-filter"
             />
             <StyledSelectField
               name="transactionsType"
               control={control}
-              optionType="checkbox"
+              optionType="radio"
               options={availableFilters.transactionsType}
               containerSx={{ width: '170px' }}
+              onChange={handleFilterInputsChange}
               data-testid="transactions-type-filter"
             />
           </FormProvider>

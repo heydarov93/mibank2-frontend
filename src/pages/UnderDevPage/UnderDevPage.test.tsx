@@ -1,42 +1,55 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useNavigate } from 'react-router-dom';
 
 import { UnderDevPage } from './UnderDevPage';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
+}));
+
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (str: string) => str,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
+    t: (key: string) => key,
   }),
   initReactI18next: {
     type: '3rdParty',
-    init: () => {},
   },
 }));
 
-const mockNavigate = jest.fn();
-
-jest.mock('react-router', () => ({
-  useNavigate: () => mockNavigate,
+jest.mock('assets/icons/Under_development.svg', () => ({
+  ReactComponent: () => <svg data-testid="under-dev-image" />,
 }));
 
 describe('UnderDevPage', () => {
-  it('snapshot should match', () => {
-    const { asFragment } = render(<UnderDevPage />);
-    expect(asFragment()).toMatchSnapshot();
+  const mockNavigate = jest.fn();
+
+  beforeEach(() => {
+    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+    jest.clearAllMocks();
   });
 
-  it('buttons click test', () => {
-    render(<UnderDevPage />);
+  describe('initial render', () => {
+    it('renders image, title, description, and button', () => {
+      render(<UnderDevPage />);
 
-    const button = screen.getByRole('button', {
-      name: 'buttonLabel',
+      expect(screen.getByTestId('under-dev-image')).toBeInTheDocument();
+      expect(screen.getByText('title')).toBeInTheDocument();
+      expect(screen.getByText('description')).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'buttonLabel' }),
+      ).toBeInTheDocument();
     });
-    expect(button).toBeInTheDocument();
+  });
 
-    fireEvent.click(button);
-
-    expect(mockNavigate).toBeCalledWith(-1);
+  describe('navigation behavior', () => {
+    it('calls navigate(-1) when button is clicked', async () => {
+      render(<UnderDevPage />);
+      await userEvent.click(
+        screen.getByRole('button', { name: 'buttonLabel' }),
+      );
+      expect(mockNavigate).toHaveBeenCalledWith(-1);
+    });
   });
 });

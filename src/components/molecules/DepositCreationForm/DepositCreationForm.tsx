@@ -1,26 +1,26 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
 
-import BackOfficeConfirmationWindow from '../BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import BackOfficeFailWindow from '../BackOfficeFailWindow/BackOfficeFailWindow';
-import { BackOfficeWarningWindow } from '../BackOfficeWarningWindow/BackOfficeWarningWindow';
+import { ConfirmationWindow } from '../ConfirmationWindow/ConfirmationWindow';
+import { FailWindow } from '../FailWindow/FailWindow';
+import { WarningWindow } from '../WarningWindow/WarningWindow';
 
 import { StyledContainer, StyledTermsLink } from './DepositCreationForm.styled';
+import AccountSelect from './atoms/AccountSelect/AccountSelect';
+import AmountField from './atoms/AmountField/AmountField';
+import ConfirmationSwitch from './atoms/ConfirmationSwitch/ConfirmationSwitch';
+import FormButtons from './atoms/FormButtons/FormButtons';
+import FormHeader from './atoms/FormHeader/FormHeader';
+import InterestInfo from './atoms/InterestInfo/InterestInfo';
 import { useDepositForm } from './hooks/useDepositForm';
 import { useCreateDeposit, useUserAccounts } from './hooks/useUserAccounts';
-import AccountSelect from './molecules/AccountSelect';
-import AmountField from './molecules/AmountField';
-import ConfirmationSwitch from './molecules/ConfirmationSwitch';
-import FormButtons from './molecules/FormButtons';
-import FormHeader from './molecules/FormHeader';
-import InterestInfo from './molecules/InterestInfo';
 import { buildDepositPayload } from './utils/buildDepositPayload';
 
 import useDisclosure from 'hooks/useDisclosure';
 import { TCurrency } from 'types/types';
 import { openDepositSchema } from 'validation';
 
-interface DepositCreationFormProps {
+export interface DepositCreationFormProps {
   modal?: boolean;
   currency: TCurrency;
   onBack: () => void;
@@ -70,7 +70,7 @@ export const DepositCreationForm = ({
   return (
     <StyledContainer data-testid="deposit-creation-form">
       <Box component="form" onSubmit={onDepositSubmit}>
-        <FormHeader onBack={onBack} />
+        <FormHeader />
 
         <AmountField control={control} errors={errors} currency={currency} />
 
@@ -99,7 +99,7 @@ export const DepositCreationForm = ({
         />
       </Box>
 
-      <BackOfficeWarningWindow
+      <WarningWindow
         deposit={true}
         open={isOpen}
         title={t('confirmationModals.cancelDepositTitle')}
@@ -109,7 +109,7 @@ export const DepositCreationForm = ({
       />
 
       {showSuccessModal && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           sx={{
             height: 'fit-content',
             maxWidth: '540px',
@@ -128,7 +128,7 @@ export const DepositCreationForm = ({
       )}
 
       {showErrorModal && (
-        <BackOfficeFailWindow
+        <FailWindow
           sx={{
             height: 'fit-content',
             top: '50%',

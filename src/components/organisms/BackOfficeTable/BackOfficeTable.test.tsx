@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import BackOfficeTable from './BackOfficeTable';
 import '@testing-library/jest-dom';
+import { BackOfficeTable } from './BackOfficeTable';
 
 interface TableHeadItem {
   label: string;

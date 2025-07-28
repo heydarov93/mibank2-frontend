@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import InfoTabs from './InfoTabs';
+import { InfoTabs } from './InfoTabs';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
 

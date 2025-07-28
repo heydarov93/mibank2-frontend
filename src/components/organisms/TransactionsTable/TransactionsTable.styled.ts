@@ -1,11 +1,10 @@
-import {
-  Box,
-  styled,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 export const StyledContainer = styled(Box)(() => ({
   display: 'flex',
@@ -61,8 +60,9 @@ export const StyledEmptyStateContent = styled(Typography)(
   }),
 );
 
-export const StyledEmptyStateContainer = styled(Typography)(
+export const StyledEmptyStateContainer = styled(Box)(
   ({ theme: { spacing } }) => ({
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -70,3 +70,20 @@ export const StyledEmptyStateContainer = styled(Typography)(
     padding: spacing(10, 5),
   }),
 );
+
+export const StyledEmptyTableCell = styled(TableCell)({
+  padding: 0,
+});
+
+export const StyledLoadingSpinnerWrapper = styled(Box)({
+  flexGrow: 1,
+});
+
+export const StyledSortIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.common.black,
+  backgroundColor: 'transparent',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: 'transparent',
+  },
+}));

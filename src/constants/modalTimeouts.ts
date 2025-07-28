@@ -1,1 +1,0 @@
-export const MODAL_DISPLAY_TIMEOUT = 4000;

@@ -1,13 +1,12 @@
-import {
-  IconButton,
-  Modal,
-  Paper,
-  styled,
-  Typography,
-  TextField,
-  FormControlLabel,
-  Backdrop,
-} from '@mui/material';
+import Backdrop from "@mui/material/Backdrop";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import IconButton from "@mui/material/IconButton";
+import Modal from "@mui/material/Modal";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+
 
 export const StyledModal = styled(Modal)(({ theme: { palette } }) => ({
   display: 'flex',
@@ -32,10 +31,7 @@ export const StyledTitle = styled(Typography)(({ theme: { palette } }) => ({
 }));
 
 export const StyledCloseButton = styled(IconButton)(
-  ({ theme: { palette, spacing } }) => ({
-    position: 'absolute',
-    top: spacing(5),
-    right: spacing(5),
+  ({ theme: { palette } }) => ({
     color: palette.grey[400],
     width: '28px',
     height: '28px',

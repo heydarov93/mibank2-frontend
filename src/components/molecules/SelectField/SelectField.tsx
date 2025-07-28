@@ -1,21 +1,17 @@
-import {
-  FormControl,
-  Select,
-  MenuItem,
-  Typography,
-  Stack,
-  SelectProps,
-  CircularProgress,
-  SxProps,
-  Theme,
-  Box,
-  Radio,
-  Checkbox,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import CircularProgress from '@mui/material/CircularProgress';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Radio from '@mui/material/Radio';
+import Select, { SelectProps } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useRef } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
-import { ReactComponent as DoneIcon } from 'assets/icons/DoneIcon.svg';
+import { ReactComponent as DoneIconSVG } from 'assets/icons/DoneIcon.svg';
 import useDisclosure from 'hooks/useDisclosure';
 
 export type SelectFieldOption = {
@@ -175,7 +171,7 @@ export const SelectField = <T extends FieldValues>({
           const selectedLabels = options
             .filter((o) => value.includes(o.value))
             .map((o) => o.label ?? o.value)
-            .join(', '); // Join labels with a comma and space
+            .join(', ');
 
           return (
             <Typography sx={{ fontSize: 14, color: valueColor }}>
@@ -241,7 +237,7 @@ export const SelectField = <T extends FieldValues>({
                   {option.secondaryLabel}
                 </Typography>
               </Stack>
-              {optionType ? null : option.value === field.value && <DoneIcon />}
+              {optionType ? null : option.value === field.value && <DoneIconSVG />}
             </MenuItem>
           ))
         )}

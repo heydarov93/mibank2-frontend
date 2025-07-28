@@ -1,6 +1,8 @@
 import SwapVertIcon from '@mui/icons-material/SwapVert';
-import { Alert, Box, CircularProgress } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -10,7 +12,7 @@ import {
   StyledTitle,
 } from './CurrencyCalculator.styled';
 import { useCurrencyCalculator } from './hooks/useCurrencyCalculator';
-import { ExchangeInputBox } from './molecules/ExchangeInputBox/ExchangeInputBox';
+import { ExchangeInputBox } from './molecules';
 
 export const CurrencyCalculator = () => {
   const { t } = useTranslation('translation', {

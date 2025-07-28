@@ -1,3 +1,5 @@
+import { TRANSFER_TAGS } from "constants/api/tags";
+
 export interface ITransferToIBANRequest {
   senderIbanNumber: string;
   recipientIbanNumber: string;
@@ -41,3 +43,5 @@ export interface IGetTransferFeeResponse {
   fee: number;
   totalAmount: number;
 }
+
+export type TTransferTag = (typeof TRANSFER_TAGS)[keyof typeof TRANSFER_TAGS];

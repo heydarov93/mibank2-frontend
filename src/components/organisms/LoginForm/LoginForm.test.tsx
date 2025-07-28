@@ -10,8 +10,7 @@ import store from 'store';
 const mockNavigate = jest.fn();
 
 jest.mock('utils/auth', () => ({
-  handleLockedError: jest.fn(),
-  useErrorHandlers: jest.fn,
+  getEmail: jest.fn(() => 'test@example.com'),
   localTokenHandler: {
     getToken: jest.fn(),
   },

@@ -1,12 +1,13 @@
-import { Stack, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CardWrapper, StyledTypography } from './IssuanceCard.styled';
 
-import { ReactComponent as MastercardIcon } from 'assets/icons/Mastercard.svg';
-import { ReactComponent as SimpleLogo } from 'assets/icons/SimpleLogo.svg';
-import { ReactComponent as SimpleVisaIcon } from 'assets/icons/SimpleVisaIcon.svg';
+import { ReactComponent as MastercardIconSVG } from 'assets/icons/Mastercard.svg';
+import { ReactComponent as SimpleLogoSVG } from 'assets/icons/SimpleLogo.svg';
+import { ReactComponent as SimpleVisaIconSVG } from 'assets/icons/SimpleVisaIcon.svg';
 import { ECardIssuer, ECardType, IssuanceCardData } from 'models/IProductInfo';
 
 export type IssuanceCardProps = Pick<
@@ -21,8 +22,8 @@ export type IssuanceCardProps = Pick<
 };
 
 const issuers: Record<IssuanceCardProps['cardIssuer'], ReactElement> = {
-  [ECardIssuer.VISA]: <SimpleVisaIcon />,
-  [ECardIssuer.MASTERCARD]: <MastercardIcon height={24} width={33} />,
+  [ECardIssuer.VISA]: <SimpleVisaIconSVG />,
+  [ECardIssuer.MASTERCARD]: <MastercardIconSVG height={24} width={33} />,
 };
 
 export const IssuanceCard = ({
@@ -85,7 +86,7 @@ export const IssuanceCard = ({
           </Stack>
         </Stack>
         <Stack justifyContent="space-between" alignItems="flex-end">
-          <SimpleLogo />
+          <SimpleLogoSVG />
           {issuers[cardIssuer]}
         </Stack>
       </Stack>

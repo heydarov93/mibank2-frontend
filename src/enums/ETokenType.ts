@@ -1,5 +1,5 @@
 export enum ETokenType {
-  ACCESS = 'accessToken',
-  REFRESH = 'refreshToken',
-  TEMPORARY = 'temporaryToken',
+  ACCESS = 'ACCESS',
+  REFRESH = 'REFRESH',
+  TEMPORARY = 'TEMPORARY',
 }

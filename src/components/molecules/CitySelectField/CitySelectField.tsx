@@ -1,4 +1,5 @@
-import { Autocomplete, Box } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
 import { KeyboardEvent, ReactNode } from 'react';
 import {
   Controller,
@@ -14,9 +15,9 @@ import {
   StyledCityText,
 } from './CitySelectField.styled';
 
-import { citiesInPoland } from 'constants/citiesInPoland';
+import { POLISH_CITIES } from 'constants/data/geo';
 
-interface CountrySelectFieldProps<T extends FieldValues> {
+interface CitySelectFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
   error?: FieldError;
@@ -48,7 +49,7 @@ export const CitySelectField = <T extends FieldValues>({
   className,
   helperText,
   onKeyDown,
-}: CountrySelectFieldProps<T>) => {
+}: CitySelectFieldProps<T>) => {
   const { t } = useTranslation('translation');
 
   return (
@@ -59,7 +60,7 @@ export const CitySelectField = <T extends FieldValues>({
         return (
           <Autocomplete<CityOptionType>
             {...field}
-            options={citiesInPoland}
+            options={POLISH_CITIES}
             filterOptions={filterOptions}
             getOptionLabel={(option) => `${option.city}, ${option.voivodeship}`}
             onChange={(_, value) => field.onChange(value?.city || '')}
@@ -67,7 +68,7 @@ export const CitySelectField = <T extends FieldValues>({
               option.city === (value as CityOptionType)?.city
             }
             value={
-              citiesInPoland.find((option) => option.city === field.value) ||
+              POLISH_CITIES.find((option) => option.city === field.value) ||
               null
             }
             renderOption={(props, option) => (

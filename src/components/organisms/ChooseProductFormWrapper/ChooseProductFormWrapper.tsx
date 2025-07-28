@@ -1,19 +1,21 @@
-import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import ChooseProductForm from '../ChooseProductForm/ChooseProductForm';
-import CreateCardProductForm from '../CreateCardProductForm/CreateCardProductForm';
-import CreateDepositProductForm from '../CreateDepositProductForm/CreateDepositProductForm';
+import {
+  ChooseProductForm,
+  CreateCardProductForm,
+  CreateDepositProductForm,
+  ProductWindow,
+} from './molecules';
 
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import BackOfficeProductWindow from 'components/molecules/BackOfficeProductWindow/BackOfficeProductWindow';
+import { ConfirmationWindow } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
-import { getProductForm } from 'store/selectors/ChooseProductSelector';
-import { getCardFormData } from 'store/selectors/CreateCardSelector';
-import { getDepositForm } from 'store/selectors/CreateDepositSelector';
-import { getProductStep } from 'store/selectors/ProductStepperSelector';
+import { getCardFormData } from 'store/slices/cards/CreateCardSelector';
+import { getDepositForm } from 'store/slices/deposits/CreateDepositSelector';
+import { getProductForm } from 'store/slices/products/ChooseProductSelector';
+import { getProductStep } from 'store/slices/products/ProductStepperSelector';
 
 export const ChooseProductFormWrapper = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -41,7 +43,7 @@ export const ChooseProductFormWrapper = () => {
         return <CreateCardProductForm />;
       case EProductFormStepper.FINISHED:
         return (
-          <BackOfficeProductWindow
+          <ProductWindow
             productTypeData={productTypeData}
             cardData={creditTypeData}
             depositData={depositTypeData}
@@ -54,7 +56,7 @@ export const ChooseProductFormWrapper = () => {
   return (
     <>
       {isProductCreated && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           onClose={handleProductCancel}
           sx={{ top: '40px', right: '40px' }}
           title={t('ConfirmationWindow.confirmationTitle')}

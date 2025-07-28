@@ -1,22 +1,31 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
-import React from 'react';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as Trash } from 'assets/icons/TrashIcon.svg';
+import { ReactComponent as TrashSVG } from 'assets/icons/TrashIcon.svg';
 
-interface TrashIconProps {
-  sx?: SxProps<Theme>;
+interface TrashIconProps extends Omit<SvgIconProps, 'children'> {
+  sx?: SvgIconProps['sx'];
 }
 
-const TrashIcon = ({ sx, ...props }: TrashIconProps) => {
-  return (
-    <SvgIcon
-      viewBox="0 0 12 12"
-      sx={{ height: '12px', width: '12px', ...sx }}
-      {...props}
-    >
-      <Trash />
-    </SvgIcon>
-  );
-};
+export const TrashIcon = memo<TrashIconProps>(
+  ({ sx, ...props }: TrashIconProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
 
-export default TrashIcon;
+    return (
+      <SvgIcon
+        viewBox="0 0 12 12"
+        sx={sx}
+        role="img"
+        aria-label={t('label.trash')}
+        {...props}
+      >
+        <TrashSVG />
+      </SvgIcon>
+    );
+  },
+);
+
+TrashIcon.displayName = 'TrashIcon';

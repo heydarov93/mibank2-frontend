@@ -81,7 +81,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               class="MuiStack-root css-kdc3n8-MuiStack-root"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-12i77ga-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Closed
               </p>
@@ -89,6 +89,8 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-12lw3wk-MuiSwitch-root"
               >
                 <span
+                  aria-checked="false"
+                  aria-label="Switch"
                   class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-byenzh-MuiButtonBase-root-MuiSwitch-switchBase"
                 >
                   <input
@@ -126,8 +128,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                  aria-label="Pen"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
@@ -146,8 +150,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                  aria-label="Trash"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
@@ -178,7 +184,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               class="MuiStack-root css-kdc3n8-MuiStack-root"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-12i77ga-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-16bvtzy-MuiTypography-root"
               >
                 Closed
               </p>
@@ -186,6 +192,8 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
                 class="MuiSwitch-root MuiSwitch-sizeMedium css-12lw3wk-MuiSwitch-root"
               >
                 <span
+                  aria-checked="false"
+                  aria-label="Switch"
                   class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-byenzh-MuiButtonBase-root-MuiSwitch-switchBase"
                 >
                   <input
@@ -223,8 +231,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1q69bqw-MuiSvgIcon-root"
+                  aria-label="Pen"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>
@@ -243,8 +253,10 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
+                  aria-label="Trash"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
                   focusable="false"
+                  role="img"
                   viewBox="0 0 12 12"
                 >
                   <svg>

@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useGetUserAccountByIBANQuery } from 'api/services/account-service/accounts.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { SelectFieldOption } from 'components/molecules';
-import { IBAN_PATTERN } from 'constants/inputPatterns';
+import { IBAN_PATTERN } from 'constants/validation/patterns';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 import { formatWithPattern } from 'utils/formatters/textFormatter';
 

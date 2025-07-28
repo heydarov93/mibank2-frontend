@@ -1,5 +1,6 @@
-import { styled, Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 export const StyledErrorHint = styled(Box)(
   ({ theme: { spacing, palette } }) => ({

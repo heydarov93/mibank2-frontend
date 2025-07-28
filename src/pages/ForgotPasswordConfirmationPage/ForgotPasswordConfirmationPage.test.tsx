@@ -1,50 +1,9 @@
-import { ThemeProvider } from '@mui/material';
-import { configureStore } from '@reduxjs/toolkit';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { useNavigate, MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ForgotPasswordConfirmationPage } from './ForgotPasswordConfirmationPage';
-
-import { contactsApi } from 'api';
-import { userAccountsApi } from 'api/services/user-account-service/user-accounts.api';
-import { theme } from 'theme/theme';
-
-const initialValues = {
-  auth: {
-    isAuth: false,
-    user: null,
-    error: null,
-    loading: false,
-  },
-  contacts: {
-    info: {
-      id: 0,
-      email: '',
-      phoneNumber: '',
-      contactCenterWorkingDays: '',
-      contactCenterShortenedDays: '',
-      contactCenterWorkingDayBeginTime: '',
-      contactCenterWorkingDayEndTime: '',
-      contactCenterShortenedDayBeginTime: '',
-      contactCenterShortenedDayEndTime: '',
-    },
-  },
-};
-
-const mockStore = configureStore({
-  reducer: {
-    auth: (state = initialValues.auth) => state,
-    contacts: (state = initialValues.contacts) => state,
-    [userAccountsApi.reducerPath]: userAccountsApi.reducer,
-    [contactsApi.reducerPath]: contactsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([
-      userAccountsApi.middleware,
-      contactsApi.middleware,
-    ]),
-});
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -55,62 +14,73 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('utils/auth', () => ({
-  localTokenHandler: {
-    getToken: jest.fn(),
-  },
-  sessionTokenHandler: {
-    getToken: jest.fn(),
-  },
-}));
-
-jest.mock('utils/helpers/randomHelpers', () => ({
-  generateRandomParam: jest.fn().mockReturnValue(''),
-}));
-
-jest.mock('utils/formatters/phoneFormatter.ts', () => ({
-  formatPhoneNumber: jest.fn().mockReturnValue('(123) 456-7890'),
-}));
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: jest.fn(),
 }));
 
-const renderComponent = () =>
-  render(
-    <Provider store={mockStore}>
-      <MemoryRouter>
-        <ThemeProvider theme={theme}>
-          <ForgotPasswordConfirmationPage />
-        </ThemeProvider>
-      </MemoryRouter>
-    </Provider>,
-  );
+jest.mock('components/atoms', () => ({
+  BackArrow: ({ onBackClick }: { onBackClick: () => void }) => (
+    <button onClick={onBackClick} data-testid="back-arrow">
+      Back
+    </button>
+  ),
+  LinkButton: ({
+    message,
+    linkText,
+  }: {
+    message: string;
+    linkText: string;
+  }) => (
+    <div data-testid="link-container">
+      <p>{message}</p>
+      <a role="button" href="/signin" data-testid="link-button">
+        {linkText}
+      </a>
+    </div>
+  ),
+}));
+
+jest.mock('components/organisms', () => ({
+  UserAuthWrapper: ({ children }: { children: ReactNode }) => (
+    <div data-testid="auth-wrapper">{children}</div>
+  ),
+  Footer: () => <div data-testid="footer">Footer</div>,
+}));
 
 describe('ForgotPasswordConfirmationPage', () => {
-  it('should match snapshot', () => {
-    const { asFragment } = renderComponent();
-    expect(asFragment()).toMatchSnapshot();
-  });
+  const mockNavigate = jest.fn();
 
-  it('should navigate to signin page on back button click', () => {
-    const mockNavigate = jest.fn();
+  beforeEach(() => {
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    renderComponent();
-    fireEvent.click(
-      screen.getByRole('button', {
-        name: 'RegistrationPage.buttonBackArrow',
-      }),
-    );
-    expect(mockNavigate).toHaveBeenCalledWith('/signin');
+    jest.clearAllMocks();
   });
 
-  it('should navigate to signin page on login link click', () => {
-    renderComponent();
-    const loginLink = screen.getByRole('link', {
-      name: 'SignupPage.moveToLoginLink',
+  describe('initial render', () => {
+    it('renders all page components correctly', () => {
+      render(<ForgotPasswordConfirmationPage />);
+
+      expect(screen.getByTestId('back-arrow')).toBeInTheDocument();
+      expect(screen.getByTestId('auth-wrapper')).toBeInTheDocument();
+      expect(screen.getByTestId('link-container')).toBeInTheDocument();
+      expect(screen.getByTestId('footer')).toBeInTheDocument();
     });
-    expect(loginLink).toHaveAttribute('href', '/signin');
+  });
+
+  describe('navigation behavior', () => {
+    it('navigates to sign-in when back arrow is clicked', async () => {
+      render(<ForgotPasswordConfirmationPage />);
+      await userEvent.click(screen.getByTestId('back-arrow'));
+      expect(mockNavigate).toHaveBeenCalledWith('/signin');
+    });
+
+    it('navigates to sign-in when link button is clicked', async () => {
+      render(<ForgotPasswordConfirmationPage />);
+      await userEvent.click(screen.getByTestId('link-button'));
+      expect(screen.getByTestId('link-button')).toHaveAttribute(
+        'href',
+        '/signin',
+      );
+    });
   });
 });

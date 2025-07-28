@@ -1,4 +1,5 @@
-import { Icon, styled } from '@mui/material';
+import Icon from "@mui/material/Icon";
+import { styled } from "@mui/material/styles";
 
 export const StyledIcon = styled(Icon)(() => ({
   display: 'flex',

@@ -1,4 +1,7 @@
-import { styled, TableCell, TableRow, Typography } from '@mui/material';
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledTableRow = styled(TableRow)(({ theme: { palette } }) => ({
   borderBottom: `1px solid ${palette.border.lightBlue}`,

@@ -1,17 +1,25 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as WalletSVG } from 'assets/icons/WalletIcon.svg';
 
-interface WalletIconProps {
-  sx?: SxProps<Theme>;
+interface WalletIconProps extends Omit<SvgIconProps, 'children'> {
+  sx?: SvgIconProps['sx'];
 }
 
-const WalletIcon = ({ sx }: WalletIconProps) => {
-  return (
-    <SvgIcon sx={{ ...sx }}>
-      <WalletSVG width="100%" height="100%" />;
-    </SvgIcon>
-  );
-};
+export const WalletIcon = memo<WalletIconProps>(
+  ({ sx, ...props }: WalletIconProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
 
-export default WalletIcon;
+    return (
+      <SvgIcon sx={sx} {...props} role="img" aria-label={t('label.wallet')}>
+        <WalletSVG width="100%" height="100%" />
+      </SvgIcon>
+    );
+  },
+);
+
+WalletIcon.displayName = 'WalletIcon';

@@ -5,14 +5,16 @@ import { StyledContainer } from './ViewEmployeesPage.styled';
 
 import {
   BackOfficeViewHeader,
-  BackOfficeWarningWindow,
+  ConfirmationWindow,
+  FailWindow,
+  WarningWindow,
 } from 'components/molecules';
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import BackOfficeFailWindow from 'components/molecules/BackOfficeFailWindow/BackOfficeFailWindow';
-import { ViewEmployeesSearchContainer } from 'components/organisms';
-import BackOfficeEditEmployee from 'components/organisms/BackOfficeEditEmployee/BackOfficeEditEmployee';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
-import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/routesName';
+import {
+  BackOfficeTable,
+  EmployeeEditForm,
+  EmployeesSearchContainer,
+} from 'components/organisms';
+import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/navigation/routePaths';
 import useEmployees from 'hooks/useEmployee';
 
 export const ViewEmployeesPage = () => {
@@ -105,7 +107,7 @@ export const ViewEmployeesPage = () => {
         secondaryHeader={t('header.employeesInfo')}
         btnContent={t('header.addEmployee')}
       />
-      <ViewEmployeesSearchContainer
+      <EmployeesSearchContainer
         onSearchEnter={handleSearchEnter}
         onViewAll={handleViewAll}
         showNoMatches={showNoMatches}
@@ -123,7 +125,7 @@ export const ViewEmployeesPage = () => {
         onDeleteClick={handleDeleteModal}
       />
       {showEditForm && (
-        <BackOfficeEditEmployee
+        <EmployeeEditForm
           handleClose={closeEditForm}
           formData={selectedEmp}
           handleUpdate={handleUpdate}
@@ -131,7 +133,7 @@ export const ViewEmployeesPage = () => {
         />
       )}
       {failMsgModal && (
-        <BackOfficeFailWindow
+        <FailWindow
           onClose={closeFailModal}
           title={actionMsg}
           body={actionMsgBody}
@@ -139,7 +141,7 @@ export const ViewEmployeesPage = () => {
         />
       )}
       {successMsgModal && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           onClose={closeSuccessModal}
           title={actionMsg}
           body={actionMsgBody}
@@ -147,7 +149,7 @@ export const ViewEmployeesPage = () => {
         />
       )}
       {showDelModal && (
-        <BackOfficeWarningWindow
+        <WarningWindow
           open
           onCancelClick={closeDeleteModal}
           title={t('warningWindow.deleteEmployee')}

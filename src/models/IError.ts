@@ -15,3 +15,7 @@ export interface IBackOfficeErrorData {
   error: string;
   originalStatus: number;
 }
+
+export interface ILegalEntityValidationError extends IErrorData {
+  existError: Array<[string, boolean]>;
+}

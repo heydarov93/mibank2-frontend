@@ -25,5 +25,5 @@
       "constants/*": ["./constants/*"]
     }
   },
-  "include": ["src", ".d.ts"]
+  "include": ["src", ".d.ts", "craco.config.ts", "rsbuild.config.ts"]
 }

@@ -1,12 +1,16 @@
 import { RouteObject } from 'react-router-dom';
 
 import {
-  TO_DEPOSIT_LEARN_MORE,
   TO_HISTORY,
   TO_PAYMENTS,
   TO_TRANSFERS,
-} from 'constants/routesName';
-import { DepositLearnMorePage, HomePage, TransactionsHistoryPage, TransfersPage, UnderDevPage } from 'router/lazy/app.lazy';
+} from 'constants/navigation/routePaths';
+import {
+  HomePage,
+  TransactionsHistoryPage,
+  TransfersPage,
+  UnderDevPage,
+} from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
 export const protectedAppRoutes: RouteObject[] = [
@@ -25,9 +29,5 @@ export const protectedAppRoutes: RouteObject[] = [
   {
     path: TO_HISTORY,
     element: withSuspense(TransactionsHistoryPage),
-  },
-  {
-    path: TO_DEPOSIT_LEARN_MORE,
-    element: withSuspense(DepositLearnMorePage),
   },
 ];

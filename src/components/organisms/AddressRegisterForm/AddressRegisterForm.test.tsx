@@ -37,7 +37,7 @@ jest.mock('./hooks/useAddressForm', () => ({
   }),
 }));
 
-jest.mock('./molecules/CityField', () => ({
+jest.mock('./molecules', () => ({
   CityField: (props: any) => (
     <input
       aria-label={props.label}
@@ -45,9 +45,6 @@ jest.mock('./molecules/CityField', () => ({
       data-testid="city-field"
     />
   ),
-}));
-
-jest.mock('./molecules/FormField', () => ({
   FormField: (props: any) => (
     <input
       aria-label={props.label}
@@ -177,7 +174,7 @@ describe('AddressRegisterForm', () => {
 
     renderComponent();
 
-    const confirmButton = screen.getByText('Confirm');
+    const confirmButton = screen.getByText('warning.confirm');
     fireEvent.click(confirmButton);
 
     expect(mockHandleNavigateBack).toHaveBeenCalledTimes(1);
@@ -193,7 +190,7 @@ describe('AddressRegisterForm', () => {
 
     renderComponent();
 
-    const cancelButton = screen.getByText('Cancel');
+    const cancelButton = screen.getByText('warning.cancel');
     fireEvent.click(cancelButton);
 
     expect(mockHandleCancelNavigateBack).toHaveBeenCalledTimes(1);

@@ -1,7 +1,6 @@
-import { ChevronRight } from '@mui/icons-material';
-import { Box, IconButton } from '@mui/material';
-
-import { IPaymentReceipt } from '../PaymentReceiptInfo/PaymentReceiptInfo';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 
 import {
   StyledAmountText,
@@ -11,6 +10,7 @@ import {
 
 import { ReactComponent as GreenPlusIcon } from 'assets/icons/GreenPlus.svg';
 import { ReactComponent as RedMinusIcon } from 'assets/icons/RedMinus.svg';
+import { IPaymentReceipt } from 'models/IPaymentReceipt';
 
 interface CustomTableRowProps {
   sourceNumber: string;

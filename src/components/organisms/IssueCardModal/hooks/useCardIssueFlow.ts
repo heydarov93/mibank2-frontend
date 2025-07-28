@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useLazySearchCardsQuery } from 'api/services/card-service/cards.api';
 import { IssueCardModalProps } from 'components/organisms';
-import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
 import useDisclosure from 'hooks/useDisclosure';
 import {
@@ -71,7 +71,7 @@ export const useCardIssueFlow = ({ onClose }: UseIssueFlowOptions) => {
       reset();
       setSelectedCard(null);
       setStep(ECardIssueStepper.DATA_SELECTION);
-    }, DIALOGS_ANIMATION_TIME);
+    }, MODAL_DISPLAY_TIMEOUT);
   }
 
   function handleSelectCard(cardData: IssuanceCardData) {

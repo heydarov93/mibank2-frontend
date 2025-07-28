@@ -1,11 +1,11 @@
-import { AuthWrapper, Footer, SignupFormPassword } from 'components/organisms';
+import { UserAuthWrapper, Footer, SignupWithPassword } from 'components/organisms';
 
 export const CreatePasswordPage = () => {
   return (
     <>
-      <AuthWrapper>
-        <SignupFormPassword />
-      </AuthWrapper>
+      <UserAuthWrapper>
+        <SignupWithPassword />
+      </UserAuthWrapper>
       <Footer />
     </>
   );

@@ -1,44 +1,50 @@
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { SxProps } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { TagInfoIcon } from '../TagInfoIcon/TagInfoIcon';
+import { TagStatusIcon } from '../TagStatusIcon/TagStatusIcon';
 
 import { StyledContainer } from './ValidationTag.styled';
 
-import { SpecialCharactersTooltip } from 'components/atoms';
-
-type ValidationTagProps = {
+interface ValidationTagProps {
   text: string;
   isValidated?: boolean;
   withInfo?: boolean;
-};
-
-export function ValidationTag({
-  text,
-  isValidated = false,
-  withInfo = false,
-}: ValidationTagProps) {
-  const iconSx: SxProps = { width: '14px', height: '14px' };
-  const statusIcon = isValidated ? (
-    <CheckIcon sx={iconSx} data-testid="success-icon" />
-  ) : (
-    <ClearIcon sx={iconSx} data-testid="error-icon" />
-  );
-  const infoIcon = withInfo && (
-    <SpecialCharactersTooltip>
-      <InfoOutlinedIcon sx={iconSx} data-testid="info-icon" />
-    </SpecialCharactersTooltip>
-  );
-
-  return (
-    <StyledContainer
-      sx={(theme) => ({
-        backgroundColor: isValidated
-          ? theme.palette.primary.light
-          : theme.palette.error.light,
-      })}
-    >
-      {statusIcon} {text} {infoIcon}
-    </StyledContainer>
-  );
+  sx?: SxProps<Theme>;
 }
+
+export const ValidationTag = memo<ValidationTagProps>(
+  ({
+    text,
+    isValidated = false,
+    withInfo = false,
+    ...props
+  }: ValidationTagProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
+
+    return (
+      <StyledContainer
+        sx={({ palette }) => ({
+          backgroundColor: isValidated
+            ? palette.primary.light
+            : palette.error.light,
+        })}
+        id={text}
+        role="status"
+        aria-live="polite"
+        aria-labelledby={text}
+        aria-expanded={isValidated}
+        aria-label={`${t('label.validationTag', { tag: isValidated ? 'passed' : 'failed' })} : ${text}`}
+        {...props}
+      >
+        <TagStatusIcon isValidated={isValidated} /> <span>{text}</span>{' '}
+        {withInfo && <TagInfoIcon />}
+      </StyledContainer>
+    );
+  },
+);
+
+ValidationTag.displayName = 'ValidationTag';

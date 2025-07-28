@@ -1,35 +1,36 @@
-import { Box, CircularProgress, Drawer, ListItem } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Drawer from '@mui/material/Drawer';
+import ListItem from '@mui/material/ListItem';
+import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 import {
   MainContainer,
   StyledDepositList,
   StyledHeader,
 } from './AvailableDepositsWindow.styled';
+import { ErrorMessage } from './atoms';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
-import { DepositErrorMessage } from 'components/atoms';
-import CloseButtonX from 'components/atoms/CloseButtonX/CloseButtonX';
+import { CloseButton } from 'components/atoms';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import {
-  DRAWER_HEIGHT_CALC_SIZE,
-  LEARN_MORE_PAGE_BASE_URL,
-} from 'constants/learnMorePage';
 import { IDeposit } from 'models/IDepositInfo';
-import { theme } from 'theme/theme';
 
 interface AvailableDepositsWindowProps {
   open: boolean;
   onSelectDeposit: (deposit: IDeposit) => void;
   onClose: () => void;
+  onSetLearnDeposit: (deposit: IDeposit) => void;
 }
 
 export const AvailableDepositsWindow = ({
   open,
   onClose,
   onSelectDeposit,
+  onSetLearnDeposit,
 }: AvailableDepositsWindowProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'DepositWindow' });
   const {
@@ -37,6 +38,7 @@ export const AvailableDepositsWindow = ({
     isLoading: isLoadingDeposits,
     isError: isDepositsError,
   } = useGetDepositsQuery({});
+  const { spacing, palette } = useTheme();
 
   return (
     <Drawer
@@ -45,8 +47,8 @@ export const AvailableDepositsWindow = ({
       onClose={onClose}
       PaperProps={{
         sx: {
-          height: `calc(100vh - ${DRAWER_HEIGHT_CALC_SIZE}px)`,
-          maxHeight: 'min-content',
+          maxHeight: `calc(100vh - ${spacing(7.5)})`,
+          height: 'auto',
           top: '60px',
           borderTopLeftRadius: '8px',
           borderBottomLeftRadius: '8px',
@@ -61,11 +63,11 @@ export const AvailableDepositsWindow = ({
           marginBottom={2}
         >
           <StyledHeader>{t('availableDeposits')}</StyledHeader>
-          <CloseButtonX onClick={onClose} />
+          <CloseButton onClick={onClose} />
         </Box>
         <StyledDepositList>
           {isDepositsError ? (
-            <DepositErrorMessage />
+            <ErrorMessage />
           ) : isLoadingDeposits ? (
             <CircularProgress />
           ) : (
@@ -85,13 +87,15 @@ export const AvailableDepositsWindow = ({
                       depositBoxImages[i % depositBoxImages.length]
                     }
                     secondaryButton={
-                      <Link
-                        to={`${LEARN_MORE_PAGE_BASE_URL}${id}`}
-                        style={{ color: theme.palette.primary.main }}
-                        onClick={onClose}
+                      <Button
+                        style={{ color: palette.primary.main }}
+                        onClick={() => {
+                          onSetLearnDeposit(item);
+                          onClose();
+                        }}
                       >
                         {t('learnMore')}
-                      </Link>
+                      </Button>
                     }
                     onOpenDepositForm={() => {
                       onSelectDeposit(item);

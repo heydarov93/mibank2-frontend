@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthWrapper, Footer, LoginForm } from 'components/organisms';
-import { TO_HOME } from 'constants/routesName';
+import { UserAuthWrapper, Footer, LoginForm } from 'components/organisms';
+import { TO_HOME } from 'constants/navigation/routePaths';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth';
 
@@ -20,9 +20,9 @@ export const LoginPage = () => {
 
   return (
     <>
-      <AuthWrapper>
+      <UserAuthWrapper>
         <LoginForm />
-      </AuthWrapper>
+      </UserAuthWrapper>
       <Footer />
     </>
   );

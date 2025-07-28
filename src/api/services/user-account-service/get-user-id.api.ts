@@ -1,7 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { TUserAccountTag } from './user-acounts.types';
+
 import { BASE_URL } from 'api/config/api.config';
-import { endpoints } from 'api/endpoints';
+import { API_ENDPOINTS } from 'api/config/endpoints.config';
+import { CACHE_DURATION } from 'constants/api/cache';
+import { USER_ACCOUNT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { localTokenHandler } from 'utils/auth/tokenHandler';
 
@@ -12,14 +16,20 @@ export const getUserIdApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
-  tagTypes: ['UserId'],
+  tagTypes: Object.values(USER_ACCOUNT_TAGS) as TUserAccountTag[],
+  keepUnusedDataFor: CACHE_DURATION.DEFAULT,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     getUserId: builder.query<{ userId: number }, void>({
       query: () => ({
-        url: endpoints.users.getUserId(token ?? ''),
+        url: API_ENDPOINTS.users.getUserId,
         method: 'GET',
+        params: { token },
       }),
-      providesTags: ['UserId'],
+      providesTags: (result) =>
+        result ? [{ type: USER_ACCOUNT_TAGS.USER_ID, id: result.userId }] : [],
     }),
   }),
 });

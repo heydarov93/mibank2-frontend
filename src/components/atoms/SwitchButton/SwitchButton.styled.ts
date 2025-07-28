@@ -1,4 +1,6 @@
-import { styled, Switch, Typography } from '@mui/material';
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledSwitch = styled(Switch)(({ theme: { palette } }) => ({
   width: 34,
@@ -30,8 +32,8 @@ export const StyledSwitch = styled(Switch)(({ theme: { palette } }) => ({
   },
 }));
 
-export const SwitchTitle = styled(Typography)(({ theme: { typography } }) => ({
+export const StyledSwitchTitle = styled(Typography)(({ theme: { typography } }) => ({
   fontFamily: typography.mediumLogo?.fontFamily,
-  fontWeight: '500',
+  fontWeight: 500,
   fontSize: typography.mediumLogo?.fontSize,
 }));

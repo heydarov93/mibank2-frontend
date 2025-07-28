@@ -1,3 +1,5 @@
+import { ACCOUNT_TAGS } from "constants/api/tags";
+
 export interface IGetUserAccountByIBANResponse {
   userAccountId: string;
   userId: number;
@@ -77,3 +79,5 @@ export interface IGetAccountByToken {
 export interface IGetAccountByTokenResponse {
   accounts: IGetAccountByToken[];
 }
+
+export type TAccountsTag = (typeof ACCOUNT_TAGS)[keyof typeof ACCOUNT_TAGS];

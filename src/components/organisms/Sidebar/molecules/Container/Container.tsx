@@ -1,4 +1,4 @@
-import { Divider } from '@mui/material';
+import Divider from '@mui/material/Divider';
 import { Children, Fragment, ReactNode } from 'react';
 
 import { StyledContainer } from './Container.styled';

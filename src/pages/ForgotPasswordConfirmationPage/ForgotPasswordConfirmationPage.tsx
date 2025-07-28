@@ -8,9 +8,9 @@ import {
   StyledDescription,
 } from './ForgotPasswordConfirmationPage.styled';
 
-import { BackArrow, ButtonLink } from 'components/atoms';
-import { AuthWrapper, Footer } from 'components/organisms';
-import { TO_SIGN_IN } from 'constants/routesName';
+import { BackArrow, LinkButton } from 'components/atoms';
+import { UserAuthWrapper, Footer } from 'components/organisms';
+import { TO_SIGN_IN } from 'constants/navigation/routePaths';
 
 export const ForgotPasswordConfirmationPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'ForgotPassword' });
@@ -22,20 +22,20 @@ export const ForgotPasswordConfirmationPage = () => {
   return (
     <>
       <BackArrow onBackClick={handleBackClick} />
-      <AuthWrapper>
+      <UserAuthWrapper>
         <StyledContainer>
           <StyledTitleContainer>
             <StyledTitle variant="h5">{t('PasswordUpdated')}</StyledTitle>
             <StyledDescription>
-              <ButtonLink
+              <LinkButton
                 message={t('PasswordUpdatedDescription')}
                 linkText="SignupPage.moveToLoginLink"
-                href={TO_SIGN_IN}
+                to={TO_SIGN_IN}
               />
             </StyledDescription>
           </StyledTitleContainer>
         </StyledContainer>
-      </AuthWrapper>
+      </UserAuthWrapper>
       <Footer />
     </>
   );

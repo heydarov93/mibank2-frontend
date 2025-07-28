@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -11,18 +12,22 @@ import {
   StyledFormTitle,
 } from './CreatePasswordForm.styled';
 
+import { usePostRegistrationLegalEntityInfoMutation } from 'api/services/user-account-service/user-accounts.api';
 import { SubmitButton } from 'components/atoms';
 import {
   PasswordField,
   PasswordValidationTags,
   TOSCheckbox,
 } from 'components/molecules';
-import { TO_VERIFY_EMAIL } from 'constants/routesName';
+import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
+import { setError } from 'store/slices/auth';
+import { getLegalEntity } from 'store/slices/auth/AuthSelectors';
 import { TUserSignupValues, userSignupSchema } from 'validation';
 
 export const CreatePasswordForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { t } = useTranslation('translation', {
     keyPrefix: 'common.form.createPassword',
   });
@@ -48,15 +53,33 @@ export const CreatePasswordForm = () => {
   const passwordValue = watch('password');
   const isValidConfirm = !errors?.password && touchedFields.password;
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
-  // TODO: substitute with real submit when BE is ready
-  const onFormSubmit = async () => {
+  const [postRegistrationLegalEntityInfo] =
+    usePostRegistrationLegalEntityInfoMutation();
+
+  const legalEntity = useSelector(getLegalEntity);
+  if (!legalEntity) return null;
+  const { ownerFullName, email, nip, companyName } = legalEntity;
+
+  const onFormSubmit = async (data: TUserSignupValues) => {
     try {
+      await postRegistrationLegalEntityInfo({
+        companyEmail: email,
+        ownerFullName,
+        nip,
+        companyName,
+        password: data.password,
+      }).unwrap();
+
       resetForm();
       navigate(TO_VERIFY_EMAIL, {
         state: { email: location.state?.email, from: location.pathname },
       });
-    } catch (e) {
-      //
+    } catch (err) {
+      if (typeof err === 'object' && err !== null && 'status' in err) {
+        dispatch(setError(t('serverError')));
+      } else {
+        dispatch(setError(t('unexpectedError')));
+      }
     }
   };
 

@@ -1,16 +1,13 @@
-import { Popover, Checkbox, Box } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Popover from '@mui/material/Popover';
+import React, { useEffect, useState } from 'react';
 
-import {
-  FilterTitle,
-  PopoverTrigger,
-  StyledFormControlLabel,
-  StyledHeaderBox,
-  StyledLabel,
-} from './FilterBox.styled';
+import { FilterGroupOptions } from '../FilterGroupOptions/FilterGroupOptions';
 
-import FilterIcon from 'components/atoms/FilterIcon/FilterIcon';
-import { FilterGroupOptionsProps, FilterGroup } from 'models/IFilterInfo';
+import { FilterTitle, PopoverTrigger } from './FilterBox.styled';
+
+import { FilterIcon } from 'components/atoms';
+import { FilterGroup } from 'models/IFilterInfo';
 
 export interface FilterBoxProps {
   title: string;
@@ -18,42 +15,11 @@ export interface FilterBoxProps {
   onFilterChange?: (groups: FilterGroup[]) => void;
 }
 
-const FilterGroupOptions: React.FC<FilterGroupOptionsProps> = ({
-  group,
-  groupIndex,
-  onOptionChange,
-}) => {
-  return (
-    <Box>
-      {group.groupTitle && (
-        <StyledHeaderBox>
-          <StyledLabel>{group.groupTitle}</StyledLabel>
-        </StyledHeaderBox>
-      )}
-      {group.options.map((option) => (
-        <StyledFormControlLabel
-          key={option.name}
-          control={
-            <Checkbox
-              name={option.name}
-              checked={option.checked}
-              onChange={(e) =>
-                onOptionChange(groupIndex, option.name, e.target.checked)
-              }
-            />
-          }
-          label={<StyledLabel>{option.label}</StyledLabel>}
-        />
-      ))}
-    </Box>
-  );
-};
-
-const FilterBox: React.FC<FilterBoxProps> = ({
+export const FilterBox: React.FC<FilterBoxProps> = ({
   title,
   groups,
   onFilterChange,
-}) => {
+}: FilterBoxProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [filterGroups, setFilterGroups] = useState<FilterGroup[]>(groups);
 
@@ -129,5 +95,3 @@ const FilterBox: React.FC<FilterBoxProps> = ({
     </Box>
   );
 };
-
-export default FilterBox;

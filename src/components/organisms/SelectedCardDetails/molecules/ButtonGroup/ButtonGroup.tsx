@@ -1,4 +1,4 @@
-import { Alert } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -15,11 +15,12 @@ import {
   useSetPrimaryPaymentCardMutation,
   useUpdateCardStatusMutation,
 } from 'api/services/card-service/cards.api';
-import { TO_TRANSFERS } from 'constants/routesName';
+import { CARD_STATUS } from 'constants/business/card';
+import { TO_TRANSFERS } from 'constants/navigation/routePaths';
 
 type ActionButton = 'status' | 'primary';
 
-const ButtonGroup = ({
+export const ButtonGroup = ({
   selectedUserCardDetails,
 }: {
   selectedUserCardDetails: TUserBankCardDetails;
@@ -45,7 +46,7 @@ const ButtonGroup = ({
   const handleTransfer = () => navigate(TO_TRANSFERS);
 
   const handleStatusToggle = async () => {
-    const newStatus = isCardBlocked ? 'ACTIVE' : 'BLOCKED';
+    const newStatus = isCardBlocked ? CARD_STATUS.active : CARD_STATUS.blocked;
     const action = isCardBlocked ? 'unblock' : 'block';
 
     try {
@@ -126,5 +127,3 @@ const ButtonGroup = ({
     </>
   );
 };
-
-export default ButtonGroup;

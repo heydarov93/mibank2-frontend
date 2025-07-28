@@ -1,13 +1,33 @@
-import React from 'react';
+import SvgIcon from '@mui/material/SvgIcon';
+import { SxProps, Theme } from '@mui/material/styles';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as LogoutButtonDoor } from 'assets/icons/Logout.svg';
+import { ReactComponent as LogoutSVG } from 'assets/icons/Logout.svg';
 
 interface LogoutButtonProps {
   onClick?: () => void;
+  sx?: SxProps<Theme>;
 }
 
-const LogoutButton = ({ onClick }: LogoutButtonProps) => {
-  return <LogoutButtonDoor onClick={onClick} style={{ cursor: 'pointer' }} />;
-};
+export const LogoutButton = memo<LogoutButtonProps>(
+  ({ onClick, sx, ...props }: LogoutButtonProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
 
-export default LogoutButton;
+    return (
+      <SvgIcon
+        sx={{ cursor: 'pointer', ...sx }}
+        onClick={onClick}
+        role="button"
+        aria-label={t('label.logout')}
+        {...props}
+      >
+        <LogoutSVG />;
+      </SvgIcon>
+    );
+  },
+);
+
+LogoutButton.displayName = 'LogoutButton';

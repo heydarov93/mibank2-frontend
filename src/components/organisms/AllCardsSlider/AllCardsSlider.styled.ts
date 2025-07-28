@@ -1,4 +1,8 @@
-import { Box, IconButton, Stack, styled, Typography } from '@mui/material';
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 
 export const StyledContainer = styled(Box)(
   ({ theme: { palette, spacing } }) => ({

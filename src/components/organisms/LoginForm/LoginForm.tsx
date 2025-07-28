@@ -12,17 +12,20 @@ import {
 } from './LoginForm.styled';
 import { useLogin } from './hooks/useLogin';
 
-import { ButtonLink, InputField, SubmitButton } from 'components/atoms';
+import { LinkButton, InputField, SubmitButton } from 'components/atoms';
 import {
   TOSCheckbox,
   PasswordField,
-  Timer,
   PasswordValidationTags,
+  ResendCodeTimer,
 } from 'components/molecules';
-import { TO_FORGOT_PASSWORD, TO_SIGN_UP } from 'constants/routesName';
+import {
+  TO_FORGOT_PASSWORD,
+  TO_SIGN_UP,
+} from 'constants/navigation/routePaths';
 import { useAppDispatch } from 'hooks';
 import { ILoginFormInput } from 'models/IAuth';
-import { setError } from 'store/reducers/AuthSlice';
+import { setError } from 'store/slices/auth/AuthSlice';
 import { TUserLoginValues, userLoginSchema } from 'validation';
 
 export const LoginForm = () => {
@@ -90,7 +93,7 @@ export const LoginForm = () => {
         <>
           <span>&nbsp;</span>
           <span>{'('}</span>
-          <Timer
+          <ResendCodeTimer
             time={remainingTime}
             endTime={lockoutEndTime}
             runTimer={setIsFormDisabled}
@@ -137,10 +140,10 @@ export const LoginForm = () => {
           errors={errors}
           isFormDisabled={isFormDisabled}
         />
-        <ButtonLink
+        <LinkButton
           message=""
           linkText="LoginPage.formBtnForgotPassword"
-          href={TO_FORGOT_PASSWORD}
+          to={TO_FORGOT_PASSWORD}
         />
         <SubmitButton
           onClick={handleCleanField}
@@ -149,10 +152,10 @@ export const LoginForm = () => {
           sx={{ marginTop: 1, marginBottom: 3 }}
         />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="LoginPage.signUpLink"
         linkText="LoginPage.formBtnSignUp"
-        href={TO_SIGN_UP}
+        to={TO_SIGN_UP}
       />
     </>
   );

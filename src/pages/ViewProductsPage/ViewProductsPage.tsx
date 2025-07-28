@@ -1,4 +1,5 @@
-import { Box, debounce } from '@mui/material';
+import Box from '@mui/material/Box';
+import { debounce } from '@mui/material/utils';
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -9,25 +10,24 @@ import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
 import {
   BackOfficeViewHeader,
-  BackOfficeWarningWindow,
+  ConfirmationWindow,
+  WarningWindow,
 } from 'components/molecules';
-import BackOfficeConfirmationWindow from 'components/molecules/BackOfficeConfirmationWindow/BackOfficeConfirmationWindow';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { ViewProductsSearchContainer } from 'components/organisms';
-import BackOfficeCardEditForm from 'components/organisms/BackOfficeCardEditForm/BackOfficeCardEditForm';
-import BackOfficeDepositEditForm from 'components/organisms/BackOfficeDepositEditForm/BackOfficeDepositEditForm';
-import BackOfficeTable from 'components/organisms/BackOfficeTable/BackOfficeTable';
-import { tableHead } from 'constants/productTableHead';
-import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/routesName';
 import {
-  SEARCH_LOWEST_LIMIT,
-  SEARCH_VALUE_ZERO,
-} from 'constants/searchInputValues';
+  DepositEditForm,
+  BackOfficeTable,
+  ProductsSearchContainer,
+  CardEditForm,
+} from 'components/organisms';
+import { TO_BACK_OFFICE_CREATE_PRODUCT } from 'constants/navigation/routePaths';
+import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
+import { TABLE_HEAD } from 'constants/ui/table';
 import { ProductType } from 'enums/EProductType';
 import { useProductFilters } from 'hooks/useProductFilters';
 import { useProductManage } from 'hooks/useProductManage';
 import { IBackOfficeErrorData } from 'models/IError';
 import { DepositResponseData } from 'models/IProductInfo';
+import { TableData } from 'models/ITableData';
 import { mapProductData } from 'utils/mapper';
 
 export const ViewProductsPage = () => {
@@ -85,7 +85,8 @@ export const ViewProductsPage = () => {
     { isLoading: isDeleteLoading, isError: isDeleteError },
   ] = useDeleteDepositMutation();
 
-  const mappedData = allProducts?.map((product) => mapProductData(product)) || [];
+  const mappedData =
+    allProducts?.map((product) => mapProductData(product)) || [];
   const { filteredTableBody } = useProductFilters(mappedData);
 
   const handleDeleteDeposit = async (
@@ -144,7 +145,7 @@ export const ViewProductsPage = () => {
           secondaryHeader={t('header.viewProducts')}
           btnContent={t('header.createBtnContent')}
         />
-        <ViewProductsSearchContainer
+        <ProductsSearchContainer
           productsData={mappedData}
           showNoMatches={showNoMatches}
           onSearchEnter={handleSearchEnter}
@@ -152,7 +153,7 @@ export const ViewProductsPage = () => {
           control={control}
         />
         <BackOfficeTable
-          tableHead={tableHead}
+          tableHead={TABLE_HEAD}
           tableBody={filteredTableBody()}
           totalItems={allProducts.length || 0}
           page={page}
@@ -163,7 +164,7 @@ export const ViewProductsPage = () => {
           onEditClick={handleEdit}
           isLoading={isProductsLoading}
         />
-        <BackOfficeWarningWindow
+        <WarningWindow
           sx={{ left: '150px' }}
           product={selectedProduct}
           onCancelClick={closeDeleteWindow}
@@ -177,10 +178,10 @@ export const ViewProductsPage = () => {
         />
       </StyledContainer>
       {isEditFormVisible && (
-        <BackOfficeCardEditForm handleClose={handleClose} formData={formData} />
+        <CardEditForm handleClose={handleClose} formData={formData} />
       )}
       {isDepositFormVisible && (
-        <BackOfficeDepositEditForm
+        <DepositEditForm
           onClose={handleClose}
           formData={formData}
           onSuccess={handleSuccessfulUpdate}
@@ -189,7 +190,7 @@ export const ViewProductsPage = () => {
         />
       )}
       {isConfirmationWindowVisible && (
-        <BackOfficeConfirmationWindow
+        <ConfirmationWindow
           sx={{ top: '50px', left: '520px' }}
           onClose={closeConfirmationWindow}
           title={confirmationTitle}

@@ -1,64 +1,49 @@
-import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
+import { ThemeProvider } from '@mui/material';
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { BackOfficeVerificationErrorPage } from './BackOfficeVerificationErrorPage';
 
-import i18n from 'i18n';
+import { theme } from 'theme/theme';
 
-jest.mock('components/atoms/ReloadButton/ReloadButton.tsx', () => ({
-  __esModule: true,
-  default: ({ onClick }: { onClick: () => void }) => (
-    <div data-testid="reload-icon" onClick={onClick}>
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
+}));
+
+jest.mock('components/atoms', () => ({
+  ReloadButton: ({ onClick }: { onClick: () => void }) => (
+    <button data-testid="reload-button" onClick={onClick}>
       Reload Button
-    </div>
+    </button>
   ),
 }));
 
+const renderPage = () => {
+  return render(
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BackOfficeVerificationErrorPage />
+      </ThemeProvider>
+    </BrowserRouter>,
+  );
+};
+
 describe('BackOfficeVerificationErrorPage', () => {
-  it('matches the snapshot', () => {
-    const { asFragment } = render(
-      <I18nextProvider i18n={i18n}>
-        <BackOfficeVerificationErrorPage />
-      </I18nextProvider>,
-    );
-    expect(asFragment()).toMatchSnapshot();
+  it('renders the page components correctly', () => {
+    renderPage();
+
+    expect(screen.getByText('QRCodeExpired')).toBeInTheDocument();
+    expect(screen.getByText('RefreshPage')).toBeInTheDocument();
+    expect(screen.getByTestId('reload-button')).toBeInTheDocument();
   });
 
-  it('renders the correct text content', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <BackOfficeVerificationErrorPage />
-      </I18nextProvider>,
-    );
-
-    expect(screen.getByTestId('title-text')).toBeInTheDocument();
-    expect(screen.getByTestId('secondary-text')).toBeInTheDocument();
-  });
-
-  it('reloads the page when the reload icon is clicked', () => {
-    const originalLocation = window.location;
-
-    Object.defineProperty(window, 'location', {
-      value: {
-        ...originalLocation,
-        reload: jest.fn(),
-      },
-      writable: true,
-    });
-
-    render(
-      <I18nextProvider i18n={i18n}>
-        <BackOfficeVerificationErrorPage />
-      </I18nextProvider>,
-    );
-
-    const reloadIcon = screen.getByTestId('reload-icon');
-    fireEvent.click(reloadIcon);
-
-    Object.defineProperty(window, 'location', {
-      value: originalLocation,
-      writable: true,
-    });
+  it('matches snapshot', () => {
+    const { container } = renderPage();
+    expect(container).toMatchSnapshot();
   });
 });

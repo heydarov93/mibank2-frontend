@@ -10,7 +10,7 @@ export const LegalEntityVerificationPage = () => {
   return (
     <StyledPageLayout>
       <BackButton />
-      <StyledContentWrapper>
+      <StyledContentWrapper data-testid="content-wrapper">
         <LegalEntityVerificationContent />
       </StyledContentWrapper>
       <Footer />

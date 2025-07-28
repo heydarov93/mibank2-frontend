@@ -1,3 +1,4 @@
+import { HTTP_HEADERS } from 'constants/security/httpHeaders';
 import { ETokenType } from 'enums';
 
 export const localTokenHandler = {
@@ -13,4 +14,36 @@ export const sessionTokenHandler = {
   },
   getToken: (tokenType: ETokenType) => sessionStorage.getItem(tokenType),
   clearToken: (tokenType: ETokenType) => sessionStorage.removeItem(tokenType),
+};
+
+export const clearAllTokens = (): void => {
+  Object.values(ETokenType).forEach((tokenType: ETokenType) => {
+    localTokenHandler.clearToken(tokenType);
+    sessionTokenHandler.clearToken(tokenType);
+  });
+};
+export const getTokenValues = () => {
+  const localAccessToken = localTokenHandler.getToken(ETokenType.ACCESS);
+  const sessionAccessToken = sessionTokenHandler.getToken(ETokenType.ACCESS);
+  const temporaryToken = localTokenHandler.getToken(ETokenType.TEMPORARY);
+  const accessToken = localAccessToken || sessionAccessToken;
+
+  return {
+    accessToken,
+    temporaryToken,
+  };
+};
+
+export const prepareAuthHeaders = (headers: Headers): Headers => {
+  const { accessToken, temporaryToken } = getTokenValues();
+
+  if (accessToken) {
+    headers.set(HTTP_HEADERS.Authorization, `Bearer ${accessToken}`);
+  }
+
+  if (temporaryToken) {
+    headers.set(HTTP_HEADERS.TemporaryToken, temporaryToken);
+  }
+
+  return headers;
 };

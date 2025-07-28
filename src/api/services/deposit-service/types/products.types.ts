@@ -1,3 +1,5 @@
+import { PRODUCT_TAGS } from 'constants/api/tags';
+
 interface ICard {
   cardName: string;
   cardCurrency: string;
@@ -37,3 +39,5 @@ export interface IGetProductsResponse {
   cardList: ICard[];
   depositList: IDeposit[];
 }
+
+export type TProductTag = (typeof PRODUCT_TAGS)[keyof typeof PRODUCT_TAGS];

@@ -2,8 +2,8 @@ import * as yup from 'yup';
 
 import {
   VALIDATION_LIMITS,
-  VALIDATION_PATTERNS
-} from 'constants/validationPatternConstants';
+  VALIDATION_PATTERNS,
+} from 'constants/validation/patterns';
 import { t } from 'i18n';
 
 const VALIDATION_KEY = 'RegistrationPage';
@@ -52,7 +52,10 @@ export const editCorporateAddressSchema = yup.object().shape({
     .string()
     .trim()
     .required(t(requiredField))
-    .matches(VALIDATION_PATTERNS.DIGITS_SPECIAL, t(`${VALIDATION_KEY}.errorPostcodeFormat`))
+    .matches(
+      VALIDATION_PATTERNS.DIGITS_SPECIAL,
+      t(`${VALIDATION_KEY}.errorPostcodeFormat`),
+    )
     .max(
       VALIDATION_LIMITS.POSTCODE_LENGTH,
       t(`${VALIDATION_KEY}.errorPostcodeMaxLength`),

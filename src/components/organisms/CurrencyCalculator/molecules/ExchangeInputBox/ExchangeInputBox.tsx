@@ -1,4 +1,5 @@
-import { SelectChangeEvent, TextField } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import { ChangeEvent } from 'react';
 
 import {

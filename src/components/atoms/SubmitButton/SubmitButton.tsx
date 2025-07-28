@@ -1,35 +1,51 @@
-import { SxProps, Theme } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
+import { memo, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { StyledButton } from './SubmitButton.styled';
 
-type SubmitButtonProps = {
+interface SubmitButtonProps {
   sx?: SxProps<Theme>;
   onClick?: () => void;
-  buttonContent: React.ReactNode;
+  buttonContent: ReactNode;
   isDisabled?: boolean;
-  startIcon?: React.ReactNode;
-} & React.ComponentProps<typeof StyledButton>;
+  startIcon?: ReactNode;
+  fullWidth?: boolean;
+}
 
-export const SubmitButton = ({
-  onClick,
-  buttonContent,
-  isDisabled,
-  startIcon,
-  ...props
-}: SubmitButtonProps) => {
-  return (
-    <StyledButton
-      size="large"
-      variant="contained"
-      fullWidth
-      type="submit"
-      onClick={onClick}
-      disabled={isDisabled}
-      startIcon={startIcon}
-      data-testid="save-button"
-      {...props}
-    >
-      {buttonContent}
-    </StyledButton>
-  );
-};
+export const SubmitButton = memo<SubmitButtonProps>(
+  ({
+    onClick,
+    buttonContent,
+    isDisabled,
+    startIcon,
+    fullWidth = true,
+    sx,
+    ...props
+  }: SubmitButtonProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
+
+    return (
+      <StyledButton
+        sx={sx}
+        size="large"
+        type="submit"
+        variant="contained"
+        fullWidth={fullWidth}
+        onClick={onClick}
+        disabled={isDisabled}
+        startIcon={startIcon}
+        aria-disabled={isDisabled}
+        aria-label={t('label.submit')}
+        data-testid="save-button"
+        {...props}
+      >
+        {buttonContent}
+      </StyledButton>
+    );
+  },
+);
+
+SubmitButton.displayName = 'SubmitButton';

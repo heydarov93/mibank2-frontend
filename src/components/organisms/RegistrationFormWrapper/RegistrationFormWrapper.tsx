@@ -1,18 +1,21 @@
 import { FormProvider } from 'react-hook-form';
 
-import { MiBankStepper } from '../MiBankStepper/MiBankStepper';
-import { Address } from '../RegistrationForm/Address/Address';
-import { DocumentInfoWrapper } from '../RegistrationForm/DocumentInfoWrapper/DocumentInfoWrapper';
-import { LegalStatus } from '../RegistrationForm/LegalStatus/LegalStatus';
-import { PersonalInfo } from '../RegistrationForm/PersonalInfo/PersonalInfo';
+import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
+import { ProgressStepper } from '../ProgressStepper/ProgressStepper';
 
 import { StyledBoxContainer } from './RegistrationFormWrapper.styled';
+import {
+  Address,
+  DocumentInfoWrapper,
+  LegalStatus,
+  PersonalInfo,
+} from './molecules';
 
-import { NavigationWarningModal } from 'components/atoms';
 import { BackArrow } from 'components/atoms';
 import { EStepper } from 'enums/EStepper';
 import { useRegFormFlow } from 'hooks/useRegFormFlow';
 
+const steps = [1, 2, 3, 4];
 export const RegistrationFormWrapper = () => {
   const {
     step,
@@ -45,10 +48,13 @@ export const RegistrationFormWrapper = () => {
         open={leaveModal.isOpen}
         onConfirm={handleConfirm}
         onCancel={leaveModal.close}
+        testId="warning-modal"
       />
-      <MiBankStepper step={step} />
+      <ProgressStepper steps={steps} activeStep={step} />;
       <FormProvider {...formMethods}>
-        <form onSubmit={submitForm} data-testid="registration-form">{renderFormStep()}</form>
+        <form onSubmit={submitForm} data-testid="registration-form">
+          {renderFormStep()}
+        </form>
       </FormProvider>
     </StyledBoxContainer>
   );

@@ -1,7 +1,10 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { MenuItem, SelectChangeEvent } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import { SelectChangeEvent } from '@mui/material/Select';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { CustomPaginationActions } from '../CustomPaginationActions/CustomPaginationActions';
 
 import {
   StyledItemsCountContainer,
@@ -9,9 +12,8 @@ import {
   StyledSecondaryText,
   StyledSelect,
 } from './CustomPagination.styled';
-import CustomPaginationActions from './CustomPaginationActions';
 
-import { ITEMS_PER_PAGE_OPTIONS } from 'constants/itemsPerPageValues';
+import { ITEMS_PER_PAGE_OPTIONS } from 'constants/business/pagination';
 
 interface CustomTablePaginationProps {
   pageDisplayText?: string;
@@ -25,7 +27,7 @@ interface CustomTablePaginationProps {
   onRowsPerPageChange: (event: SelectChangeEvent<number>) => void;
 }
 
-const CustomTablePagination = ({
+export const CustomTablePagination = ({
   totalPages,
   page,
   rowsPerPage,
@@ -37,14 +39,10 @@ const CustomTablePagination = ({
     keyPrefix: 'TablePagination',
   });
 
-  if (totalPages === 0) {
-    return null;
-  }
-
   return (
     <StyledMainContainer data-testid="main-container">
       <StyledItemsCountContainer>
-        <StyledSecondaryText>{t("itemsPerPage")}</StyledSecondaryText>
+        <StyledSecondaryText>{t('itemsPerPage')}</StyledSecondaryText>
         <StyledSelect
           value={rowsPerPage}
           onChange={onRowsPerPageChange}
@@ -71,5 +69,3 @@ const CustomTablePagination = ({
     </StyledMainContainer>
   );
 };
-
-export default CustomTablePagination;

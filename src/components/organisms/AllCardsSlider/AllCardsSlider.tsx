@@ -2,7 +2,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 
 import { IssueCardModal } from '../IssueCardModal/IssueCardModal';
-import { useGetUserCards } from '../Sidebar/organisms/MyCards/hooks/useGetUserCards';
 
 import {
   StyledContainer,
@@ -10,12 +9,15 @@ import {
   StyledTitle,
   StyledTitleContainer,
 } from './AllCardsSlider.styled';
-import { CardsContent } from './molecules/CardsContent/CardsContent';
+import { CardsContent } from './molecules';
 
+import {
+  DEFAULT_ELEMENT_SCALE,
+  SELECTED_ELEMENT_SCALE,
+} from 'constants/ui/layout';
 import useDisclosure from 'hooks/useDisclosure';
+import { useGetUserCards } from 'hooks/useGetUserCards';
 import { IUserBankCard } from 'models/IUserBankCard';
-
-const SELECTED_CARD_SCALE = 1.12;
 
 interface AllCardsSliderProps {
   onCardIdSelect: (id: IUserBankCard['id']) => void;
@@ -36,7 +38,9 @@ export const AllCardsSlider = ({
 
   const getCardTransform = (cardId: IUserBankCard['id']) => ({
     transform:
-      selectedCardId === cardId ? `scale(${SELECTED_CARD_SCALE})` : 'scale(1)',
+      selectedCardId === cardId
+        ? `scale(${SELECTED_ELEMENT_SCALE})`
+        : `scale(${DEFAULT_ELEMENT_SCALE})`,
   });
 
   return (

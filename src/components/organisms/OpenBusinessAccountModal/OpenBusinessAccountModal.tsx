@@ -1,13 +1,14 @@
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { EditCorporateAddressForm } from '../EditCorporateAddressForm/EditCorporateAddressForm';
-import { OpenBusinessAccountForm } from '../OpenBusinessAccountForm/OpenBusinessAccountForm';
+
+import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
+
+import { StyledDialog } from './OpenBusinessAccountModal.styled';
+import { EditCorporateAddressForm, OpenBusinessAccountForm } from './molecules';
 
 import {
   ModalHeader,
-  NavigationWarningModal,
-  StyledDialog,
 } from 'components/atoms';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
 import { useBusinessAccFlow } from 'hooks/useOpenBusinessAccFlow';

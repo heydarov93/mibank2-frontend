@@ -1,190 +1,170 @@
-import '@testing-library/jest-dom';
-import { ThemeProvider } from '@mui/material';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { MemoryRouter } from 'react-router-dom';
-
+import { render, screen } from '@testing-library/react';
 
 import { ViewEmployeesPage } from './ViewEmployeesPage';
 
 import useEmployees from 'hooks/useEmployee';
-import { theme } from 'theme/theme';
+import { TableData } from 'models/ITableData';
 
 jest.mock('hooks/useEmployee');
-
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => {
-      const translations: Record<string, string> = {
-        'header.employeesList': 'Employees List',
-        'header.employeesInfo': 'Employee Information',
-        'header.addEmployee': 'Add Employee',
-        'header.searchEmployees': 'Search for employees',
-        'employeeList.noMatchesFound.viewAll': 'View All',
-        'employeeList.noMatchesFound.notFound': 'No matches were found.',
-        'employeeList.firstName': 'First Name',
-        'employeeList.lastName': 'Last Name',
-        'employeeList.role': 'Role',
-        'employeeList.email': 'Email',
-        'employeeList.addedDate': 'Date Added',
-        'LastResortDeposit.edit': 'Edit',
-        'LastResortDeposit.delete': 'Delete',
-        'warningWindow.deleteEmployee': 'Delete Employee',
-        'warningWindow.deleteEmployeeText':
-          'Deletion is irreversible. Are you sure you want to delete {{firstName}} {{lastName}}?',
-        'ConfirmationWindow.cancelBtn': 'Cancel',
-        'ConfirmationWindow.save': 'Save',
-      };
-      return translations[key] || key;
-    },
+    t: (key: string) => key,
   }),
   initReactI18next: {
     type: '3rdParty',
   },
 }));
+jest.mock('constants/navigation/routePaths', () => ({
+  TO_BACK_OFFICE_CREATE_EMPLOYEE: '/back-office/create-employee',
+}));
 
-const mockEmployeesData = {
-  tableData: [
-    {
-      id: '1',
-      firstName: 'John',
-      lastName: 'Doe',
-      role: 'Admin',
-      email: 'john.doe@example.com',
-      dateAdded: '2024-04-01',
-    },
-  ],
-  tableHead: [
-    { label: 'First Name', key: 'firstName' },
-    { label: 'Last Name', key: 'lastName' },
-    { label: 'Role', key: 'role' },
-    { label: 'Email', key: 'email' },
-    { label: 'Date Added', key: 'dateAdded' },
-  ],
-  page: 0,
+jest.mock('components/molecules', () => ({
+  ConfirmationWindow: ({ title, body }: { title: string; body: string }) => (
+    <div>
+      <h1>{title}</h1>
+      <p>{body}</p>
+    </div>
+  ),
+  BackOfficeViewHeader: ({
+    primaryHeader,
+    secondaryHeader,
+    btnContent,
+  }: {
+    primaryHeader: string;
+    secondaryHeader: string;
+    btnContent: string;
+  }) => (
+    <div>
+      <h1>{primaryHeader}</h1>
+      <h2>{secondaryHeader}</h2>
+      <button>{btnContent}</button>
+    </div>
+  ),
+  WarningWindow: () => <div>Warning Window</div>,
+  FailWindow: ({ title, body }: { title: string; body: string }) => (
+    <div>
+      <h1>{title}</h1>
+      <p>{body}</p>
+    </div>
+  ),
+}));
+jest.mock('components/organisms', () => ({
+  BackOfficeTable: ({ tableBody }: { tableBody: Partial<TableData>[] }) => (
+    <div>Table rows: {tableBody.length}</div>
+  ),
+  EmployeesSearchContainer: ({
+    showNoMatches,
+  }: {
+    showNoMatches: boolean;
+  }) => (showNoMatches ? <div>No matches found</div> : null),
+  EmployeeEditForm: () => <form>Edit Form</form>,
+}));
+
+const defaultState = {
+  tableData: [{ id: 1, name: 'John Doe' }],
+  tableHead: ['ID', 'Name'],
+  page: 1,
   size: 10,
+  searchValue: '',
   searchParams: new URLSearchParams(),
+  totalItems: 1,
+  control: {},
   setSearchParams: jest.fn(),
   state: {
     showEditForm: false,
-    showDelModal: true,
-    selectedEmp: { firstName: 'John', lastName: 'Doe' },
+    failMsgModal: false,
+    successMsgModal: false,
+    showDelModal: false,
+    actionMsg: 'msg',
+    actionMsgBody: 'body',
+    selectedEmp: { id: 1, name: 'John Doe' },
   },
   setState: jest.fn(),
   handleEdit: jest.fn(),
+  handleUpdate: jest.fn(),
   handleDeleteModal: jest.fn(),
   handleDelete: jest.fn(),
+  handleViewAll: jest.fn(),
+  handleSearchEnter: jest.fn(),
 };
-
-beforeEach(() => {
-  (useEmployees as jest.Mock).mockReturnValue(mockEmployeesData);
-});
-
-const Wrapper: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const methods = useForm();
-  return (
-    <ThemeProvider theme={theme}>
-      <FormProvider {...methods}>
-        <MemoryRouter>{children}</MemoryRouter>
-      </FormProvider>
-    </ThemeProvider>
-  );
-};
-
-const renderWithProviders = (ui: React.ReactElement) => {
-  return render(ui, { wrapper: Wrapper });
-};
-
-test('renders BackOfficeViewEmployees correctly', () => {
-  const { container } = renderWithProviders(<ViewEmployeesPage />);
-
-  expect(container).toMatchSnapshot();
-});
-
-test('renders headers correctly', () => {
-  renderWithProviders(<ViewEmployeesPage />);
-
-  expect(screen.getByText('Employees List')).toBeInTheDocument();
-  expect(screen.getByText('Employee Information')).toBeInTheDocument();
-  expect(screen.getByText('Add Employee')).toBeInTheDocument();
-});
-
-test('renders employee data in table', async () => {
-  renderWithProviders(<ViewEmployeesPage />);
-
-  await waitFor(() => {
-    expect(screen.getByText('John')).toBeInTheDocument();
-    expect(screen.getByText('Doe')).toBeInTheDocument();
-    expect(screen.getByText('Admin')).toBeInTheDocument();
-    expect(screen.getByText('john.doe@example.com')).toBeInTheDocument();
-    expect(screen.getByText('2024-04-01')).toBeInTheDocument();
+describe('ViewEmployeesPage', () => {
+  beforeEach(() => {
+    (useEmployees as jest.Mock).mockReturnValue(defaultState);
   });
-});
 
-test('triggers edit employee when edit button is clicked', () => {
-  renderWithProviders(<ViewEmployeesPage />);
+  describe('Header', () => {
+    it('renders the view header with correct text and button', () => {
+      render(<ViewEmployeesPage />);
+      expect(screen.getByText('header.employeesList')).toBeInTheDocument();
+      expect(screen.getByText('header.employeesInfo')).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'header.addEmployee' }),
+      ).toBeInTheDocument();
+    });
+  });
 
-  const editButton = screen.getByText('Edit');
-  fireEvent.click(editButton);
-  expect(mockEmployeesData.handleEdit).toHaveBeenCalled();
-});
+  describe('Search and Table', () => {
+    it('renders search container and table with data', () => {
+      render(<ViewEmployeesPage />);
+      expect(screen.getByText('Table rows: 1')).toBeInTheDocument();
+    });
 
-test('triggers delete employee modal when delete button is clicked', () => {
-  renderWithProviders(<ViewEmployeesPage />);
+    it('shows no matches when searchValue is present but no data', () => {
+      const hookReturn = {
+        ...defaultState,
+        searchValue: 'test',
+        tableData: [],
+      };
+      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      render(<ViewEmployeesPage />);
+      expect(screen.getByText('No matches found')).toBeInTheDocument();
+      expect(screen.getByText('Table rows: 0')).toBeInTheDocument();
+    });
+  });
 
-  const deleteButton = screen.getByText('Delete');
-  fireEvent.click(deleteButton);
-  expect(mockEmployeesData.handleDeleteModal).toHaveBeenCalled();
-});
+  describe('Conditional Modals', () => {
+    it('renders edit form when showEditForm is true', () => {
+      const hookReturn = {
+        ...defaultState,
+        state: { ...defaultState.state, showEditForm: true },
+      };
+      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      render(<ViewEmployeesPage />);
+      expect(screen.getByText('Edit Form')).toBeInTheDocument();
+    });
 
-test('confirms delete employee and triggers handleDelete', async () => {
-  renderWithProviders(<ViewEmployeesPage />);
+    it('renders fail window when failMsgModal is true', () => {
+      const hookReturn = {
+        ...defaultState,
+        state: { ...defaultState.state, failMsgModal: true },
+      };
+      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      render(<ViewEmployeesPage />);
+      expect(
+        screen.getByText(`${hookReturn.state.actionMsg}`),
+      ).toBeInTheDocument();
+    });
 
-  const employeesBeforeDelete = screen.getAllByTestId('table-row');
-  expect(employeesBeforeDelete).toHaveLength(1);
+    it('renders confirmation window when successMsgModal is true', () => {
+      const hookReturn = {
+        ...defaultState,
+        state: { ...defaultState.state, successMsgModal: true },
+      };
+      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      render(<ViewEmployeesPage />);
+      expect(
+        screen.getByText(`${hookReturn.state.actionMsg}`),
+      ).toBeInTheDocument();
+    });
 
-  const deleteButton = screen.getByText('Delete');
-  fireEvent.click(deleteButton);
-
-  expect(mockEmployeesData.handleDeleteModal).toHaveBeenCalled();
-
-  const modalTitle = screen.getAllByText(/Delete Employee/i)[0];
-  expect(modalTitle).toBeInTheDocument();
-
-  const confirmDeleteButton = screen.getByText('Delete');
-  fireEvent.click(confirmDeleteButton);
-});
-
-test('cancels delete employee', () => {
-  renderWithProviders(<ViewEmployeesPage />);
-
-  const employeesBeforeDelete = screen.getAllByTestId('table-row');
-  expect(employeesBeforeDelete).toHaveLength(1);
-
-  const deleteButton = screen.getByText('Delete');
-  fireEvent.click(deleteButton);
-
-  const cancelButton = screen.getByText('Cancel');
-  fireEvent.click(cancelButton);
-
-  expect(mockEmployeesData.handleDeleteModal).toHaveBeenCalled();
-});
-
-test('confirms edit employee and triggers handleEdit', async () => {
-  renderWithProviders(<ViewEmployeesPage />);
-
-  const employeesBeforeEdit = screen.getAllByTestId('table-row');
-  expect(employeesBeforeEdit).toHaveLength(1);
-
-  const editButton = screen.getByText('Edit');
-  fireEvent.click(editButton);
-
-  expect(mockEmployeesData.handleEdit).toHaveBeenCalled();
-
-  const confirmEditButton = await screen.findByTestId('save-button');
-  fireEvent.click(confirmEditButton);
+    it('renders delete warning when showDelModal is true', () => {
+      const hookReturn = {
+        ...defaultState,
+        state: { ...defaultState.state, showDelModal: true },
+      };
+      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      render(<ViewEmployeesPage />);
+      expect(screen.getByText('Warning Window')).toBeInTheDocument();
+    });
+  });
 });

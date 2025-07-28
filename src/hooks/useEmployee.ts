@@ -10,12 +10,14 @@ import {
   useGetEmployeeListQuery,
   useUpdateEmployeeMutation,
 } from 'api/services/employee-service/employees.api';
-import { TableData } from 'components/molecules/BackOfficeTableItem/BackOfficeTableItem';
-import { MODAL_DISPLAY_TIMEOUT } from 'constants/modalTimeouts';
 import {
-  SEARCH_LOWEST_LIMIT,
-  SEARCH_VALUE_ZERO,
-} from 'constants/searchInputValues';
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from 'constants/business/pagination';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
+import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
+import { TableData } from 'models/ITableData';
+import { TSortOrder } from 'types/types';
 import { getNextSortOrder } from 'utils/helpers/sortHelpers';
 
 const useEmployees = () => {
@@ -24,8 +26,8 @@ const useEmployees = () => {
   const { setValue, control, watch } = useForm();
   const searchInput = watch('searchEmployee');
 
-  const page = Number(searchParams.get('page')) || 0;
-  const size = Number(searchParams.get('size')) || 10;
+  const page = Number(searchParams.get('page')) || DEFAULT_PAGE_INDEX;
+  const size = Number(searchParams.get('size')) || DEFAULT_PAGE_SIZE;
   const sortDateAdded = searchParams.get('sortDateAdded') || '';
   const sortLastName = searchParams.get('sortLastName') || '';
   const firstName = searchParams.get('firstName') || '';
@@ -62,7 +64,7 @@ const useEmployees = () => {
     })) || [];
 
   const handleSortChange = (field: string) => {
-    const newSort = getNextSortOrder(searchParams.get(field) || '');
+    const newSort = getNextSortOrder(searchParams.get(field) as TSortOrder);
     setSearchParams({
       ...Object.fromEntries(searchParams),
       [field]: newSort || '',

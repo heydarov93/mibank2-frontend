@@ -40,7 +40,7 @@ jest.mock(
   },
 );
 
-jest.mock('components/molecules/DepositInfoCard/DepositInfoCard', () => {
+jest.mock('./molecules/DepositInfoCard/DepositInfoCard', () => {
   const MockInfoCard = (props: any) => (
     <div data-testid="deposit-info-card">
       <h2>{props.name}</h2>

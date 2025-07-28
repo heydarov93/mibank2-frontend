@@ -1,5 +1,6 @@
-import { Box, Button } from '@mui/material';
-import { ReactElement } from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -25,7 +26,7 @@ interface DepositBoxProps {
   depositDuration: number;
   depositCurrency: string;
   depositImgSrc: string;
-  secondaryButton: ReactElement;
+  secondaryButton?: ReactNode;
   onOpenDepositForm: () => void;
 }
 

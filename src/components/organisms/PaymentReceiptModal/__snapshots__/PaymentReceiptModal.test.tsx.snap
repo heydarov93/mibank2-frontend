@@ -193,8 +193,10 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             >
               <svg
                 aria-hidden="true"
+                aria-label="label.download"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                 focusable="false"
+                role="img"
                 viewBox="0 0 24 24"
               >
                 <svg>
@@ -217,8 +219,10 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             >
               <svg
                 aria-hidden="true"
+                aria-label="label.share"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                 focusable="false"
+                role="img"
                 viewBox="0 0 24 24"
               >
                 <svg>

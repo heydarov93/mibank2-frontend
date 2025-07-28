@@ -1,45 +1,49 @@
+import { ThemeProvider } from '@mui/material';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorPage } from './ErrorPage';
 
+import { theme } from 'theme/theme';
+
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (str: string) => {
-      const translations: Record<string, string> = {
-        title: '404 - Page Not Found',
-        subTitle:
-          'The page you are looking for might have been removed or is temporary unavailable.',
-        text: 'Go back to',
-        linkText: 'Home',
-      };
-      return translations[str] || str;
-    },
+    t: (key: string) => key,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
-describe('ErrorPage Component', () => {
-  it('snapshot should match', () => {
-    const { asFragment } = render(<ErrorPage />);
-    expect(asFragment()).toMatchSnapshot();
+const renderPage = () => {
+  return render(
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <ErrorPage />
+      </ThemeProvider>
+    </BrowserRouter>,
+  );
+};
+
+describe('ErrorPage', () => {
+  it('renders the page components correctly', () => {
+    renderPage();
+
+    expect(screen.getByText('title')).toBeInTheDocument();
+    expect(screen.getByText('subTitle')).toBeInTheDocument();
+    expect(screen.getByText('text')).toBeInTheDocument();
   });
 
-  it('should render the correct title and subtitle', () => {
-    render(<ErrorPage />);
+  it('renders link and link to home', () => {
+    renderPage();
 
-    expect(screen.getByText('404 - Page Not Found')).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        'The page you are looking for might have been removed or is temporary unavailable.',
-      ),
-    ).toBeInTheDocument();
-  });
-
-  it('should render the correct text and link', () => {
-    render(<ErrorPage />);
-
-    expect(screen.getByText('Go back to')).toBeInTheDocument();
-    const link = screen.getByRole('link', { name: 'Home' });
+    const link = screen.getByRole('link', { name: 'linkText' });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/');
+  });
+
+  it('matches snapshot', () => {
+    const { container } = renderPage();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -11,23 +11,21 @@ import {
   StyledFormTitle,
   StyledLabel,
 } from './CreateForgotPasswordForm.styled';
+import { VerificationCodeInput } from './molecules';
 
 import { useConfirmForgotPasswordMutation } from 'api/services/user-account-service/user-accounts.api';
-import { ButtonLink, SubmitButton } from 'components/atoms';
-import {
-  PasswordField,
-  PasswordValidationTags,
-  VerificationCodeInputField,
-} from 'components/molecules';
+import { LinkButton, SubmitButton } from 'components/atoms';
+import { PasswordField, PasswordValidationTags } from 'components/molecules';
 import {
   TO_CREATE_FORGOT_PASSWORD_FINISHED,
   TO_SIGN_IN,
-} from 'constants/routesName';
+} from 'constants/navigation/routePaths';
+import { LOCAL_STORAGE_KEYS } from 'constants/security/storageAuthKeys';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
 import { IForgotPasswordFormInput } from 'models/IAuth';
 import { IErrorData } from 'models/IError';
-import { setError } from 'store/reducers';
+import { setError } from 'store/slices/auth';
 import { forgotPasswordSchema, TForgotPasswordValues } from 'validation';
 
 export const CreateForgotPasswordForm = () => {
@@ -87,7 +85,7 @@ export const CreateForgotPasswordForm = () => {
 
   const onSubmit = async (data: IForgotPasswordFormInput) => {
     const userData = {
-      email: localStorage.getItem('email'),
+      email: localStorage.getItem(LOCAL_STORAGE_KEYS.Email),
       code: data.verificationCode,
       newPassword: data.password,
     };
@@ -154,7 +152,7 @@ export const CreateForgotPasswordForm = () => {
                 {t('EnterVerificatonCode')}
               </StyledLabel>
             </Box>
-            <VerificationCodeInputField
+            <VerificationCodeInput
               control={control}
               name="verificationCode"
               errors={errors}
@@ -167,10 +165,10 @@ export const CreateForgotPasswordForm = () => {
         </StyledFormContent>
         <SubmitButton buttonContent={t('Confirm')} isDisabled={!isValid} />
       </StyledForm>
-      <ButtonLink
+      <LinkButton
         message="SignupPage.haveAccountMsg"
         linkText="SignupPage.moveToLoginLink"
-        href={TO_SIGN_IN}
+        to={TO_SIGN_IN}
       />
     </>
   );

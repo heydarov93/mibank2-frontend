@@ -10,13 +10,14 @@ import { useAppDispatch } from './useAppDispatch';
 import useDisclosure from './useDisclosure';
 
 import { usePostRegistrationInfoMutation } from 'api/services/user-account-service/user-accounts.api';
-import { TO_HOME, TO_SIGN_IN } from 'constants/routesName';
+import { DATE_FORMATS } from 'constants/business/date';
+import { TO_HOME, TO_SIGN_IN } from 'constants/navigation/routePaths';
 import { EErrorStatus } from 'enums';
 import { EStepper } from 'enums/EStepper';
 import { IErrorData } from 'models/IError';
 import { IPersonalInfo } from 'models/IRegistration';
 import { IRegistrationForApi } from 'models/IRegistrationForApi';
-import { setError } from 'store/reducers';
+import { setError } from 'store/slices/auth';
 import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 import {
   TUserAddressRegisterValues,
@@ -66,7 +67,8 @@ const stepsSequence = [
   EStepper.ADDRESS,
 ] as const;
 
-const formatDate = (date: string | Date) => dayjs(date).format('YYYY-MM-DD');
+const formatDate = (date: string | Date) =>
+  dayjs(date).format(DATE_FORMATS.YYYY_MM_DD);
 
 export const useRegFormFlow = () => {
   const { t } = useTranslation('translation');

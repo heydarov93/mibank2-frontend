@@ -1,6 +1,6 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
-import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { Dayjs } from 'dayjs';
@@ -19,14 +19,15 @@ import {
   StyledTextButtons,
 } from './DocumentDatePicker.styled';
 
+import { DATE_FORMATS, WEEK_START_DAY_INDEX } from 'constants/business/date';
 import { IDocumentInfo } from 'models/IRegistration';
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
-  weekStart: 1,
+  weekStart: WEEK_START_DAY_INDEX,
 });
 
-interface PassportExpFieldProps<T extends FieldValues> {
+interface DocumentDatePickerProps<T extends FieldValues> {
   name: Path<T>;
   id: string;
   control: Control<T>;
@@ -44,7 +45,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
   minDate,
   maxDate,
   placeholder,
-}: PassportExpFieldProps<T>) => {
+}: DocumentDatePickerProps<T>) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(500));
   const { t } = useTranslation('translation');
@@ -61,7 +62,7 @@ export const DocumentDatePicker = <T extends FieldValues>({
             maxDate={maxDate}
             dayOfWeekFormatter={(weekday) => `${weekday.format('ddd')}`}
             showDaysOutsideCurrentMonth
-            format="DD/MM/YYYY"
+            format={DATE_FORMATS.DD_MM_YYYY}
             slots={{
               openPickerIcon: CalendarTodayOutlinedIcon,
               actionBar: StyledTextButtons,

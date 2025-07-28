@@ -1,5 +1,6 @@
-import { ChevronLeftRounded, ChevronRightRounded } from '@mui/icons-material';
-import { Box } from '@mui/material';
+import ChevronLeftRounded from '@mui/icons-material/ChevronLeftRounded';
+import ChevronRightRounded from '@mui/icons-material/ChevronRightRounded';
+import Box from '@mui/material/Box';
 import { Children, ReactNode, useState, useCallback, useMemo } from 'react';
 
 import { SLIDE_USER_CARD_WIDTH } from '../CardsContent/CardsContent';
@@ -10,6 +11,8 @@ import {
   StyledPaginationContainer,
   StyledPaginationIndicator,
 } from './UserBankCardsCarousel.styled';
+
+import { MIN_PAGES_FOR_PAGINATION } from 'constants/business/pagination';
 
 const GAP_BETWEEN = 65;
 const CARDS_PER_VIEW = 3;
@@ -87,7 +90,7 @@ export const UserBankCardsCarousel = ({
         <ChevronRightRounded />
       </StyledNavigationButton>
 
-      {totalPages > 1 && (
+      {totalPages > MIN_PAGES_FOR_PAGINATION && (
         <StyledPaginationContainer data-testid="pagination-container">
           {Array.from({ length: totalPages }, (_, index) => (
             <StyledPaginationIndicator

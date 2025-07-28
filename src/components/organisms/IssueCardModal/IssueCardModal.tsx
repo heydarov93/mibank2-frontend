@@ -1,28 +1,28 @@
-import { Box, Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { InfoAlert } from '../InfoAlert/InfoAlert';
-import { SimpleAlert } from '../SimpleAlert/SimpleAlert';
+import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
 
+import { LoadingIndicator, StyledDialog } from './IssueCardModal.styled';
+import { IssueCardModalBottomAlert } from './atoms';
 import {
+  IssuanceCardInfo,
   IssueCardModalActions,
   IssueCardModalSelects,
   IssueCardsSelectionList,
   SelectedCardForm,
 } from './molecules';
 
-import { LoadingIndicator, StyledDialog } from 'components/atoms';
-import {
-  IssuanceCardInfo,
-  ModalHeader,
-  NavigationWarningModal,
-} from 'components/atoms';
-import { IssueCardModalBottomAlert } from 'components/atoms';
+import { ModalHeader } from 'components/atoms';
+import { SimpleAlert } from 'components/molecules';
 import { useCardIssuance } from 'components/organisms/IssueCardModal/hooks/useCardIssuance';
 import { useCardIssueFlow } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
-import { DIALOGS_ANIMATION_TIME } from 'constants/animationsInfo';
+import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
 import useDisclosure from 'hooks/useDisclosure';
 
@@ -69,7 +69,7 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
   function handleCloseSuccessAlert() {
     successAlert.close();
     handleClose();
-    setTimeout(reset, DIALOGS_ANIMATION_TIME);
+    setTimeout(reset, MODAL_DISPLAY_TIMEOUT);
   }
 
   function handleCloseErrorAlert() {

@@ -1,9 +1,6 @@
 import { FieldError } from 'react-hook-form';
 
-import {
-  VALIDATION_LIMITS,
-  VALIDATION_PATTERNS,
-} from 'constants/validationPatternConstants';
+import { VALIDATION_LIMITS, VALIDATION_PATTERNS } from 'constants/validation/patterns';
 
 export const removeSpaces = (value: string) => value?.replace(/\s+/g, '') || '';
 export const isValidVerificationCodeLength = (value: string) =>

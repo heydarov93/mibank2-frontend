@@ -1,22 +1,31 @@
-import { SvgIcon, SxProps, Theme } from '@mui/material';
-import React from 'react';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as FilterIcon } from 'assets/icons/TableFilterIcon.svg';
+import { ReactComponent as FilterSVG } from 'assets/icons/TableFilterIcon.svg';
 
-interface TableFilterIconProps {
-  sx?: SxProps<Theme>;
+interface TableFilterIconProps extends Omit<SvgIconProps, 'children'> {
+  sx?: SvgIconProps['sx'];
 }
 
-const TableFilterIcon = ({ sx, ...props }: TableFilterIconProps) => {
-  return (
-    <SvgIcon
-      viewBox="0 0 10 18"
-      sx={{ height: '18px', width: '10px', ...sx }}
-      {...props}
-    >
-      <FilterIcon />
-    </SvgIcon>
-  );
-};
+export const TableFilterIcon = memo<TableFilterIconProps>(
+  ({ sx, ...props }: TableFilterIconProps) => {
+    const { t } = useTranslation('translation', {
+      keyPrefix: 'Accessibility',
+    });
 
-export default TableFilterIcon;
+    return (
+      <SvgIcon
+        viewBox="0 0 10 18"
+        sx={{ height: '18px', width: '10px', ...sx }}
+        role="img"
+        aria-label={t('label.TableFilter')}
+        {...props}
+      >
+        <FilterSVG />
+      </SvgIcon>
+    );
+  },
+);
+
+TableFilterIcon.displayName = 'FilterIcon';
