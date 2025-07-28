@@ -1,12 +1,5 @@
-import { UserAuthWrapper, Footer, SignupWithEmail } from 'components/organisms';
+import { SignUpLayout } from 'components/layouts';
 
 export const SignUpPage = () => {
-  return (
-    <>
-      <UserAuthWrapper>
-        <SignupWithEmail />
-      </UserAuthWrapper>
-      <Footer />
-    </>
-  );
+  return <SignUpLayout />;
 };

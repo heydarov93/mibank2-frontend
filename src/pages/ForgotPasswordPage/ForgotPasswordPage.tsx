@@ -1,22 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-
-import { BackArrow } from 'components/atoms';
-import { UserAuthWrapper, Footer, ForgotPassword } from 'components/organisms';
-import { TO_SIGN_IN } from 'constants/navigation/routePaths';
+import { ForgotPasswordLayout } from 'components/layouts';
 
 export const ForgotPasswordPage = () => {
-  const navigate = useNavigate();
-  const handleBackClick = () => {
-    navigate(TO_SIGN_IN);
-  };
-
-  return (
-    <>
-      <UserAuthWrapper>
-        <BackArrow onBackClick={handleBackClick} />
-        <ForgotPassword />
-      </UserAuthWrapper>
-      <Footer />
-    </>
-  );
+  return <ForgotPasswordLayout />;
 };

@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { createSearchParams } from 'react-router-dom';
 
-import { StyledButtonsContainer } from './SelectView.styled';
+import { StyledButtonsContainer, StyledTitle } from './SelectView.styled';
 
 import { TransferButton } from 'components/molecules';
-import { TRANSFER_METHODS } from 'pages/TransfersPage/TransfersPage';
-import { StyledTitle } from 'pages/TransfersPage/TransfersPage.styled';
+import { TRANSFER_METHODS } from 'constants/business/transfers';
 
 export const SelectView = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });

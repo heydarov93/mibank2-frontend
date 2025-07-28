@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 
 export const StyledButtonsContainer = styled(Box)(({ theme: { spacing } }) => ({
@@ -9,3 +10,12 @@ export const StyledButtonsContainer = styled(Box)(({ theme: { spacing } }) => ({
   marginTop: spacing(6),
   marginInline: 'auto',
 }));
+
+export const StyledTitle = styled(Typography)(
+  ({ theme: { palette, typography } }) => ({
+    fontFamily: typography.mediumLogo?.fontFamily,
+    fontSize: '26px',
+    fontWeight: 600,
+    color: palette.common.black,
+  }),
+);
