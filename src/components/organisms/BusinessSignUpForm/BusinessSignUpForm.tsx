@@ -87,7 +87,6 @@ export const BusinessSignUpForm = () => {
           }
           const errorKeys = existError.map(([key]: [string, boolean]) => key);
           if (errorKeys.includes('isEmailAlreadyTaken')) {
-            dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
             setFormError(
               'companyEmail',
               {
@@ -98,7 +97,6 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isNipAlreadyTaken')) {
-            dispatch(setError(`${t('form.error.nipAlreadyRegistered')}`));
             setFormError(
               'nip',
               {
@@ -109,9 +107,6 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isCompanyNameAlreadyTaken')) {
-            dispatch(
-              setError(`${t('form.error.companyNameAlreadyRegistered')}`),
-            );
             setFormError(
               'companyName',
               {
@@ -124,7 +119,7 @@ export const BusinessSignUpForm = () => {
           break;
         }
         case EErrorStatus.TOO_MANY_REQUESTS:
-          dispatch(setError(t('form.error.serverError')));
+          dispatch(setError(t('form.error.tooManyRequests')));
           break;
         default:
           dispatch(setError(t('form.error.serverError')));
