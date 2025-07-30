@@ -1,12 +1,17 @@
 import * as yup from 'yup';
 
+import { t } from 'config';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
 } from 'constants/validation/patterns';
-import { t } from 'i18n';
-import { isMinimumInteger, isMinimumValue, isNonNegative, isPositiveInteger, isPositiveNumber } from 'utils/helpers/validationHelpers';
-
+import {
+  isMinimumInteger,
+  isMinimumValue,
+  isNonNegative,
+  isPositiveInteger,
+  isPositiveNumber,
+} from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'BackOffice.depositEditFormErrors';
 

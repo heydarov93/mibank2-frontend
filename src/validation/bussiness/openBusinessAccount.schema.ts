@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { t } from 'i18n';
+import { t } from 'config';
 
 const VALIDATION_KEY = 'OpenBusinessAccountModal.errors';
 const requiredField = `${VALIDATION_KEY}.requiredField`;

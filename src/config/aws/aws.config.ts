@@ -1,7 +1,7 @@
 /* eslint-disable */
 // WARNING: DO NOT EDIT.
 
-const awsmobile = {
+export const awsConfig = {
   aws_project_region: process.env.REACT_APP_REGION,
   aws_cognito_region: process.env.REACT_APP_REGION,
   aws_user_pools_id: process.env.REACT_APP_USERPOOLID,
@@ -13,5 +13,3 @@ const awsmobile = {
     userPoolWebClientId: process.env.REACT_APP_USERPOOLWEBCLIENTID,
   },
 };
-
-export default awsmobile;
