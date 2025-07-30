@@ -1,11 +1,11 @@
 import * as yup from 'yup';
 
+import { t } from 'config';
 import { POLISH_CITIES } from 'constants/data/geo';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
 } from 'constants/validation/patterns';
-import { t } from 'i18n';
 
 const VALIDATION_KEY = 'BusinessLoginPage.form.validation';
 const requiredField = `${VALIDATION_KEY}.required`;

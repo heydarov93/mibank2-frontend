@@ -8,9 +8,9 @@ import { CardIssueFormValues } from '../../hooks/useCardIssueFlow';
 
 import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';
+import { t } from 'config';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EAccount } from 'enums/EAccount';
-import { t } from 'i18n';
 import { ECardType, ECardIssueType, ECardIssuer } from 'models/IProductInfo';
 
 const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));

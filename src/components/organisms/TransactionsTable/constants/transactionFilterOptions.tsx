@@ -1,9 +1,9 @@
 import { TransfersDateRangePicker } from '../molecules';
 
 import { SelectFieldOption } from 'components/molecules';
+import { t } from 'config';
 import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
-import { t } from 'i18n';
 
 const path = 'Transfers.filters.options';
 

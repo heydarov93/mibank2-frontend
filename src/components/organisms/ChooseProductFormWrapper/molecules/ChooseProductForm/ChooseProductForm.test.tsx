@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { ChooseProductForm } from './ChooseProductForm';
 
-import i18n from 'i18n';
+import { i18n } from 'config';
 import chooseProductReducer from 'store/slices/products/ChooseProductSlice';
 import productStepperReducer from 'store/slices/products/ProductStepperSlice';
 

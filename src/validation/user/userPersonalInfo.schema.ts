@@ -1,12 +1,14 @@
 import * as yup from 'yup';
 
+import { t } from 'config';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
 } from 'constants/validation/patterns';
-import { t } from 'i18n';
-import { hasOnlyOneCapitalLetter, isValidPhoneLength } from 'utils/helpers/validationHelpers';
-
+import {
+  hasOnlyOneCapitalLetter,
+  isValidPhoneLength,
+} from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'RegistrationPage';
 const requiredField = `${VALIDATION_KEY}.requiredField`;

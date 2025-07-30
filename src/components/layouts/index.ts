@@ -1,4 +1,5 @@
 export { AllCardsLayout } from './AllCardsLayout/AllCardsLayout';
+export { AppLayout } from './AppLayout/AppLayout';
 export { BackOfficeErrorLayout } from './BackOfficeErrorLayout/BackOfficeErrorLayout';
 export { BackOfficeLayout } from './BackOfficeLayout/BackOfficeLayout';
 export { BackOfficeVerificationErrorLayout } from './BackOfficeVerificationErrorLayout/BackOfficeVerificationErrorLayout';

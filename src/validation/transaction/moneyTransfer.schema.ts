@@ -1,12 +1,12 @@
 import { IBAN } from 'ibankit';
 import * as yup from 'yup';
 
+import { t } from 'config';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
 } from 'constants/validation/patterns';
-import { t } from 'i18n';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { checkValidCardNumber } from 'utils/checkers/cardNumberChecker';
 import { removeSpaces } from 'utils/helpers/validationHelpers';

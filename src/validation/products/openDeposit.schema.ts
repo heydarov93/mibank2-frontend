@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { t } from 'i18n';
+import { t } from 'config';
 
 const VALIDATION_KEY = 'DepositWindow.validation';
 
@@ -22,6 +22,4 @@ export const openDepositSchema = yup.object().shape({
     .oneOf([true], t(`${VALIDATION_KEY}.termsRequiredCheckbox`)),
 });
 
-export type TOpenDepositValues = yup.InferType<
-  typeof openDepositSchema
->;
+export type TOpenDepositValues = yup.InferType<typeof openDepositSchema>;
