@@ -41,15 +41,15 @@ function MyDepositsAccordion() {
               <StyledDepositTab label={t('withdrawalTabLabel')} />
             </Tabs>
           </Box>
-          <TabPanel index={value} value={0}>
+          <TabPanel index={0} value={value}>
             <Box padding={3}>
               <EmptySection />
             </Box>
           </TabPanel>
-          <TabPanel index={value} value={1}>
+          <TabPanel index={1} value={value}>
             <InformationTabContent />
           </TabPanel>
-          <TabPanel index={value} value={2}>
+          <TabPanel index={2} value={value}>
             <Box padding={3}>
               <EmptySection />
             </Box>
