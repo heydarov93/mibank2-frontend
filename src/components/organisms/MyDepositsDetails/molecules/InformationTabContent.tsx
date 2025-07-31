@@ -23,6 +23,7 @@ function InformationTabContent() {
           PL 12 111 6666 0000000012345678
         </StyledInfoFieldValue>
         <StyledCopyIconButton
+          aria-label="Copy account number"
           onClick={() => copyToClipboard('PL 12 111 6666 0000000012345678')}
         >
           <ContentCopyOutlined />
