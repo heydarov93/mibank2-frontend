@@ -8,7 +8,11 @@ import { MyTransactionsSection } from '../MyTransactionsSection/MyTransactionsSe
 import { StyledButton } from './Sidebar.styled';
 import { Container, EmptySection, Section } from './molecules';
 
-import { TO_HISTORY, TO_HOME } from 'constants/navigation/routePaths';
+import {
+  TO_DEPOSITS,
+  TO_HISTORY,
+  TO_HOME,
+} from 'constants/navigation/routePaths';
 
 interface SidebarProps {
   onIssueCardModalOpen: () => void;
@@ -46,7 +50,7 @@ export function Sidebar({
       <Section
         title={t('myDeposits.title')}
         onAddProduct={onDepositsModalOpen}
-        seeAllRoute={TO_HOME}
+        seeAllRoute={TO_DEPOSITS}
       >
         <EmptySection />
       </Section>

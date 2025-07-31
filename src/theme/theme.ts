@@ -36,6 +36,21 @@ export const theme = createTheme({
     },
   },
   palette: {
+    custom: {
+      primary: {
+        darkGray: '#1F2428',
+      },
+      gray: {
+        400: '#54585C',
+      },
+      basic: {
+        black: '#060608',
+      },
+      success: {
+        chipText: '#0A9341',
+        chipBg: '#68D19040',
+      },
+    },
     common: {
       white: '#FFFFFF',
       black: '#060E20',

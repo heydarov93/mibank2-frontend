@@ -6,10 +6,7 @@ import { StyledContainer } from './DepositDetails.styled';
 
 import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import {
-  DepositDetailsContent,
-  OpenDepositModal,
-} from 'components/organisms';
+import { DepositDetailsContent, OpenDepositModal } from 'components/organisms';
 import { ErrorMessage } from 'components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage';
 import useDisclosure from 'hooks/useDisclosure';
 import { IDeposit } from 'models/IDepositInfo';

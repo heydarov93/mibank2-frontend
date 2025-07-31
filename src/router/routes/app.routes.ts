@@ -1,10 +1,12 @@
 import { RouteObject } from 'react-router-dom';
 
 import {
+  TO_DEPOSITS,
   TO_HISTORY,
   TO_PAYMENTS,
   TO_TRANSFERS,
 } from 'constants/navigation/routePaths';
+import { MyDepositsPage } from 'pages/MyDepositsPage/MyDepositsPage';
 import {
   HomePage,
   TransactionsHistoryPage,
@@ -29,5 +31,9 @@ export const protectedAppRoutes: RouteObject[] = [
   {
     path: TO_HISTORY,
     element: withSuspense(TransactionsHistoryPage),
+  },
+  {
+    path: TO_DEPOSITS,
+    element: withSuspense(MyDepositsPage),
   },
 ];

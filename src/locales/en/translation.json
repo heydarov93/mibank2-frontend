@@ -86,6 +86,24 @@
       "errorMessage": "An error occurred while loading available offers"
     }
   },
+  "myDepositsPage": {
+        "title": "My Deposits",
+        "tabAriaLabel": "My Deposit Details Tab",
+        "transactionsTabLabel": "Transactions",
+        "informationTabLabel": "Information",
+        "withdrawalTabLabel": "Withdrawal",
+        "summaryLabels": {
+          "amount": "Amount",
+          "duration": "Duration",
+          "endingDate": "Ending date"
+        },
+        "status": {
+        "active": "Active",
+        "matured": "Matured",
+        "withdrawn": "Withdrawn",
+        "blocked": "Blocked"
+        }
+      },
   "DepositWindow": {
     "availableDeposits": "Available Deposits",
     "openDeposit": "Open deposit",
@@ -1084,7 +1102,8 @@
       "transaction": "Transaction",
       "cityMenu": "CityMenu",
       "ArrowDown": "ArrowDown",
-      "cardIssuer": "{{label}} card issuer"
+      "cardIssuer": "{{label}} card issuer",
+      "coinsStacked": "CoinsStacked"
     }
   }
 }
