@@ -6,12 +6,12 @@ import {
   TO_PAYMENTS,
   TO_TRANSFERS,
 } from 'constants/navigation/routePaths';
-import { MyDepositsPage } from 'pages/MyDepositsPage/MyDepositsPage';
 import {
   HomePage,
   TransactionsHistoryPage,
   TransfersPage,
   UnderDevPage,
+  MyDepositsPage,
 } from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
