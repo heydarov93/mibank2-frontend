@@ -7,10 +7,10 @@ import {
   OpenDepositRow,
 } from './molecules';
 
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface DepositDetailsContentProps {
-  deposit: IDeposit;
+  deposit: IDisplayDeposit;
   imageSrc: string;
   onOpenForm: () => void;
   onBack: () => void;

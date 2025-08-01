@@ -18,18 +18,22 @@ import {
   TO_SIGN_UP,
 } from 'constants/navigation/routePaths';
 
-enum EPanel {
+enum EWelcomeNav {
   Personal,
   Business,
   About,
 }
 
-export const WelcomeNavbar = ({ activePanel }: { activePanel: EPanel }) => {
+interface WelcomeNavbarProps {
+  activePanel: EWelcomeNav;
+}
+
+export const WelcomeNavbar = ({ activePanel }: WelcomeNavbarProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'header.welcomeNavMenu',
   });
   // TODO: update with actual routes
-  const isPersonal = activePanel === EPanel.Personal;
+  const isPersonal = activePanel === EWelcomeNav.Personal;
   const signIn = {
     label: isPersonal ? t('personalSignIn') : t('businessSignIn'),
     route: isPersonal ? TO_SIGN_IN : TO_BUSINESS_LOG_IN,
@@ -50,7 +54,7 @@ export const WelcomeNavbar = ({ activePanel }: { activePanel: EPanel }) => {
           </ListItem>
         ))}
       </List>
-      {activePanel !== EPanel.About && (
+      {activePanel !== EWelcomeNav.About && (
         <StyledButtonContainer>
           <StyledNavButton
             to={signIn.route}

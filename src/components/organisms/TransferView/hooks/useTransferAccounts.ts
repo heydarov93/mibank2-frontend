@@ -1,40 +1,9 @@
 import { useCardAccounts } from './useCardAccounts';
 import { useIBANAccounts } from './useIBANAccounts';
 
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { TCardIssuer } from 'types/types';
+import { ISavedCardAccount, ISavedIBANAccount } from 'models/IAccount';
+import { TTransferMethod } from 'types/types';
 
-export interface IUserIBANAccount {
-  type: 'iban';
-  id: string;
-  number: string;
-  currency: string;
-  balance: number;
-}
-
-export interface IUserCardAccount {
-  type: 'card';
-  id: string;
-  number: string;
-  currency: string;
-  balance: number;
-  issuer: TCardIssuer;
-}
-
-export interface ISavedIBANAccount {
-  type: 'iban';
-  id: string;
-  number: string;
-  label: string;
-}
-
-export interface ISavedCardAccount {
-  type: 'card';
-  id: string;
-  number: string;
-  label: string;
-  issuer: TCardIssuer;
-}
 
 export const useTransferAccounts = (method: TTransferMethod) => {
   const isMethodIBAN = method === 'iban';

@@ -18,10 +18,10 @@ import {
 import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
-import { FormStepProps, IDocumentInfo } from 'models/IRegistration';
+import { IDocumentInfo } from 'models/IRegistration';
 import { checkAllowedKey } from 'utils/checkers';
 
-export const DocumentInfo = ({ onBack }: FormStepProps) => {
+export const DocumentInfo = ({ onBack }: { onBack: () => void }) => {
   const { t } = useTranslation('translation');
 
   const dateLimitation = {

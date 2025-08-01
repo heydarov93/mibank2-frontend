@@ -17,16 +17,10 @@ import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
+import { IBusinessSignUpFormData } from 'models/IAuth';
 import { ILegalEntityValidationError } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/slices/auth/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
-
-interface IBusinessSignUpForm {
-  companyName: string;
-  companyEmail: string;
-  nip: string;
-  ownerName: string;
-}
 
 export const BusinessSignUpForm = () => {
   const navigate = useNavigate();
@@ -54,7 +48,7 @@ export const BusinessSignUpForm = () => {
   const [postValidationLegalEntityInfo, { isLoading }] =
     usePostValidationLegalEntityInfoMutation();
 
-  const onSubmit = async (data: IBusinessSignUpForm) => {
+  const onSubmit = async (data: IBusinessSignUpFormData) => {
     try {
       const response: Record<string, boolean> =
         await postValidationLegalEntityInfo(data).unwrap();

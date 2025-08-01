@@ -1,17 +1,14 @@
 import { Box, Stack } from '@mui/material';
 import { HTMLAttributes } from 'react';
 
-import {
-  IUserCardAccountOption,
-  IUserIBANAccountOption,
-} from '../../../../models/IUserAccountOption';
+import { CardIssuerIcon } from 'components/atoms';
+import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
 import {
   ISavedCardAccount,
   ISavedIBANAccount,
-} from '../hooks/useTransferAccounts';
-
-import { CardIssuerIcon } from 'components/atoms';
-import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
+  IUserCardAccountOption,
+  IUserIBANAccountOption,
+} from 'models/IAccount';
 import { formatWithPattern } from 'utils/formatters/textFormatter';
 
 export function renderOption(

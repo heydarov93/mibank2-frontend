@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
-
 import { OpenBusinessAccountModalProps } from 'components/organisms';
 import { STEP_RESET_TIMEOUT } from 'constants/ui/layout';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
@@ -12,10 +11,6 @@ import {
   openBusinessAccountSchema,
   TOpenBusinessAccountValues,
 } from 'validation';
-
-interface useBusinessAccountFlowOptions {
-  onClose: OpenBusinessAccountModalProps['onClose'];
-}
 
 const defaultValues = {
   currency: '',
@@ -27,7 +22,11 @@ const defaultValues = {
 
 export type OpenBusinessAccountFormValues = typeof defaultValues;
 
-export const useBusinessAccountFlow = ({ onClose }: useBusinessAccountFlowOptions) => {
+export const useBusinessAccountFlow = ({
+  onClose,
+}: {
+  onClose: OpenBusinessAccountModalProps['onClose'];
+}) => {
   const formMethods = useForm<TOpenBusinessAccountValues>({
     resolver: yupResolver(openBusinessAccountSchema),
     defaultValues,

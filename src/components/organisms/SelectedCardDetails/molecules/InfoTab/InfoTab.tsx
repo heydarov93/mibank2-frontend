@@ -6,7 +6,7 @@ import { InfoRow } from '../InfoRow/InfoRow';
 
 import { StyledInfoSection } from './InfoTab.styled';
 
-import { IUserBankCard } from 'models/IUserBankCard';
+import { TUserBankCardDetails } from 'types/types';
 import {
   capitalizeFirstLetter,
   copyToClipboard,
@@ -14,25 +14,11 @@ import {
   getDisplayCvv,
 } from 'utils/helpers';
 
-export type TUserBankCardDetails = Pick<
-  IUserBankCard,
-  | 'id'
-  | 'holder'
-  | 'number'
-  | 'cvv'
-  | 'iban'
-  | 'swift'
-  | 'issueDate'
-  | 'cashbackRate'
-  | 'status'
-  | 'isPrimary'
->;
-
-export const InfoTab = ({
-  selectedUserCardDetails,
-}: {
+interface InfoTabProps {
   selectedUserCardDetails: TUserBankCardDetails;
-}) => {
+}
+
+export const InfoTab = ({ selectedUserCardDetails }: InfoTabProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'AllCards.selectedCard',
   });

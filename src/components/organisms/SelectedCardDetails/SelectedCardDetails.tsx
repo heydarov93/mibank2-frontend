@@ -13,7 +13,7 @@ import { ButtonGroup, InfoTab, InfoTabs } from './molecules';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
 import { useUserCardDetails } from 'hooks';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 export const SelectedCardDetails = ({
   selectedCardId,

@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { useGetUserAccountByIBANQuery } from 'api/services/account-service/accounts.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
-import { SelectFieldOption } from 'components/molecules';
 import { IBAN_PATTERN } from 'constants/validation/patterns';
+import { ISelectFieldOption } from 'models/ISelectField';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 import { formatWithPattern } from 'utils/formatters/textFormatter';
 
@@ -13,7 +13,7 @@ export const useUserAccounts = () => {
   const { data, isLoading, ...options } = useGetUserAccountByIBANQuery(
     userIdData?.userId ? { userId: userIdData.userId } : skipToken,
   );
-  const accountOptions: SelectFieldOption[] = useMemo(
+  const accountOptions: ISelectFieldOption[] = useMemo(
     () =>
       Array.from(data ?? [])
         .sort(

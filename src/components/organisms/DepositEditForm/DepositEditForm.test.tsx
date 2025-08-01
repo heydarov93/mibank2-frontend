@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { DepositEditForm } from './DepositEditForm';
 
 import { depositsApi } from 'api';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -25,7 +25,7 @@ const mockStore = configureStore({
   },
 });
 
-const validFormData: Partial<TableData> = {
+const validFormData: Partial<ITableData> = {
   productName: 'Deposit',
   cardDescription: 'Valid Deposit Description',
   cardCurrency: 'USD',

@@ -7,7 +7,7 @@ import { StyledContainer } from './AllCardsLayout.styled';
 
 import { AllCardsSlider, SelectedCardDetails } from 'components/organisms';
 import { COLLAPSE_TIMEOUT, FADE_TIMEOUT } from 'constants/ui/layout';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 export const AllCardsLayout = () => {
   const [selectedCardId, setSelectedCardId] = useState<IUserBankCard['id']>('');

@@ -9,16 +9,16 @@ import {
   Sidebar,
 } from 'components/organisms';
 import { useDisclosure } from 'hooks';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 export function SidebarWrapper() {
-  const [deposit, setDeposit] = useState<IDeposit | null>(null);
-  const [learnDeposit, setLearnDeposit] = useState<IDeposit | null>(null);
+  const [deposit, setDeposit] = useState<IDisplayDeposit | null>(null);
+  const [learnDeposit, setLearnDeposit] = useState<IDisplayDeposit | null>(null);
   const issueCardModal = useDisclosure();
   const depositsModal = useDisclosure();
   const depositLearnModal = useDisclosure();
 
-  function handleSetDeposit(deposit: IDeposit) {
+  function handleSetDeposit(deposit: IDisplayDeposit) {
     setDeposit(deposit);
     depositsModal.close();
   }
@@ -32,7 +32,7 @@ export function SidebarWrapper() {
     setDeposit(null);
   }
 
-  function handleSetLearnDeposit(deposit: IDeposit) {
+  function handleSetLearnDeposit(deposit: IDisplayDeposit) {
     setLearnDeposit(deposit);
     depositsModal.close();
     depositLearnModal.open();

@@ -1,6 +1,8 @@
-import { DepositData, DepositResponseData } from 'models/IProductInfo';
+import { IDepositProductData, IDepositProductResponse } from 'models/IProduct';
 
-export function mapProductData(productData: DepositResponseData): DepositData {
+export function mapProductData(
+  productData: IDepositProductResponse,
+): IDepositProductData {
   return {
     id: productData.id,
     productType: productData?.type?.split(' ').at(1) ?? '',

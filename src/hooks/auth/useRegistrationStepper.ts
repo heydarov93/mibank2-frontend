@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ObjectSchema } from 'yup';
 
 import { usePostRegistrationInfoMutation } from 'api/services/user-account-service/user-accounts.api';
+import { IRegistrationResponse } from 'api/services/user-account-service/user-acounts.types';
 import { DATE_FORMATS } from 'constants/business/date';
 import { TO_HOME, TO_SIGN_IN } from 'constants/navigation/routePaths';
 import { EErrorStatus } from 'enums';
@@ -14,7 +15,6 @@ import { EStepper } from 'enums/EStepper';
 import { useAppDispatch, useDisclosure } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { IPersonalInfo } from 'models/IRegistration';
-import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { setError } from 'store/slices/auth';
 import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 import {
@@ -111,7 +111,7 @@ export const useRegistrationStepper = () => {
     queueMicrotask(trigger);
   };
 
-  const createDataForApi = (formData: RegFormData): IRegistrationForApi => {
+  const createDataForApi = (formData: RegFormData): IRegistrationResponse => {
     return {
       personalInfo: {
         firstName: formData.name,

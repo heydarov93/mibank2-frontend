@@ -7,27 +7,12 @@ import {
   DEFAULT_PAGE_SIZE,
 } from 'constants/business/pagination';
 import { IBackOfficeErrorData } from 'models/IError';
-import { TableData } from 'models/ITableData';
+import { IProductState } from 'models/IProduct';
+import { ITableData } from 'models/ITable';
 import { THttpStatus } from 'types/types';
 
-interface BackOfficeState {
-  isDeleteVisible: boolean;
-  selectedProduct: Partial<TableData>;
-  confirmationTitle: string;
-  confirmationBody: string;
-  warningTitle: string;
-  warningBody: string;
-  isConfirmationWindowVisible: boolean;
-  isEditFormVisible: boolean;
-  isDepositFormVisible: boolean;
-  formData: Partial<TableData>;
-  page: number;
-  pageSize: number;
-  errorMessage: string;
-}
-
 export const useProductActions = () => {
-  const initialState: BackOfficeState = {
+  const initialState: IProductState = {
     isDeleteVisible: false,
     selectedProduct: {},
     confirmationTitle: '',
@@ -46,7 +31,7 @@ export const useProductActions = () => {
   const [state, setState] = useState(initialState);
 
   const actions = {
-    handleDelete: (product: Partial<TableData>) => {
+    handleDelete: (product: Partial<ITableData>) => {
       setState((prev) => ({
         ...prev,
         selectedProduct: product,
@@ -74,7 +59,7 @@ export const useProductActions = () => {
       }));
     },
 
-    handleEdit: (product: Partial<TableData>) => {
+    handleEdit: (product: Partial<ITableData>) => {
       setState((prev) => ({
         ...prev,
         formData: product,

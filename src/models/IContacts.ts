@@ -1,4 +1,4 @@
-interface IContactInfo {
+export interface IContact {
   id: number;
   email: string;
   phoneNumber: string;
@@ -9,7 +9,6 @@ interface IContactInfo {
   contactCenterShortenedDayBeginTime: string;
   contactCenterShortenedDayEndTime: string;
 }
-
-export interface IContacts {
-  info: IContactInfo;
+export interface IContactsInfo {
+  info: IContact;
 }

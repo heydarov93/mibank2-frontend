@@ -6,10 +6,10 @@ interface IDepositBase {
   amount: number;
 }
 
-export type TCreateUserDepositRequest = IDepositBase;
-export type TUserDepositTag =
-  (typeof USER_DEPOSIT_TAGS)[keyof typeof USER_DEPOSIT_TAGS];
-
 export interface IUserDepositResponse extends IDepositBase {
   id: number;
 }
+
+export type TCreateUserDepositRequest = IDepositBase;
+export type TUserDepositTag =
+  (typeof USER_DEPOSIT_TAGS)[keyof typeof USER_DEPOSIT_TAGS];

@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledCountrySelectField } from './CountrySelectField.styled';
 
 import { countries } from 'constants/data/geo';
+import { ICountryOption } from 'models/ICountry';
 
 interface CountrySelectFieldProps<T extends FieldValues> {
   name: Path<T>;
@@ -23,16 +24,9 @@ interface CountrySelectFieldProps<T extends FieldValues> {
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-interface CountryOptionType {
-  code: string;
-  label: string;
-  phone: string;
-  isInEurope?: boolean;
-}
-
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: (option: CountryOptionType) => option.label,
+  stringify: (option: ICountryOption) => option.label,
 });
 
 export const CountrySelectField = <T extends FieldValues>({
@@ -50,7 +44,7 @@ export const CountrySelectField = <T extends FieldValues>({
       control={control}
       render={({ field }) => {
         return (
-          <Autocomplete<CountryOptionType>
+          <Autocomplete<ICountryOption>
             {...field}
             options={countries}
             getOptionLabel={(option) => option.label}

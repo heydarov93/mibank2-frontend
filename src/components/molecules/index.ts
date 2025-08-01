@@ -11,7 +11,7 @@ export { CitySelectField } from './CitySelectField/CitySelectField';
 export { WarningWindow } from './WarningWindow/WarningWindow';
 export { BackOfficeViewHeader } from './BackOfficeViewHeader/BackOfficeViewHeader';
 export { NoMatchesFound } from './NoMatchesFound/NoMatchesFound';
-export { SelectField, type SelectFieldOption } from './SelectField/SelectField';
+export { SelectField } from './SelectField/SelectField';
 export {
   IssuanceCard,
   type IssuanceCardProps,

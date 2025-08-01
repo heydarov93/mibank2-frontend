@@ -21,7 +21,7 @@ import {
 } from 'store/slices/auth/AuthSlice';
 import { localTokenHandler } from 'utils/auth';
 
-interface Props {
+interface UseLoginParams {
   dispatch: (action: Action) => void;
   setIsFormDisabled: Dispatch<SetStateAction<boolean>>;
   resetForm: () => void;
@@ -33,7 +33,7 @@ export const useLoginHandler = ({
   setIsFormDisabled,
   resetForm,
   resetField,
-}: Props) => {
+}: UseLoginParams) => {
   const navigate = useNavigate();
   const [authorize] = useAuthorizeMutation();
   const [sendcode] = useSendcodeMutation();

@@ -37,13 +37,11 @@ import {
   setAuthData,
 } from 'utils/auth';
 
-type OtpVerificationFormProps = {
-  disableFields?: boolean;
-};
-
 export const OtpVerificationForm = ({
   disableFields = false,
-}: OtpVerificationFormProps) => {
+}: {
+  disableFields: boolean;
+}) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'VerificationPage',
   });

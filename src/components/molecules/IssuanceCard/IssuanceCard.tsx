@@ -8,16 +8,18 @@ import { CardWrapper, StyledTypography } from './IssuanceCard.styled';
 import { ReactComponent as MastercardIconSVG } from 'assets/icons/Mastercard.svg';
 import { ReactComponent as SimpleLogoSVG } from 'assets/icons/SimpleLogo.svg';
 import { ReactComponent as SimpleVisaIconSVG } from 'assets/icons/SimpleVisaIcon.svg';
-import { ECardIssuer, ECardType, IssuanceCardData } from 'models/IProductInfo';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { ECardType } from 'enums/ECardType';
+import { IIssuanceCardData } from 'models/ICard';
 
 export type IssuanceCardProps = Pick<
-  IssuanceCardData,
+  IIssuanceCardData,
   'cardName' | 'issueCurrency' | 'cardCurrency' | 'cardIssuer'
 > & {
-  issueFee?: IssuanceCardData['issueFee'];
-  monthlyFee?: IssuanceCardData['monthlyFee'];
-  cashback?: IssuanceCardData['cashbackRate'];
-  cardType?: IssuanceCardData['cardType'];
+  issueFee?: IIssuanceCardData['issueFee'];
+  monthlyFee?: IIssuanceCardData['monthlyFee'];
+  cashback?: IIssuanceCardData['cashbackRate'];
+  cardType?: IIssuanceCardData['cardType'];
   background: string;
 };
 

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { TTransferMethod } from 'types/types';
 
 export const useTransferTranslations = (method: TTransferMethod) => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });

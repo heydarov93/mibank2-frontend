@@ -1,6 +1,6 @@
-import { TCurrency, TTransactionType } from "types/types";
+import { TCurrency, TTransactionType } from 'types/types';
 
-export interface Transaction {
+export interface IRawTransaction {
   id: string;
   type: 'INCOME' | 'EXPENSE';
   currencyCode: string;
@@ -9,8 +9,7 @@ export interface Transaction {
   transferType: 'CARD' | 'IBAN';
   source: string;
 }
-
-export interface TransformedTransaction {
+export interface ITransformedTransaction {
   id: string;
   sourceNumber: string;
   amount: number;
@@ -21,12 +20,18 @@ export interface TransformedTransaction {
   time: string;
   currency: string;
 }
-
-export interface ITransaction {
+export interface IDisplayTransaction {
   cardName: string;
   cardNumber: string;
   amount: string;
   currency: TCurrency;
   date: string;
   type: TTransactionType;
+}
+export interface ITransferFormData {
+  fromAccount: string;
+  toAccount: string;
+  amount: string;
+  currency: TCurrency;
+  message?: string;
 }

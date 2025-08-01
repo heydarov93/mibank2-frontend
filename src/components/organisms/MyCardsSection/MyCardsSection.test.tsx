@@ -5,7 +5,7 @@ import { MyCardsSection } from './MyCardsSection';
 
 import { TUserBankCardComponent } from 'components/molecules/UserBankCard/UserBankCard';
 import * as hooks from 'hooks/user/useUserCards';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 jest.mock('../Sidebar/molecules', () => ({
   EmptySection: () => <div data-testid="empty-section">Empty Section</div>,

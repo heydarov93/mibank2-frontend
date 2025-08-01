@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IContacts } from './contacts.types';
-
-import { IFooterContactsInfo } from 'models/IFooterContactsInfo';
+import { IContact, IContactsInfo } from 'models/IContacts';
 import { SLICE_NAMES } from 'store/constants/sliceNames';
 
-const initialState: IContacts = {
+const initialState: IContactsInfo = {
   info: {
     id: 0,
     email: '',
@@ -23,7 +21,7 @@ const ContactsSlice = createSlice({
   name: SLICE_NAMES.CONTACTS,
   initialState,
   reducers: {
-    setContacts: (state, action: PayloadAction<IFooterContactsInfo>) => {
+    setContacts: (state, action: PayloadAction<IContact>) => {
       state.info = action.payload;
     },
   },

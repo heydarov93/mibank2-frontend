@@ -67,7 +67,6 @@ export const businessSignupSchema = yup.object().shape({
           );
         }
 
-        console.log(errors);
         if (errors.length > 0) {
           throw new yup.ValidationError(errors);
         }

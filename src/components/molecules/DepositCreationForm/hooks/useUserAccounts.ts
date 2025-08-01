@@ -1,10 +1,10 @@
 import { useGetUserAccountByIBANQuery } from 'api/services/account-service/accounts.api';
 import { useCreateUserDepositMutation } from 'api/services/deposit-service/user-deposits.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
-import { Account, AccountOption } from 'models/IDepositInfo';
+import { IAccountData, IAccountOption } from 'models/IAccount';
 
 export const useUserAccounts = (): {
-  accountOptions: AccountOption[];
+  accountOptions: IAccountOption[];
   isLoading: boolean;
 } => {
   const { data: userData, isLoading: isUserDataLoading } = useGetUserIdQuery();
@@ -18,8 +18,8 @@ export const useUserAccounts = (): {
       },
     );
 
-  const accountOptions: AccountOption[] =
-    userAccountsData?.map((account: Account) => ({
+  const accountOptions: IAccountOption[] =
+    userAccountsData?.map((account: IAccountData) => ({
       accountId: account.userAccountId,
       iban: account.ibanNum,
       currency: account.currency,

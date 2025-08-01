@@ -1,22 +1,13 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface PaginationInfo {
-  start: number;
-  end: number;
-  total: number;
-  pageDisplayText: string;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-  totalPages: number;
-  isEmpty: boolean;
-}
+import { IPagination } from 'models/IPagination';
 
 export const usePaginationInfo = (
   count: number,
   page: number,
   rowsPerPage: number,
-): PaginationInfo => {
+): IPagination => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'TablePagination',
   });

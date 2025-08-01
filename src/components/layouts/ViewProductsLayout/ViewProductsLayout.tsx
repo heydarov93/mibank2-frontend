@@ -26,8 +26,8 @@ import { ProductType } from 'enums/EProductType';
 import { useProductActions } from 'hooks/product/useProductActions';
 import { useProductFilters } from 'hooks/product/useProductFilters';
 import { IBackOfficeErrorData } from 'models/IError';
-import { DepositResponseData } from 'models/IProductInfo';
-import { TableData } from 'models/ITableData';
+import { IDepositProductResponse } from 'models/IProduct';
+import { ITableData } from 'models/ITable';
 import { mapProductData } from 'utils/mapper';
 
 export const ViewProductsLayout = () => {
@@ -78,7 +78,7 @@ export const ViewProductsLayout = () => {
 
   const allProducts = Object.values(
     products ?? {},
-  ).flat() as DepositResponseData[];
+  ).flat() as IDepositProductResponse[];
 
   const [
     deleteDeposit,
@@ -90,7 +90,7 @@ export const ViewProductsLayout = () => {
   const { filteredTableBody } = useProductFilters(mappedData);
 
   const handleDeleteDeposit = async (
-    product: Partial<TableData> | undefined,
+    product: Partial<ITableData> | undefined,
   ) => {
     if (
       product?.productType === ProductType.DEPOSIT &&

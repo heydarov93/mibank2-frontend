@@ -8,9 +8,9 @@ import { useSearchParams } from 'react-router-dom';
 import { StyledContainer } from './TransfersLayout.styled';
 
 import { NavigationWarningModal, SelectView, TransferView } from 'components/organisms';
+import { TTransferMethod } from 'types/types';
 
 export const TRANSFER_METHODS = ['iban', 'card', 'owncards'] as const;
-export type TTransferMethod = (typeof TRANSFER_METHODS)[number];
 
 export const TransfersLayout = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });

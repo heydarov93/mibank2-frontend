@@ -5,17 +5,19 @@ import { SxProps } from '@mui/material/styles';
 import { SetStateAction, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+interface CardInfoButtonProps {
+  clicked: boolean;
+  onClick: (value: SetStateAction<boolean>) => void;
+  disabled: boolean;
+  sx?: SxProps;
+}
+
 export function CardInfoButton({
   clicked,
   onClick,
   disabled,
   sx,
-}: {
-  clicked: boolean;
-  onClick: (value: SetStateAction<boolean>) => void;
-  disabled: boolean;
-  sx?: SxProps;
-}) {
+}: CardInfoButtonProps) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar.myCards',
   });
