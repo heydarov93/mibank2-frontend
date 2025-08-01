@@ -12,8 +12,8 @@ import {
   IssuanceCard,
   IssuanceCardProps,
 } from 'components/molecules';
-import { CardIssueFormValues } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
-import useDisclosure from 'hooks/useDisclosure';
+import { CardIssueFormValues } from 'components/organisms/IssueCardModal/hooks/useCardIssuanceFlow';
+import { useDisclosure } from 'hooks';
 
 interface SelectedCardFormProps extends IssuanceCardProps {
   onCancel: () => void;

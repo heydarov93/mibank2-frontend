@@ -1,7 +1,7 @@
 import {
   IUserCardAccount,
   IUserIBANAccount,
-} from '../components/organisms/TransferView/hooks/useAccounts';
+} from '../components/organisms/TransferView/hooks/useTransferAccounts';
 
 export interface IUserCardAccountOption extends IUserCardAccount {
   label: string;

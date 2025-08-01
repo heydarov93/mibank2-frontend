@@ -2,13 +2,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-
 import { CityField } from './CityField';
 
 import { ILegalAddress } from 'models/IRegistration';
 import { theme } from 'theme/theme';
 
-const mockUseCityDropdown = jest.fn();
+const mockUseCityAutocomplete = jest.fn();
 const mockHandleCityInputChange = jest.fn();
 const mockHandleCitySelect = jest.fn();
 const mockHandleCityInputClick = jest.fn();
@@ -30,8 +29,8 @@ const cityDropdownReturnValue = {
   handleClickAway: mockHandleClickAway,
 };
 
-jest.mock('../../hooks/useCityDropdown', () => ({
-  useCityDropdown: () => mockUseCityDropdown(),
+jest.mock('../../hooks/useCityAutocomplete', () => ({
+  useCityAutocomplete: () => mockUseCityAutocomplete(),
 }));
 
 const renderCityField = () => {
@@ -63,7 +62,7 @@ describe('CityField Component', () => {
   });
 
   it('renders with label and placeholder', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
 
@@ -73,7 +72,7 @@ describe('CityField Component', () => {
   });
 
   it('displays city options when dropdown is open', async () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
 
@@ -85,7 +84,7 @@ describe('CityField Component', () => {
   });
 
   it('shows error message if error exists', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
       cityInput: '',
       filteredCities: [],
@@ -97,7 +96,7 @@ describe('CityField Component', () => {
   });
 
   it('calls handleCityInputChange on input change', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
     renderCityField();
@@ -109,7 +108,7 @@ describe('CityField Component', () => {
   });
 
   it('calls handleCityInputClick on input click', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
     renderCityField();
@@ -121,7 +120,7 @@ describe('CityField Component', () => {
   });
 
   it('calls handleCitySelect when a city is clicked', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
     renderCityField();
@@ -133,7 +132,7 @@ describe('CityField Component', () => {
   });
 
   it('calls handleClickAway when click away occurs', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
     });
     renderCityField();
@@ -144,7 +143,7 @@ describe('CityField Component', () => {
   });
 
   it('displays nothing in dropdown if filteredCities is empty', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
       filteredCities: [],
     });
@@ -158,7 +157,7 @@ describe('CityField Component', () => {
   });
 
   it('dropdown menu is closed when isDropdownOpen is false', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
       isDropdownOpen: false,
     });
@@ -169,7 +168,7 @@ describe('CityField Component', () => {
   });
 
   it('renders selected city as selected', () => {
-    mockUseCityDropdown.mockReturnValue({
+    mockUseCityAutocomplete.mockReturnValue({
       ...cityDropdownReturnValue,
       cityInput: 'Krakow',
     });

@@ -121,10 +121,10 @@ jest.mock('../IssueCardModal/IssueCardModal', () => ({
     ) : null,
 }));
 
-const mockUseGetUserCards = jest.fn<UseGetUserCardsReturn, []>();
+const mockUseUserCards = jest.fn<UseGetUserCardsReturn, []>();
 
-jest.mock('hooks/useGetUserCards', () => ({
-  useGetUserCards: () => mockUseGetUserCards(),
+jest.mock('hooks/user/useUserCards', () => ({
+  useUserCards: () => mockUseUserCards(),
 }));
 
 const mockDisclosure: MockDisclosure = {
@@ -133,9 +133,8 @@ const mockDisclosure: MockDisclosure = {
   close: jest.fn(),
 };
 
-jest.mock('hooks/useDisclosure', () => ({
-  __esModule: true,
-  default: () => mockDisclosure,
+jest.mock('hooks/shared/useDisclosure', () => ({
+  useDisclosure: () => mockDisclosure,
 }));
 
 jest.mock('react-i18next', () => ({
@@ -171,7 +170,7 @@ describe('AllCardsSlider', () => {
     mockDisclosure.open.mockClear();
     mockDisclosure.close.mockClear();
 
-    mockUseGetUserCards.mockReturnValue({
+    mockUseUserCards.mockReturnValue({
       data: mockCards,
       isLoading: false,
       isError: false,
@@ -203,7 +202,7 @@ describe('AllCardsSlider', () => {
 
   describe('Data Loading States', () => {
     it('shows loading state when data is loading', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: null,
         isLoading: true,
         isError: false,
@@ -225,7 +224,7 @@ describe('AllCardsSlider', () => {
 
   describe('Error Handling', () => {
     it('shows error state when hook returns error', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: null,
         isLoading: false,
         isError: true,
@@ -237,7 +236,7 @@ describe('AllCardsSlider', () => {
     });
 
     it('disables add button when there is an error', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: null,
         isLoading: false,
         isError: true,
@@ -263,7 +262,7 @@ describe('AllCardsSlider', () => {
     });
 
     it('handles empty cards data', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: [],
         isLoading: false,
         isError: false,
@@ -275,7 +274,7 @@ describe('AllCardsSlider', () => {
     });
 
     it('handles null cards data', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: null,
         isLoading: false,
         isError: false,
@@ -373,7 +372,7 @@ describe('AllCardsSlider', () => {
     });
 
     it('does not open modal when add button is disabled', () => {
-      mockUseGetUserCards.mockReturnValue({
+      mockUseUserCards.mockReturnValue({
         data: null,
         isLoading: false,
         isError: true,

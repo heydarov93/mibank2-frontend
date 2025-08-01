@@ -3,7 +3,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { SyntheticEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-
 import {
   StyledContainer,
   StyledHeader,
@@ -13,7 +12,7 @@ import {
 import { ButtonGroup, InfoTab, InfoTabs } from './molecules';
 
 import { ECardInfoTab } from 'enums/ECardInfoTab';
-import { useGetUserCardDetails } from 'hooks/useGetUserCardDetails';
+import { useUserCardDetails } from 'hooks';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 export const SelectedCardDetails = ({
@@ -29,7 +28,7 @@ export const SelectedCardDetails = ({
     data: userCardDetails,
     isLoading,
     isError,
-  } = useGetUserCardDetails(selectedCardId);
+  } = useUserCardDetails(selectedCardId);
 
   const handleTabChange = (_: SyntheticEvent, newValue: string) =>
     setActiveTab(newValue);

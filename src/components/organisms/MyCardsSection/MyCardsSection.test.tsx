@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { MyCardsSection } from './MyCardsSection';
 
 import { TUserBankCardComponent } from 'components/molecules/UserBankCard/UserBankCard';
-import * as hooks from 'hooks/useGetUserCards';
+import * as hooks from 'hooks/user/useUserCards';
 import { IUserBankCard } from 'models/IUserBankCard';
 
 jest.mock('../Sidebar/molecules', () => ({
@@ -71,7 +71,7 @@ describe('MyCards', () => {
 
   it('renders loading state', () => {
     jest
-      .spyOn(hooks, 'useGetUserCards')
+      .spyOn(hooks, 'useUserCards')
       .mockReturnValue({ data: [], isLoading: true, isError: false });
 
     render(<MyCardsSection />);
@@ -81,7 +81,7 @@ describe('MyCards', () => {
 
   it('renders empty state when no cards', () => {
     jest
-      .spyOn(hooks, 'useGetUserCards')
+      .spyOn(hooks, 'useUserCards')
       .mockReturnValue({ data: [], isLoading: false, isError: false });
 
     render(<MyCardsSection />);
@@ -96,7 +96,7 @@ describe('MyCards', () => {
     ];
 
     jest
-      .spyOn(hooks, 'useGetUserCards')
+      .spyOn(hooks, 'useUserCards')
       .mockReturnValue({ data: mockCards, isLoading: false, isError: false });
 
     render(<MyCardsSection />);
@@ -115,7 +115,7 @@ describe('MyCards', () => {
     ];
 
     jest
-      .spyOn(hooks, 'useGetUserCards')
+      .spyOn(hooks, 'useUserCards')
       .mockReturnValue({ data: mockCards, isLoading: false, isError: false });
 
     render(<MyCardsSection />);

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectField } from 'components/molecules';
 import { EAccount } from 'enums/EAccount';
-import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
+import { useUserAccounts } from 'hooks/user/useUserAccounts';
 
 interface AccountSelectProps<T extends FieldValues> {
   control: Control<T>;
@@ -22,7 +22,7 @@ export const AccountSelect = <T extends FieldValues>({
   withNewAccount,
   onChange,
 }: AccountSelectProps<T>) => {
-  const { isLoading, data } = useGetAccountOptions();
+  const { isLoading, data } = useUserAccounts();
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const accountOptions = useMemo(() => {
     if (isLoading) return [];

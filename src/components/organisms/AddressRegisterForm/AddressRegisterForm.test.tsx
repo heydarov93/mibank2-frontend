@@ -9,7 +9,7 @@ import { theme } from 'theme/theme';
 const mockHandleBackClick = jest.fn();
 const mockHandleNavigateBack = jest.fn();
 const mockHandleCancelNavigateBack = jest.fn();
-const mockUseNavigationWarning = jest.fn();
+const mockUseBackNavigationGuard = jest.fn();
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -25,8 +25,8 @@ jest.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/verify-email' }),
 }));
 
-jest.mock('./hooks/useAddressForm', () => ({
-  useAddressForm: () => ({
+jest.mock('./hooks/useLegalAddressForm', () => ({
+  useLegalAddressForm: () => ({
     handleSubmit: (fn: any) => (e: any) => {
       e && e.preventDefault();
       fn && fn();
@@ -69,8 +69,8 @@ jest.mock('components/atoms', () => ({
   },
 }));
 
-jest.mock('hooks', () => ({
-  useNavigationWarning: (...args: any[]) => mockUseNavigationWarning(...args),
+jest.mock('hooks/shared/useBackNavigationGuard.ts', () => ({
+  useBackNavigationGuard: (...args: any[]) => mockUseBackNavigationGuard(...args),
 }));
 
 function renderComponent() {
@@ -86,7 +86,7 @@ function renderComponent() {
 describe('AddressRegisterForm', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockUseNavigationWarning.mockReturnValue({
+    mockUseBackNavigationGuard.mockReturnValue({
       warningModalOpen: false,
       handleBackClick: mockHandleBackClick,
       handleNavigateBack: mockHandleNavigateBack,
@@ -130,7 +130,7 @@ describe('AddressRegisterForm', () => {
   });
 
   it('shows the navigation warning modal when warningModalOpen is true', () => {
-    mockUseNavigationWarning.mockReturnValue({
+    mockUseBackNavigationGuard.mockReturnValue({
       warningModalOpen: true,
       handleBackClick: mockHandleBackClick,
       handleNavigateBack: mockHandleNavigateBack,
@@ -143,7 +143,7 @@ describe('AddressRegisterForm', () => {
   });
 
   it('does not show the navigation warning modal when warningModalOpen is false', () => {
-    mockUseNavigationWarning.mockReturnValue({
+    mockUseBackNavigationGuard.mockReturnValue({
       warningModalOpen: false,
       handleBackClick: mockHandleBackClick,
       handleNavigateBack: mockHandleNavigateBack,
@@ -165,7 +165,7 @@ describe('AddressRegisterForm', () => {
   });
 
   it('calls onConfirm when confirm button in modal is clicked', () => {
-    mockUseNavigationWarning.mockReturnValue({
+    mockUseBackNavigationGuard.mockReturnValue({
       warningModalOpen: true,
       handleBackClick: mockHandleBackClick,
       handleNavigateBack: mockHandleNavigateBack,
@@ -181,7 +181,7 @@ describe('AddressRegisterForm', () => {
   });
 
   it('calls onCancel when cancel button in modal is clicked', () => {
-    mockUseNavigationWarning.mockReturnValue({
+    mockUseBackNavigationGuard.mockReturnValue({
       warningModalOpen: true,
       handleBackClick: mockHandleBackClick,
       handleNavigateBack: mockHandleNavigateBack,

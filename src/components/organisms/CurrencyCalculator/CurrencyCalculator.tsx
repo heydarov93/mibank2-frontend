@@ -11,7 +11,7 @@ import {
   StyledInputsColumn,
   StyledTitle,
 } from './CurrencyCalculator.styled';
-import { useCurrencyCalculator } from './hooks/useCurrencyCalculator';
+import { useCurrencyCalculator } from './hooks';
 import { ExchangeInputBox } from './molecules';
 
 export const CurrencyCalculator = () => {

@@ -1,7 +1,12 @@
-import { IUserCardAccount, IUserIBANAccount } from '../hooks/useAccounts';
+import {
+  IUserCardAccount,
+  IUserIBANAccount,
+} from '../hooks/useTransferAccounts';
 
-import { IUserCardAccountOption, IUserIBANAccountOption } from 'models/IUserAccountOption';
-
+import {
+  IUserCardAccountOption,
+  IUserIBANAccountOption,
+} from 'models/IUserAccountOption';
 
 export function createOptions(
   accounts: IUserCardAccount[] | IUserIBANAccount[],

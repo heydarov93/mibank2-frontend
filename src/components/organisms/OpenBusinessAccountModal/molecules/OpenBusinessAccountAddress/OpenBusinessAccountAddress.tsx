@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Address } from 'components/atoms';
 import { SwitchWithLabel } from 'components/atoms/SwitchWithLabel/SwitchWithLabel';
-import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
+import { OpenBusinessAccFormValues } from 'hooks/business/useBusinessAccountFlow';
 
 export interface OpenBusinessAccountAddressProps {
   onEdit: () => void;

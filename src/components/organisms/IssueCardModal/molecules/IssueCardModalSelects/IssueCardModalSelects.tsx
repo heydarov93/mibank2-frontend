@@ -4,7 +4,7 @@ import { SxProps, Theme } from '@mui/material/styles';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { CardIssueFormValues } from '../../hooks/useCardIssueFlow';
+import { CardIssueFormValues } from '../../hooks/useCardIssuanceFlow';
 
 import { FieldWithLabel } from 'components/atoms';
 import { AccountSelect, SelectField } from 'components/molecules';

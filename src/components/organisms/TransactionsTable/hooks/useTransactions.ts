@@ -22,11 +22,11 @@ interface IShowEmptyState {
   noMatches: TEmptyStateText;
 }
 
-export function useTransactions({
+export const useTransactions = ({
   page,
   count,
   currentFilters,
-}: IUseTransactionsParams) {
+}: IUseTransactionsParams) => {
   const [
     getTransactions,
     { isLoading: isTransactionsListLoading, isError, isSuccess },
@@ -147,4 +147,4 @@ export function useTransactions({
     isSuccess,
     setDataSortOrder,
   };
-}
+};
