@@ -16,7 +16,7 @@ import {
   PASTE_FOCUS_TIMEOUT,
 } from 'constants/ui/layout';
 import { OTP_INPUT_KEY } from 'constants/validation/otp';
-import { useOtp } from 'hooks';
+import { useOtpInputController } from 'hooks';
 import { TOtpInputKey } from 'types/types';
 
 interface VerificationCodeProps {
@@ -49,7 +49,7 @@ export const VerificationCode = ({
     selectInput,
     blurInput,
     resetField,
-  } = useOtp(length);
+  } = useOtpInputController(length);
 
   const [error, setError] = useState(false);
   const [isNonDigit, setIsNonDigit] = useState(false);

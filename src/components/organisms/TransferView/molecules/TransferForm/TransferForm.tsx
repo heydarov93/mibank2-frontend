@@ -19,13 +19,12 @@ import {
   CurrencySelectController,
   TransferAlertDialog,
 } from '../../atoms';
+import { useTransferHandler } from '../../hooks';
 import {
   ISavedCardAccount,
   ISavedIBANAccount,
-  useAccounts,
-} from '../../hooks/useAccounts';
-import { useTransfer } from '../../hooks/useTransfer';
-import { useTranslations } from '../../hooks/useTranslations';
+  useTransferAccounts,
+} from '../../hooks/useTransferAccounts';
 import { createOptions } from '../../utils/createOptions';
 import { renderOption } from '../../utils/renderOptions';
 import { TransferConfirmModal } from '../TransferConfirmModal/TransferConfirmModal';
@@ -37,8 +36,12 @@ import {
   StyledLabel,
 } from './TransferForm.styled';
 
-import { InputFieldController, NumericFieldController } from 'components/molecules';
+import {
+  InputFieldController,
+  NumericFieldController,
+} from 'components/molecules';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
+import { useTransferTranslations } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import {
@@ -93,9 +96,9 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
     reValidateMode: 'onChange',
   });
 
-  const { fromAccounts, toAccounts } = useAccounts(transferMethod);
-  const { transferFunds, isLoading } = useTransfer(transferMethod);
-  const translation = useTranslations(transferMethod);
+  const { fromAccounts, toAccounts } = useTransferAccounts(transferMethod);
+  const { transferFunds, isLoading } = useTransferHandler(transferMethod);
+  const translation = useTransferTranslations(transferMethod);
   const inputPattern = isMethodIBAN ? IBAN_PATTERN : CARD_PATTERN;
 
   const fromAccountsOptions = createOptions(fromAccounts ?? []);

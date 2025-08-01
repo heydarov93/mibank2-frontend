@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { IssueCardModal } from './IssueCardModal';
 
 import { useLazySearchCardsQuery } from 'api/services/card-service/cards.api';
-import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
+import { useUserAccounts } from 'hooks/user/useUserAccounts';
 import store from 'store';
 
 jest.mock('react-i18next', () => ({
@@ -28,8 +28,8 @@ jest.mock('api/services/card-service/cards.api', () => ({
   useLazySearchCardsQuery: jest.fn(),
 }));
 
-jest.mock('hooks/useGetAccountOptions', () => ({
-  useGetAccountOptions: jest.fn(),
+jest.mock('hooks/user/useUserAccounts', () => ({
+  useUserAccounts: jest.fn(),
 }));
 
 const selectAllValues = async () => {
@@ -80,7 +80,7 @@ describe('IssueCardModal', () => {
         isLoading: false,
       },
     ]);
-    (useGetAccountOptions as jest.Mock).mockReturnValue({
+    (useUserAccounts as jest.Mock).mockReturnValue({
       isLoading: false,
       data: [
         {

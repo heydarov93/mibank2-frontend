@@ -13,8 +13,8 @@ import {
 
 import { SwitchWithLabel } from 'components/atoms/SwitchWithLabel/SwitchWithLabel';
 import { IssuanceCard } from 'components/molecules';
-import useDisclosure from 'hooks/useDisclosure';
-import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
+import { useDisclosure } from 'hooks';
+import { OpenBusinessAccountFormValues } from 'hooks/business/useBusinessAccountFlow';
 import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
 
 const mockCardOptions: Record<string, IssuanceCardData> = {
@@ -60,7 +60,7 @@ export const BusinessSelectedCardInfo = ({
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal',
   });
-  const { watch, setValue } = useFormContext<OpenBusinessAccFormValues>();
+  const { watch, setValue } = useFormContext<OpenBusinessAccountFormValues>();
   const issueType = watch('issueType');
   const isAgreed = watch('termsAccepted');
   const cardData = mockCardOptions[issueType];

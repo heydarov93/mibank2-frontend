@@ -1,6 +1,6 @@
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { ISavedCardAccount } from '../../hooks/useAccounts';
+import { ISavedCardAccount } from '../../hooks/useTransferAccounts';
 
 import { CardIssuerIcon, WalletIcon } from 'components/atoms';
 import { IUserCardAccountOption } from 'models/IUserAccountOption';

@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { SelectedCardForm } from './SelectedCardForm';
 
-import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
+import { useUserAccounts } from 'hooks';
 import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
 
 const translations = {
@@ -22,8 +22,8 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('hooks/useGetAccountOptions', () => ({
-  useGetAccountOptions: jest.fn(),
+jest.mock('hooks/user/useUserAccounts', () => ({
+  useUserAccounts: jest.fn(),
 }));
 
 const cardData: IssuanceCardData = {
@@ -81,7 +81,7 @@ const renderForm = (data = cardData) => render(<FormWrapper {...data} />);
 
 describe('SelectedCardForm', () => {
   beforeEach(() => {
-    (useGetAccountOptions as jest.Mock).mockReturnValue({
+    (useUserAccounts as jest.Mock).mockReturnValue({
       isLoading: false,
       data: [
         {

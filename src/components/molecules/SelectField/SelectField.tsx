@@ -12,7 +12,7 @@ import { useRef } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
 import { ReactComponent as DoneIconSVG } from 'assets/icons/DoneIcon.svg';
-import useDisclosure from 'hooks/useDisclosure';
+import { useDisclosure } from 'hooks';
 
 export type SelectFieldOption = {
   value: string;

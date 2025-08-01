@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledSearchContainer } from './ProductsSearchContainer.styled';
 
 import { FilterBox, NoMatchesFound, SearchField } from 'components/molecules';
-import { useProductFilters } from 'hooks/useProductFilters';
+import { useProductFilters } from 'hooks/product/useProductFilters';
 import { DepositData } from 'models/IProductInfo';
 
 interface ViewProductsSearchContainerProps {

@@ -14,7 +14,7 @@ import {
   TO_VERIFY_EMAIL,
 } from 'constants/navigation/routePaths';
 import { DEFAULT_BREAKPOINT_KEYS } from 'constants/ui/layout';
-import { useNavigationWarning } from 'hooks';
+import { useBackNavigationGuard } from 'hooks';
 
 export function BusinessAuthWrapper({ children }: { children: ReactNode }) {
   const { t } = useTranslation('translation', {
@@ -27,7 +27,7 @@ export function BusinessAuthWrapper({ children }: { children: ReactNode }) {
     handleBackClick,
     handleNavigateBack,
     handleCancelNavigateBack,
-  } = useNavigationWarning({ onVerifyEmail, redirectToSignIn: false });
+  } = useBackNavigationGuard({ onVerifyEmail, redirectToSignIn: false });
 
   const onBusiness = [
     TO_BUSINESS_SIGN_UP,

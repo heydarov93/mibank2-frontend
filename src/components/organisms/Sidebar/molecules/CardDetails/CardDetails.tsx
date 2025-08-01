@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { CardInfoButton } from '../../atoms/CardInfoButton/CardInfoButton';
 import { CardDetailRow } from '../CardDetailRow/CardDetailRow';
 
-import { useGetUserCardDetails } from 'hooks/useGetUserCardDetails';
+import { useUserCardDetails } from 'hooks';
 import { copyToClipboard } from 'utils/helpers';
 
 interface Props {
@@ -22,7 +22,7 @@ export function CardDetails({ cardId, isCardPrimary }: Props) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar.myCards',
   });
-  const { data, isLoading } = useGetUserCardDetails(cardId);
+  const { data, isLoading } = useUserCardDetails(cardId);
 
   return (
     <Box>

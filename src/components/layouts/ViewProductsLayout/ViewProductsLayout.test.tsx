@@ -6,8 +6,8 @@ import { ViewProductsLayout } from './ViewProductsLayout';
 
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
-import { useProductFilters } from 'hooks/useProductFilters';
-import { useProductManage } from 'hooks/useProductManage';
+import { useProductActions } from 'hooks/product/useProductActions';
+import { useProductFilters } from 'hooks/product/useProductFilters';
 import { TableData } from 'models/ITableData';
 
 jest.mock('react-i18next', () => ({
@@ -24,8 +24,8 @@ jest.mock('react-hook-form', () => ({
 
 jest.mock('api/services/deposit-service/products.api');
 jest.mock('api/services/deposit-service/deposits.api');
-jest.mock('hooks/useProductManage');
-jest.mock('hooks/useProductFilters');
+jest.mock('hooks/product/useProductActions');
+jest.mock('hooks/product/useProductFilters');
 
 jest.mock('@mui/material', () => {
   const actual = jest.requireActual('@mui/material');
@@ -184,7 +184,7 @@ describe('ViewProductsLayout', () => {
       { isLoading: false, isError: false },
     ]);
 
-    (useProductManage as jest.Mock).mockReturnValue({
+    (useProductActions as jest.Mock).mockReturnValue({
       state: defaultState,
       ...manageHandlers,
     });

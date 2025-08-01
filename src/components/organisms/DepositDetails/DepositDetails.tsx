@@ -11,7 +11,7 @@ import {
   OpenDepositModal,
 } from 'components/organisms';
 import { ErrorMessage } from 'components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage';
-import useDisclosure from 'hooks/useDisclosure';
+import { useDisclosure } from 'hooks';
 import { IDeposit } from 'models/IDepositInfo';
 
 interface DepositDetailsProps {

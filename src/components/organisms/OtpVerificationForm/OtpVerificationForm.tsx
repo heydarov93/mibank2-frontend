@@ -26,7 +26,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useConnectionStatus,
-  useErrorHandlers,
+  useAuthLockHandler,
 } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { getVerifyingTimer, setError, setVerifying } from 'store/slices/auth';
@@ -69,7 +69,7 @@ export const OtpVerificationForm = ({
 
   const navigate = useNavigate();
 
-  const { handleLockedError } = useErrorHandlers();
+  const { handleLockedError } = useAuthLockHandler();
   useConnectionStatus();
 
   const handleVerificationCode = useCallback(

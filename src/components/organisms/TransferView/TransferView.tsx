@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { StyledFlexRow, StyledTitle } from './TransferView.styled';
-import { TransferMethodMenu } from './molecules';
+import { TransferForm, TransferMethodMenu } from './molecules';
 
-import { TransferForm } from 'components/organisms';
 import { TTransferMethod } from 'types/types';
 
 interface TransferViewProps {

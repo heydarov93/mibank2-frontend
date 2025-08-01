@@ -10,6 +10,7 @@ import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarn
 
 import { LoadingIndicator, StyledDialog } from './IssueCardModal.styled';
 import { IssueCardModalBottomAlert } from './atoms';
+import { useCardIssuanceFlow, useCardIssuanceHandler } from './hooks';
 import {
   IssuanceCardInfo,
   IssueCardModalActions,
@@ -20,11 +21,9 @@ import {
 
 import { ModalHeader } from 'components/atoms';
 import { SimpleAlert } from 'components/molecules';
-import { useCardIssuance } from 'components/organisms/IssueCardModal/hooks/useCardIssuance';
-import { useCardIssueFlow } from 'components/organisms/IssueCardModal/hooks/useCardIssueFlow';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
-import useDisclosure from 'hooks/useDisclosure';
+import { useDisclosure } from 'hooks';
 
 export interface IssueCardModalProps {
   open: boolean;
@@ -45,9 +44,9 @@ export const IssueCardModal = ({ open, onClose }: IssueCardModalProps) => {
     handleClose,
     handleBack,
     handleStepUpdate,
-  } = useCardIssueFlow({ onClose });
+  } = useCardIssuanceFlow({ onClose });
   const { issueCard, reset, isIssuingCard, errorMessage, isCardIssued } =
-    useCardIssuance({
+    useCardIssuanceHandler({
       selectedCard,
     });
   const successAlert = useDisclosure();

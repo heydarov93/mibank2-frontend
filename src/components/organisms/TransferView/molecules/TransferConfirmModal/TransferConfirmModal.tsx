@@ -13,7 +13,6 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useTranslations } from '../../hooks/useTranslations';
 import { TransferDetailRow } from '../TransferDetailRow/TransferDetailRow';
 import { ITransferForm } from '../TransferForm/TransferForm';
 
@@ -28,6 +27,7 @@ import {
 } from './TransferConfirmModal.styled';
 
 import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
+import { useTransferTranslations } from 'hooks';
 import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
 import { formatTransferValue } from 'utils/formatters/currencyFormatter';
 import { savePaymentSchema, TSavePaymentValues } from 'validation';
@@ -50,7 +50,7 @@ export const TransferConfirmModal = ({
   transferMethod,
 }: ConfirmTransferModalProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
-  const translation = useTranslations(transferMethod);
+  const translation = useTransferTranslations(transferMethod);
 
   const {
     data: feeData,

@@ -5,7 +5,10 @@ import {
   IUserCardAccountOption,
   IUserIBANAccountOption,
 } from '../../../../models/IUserAccountOption';
-import { ISavedCardAccount, ISavedIBANAccount } from '../hooks/useAccounts';
+import {
+  ISavedCardAccount,
+  ISavedIBANAccount,
+} from '../hooks/useTransferAccounts';
 
 import { CardIssuerIcon } from 'components/atoms';
 import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';

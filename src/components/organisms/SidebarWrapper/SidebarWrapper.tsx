@@ -8,7 +8,7 @@ import {
   OpenDepositModal,
   Sidebar,
 } from 'components/organisms';
-import useDisclosure from 'hooks/useDisclosure';
+import { useDisclosure } from 'hooks';
 import { IDeposit } from 'models/IDepositInfo';
 
 export function SidebarWrapper() {
