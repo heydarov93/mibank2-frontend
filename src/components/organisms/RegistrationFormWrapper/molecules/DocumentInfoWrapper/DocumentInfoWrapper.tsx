@@ -5,10 +5,9 @@ import { EUDocumentInfo } from '../EUDocumentInfo/EUDocumentInfo';
 
 import { StyledBoxContainer } from './DocumentInfoWrapper.styled';
 
-import { FormStepProps } from 'models/IRegistration';
 import { checkEUStatus } from 'utils/checkers/EUStatusChecker';
 
-export const DocumentInfoWrapper = ({ onBack }: FormStepProps) => {
+export const DocumentInfoWrapper = ({ onBack }: { onBack: () => void }) => {
   const { watch } = useFormContext();
   const isEU = checkEUStatus(watch('citizenship'));
 

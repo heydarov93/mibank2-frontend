@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { Transaction } from './Transaction';
 
-import { ITransaction } from 'models/ITransactionInfo';
+import { ITransaction } from 'models/ITransaction';
 
 jest.mock('utils', () => ({
   formatLocaleTimeString: jest.fn((date: string) => `Formatted: ${date}`),
@@ -57,7 +57,7 @@ describe('Transaction Component', () => {
   describe('Rendering', () => {
     it('renders all transaction elements', () => {
       renderTransaction(mockIncomeTransaction);
-      
+
       expect(screen.getByTestId('transaction-container')).toBeInTheDocument();
       expect(screen.getByTestId('transaction-icon')).toBeInTheDocument();
       expect(screen.getByTestId('top-row')).toBeInTheDocument();
@@ -67,29 +67,28 @@ describe('Transaction Component', () => {
 
     it('displays transaction icon with correct type', () => {
       renderTransaction(mockIncomeTransaction);
-      
+
       const icon = screen.getByTestId('transaction-icon');
       expect(icon).toHaveAttribute('data-type', 'income');
     });
 
     it('displays card name', () => {
       renderTransaction(mockIncomeTransaction);
-      
+
       expect(screen.getByText('Visa Card')).toBeInTheDocument();
     });
-
   });
 
   describe('Amount Display', () => {
     it('displays income amount with plus sign', () => {
       renderTransaction(mockIncomeTransaction);
-      
+
       expect(screen.getByText('+ USD 150.00')).toBeInTheDocument();
     });
 
     it('displays expense amount with minus sign', () => {
       renderTransaction(mockExpenseTransaction);
-      
+
       expect(screen.getByText('- EUR 75.50')).toBeInTheDocument();
     });
   });
@@ -97,7 +96,7 @@ describe('Transaction Component', () => {
   describe('Card Number Display', () => {
     it('displays masked card number with last 4 digits', () => {
       renderTransaction(mockIncomeTransaction);
-      
+
       expect(screen.getByText('**** 3456')).toBeInTheDocument();
     });
 
@@ -106,9 +105,9 @@ describe('Transaction Component', () => {
         ...mockIncomeTransaction,
         cardNumber: '1234',
       };
-      
+
       renderTransaction(shortCardTransaction);
-      
+
       expect(screen.getByText('**** 1234')).toBeInTheDocument();
     });
   });
@@ -116,15 +115,21 @@ describe('Transaction Component', () => {
   describe('Transaction Types', () => {
     it('renders income transaction correctly', () => {
       renderTransaction(mockIncomeTransaction);
-      
-      expect(screen.getByTestId('transaction-icon')).toHaveAttribute('data-type', 'income');
+
+      expect(screen.getByTestId('transaction-icon')).toHaveAttribute(
+        'data-type',
+        'income',
+      );
       expect(screen.getByText('+ USD 150.00')).toBeInTheDocument();
     });
 
     it('renders expense transaction correctly', () => {
       renderTransaction(mockExpenseTransaction);
-      
-      expect(screen.getByTestId('transaction-icon')).toHaveAttribute('data-type', 'expense');
+
+      expect(screen.getByTestId('transaction-icon')).toHaveAttribute(
+        'data-type',
+        'expense',
+      );
       expect(screen.getByText('- EUR 75.50')).toBeInTheDocument();
     });
   });

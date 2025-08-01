@@ -12,13 +12,7 @@ import { OpenBusinessAccFormValues } from 'hooks/business/useBusinessAccountFlow
 
 const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
-interface OpenBusinessAccountSelectsProps {
-  sx?: SxProps<Theme>;
-}
-
-export const OpenBusinessAccountSelects = ({
-  sx,
-}: OpenBusinessAccountSelectsProps) => {
+export const OpenBusinessAccountSelects = ({ sx }: { sx?: SxProps<Theme> }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal',
   });

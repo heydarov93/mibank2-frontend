@@ -5,11 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledTitle } from '../../PaymentReceiptModal.styled';
 
-export interface PaymentReceiptTitleProps {
-  onClose: () => void;
-}
-
-export const PaymentReceiptTitle = ({ onClose }: PaymentReceiptTitleProps) => {
+export const PaymentReceiptTitle = ({ onClose }: { onClose: () => void }) => {
   const { t } = useTranslation('translation');
 
   return (

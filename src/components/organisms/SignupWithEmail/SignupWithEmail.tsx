@@ -28,7 +28,6 @@ import { userEmailSchema } from 'validation';
 export const SignupWithEmail = () => {
   const { t } = useTranslation('translation');
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   const {

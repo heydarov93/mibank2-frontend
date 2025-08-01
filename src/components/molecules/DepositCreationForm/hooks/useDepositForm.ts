@@ -7,27 +7,27 @@ import * as yup from 'yup';
 import { DepositPayload } from '../utils/buildDepositPayload';
 
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
-import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
+import { IAccountOption } from 'models/IAccount';
+import { IOpenDepositFormData } from 'models/IDeposit';
+import { TSubmissionState } from 'types/types';
 
 interface UseDepositFormProps {
-  validationSchema: yup.ObjectSchema<DepositFormValues>;
-  defaultValues?: Partial<DepositFormValues>;
+  validationSchema: yup.ObjectSchema<IOpenDepositFormData>;
+  defaultValues?: Partial<IOpenDepositFormData>;
   onSuccess?: () => void;
-  accountOptions: AccountOption[];
+  accountOptions: IAccountOption[];
   createDeposit: (payload: DepositPayload) => Promise<{
     data?: unknown;
     error?: unknown;
   }>;
   buildPayload: (
-    formData: DepositFormValues,
-    accountOptions: AccountOption[],
+    formData: IOpenDepositFormData,
+    accountOptions: IAccountOption[],
     depositId: number,
   ) => DepositPayload;
   depositId: number;
   isModal?: boolean;
 }
-
-type SubmissionState = 'idle' | 'success' | 'error';
 
 export const useDepositForm = ({
   validationSchema,
@@ -45,10 +45,10 @@ export const useDepositForm = ({
 }: UseDepositFormProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
   const [submissionState, setSubmissionState] =
-    useState<SubmissionState>('idle');
+    useState<TSubmissionState>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const form = useForm<DepositFormValues>({
+  const form = useForm<IOpenDepositFormData>({
     resolver: yupResolver(validationSchema),
     defaultValues,
     mode: 'all',
@@ -89,7 +89,7 @@ export const useDepositForm = ({
   };
 
   const validateSufficientFunds = useCallback(
-    (formData: DepositFormValues): boolean => {
+    (formData: IOpenDepositFormData): boolean => {
       const account = accountOptions.find(
         (acc) => acc.iban === formData.account,
       );
@@ -105,7 +105,7 @@ export const useDepositForm = ({
     [accountOptions, handleError],
   );
 
-  const onDepositSubmit = handleSubmit(async (formData: DepositFormValues) => {
+  const onDepositSubmit = handleSubmit(async (formData: IOpenDepositFormData) => {
     if (!validateSufficientFunds(formData)) {
       return;
     }

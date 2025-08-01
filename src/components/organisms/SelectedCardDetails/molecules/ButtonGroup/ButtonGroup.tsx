@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { TUserBankCardDetails } from '../InfoTab/InfoTab';
-
 import {
   StyledButtonGroup,
   StyledOutlinedButton,
@@ -17,14 +15,15 @@ import {
 } from 'api/services/card-service/cards.api';
 import { CARD_STATUS } from 'constants/business/card';
 import { TO_TRANSFERS } from 'constants/navigation/routePaths';
+import { TUserBankCardDetails } from 'types/types';
 
 type ActionButton = 'status' | 'primary';
 
-export const ButtonGroup = ({
-  selectedUserCardDetails,
-}: {
+interface ButtonGroupProps {
   selectedUserCardDetails: TUserBankCardDetails;
-}) => {
+}
+
+export const ButtonGroup = ({ selectedUserCardDetails }: ButtonGroupProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'AllCards.selectedCard',
   });

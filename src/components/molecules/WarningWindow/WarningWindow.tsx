@@ -17,16 +17,16 @@ import {
 } from './WarningWindow.styled';
 
 import { WarningIcon } from 'components/atoms';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 import { theme } from 'theme/theme';
 
 interface WarningWindowProps {
   open?: boolean;
-  product?: Partial<TableData>;
-  employee?: Partial<TableData>;
+  product?: Partial<ITableData>;
+  employee?: Partial<ITableData>;
   deposit?: boolean;
   sx?: SxProps<Theme>;
-  onDeleteClick?: (product: Partial<TableData> | undefined) => void;
+  onDeleteClick?: (product: Partial<ITableData> | undefined) => void;
   onCancelClick?: () => void;
   onBackClick?: () => void;
   title?: string;

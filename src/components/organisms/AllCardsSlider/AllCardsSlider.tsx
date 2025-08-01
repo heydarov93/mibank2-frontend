@@ -16,7 +16,7 @@ import {
   SELECTED_ELEMENT_SCALE,
 } from 'constants/ui/layout';
 import { useDisclosure, useUserCards } from 'hooks';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 interface AllCardsSliderProps {
   onCardIdSelect: (id: IUserBankCard['id']) => void;

@@ -2,7 +2,7 @@ import {
   IGetUserCardDetailsResponse,
   IUserBankCardResponse,
 } from 'api/services/card-service/cards.types';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 import {
   TCardIssuer,
   TCardStatus,

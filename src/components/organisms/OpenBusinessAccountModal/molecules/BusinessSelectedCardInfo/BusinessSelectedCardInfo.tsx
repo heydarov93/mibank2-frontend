@@ -13,11 +13,12 @@ import {
 
 import { SwitchWithLabel } from 'components/atoms/SwitchWithLabel/SwitchWithLabel';
 import { IssuanceCard } from 'components/molecules';
+import { ECardIssuer } from 'enums/ECardIssuer';
 import { useDisclosure } from 'hooks';
 import { OpenBusinessAccountFormValues } from 'hooks/business/useBusinessAccountFlow';
-import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
+import { IIssuanceCardData } from 'models/ICard';
 
-const mockCardOptions: Record<string, IssuanceCardData> = {
+const mockCardOptions: Record<string, IIssuanceCardData> = {
   digital: {
     cardId: 1,
     cardName: 'Visa Business',

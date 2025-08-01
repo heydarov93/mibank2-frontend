@@ -12,30 +12,24 @@ import {
 import { useIssueUserCardMutation } from 'api/services/card-service/cards.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { EAccount } from 'enums/EAccount';
-import { IssuanceCardData } from 'models/IProductInfo';
+import { ICardIssuanceState, IIssuanceCardData } from 'models/ICard';
 
-interface UseCardIssuanceHandlerParams {
-  selectedCard: IssuanceCardData | null;
-}
-
-interface CardIssuanceState {
-  isCardIssued: boolean;
-  isIssuingCard: boolean;
-  errorMessage: string;
-}
-
-const defaultCardIssuanceState: CardIssuanceState = {
+const defaultCardIssuanceState: ICardIssuanceState = {
   isCardIssued: false,
   isIssuingCard: false,
   errorMessage: '',
 };
 
-export const useCardIssuanceHandler = ({ selectedCard }: UseCardIssuanceHandlerParams) => {
+export const useCardIssuanceHandler = ({
+  selectedCard,
+}: {
+  selectedCard: IIssuanceCardData | null;
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const { data: userIdData } = useGetUserIdQuery();
   const [{ isCardIssued, isIssuingCard, errorMessage }, setCardIssuanceState] =
     useReducer(
-      (state: CardIssuanceState, action: Partial<CardIssuanceState>) => ({
+      (state: ICardIssuanceState, action: Partial<ICardIssuanceState>) => ({
         ...state,
         ...action,
       }),

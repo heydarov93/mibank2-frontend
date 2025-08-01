@@ -13,25 +13,17 @@ import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
 import { ReactComponent as DoneIconSVG } from 'assets/icons/DoneIcon.svg';
 import { useDisclosure } from 'hooks';
-
-export type SelectFieldOption = {
-  value: string;
-  label?: string;
-  secondaryLabel?: string;
-  preventClosing?: boolean;
-  renderMenuExtender?: (params: { onClose: () => void }) => React.ReactNode;
-  onClick?: () => void;
-};
+import { ISelectFieldOption } from 'models/ISelectField';
 
 export type OptionType = 'checkbox' | 'radio';
 
 export type SelectFieldProps<T extends FieldValues> = Omit<
-  SelectProps<SelectFieldOption['value'][] | SelectFieldOption['value']>,
+  SelectProps<ISelectFieldOption['value'][] | ISelectFieldOption['value']>,
   'error'
 > & {
   name: Path<T>;
   control: Control<T>;
-  options: SelectFieldOption[];
+  options: ISelectFieldOption[];
   error?: { message?: string };
   disabled?: boolean;
   placeholder?: string;
@@ -61,7 +53,7 @@ export const SelectField = <T extends FieldValues>({
   const { field } = useController({ name, control });
   const selectState = useDisclosure();
   const valueColor = selectState.isOpen ? openedColor : undefined;
-  const selectedOptionRef = useRef<SelectFieldOption | undefined>();
+  const selectedOptionRef = useRef<ISelectFieldOption | undefined>();
 
   selectedOptionRef.current = options.find(
     (option) => option.value === field.value,
@@ -237,7 +229,9 @@ export const SelectField = <T extends FieldValues>({
                   {option.secondaryLabel}
                 </Typography>
               </Stack>
-              {optionType ? null : option.value === field.value && <DoneIconSVG />}
+              {optionType
+                ? null
+                : option.value === field.value && <DoneIconSVG />}
             </MenuItem>
           ))
         )}

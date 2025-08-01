@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 
 import { DepositBox } from 'components/molecules';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface DepositDetailsOverviewProps {
-  deposit: IDeposit;
+  deposit: IDisplayDeposit;
   imageSrc: string;
   onOpenForm: () => void;
 }

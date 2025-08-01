@@ -17,10 +17,10 @@ import {
 import { InputField, SecondaryButton, SubmitButton } from 'components/atoms';
 import { CountrySelectField } from 'components/molecules';
 import { VALIDATION_PATTERNS } from 'constants/validation/patterns';
-import { FormStepProps, ILegalStatus } from 'models/IRegistration';
+import { ILegalStatus } from 'models/IRegistration';
 import { checkAllowedKey } from 'utils/checkers';
 
-export const LegalStatus = ({ onBack }: FormStepProps) => {
+export const LegalStatus = ({ onBack }: { onBack: () => void }) => {
   const { t } = useTranslation('translation');
   const {
     formState: { errors, isValid },

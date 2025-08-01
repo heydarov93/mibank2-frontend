@@ -10,7 +10,8 @@ import {
 
 import { SelectField } from 'components/molecules';
 import { EFieldType } from 'enums';
-import { ILegalAddress, ISelectOption } from 'models/IRegistration';
+import { ILegalAddress } from 'models/IRegistration';
+import { TBaseSelectOption } from 'types/types';
 
 export interface FormFieldProps {
   name: keyof ILegalAddress;
@@ -18,7 +19,7 @@ export interface FormFieldProps {
   control?: Control<ILegalAddress>;
   placeholder?: string;
   type?: 'text' | 'select';
-  options?: ISelectOption[];
+  options?: TBaseSelectOption[];
   disabled?: boolean;
   containerStyle?: SxProps<Theme>;
 }

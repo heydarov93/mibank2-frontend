@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -16,13 +16,15 @@ import {
   StyledLangText,
 } from './WelcomeHeader.styled';
 
+interface WelcomeHeaderProps {
+  activeTab: number;
+  onTabChange: (event: SyntheticEvent, value: number) => void;
+}
+
 export const WelcomeHeader = ({
   activeTab,
   onTabChange,
-}: {
-  activeTab: number;
-  onTabChange: (event: React.SyntheticEvent, value: number) => void;
-}) => {
+}: WelcomeHeaderProps) => {
   const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation('translation', {
     keyPrefix: 'header.topNavMenu',
@@ -38,7 +40,11 @@ export const WelcomeHeader = ({
 
   return (
     <StyledContainer>
-      <StyledTabs value={activeTab} onChange={onTabChange} data-testid="header-tab-list">
+      <StyledTabs
+        value={activeTab}
+        onChange={onTabChange}
+        data-testid="header-tab-list"
+      >
         {[t('personal'), t('business'), t('aboutUs')].map((tab, index) => (
           <StyledTab
             key={tab}

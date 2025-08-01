@@ -2,7 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import { AllCardsSlider } from './AllCardsSlider';
 
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
+
 
 interface ComponentProps {
   children: React.ReactNode;

@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next';
 
 import { StyledIcon } from './TransactionIcon.styled';
 
-export function TransactionIcon({ type }: { type: 'income' | 'expense' }) {
+import { TTransactionType } from 'types/types';
+
+export function TransactionIcon({ type }: { type: TTransactionType }) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Accessibility',
   });

@@ -3,7 +3,6 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
-
 import { StyledBottomBox, StyledBox } from './FooterTerms.styled';
 
 import { POLICY_LINK, TERMS_LINK } from 'constants/ui/content';

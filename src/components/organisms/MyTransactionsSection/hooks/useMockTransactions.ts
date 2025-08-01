@@ -1,10 +1,10 @@
-import { ITransaction } from 'models/ITransactionInfo';
+import { IDisplayTransaction } from 'models/ITransaction';
 
 const MAX_VISIBLE_TRANSACTIONS = 3;
 
 export const useMockTransactions = () => {
   // TODO: replace with actual data
-  const transactions: ITransaction[] = [
+  const transactions: IDisplayTransaction[] = [
     {
       cardName: 'Strong card',
       cardNumber: '4256365874523649',

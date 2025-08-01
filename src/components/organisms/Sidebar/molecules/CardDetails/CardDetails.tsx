@@ -12,12 +12,12 @@ import { CardDetailRow } from '../CardDetailRow/CardDetailRow';
 import { useUserCardDetails } from 'hooks';
 import { copyToClipboard } from 'utils/helpers';
 
-interface Props {
+interface CardDetailsProps {
   cardId: string | number;
   isCardPrimary: boolean;
 }
 
-export function CardDetails({ cardId, isCardPrimary }: Props) {
+export function CardDetails({ cardId, isCardPrimary }: CardDetailsProps) {
   const [showCardInfo, setShowCardInfo] = useState(false);
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar.myCards',

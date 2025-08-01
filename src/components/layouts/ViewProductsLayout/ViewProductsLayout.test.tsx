@@ -6,9 +6,8 @@ import { ViewProductsLayout } from './ViewProductsLayout';
 
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
-import { useProductActions } from 'hooks/product/useProductActions';
-import { useProductFilters } from 'hooks/product/useProductFilters';
-import { TableData } from 'models/ITableData';
+import { useProductActions, useProductFilters } from 'hooks';
+import { ITableData } from 'models/ITable';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -106,15 +105,15 @@ jest.mock('components/organisms', () => ({
     onDeleteClick,
     onEditClick,
   }: {
-    tableBody: Partial<TableData>[];
+    tableBody: Partial<ITableData>[];
     isLoading: boolean;
-    onDeleteClick: (product: Partial<TableData>) => void;
-    onEditClick: (product: Partial<TableData>) => void;
+    onDeleteClick: (product: Partial<ITableData>) => void;
+    onEditClick: (product: Partial<ITableData>) => void;
   }) => (
     <div data-testid="table">
       {isLoading
         ? 'Loading...'
-        : tableBody.map((product: Partial<TableData>) => (
+        : tableBody.map((product: Partial<ITableData>) => (
             <div key={product.id}>
               <span>{product.productName}</span>
               <button onClick={() => onDeleteClick(product)}>Delete</button>

@@ -1,5 +1,3 @@
-import { ITransferForm } from '../molecules/TransferForm/TransferForm';
-
 import {
   useTransferToCardMutation,
   useTransferToIBANMutation,
@@ -8,7 +6,8 @@ import {
   ITransferToCardRequest,
   ITransferToIBANRequest,
 } from 'api/services/account-service/types/transfers.types';
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { ITransferFormData } from 'models/ITransaction';
+import { TTransferMethod } from 'types/types';
 
 export const useTransferHandler = (method: TTransferMethod) => {
   const [
@@ -32,7 +31,7 @@ export const useTransferHandler = (method: TTransferMethod) => {
   const isError = isIBANError || isCardError;
   const isSuccess = isIBANSuccess || isCardSuccess;
 
-  const transferFunds = (formData: ITransferForm) => {
+  const transferFunds = (formData: ITransferFormData) => {
     if (method === 'iban') {
       const requestData = {
         senderIbanNumber: formData.fromAccount,

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { ViewEmployeesLayout } from './ViewEmployeesLayout';
 
 import { useEmployeeActions } from 'hooks';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 
 jest.mock('hooks/user/useEmployeeActions');
 jest.mock('react-i18next', () => ({
@@ -49,7 +49,7 @@ jest.mock('components/molecules', () => ({
   ),
 }));
 jest.mock('components/organisms', () => ({
-  BackOfficeTable: ({ tableBody }: { tableBody: Partial<TableData>[] }) => (
+  BackOfficeTable: ({ tableBody }: { tableBody: Partial<ITableData>[] }) => (
     <div>Table rows: {tableBody.length}</div>
   ),
   EmployeesSearchContainer: ({ showNoMatches }: { showNoMatches: boolean }) =>

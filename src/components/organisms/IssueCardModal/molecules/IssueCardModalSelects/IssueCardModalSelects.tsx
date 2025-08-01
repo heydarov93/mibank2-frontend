@@ -11,7 +11,9 @@ import { AccountSelect, SelectField } from 'components/molecules';
 import { t } from 'config';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EAccount } from 'enums/EAccount';
-import { ECardType, ECardIssueType, ECardIssuer } from 'models/IProductInfo';
+import { ECardIssueType } from 'enums/ECardIssueType';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { ECardType } from 'enums/ECardType';
 
 const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
@@ -30,11 +32,7 @@ const cardIssuers = [
   { value: ECardIssuer.MASTERCARD, label: 'MasterCard' },
 ];
 
-interface IssueCardModalSelectsProps {
-  sx?: SxProps<Theme>;
-}
-
-export const IssueCardModalSelects = ({ sx }: IssueCardModalSelectsProps) => {
+export const IssueCardModalSelects = ({ sx }: { sx?: SxProps<Theme> }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'IssueCardModal' });
   const { control, setValue } = useFormContext<CardIssueFormValues>();
 

@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { StyledButton } from './BackOfficeButtonGroup.styled';
 
 import { PenIcon, TrashIcon } from 'components/atoms';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 import { theme } from 'theme/theme';
 
 interface BackOfficeButtonGroupProps {
   isDisabled: boolean;
-  onDeleteClick?: (product: Partial<TableData>) => void;
-  onEditClick?: (product: Partial<TableData>) => void;
-  product: Partial<TableData>;
+  onDeleteClick?: (product: Partial<ITableData>) => void;
+  onEditClick?: (product: Partial<ITableData>) => void;
+  product: Partial<ITableData>;
 }
 
 export const BackOfficeButtonGroup = ({

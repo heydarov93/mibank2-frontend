@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProductStep } from './products.types';
-
 import { EProductFormStepper } from 'enums/EProductFormStepper';
+import { IProductStep } from 'models/IProduct';
 import { SLICE_NAMES } from 'store/constants/sliceNames';
 
 const initialState: IProductStep = {

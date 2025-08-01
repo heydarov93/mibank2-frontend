@@ -16,7 +16,7 @@ import {
 } from 'constants/business/pagination';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { SEARCH_LOWEST_LIMIT, SEARCH_VALUE_ZERO } from 'constants/ui/search';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 import { TSortOrder } from 'types/types';
 import { getNextSortOrder } from 'utils/helpers/sortHelpers';
 
@@ -34,7 +34,7 @@ export const useEmployeeActions = () => {
   const lastName = searchParams.get('lastName') || '';
 
   const [state, setState] = useState({
-    selectedEmp: {} as Partial<TableData>,
+    selectedEmp: {} as Partial<ITableData>,
     showEditForm: false,
     showDelModal: false,
     actionMsg: '',
@@ -71,7 +71,7 @@ export const useEmployeeActions = () => {
     });
   };
 
-  const handleEdit = (item: Partial<TableData>) => {
+  const handleEdit = (item: Partial<ITableData>) => {
     setState((prev) => ({
       ...prev,
       showEditForm: true,
@@ -85,7 +85,7 @@ export const useEmployeeActions = () => {
     }));
   };
 
-  const handleUpdate = async (employee: Partial<TableData>) => {
+  const handleUpdate = async (employee: Partial<ITableData>) => {
     try {
       const response = await updateEmployee(employee).unwrap();
       if (response?.id) {
@@ -107,7 +107,7 @@ export const useEmployeeActions = () => {
     }
   };
 
-  const handleDeleteModal = (item: Partial<TableData>) => {
+  const handleDeleteModal = (item: Partial<ITableData>) => {
     setState((prev) => ({
       ...prev,
       showDelModal: true,

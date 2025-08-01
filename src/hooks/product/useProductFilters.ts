@@ -5,20 +5,20 @@ import {
   INITIAL_PRODUCT_TYPES,
 } from 'constants/ui/table';
 import { ProductType } from 'enums/EProductType';
-import { FilterGroup } from 'models/IFilterInfo';
-import { TableData } from 'models/ITableData';
+import { IFilterGroup } from 'models/IFilter';
+import { ITableData } from 'models/ITable';
 
-export const useProductFilters = (mappedData: Partial<TableData>[]) => {
-  const [productSubtypes, setProductSubtypes] = useState<FilterGroup[]>(
+export const useProductFilters = (mappedData: Partial<ITableData>[]) => {
+  const [productSubtypes, setProductSubtypes] = useState<IFilterGroup[]>(
     INITIAL_PRODUCT_SUB_TYPES,
   );
-  const [productTypes, setProductTypes] = useState<FilterGroup[]>(
+  const [productTypes, setProductTypes] = useState<IFilterGroup[]>(
     INITIAL_PRODUCT_TYPES,
   );
 
   const handleFilterChange = (
-    updatedGroups: FilterGroup[],
-    setFilterState: React.Dispatch<React.SetStateAction<FilterGroup[]>>,
+    updatedGroups: IFilterGroup[],
+    setFilterState: React.Dispatch<React.SetStateAction<IFilterGroup[]>>,
   ) => {
     setFilterState(updatedGroups);
   };
@@ -41,7 +41,7 @@ export const useProductFilters = (mappedData: Partial<TableData>[]) => {
     const { selectedProductTypes, selectedSubtypes } =
       getSelectedFilterValues();
 
-    return mappedData.filter((item: Partial<TableData>) => {
+    return mappedData.filter((item: Partial<ITableData>) => {
       const isProductTypeMatch =
         (selectedProductTypes.includes('deposits') &&
           item.productType === ProductType.DEPOSIT) ||

@@ -2,15 +2,13 @@ import Box from '@mui/material/Box';
 
 import { InvestmentBox, AboutDepositCard } from '../../atoms';
 
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface DepositDetailsAboutProps {
-  deposit: IDeposit;
+  deposit: IDisplayDeposit;
 }
 
-export const DepositDetailsAbout = ({
-  deposit,
-}: DepositDetailsAboutProps) => {
+export const DepositDetailsAbout = ({ deposit }: DepositDetailsAboutProps) => {
   return (
     <Box display="flex" justifyContent="space-between">
       <AboutDepositCard

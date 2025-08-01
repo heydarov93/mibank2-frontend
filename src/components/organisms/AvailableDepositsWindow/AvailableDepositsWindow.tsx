@@ -17,13 +17,13 @@ import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { CloseButton } from 'components/atoms';
 import { DepositBox } from 'components/molecules';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface AvailableDepositsWindowProps {
   open: boolean;
-  onSelectDeposit: (deposit: IDeposit) => void;
   onClose: () => void;
-  onSetLearnDeposit: (deposit: IDeposit) => void;
+  onSelectDeposit: (deposit: IDisplayDeposit) => void;
+  onSetLearnDeposit: (deposit: IDisplayDeposit) => void;
 }
 
 export const AvailableDepositsWindow = ({

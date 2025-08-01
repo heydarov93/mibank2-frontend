@@ -9,7 +9,11 @@ import { useTransferTranslations } from 'hooks';
 import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
-export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
+interface PaymentReceiptInfoProps {
+  data: IPaymentReceipt;
+}
+
+export const PaymentReceiptInfo = ({ data }: PaymentReceiptInfoProps) => {
   const { t } = useTranslation('translation');
   const translation = useTransferTranslations(data.transferMethod);
   const date = new Date(data.date);

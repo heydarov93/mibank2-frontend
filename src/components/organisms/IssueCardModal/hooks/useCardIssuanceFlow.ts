@@ -5,17 +5,11 @@ import { useLazySearchCardsQuery } from 'api/services/card-service/cards.api';
 import { IssueCardModalProps } from 'components/organisms';
 import { MODAL_DISPLAY_TIMEOUT } from 'constants/ui/layout';
 import { ECardIssueStepper } from 'enums/ECardIssueStepper';
+import { ECardIssueType } from 'enums/ECardIssueType';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { ECardType } from 'enums/ECardType';
 import { useDisclosure } from 'hooks';
-import {
-  ECardIssuer,
-  ECardIssueType,
-  ECardType,
-  IssuanceCardData,
-} from 'models/IProductInfo';
-
-interface UseCardIssuanceFlowOptions {
-  onClose: IssueCardModalProps['onClose'];
-}
+import { IIssuanceCardData } from 'models/ICard';
 
 const defaultValues = {
   issuanceAccount: '',
@@ -29,10 +23,14 @@ const defaultValues = {
 
 export type CardIssueFormValues = typeof defaultValues;
 
-export const useCardIssuanceFlow = ({ onClose }: UseCardIssuanceFlowOptions) => {
+export const useCardIssuanceFlow = ({
+  onClose,
+}: {
+  onClose: IssueCardModalProps['onClose'];
+}) => {
   const formMethods = useForm({ defaultValues });
   const { reset, watch } = formMethods;
-  const [selectedCard, setSelectedCard] = useState<IssuanceCardData | null>(
+  const [selectedCard, setSelectedCard] = useState<IIssuanceCardData | null>(
     null,
   );
   const [step, setStep] = useState<ECardIssueStepper>(
@@ -74,7 +72,7 @@ export const useCardIssuanceFlow = ({ onClose }: UseCardIssuanceFlowOptions) => 
     }, MODAL_DISPLAY_TIMEOUT);
   }
 
-  function handleSelectCard(cardData: IssuanceCardData) {
+  function handleSelectCard(cardData: IIssuanceCardData) {
     setSelectedCard(cardData);
     setStep(ECardIssueStepper.CARD_SELECTED);
   }

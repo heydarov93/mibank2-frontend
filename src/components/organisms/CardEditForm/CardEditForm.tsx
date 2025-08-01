@@ -9,12 +9,12 @@ import { FormLabel, MainContainer, MainHeader } from './CardEditForm.styled';
 import { CloseButton, InputField } from 'components/atoms';
 import { CustomAutocomplete } from 'components/molecules';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 import { editCardSchema, TEditCardValues } from 'validation';
 
 interface CardEditFormProps {
   handleClose: () => void;
-  formData?: Partial<TableData>;
+  formData?: Partial<ITableData>;
 }
 
 export const CardEditForm = ({ handleClose, formData }: CardEditFormProps) => {

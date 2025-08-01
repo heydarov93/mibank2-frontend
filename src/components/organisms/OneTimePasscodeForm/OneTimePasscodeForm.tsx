@@ -16,11 +16,7 @@ import { BACK_OFFICE_EMPLOYEE_SIGN_IN } from 'constants/navigation/routePaths';
 import { OTP_CODE_LENGHT } from 'constants/validation/otp';
 import { theme } from 'theme/theme';
 
-interface OneTimePasscodeFormProps {
-  email: string | null;
-}
-
-export const OneTimePasscodeForm = ({ email }: OneTimePasscodeFormProps) => {
+export const OneTimePasscodeForm = ({ email }: { email: string | null }) => {
   const { t } = useTranslation('translation');
 
   const [otp, setOtp] = useState<string[]>(new Array(OTP_CODE_LENGHT).fill(''));

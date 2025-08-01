@@ -7,7 +7,7 @@ import {
   VALIDATION_LIMITS,
   VALIDATION_PATTERNS,
 } from 'constants/validation/patterns';
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { TTransferMethod } from 'types/types';
 import { checkValidCardNumber } from 'utils/checkers/cardNumberChecker';
 import { removeSpaces } from 'utils/helpers/validationHelpers';
 

@@ -6,11 +6,11 @@ import {
   StyledOptionText,
 } from '../../DepositCreationForm.styled';
 
-import { AccountOption } from 'models/IDepositInfo';
+import { IAccountOption } from 'models/IAccount';
 
 interface AccountItemProps {
   selected: boolean;
-  option: AccountOption;
+  option: IAccountOption;
   props: HTMLAttributes<HTMLLIElement>;
 }
 

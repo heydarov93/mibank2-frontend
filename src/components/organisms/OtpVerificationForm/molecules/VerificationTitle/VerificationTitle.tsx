@@ -6,11 +6,7 @@ import {
   StyledVerificationTitle,
 } from './VerificationTitle.styled';
 
-interface VerificationTitleProprs {
-  email: string | null;
-}
-
-export const VerificationTitle = ({ email }: VerificationTitleProprs) => {
+export const VerificationTitle = ({ email }: { email: string | null }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'VerificationPage',
   });

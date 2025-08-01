@@ -9,10 +9,10 @@ import {
   StyledTypography,
 } from './Transaction.styled';
 
-import { ITransaction } from 'models/ITransactionInfo';
+import { IDisplayTransaction } from 'models/ITransaction';
 import { formatLocaleTimeString } from 'utils/formatters';
 
-export function Transaction({ data }: { data: ITransaction }) {
+export function Transaction({ data }: { data: IDisplayTransaction }) {
   const amountLabel = `${data.type === 'income' ? '+' : '-'} ${data.currency} ${data.amount}`;
   const cardNumber = `**** ${data.cardNumber.slice(-4)}`;
 

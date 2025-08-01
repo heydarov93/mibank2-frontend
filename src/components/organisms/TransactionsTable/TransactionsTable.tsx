@@ -29,7 +29,7 @@ import { DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
 import { SORT_ORDER } from 'constants/business/sortOrder';
 import { usePaginationInfo } from 'hooks';
 import { IPaymentReceipt } from 'models/IPaymentReceipt';
-import { Transaction, TransformedTransaction } from 'models/ITransactionInfo';
+import { IRawTransaction, ITransformedTransaction } from 'models/ITransaction';
 import {
   formatCardNumber,
   formatTransactionDate,
@@ -81,10 +81,10 @@ export const TransactionsTable = () => {
   });
 
   const paginatedData = useMemo(() => {
-    return transactionsList.map((transaction: Transaction) => {
+    return transactionsList.map((transaction: IRawTransaction) => {
       const { date, time } = formatTransactionDate(transaction.dateTime);
 
-      const transformedTransaction: TransformedTransaction = {
+      const transformedTransaction: ITransformedTransaction = {
         id: transaction.id,
         sourceNumber:
           transaction.transferType === 'CARD'
@@ -93,7 +93,7 @@ export const TransactionsTable = () => {
         amount: transaction.totalAmount,
         transferType: transaction.transferType === 'CARD' ? 'Card' : 'Account',
         isIncome: transaction.type === 'INCOME',
-        template: 'Salary', // Placeholder for template, will be replaced with actual data
+        template: 'Salary', //TODO: Placeholder for template, will be replaced with actual data
         date,
         time,
         currency: transaction.currencyCode,
@@ -167,7 +167,7 @@ export const TransactionsTable = () => {
             </StyledTableHead>
             <TableBody>
               {paginatedData.length > 0 ? (
-                paginatedData.map((transaction: TransformedTransaction) => (
+                paginatedData.map((transaction: ITransformedTransaction) => (
                   <CustomTableRow
                     key={transaction.id}
                     sourceNumber={transaction.sourceNumber}
