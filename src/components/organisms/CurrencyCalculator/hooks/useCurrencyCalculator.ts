@@ -21,6 +21,9 @@ export const useCurrencyCalculator = () => {
     from: { currency: 'EUR', amount: '' },
     to: { currency: 'PLN', amount: '' },
   });
+  const [lastChangedDirection, setLastChangedDirection] = useState<
+    'from' | 'to'
+  >('from');
 
   const [
     convertCurrency,
@@ -63,6 +66,7 @@ export const useCurrencyCalculator = () => {
   ) => {
     const amountValue = e.target.value;
     updateExchangeState(amountValue, isFromAmount);
+    setLastChangedDirection(isFromAmount ? 'from' : 'to');
 
     const currencyData = {
       amount: Number(amountValue),
@@ -127,5 +131,6 @@ export const useCurrencyCalculator = () => {
     handleAmountChange,
     handleCurrencyChange,
     handleSwap,
+    lastChangedDirection,
   };
 };

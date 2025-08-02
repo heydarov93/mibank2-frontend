@@ -28,6 +28,7 @@ export const CurrencyCalculator = () => {
     handleAmountChange,
     handleCurrencyChange,
     handleSwap,
+    lastChangedDirection,
   } = useCurrencyCalculator();
 
   if (isLoadingCurrent)
@@ -79,7 +80,7 @@ export const CurrencyCalculator = () => {
           amount={exchange.to.amount}
           onCurrencyChange={onCurrencyChange(false)}
           onAmountChange={onAmountChange(false)}
-          disabled={isConvertLoading}
+          disabled={lastChangedDirection === 'from' && isConvertLoading}
         />
       </StyledInputsColumn>
 
