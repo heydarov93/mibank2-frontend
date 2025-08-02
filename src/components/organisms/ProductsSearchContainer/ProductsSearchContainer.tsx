@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { StyledSearchContainer } from './ProductsSearchContainer.styled';
 
 import { FilterBox, NoMatchesFound, SearchField } from 'components/molecules';
-import { useProductFilters } from 'hooks/useProductFilters';
-import { DepositData } from 'models/IProductInfo';
+import { useProductFilters } from 'hooks';
+import { IDepositProductData } from 'models/IProduct';
 
-interface ViewProductsSearchContainerProps {
-  productsData: DepositData[];
+interface ProductsSearchContainerProps {
+  productsData: IDepositProductData[];
   showNoMatches: boolean;
   onViewAll: () => void;
   onSearchEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -22,7 +22,7 @@ export const ProductsSearchContainer = ({
   onViewAll,
   onSearchEnter,
   control,
-}: ViewProductsSearchContainerProps) => {
+}: ProductsSearchContainerProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
   const {
     productSubtypes,

@@ -15,9 +15,8 @@ import {
   DEFAULT_ELEMENT_SCALE,
   SELECTED_ELEMENT_SCALE,
 } from 'constants/ui/layout';
-import useDisclosure from 'hooks/useDisclosure';
-import { useGetUserCards } from 'hooks/useGetUserCards';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { useDisclosure, useUserCards } from 'hooks';
+import { IUserBankCard } from 'models/IUser';
 
 interface AllCardsSliderProps {
   onCardIdSelect: (id: IUserBankCard['id']) => void;
@@ -31,7 +30,7 @@ export const AllCardsSlider = ({
   const { t } = useTranslation('translation', { keyPrefix: 'AllCards' });
   const issueCardModal = useDisclosure();
 
-  const { data: userBankCards, isLoading, isError } = useGetUserCards();
+  const { data: userBankCards, isLoading, isError } = useUserCards();
 
   const handleCardClick = (cardId: IUserBankCard['id']) =>
     onCardIdSelect(cardId);

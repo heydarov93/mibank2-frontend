@@ -11,9 +11,6 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ITransferForm } from '../TransferForm/TransferForm';
-import { useTranslations } from '../TransferForm/hooks/useTranslations';
-
 import {
   StyledCloseButton,
   StyledModal,
@@ -26,16 +23,17 @@ import {
 import { TransferDetailRow } from './molecules';
 
 import { useGetTransferFeeQuery } from 'api/services/account-service/transfers.api';
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { useTransferTranslations } from 'hooks';
+import { ITransferFormData } from 'models/ITransaction';
+import { TTransferMethod } from 'types/types';
 import { formatTransferValue } from 'utils/formatters/currencyFormatter';
 import { savePaymentSchema, TSavePaymentValues } from 'validation';
-
 
 interface ConfirmTransferModalProps {
   open: boolean;
   onClose?: () => void;
   onConfirm: () => void;
-  transferInfo: ITransferForm;
+  transferInfo: ITransferFormData;
   isTransferring: boolean;
   transferMethod: TTransferMethod;
 }
@@ -49,7 +47,7 @@ export const ConfirmTransferModal = ({
   transferMethod,
 }: ConfirmTransferModalProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'TransfersPage' });
-  const translation = useTranslations(transferMethod);
+  const translation = useTransferTranslations(transferMethod);
 
   const {
     data: feeData,

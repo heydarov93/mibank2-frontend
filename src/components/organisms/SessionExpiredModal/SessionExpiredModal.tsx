@@ -5,7 +5,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { useTranslation } from 'react-i18next';
 
-
 import { StyledAutoLogoutMessageModal } from './SessionExpiredModal.styled';
 
 import { useAppDispatch, useAppSelector } from 'hooks';

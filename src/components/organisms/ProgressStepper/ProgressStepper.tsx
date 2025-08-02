@@ -4,10 +4,10 @@ import {
   StyledStepper,
 } from './ProgressStepper.styled';
 
-type ProgressStepperProps = {
+interface ProgressStepperProps {
   steps: number[];
   activeStep: number;
-};
+}
 
 export const ProgressStepper = ({
   steps,

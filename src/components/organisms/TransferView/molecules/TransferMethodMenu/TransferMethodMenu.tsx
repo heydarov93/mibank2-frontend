@@ -7,10 +7,8 @@ import { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
-import {
-  TRANSFER_METHODS,
-  TTransferMethod,
-} from 'pages/TransfersPage/TransfersPage';
+import { TRANSFER_METHODS } from 'constants/business/transfers';
+import { TTransferMethod } from 'types/types';
 
 export function TransferMethodMenu() {
   const [searchParams, setSearchParams] = useSearchParams();

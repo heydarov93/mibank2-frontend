@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 
-import { SelectFieldOption } from 'components/molecules';
 import { filterOptions } from 'components/organisms/TransactionsTable/constants/transactionFilterOptions';
 import { CARD_OPTIONS, TEMPLATE_OPTIONS } from 'constants/business/transaction';
 import { ETransactionType } from 'enums/ETransactionType';
 import { ETransferTime } from 'enums/ETransferTime';
+import { ISelectFieldOption } from 'models/ISelectField';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
 export type AvailableFilters = Record<
@@ -12,7 +12,7 @@ export type AvailableFilters = Record<
     TTransactionFiltersValues,
     'card' | 'template' | 'time' | 'transactionsType'
   >,
-  SelectFieldOption[]
+  ISelectFieldOption[]
 >;
 
 export const useTransferFilters = () => {

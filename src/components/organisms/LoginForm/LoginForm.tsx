@@ -10,7 +10,7 @@ import {
   StyledFormTitle,
   StyledLabel,
 } from './LoginForm.styled';
-import { useLogin } from './hooks/useLogin';
+import { useLoginHandler } from './hooks';
 
 import { LinkButton, InputField, SubmitButton } from 'components/atoms';
 import {
@@ -55,7 +55,7 @@ export const LoginForm = () => {
   const showPasswordTags = isPasswordFocused && !isValidConfirm;
   const passwordValue = watch('password');
 
-  const { logIn, remainingTime, lockoutEndTime } = useLogin({
+  const { logIn, remainingTime, lockoutEndTime } = useLoginHandler({
     dispatch,
     setIsFormDisabled,
     resetForm,

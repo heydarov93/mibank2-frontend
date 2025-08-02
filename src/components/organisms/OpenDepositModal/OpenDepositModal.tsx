@@ -7,10 +7,10 @@ import { DepositInfoCard } from './molecules';
 import { StyledCloseButton } from './molecules/DepositInfoCard/DepositInfoCard.styled';
 
 import { DepositCreationForm } from 'components/molecules';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface OpenDepositModalProps {
-  deposit: IDeposit | null;
+  deposit: IDisplayDeposit | null;
   onClose: () => void;
   onBack: () => void;
 }

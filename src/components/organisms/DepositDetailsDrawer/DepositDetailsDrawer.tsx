@@ -2,11 +2,11 @@ import { Drawer, useTheme } from '@mui/material';
 
 import { DepositDetails } from '../DepositDetails/DepositDetails';
 
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface DepositDetailsDrawerProps {
   open: boolean;
-  data: IDeposit | null;
+  data: IDisplayDeposit | null;
   onClose: () => void;
   onBack: () => void;
 }

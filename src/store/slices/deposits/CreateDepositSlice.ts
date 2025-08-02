@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { DepositFormData } from 'models/IProductInfo';
+import { IDepositFormData } from 'models/IDeposit';
 import { SLICE_NAMES } from 'store/constants/sliceNames';
 
-const initialState: DepositFormData = {
+const initialState: IDepositFormData = {
   minimumDepositSum: 0,
   maximumDepositSum: 0,
   depositTerm: 0,
@@ -20,7 +20,7 @@ const CreateDepositSlice = createSlice({
   name: SLICE_NAMES.CREATE_DEPOSIT,
   initialState,
   reducers: {
-    setDepositData(state, action: PayloadAction<DepositFormData>) {
+    setDepositData(state, action: PayloadAction<IDepositFormData>) {
       state.autoRenewable = action.payload.augmentable;
       state.autoRenewable = action.payload.autoRenewable;
       state.earlyWithdrawalFee = action.payload.earlyWithdrawalFee;

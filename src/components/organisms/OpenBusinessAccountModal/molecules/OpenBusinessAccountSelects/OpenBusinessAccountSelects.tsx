@@ -4,22 +4,15 @@ import { SxProps, Theme } from '@mui/material/styles';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-
 import { FieldWithLabel } from 'components/atoms';
 import { SelectField } from 'components/molecules';
 import { CARD_ISSUERS, ISSUE_TYPES } from 'constants/business/card';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
-import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
+import { OpenBusinessAccFormValues } from 'hooks/business/useBusinessAccountFlow';
 
 const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
-interface OpenBusinessAccountSelectsProps {
-  sx?: SxProps<Theme>;
-}
-
-export const OpenBusinessAccountSelects = ({
-  sx,
-}: OpenBusinessAccountSelectsProps) => {
+export const OpenBusinessAccountSelects = ({ sx }: { sx?: SxProps<Theme> }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal',
   });

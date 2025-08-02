@@ -7,7 +7,7 @@ import { Link, LinkProps } from 'react-router-dom';
 
 import { StyledContainer, StyledIconContainer } from './TransferButton.styled';
 
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
+import { TTransferMethod } from 'types/types';
 
 interface TransferButtonProps extends LinkProps {
   label: ReactNode;

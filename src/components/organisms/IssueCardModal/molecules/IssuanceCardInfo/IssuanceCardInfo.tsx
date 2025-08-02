@@ -6,11 +6,11 @@ import { InfoPanel } from '../../atoms';
 
 import { StyledTypography } from './IssuanceCardInfo.styled';
 
-import { IssuanceCardData } from 'models/IProductInfo';
+import { IIssuanceCardData } from 'models/ICard';
 
 interface IssuanceCardInfoProps
   extends Pick<
-    IssuanceCardData,
+    IIssuanceCardData,
     'cardCurrency' | 'monthlyFee' | 'foreignTransactionLimit' | 'cashbackRate'
   > {
   cardName: string;

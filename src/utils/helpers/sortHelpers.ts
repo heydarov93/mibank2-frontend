@@ -1,6 +1,6 @@
 import { LOCALES } from 'constants/business/date';
 import { SORT_ORDER } from 'constants/business/sortOrder';
-import { ITransaction } from 'models/ITransactionInfo';
+import { IDisplayTransaction } from 'models/ITransaction';
 import { TSortOrder } from 'types/types';
 import { formatDateByLocale } from 'utils/formatters';
 
@@ -14,7 +14,7 @@ export const getNextSortOrder = (currentSort: TSortOrder) => {
   }
 };
 
-export function getTransactionsByDay(transactions: ITransaction[]) {
+export function getTransactionsByDay(transactions: IDisplayTransaction[]) {
   const uniqueDays = Array.from(
     new Set(
       transactions.map((transaction) =>

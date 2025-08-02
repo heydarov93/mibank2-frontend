@@ -7,7 +7,6 @@ import {
 
 import { ReactComponent as CheckIcon } from 'assets/icons/CheckIcon.svg';
 
-
 interface DepositBenefitItemProps {
   mainText: string;
   secondaryText: string;

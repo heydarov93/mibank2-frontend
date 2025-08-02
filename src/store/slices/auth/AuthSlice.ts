@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IAuthState } from './auth.types';
-
-import { IUserInfo } from 'models/IUserInfo';
+import { IAuthState } from 'models/IAuth';
+import { IUserInfo } from 'models/IUser';
 import { SLICE_NAMES } from 'store/constants/sliceNames';
 
 const initialState: IAuthState = {

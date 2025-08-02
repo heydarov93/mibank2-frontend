@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorLayout matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-d9hbcc"
+  >
+    <div
+      class="MuiBox-root css-1cc42ae"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
+      >
+        title
+      </h2>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        subTitle
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        text
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-t4ge91-MuiTypography-root-MuiLink-root"
+          href="/"
+        >
+          linkText
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;

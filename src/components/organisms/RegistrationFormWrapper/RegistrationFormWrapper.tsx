@@ -13,7 +13,7 @@ import {
 
 import { BackArrow } from 'components/atoms';
 import { EStepper } from 'enums/EStepper';
-import { useRegFormFlow } from 'hooks/useRegFormFlow';
+import { useRegistrationStepper } from 'hooks';
 
 const steps = [1, 2, 3, 4];
 export const RegistrationFormWrapper = () => {
@@ -24,7 +24,7 @@ export const RegistrationFormWrapper = () => {
     handleConfirm,
     handleBack,
     formMethods,
-  } = useRegFormFlow();
+  } = useRegistrationStepper();
 
   const renderFormStep = () => {
     switch (step) {

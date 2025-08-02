@@ -1,5 +1,5 @@
 import { DEPOSIT_TAGS } from 'constants/api/tags';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 export interface IGetDepositsRequest {
   page?: number;
@@ -7,7 +7,7 @@ export interface IGetDepositsRequest {
 }
 
 export interface IGetDepositsResponse {
-  content: IDeposit[];
+  content: IDisplayDeposit[];
   page: {
     size: number;
     number: number;

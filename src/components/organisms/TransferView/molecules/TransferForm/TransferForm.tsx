@@ -19,13 +19,8 @@ import {
   CurrencySelectController,
   TransferAlertDialog,
 } from '../../atoms';
-import {
-  ISavedCardAccount,
-  ISavedIBANAccount,
-  useAccounts,
-} from '../../hooks/useAccounts';
-import { useTransfer } from '../../hooks/useTransfer';
-import { useTranslations } from '../../hooks/useTranslations';
+import { useTransferHandler } from '../../hooks';
+import { useTransferAccounts } from '../../hooks/useTransferAccounts';
 import { createOptions } from '../../utils/createOptions';
 import { renderOption } from '../../utils/renderOptions';
 import { TransferConfirmModal } from '../TransferConfirmModal/TransferConfirmModal';
@@ -37,25 +32,23 @@ import {
   StyledLabel,
 } from './TransferForm.styled';
 
-import { InputFieldController, NumericFieldController } from 'components/molecules';
-import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
-import { IErrorData } from 'models/IError';
-import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import {
+  InputFieldController,
+  NumericFieldController,
+} from 'components/molecules';
+import { CARD_PATTERN, IBAN_PATTERN } from 'constants/validation/patterns';
+import { useTransferTranslations } from 'hooks';
+import {
+  ISavedCardAccount,
+  ISavedIBANAccount,
   IUserCardAccountOption,
   IUserIBANAccountOption,
-} from 'models/IUserAccountOption';
-import { TTransferMethod } from 'pages/TransfersPage/TransfersPage';
-import { TCurrency } from 'types/types';
+} from 'models/IAccount';
+import { IErrorData } from 'models/IError';
+import { IPaymentReceipt } from 'models/IPaymentReceipt';
+import { ITransferFormData } from 'models/ITransaction';
+import { TTransferMethod } from 'types/types';
 import { moneyTransferSchema, TMoneyTransferValues } from 'validation';
-
-export interface ITransferForm {
-  fromAccount: string;
-  toAccount: string;
-  amount: string;
-  currency: TCurrency;
-  message?: string;
-}
 
 interface ITransferFormProps {
   onCancel: () => void;
@@ -68,7 +61,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
   const isMethodOwnCards = transferMethod === 'owncards';
 
   const [receiptInfo, setReceiptInfo] = useState<IPaymentReceipt>();
-  const [transferInfo, setTransferInfo] = useState<ITransferForm>();
+  const [transferInfo, setTransferInfo] = useState<ITransferFormData>();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [receiptOpen, setReceiptOpen] = useState(false);
   const [alert, setAlert] = useState<{
@@ -93,9 +86,9 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
     reValidateMode: 'onChange',
   });
 
-  const { fromAccounts, toAccounts } = useAccounts(transferMethod);
-  const { transferFunds, isLoading } = useTransfer(transferMethod);
-  const translation = useTranslations(transferMethod);
+  const { fromAccounts, toAccounts } = useTransferAccounts(transferMethod);
+  const { transferFunds, isLoading } = useTransferHandler(transferMethod);
+  const translation = useTransferTranslations(transferMethod);
   const inputPattern = isMethodIBAN ? IBAN_PATTERN : CARD_PATTERN;
 
   const fromAccountsOptions = createOptions(fromAccounts ?? []);
@@ -140,7 +133,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
     }
   }
 
-  function handleShowConfirmation(formData: ITransferForm) {
+  function handleShowConfirmation(formData: ITransferFormData) {
     setTransferInfo(formData);
     setConfirmOpen(true);
   }
@@ -198,7 +191,7 @@ export function TransferForm({ onCancel }: ITransferFormProps) {
           </StyledLabel>
           <AutoCompleteField<
             IUserCardAccountOption | IUserIBANAccountOption,
-            ITransferForm
+            ITransferFormData
           >
             name="fromAccount"
             control={control}

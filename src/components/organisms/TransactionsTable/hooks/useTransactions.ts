@@ -5,34 +5,37 @@ import { useGetTransactionsByUserIdMutation } from 'api/services/account-service
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { DATE_FORMATS } from 'constants/business/date';
 import { SORT_ORDER } from 'constants/business/sortOrder';
-import { Transaction } from 'models/ITransactionInfo';
+import { IRawTransaction } from 'models/ITransaction';
 import { formatDateByPattern } from 'utils';
 import { TTransactionFiltersValues } from 'validation';
 
-interface IUseTransactionsParams {
+interface UseTransactionsParams {
   page: number;
   count: number;
   currentFilters: TTransactionFiltersValues;
 }
 
 type TEmptyStateText = { title?: string; message?: string };
+
 interface IShowEmptyState {
   offline: TEmptyStateText;
   noTransactions: TEmptyStateText;
   noMatches: TEmptyStateText;
 }
 
-export function useTransactions({
+export const useTransactions = ({
   page,
   count,
   currentFilters,
-}: IUseTransactionsParams) {
+}: UseTransactionsParams) => {
   const [
     getTransactions,
     { isLoading: isTransactionsListLoading, isError, isSuccess },
   ] = useGetTransactionsByUserIdMutation();
 
-  const [transactionsList, setTransactionList] = useState<Transaction[]>([]);
+  const [transactionsList, setTransactionList] = useState<IRawTransaction[]>(
+    [],
+  );
 
   const [transactionsLength, setTransactionsLength] = useState(0);
 
@@ -147,4 +150,4 @@ export function useTransactions({
     isSuccess,
     setDataSortOrder,
   };
-}
+};

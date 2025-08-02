@@ -57,7 +57,6 @@ export { SignupWithEmail } from './SignupWithEmail/SignupWithEmail';
 export { SignupWithPassword } from './SignupWithPassword/SignupWithPassword';
 export { TransactionsTable } from './TransactionsTable/TransactionsTable';
 export { TransferView } from './TransferView/TransferView';
-export { TransferForm } from './TransferForm/TransferForm';
 export { UserAuthWrapper } from './UserAuthWrapper/UserAuthWrapper';
 export { WelcomeHeader } from './WelcomeHeader/WelcomeHeader';
 export { WelcomeNavbar } from './WelcomeNavbar/WelcomeNavbar';

@@ -326,15 +326,17 @@
       "error": {
         "required": "This field is required",
         "invalidPattern": "Invalid company name",
-        "nipPattern": "Invalid NIP format. Please enter a valid Polish NIP (\"PL-NIP-\" + 10 digits)",
+        "nipPattern": "Please enter a valid 10-digit NIP number",
         "emailPattern": "Please enter your email in format: example@company.com",
-        "ownerNamePattern": "Invalid full name format. At least two words required",
+        "ownerNamePattern": "Please enter Owner`s Full Name (First and Last).",
+        "ownerNameCharactersPattern": "Please use letters (A-Z).",
         "maxLen": "Maximum 100 characters",
         "emailMaxLen": "Maximum 320 characters",
         "nipAlreadyRegistered": "This NIP is already registered",
         "companyNameAlreadyRegistered": "This company name is already registered",
         "errorEmailRegistered": "This email is already registered",
-        "serverError": "Unknown Server Error, Please try again later"
+        "serverError": "Unknown Server Error, Please try again later",
+        "tooManyRequests": "Too Many Requests. Please slow down — you've reached our rate limit."
       }
     }
   },

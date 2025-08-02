@@ -7,7 +7,7 @@ import { StyledSearchContainer } from './EmployeesSearchContainer.styled';
 
 import { NoMatchesFound, SearchField } from 'components/molecules';
 
-interface ViewEmployeesSearchContainerProps {
+interface EmployeesSearchContainerProps {
   showNoMatches: boolean;
   onViewAll: () => void;
   onSearchEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -19,7 +19,7 @@ export const EmployeesSearchContainer = ({
   onViewAll,
   onSearchEnter,
   control,
-}: ViewEmployeesSearchContainerProps) => {
+}: EmployeesSearchContainerProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
 
   return (

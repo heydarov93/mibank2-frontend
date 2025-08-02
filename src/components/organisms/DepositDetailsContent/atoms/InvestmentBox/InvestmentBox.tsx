@@ -15,11 +15,7 @@ import {
   calculateProfit,
 } from 'utils/helpers/financialHelpers';
 
-interface InvestmentBoxProps {
-  interestRate: number;
-}
-
-export const InvestmentBox = ({ interestRate }: InvestmentBoxProps) => {
+export const InvestmentBox = ({ interestRate }: { interestRate: number }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
   return (

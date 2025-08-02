@@ -13,11 +13,12 @@ import {
 
 import { SwitchWithLabel } from 'components/atoms/SwitchWithLabel/SwitchWithLabel';
 import { IssuanceCard } from 'components/molecules';
-import useDisclosure from 'hooks/useDisclosure';
-import { OpenBusinessAccFormValues } from 'hooks/useOpenBusinessAccFlow';
-import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { useDisclosure } from 'hooks';
+import { OpenBusinessAccountFormValues } from 'hooks/business/useBusinessAccountFlow';
+import { IIssuanceCardData } from 'models/ICard';
 
-const mockCardOptions: Record<string, IssuanceCardData> = {
+const mockCardOptions: Record<string, IIssuanceCardData> = {
   digital: {
     cardId: 1,
     cardName: 'Visa Business',
@@ -60,7 +61,7 @@ export const BusinessSelectedCardInfo = ({
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal',
   });
-  const { watch, setValue } = useFormContext<OpenBusinessAccFormValues>();
+  const { watch, setValue } = useFormContext<OpenBusinessAccountFormValues>();
   const issueType = watch('issueType');
   const isAgreed = watch('termsAccepted');
   const cardData = mockCardOptions[issueType];

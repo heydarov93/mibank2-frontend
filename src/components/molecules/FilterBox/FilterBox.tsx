@@ -7,12 +7,12 @@ import { FilterGroupOptions } from '../FilterGroupOptions/FilterGroupOptions';
 import { FilterTitle, PopoverTrigger } from './FilterBox.styled';
 
 import { FilterIcon } from 'components/atoms';
-import { FilterGroup } from 'models/IFilterInfo';
+import { IFilterGroup } from 'models/IFilter';
 
 export interface FilterBoxProps {
   title: string;
-  groups: FilterGroup[];
-  onFilterChange?: (groups: FilterGroup[]) => void;
+  groups: IFilterGroup[];
+  onFilterChange?: (groups: IFilterGroup[]) => void;
 }
 
 export const FilterBox: React.FC<FilterBoxProps> = ({
@@ -21,7 +21,7 @@ export const FilterBox: React.FC<FilterBoxProps> = ({
   onFilterChange,
 }: FilterBoxProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [filterGroups, setFilterGroups] = useState<FilterGroup[]>(groups);
+  const [filterGroups, setFilterGroups] = useState<IFilterGroup[]>(groups);
 
   useEffect(() => {
     setFilterGroups(groups);

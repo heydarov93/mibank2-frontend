@@ -16,6 +16,7 @@ import {
 } from './CitySelectField.styled';
 
 import { POLISH_CITIES } from 'constants/data/geo';
+import { ICityOption } from 'models/ICountry';
 
 interface CitySelectFieldProps<T extends FieldValues> {
   name: Path<T>;
@@ -26,13 +27,8 @@ interface CitySelectFieldProps<T extends FieldValues> {
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-interface CityOptionType {
-  city: string;
-  voivodeship: string;
-}
-
 const filterOptions = (
-  options: CityOptionType[],
+  options: ICityOption[],
   { inputValue }: { inputValue: string },
 ) => {
   const lowercasedInput = inputValue.toLowerCase();
@@ -58,14 +54,14 @@ export const CitySelectField = <T extends FieldValues>({
       control={control}
       render={({ field, fieldState }) => {
         return (
-          <Autocomplete<CityOptionType>
+          <Autocomplete<ICityOption>
             {...field}
             options={POLISH_CITIES}
             filterOptions={filterOptions}
             getOptionLabel={(option) => `${option.city}, ${option.voivodeship}`}
             onChange={(_, value) => field.onChange(value?.city || '')}
             isOptionEqualToValue={(option, value) =>
-              option.city === (value as CityOptionType)?.city
+              option.city === (value as ICityOption)?.city
             }
             value={
               POLISH_CITIES.find((option) => option.city === field.value) ||

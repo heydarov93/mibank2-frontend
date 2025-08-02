@@ -6,7 +6,17 @@ import {
   StyledLabel,
 } from './FilterGroupOptions.styled';
 
-import { FilterGroupOptionsProps } from 'models/IFilterInfo';
+import { IFilterGroup } from 'models/IFilter';
+
+export interface FilterGroupOptionsProps {
+  group: IFilterGroup;
+  groupIndex: number;
+  onOptionChange: (
+    groupIndex: number,
+    optionName: string,
+    checked: boolean,
+  ) => void;
+}
 
 export const FilterGroupOptions: React.FC<FilterGroupOptionsProps> = ({
   group,

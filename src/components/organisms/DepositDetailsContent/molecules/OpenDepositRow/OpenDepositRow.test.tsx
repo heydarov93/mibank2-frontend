@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react';
 
-import { IDepositStep, OpenDepositRow } from './OpenDepositRow';
+import { OpenDepositRow } from './OpenDepositRow';
 
 import { DepositCreationFormProps } from 'components/molecules/DepositCreationForm/DepositCreationForm';
 import { TCurrency } from 'types/types';
+
+interface IDepositStep {
+  id: number;
+  title: string;
+}
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({

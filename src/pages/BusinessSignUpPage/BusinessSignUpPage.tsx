@@ -1,9 +1,5 @@
-import { BusinessAuthWrapper, BusinessSignUpForm } from 'components/organisms';
+import { BusinessSignUpLayout } from 'components/layouts';
 
 export const BusinessSignUpPage = () => {
-  return (
-    <BusinessAuthWrapper>
-      <BusinessSignUpForm />
-    </BusinessAuthWrapper>
-  );
+  return <BusinessSignUpLayout />;
 };

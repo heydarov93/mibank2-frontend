@@ -3,8 +3,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { SelectedCardForm } from './SelectedCardForm';
 
-import { useGetAccountOptions } from 'hooks/useGetAccountOptions';
-import { ECardIssuer, IssuanceCardData } from 'models/IProductInfo';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { useUserAccounts } from 'hooks';
+import { IIssuanceCardData } from 'models/ICard';
 
 const translations = {
   confirm: 'Confirmation',
@@ -22,11 +23,11 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('hooks/useGetAccountOptions', () => ({
-  useGetAccountOptions: jest.fn(),
+jest.mock('hooks/user/useUserAccounts', () => ({
+  useUserAccounts: jest.fn(),
 }));
 
-const cardData: IssuanceCardData = {
+const cardData: IIssuanceCardData = {
   cardId: 1,
   cardName: 'Visa Black',
   issueFee: 15,
@@ -41,7 +42,7 @@ const cardData: IssuanceCardData = {
   dailyOperationalLimit: 1000,
 };
 
-const FormWrapper = (props: IssuanceCardData) => {
+const FormWrapper = (props: IIssuanceCardData) => {
   const methods = useForm({
     defaultValues: {
       paymentAccount: '',
@@ -81,7 +82,7 @@ const renderForm = (data = cardData) => render(<FormWrapper {...data} />);
 
 describe('SelectedCardForm', () => {
   beforeEach(() => {
-    (useGetAccountOptions as jest.Mock).mockReturnValue({
+    (useUserAccounts as jest.Mock).mockReturnValue({
       isLoading: false,
       data: [
         {

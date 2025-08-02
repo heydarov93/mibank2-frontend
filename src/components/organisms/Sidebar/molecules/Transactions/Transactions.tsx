@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Transaction } from '../Transaction/Transaction';
 
-import { ITransaction } from 'models/ITransactionInfo';
+import { IDisplayTransaction } from 'models/ITransaction';
 import { getTransactionsByDay } from 'utils/helpers';
 
 const today = new Date().toLocaleDateString('pl-PL');
 
-export function Transactions({ data }: { data: ITransaction[] }) {
+export function Transactions({ data }: { data: IDisplayTransaction[] }) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar',
   });

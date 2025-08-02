@@ -16,7 +16,7 @@ import { useDepositForm } from './hooks/useDepositForm';
 import { useCreateDeposit, useUserAccounts } from './hooks/useUserAccounts';
 import { buildDepositPayload } from './utils/buildDepositPayload';
 
-import useDisclosure from 'hooks/useDisclosure';
+import { useDisclosure } from 'hooks';
 import { TCurrency } from 'types/types';
 import { openDepositSchema } from 'validation';
 

@@ -7,13 +7,13 @@ import {
   StyledTermsText,
 } from '../../DepositCreationForm.styled';
 
-import { DepositFormValues } from 'models/IDepositInfo';
+import { IOpenDepositFormData } from 'models/IDeposit';
 
-interface ConfirmationSwitchProps {
-  control: Control<DepositFormValues>;
-}
-
-const ConfirmationSwitch = ({ control }: ConfirmationSwitchProps) => {
+const ConfirmationSwitch = ({
+  control,
+}: {
+  control: Control<IOpenDepositFormData>;
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'LearnMorePage' });
 
   return (

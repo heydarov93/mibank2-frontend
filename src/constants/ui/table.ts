@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 
-import { FilterGroup } from 'models/IFilterInfo';
+import { FilterGroup } from 'models/IFilter';
 
 export const INITIAL_PRODUCT_SUB_TYPES: FilterGroup[] = [
   {

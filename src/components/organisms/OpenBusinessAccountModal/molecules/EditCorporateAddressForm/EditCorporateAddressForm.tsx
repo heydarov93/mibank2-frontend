@@ -17,10 +17,6 @@ import {
 const countries = [{ value: 'Poland' }];
 const cities = [{ value: 'Babimost' }, { value: 'Another city' }];
 
-interface EditCorporateAddressFormProps {
-  sx?: SxProps<Theme>;
-}
-
 const defaultValues: TEditCorporateAddressValues = {
   country: 'Poland',
   city: 'Babimost',
@@ -30,9 +26,7 @@ const defaultValues: TEditCorporateAddressValues = {
   street: 'Kargowaska',
 };
 
-export const EditCorporateAddressForm = ({
-  sx,
-}: EditCorporateAddressFormProps) => {
+export const EditCorporateAddressForm = ({ sx }: { sx?: SxProps<Theme> }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal.editAddressForm',
   });

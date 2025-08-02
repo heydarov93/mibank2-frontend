@@ -6,8 +6,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { FormField, FormFieldProps } from './FormField';
 
-import { ILegalAddress, ISelectOption } from 'models/IRegistration';
+import { ILegalAddress } from 'models/IRegistration';
 import { theme } from 'theme/theme';
+import { TBaseSelectOption } from 'types/types';
 
 const TestComponent = (props: FormFieldProps) => {
   const methods = useForm<ILegalAddress>({
@@ -71,7 +72,7 @@ describe('FormField Component', () => {
   });
 
   it('renders select field with options', async () => {
-    const options: ISelectOption[] = [
+    const options: TBaseSelectOption[] = [
       { value: 'Poland', label: 'Poland' },
       { value: 'Germany', label: 'Germany' },
     ];
@@ -100,7 +101,7 @@ describe('FormField Component', () => {
   });
 
   it('disables select when disabled prop is true', async () => {
-    const options: ISelectOption[] = [{ value: 'poland', label: 'Poland' }];
+    const options: TBaseSelectOption[] = [{ value: 'poland', label: 'Poland' }];
 
     renderFormField({
       label: 'City',
@@ -134,7 +135,7 @@ describe('FormField Component', () => {
   });
 
   it('allows selecting option in select field', async () => {
-    const options: ISelectOption[] = [
+    const options: TBaseSelectOption[] = [
       { value: 'germany', label: 'Germany' },
       { value: 'poland', label: 'Poland' },
     ];

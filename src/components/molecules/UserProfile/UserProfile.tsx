@@ -11,7 +11,7 @@ import {
 } from './UserProfile.styled';
 
 import { EGreeting } from 'enums';
-import { IUserInfo } from 'models/IUserInfo';
+import { IUserInfo } from 'models/IUser';
 
 interface UserProfileProps {
   user?: IUserInfo;

@@ -1,17 +1,19 @@
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { ISavedCardAccount } from '../../hooks/useAccounts';
+import { ISavedCardAccount } from '../../hooks/useTransferAccounts';
 
 import { CardIssuerIcon, WalletIcon } from 'components/atoms';
-import { IUserCardAccountOption } from 'models/IUserAccountOption';
+import { IUserCardAccountOption } from 'models/IAccount';
+
+interface CardFieldAdornmentProps {
+  options: IUserCardAccountOption[] | ISavedCardAccount[];
+  selectedValue: string;
+}
 
 export function CardFieldAdornment({
   options,
   selectedValue,
-}: {
-  options: IUserCardAccountOption[] | ISavedCardAccount[];
-  selectedValue: string;
-}) {
+}: CardFieldAdornmentProps) {
   const selectedOption = options.find(
     (option) => option.number === selectedValue,
   );

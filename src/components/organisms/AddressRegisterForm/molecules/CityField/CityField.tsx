@@ -12,7 +12,7 @@ import {
   StyledFieldLabel,
 } from '../../AddressRegisterForm.styled';
 import { ArrowDownIcon, CityMenuItem } from '../../atoms';
-import { useCityDropdown } from '../../hooks/useCityDropdown';
+import { useCityAutocomplete } from '../../hooks';
 
 import { ILegalAddress } from 'models/IRegistration';
 
@@ -40,7 +40,7 @@ export const CityField = ({
     handleCitySelect,
     handleCityInputClick,
     handleClickAway,
-  } = useCityDropdown(name, control);
+  } = useCityAutocomplete(name, control);
 
   const handleDropdownToggle = (event: MouseEvent) => {
     event.preventDefault();

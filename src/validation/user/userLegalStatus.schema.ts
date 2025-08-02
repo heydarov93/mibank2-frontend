@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { t } from 'i18n';
+import { t } from 'config';
 import { isValidPeselLength } from 'utils/helpers/validationHelpers';
 
 const VALIDATION_KEY = 'RegistrationPage';

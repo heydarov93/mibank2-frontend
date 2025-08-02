@@ -16,6 +16,7 @@ import { SelectField } from 'components/molecules';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { IProductFormData } from 'models/IProduct';
 import { getProductForm } from 'store/slices/products/ChooseProductSelector';
 import { setProductForm } from 'store/slices/products/ChooseProductSlice';
 import { setProductStep } from 'store/slices/products/ProductStepperSlice';
@@ -50,14 +51,6 @@ export const ChooseProductForm = () => {
     t('CreateProduct.creditCard'),
   ].map((value) => ({ value }));
 
-  type formData = {
-    productType: string;
-    subtype: string;
-    currency: string;
-    name: string;
-    description: string;
-  };
-
   const {
     control,
     handleSubmit,
@@ -77,7 +70,7 @@ export const ChooseProductForm = () => {
 
   const selectedProduct = watch('productType');
 
-  const onSubmit = (formData: formData) => {
+  const onSubmit = (formData: IProductFormData) => {
     if (formData.productType === 'Deposit') {
       dispatch(setProductStep(EProductFormStepper.DEPOSIT_INFO));
     } else {
@@ -101,7 +94,7 @@ export const ChooseProductForm = () => {
         <StyledHeader>{t('CreateProduct.productHeader')}</StyledHeader>
         <Box>
           <InputLabel>{t('CreateProduct.product')}</InputLabel>
-          <SelectField<formData>
+          <SelectField<IProductFormData>
             name="productType"
             control={control}
             options={productOptions}
@@ -111,7 +104,7 @@ export const ChooseProductForm = () => {
         </Box>
         <Box>
           <InputLabel>{t('CreateProduct.subType')}</InputLabel>
-          <SelectField<formData>
+          <SelectField<IProductFormData>
             name="subtype"
             control={control}
             options={
@@ -126,7 +119,7 @@ export const ChooseProductForm = () => {
         </Box>
         <Box>
           <InputLabel>{t('CreateProduct.currency')}</InputLabel>
-          <SelectField<formData>
+          <SelectField<IProductFormData>
             name="currency"
             control={control}
             options={[...currencyOptions]}

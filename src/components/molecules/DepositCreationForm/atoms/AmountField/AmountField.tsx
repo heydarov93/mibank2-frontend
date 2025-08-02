@@ -7,12 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { StyledLabel } from '../../DepositCreationForm.styled';
 import { CurrencyBox } from '../CurrencyBox/CurrencyBox';
 
-import { DepositFormValues } from 'models/IDepositInfo';
+import { IOpenDepositFormData } from 'models/IDeposit';
 import { TCurrency } from 'types/types';
 
 interface AmountFieldProps {
-  control: Control<DepositFormValues>;
-  errors: FieldErrors<DepositFormValues>;
+  control: Control<IOpenDepositFormData>;
+  errors: FieldErrors<IOpenDepositFormData>;
   currency: TCurrency;
 }
 

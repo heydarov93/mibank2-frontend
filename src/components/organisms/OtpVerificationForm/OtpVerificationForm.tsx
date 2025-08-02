@@ -26,7 +26,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useConnectionStatus,
-  useErrorHandlers,
+  useAuthLockHandler,
 } from 'hooks';
 import { IErrorData } from 'models/IError';
 import { getVerifyingTimer, setError, setVerifying } from 'store/slices/auth';
@@ -37,13 +37,11 @@ import {
   setAuthData,
 } from 'utils/auth';
 
-type OtpVerificationFormProps = {
-  disableFields?: boolean;
-};
-
 export const OtpVerificationForm = ({
   disableFields = false,
-}: OtpVerificationFormProps) => {
+}: {
+  disableFields: boolean;
+}) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'VerificationPage',
   });
@@ -69,7 +67,7 @@ export const OtpVerificationForm = ({
 
   const navigate = useNavigate();
 
-  const { handleLockedError } = useErrorHandlers();
+  const { handleLockedError } = useAuthLockHandler();
   useConnectionStatus();
 
   const handleVerificationCode = useCallback(

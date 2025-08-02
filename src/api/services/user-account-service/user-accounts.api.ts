@@ -4,6 +4,7 @@ import {
   IConfirmForgotPasswordRequest,
   ILegalEntitySignUpRequest,
   ILegalEntityValidationRequest,
+  IRegistrationResponse,
   TUserAccountTag,
 } from './user-acounts.types';
 
@@ -13,7 +14,6 @@ import { CACHE_DURATION } from 'constants/api/cache';
 import { USER_ACCOUNT_TAGS } from 'constants/api/tags';
 import { ETokenType } from 'enums';
 import { IAuth, ILoginData } from 'models/IAuth';
-import { IRegistrationForApi } from 'models/IRegistrationForApi';
 import { getEmail, localTokenHandler } from 'utils/auth';
 
 const email = getEmail();
@@ -95,7 +95,7 @@ export const userAccountsApi = createApi({
       invalidatesTags: [USER_ACCOUNT_TAGS.REFERSH_TOKEN],
     }),
     postRegistrationInfo: builder.mutation({
-      query: (data: IRegistrationForApi) => ({
+      query: (data: IRegistrationResponse) => ({
         url: API_ENDPOINTS.users.addUserDetails(email ?? ''),
         method: 'POST',
         body: data,

@@ -18,11 +18,9 @@ import { SecondaryButton, SubmitButton } from 'components/atoms';
 import { WarningWindow } from 'components/molecules';
 import { ProductType } from 'enums/EProductType';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import {
-  CardFormData,
-  DepositFormData,
-  ProductFormData,
-} from 'models/IProductInfo';
+import { ICreateCardFormData } from 'models/ICard';
+import { IDepositFormData } from 'models/IDeposit';
+import { IProductFormData } from 'models/IProduct';
 import { resetCardData } from 'store/slices/cards/CreateCardSlice';
 import { resetDepositData } from 'store/slices/deposits/CreateDepositSlice';
 import { getProductForm } from 'store/slices/products/ChooseProductSelector';
@@ -32,9 +30,9 @@ import { theme } from 'theme/theme';
 import { TCardIssuer, TCardIssueType, TCardType, TCurrency } from 'types/types';
 
 interface ProductWindowProps {
-  productTypeData: ProductFormData;
-  depositData: DepositFormData;
-  cardData: CardFormData;
+  productTypeData: IProductFormData;
+  depositData: IDepositFormData;
+  cardData: ICreateCardFormData;
   onProductCreated: () => void;
 }
 
@@ -51,7 +49,7 @@ const formatValue = (value: string): string => {
 };
 
 const renderInformation = (
-  data: ProductFormData | CardFormData | DepositFormData,
+  data: IProductFormData | ICreateCardFormData | IDepositFormData,
 ) => {
   return Object.entries(data).map(([key, value]) => (
     <InformationBox key={key}>
@@ -121,14 +119,14 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     cardName: productFormType.name,
     cardCurrency: productFormType.currency as TCurrency,
     cardType: productFormType.subtype as TCardType,
-    cashbackRate: (productData as CardFormData).cashbackRate as number,
-    dailyLimit: (productData as CardFormData).dailyOperationalLimit as number,
-    issueType: (productData as CardFormData).cardType as TCardIssueType,
-    cardIssuer: (productData as CardFormData).cardIssuer as TCardIssuer,
-    issueFee: (productData as CardFormData).monthlyFee as number,
-    foreignTransactionLimit: (productData as CardFormData)
+    cashbackRate: (productData as ICreateCardFormData).cashbackRate as number,
+    dailyLimit: (productData as ICreateCardFormData).dailyOperationalLimit as number,
+    issueType: (productData as ICreateCardFormData).cardType as TCardIssueType,
+    cardIssuer: (productData as ICreateCardFormData).cardIssuer as TCardIssuer,
+    issueFee: (productData as ICreateCardFormData).monthlyFee as number,
+    foreignTransactionLimit: (productData as ICreateCardFormData)
       .foreignTransactionLimit as number,
-    monthlyFee: (productData as CardFormData).monthlyFee as number,
+    monthlyFee: (productData as ICreateCardFormData).monthlyFee as number,
     cardStatus: 'ACTIVE' as TCardStatus,
   };
 
