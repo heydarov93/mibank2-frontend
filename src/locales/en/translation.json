@@ -56,7 +56,14 @@
         "title": "My Loans"
       },
       "myDeposits": {
-        "title": "My Deposits"
+        "title": "My Deposits",
+        "modalPlaceholder": "There should be a modal deposit window",
+        "time": {
+          "day": "{{count}} day",
+          "day_other": "{{count}} days",
+          "month": "{{count}} month",
+          "month_other": "{{count}} months"
+        }
       },
       "seeAll": "See all",
       "emptySectionDefault": "Nothing here yet. Add a new product.",
