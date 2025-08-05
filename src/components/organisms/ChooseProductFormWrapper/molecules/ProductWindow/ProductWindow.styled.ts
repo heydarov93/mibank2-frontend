@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 export const MainContainer = styled(Box)(({ theme: { palette, spacing } }) => ({
   display: 'flex',
@@ -20,12 +20,13 @@ export const StyledTitle = styled(Typography)(({ theme: { typography } }) => ({
 }));
 
 export const SecondaryText = styled(Typography)(
-  ({ theme: { palette, typography } }) => ({
+  ({ theme: { palette, typography, spacing } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     color: palette.grey[400],
     fontSize: typography.mediumLogo?.fontSize,
-    lineHeight: '24px',
+    lineHeight: typography.secondaryText?.lineHeight,
     fontWeight: '400',
+    paddingRight: spacing(2),
   }),
 );
 
@@ -33,7 +34,7 @@ export const SecondaryProductText = styled(Typography)(
   ({ theme: { typography } }) => ({
     fontFamily: typography.mediumLogo?.fontFamily,
     fontSize: typography.mediumLogo?.fontSize,
-    lineHeight: '24px',
+    lineHeight: typography.secondaryText?.lineHeight,
     fontWeight: '500',
   }),
 );

@@ -25,6 +25,11 @@ export const theme = createTheme({
       lineHeight: '20px',
       fontFamily: 'Roboto',
     },
+    secondaryText: {
+      fontSize: '14px',
+      lineHeight: '24px',
+      fontFamily: 'Roboto',
+    },
   },
   breakpoints: {
     values: {
