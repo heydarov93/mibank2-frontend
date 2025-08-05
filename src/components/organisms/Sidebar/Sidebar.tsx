@@ -2,6 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next';
 import { createSearchParams } from 'react-router-dom';
 
+import { DashboardDeposits } from '../DashboardDeposits/DashboardDeposits';
 import { MyCardsSection } from '../MyCardsSection/MyCardsSection';
 import { MyTransactionsSection } from '../MyTransactionsSection/MyTransactionsSection';
 
@@ -23,6 +24,9 @@ export function Sidebar({
     keyPrefix: 'Homepage.sidebar',
   });
   const cardsViewSearchParam = createSearchParams({ view: 'cards' }).toString();
+  const depositsViewSearchParam = createSearchParams({
+    view: 'deposits',
+  }).toString();
 
   return (
     <Container>
@@ -46,9 +50,9 @@ export function Sidebar({
       <Section
         title={t('myDeposits.title')}
         onAddProduct={onDepositsModalOpen}
-        seeAllRoute={TO_HOME}
+        seeAllRoute={`${TO_HOME}?${depositsViewSearchParam}`}
       >
-        <EmptySection />
+        <DashboardDeposits />
       </Section>
       <StyledButton variant="contained" endIcon={<AddIcon />}>
         {t('addNewProduct')}

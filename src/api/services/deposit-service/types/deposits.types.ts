@@ -1,5 +1,6 @@
 import { DEPOSIT_TAGS } from 'constants/api/tags';
 import { IDisplayDeposit } from 'models/IDeposit';
+import { TCurrency } from 'types/types';
 
 export interface IGetDepositsRequest {
   page?: number;
@@ -14,6 +15,24 @@ export interface IGetDepositsResponse {
     totalElements: number;
     totalPages: number;
   };
+}
+
+export interface IUserDeposit {
+  depositId: number;
+  userDepositId: number;
+  name: string;
+  amount: number;
+  currency: TCurrency;
+  type: 'Term' | 'Demand' | 'Savings' | 'Target';
+  interestRate: number;
+  withdrawalFee: number;
+  withdrawalLimit: number;
+  capitalizationRate: number;
+  status: 'active' | 'mature' | 'withdraw' | 'blocked';
+  timeLeft: number;
+  endDate: string;
+  startDate: string;
+  accountNumber: string; //Guid
 }
 
 export interface ICreateDeposit {
