@@ -6,13 +6,13 @@ import { useTranslation } from 'react-i18next';
 
 import { SmallIssuanceCard } from '../../atoms';
 
-import { IssuanceCardData } from 'models/IProductInfo';
+import { IIssuanceCardData } from 'models/ICard';
 
 interface IssueCardsSelectionListProps {
-  cards: IssuanceCardData[];
+  cards: IIssuanceCardData[];
   isLoading?: boolean;
-  selectedCard: IssuanceCardData | null;
-  onCardSelect: (card: IssuanceCardData) => void;
+  selectedCard: IIssuanceCardData | null;
+  onCardSelect: (card: IIssuanceCardData) => void;
   sx?: SxProps<Theme>;
 }
 

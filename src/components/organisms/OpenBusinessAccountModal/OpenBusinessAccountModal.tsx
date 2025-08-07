@@ -1,17 +1,14 @@
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-
 import { NavigationWarningModal } from '../NavigationWarningModal/NavigationWarningModal';
 
 import { StyledDialog } from './OpenBusinessAccountModal.styled';
 import { EditCorporateAddressForm, OpenBusinessAccountForm } from './molecules';
 
-import {
-  ModalHeader,
-} from 'components/atoms';
+import { ModalHeader } from 'components/atoms';
 import { EOpenBusinessAccStepper } from 'enums/EOpenBusinessAccStepper';
-import { useBusinessAccFlow } from 'hooks/useOpenBusinessAccFlow';
+import { useBusinessAccountFlow } from 'hooks';
 
 export interface OpenBusinessAccountModalProps {
   open: boolean;
@@ -32,7 +29,7 @@ export const OpenBusinessAccountModal = ({
     handleClose,
     handleEdit,
     handleBack,
-  } = useBusinessAccFlow({
+  } = useBusinessAccountFlow({
     onClose,
   });
   const isEditingAddress = step === EOpenBusinessAccStepper.EDIT_ADDRESS;

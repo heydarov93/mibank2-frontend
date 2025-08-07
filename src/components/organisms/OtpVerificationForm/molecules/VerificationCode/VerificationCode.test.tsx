@@ -2,16 +2,19 @@ import { render, screen } from '@testing-library/react';
 
 import { VerificationCode } from './VerificationCode';
 
-import { useOtp } from 'hooks';
+import { useOtpInputController } from 'hooks';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (str: string) => str,
   }),
+  initReactI18next: {
+    type: '3rdParty',
+  },
 }));
 
 jest.mock('hooks');
-const useOtpMock = useOtp as jest.Mock;
+const useOtpMock = useOtpInputController as jest.Mock;
 
 describe('VerificationCode Component', () => {
   const mockFocusInput = jest.fn();

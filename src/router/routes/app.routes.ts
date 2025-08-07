@@ -1,7 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 
 import {
-  TO_DEPOSITS,
   TO_HISTORY,
   TO_PAYMENTS,
   TO_TRANSFERS,
@@ -11,7 +10,6 @@ import {
   TransactionsHistoryPage,
   TransfersPage,
   UnderDevPage,
-  MyDepositsPage,
 } from 'router/lazy/app.lazy';
 import { withSuspense } from 'router/utils/withSuspense';
 
@@ -31,9 +29,5 @@ export const protectedAppRoutes: RouteObject[] = [
   {
     path: TO_HISTORY,
     element: withSuspense(TransactionsHistoryPage),
-  },
-  {
-    path: TO_DEPOSITS,
-    element: withSuspense(MyDepositsPage),
   },
 ];

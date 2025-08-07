@@ -56,7 +56,14 @@
         "title": "My Loans"
       },
       "myDeposits": {
-        "title": "My Deposits"
+        "title": "My Deposits",
+        "modalPlaceholder": "There should be a modal deposit window",
+        "time": {
+          "day": "{{count}} day",
+          "day_other": "{{count}} days",
+          "month": "{{count}} month",
+          "month_other": "{{count}} months"
+        }
       },
       "seeAll": "See all",
       "emptySectionDefault": "Nothing here yet. Add a new product.",
@@ -86,7 +93,7 @@
       "errorMessage": "An error occurred while loading available offers"
     }
   },
-  "myDepositsPage": {
+  "myDepositsDetails": {
         "title": "My Deposits",
         "tabAriaLabel": "My Deposit Details Tab",
         "transactionsTabLabel": "Transactions",
@@ -102,6 +109,23 @@
         "matured": "Matured",
         "withdrawn": "Withdrawn",
         "blocked": "Blocked"
+        },
+        "tabs": {
+          "transactions": {},
+          "information": {
+            "labels": {
+              "depositType": "Deposit type",
+              "interestRate": "Interest rate",
+              "accountNumber": "Account number",
+              "withdrawalFee": "Withdrawal fee",
+              "withdrawalLimit": "Withdrawal limit",
+              "capitalizationRate": "Capitalization rate"
+            },
+            "ariaLabels": {
+              "copyIcon": "Copy account number"
+            }
+          },
+          "withdrawal": {}
         }
       },
   "DepositWindow": {
@@ -344,15 +368,17 @@
       "error": {
         "required": "This field is required",
         "invalidPattern": "Invalid company name",
-        "nipPattern": "Invalid NIP format. Please enter a valid Polish NIP (\"PL-NIP-\" + 10 digits)",
+        "nipPattern": "Please enter a valid 10-digit NIP number",
         "emailPattern": "Please enter your email in format: example@company.com",
-        "ownerNamePattern": "Invalid full name format. At least two words required",
+        "ownerNamePattern": "Please enter Owner`s Full Name (First and Last).",
+        "ownerNameCharactersPattern": "Please use letters (A-Z).",
         "maxLen": "Maximum 100 characters",
         "emailMaxLen": "Maximum 320 characters",
         "nipAlreadyRegistered": "This NIP is already registered",
         "companyNameAlreadyRegistered": "This company name is already registered",
         "errorEmailRegistered": "This email is already registered",
-        "serverError": "Unknown Server Error, Please try again later"
+        "serverError": "Unknown Server Error, Please try again later",
+        "tooManyRequests": "Too Many Requests. Please slow down — you've reached our rate limit."
       }
     }
   },

@@ -1,4 +1,5 @@
-import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
+import { IAccountOption } from 'models/IAccount';
+import { IOpenDepositFormData } from 'models/IDeposit';
 
 export interface DepositPayload {
   accountId: string;
@@ -7,8 +8,8 @@ export interface DepositPayload {
 }
 
 export const buildDepositPayload = (
-  formData: DepositFormValues,
-  accountOptions: AccountOption[],
+  formData: IOpenDepositFormData,
+  accountOptions: IAccountOption[],
   depositId: number,
 ) => {
   const selectedAccount = accountOptions.find(

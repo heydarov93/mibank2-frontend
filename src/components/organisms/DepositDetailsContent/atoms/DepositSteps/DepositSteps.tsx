@@ -10,7 +10,6 @@ import {
   StepsRowContainer,
 } from './DepositSteps.styled';
 
-
 export interface DepositStepsProps {
   openDepositSteps: IDepositStep[];
 }

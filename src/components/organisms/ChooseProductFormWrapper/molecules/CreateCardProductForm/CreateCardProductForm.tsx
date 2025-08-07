@@ -19,19 +19,11 @@ import {
 } from 'constants/business/card';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { ICreateCardFormData } from 'models/ICard';
 import { setCardFormData } from 'store/slices/cards/CreateCardSlice';
 import { getProductForm } from 'store/slices/products/ChooseProductSelector';
 import { setProductStep } from 'store/slices/products/ProductStepperSlice';
 import { productCardSchema, TProductCardValues } from 'validation';
-
-interface FormData {
-  cashbackRate: number;
-  monthlyFee: number;
-  dailyOperationalLimit: number;
-  foreignTransactionLimit: number;
-  cardIssuer: string | null;
-  cardType: string | null;
-}
 
 export const CreateCardProductForm: React.FC = () => {
   const { t } = useTranslation('translation', {
@@ -57,7 +49,7 @@ export const CreateCardProductForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = (formData: ICreateCardFormData) => {
     dispatch(setCardFormData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };

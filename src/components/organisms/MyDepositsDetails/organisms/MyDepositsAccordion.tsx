@@ -18,7 +18,7 @@ function MyDepositsAccordion() {
   const [value, setValue] = useState(1);
 
   const { t } = useTranslation('translation', {
-    keyPrefix: 'myDepositsPage',
+    keyPrefix: 'myDepositsDetails',
   });
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

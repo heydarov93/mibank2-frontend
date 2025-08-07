@@ -1,4 +1,4 @@
 export enum ECardIssuer {
-  VISA = 'visa',
-  MASTERCARD = 'mastercard',
+  VISA = 'Visa',
+  MASTERCARD = 'Mastercard',
 }

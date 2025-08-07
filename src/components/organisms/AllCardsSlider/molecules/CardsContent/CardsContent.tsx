@@ -12,7 +12,7 @@ import {
 } from './CardsContent.styled';
 
 import { UserBankCard } from 'components/molecules';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 interface CardsContentProps {
   isLoading: boolean;

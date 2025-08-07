@@ -6,9 +6,8 @@ import { ViewProductsLayout } from './ViewProductsLayout';
 
 import { useDeleteDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { useGetProductsQuery } from 'api/services/deposit-service/products.api';
-import { useProductFilters } from 'hooks/useProductFilters';
-import { useProductManage } from 'hooks/useProductManage';
-import { TableData } from 'models/ITableData';
+import { useProductActions, useProductFilters } from 'hooks';
+import { ITableData } from 'models/ITable';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -24,8 +23,8 @@ jest.mock('react-hook-form', () => ({
 
 jest.mock('api/services/deposit-service/products.api');
 jest.mock('api/services/deposit-service/deposits.api');
-jest.mock('hooks/useProductManage');
-jest.mock('hooks/useProductFilters');
+jest.mock('hooks/product/useProductActions');
+jest.mock('hooks/product/useProductFilters');
 
 jest.mock('@mui/material', () => {
   const actual = jest.requireActual('@mui/material');
@@ -106,15 +105,15 @@ jest.mock('components/organisms', () => ({
     onDeleteClick,
     onEditClick,
   }: {
-    tableBody: Partial<TableData>[];
+    tableBody: Partial<ITableData>[];
     isLoading: boolean;
-    onDeleteClick: (product: Partial<TableData>) => void;
-    onEditClick: (product: Partial<TableData>) => void;
+    onDeleteClick: (product: Partial<ITableData>) => void;
+    onEditClick: (product: Partial<ITableData>) => void;
   }) => (
     <div data-testid="table">
       {isLoading
         ? 'Loading...'
-        : tableBody.map((product: Partial<TableData>) => (
+        : tableBody.map((product: Partial<ITableData>) => (
             <div key={product.id}>
               <span>{product.productName}</span>
               <button onClick={() => onDeleteClick(product)}>Delete</button>
@@ -184,7 +183,7 @@ describe('ViewProductsLayout', () => {
       { isLoading: false, isError: false },
     ]);
 
-    (useProductManage as jest.Mock).mockReturnValue({
+    (useProductActions as jest.Mock).mockReturnValue({
       state: defaultState,
       ...manageHandlers,
     });

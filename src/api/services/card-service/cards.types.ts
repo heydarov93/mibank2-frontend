@@ -1,11 +1,9 @@
 import { CARD_TAGS } from 'constants/api/tags';
-import {
-  ECardIssuer,
-  ECardIssueType,
-  ECardStatus,
-  ECardType,
-  IssuanceCardData,
-} from 'models/IProductInfo';
+import { ECardIssueType } from 'enums/ECardIssueType';
+import { ECardIssuer } from 'enums/ECardIssuer';
+import { ECardStatus } from 'enums/ECardStatus';
+import { ECardType } from 'enums/ECardType';
+import { IIssuanceCardData } from 'models/ICard';
 import {
   TCardIssuer,
   TCardIssueType,
@@ -91,7 +89,7 @@ export interface ISetPrimaryPaymentCardRequest {
 
 export interface IUpdateCardStatusRequest {
   id: TId;
-  status: 'ACTIVE' | 'BLOCKED' | 'EXPIRED';
+  status: TCardStatus;
 }
 
 export interface ICreateCard {
@@ -111,7 +109,7 @@ export interface ICreateCard {
 export type TCardStatus = 'ACTIVE' | 'BLOCKED' | 'EXPIRED';
 export type IGetUserCardDetailsRequest = TId;
 export type TGetUserCardsResponse = IPaginatedResponse<IUserBankCardResponse>;
-export type TSearchCardsResponse = IPaginatedResponse<IssuanceCardData>;
+export type TSearchCardsResponse = IPaginatedResponse<IIssuanceCardData>;
 export type TCreateCardResponse = ICreateCard;
 export type TCreateCardRequest = ICreateCard;
 export type TCardTag = (typeof CARD_TAGS)[keyof typeof CARD_TAGS];

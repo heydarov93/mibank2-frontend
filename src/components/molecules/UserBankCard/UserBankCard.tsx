@@ -11,7 +11,7 @@ import { ReactComponent as SimpleLogoSVG } from 'assets/icons/SimpleLogo.svg';
 import { CardIssuerIcon } from 'components/atoms';
 import { CURRENCY_SYMBOLS } from 'constants/data/currencies';
 import { USER_CARD_WIDTH } from 'constants/ui/layout';
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 import { separateThousands } from 'utils/formatters';
 
 export type TUserBankCardComponent = Pick<

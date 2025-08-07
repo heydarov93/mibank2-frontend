@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { EmptySection, Transactions } from '../Sidebar/molecules';
 
 import { StyledTab, StyledTabs } from './MyTransactionsSection.styled';
-import { useGetTransactions } from './hooks/useGetTransactions';
+import { useMockTransactions } from './hooks';
 
 import { TabPanel } from 'components/atoms';
 import { TRANSACTION_FILTER_OPTIONS } from 'constants/business/transaction';
@@ -21,7 +21,7 @@ export function MyTransactionsSection() {
     setTab(newValue);
   };
 
-  const { transactions, isLoading, isError } = useGetTransactions();
+  const { transactions, isLoading, isError } = useMockTransactions();
 
   if (isError) {
     return <EmptySection description={t('emptySectionConnectionError')} />;

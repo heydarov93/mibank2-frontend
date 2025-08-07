@@ -8,11 +8,11 @@ import { useGetDepositsQuery } from 'api/services/deposit-service/deposits.api';
 import { depositBoxImages } from 'components/molecules/DepositBox/DepositBox';
 import { DepositDetailsContent, OpenDepositModal } from 'components/organisms';
 import { ErrorMessage } from 'components/organisms/AvailableDepositsWindow/atoms/ErrorMessage/ErrorMessage';
-import useDisclosure from 'hooks/useDisclosure';
-import { IDeposit } from 'models/IDepositInfo';
+import { useDisclosure } from 'hooks';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 interface DepositDetailsProps {
-  depositData: IDeposit;
+  depositData: IDisplayDeposit;
   onBack: () => void;
 }
 
@@ -36,7 +36,8 @@ export const DepositDetails = ({
   }, [deposits, depositId]);
 
   const isLoadingDeposits = isLoading || !deposit;
-  const [selectedDeposit, setSelectedDeposit] = useState<IDeposit | null>(null);
+  const [selectedDeposit, setSelectedDeposit] =
+    useState<IDisplayDeposit | null>(null);
 
   const handleDepositBack = () => {
     if (isViewingAllDepositsRef.current) {
@@ -66,7 +67,7 @@ export const DepositDetails = ({
     );
   }
 
-  const idx = depositsData.indexOf(deposit as IDeposit);
+  const idx = depositsData.indexOf(deposit as IDisplayDeposit);
   const imageSrc = depositBoxImages[idx % depositBoxImages.length];
 
   return (

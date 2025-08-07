@@ -14,19 +14,21 @@ import {
 } from './MyDepositsDetails.styled';
 import MyDepositsAccordion from './organisms/MyDepositsAccordion';
 
-import useDisclosure from 'hooks/useDisclosure';
-import { IDeposit } from 'models/IDepositInfo';
+import { useDisclosure } from 'hooks';
+import { IDisplayDeposit } from 'models/IDeposit';
 
 function MyDepositsDetails() {
-  const [deposit, setDeposit] = useState<IDeposit | null>(null);
-  const [learnDeposit, setLearnDeposit] = useState<IDeposit | null>(null);
+  const [deposit, setDeposit] = useState<IDisplayDeposit | null>(null);
+  const [learnDeposit, setLearnDeposit] = useState<IDisplayDeposit | null>(
+    null,
+  );
   const depositsModal = useDisclosure();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar',
   });
   const depositLearnModal = useDisclosure();
 
-  function handleSetDeposit(deposit: IDeposit) {
+  function handleSetDeposit(deposit: IDisplayDeposit) {
     setDeposit(deposit);
     depositsModal.close();
   }
@@ -40,7 +42,7 @@ function MyDepositsDetails() {
     setDeposit(null);
   }
 
-  function handleSetLearnDeposit(deposit: IDeposit) {
+  function handleSetLearnDeposit(deposit: IDisplayDeposit) {
     setLearnDeposit(deposit);
     depositsModal.close();
     depositLearnModal.open();

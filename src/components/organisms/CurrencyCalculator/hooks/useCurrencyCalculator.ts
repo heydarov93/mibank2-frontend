@@ -1,43 +1,15 @@
-import { useState, useEffect, ChangeEvent, useMemo } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  useConvertCurrencyMutation,
-  useGetCurrentRatesQuery,
-} from 'api/services/exchange-rate-service/exchange-rates.api';
-import { formatAmount } from 'utils/formatters';
+import { useExchangeRates } from './useExchangeRates';
 
+import { useConvertCurrencyMutation } from 'api/services/exchange-rate-service/exchange-rates.api';
+import { formatAmount } from 'utils/formatters';
 
 interface ConvertedCurrency {
   convertedAmount: number;
   fromCurrency: string;
   toCurrency: string;
-}
-
-function useGetExchangeRates() {
-  const {
-    data: exchangeRates,
-    isLoading,
-    isError,
-  } = useGetCurrentRatesQuery(null);
-
-  const rates = useMemo(() => {
-    return exchangeRates?.[0]?.rates?.reduce(
-      (
-        acc: { [key: string]: { buy: number; sell: number } },
-        rate: { code: string; bid: number; ask: number },
-      ) => {
-        acc[rate.code.toUpperCase()] = {
-          buy: rate.bid,
-          sell: rate.ask,
-        };
-        return acc;
-      },
-      { PLN: { buy: 1, sell: 1 } },
-    );
-  }, [exchangeRates]);
-
-  return { exchangeRates: rates, isLoading, isError };
 }
 
 export const useCurrencyCalculator = () => {
@@ -49,6 +21,9 @@ export const useCurrencyCalculator = () => {
     from: { currency: 'EUR', amount: '' },
     to: { currency: 'PLN', amount: '' },
   });
+  const [lastChangedDirection, setLastChangedDirection] = useState<
+    'from' | 'to'
+  >('from');
 
   const [
     convertCurrency,
@@ -59,7 +34,7 @@ export const useCurrencyCalculator = () => {
     exchangeRates,
     isLoading: isRatesLoading,
     isError: isRatesError,
-  } = useGetExchangeRates();
+  } = useExchangeRates();
 
   const isConvertCurrencyError = isRatesError || isConvertError;
 
@@ -91,6 +66,7 @@ export const useCurrencyCalculator = () => {
   ) => {
     const amountValue = e.target.value;
     updateExchangeState(amountValue, isFromAmount);
+    setLastChangedDirection(isFromAmount ? 'from' : 'to');
 
     const currencyData = {
       amount: Number(amountValue),
@@ -155,5 +131,6 @@ export const useCurrencyCalculator = () => {
     handleAmountChange,
     handleCurrencyChange,
     handleSwap,
+    lastChangedDirection,
   };
 };

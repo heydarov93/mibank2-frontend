@@ -5,13 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { StyledTypography } from '../../PaymentReceiptModal.styled';
 import { PaymentReceiptRow } from '../../atoms';
 
-import { useTranslations } from 'components/organisms/TransferForm/hooks/useTranslations';
+import { useTransferTranslations } from 'hooks';
 import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
-export const PaymentReceiptInfo = ({ data }: { data: IPaymentReceipt }) => {
+interface PaymentReceiptInfoProps {
+  data: IPaymentReceipt;
+}
+
+export const PaymentReceiptInfo = ({ data }: PaymentReceiptInfoProps) => {
   const { t } = useTranslation('translation');
-  const translation = useTranslations(data.transferMethod);
+  const translation = useTransferTranslations(data.transferMethod);
   const date = new Date(data.date);
 
   return (

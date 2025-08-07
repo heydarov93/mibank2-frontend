@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { AllCardsLayout } from './AllCardsLayout';
 
-import { IUserBankCard } from 'models/IUserBankCard';
+import { IUserBankCard } from 'models/IUser';
 
 type TCardId = IUserBankCard['id'];
 

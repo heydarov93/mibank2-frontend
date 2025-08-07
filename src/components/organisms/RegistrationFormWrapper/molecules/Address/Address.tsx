@@ -9,33 +9,28 @@ import {
 } from '../../RegistrationFormWrapper.styled';
 
 import {
-  StyledFormTitle,
-  StyledFormContent,
   StyledBoxContainer,
+  StyledFormContent,
+  StyledFormTitle,
   StyledLabel,
 } from './Address.styled';
 
 import { useGetPostcodeMutation } from 'api/services/user-account-service/user-accounts.api';
 import {
   InputField,
-  SubmitButton,
-  SecondaryButton,
   PostcodeField,
+  SecondaryButton,
+  SubmitButton,
 } from 'components/atoms';
 import { CitySelectField } from 'components/molecules';
 import { ALLOWED_KEYS } from 'constants/security/permissions';
 import { EErrorStatus } from 'enums';
 import { IErrorData } from 'models/IError';
-import { FormStepProps, IAddress } from 'models/IRegistration';
+import { IPostCodeResponse } from 'models/IPostCode';
+import { IAddress } from 'models/IRegistration';
 import { setError } from 'store/slices/auth';
 
-interface IPostCodeAddress {
-  postcode: string;
-}
-interface IPostCodeResponse {
-  address: IPostCodeAddress | undefined;
-}
-export const Address = ({ onBack }: FormStepProps) => {
+export const Address = ({ onBack }: { onBack: () => void }) => {
   const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const [getPost] = useGetPostcodeMutation();

@@ -1,4 +1,5 @@
 import { TRANSACTION_TAGS } from 'constants/api/tags';
+import { TSortOrder } from 'types/types';
 
 export interface IGetTransactionsRequest {
   userId: number;
@@ -9,7 +10,7 @@ export interface IGetTransactionsRequest {
   transactionType?: 'INCOME' | 'EXPENSE';
   sources?: string[];
   templatesId?: string[];
-  dataSortOrder?: 'ASC' | 'DESC';
+  dataSortOrder?: TSortOrder;
 }
 
 export interface IGetTransactionsList {

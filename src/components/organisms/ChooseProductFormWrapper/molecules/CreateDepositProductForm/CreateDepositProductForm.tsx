@@ -14,7 +14,7 @@ import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled'
 import { NumericFieldController } from 'components/molecules';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { DepositFormData } from 'models/IProductInfo';
+import { IDepositFormData } from 'models/IDeposit';
 import { setDepositData } from 'store/slices/deposits/CreateDepositSlice';
 import { getProductForm } from 'store/slices/products/ChooseProductSelector';
 import { setProductStep } from 'store/slices/products/ProductStepperSlice';
@@ -54,7 +54,7 @@ export const CreateDepositProductForm: React.FC = () => {
 
   const earlyWithdrawalEnabled = watch('earlyWithdrawal');
 
-  const onSubmit = (formData: DepositFormData) => {
+  const onSubmit = (formData: IDepositFormData) => {
     dispatch(setDepositData(formData));
     dispatch(setProductStep(EProductFormStepper.FINISHED));
   };

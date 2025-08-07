@@ -5,7 +5,6 @@ export { ErrorPage } from './ErrorPage/ErrorPage';
 export { UnderDevPage } from './UnderDevPage/UnderDevPage';
 export { VerificationPage } from './VerificationPage/VerificationPage';
 export { SignUpPage } from './SignUpPage/SignUpPage';
-export { MyDepositsPage } from './MyDepositsPage/MyDepositsPage';
 export { CreatePasswordPage } from './CreatePasswordPage/CreatePasswordPage';
 export { RegistrationPage } from './RegistrationPage/RegistrationPage';
 export { CreateForgotPasswordPage } from './CreateForgotPasswordPage/CreateForgotPasswordPage';

@@ -5,6 +5,8 @@ import { HTTP_HEADERS } from 'constants/security/httpHeaders';
 import { FLAG_ICONS } from 'constants/ui/content';
 import { LOGO_SIZES } from 'constants/ui/layout';
 import { OTP_INPUT_KEY } from 'constants/validation/otp';
+import { IDropdownOption } from 'models/ISelectField';
+import { IUserBankCard } from 'models/IUser';
 
 export type THttpHeaderKey = (typeof HTTP_HEADERS)[keyof typeof HTTP_HEADERS];
 export type TOtpInputKey = (typeof OTP_INPUT_KEY)[keyof typeof OTP_INPUT_KEY];
@@ -19,7 +21,22 @@ export type TCardStatus = 'active' | 'blocked' | 'expired';
 export type TCardIssueType = 'digital' | 'plastic';
 export type TCardType = 'debit' | 'credit';
 export type TTransactionType = 'income' | 'expense';
+export type TSubmissionState = 'idle' | 'success' | 'error';
 export type TId = string | number;
+export type TBaseSelectOption = Required<IDropdownOption>;
+export type TUserBankCardDetails = Pick<
+  IUserBankCard,
+  | 'id'
+  | 'holder'
+  | 'number'
+  | 'cvv'
+  | 'iban'
+  | 'swift'
+  | 'issueDate'
+  | 'cashbackRate'
+  | 'status'
+  | 'isPrimary'
+>;
 export type TVoivodeship =
   | 'Lower Silesian'
   | 'Kuyavian-Pomeranian'

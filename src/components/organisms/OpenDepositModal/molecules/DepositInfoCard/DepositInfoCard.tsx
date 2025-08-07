@@ -15,9 +15,9 @@ import {
 } from './DepositInfoCard.styled';
 
 import DepositCardSvg from 'assets/icons/DepositCardImg.svg';
-import { IDeposit } from 'models/IDepositInfo';
+import { IDisplayDeposit } from 'models/IDeposit';
 
-type DepositInfoCardProps = IDeposit;
+type DepositInfoCardProps = IDisplayDeposit;
 
 export const DepositInfoCard = ({
   name,

@@ -27,8 +27,6 @@ import { IExchangeRate } from 'api/services/exchange-rate-service/exchange-rates
 import { CurrencyFlagIcon } from 'components/atoms';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 
-type TableError = string | null;
-
 export function ExchangeRatesTable() {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.currencyExchange.exchangeRatesTable',
@@ -56,7 +54,7 @@ export function ExchangeRatesTable() {
     isLoadingPrevious;
 
   const isRatesError = isCurrentRatesError || isPreviousRatesError;
-  const errorMessage: TableError = isRatesError ? t('errorMessage') : null;
+  const errorMessage = isRatesError ? t('errorMessage') : null;
 
   if (isRatesDataLoading) {
     return <CircularProgress />;

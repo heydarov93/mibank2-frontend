@@ -5,7 +5,7 @@ import { BackOfficeButtonGroup } from '../BackOfficeButtonGroup/BackOfficeButton
 import { StyledTableCell } from './BackOfficeTableItem.styled';
 
 import { SwitchButton } from 'components/atoms';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 
 interface TableHeadItem {
   label: string;
@@ -13,10 +13,10 @@ interface TableHeadItem {
 }
 
 interface BackOfficeTableItemProps {
-  tableData: Partial<TableData>;
+  tableData: Partial<ITableData>;
   tableHead: TableHeadItem[];
-  onDeleteClick?: (product: Partial<TableData>) => void;
-  onEditClick?: (product: Partial<TableData>) => void;
+  onDeleteClick?: (product: Partial<ITableData>) => void;
+  onEditClick?: (product: Partial<ITableData>) => void;
 }
 
 export const BackOfficeTableItem = ({
@@ -34,7 +34,7 @@ export const BackOfficeTableItem = ({
           {key === 'productStatus' ? (
             <SwitchButton isChecked={isChecked} setIsChecked={setIsChecked} />
           ) : (
-            tableData[key as keyof TableData] || ''
+            tableData[key as keyof ITableData] || ''
           )}
         </StyledTableCell>
       ))}

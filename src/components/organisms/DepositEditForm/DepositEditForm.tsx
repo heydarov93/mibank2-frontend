@@ -18,14 +18,14 @@ import { CustomAutocomplete } from 'components/molecules';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
 import { EErrorStatus } from 'enums';
 import { IBackOfficeErrorData } from 'models/IError';
-import { TableData } from 'models/ITableData';
+import { ITableData } from 'models/ITable';
 import { THttpStatus } from 'types/types';
 import { editDepositSchema, TEditDepositValues } from 'validation';
 
 type RefetchProductsFn = ReturnType<typeof useGetProductsQuery>['refetch'];
 
 interface DepositEditFormProps {
-  formData?: Partial<TableData>;
+  formData?: Partial<ITableData>;
   onClose: () => void;
   onError: (errorMessage: string) => void;
   onSuccess?: () => void;

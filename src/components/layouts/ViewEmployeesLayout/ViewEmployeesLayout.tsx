@@ -15,7 +15,7 @@ import {
   EmployeesSearchContainer,
 } from 'components/organisms';
 import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/navigation/routePaths';
-import useEmployees from 'hooks/useEmployee';
+import { useEmployeeActions } from 'hooks/user/useEmployeeActions';
 
 export const ViewEmployeesLayout = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -37,7 +37,7 @@ export const ViewEmployeesLayout = () => {
     handleDelete,
     handleViewAll,
     handleSearchEnter,
-  } = useEmployees();
+  } = useEmployeeActions();
 
   const paramsObj = useMemo(
     () => Object.fromEntries(searchParams),

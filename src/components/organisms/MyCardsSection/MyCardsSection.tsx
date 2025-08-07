@@ -3,13 +3,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CardDetails, EmptySection, StaticCardStack } from '../Sidebar/molecules';
+import {
+  CardDetails,
+  EmptySection,
+  StaticCardStack,
+} from '../Sidebar/molecules';
 
 import { StyledCardContainer, StyledContainer } from './MyCardsSection.styled';
 import { CardStackCarousel } from './molecules';
 
 import { UserBankCard } from 'components/molecules';
-import { useGetUserCards } from 'hooks/useGetUserCards';
+import { useUserCards } from 'hooks';
 
 export function MyCardsSection() {
   const { t } = useTranslation('translation', {
@@ -17,7 +21,7 @@ export function MyCardsSection() {
   });
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
 
-  const { data: userBankCards, isLoading, isError } = useGetUserCards();
+  const { data: userBankCards, isLoading, isError } = useUserCards();
 
   function handleCardChange(current: number | undefined) {
     setSelectedCardIndex(current ?? 0);

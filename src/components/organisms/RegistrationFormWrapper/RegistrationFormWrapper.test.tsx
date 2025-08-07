@@ -4,9 +4,9 @@ import { RegistrationFormWrapper } from './RegistrationFormWrapper';
 
 import { EStepper } from 'enums/EStepper';
 
-const mockUseRegFormFlow = jest.fn();
-jest.mock('hooks/useRegFormFlow', () => ({
-  useRegFormFlow: () => mockUseRegFormFlow(),
+const mockUseRegistrationStepper = jest.fn();
+jest.mock('hooks/auth/useRegistrationStepper.ts', () => ({
+  useRegistrationStepper: () => mockUseRegistrationStepper(),
 }));
 
 jest.mock('./molecules/PersonalInfo/PersonalInfo', () => ({
@@ -112,7 +112,7 @@ const defaultMockReturn = {
 describe('RegistrationFormWrapper', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockUseRegFormFlow.mockReturnValue(defaultMockReturn);
+    mockUseRegistrationStepper.mockReturnValue(defaultMockReturn);
   });
 
   describe('Component structure', () => {
@@ -128,7 +128,7 @@ describe('RegistrationFormWrapper', () => {
 
   describe('Step rendering', () => {
     it('renders PersonalInfo form for PERSONAL_INFO step', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: EStepper.PERSONAL_INFO,
       });
@@ -139,7 +139,7 @@ describe('RegistrationFormWrapper', () => {
     });
 
     it('renders LegalStatus form for LEGAL_STATUS step', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: EStepper.LEGAL_STATUS,
       });
@@ -150,7 +150,7 @@ describe('RegistrationFormWrapper', () => {
     });
 
     it('renders DocumentInfoWrapper form for DOCUMENT_INFO step', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: EStepper.DOCUMENT_INFO,
       });
@@ -161,7 +161,7 @@ describe('RegistrationFormWrapper', () => {
     });
 
     it('renders Address form for ADDRESS step', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: EStepper.ADDRESS,
       });
@@ -172,7 +172,7 @@ describe('RegistrationFormWrapper', () => {
     });
 
     it('renders PersonalInfo form for unknown step', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: 'UNKNOWN_STEP' as any,
       });
@@ -186,7 +186,7 @@ describe('RegistrationFormWrapper', () => {
   describe('Navigation interactions', () => {
     it('opens warning modal when back arrow is clicked', () => {
       const mockOpen = jest.fn();
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         leaveModal: {
           ...defaultMockReturn.leaveModal,
@@ -203,7 +203,7 @@ describe('RegistrationFormWrapper', () => {
 
     it('calls handleBack when step form back button is clicked', () => {
       const mockHandleBack = jest.fn();
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         step: EStepper.LEGAL_STATUS,
         handleBack: mockHandleBack,
@@ -225,7 +225,7 @@ describe('RegistrationFormWrapper', () => {
     });
 
     it('shows warning modal when open', () => {
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         leaveModal: {
           ...defaultMockReturn.leaveModal,
@@ -240,7 +240,7 @@ describe('RegistrationFormWrapper', () => {
 
     it('calls handleConfirm when modal confirm is clicked', () => {
       const mockHandleConfirm = jest.fn();
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         leaveModal: {
           ...defaultMockReturn.leaveModal,
@@ -258,7 +258,7 @@ describe('RegistrationFormWrapper', () => {
 
     it('calls leaveModal.close when modal cancel is clicked', () => {
       const mockClose = jest.fn();
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         leaveModal: {
           ...defaultMockReturn.leaveModal,
@@ -278,7 +278,7 @@ describe('RegistrationFormWrapper', () => {
   describe('Form submission', () => {
     it('calls submitForm when form is submitted', () => {
       const mockSubmitForm = jest.fn((e) => e.preventDefault());
-      mockUseRegFormFlow.mockReturnValue({
+      mockUseRegistrationStepper.mockReturnValue({
         ...defaultMockReturn,
         submitForm: mockSubmitForm,
       });

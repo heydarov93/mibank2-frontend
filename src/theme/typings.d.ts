@@ -1,4 +1,5 @@
 import '@mui/material/styles/createTypography';
+import { CSSProperties } from 'react';
 
 declare module '@mui/material/styles/createTypography' {
   interface Typography {
@@ -12,6 +13,11 @@ declare module '@mui/material/styles/createTypography' {
       lineHeight: string;
       fontFamily: string;
     };
+    secondaryText?: {
+      fontSize: string;
+      lineHeight: string;
+      fontFamily: string;
+    };
   }
 
   interface TypographyOptions {
@@ -21,6 +27,11 @@ declare module '@mui/material/styles/createTypography' {
       fontFamily: string;
     };
     mediumLogo?: {
+      fontSize: string;
+      lineHeight: string;
+      fontFamily: string;
+    };
+    secondaryText?: {
       fontSize: string;
       lineHeight: string;
       fontFamily: string;
@@ -40,6 +51,14 @@ declare module '@mui/material/styles' {
       shake?: Keyframes;
     };
   }
+
+  interface TypographyVariants {
+    secondaryText: CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    secondaryText?: CSSProperties;
+  }
 }
 
 declare module '@mui/material/styles' {
@@ -52,7 +71,7 @@ declare module '@mui/material/styles' {
         400: string;
       };
       basic: {
-        black: '#060608';
+        black: string;
       };
       success: {
         chipText: string;
@@ -89,7 +108,7 @@ declare module '@mui/material/styles' {
         400: string;
       };
       basic: {
-        black: '#060608';
+        black: string;
       };
       success: {
         chipText: string;
@@ -121,5 +140,11 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Button' {
   interface ButtonOwnProps {
     boxShadow?: true;
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    secondaryText: true;
   }
 }

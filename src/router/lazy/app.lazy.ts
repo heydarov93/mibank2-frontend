@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 export const App = lazy(() =>
-  import('App').then((module) => ({ default: module.App })),
+  import('app/App').then((module) => ({ default: module.App })),
 );
 
 export const HomePage = lazy(() =>
@@ -15,12 +15,6 @@ export const TransfersPage = lazy(() =>
 export const TransactionsHistoryPage = lazy(() =>
   import('pages').then((module) => ({
     default: module.TransactionsHistoryPage,
-  })),
-);
-
-export const MyDepositsPage = lazy(() =>
-  import('pages').then((module) => ({
-    default: module.MyDepositsPage,
   })),
 );
 

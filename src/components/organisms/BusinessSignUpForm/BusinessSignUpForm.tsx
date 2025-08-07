@@ -17,16 +17,10 @@ import { TO_BUSINESS_CREATE_PASSWORD } from 'constants/navigation/routePaths';
 import { NIP_PATTERN } from 'constants/validation/patterns';
 import { EErrorStatus } from 'enums';
 import { useAppDispatch } from 'hooks';
+import { IBusinessSignUpFormData } from 'models/IAuth';
 import { ILegalEntityValidationError } from 'models/IError';
 import { setError, setLegalEntityInfo } from 'store/slices/auth/AuthSlice';
 import { businessSignupSchema, TBusinessSignupValues } from 'validation';
-
-interface IBusinessSignUpForm {
-  companyName: string;
-  companyEmail: string;
-  nip: string;
-  ownerName: string;
-}
 
 export const BusinessSignUpForm = () => {
   const navigate = useNavigate();
@@ -54,7 +48,7 @@ export const BusinessSignUpForm = () => {
   const [postValidationLegalEntityInfo, { isLoading }] =
     usePostValidationLegalEntityInfoMutation();
 
-  const onSubmit = async (data: IBusinessSignUpForm) => {
+  const onSubmit = async (data: IBusinessSignUpFormData) => {
     try {
       const response: Record<string, boolean> =
         await postValidationLegalEntityInfo(data).unwrap();
@@ -87,7 +81,6 @@ export const BusinessSignUpForm = () => {
           }
           const errorKeys = existError.map(([key]: [string, boolean]) => key);
           if (errorKeys.includes('isEmailAlreadyTaken')) {
-            dispatch(setError(`${t('form.error.errorEmailRegistered')}`));
             setFormError(
               'companyEmail',
               {
@@ -98,7 +91,6 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isNipAlreadyTaken')) {
-            dispatch(setError(`${t('form.error.nipAlreadyRegistered')}`));
             setFormError(
               'nip',
               {
@@ -109,9 +101,6 @@ export const BusinessSignUpForm = () => {
             );
           }
           if (errorKeys.includes('isCompanyNameAlreadyTaken')) {
-            dispatch(
-              setError(`${t('form.error.companyNameAlreadyRegistered')}`),
-            );
             setFormError(
               'companyName',
               {
@@ -124,7 +113,7 @@ export const BusinessSignUpForm = () => {
           break;
         }
         case EErrorStatus.TOO_MANY_REQUESTS:
-          dispatch(setError(t('form.error.serverError')));
+          dispatch(setError(t('form.error.tooManyRequests')));
           break;
         default:
           dispatch(setError(t('form.error.serverError')));

@@ -7,12 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { StyledLabel } from '../../DepositCreationForm.styled';
 import { AccountItem } from '../AccountItem/AccountItem';
 
-import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
+import { IAccountOption } from 'models/IAccount';
+import { IOpenDepositFormData } from 'models/IDeposit';
 
 interface AccountSelectProps {
-  control: Control<DepositFormValues>;
-  errors: FieldErrors<DepositFormValues>;
-  options: AccountOption[];
+  control: Control<IOpenDepositFormData>;
+  errors: FieldErrors<IOpenDepositFormData>;
+  options: IAccountOption[];
   isLoading: boolean;
 }
 
@@ -35,11 +36,11 @@ const AccountSelect = ({
             data-testid="account-select"
             loading={isLoading}
             options={options}
-            getOptionLabel={(option: AccountOption) =>
+            getOptionLabel={(option: IAccountOption) =>
               `${option.iban} ${option.currency} ${option.balance}`
             }
             value={
-              options.find((acc: AccountOption) => acc.iban === field.value) ||
+              options.find((acc: IAccountOption) => acc.iban === field.value) ||
               null
             }
             onChange={(_, selected) => field.onChange(selected?.iban || '')}

@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import { NumericFormat, NumericFormatProps } from 'react-number-format';
 
-interface CustomProps {
+interface NumericInputProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
 
-export const NumericInput = forwardRef<NumericFormatProps, CustomProps>(
+export const NumericInput = forwardRef<NumericFormatProps, NumericInputProps>(
   function NumericInput(props, ref) {
     const { onChange, ...other } = props;
     return (

@@ -1,9 +1,10 @@
 import { buildDepositPayload } from './buildDepositPayload';
 
-import { AccountOption, DepositFormValues } from 'models/IDepositInfo';
+import { IAccountOption } from 'models/IAccount';
+import { IOpenDepositFormData } from 'models/IDeposit';
 
 describe('buildDepositPayload', () => {
-  const mockAccounts: AccountOption[] = [
+  const mockAccounts: IAccountOption[] = [
     {
       accountId: '101',
       iban: 'AZ00TEST000000000001',
@@ -19,7 +20,7 @@ describe('buildDepositPayload', () => {
   ];
 
   it('should return correct payload when valid data is provided', () => {
-    const formData: DepositFormValues = {
+    const formData: IOpenDepositFormData = {
       account: 'AZ00TEST000000000002',
       amount: 1500,
     };
@@ -36,7 +37,7 @@ describe('buildDepositPayload', () => {
   });
 
   it('should throw an error if selected account is not found', () => {
-    const formData: DepositFormValues = {
+    const formData: IOpenDepositFormData = {
       account: 'AZ00INVALID0000000000',
       amount: 1000,
     };
@@ -47,7 +48,7 @@ describe('buildDepositPayload', () => {
   });
 
   it('should convert string amount to number', () => {
-    const formData: DepositFormValues = {
+    const formData: IOpenDepositFormData = {
       account: 'AZ00TEST000000000001',
       amount: 2000.75,
     };

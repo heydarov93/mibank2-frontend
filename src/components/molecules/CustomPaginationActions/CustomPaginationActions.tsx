@@ -16,7 +16,7 @@ import {
 
 import { getButtonColor, getTextColor } from 'utils/helpers';
 
-interface PaginationActionsProps {
+interface CustomPaginationActionsProps {
   totalPages: number;
   page: number;
   rowsPerPage: number;
@@ -30,7 +30,7 @@ export const CustomPaginationActions = ({
   totalPages,
   page,
   onPageChange,
-}: PaginationActionsProps) => {
+}: CustomPaginationActionsProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'TablePagination',
   });

@@ -16,11 +16,6 @@ interface OpenDepositRowProps {
   depositName: string;
 }
 
-export interface IDepositStep {
-  id: number;
-  title: string;
-}
-
 export const OpenDepositRow = ({
   onBack,
   depositName,
@@ -33,7 +28,7 @@ export const OpenDepositRow = ({
     keyPrefix: 'LearnMorePage',
   });
 
-  const OPEN_DEPOSIT_STEPS: IDepositStep[] = [
+  const OPEN_DEPOSIT_STEPS = [
     {
       id: 1,
       title: t(`chooseAmountStep`),

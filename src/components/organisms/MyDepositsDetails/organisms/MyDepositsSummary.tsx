@@ -14,7 +14,9 @@ import SummaryInfoItem from '../molecules/SummaryInfoItem';
 import { CoinsStackedIcon } from 'components/atoms/CoinsStackedIcon/CoinsStackedIcon';
 
 function MyDepositsSummary() {
-  const { t } = useTranslation('translation', { keyPrefix: 'myDepositsPage' });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'myDepositsDetails',
+  });
   return (
     <StyledAccordionSummary expandIcon={<KeyboardArrowDown />}>
       <StyledSummaryContainer>

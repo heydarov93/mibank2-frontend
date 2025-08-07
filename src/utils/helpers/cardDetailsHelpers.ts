@@ -1,4 +1,4 @@
-import { TUserBankCardDetails } from 'components/organisms/SelectedCardDetails/molecules/InfoTab/InfoTab';
+import { TUserBankCardDetails } from "types/types";
 
 export const getDisplayCardNumber = (
   selectedUserCardDetails: TUserBankCardDetails,

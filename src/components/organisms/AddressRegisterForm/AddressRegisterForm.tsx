@@ -15,11 +15,11 @@ import {
   StyledFormTitle,
   StyledFormContainer,
 } from './AddressRegisterForm.styled';
-import { useAddressForm } from './hooks/useAddressForm';
+import { useLegalAddressForm } from './hooks';
 import { CityField, FormField } from './molecules';
 
 import { TO_VERIFY_EMAIL } from 'constants/navigation/routePaths';
-import { useNavigationWarning } from 'hooks';
+import { useBackNavigationGuard } from 'hooks';
 
 export const AddressRegisterForm = () => {
   const { t } = useTranslation('translation', {
@@ -27,13 +27,13 @@ export const AddressRegisterForm = () => {
   });
   const location = useLocation();
   const onVerifyEmail = location.pathname === TO_VERIFY_EMAIL;
-  const { handleSubmit, onSubmit, isValid, control } = useAddressForm();
+  const { handleSubmit, onSubmit, isValid, control } = useLegalAddressForm();
   const {
     warningModalOpen,
     handleBackClick,
     handleNavigateBack,
     handleCancelNavigateBack,
-  } = useNavigationWarning({ onVerifyEmail, redirectToSignIn: true });
+  } = useBackNavigationGuard({ onVerifyEmail, redirectToSignIn: true });
 
   return (
     <>

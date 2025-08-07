@@ -1,16 +1,5 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-
-export const StyledButtonContainer = styled(Box)(
-  ({ theme: { breakpoints, spacing } }) => ({
-    paddingTop: spacing(3),
-
-    [breakpoints.up('sm')]: {
-      paddingTop: spacing(2),
-    },
-  }),
-);
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 
 export const StyledButton = styled(Button)(
   ({ theme: { palette, breakpoints, spacing } }) => ({

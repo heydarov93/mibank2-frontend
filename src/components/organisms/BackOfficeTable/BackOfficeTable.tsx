@@ -19,40 +19,20 @@ import {
   DEFAULT_PAGE_SIZE,
 } from 'constants/business/pagination';
 import { usePaginationInfo } from 'hooks';
-import { TableData } from 'models/ITableData';
+import { ITableBody, ITableData, ITableHead } from 'models/ITable';
 
-interface TableHeadItem {
-  label: string;
-  key: string;
-  sortable?: boolean | undefined;
-  order?: string;
-  onSort?: () => void;
-}
-
-interface TableBody {
-  id: number;
-  productName: string;
-  productSubtype: string;
-  productStatus: string;
-  dateAdded: string;
-  firstName: string;
-  lastName: string;
-  role: string;
-  email: string;
-}
-
-type PartialTableBody = Partial<TableBody>;
+type PartialTableBody = Partial<ITableBody>;
 
 interface BackOfficeTableProps {
-  tableHead: TableHeadItem[];
+  tableHead: ITableHead[];
   tableBody: PartialTableBody[];
   totalItems?: number;
   page?: number;
   pageSize?: number;
   onPageChange?: (page: number) => void;
   onPageSizeChange?: (size: number) => void;
-  onDeleteClick?: (product: Partial<TableData>) => void;
-  onEditClick?: (product: Partial<TableData>) => void;
+  onDeleteClick?: (product: Partial<ITableData>) => void;
+  onEditClick?: (product: Partial<ITableData>) => void;
   isLoading?: boolean;
 }
 

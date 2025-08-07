@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CardFormData } from 'models/IProductInfo';
+import { ICreateCardFormData } from 'models/ICard';
 import { SLICE_NAMES } from 'store/constants/sliceNames';
 
-const initialState: CardFormData = {
+const initialState: ICreateCardFormData = {
   cashbackRate: null,
   monthlyFee: null,
   dailyOperationalLimit: null,
@@ -16,7 +16,7 @@ const CreateCardSlice = createSlice({
   name: SLICE_NAMES.CREATE_CARD,
   initialState,
   reducers: {
-    setCardFormData(state, action: PayloadAction<CardFormData>) {
+    setCardFormData(state, action: PayloadAction<ICreateCardFormData>) {
       state.cardIssuer = action.payload.cardIssuer;
       state.cardType = action.payload.cardType;
       state.cashbackRate = action.payload.cashbackRate;

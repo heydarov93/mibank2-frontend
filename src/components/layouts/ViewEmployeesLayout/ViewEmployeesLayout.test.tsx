@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 
 import { ViewEmployeesLayout } from './ViewEmployeesLayout';
 
-import useEmployees from 'hooks/useEmployee';
-import { TableData } from 'models/ITableData';
+import { useEmployeeActions } from 'hooks';
+import { ITableData } from 'models/ITable';
 
-jest.mock('hooks/useEmployee');
+jest.mock('hooks/user/useEmployeeActions');
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
@@ -49,7 +49,7 @@ jest.mock('components/molecules', () => ({
   ),
 }));
 jest.mock('components/organisms', () => ({
-  BackOfficeTable: ({ tableBody }: { tableBody: Partial<TableData>[] }) => (
+  BackOfficeTable: ({ tableBody }: { tableBody: Partial<ITableData>[] }) => (
     <div>Table rows: {tableBody.length}</div>
   ),
   EmployeesSearchContainer: ({ showNoMatches }: { showNoMatches: boolean }) =>
@@ -86,7 +86,7 @@ const defaultState = {
 };
 describe('ViewEmployeesLayout', () => {
   beforeEach(() => {
-    (useEmployees as jest.Mock).mockReturnValue(defaultState);
+    (useEmployeeActions as jest.Mock).mockReturnValue(defaultState);
   });
 
   describe('Header', () => {
@@ -112,7 +112,7 @@ describe('ViewEmployeesLayout', () => {
         searchValue: 'test',
         tableData: [],
       };
-      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(screen.getByText('No matches found')).toBeInTheDocument();
       expect(screen.getByText('Table rows: 0')).toBeInTheDocument();
@@ -125,7 +125,7 @@ describe('ViewEmployeesLayout', () => {
         ...defaultState,
         state: { ...defaultState.state, showEditForm: true },
       };
-      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(screen.getByText('Edit Form')).toBeInTheDocument();
     });
@@ -135,7 +135,7 @@ describe('ViewEmployeesLayout', () => {
         ...defaultState,
         state: { ...defaultState.state, failMsgModal: true },
       };
-      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(
         screen.getByText(`${hookReturn.state.actionMsg}`),
@@ -147,7 +147,7 @@ describe('ViewEmployeesLayout', () => {
         ...defaultState,
         state: { ...defaultState.state, successMsgModal: true },
       };
-      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(
         screen.getByText(`${hookReturn.state.actionMsg}`),
@@ -159,7 +159,7 @@ describe('ViewEmployeesLayout', () => {
         ...defaultState,
         state: { ...defaultState.state, showDelModal: true },
       };
-      (useEmployees as jest.Mock).mockReturnValue(hookReturn);
+      (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(screen.getByText('Warning Window')).toBeInTheDocument();
     });

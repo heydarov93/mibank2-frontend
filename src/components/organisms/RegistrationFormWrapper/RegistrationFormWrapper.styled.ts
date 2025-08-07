@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
 import { createComponentWithDefaultBreakpoints } from 'utils/helpers/breakpointHelpers';
 
@@ -25,11 +25,17 @@ export const StyledBoxContainer = styled(Box)(
   }),
 );
 
-export const StyledActionsWrapper = styled(Box)(() => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-end',
-}));
+export const StyledActionsWrapper = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    paddingTop: spacing(3),
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    [breakpoints.up('sm')]: {
+      paddingTop: spacing(2),
+    },
+  }),
+);
 
 export const StyledContentContainer =
   createComponentWithDefaultBreakpoints(Box);

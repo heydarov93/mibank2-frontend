@@ -16,25 +16,17 @@ import { MainHeader } from '../CardEditForm/CardEditForm.styled';
 import { InputField, SubmitButton, CloseButton } from 'components/atoms';
 import { DocumentDatePicker } from 'components/molecules';
 import { DATE_FORMATS, LOCALES } from 'constants/business/date';
-import { TableData } from 'models/ITableData';
+import { IEmployeeFormData } from 'models/IEmployee';
+import { ITableData } from 'models/ITable';
 import { formatDateByLocale } from 'utils/formatters';
 import { employeeRoles, employeeSchema, TEmployeeValues } from 'validation';
-
-
-type EmployeeFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  dateAdded: string;
-};
 
 interface EmployeeEditFormProps {
   open?: boolean;
   sx?: SxProps<Theme>;
   handleClose: () => void;
-  formData?: Partial<TableData>;
-  handleUpdate?: (employee: Partial<TableData>) => Promise<void>;
+  formData?: Partial<ITableData>;
+  handleUpdate?: (employee: Partial<ITableData>) => Promise<void>;
 }
 
 export const EmployeeEditForm = ({
@@ -67,7 +59,7 @@ export const EmployeeEditForm = ({
     },
   });
 
-  const onSubmit = async (data: EmployeeFormData) => {
+  const onSubmit = async (data: IEmployeeFormData) => {
     const formattedData = {
       ...data,
       id: formData?.id,
