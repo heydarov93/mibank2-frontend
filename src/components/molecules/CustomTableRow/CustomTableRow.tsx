@@ -10,9 +10,9 @@ import {
 
 import { ReactComponent as GreenPlusIcon } from 'assets/icons/GreenPlus.svg';
 import { ReactComponent as RedMinusIcon } from 'assets/icons/RedMinus.svg';
-import { IPaymentReceipt } from 'models/IPaymentReceipt';
 
 interface CustomTableRowProps {
+  id: string;
   sourceNumber: string;
   transferType: string;
   amount: number;
@@ -21,22 +21,11 @@ interface CustomTableRowProps {
   time: string;
   currency: string;
   isIncome: boolean;
-  handleShowPaymentReceipt: (paymentInfo: IPaymentReceipt) => void;
+  handleShowPaymentReceipt: (id: string) => void;
 }
 
-const FakePaymentReceiptData: IPaymentReceipt = {
-  payerName: 'Yashar Aliyev',
-  date: '2025-03-28T15:21:11Z',
-  fromAccount: 'PL61109010140000071219812874',
-  toAccount: 'PL61109010140000071219812875',
-  amount: '112.40',
-  currency: 'PLN',
-  fee: 20,
-  totalAmount: 132.4,
-  transferMethod: 'card',
-};
-
 export const CustomTableRow = ({
+  id,
   sourceNumber,
   transferType,
   isIncome,
@@ -47,10 +36,6 @@ export const CustomTableRow = ({
   time,
   handleShowPaymentReceipt,
 }: CustomTableRowProps) => {
-  const handleShowPaymentReceiptClick = () => {
-    handleShowPaymentReceipt(FakePaymentReceiptData);
-  };
-
   return (
     <StyledTableRow data-testid="table-row">
       <StyledTableCell>{sourceNumber}</StyledTableCell>
@@ -90,7 +75,7 @@ export const CustomTableRow = ({
             width: '24px',
             height: '24px',
           })}
-          onClick={handleShowPaymentReceiptClick}
+          onClick={() => handleShowPaymentReceipt(id)}
         >
           <ChevronRight fontSize="medium" data-testid="chevron-right" />
         </IconButton>

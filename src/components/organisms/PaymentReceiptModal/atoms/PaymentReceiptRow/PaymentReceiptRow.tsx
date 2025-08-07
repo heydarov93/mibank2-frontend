@@ -9,6 +9,7 @@ interface PaymentReceiptRowProps {
   value: string;
   nameSx?: SxProps<Theme>;
   valueSx?: SxProps<Theme>;
+  containerSx?: SxProps<Theme>;
 }
 
 export const PaymentReceiptRow = ({
@@ -16,6 +17,7 @@ export const PaymentReceiptRow = ({
   value,
   nameSx,
   valueSx,
+  containerSx,
 }: PaymentReceiptRowProps) => {
   return (
     <Stack
@@ -23,6 +25,7 @@ export const PaymentReceiptRow = ({
       gap={1}
       justifyContent="space-between"
       alignItems="center"
+      sx={containerSx}
     >
       <StyledName sx={nameSx}>{name}</StyledName>
       <Typography sx={valueSx}>{value}</Typography>

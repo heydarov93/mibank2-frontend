@@ -229,9 +229,12 @@
     },
     "paymentReceiptModal": {
       "title": "Transaction details",
-      "payer": "Sender",
+      "sender": "Sender",
+      "receiver": "Receiver",
       "fromAccount": "From IBAN",
       "toAccount": "To IBAN",
+      "fromCard": "From Card",
+      "toCard": "To Card",
       "service": "Service",
       "serviceType": "Bank Transfer",
       "amount": "Amount",
@@ -239,6 +242,8 @@
       "totalAmount": "Total amount",
       "status": "Status",
       "confirmed": "Confirmed",
+      "blocked": "Blocked",
+      "rejected": "Rejected",
       "download": "Download",
       "share": "Share"
     },

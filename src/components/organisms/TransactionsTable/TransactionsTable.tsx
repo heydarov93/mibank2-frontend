@@ -23,12 +23,13 @@ import {
 import { useTransactions } from './hooks/useTransactions';
 import { useTransferFilters } from './hooks/useTransferFilters';
 import { TransferFilters } from './molecules';
+import { paymentReceiptDataConverter } from './utils/paymentReceiptDataConverter';
 
+import { useGetTransactionDetailsQuery } from 'api/services/account-service/transactions.api';
 import { CustomTablePagination, CustomTableRow } from 'components/molecules';
 import { DEFAULT_PAGE_SIZE } from 'constants/business/pagination';
 import { SORT_ORDER } from 'constants/business/sortOrder';
 import { usePaginationInfo } from 'hooks';
-import { IPaymentReceipt } from 'models/IPaymentReceipt';
 import { IRawTransaction, ITransformedTransaction } from 'models/ITransaction';
 import {
   formatCardNumber,
@@ -37,24 +38,10 @@ import {
 } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation';
 
-const FakePaymentReceiptData: IPaymentReceipt = {
-  payerName: 'Yashar Aliyev',
-  date: '2025-03-28T15:21:11Z',
-  fromAccount: 'PL61109010140000071219812874',
-  toAccount: 'PL61109010140000071219812875',
-  amount: '112.40',
-  currency: 'PLN',
-  fee: 20,
-  totalAmount: 132.4,
-  transferMethod: 'card',
-};
-
 export const TransactionsTable = () => {
   const [page, setPage] = useState(0);
   const [showPaymentReceipt, setShowPaymentReceipt] = useState(false);
-  const [paymentReceiptData, setPaymentReceiptData] = useState<IPaymentReceipt>(
-    FakePaymentReceiptData,
-  );
+  const [transactionId, setTransactionId] = useState<string>('');
   const [rowsPerPage, setRowsPerPage] = useState(DEFAULT_PAGE_SIZE);
   const { availableFilters, defaultFilters } = useTransferFilters();
   const [currentFilters, setCurrentFilters] =
@@ -68,6 +55,10 @@ export const TransactionsTable = () => {
     page,
     count: rowsPerPage,
     currentFilters,
+  });
+
+  const { data: transactionDetails } = useGetTransactionDetailsQuery({
+    transactionId,
   });
 
   const { totalPages, pageDisplayText } = usePaginationInfo(
@@ -103,6 +94,11 @@ export const TransactionsTable = () => {
     });
   }, [transactionsList]);
 
+  const paymentReceiptData = useMemo(
+    () => paymentReceiptDataConverter(transactionDetails),
+    [transactionDetails],
+  );
+
   const handleSortByDate = () => {
     setPage(0);
     setDataSortOrder((prev) =>
@@ -127,9 +123,9 @@ export const TransactionsTable = () => {
     setPage(0);
   };
 
-  const handleShowPaymentReceipt = (paymentInfo: IPaymentReceipt) => {
+  const handleShowPaymentReceipt = (id: string) => {
     setShowPaymentReceipt(true);
-    setPaymentReceiptData(paymentInfo);
+    setTransactionId(id);
   };
 
   return (
@@ -170,6 +166,7 @@ export const TransactionsTable = () => {
                 paginatedData.map((transaction: ITransformedTransaction) => (
                   <CustomTableRow
                     key={transaction.id}
+                    id={transaction.id}
                     sourceNumber={transaction.sourceNumber}
                     transferType={transaction.transferType}
                     template={transaction.template}
@@ -208,12 +205,13 @@ export const TransactionsTable = () => {
           />
         </StyledTableContainer>
       </Box>
-
-      <PaymentReceiptModal
-        open={showPaymentReceipt}
-        receiptInfo={paymentReceiptData}
-        onClose={() => setShowPaymentReceipt(false)}
-      />
+      {paymentReceiptData && (
+        <PaymentReceiptModal
+          open={showPaymentReceipt}
+          receiptInfo={paymentReceiptData}
+          onClose={() => setShowPaymentReceipt(false)}
+        />
+      )}
     </StyledContainer>
   );
 };

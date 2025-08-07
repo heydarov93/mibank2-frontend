@@ -30,5 +30,24 @@ export interface IGetTransactionsResponse {
   totalElements: number;
 }
 
+export interface IGetTransactionDetailsRequest {
+  transactionId: string;
+}
+
+export interface IGetTransactionDetailsResponse {
+  id: string;
+  type: 'INCOME' | 'EXPENSE';
+  currencyCode: string;
+  totalAmount: number;
+  dateTime: string;
+  transferType: 'CARD' | 'IBAN';
+  amount: number;
+  fee: number;
+  status: 'Confirmed' | 'Blocked' | 'Rejected';
+  thirdPartyName: string;
+  fromNumber: string;
+  toNumber: string;
+}
+
 export type TTransactionTag =
   (typeof TRANSACTION_TAGS)[keyof typeof TRANSACTION_TAGS];
