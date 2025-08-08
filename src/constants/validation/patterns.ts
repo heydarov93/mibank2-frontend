@@ -22,7 +22,7 @@ export const VALIDATION_PATTERNS = {
   OFFICE_NUMBER: /^[A-Za-z0-9\s-]+$/,
   POLISH_POSTCODE: /^\d{2}-\d{3}$/,
   CAPITALIZE_FIRST_LETTER: /^[A-Z]/,
-  DECIMAL_AMOUNT: /^\d{1,15}(\.\d{1,2})?$/,
+  DECIMAL_AMOUNT: /^\d{1,13}(\.\d{1,2})?$/,
   CAPITALIZE_WORD: /^[A-Z][a-z]*$/,
   DECIMAL_NUMBER: /^\d*\.?\d+$/,
   WHOLE_NUMBER: /^\d+$/,
