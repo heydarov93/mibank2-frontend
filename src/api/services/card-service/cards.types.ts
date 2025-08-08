@@ -98,7 +98,7 @@ export interface ICreateCard {
   cardType: TCardType;
   cashbackRate: number;
   dailyLimit: number;
-  issueType: TCardIssueType;
+  issueType: Uppercase<TCardIssueType>;
   cardIssuer: TCardIssuer;
   issueFee: number;
   foreignTransactionLimit: number;

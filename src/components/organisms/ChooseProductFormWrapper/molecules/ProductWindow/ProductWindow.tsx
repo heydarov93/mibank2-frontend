@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -16,6 +16,7 @@ import { TCardStatus } from 'api/services/card-service/cards.types';
 import { useCreateDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
 import { WarningWindow } from 'components/molecules';
+import { CARD_TYPES } from 'constants/business/card';
 import { ProductType } from 'enums/EProductType';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { ICreateCardFormData } from 'models/ICard';
@@ -68,10 +69,31 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
   const { t } = useTranslation('translation');
   const productFormType = useAppSelector(getProductForm);
   const dispatch = useAppDispatch();
-  const productData =
-    productFormType.productType === ProductType.DEPOSIT
-      ? depositData
-      : cardData;
+  const formattedCardData = useMemo(
+    () => ({
+      ...cardData,
+      cardType:
+        CARD_TYPES.find((option) => option.value === cardData.cardType)
+          ?.label ?? '',
+    }),
+    [cardData],
+  );
+
+  const productData = useMemo(
+    () =>
+      productFormType.productType === ProductType.DEPOSIT
+        ? depositData
+        : cardData,
+    [productFormType.productType, depositData, cardData],
+  );
+
+  const productDataView = useMemo(
+    () =>
+      productFormType.productType === ProductType.DEPOSIT
+        ? depositData
+        : formattedCardData,
+    [productFormType.productType, depositData, formattedCardData],
+  );
 
   const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
   const [
@@ -98,11 +120,11 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     description: productFormType.description,
     currency: productFormType.currency,
     type: productFormType.subtype,
-    min: backendDepositInfo.min ?? 0,
-    max: backendDepositInfo.max ?? 0,
-    term: backendDepositInfo.term ?? 0,
-    interestRate: backendDepositInfo.interestRate ?? 0,
-    capitalization: backendDepositInfo.capitalization ?? false,
+    min: backendDepositInfo.minimumDepositSum ?? 0,
+    max: backendDepositInfo.maximumDepositSum ?? 0,
+    term: backendDepositInfo.depositTerm ?? 0,
+    interestRate: backendDepositInfo.depositInterestRate ?? 0,
+    capitalization: backendDepositInfo.depositCapitalizationRate ?? 0,
     replenishment: backendDepositInfo.replenishment ?? false,
     withdrawal: backendDepositInfo.withdrawal ?? false,
     partialWithdrawal: backendDepositInfo.partialWithdrawal ?? false,
@@ -120,8 +142,11 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     cardCurrency: productFormType.currency as TCurrency,
     cardType: productFormType.subtype as TCardType,
     cashbackRate: (productData as ICreateCardFormData).cashbackRate as number,
-    dailyLimit: (productData as ICreateCardFormData).dailyOperationalLimit as number,
-    issueType: (productData as ICreateCardFormData).cardType as TCardIssueType,
+    dailyLimit: (productData as ICreateCardFormData)
+      .dailyOperationalLimit as number,
+    issueType: (
+      productData as ICreateCardFormData
+    ).cardType?.toUpperCase() as Uppercase<TCardIssueType>,
     cardIssuer: (productData as ICreateCardFormData).cardIssuer as TCardIssuer,
     issueFee: (productData as ICreateCardFormData).monthlyFee as number,
     foreignTransactionLimit: (productData as ICreateCardFormData)
@@ -172,7 +197,7 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
           {renderInformation(productTypeData)}
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {renderInformation(productData)}
+          {renderInformation(productDataView)}
         </Box>
       </MainContainer>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
