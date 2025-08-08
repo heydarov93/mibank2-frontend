@@ -13,9 +13,10 @@ const requiredField = t(`${VALIDATION_KEY}.required`);
 const amountValidation = yup
   .number()
   .typeError(t(`${VALIDATION_KEY}.number`))
-  .test('decimal-places', t(`${VALIDATION_KEY}.decimal`), (value) =>
+  .test('decimal-places', t(`${VALIDATION_KEY}.maxValue`), (value) =>
     isValidDecimalAmount(value, VALIDATION_PATTERNS.DECIMAL_AMOUNT),
   );
+
 const earlyWithdrawalValidation = amountValidation
   .min(0, t(`${VALIDATION_KEY}.positive`))
   .when('earlyWithdrawal', {
@@ -37,12 +38,14 @@ export const createDepositProductSchema = yup.object().shape({
     .required(requiredField),
   depositCapitalizationRate: amountValidation
     .min(0, t(`${VALIDATION_KEY}.positive`))
+    .max(99, t(`${VALIDATION_KEY}.maxCapitalizationValue`))
     .required(requiredField),
   depositTerm: yup
     .number()
     .typeError(t(`${VALIDATION_KEY}.number`))
     .integer(t(`${VALIDATION_KEY}.naturalNum`))
     .min(VALIDATION_LIMITS.DEPOSIT_TERM_MIN, t(`${VALIDATION_KEY}.atleastOne`))
+    .max(1000, t(`${VALIDATION_KEY}.maxTermValue`))
     .when('productSubtype', {
       is: 'Target deposit',
       then: (schema) => schema.notRequired(),
