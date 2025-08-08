@@ -1,6 +1,6 @@
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { EmptySection } from '../Sidebar/molecules';
+import MyDepositsDetails from '../MyDepositsDetails/MyDepositsDetails';
 
 import { AllCardsPage } from 'pages/index';
 
@@ -12,7 +12,7 @@ export function MainContentSwitcher() {
     return <AllCardsPage />;
   }
 
-  if (view === 'deposits') return <EmptySection />;
+  if (view === 'deposits') return <MyDepositsDetails />;
 
   return <Outlet />;
 }
