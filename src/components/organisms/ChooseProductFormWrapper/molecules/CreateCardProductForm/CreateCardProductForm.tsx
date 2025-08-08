@@ -5,7 +5,6 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-
 import { BackArrow, FieldLabel } from 'components/atoms';
 import { StyledButton } from 'components/atoms/SubmitButton/SubmitButton.styled';
 import {
@@ -13,10 +12,7 @@ import {
   NumericFieldController,
 } from 'components/molecules';
 import { CancelButton } from 'components/organisms/OneTimePasscodeForm/OneTimePasscodeForm.styled';
-import {
-  CARD_ISSUER_OPTIONS,
-  CARD_TYPE_OPTIONS,
-} from 'constants/business/card';
+import { CARD_ISSUER_OPTIONS, CARD_TYPES } from 'constants/business/card';
 import { EProductFormStepper } from 'enums/EProductFormStepper';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { ICreateCardFormData } from 'models/ICard';
@@ -99,9 +95,15 @@ export const CreateCardProductForm: React.FC = () => {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <CustomAutocomplete
-                  options={CARD_TYPE_OPTIONS}
-                  value={field.value}
-                  onChange={(_, value) => field.onChange(value)}
+                  options={CARD_TYPES}
+                  value={
+                    CARD_TYPES.find((option) => option.value === field.value) ??
+                    null
+                  }
+                  getOptionLabel={(option) => option.label}
+                  onChange={(_, option) =>
+                    field.onChange(option ? option.value : null)
+                  }
                   error={!!error}
                   helperText={error ? error.message : ''}
                 />

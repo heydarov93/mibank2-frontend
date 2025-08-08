@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 import { FieldWithLabel } from 'components/atoms';
 import { SelectField } from 'components/molecules';
-import { CARD_ISSUERS, ISSUE_TYPES } from 'constants/business/card';
+import { CARD_ISSUERS, CARD_TYPES } from 'constants/business/card';
 import { SUPPORTED_CURRENCIES } from 'constants/data/currencies';
-import { OpenBusinessAccFormValues } from 'hooks/business/useBusinessAccountFlow';
+import { OpenBusinessAccountFormValues } from 'hooks/business/useBusinessAccountFlow';
 
 const currenciesOptions = SUPPORTED_CURRENCIES.map((value) => ({ value }));
 
@@ -16,7 +16,7 @@ export const OpenBusinessAccountSelects = ({ sx }: { sx?: SxProps<Theme> }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'OpenBusinessAccountModal',
   });
-  const { control, setValue } = useFormContext<OpenBusinessAccFormValues>();
+  const { control, setValue } = useFormContext<OpenBusinessAccountFormValues>();
 
   function handleIssueTypeChange(
     e: SelectChangeEvent<string | number | string[]>,
@@ -49,7 +49,7 @@ export const OpenBusinessAccountSelects = ({ sx }: { sx?: SxProps<Theme> }) => {
         <SelectField
           control={control}
           name="issueType"
-          options={ISSUE_TYPES}
+          options={CARD_TYPES}
           placeholder={t('selectCardType')}
           onChange={handleIssueTypeChange}
           data-testid="card-type-select"
