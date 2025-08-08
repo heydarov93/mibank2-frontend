@@ -63,6 +63,22 @@ declare module '@mui/material/styles' {
 
 declare module '@mui/material/styles' {
   interface Palette {
+    custom: {
+      primary: {
+        darkGray: string;
+      };
+      gray: {
+        400: string;
+      };
+      basic: {
+        black: string;
+      };
+      success: {
+        chipText: string;
+        chipBg: string;
+      };
+    };
+
     border: {
       lightBlue: string;
     };
@@ -84,6 +100,22 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
+    custom: {
+      primary: {
+        darkGray: string;
+      };
+      gray: {
+        400: string;
+      };
+      basic: {
+        black: string;
+      };
+      success: {
+        chipText: string;
+        chipBg: string;
+      };
+    };
+
     border: {
       lightBlue: string;
     };
