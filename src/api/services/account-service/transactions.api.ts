@@ -34,8 +34,8 @@ export const transactionsApi = createApi({
         ),
         method: 'POST',
         body: body,
+        // TODO: implement caching (change mutation to query if possible and add providesTags)
       }),
-      invalidatesTags: [TRANSACTION_TAGS.LIST], // todo change this
     }),
     getTransactionDetails: builder.query<
       IGetTransactionDetailsResponse,
