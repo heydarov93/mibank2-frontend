@@ -87,7 +87,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.payer
+              receiver
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -101,7 +101,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              cardFromFieldLabel
+              fromCard
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -115,7 +115,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              cardToFieldLabel
+              toCard
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -129,7 +129,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              amountFieldLabel
+              amount
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -143,7 +143,7 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.fee
+              fee
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -155,12 +155,12 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             class="MuiStack-root css-17i0r5w-MuiStack-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-nwcpw9-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-txgrbp-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.totalAmount
+              totalAmount
             </p>
             <p
-              class="MuiTypography-root MuiTypography-body1 css-lk13c9-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1e5h3ki-MuiTypography-root"
             >
               PLN 102,50
             </p>
@@ -171,13 +171,11 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body1 css-yqyrk-MuiTypography-root"
             >
-              TransfersPage.paymentReceiptModal.status
+              status
             </p>
             <p
               class="MuiTypography-root MuiTypography-body1 css-ikjp1c-MuiTypography-root"
-            >
-              TransfersPage.paymentReceiptModal.confirmed
-            </p>
+            />
           </div>
         </div>
         <div
