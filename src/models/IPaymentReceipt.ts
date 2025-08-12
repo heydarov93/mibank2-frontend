@@ -1,4 +1,8 @@
-import { TCurrency } from 'types/types';
+import { TTransferType } from './ITransaction';
+
+import { TCurrency, TTransferMethod } from 'types/types';
+
+export type TPaymentStatus = 'confirmed' | 'blocked' | 'rejected';
 
 export interface IPaymentReceipt {
   payerName: string;
@@ -9,21 +13,21 @@ export interface IPaymentReceipt {
   currency: TCurrency;
   fee: number;
   totalAmount: number;
-  transferMethod: 'card' | 'iban';
+  transferMethod: TTransferMethod;
   isIncome?: boolean;
-  status?: 'confirmed' | 'blocked' | 'rejected';
+  status: TPaymentStatus;
 }
 
 export interface IPaymentReceiptModalData {
   id: string;
-  type: 'INCOME' | 'EXPENSE';
+  type: Uppercase<TTransferType>;
   currencyCode: string;
   totalAmount: number;
   dateTime: string;
-  transferType: 'CARD' | 'IBAN';
+  transferType: Uppercase<TTransferMethod>;
   amount: number;
   fee: number;
-  status: 'Confirmed' | 'Blocked' | 'Rejected';
+  status: Capitalize<TPaymentStatus>;
   thirdPartyName: string;
   fromNumber: string;
   toNumber: string;

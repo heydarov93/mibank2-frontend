@@ -22,6 +22,19 @@ export type TReceiptKeys =
 
 type TReceiptRowCollection = Record<TReceiptKeys, IReceiptRowData>;
 
+const generateStatusColor = (
+  theme: Theme,
+  status: IPaymentReceipt['status'],
+) => {
+  const colors: Record<IPaymentReceipt['status'], string> = {
+    confirmed: theme.palette.success.main,
+    rejected: theme.palette.error.main,
+    blocked: theme.palette.grey[300],
+  };
+
+  return colors[status] ?? theme.palette.grey[300];
+};
+
 export const generateReceiptRowData = (
   paymentData: IPaymentReceipt,
 ): TReceiptRowCollection => {
@@ -69,7 +82,7 @@ export const generateReceiptRowData = (
       label: 'status',
       value: paymentData.status,
       valueSx: (theme) => ({
-        color: theme.palette.success.main,
+        color: generateStatusColor(theme, paymentData.status),
         fontWeight: 500,
       }),
     },

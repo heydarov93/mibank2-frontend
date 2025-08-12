@@ -57,9 +57,14 @@ export const TransactionsTable = () => {
     currentFilters,
   });
 
-  const { data: transactionDetails } = useGetTransactionDetailsQuery({
-    transactionId,
-  });
+  const { data: transactionDetails } = useGetTransactionDetailsQuery(
+    {
+      transactionId,
+    },
+    {
+      skip: !transactionId,
+    },
+  );
 
   const { totalPages, pageDisplayText } = usePaginationInfo(
     transactionsLength,
