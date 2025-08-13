@@ -13,7 +13,7 @@ export const userLoginSchema = yup.object().shape({
   email: yup
     .string()
     .trim()
-    .required(t(`${VALIDATION_KEY}.required`))
+    .required(t(`${VALIDATION_KEY}.email.required`))
     .matches(
       VALIDATION_PATTERNS.EMAIL,
       t(`${VALIDATION_KEY}.email.errorPattern`),

@@ -56,6 +56,7 @@ export interface IUpdateDepositRequest extends ICreateDeposit {
   id: number;
 }
 
+export type TDepositStatus = 'Active' | 'Blocked' | 'Withdrawn' | 'Mature';
 export type TCreateDepositRequest = ICreateDeposit;
 export type TCreateDepositResponse = ICreateDeposit;
 export type TUpdateDepositResponse = ICreateDeposit;
