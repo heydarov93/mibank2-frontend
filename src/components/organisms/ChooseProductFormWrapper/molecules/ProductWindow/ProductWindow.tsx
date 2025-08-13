@@ -14,6 +14,7 @@ import {
 import { useCreateCardMutation } from 'api/services/card-service/cards.api';
 import { TCardStatus } from 'api/services/card-service/cards.types';
 import { useCreateDepositMutation } from 'api/services/deposit-service/deposits.api';
+import { TDepositStatus } from 'api/services/deposit-service/types/deposits.types';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
 import { WarningWindow } from 'components/molecules';
 import { CARD_TYPES } from 'constants/business/card';
@@ -135,6 +136,7 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     earlyWithdrawal: backendDepositInfo.earlyWithdrawal ?? false,
     augmentable: backendDepositInfo.augmentable ?? false,
     autoRenewable: backendDepositInfo.autoRenewable ?? false,
+    status: 'Active' as TDepositStatus,
   };
 
   const cardPayload = {

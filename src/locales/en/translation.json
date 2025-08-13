@@ -94,40 +94,40 @@
     }
   },
   "myDepositsDetails": {
-        "title": "My Deposits",
-        "tabAriaLabel": "My Deposit Details Tab",
-        "transactionsTabLabel": "Transactions",
-        "informationTabLabel": "Information",
-        "withdrawalTabLabel": "Withdrawal",
-        "summaryLabels": {
-          "amount": "Amount",
-          "duration": "Duration",
-          "endingDate": "Ending date"
+    "title": "My Deposits",
+    "tabAriaLabel": "My Deposit Details Tab",
+    "transactionsTabLabel": "Transactions",
+    "informationTabLabel": "Information",
+    "withdrawalTabLabel": "Withdrawal",
+    "summaryLabels": {
+      "amount": "Amount",
+      "duration": "Duration",
+      "endingDate": "Ending date"
+    },
+    "status": {
+      "active": "Active",
+      "matured": "Matured",
+      "withdrawn": "Withdrawn",
+      "blocked": "Blocked"
+    },
+    "tabs": {
+      "transactions": {},
+      "information": {
+        "labels": {
+          "depositType": "Deposit type",
+          "interestRate": "Interest rate",
+          "accountNumber": "Account number",
+          "withdrawalFee": "Withdrawal fee",
+          "withdrawalLimit": "Withdrawal limit",
+          "capitalizationRate": "Capitalization rate"
         },
-        "status": {
-        "active": "Active",
-        "matured": "Matured",
-        "withdrawn": "Withdrawn",
-        "blocked": "Blocked"
-        },
-        "tabs": {
-          "transactions": {},
-          "information": {
-            "labels": {
-              "depositType": "Deposit type",
-              "interestRate": "Interest rate",
-              "accountNumber": "Account number",
-              "withdrawalFee": "Withdrawal fee",
-              "withdrawalLimit": "Withdrawal limit",
-              "capitalizationRate": "Capitalization rate"
-            },
-            "ariaLabels": {
-              "copyIcon": "Copy account number"
-            }
-          },
-          "withdrawal": {}
+        "ariaLabels": {
+          "copyIcon": "Copy account number"
         }
       },
+      "withdrawal": {}
+    }
+  },
   "DepositWindow": {
     "availableDeposits": "Available Deposits",
     "openDeposit": "Open deposit",
@@ -417,6 +417,7 @@
   },
   "LoginPage": {
     "email": {
+      "required": "The email is required",
       "errorMaxLen": "Email should not exceed 320 characters",
       "errorPattern": "Please enter your email in format: example@gmail.com",
       "label": "Email"
@@ -540,7 +541,8 @@
     "invalidVerificationCode": "Invalid code provided.",
     "serverError": "The action can't be completed because of the system issue. Please, try again later or contact us",
     "PasswordUpdated": "Password has been updated",
-    "PasswordUpdatedDescription": "Password has been successfully updated"
+    "PasswordUpdatedDescription": "Password has been successfully updated",
+    "ErrorMatch": "Passwords don't match. Please check it and try again"
   },
   "ErrorPage": {
     "title": "404 - Page Not Found",

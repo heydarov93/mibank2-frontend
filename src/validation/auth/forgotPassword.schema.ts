@@ -20,9 +20,9 @@ export const forgotPasswordSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .trim()
-    .required(t(`LoginPage.requiredField`))
+    .required(t(`LoginPage.email.required`))
     .matches(VALIDATION_PATTERNS.PASSWORD, t(`LoginPage.password.errorPattern`))
-    .oneOf([yup.ref('password')], t(`SignupPage.confirmPassword.errorMatch`))
+    .oneOf([yup.ref('password')], t(`ForgotPassword.ErrorMatch`))
     .max(
       VALIDATION_LIMITS.PASSWORD_MAX_LENGTH,
       t(`LoginPage.password.errorMaxLen`),

@@ -50,7 +50,7 @@ export const RegistrationFormWrapper = () => {
         onCancel={leaveModal.close}
         testId="warning-modal"
       />
-      <ProgressStepper steps={steps} activeStep={step} />;
+      <ProgressStepper steps={steps} activeStep={step} />
       <FormProvider {...formMethods}>
         <form onSubmit={submitForm} data-testid="registration-form">
           {renderFormStep()}
