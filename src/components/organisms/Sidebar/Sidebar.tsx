@@ -7,7 +7,9 @@ import { MyCardsSection } from '../MyCardsSection/MyCardsSection';
 import { MyTransactionsSection } from '../MyTransactionsSection/MyTransactionsSection';
 
 import { StyledButton } from './Sidebar.styled';
-import { Container, EmptySection, Section } from './molecules';
+import { Container } from './molecules/Container/Container';
+import { EmptySection } from './molecules/EmptySection/EmptySection';
+import { Section } from './molecules/Section/Section';
 
 import { TO_HISTORY, TO_HOME } from 'constants/navigation/routePaths';
 

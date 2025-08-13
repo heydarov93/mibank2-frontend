@@ -52,7 +52,7 @@ const fakeData2: IUserDeposit = {
   timeLeft: 50,
   endDate: laterDate(100),
   startDate: new Date().toString(),
-  accountNumber: 'qqwqweqwe',
+  accountNumber: 'PL12 1116 6660 0000 0001 2345 678',
 };
 const fakeData3: IUserDeposit = {
   depositId: 333,
@@ -69,7 +69,7 @@ const fakeData3: IUserDeposit = {
   timeLeft: 90,
   endDate: laterDate(150),
   startDate: new Date().toString(),
-  accountNumber: 'qqwqweqwe',
+  accountNumber: 'PL12 1116 6660 0000 0001 2345 678',
 };
 
 //TODO: This mockData should be replaced when actual API will be ready

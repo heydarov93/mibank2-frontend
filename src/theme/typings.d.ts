@@ -69,6 +69,7 @@ declare module '@mui/material/styles' {
       };
       gray: {
         400: string;
+        500: string;
       };
       basic: {
         black: string;
@@ -106,6 +107,7 @@ declare module '@mui/material/styles' {
       };
       gray: {
         400: string;
+        500: string;
       };
       basic: {
         black: string;
