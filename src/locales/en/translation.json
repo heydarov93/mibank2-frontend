@@ -65,6 +65,17 @@
           "month_other": "{{count}} months"
         }
       },
+      "depositDetails": {
+        "accNumber": "Account Number",
+        "startDate": "Start date",
+        "type":"Type",
+        "interestRate": "Interest Rate",
+        "endDate": "Ending date",
+        "timeLeft": "Time left",
+        "amount":"Amount",
+        "withdrawButton": "Withdraw",
+        "title":"Deposit Details"
+      },
       "seeAll": "See all",
       "emptySectionDefault": "Nothing here yet. Add a new product.",
       "emptySectionConnectionError": "Please check your connection.",

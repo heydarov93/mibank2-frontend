@@ -12,6 +12,7 @@ import {
 
 import { IUserDeposit } from 'api/services/deposit-service/types/deposits.types';
 import { getDaysDiff, formatDaysToMonths } from 'utils/helpers/dateHelpers';
+import { OpenDepositDetailsModal } from '../DepositDetailsModal/DepositDetailsModal';
 
 interface DashboardDepositEntryProps {
   depositData: IUserDeposit;
@@ -37,7 +38,6 @@ export const DashboardDepositEntry = ({
       : 0;
 
   const timeDescription = formatDaysToMonths(timeLeft);
-
   return (
     <>
       <Card
@@ -81,12 +81,17 @@ export const DashboardDepositEntry = ({
               boxShadow: 2,
               p: 2,
               ml: 3,
+              width: '100%',
+              maxWidth: 1200,
+              minWidth: 300,
             },
           },
         }}
       >
-        <Typography>{t('myDeposits.modalPlaceholder')}</Typography>
-        <Typography>{name}</Typography>
+        <OpenDepositDetailsModal
+          onClose={() => setAnchorEl(null)}
+          data={depositData}
+        />
       </Popover>
     </>
   );
