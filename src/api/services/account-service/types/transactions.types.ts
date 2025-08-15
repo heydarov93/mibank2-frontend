@@ -1,5 +1,5 @@
 import { TRANSACTION_TAGS } from 'constants/api/tags';
-import { TCurrency, TSortOrder } from 'types/types';
+import { TCurrency, TPaymentStatus, TSortOrder } from 'types/types';
 
 export interface IGetTransactionsRequest {
   userId: number;
@@ -43,7 +43,7 @@ export interface IGetTransactionDetailsResponse {
   transferType: 'CARD' | 'IBAN';
   amount: number;
   fee: number;
-  status: 'Confirmed' | 'Blocked' | 'Rejected';
+  status: Capitalize<TPaymentStatus>;
   thirdPartyName: string;
   fromNumber: string;
   toNumber: string;

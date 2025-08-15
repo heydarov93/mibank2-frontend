@@ -1,8 +1,6 @@
 import { TTransferType } from './ITransaction';
 
-import { TCurrency, TTransferMethod } from 'types/types';
-
-export type TPaymentStatus = 'confirmed' | 'blocked' | 'rejected';
+import { TCurrency, TPaymentStatus, TTransferMethod } from 'types/types';
 
 export interface IPaymentReceipt {
   payerName: string;

@@ -19,8 +19,8 @@ export const paymentReceiptDataConverter = (
     totalAmount: transactionDetails.totalAmount,
     transferMethod: transactionDetails.transferType.toLowerCase() as
       | 'card'
-      | 'iban', // todo create reusabele type
-    isIncome: transactionDetails.type === 'INCOME', // todo create reusabele type
+      | 'iban', // todo create reusable type
+    isIncome: transactionDetails.type === 'INCOME', // todo create reusable type
     status: transactionDetails.status.toLowerCase() as
       | 'confirmed'
       | 'blocked'
