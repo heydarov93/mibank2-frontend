@@ -62,7 +62,7 @@ export const WarningWindow = ({
   return (
     <Dialog
       open={open as boolean}
-      onClose={onCancelClick}
+      onClose={onBackClick}
       BackdropProps={{
         sx: {
           backgroundColor: theme.palette.shadow.shadowMedium,
@@ -125,7 +125,7 @@ export const WarningWindow = ({
         <DialogActions sx={{ padding: 0, justifyContent: 'flex-end', gap: 1 }}>
           {isLoading && <CircularProgress size={24} />}
           <Button variant="outlined" onClick={onBackClick}>
-            Go Back
+            {t('WarningWindow.goBack')}
           </Button>
           <Button
             variant="contained"
@@ -133,7 +133,7 @@ export const WarningWindow = ({
             disabled={isLoading}
             onClick={onCancelClick}
           >
-            Cancel
+            {t('WarningWindow.depositCancel')}
           </Button>
         </DialogActions>
       )}

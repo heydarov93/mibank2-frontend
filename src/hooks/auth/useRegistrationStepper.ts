@@ -118,7 +118,7 @@ export const useRegistrationStepper = () => {
         lastName: formData.surname,
         citizenship: formData.citizenship,
         phoneNumber: String(formData.phoneNumber),
-        phoneCode: formData.phoneCode,
+        phoneCode: `+${formData.phoneCode}`,
         taxResidenceCountry: formData.taxResidenceCountry,
         pesel: formData.peselNumber,
         birthDate: formatDate(formData.dateOfBirth),
