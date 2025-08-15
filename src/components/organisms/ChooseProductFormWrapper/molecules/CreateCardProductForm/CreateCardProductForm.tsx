@@ -21,7 +21,13 @@ import { getProductForm } from 'store/slices/products/ChooseProductSelector';
 import { setProductStep } from 'store/slices/products/ProductStepperSlice';
 import { productCardSchema, TProductCardValues } from 'validation';
 
-export const CreateCardProductForm: React.FC = () => {
+interface CreateCardProductFormProps {
+  onOpenModal: () => void;
+}
+
+export const CreateCardProductForm: React.FC<CreateCardProductFormProps> = ({
+  onOpenModal,
+}) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'BackOffice.VisaCard',
   });
@@ -147,7 +153,7 @@ export const CreateCardProductForm: React.FC = () => {
             />
           </Box>
           <Box display="flex" alignItems="center" justifyContent="end" gap={4}>
-            <CancelButton>{t('cancel')}</CancelButton>
+            <CancelButton onClick={onOpenModal}>{t('cancel')}</CancelButton>
             <StyledButton
               type="submit"
               disabled={!isValid}

@@ -71,7 +71,7 @@ export const CreateForgotPasswordForm = () => {
         'confirmPassword',
         {
           type: 'focus',
-          message: t('confirmPassword.errorMatch'),
+          message: t('ErrorMatch'),
         },
         { shouldFocus: true },
       );
