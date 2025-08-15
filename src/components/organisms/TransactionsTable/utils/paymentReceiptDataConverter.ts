@@ -2,7 +2,6 @@ import {
   IPaymentReceipt,
   IPaymentReceiptModalData,
 } from 'models/IPaymentReceipt';
-import { TCurrency } from 'types/types';
 
 export const paymentReceiptDataConverter = (
   transactionDetails?: IPaymentReceiptModalData,
@@ -15,7 +14,7 @@ export const paymentReceiptDataConverter = (
     fromAccount: transactionDetails.fromNumber,
     toAccount: transactionDetails.toNumber,
     amount: transactionDetails.amount.toString(),
-    currency: transactionDetails.currencyCode as TCurrency,
+    currency: transactionDetails.currencyCode,
     fee: transactionDetails.fee,
     totalAmount: transactionDetails.totalAmount,
     transferMethod: transactionDetails.transferType.toLowerCase() as

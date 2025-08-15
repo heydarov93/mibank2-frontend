@@ -21,7 +21,7 @@ export interface IPaymentReceipt {
 export interface IPaymentReceiptModalData {
   id: string;
   type: Uppercase<TTransferType>;
-  currencyCode: string;
+  currencyCode: TCurrency;
   totalAmount: number;
   dateTime: string;
   transferType: Uppercase<TTransferMethod>;

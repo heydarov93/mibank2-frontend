@@ -1,5 +1,5 @@
 import { TRANSACTION_TAGS } from 'constants/api/tags';
-import { TSortOrder } from 'types/types';
+import { TCurrency, TSortOrder } from 'types/types';
 
 export interface IGetTransactionsRequest {
   userId: number;
@@ -37,7 +37,7 @@ export interface IGetTransactionDetailsRequest {
 export interface IGetTransactionDetailsResponse {
   id: string;
   type: 'INCOME' | 'EXPENSE';
-  currencyCode: string;
+  currencyCode: TCurrency;
   totalAmount: number;
   dateTime: string;
   transferType: 'CARD' | 'IBAN';
