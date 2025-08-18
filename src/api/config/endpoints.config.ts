@@ -93,6 +93,8 @@ export const API_ENDPOINTS = {
     transactions: {
       getTransactionsByUserId: (userId: TId) =>
         `/as/api/transactions/${userId}`,
+      getTransactionDetails: (transactionId: TId) =>
+        `/as/api/transactions/${transactionId}`,
     },
   },
 } as const;

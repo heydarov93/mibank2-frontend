@@ -1,5 +1,5 @@
 import { TRANSACTION_TAGS } from 'constants/api/tags';
-import { TSortOrder } from 'types/types';
+import { TCurrency, TPaymentStatus, TSortOrder } from 'types/types';
 
 export interface IGetTransactionsRequest {
   userId: number;
@@ -28,6 +28,25 @@ export interface IGetTransactionsResponse {
   hasNextPage: boolean;
   lastPageNumber: number;
   totalElements: number;
+}
+
+export interface IGetTransactionDetailsRequest {
+  transactionId: string;
+}
+
+export interface IGetTransactionDetailsResponse {
+  id: string;
+  type: 'INCOME' | 'EXPENSE';
+  currencyCode: TCurrency;
+  totalAmount: number;
+  dateTime: string;
+  transferType: 'CARD' | 'IBAN';
+  amount: number;
+  fee: number;
+  status: Capitalize<TPaymentStatus>;
+  thirdPartyName: string;
+  fromNumber: string;
+  toNumber: string;
 }
 
 export type TTransactionTag =

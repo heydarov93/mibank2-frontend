@@ -1,4 +1,6 @@
-import { TCurrency } from "types/types";
+import { TTransferType } from './ITransaction';
+
+import { TCurrency, TPaymentStatus, TTransferMethod } from 'types/types';
 
 export interface IPaymentReceipt {
   payerName: string;
@@ -9,5 +11,22 @@ export interface IPaymentReceipt {
   currency: TCurrency;
   fee: number;
   totalAmount: number;
-  transferMethod: 'card' | 'iban';
+  transferMethod: TTransferMethod;
+  isIncome?: boolean;
+  status: TPaymentStatus;
+}
+
+export interface IPaymentReceiptModalData {
+  id: string;
+  type: Uppercase<TTransferType>;
+  currencyCode: TCurrency;
+  totalAmount: number;
+  dateTime: string;
+  transferType: Uppercase<TTransferMethod>;
+  amount: number;
+  fee: number;
+  status: Capitalize<TPaymentStatus>;
+  thirdPartyName: string;
+  fromNumber: string;
+  toNumber: string;
 }

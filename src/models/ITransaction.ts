@@ -1,14 +1,17 @@
-import { TCurrency, TTransactionType } from 'types/types';
+import { TCurrency, TTransactionType, TTransferMethod } from 'types/types';
+
+export type TTransferType = 'income' | 'expense';
 
 export interface IRawTransaction {
   id: string;
-  type: 'INCOME' | 'EXPENSE';
+  type: Uppercase<TTransferType>;
   currencyCode: string;
   totalAmount: number;
   dateTime: string;
-  transferType: 'CARD' | 'IBAN';
+  transferType: Uppercase<TTransferMethod>;
   source: string;
 }
+
 export interface ITransformedTransaction {
   id: string;
   sourceNumber: string;
