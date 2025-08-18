@@ -84,7 +84,10 @@ export const ForgotPassword = () => {
         style={{ marginBottom: '50px' }}
       >
         <StyledFormContent>
-          <Box sx={{ width: '100%' }}>
+          <Box sx={{ 
+            width: '100%',
+            marginBottom: 2,
+            }}>
             <StyledLabel htmlFor="email">
               {t('LoginPage.email.label')}
             </StyledLabel>

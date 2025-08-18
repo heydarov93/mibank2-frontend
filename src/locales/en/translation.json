@@ -694,7 +694,8 @@
       "mainTitle": "Cancel Product Creation?",
       "secondaryTitle": "All entered details will be discarded. Are you sure you want to proceed?",
       "goBack": "Go Back",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "depositCancel": "Cancel Creation"
     },
     "LastResortDeposit": {
       "lastResortDeposit": "Last Resort Deposit",

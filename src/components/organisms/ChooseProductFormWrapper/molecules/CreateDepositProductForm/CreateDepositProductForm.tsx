@@ -23,7 +23,13 @@ import {
   TCreateDepositProductValues,
 } from 'validation';
 
-export const CreateDepositProductForm: React.FC = () => {
+interface CreateDepositProductFormProps {
+  onOpenModal: () => void;
+}
+
+export const CreateDepositProductForm: React.FC<
+  CreateDepositProductFormProps
+> = ({ onOpenModal }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'BackOffice.LastResortDeposit',
   });
@@ -205,7 +211,7 @@ export const CreateDepositProductForm: React.FC = () => {
             justifyContent={'end'}
             gap={4}
           >
-            <CancelButton>{t('cancel')}</CancelButton>
+            <CancelButton onClick={onOpenModal}>{t('cancel')}</CancelButton>
             <StyledButton
               type="submit"
               disabled={!isValid}

@@ -16,18 +16,13 @@ import { TCardStatus } from 'api/services/card-service/cards.types';
 import { useCreateDepositMutation } from 'api/services/deposit-service/deposits.api';
 import { TDepositStatus } from 'api/services/deposit-service/types/deposits.types';
 import { SecondaryButton, SubmitButton } from 'components/atoms';
-import { WarningWindow } from 'components/molecules';
 import { CARD_TYPES } from 'constants/business/card';
 import { ProductType } from 'enums/EProductType';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { ICreateCardFormData } from 'models/ICard';
 import { IDepositFormData } from 'models/IDeposit';
 import { IProductFormData } from 'models/IProduct';
-import { resetCardData } from 'store/slices/cards/CreateCardSlice';
-import { resetDepositData } from 'store/slices/deposits/CreateDepositSlice';
 import { getProductForm } from 'store/slices/products/ChooseProductSelector';
-import { resetProductForm } from 'store/slices/products/ChooseProductSlice';
-import { resetProductStep } from 'store/slices/products/ProductStepperSlice';
 import { theme } from 'theme/theme';
 import { TCardIssuer, TCardIssueType, TCardType, TCurrency } from 'types/types';
 
@@ -36,6 +31,8 @@ interface ProductWindowProps {
   depositData: IDepositFormData;
   cardData: ICreateCardFormData;
   onProductCreated: () => void;
+  onOpenModal: () => void;
+  onReset: () => void;
 }
 
 const formatKey = (key: string): string =>
@@ -66,6 +63,8 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
   depositData,
   cardData,
   onProductCreated,
+  onOpenModal,
+  onReset,
 }: ProductWindowProps) => {
   const { t } = useTranslation('translation');
   const productFormType = useAppSelector(getProductForm);
@@ -96,7 +95,6 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     [productFormType.productType, depositData, formattedCardData],
   );
 
-  const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false);
   const [
     createDeposit,
     { isLoading: isDepositLoading, isError: isDepositError },
@@ -107,8 +105,6 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
 
   const isLoading = isDepositLoading || isCardLoading;
   const isError = isDepositError || isCardError;
-
-  const handleWindowClick = () => setIsWindowOpen((prev) => !prev);
 
   const backendDepositInfo = Object.fromEntries(
     Object.entries(productData).map(([key, value]) => {
@@ -157,14 +153,6 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
     cardStatus: 'ACTIVE' as TCardStatus,
   };
 
-  const handleReset = () => {
-    handleWindowClick();
-    dispatch(resetProductForm());
-    dispatch(resetCardData());
-    dispatch(resetDepositData());
-    dispatch(resetProductStep());
-  };
-
   const handleSubmit = async () => {
     try {
       if (productFormType.productType === ProductType.DEPOSIT) {
@@ -172,7 +160,7 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
       } else {
         await createCard(cardPayload).unwrap();
       }
-      handleReset();
+      onReset();
       onProductCreated();
     } catch (e) {
       setErrorMessage(
@@ -211,17 +199,9 @@ export const ProductWindow: React.FC<ProductWindowProps> = ({
         </Box>
       )}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: '24px' }}>
-        <SecondaryButton buttonContent="Cancel" onClick={handleWindowClick} />
+        <SecondaryButton buttonContent="Cancel" onClick={onOpenModal} />
         <SubmitButton buttonContent="Create" onClick={handleSubmit} />
       </Box>
-      {isWindowOpen && (
-        <WarningWindow
-          title={t('BackOffice.warningWindow.cancelProduct')}
-          text={t('BackOffice.warningWindow.cancelProductText')}
-          onCancelClick={() => setIsWindowOpen(false)}
-          onDeleteClick={handleReset}
-        />
-      )}
     </Box>
   );
 };
