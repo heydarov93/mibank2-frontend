@@ -41,7 +41,13 @@ export const API_ENDPOINTS = {
     },
     userDeposits: {
       createUserDeposit: '/ds/api/user-deposits',
-      getUserDeposits: (accountId: TId) => `/ds/api/user-deposits/${accountId}`,
+      getUserDeposits: (accountId: TId) =>
+        `/ds/api/user-deposits/all/${accountId}`,
+      getUserDepositsRecent: (accountId: TId) =>
+        `/ds/api/user-deposits/recent/${accountId}`,
+      getUserDeposit: (depositId: TId) => `/ds/api/user-deposits/${depositId}`,
+      getUserDepositDetailed: (depositId: TId) =>
+        `/ds/api/user-deposits/${depositId}/detailed`,
     },
     products: {
       getProducts: '/ds/api/product/products',

@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { IUserDeposit } from './types/deposits.types';
 import {
-  IUserDepositResponse,
+  IDepositBase,
+  IDepositCreate,
   TCreateUserDepositRequest,
   TUserDepositTag,
 } from './types/user-deposits.types';
@@ -26,28 +28,84 @@ export const userDepositsApi = createApi({
   refetchOnFocus: true,
   refetchOnReconnect: true,
   endpoints: (builder) => ({
-    getUserDeposits: builder.query<IUserDepositResponse, { accountId: string }>(
-      {
-        query: ({ accountId }) => ({
-          url: API_ENDPOINTS.productManagement.userDeposits.getUserDeposits(
-            accountId,
-          ),
-          method: 'GET',
-          params: { accountId },
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }),
-        providesTags: (_result, _error, { accountId }) => [
-          { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: accountId },
-          { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: USER_DEPOSIT_TAGS.LIST },
-        ],
-        keepUnusedDataFor: CACHE_DURATION.MEDIUM,
-      },
-    ),
+    getUserDeposits: builder.query<IDepositBase[], { accountId: string }>({
+      query: ({ accountId }) => ({
+        url: API_ENDPOINTS.productManagement.userDeposits.getUserDeposits(
+          accountId,
+        ),
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          //!uncommit after BE fix token auth problem
+          //Authorization: `Bearer ${token}`
+        },
+      }),
+      providesTags: (_result, _error, { accountId }) => [
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: accountId },
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: USER_DEPOSIT_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
+    }),
+    getUserDepositsRecent: builder.query<
+      IDepositBase[],
+      { accountId: string; limit: number }
+    >({
+      query: ({ accountId, limit = 5 }) => ({
+        url: API_ENDPOINTS.productManagement.userDeposits.getUserDepositsRecent(
+          accountId,
+        ),
+        method: 'GET',
+        params: { limit },
+        headers: {
+          'Content-Type': 'application/json',
+          //!uncommit after BE fix token auth problem
+          //Authorization: `Bearer ${token}`
+        },
+      }),
+      providesTags: (_result, _error, { accountId }) => [
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: accountId },
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: USER_DEPOSIT_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
+    }),
+    getUserDeposit: builder.query<IDepositBase, { depositId: string }>({
+      query: ({ depositId }) => ({
+        url: API_ENDPOINTS.productManagement.userDeposits.getUserDeposit(
+          depositId,
+        ),
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          //!uncommit after BE fix token auth problem
+          //Authorization: `Bearer ${token}`
+        },
+      }),
+      providesTags: (_result, _error, { depositId }) => [
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: depositId },
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: USER_DEPOSIT_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
+    }),
+    getUserDepositDetailed: builder.query<IUserDeposit, { depositId: string }>({
+      query: ({ depositId }) => ({
+        url: API_ENDPOINTS.productManagement.userDeposits.getUserDepositDetailed(
+          depositId,
+        ),
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          //!uncommit after BE fix token auth problem
+          //Authorization: `Bearer ${token}`
+        },
+      }),
+      providesTags: (_result, _error, { depositId }) => [
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: depositId },
+        { type: USER_DEPOSIT_TAGS.USER_DEPOSIT, id: USER_DEPOSIT_TAGS.LIST },
+      ],
+      keepUnusedDataFor: CACHE_DURATION.MEDIUM,
+    }),
     createUserDeposit: builder.mutation<
-      IUserDepositResponse,
+      IDepositCreate,
       TCreateUserDepositRequest
     >({
       query: (data) => ({
@@ -63,5 +121,10 @@ export const userDepositsApi = createApi({
   }),
 });
 
-export const { useGetUserDepositsQuery, useCreateUserDepositMutation } =
-  userDepositsApi;
+export const {
+  useGetUserDepositsQuery,
+  useGetUserDepositsRecentQuery,
+  useGetUserDepositQuery,
+  useGetUserDepositDetailedQuery,
+  useCreateUserDepositMutation,
+} = userDepositsApi;

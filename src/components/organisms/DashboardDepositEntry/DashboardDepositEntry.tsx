@@ -1,8 +1,12 @@
-import { CardActionArea, Popover } from '@mui/material';
+import { Box, CardActionArea, CircularProgress, Popover } from '@mui/material';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { OpenDepositDetailsModal } from '../DepositDetailsModal/DepositDetailsModal';
+import { EmptySection } from '../Sidebar/molecules';
+import { useUserDepositDetailed } from '../TransferView/hooks/user-deposits/useUserDeposit';
 
 import {
   StyledHeader,
@@ -10,12 +14,15 @@ import {
   StyledProgressBar,
 } from './DashboardDepositEntry.styled';
 
-import { IUserDeposit } from 'api/services/deposit-service/types/deposits.types';
-import { getDaysDiff, formatDaysToMonths } from 'utils/helpers/dateHelpers';
-import { OpenDepositDetailsModal } from '../DepositDetailsModal/DepositDetailsModal';
+import { IDepositBase } from 'api/services/deposit-service/types/user-deposits.types';
+import {
+  getDaysDiff,
+  formatDaysToMonths,
+  getTimeLeft,
+} from 'utils/helpers/dateHelpers';
 
 interface DashboardDepositEntryProps {
-  depositData: IUserDeposit;
+  depositData: IDepositBase;
 }
 
 export const DashboardDepositEntry = ({
@@ -25,17 +32,32 @@ export const DashboardDepositEntry = ({
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const { endDate, startDate, timeLeft, name, amount, currency } = depositData;
   const { t } = useTranslation('translation', {
     keyPrefix: 'Homepage.sidebar',
   });
 
+  const { data, isError, isLoading } = useUserDepositDetailed(depositData.id);
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center">
+        <CircularProgress size={20} />
+      </Box>
+    );
+  }
+
+  if (isError || !data) {
+    return <EmptySection description={t('emptySectionConnectionError')} />;
+  }
+
+  //todo BE timeLeft returns wrong calculations, remove getTimeLeft after fix
+  const { endDate, startDate, name, amount, currency } = data;
+
   const allDays = getDaysDiff(endDate, startDate);
+  const timeLeft = getTimeLeft(endDate);
+
   const progressBarValue =
-    allDays > 0
-      ? Math.min(100, Math.max(0, 100 - (100 * timeLeft) / allDays))
-      : 0;
+    timeLeft > 0 ? Math.max(0, 100 - (100 * timeLeft) / allDays) : 100;
 
   const timeDescription = formatDaysToMonths(timeLeft);
   return (
@@ -90,7 +112,7 @@ export const DashboardDepositEntry = ({
       >
         <OpenDepositDetailsModal
           onClose={() => setAnchorEl(null)}
-          data={depositData}
+          data={data}
         />
       </Popover>
     </>

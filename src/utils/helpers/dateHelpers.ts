@@ -20,6 +20,30 @@ export const getDaysDiff = (endDate: string, startDate: string): number => {
   return Math.abs(utcEnd - utcStart) / msPerDay;
 };
 
+export const getTimeLeft = (endDate: string): number => {
+  const dateEnd = new Date(endDate);
+  const dateToday = new Date();
+
+  if (isNaN(dateEnd.getTime())) {
+    throw new Error(`Invalid date argument: ${endDate} `);
+  }
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const utcEnd = Date.UTC(
+    dateEnd.getFullYear(),
+    dateEnd.getMonth(),
+    dateEnd.getDate(),
+  );
+
+  const utcToday = Date.UTC(
+    dateToday.getFullYear(),
+    dateToday.getMonth(),
+    dateToday.getDate(),
+  );
+
+  const result = (utcEnd - utcToday) / msPerDay;
+  return result < 0 ? 0 : result;
+};
+
 export const formatDaysToMonths = (days: number): string => {
   const rightNumber = days >= 30 ? Math.floor(days / 30) : days;
   const unit = `${days >= 30 ? 'month' : 'day'}`;
