@@ -134,7 +134,9 @@ export const TransactionsTable = () => {
 
   return (
     <StyledContainer>
-      <StyledTableTitle variant="h3">{t('title')}</StyledTableTitle>
+      <StyledTableTitle data-testid="table-page-title" variant="h3">
+        {t('title')}
+      </StyledTableTitle>
       <TransferFilters
         sx={{ mb: 1 }}
         availableFilters={availableFilters}
@@ -157,7 +159,10 @@ export const TransactionsTable = () => {
                 <StyledHeaderCell>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     {t('columnHeaders.date')}{' '}
-                    <StyledSortIconButton onClick={handleSortByDate}>
+                    <StyledSortIconButton
+                      data-testid="table-sort-icon"
+                      onClick={handleSortByDate}
+                    >
                       <UnfoldMore />
                     </StyledSortIconButton>
                   </Box>
@@ -185,10 +190,10 @@ export const TransactionsTable = () => {
                 <TableRow>
                   <StyledEmptyTableCell colSpan={6}>
                     <StyledEmptyStateContainer>
-                      <StyledEmptyStateContent>
+                      <StyledEmptyStateContent data-testid="table-empty-title">
                         {emptyTransactionsTableText?.title}
                       </StyledEmptyStateContent>
-                      <StyledEmptyStateContent>
+                      <StyledEmptyStateContent data-testid="table-empty-message">
                         {emptyTransactionsTableText?.message}
                       </StyledEmptyStateContent>
                     </StyledEmptyStateContainer>

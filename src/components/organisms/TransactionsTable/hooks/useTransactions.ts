@@ -15,7 +15,7 @@ interface UseTransactionsParams {
   currentFilters: TTransactionFiltersValues;
 }
 
-type TEmptyStateText = { title?: string; message?: string };
+export type TEmptyStateText = { title?: string; message?: string };
 
 interface IShowEmptyState {
   offline: TEmptyStateText;
