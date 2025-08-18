@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import {
+  IGetTransactionDetailsRequest,
+  IGetTransactionDetailsResponse,
   IGetTransactionsRequest,
   IGetTransactionsResponse,
   TTransactionTag,
@@ -32,10 +34,24 @@ export const transactionsApi = createApi({
         ),
         method: 'POST',
         body: body,
+        // TODO: implement caching (change mutation to query if possible and add providesTags)
       }),
-      invalidatesTags: [TRANSACTION_TAGS.LIST], // todo change this
+    }),
+    getTransactionDetails: builder.query<
+      IGetTransactionDetailsResponse,
+      IGetTransactionDetailsRequest
+    >({
+      query: ({ transactionId }) => ({
+        url: API_ENDPOINTS.accounts.transactions.getTransactionDetails(
+          transactionId,
+        ),
+        method: 'GET',
+      }),
     }),
   }),
 });
 
-export const { useGetTransactionsByUserIdMutation } = transactionsApi;
+export const {
+  useGetTransactionsByUserIdMutation,
+  useGetTransactionDetailsQuery,
+} = transactionsApi;

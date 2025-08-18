@@ -1,21 +1,29 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledTypography } from '../../PaymentReceiptModal.styled';
 import { PaymentReceiptRow } from '../../atoms';
+import {
+  generateReceiptRowData,
+  TReceiptKeys,
+} from '../../utils/generateReceiptRowData';
 
-import { useTransferTranslations } from 'hooks';
 import { IPaymentReceipt } from 'models/IPaymentReceipt';
-import { formatCurrency } from 'utils/formatters/currencyFormatter';
 
 interface PaymentReceiptInfoProps {
   data: IPaymentReceipt;
 }
 
 export const PaymentReceiptInfo = ({ data }: PaymentReceiptInfoProps) => {
-  const { t } = useTranslation('translation');
-  const translation = useTransferTranslations(data.transferMethod);
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'TransfersPage.paymentReceiptModal',
+  });
+  const paymentReceiptRowData = useMemo(
+    () => generateReceiptRowData(data),
+    [data],
+  );
   const date = new Date(data.date);
 
   return (
@@ -31,40 +39,16 @@ export const PaymentReceiptInfo = ({ data }: PaymentReceiptInfoProps) => {
           </Box>
         </Box>
       </StyledTypography>
-      <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.payer')}
-        value={data.payerName}
-      />
-      <PaymentReceiptRow
-        name={translation.fromAccount.label}
-        value={data.fromAccount}
-      />
-      <PaymentReceiptRow
-        name={translation.toAccount.label}
-        value={data.toAccount}
-      />
-      <PaymentReceiptRow
-        name={translation.amount.label}
-        value={formatCurrency(data.currency, Number(data.amount))}
-      />
-      <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.fee')}
-        value={formatCurrency(data.currency, data.fee)}
-      />
-      <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.totalAmount')}
-        value={formatCurrency(data.currency, data.totalAmount)}
-        nameSx={{ color: 'black', fontWeight: 500 }}
-        valueSx={{ color: 'black', fontWeight: 600, fontSize: 24 }}
-      />
-      <PaymentReceiptRow
-        name={t('TransfersPage.paymentReceiptModal.status')}
-        value={t('TransfersPage.paymentReceiptModal.confirmed')}
-        valueSx={(theme) => ({
-          color: theme.palette.success.main,
-          fontWeight: 500,
-        })}
-      />
+      {(Object.keys(paymentReceiptRowData) as TReceiptKeys[]).map((rowKey) => (
+        <PaymentReceiptRow
+          key={rowKey}
+          name={t(paymentReceiptRowData[rowKey].label)}
+          value={paymentReceiptRowData[rowKey].value}
+          containerSx={paymentReceiptRowData[rowKey].containerSx}
+          nameSx={paymentReceiptRowData[rowKey].nameSx}
+          valueSx={paymentReceiptRowData[rowKey].valueSx}
+        />
+      ))}
     </Stack>
   );
 };
