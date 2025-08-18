@@ -117,56 +117,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-          >
-            <div
-              class="MuiBox-root css-1i27l4i"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  aria-label="Pen"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    EditIcon.svg
-                  </svg>
-                </svg>
-                Edit
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  aria-label="Trash"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    TrashIcon.svg
-                  </svg>
-                </svg>
-                Delete
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </td>
+          />
         </tr>
         <tr
           class="MuiTableRow-root css-1iw7pp4-MuiTableRow-root"
@@ -220,56 +171,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
           </td>
           <td
             class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rx8l8b-MuiTableCell-root"
-          >
-            <div
-              class="MuiBox-root css-1i27l4i"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1392aty-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  aria-label="Pen"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-xd6d0k-MuiSvgIcon-root"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    EditIcon.svg
-                  </svg>
-                </svg>
-                Edit
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-16wp21h-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  aria-label="Trash"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yvhv58-MuiSvgIcon-root"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 12 12"
-                >
-                  <svg>
-                    TrashIcon.svg
-                  </svg>
-                </svg>
-                Delete
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </td>
+          />
         </tr>
       </tbody>
     </table>

@@ -49,8 +49,22 @@ jest.mock('components/molecules', () => ({
   ),
 }));
 jest.mock('components/organisms', () => ({
-  BackOfficeTable: ({ tableBody }: { tableBody: Partial<ITableData>[] }) => (
-    <div>Table rows: {tableBody.length}</div>
+  BackOfficeTable: ({
+    tableBody,
+    isAdmin,
+  }: {
+    tableBody: Partial<ITableData>[];
+    isAdmin?: boolean;
+  }) => (
+    <div>
+      Table rows: {tableBody.length}{' '}
+      {isAdmin && (
+        <>
+          <button aria-label="LastResortDeposit.edit">Edit</button>
+          <button aria-label="LastResortDeposit.delete">Delete</button>
+        </>
+      )}
+    </div>
   ),
   EmployeesSearchContainer: ({ showNoMatches }: { showNoMatches: boolean }) =>
     showNoMatches ? <div>No matches found</div> : null,
@@ -162,6 +176,40 @@ describe('ViewEmployeesLayout', () => {
       (useEmployeeActions as jest.Mock).mockReturnValue(hookReturn);
       render(<ViewEmployeesLayout />);
       expect(screen.getByText('Warning Window')).toBeInTheDocument();
+    });
+  });
+
+  describe('Role-based access control', () => {
+    beforeEach(() => {
+      window.sessionStorage.clear();
+      jest.clearAllMocks();
+    });
+    it('shows Edit/Delete buttons for ADMINISTRATOR', () => {
+      window.sessionStorage.setItem('employeeRole', 'ADMINISTRATOR');
+
+      render(<ViewEmployeesLayout />);
+
+      // Check that Edit and Delete buttons are visible
+      expect(
+        screen.getByLabelText('LastResortDeposit.edit'),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByLabelText('LastResortDeposit.delete'),
+      ).toBeInTheDocument();
+    });
+
+    it('does NOT show Edit/Delete buttons for EMPLOYEE', () => {
+      window.sessionStorage.setItem('employeeRole', 'EMPLOYEE');
+
+      render(<ViewEmployeesLayout />);
+
+      // Buttons should not appear
+      expect(
+        screen.queryByLabelText('LastResortDeposit.edit'),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByLabelText('LastResortDeposit.delete'),
+      ).not.toBeInTheDocument();
     });
   });
 });

@@ -17,6 +17,7 @@ interface BackOfficeTableItemProps {
   tableHead: TableHeadItem[];
   onDeleteClick?: (product: Partial<ITableData>) => void;
   onEditClick?: (product: Partial<ITableData>) => void;
+  isAdmin?: boolean;
 }
 
 export const BackOfficeTableItem = ({
@@ -24,6 +25,7 @@ export const BackOfficeTableItem = ({
   tableHead,
   onDeleteClick,
   onEditClick,
+  isAdmin,
 }: BackOfficeTableItemProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -39,12 +41,14 @@ export const BackOfficeTableItem = ({
         </StyledTableCell>
       ))}
       <StyledTableCell>
-        <BackOfficeButtonGroup
-          isDisabled={isChecked}
-          product={tableData}
-          onEditClick={onEditClick}
-          onDeleteClick={onDeleteClick}
-        />
+        {isAdmin && (
+          <BackOfficeButtonGroup
+            isDisabled={isChecked}
+            product={tableData}
+            onEditClick={onEditClick}
+            onDeleteClick={onDeleteClick}
+          />
+        )}
       </StyledTableCell>
     </>
   );

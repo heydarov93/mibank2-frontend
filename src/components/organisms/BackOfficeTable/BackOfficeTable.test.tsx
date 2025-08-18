@@ -81,12 +81,12 @@ describe('BackOfficeTable Component', () => {
         pageSize={10}
         onDeleteClick={mockOnDeleteClick}
         onEditClick={mockOnEditClick}
+        isAdmin
       />,
     );
 
     const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
     fireEvent.click(deleteButtons[0]);
-
     expect(mockOnDeleteClick).toHaveBeenCalled();
   });
 
@@ -100,12 +100,12 @@ describe('BackOfficeTable Component', () => {
         pageSize={10}
         onDeleteClick={mockOnDeleteClick}
         onEditClick={mockOnEditClick}
+        isAdmin
       />,
     );
 
     const editButtons = screen.getAllByRole('button', { name: /edit/i });
     fireEvent.click(editButtons[0]);
-
     expect(mockOnEditClick).toHaveBeenCalled();
   });
 

@@ -9,3 +9,8 @@ export const SESSION_STORAGE_KEYS = {
   EmployeeEmail: 'employeeEmail',
   EmployeeRole: 'employeeRole',
 } as const;
+
+export const USER_ROLES = {
+  ADMINISTRATOR: 'ADMINISTRATOR',
+  EMPLOYEE: 'EMPLOYEE',
+} as const;

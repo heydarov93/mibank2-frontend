@@ -34,6 +34,7 @@ interface BackOfficeTableProps {
   onDeleteClick?: (product: Partial<ITableData>) => void;
   onEditClick?: (product: Partial<ITableData>) => void;
   isLoading?: boolean;
+  isAdmin?: boolean;
 }
 
 export const BackOfficeTable = ({
@@ -46,6 +47,7 @@ export const BackOfficeTable = ({
   onDeleteClick,
   onEditClick,
   isLoading,
+  isAdmin,
 }: BackOfficeTableProps) => {
   const { totalPages, pageDisplayText } = usePaginationInfo(
     tableBody.length,
@@ -103,6 +105,7 @@ export const BackOfficeTable = ({
                 <BackOfficeTableItem
                   tableData={item}
                   tableHead={tableHead}
+                  isAdmin={isAdmin}
                   onDeleteClick={onDeleteClick}
                   onEditClick={onEditClick}
                 />
