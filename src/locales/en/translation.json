@@ -68,13 +68,13 @@
       "depositDetails": {
         "accNumber": "Account Number",
         "startDate": "Start date",
-        "type":"Type",
+        "type": "Type",
         "interestRate": "Interest Rate",
         "endDate": "Ending date",
         "timeLeft": "Time left",
-        "amount":"Amount",
+        "amount": "Amount",
         "withdrawButton": "Withdraw",
-        "title":"Deposit Details"
+        "title": "Deposit Details"
       },
       "seeAll": "See all",
       "emptySectionDefault": "Nothing here yet. Add a new product.",

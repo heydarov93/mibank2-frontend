@@ -69,4 +69,5 @@ export const TABLE_HEAD = [
     key: 'productSubtype',
   },
   { label: t('BackOffice.CreateProduct.productStatus'), key: 'productStatus' },
+  { label: t('BackOffice.CreateProduct.addedDate'), key: 'addedDate' }, // New column
 ];
