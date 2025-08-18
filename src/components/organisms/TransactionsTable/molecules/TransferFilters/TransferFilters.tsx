@@ -18,7 +18,6 @@ import { ETransferTime } from 'enums/ETransferTime';
 import { formatDateByPattern } from 'utils/formatters';
 import { TTransactionFiltersValues } from 'validation/transaction/transactionFilters.schema';
 
-
 interface TransferFiltersProps {
   sx?: SxProps<Theme>;
   availableFilters: AvailableFilters;
@@ -78,7 +77,7 @@ export const TransferFilters = ({
   }
 
   return (
-    <Stack sx={sx}>
+    <Stack sx={sx} data-testid="transfer-filter">
       <Stack direction="row" justifyContent="space-between" gap={1}>
         <Stack direction="row" gap={2} height="48px">
           <FormProvider {...formMethods}>
