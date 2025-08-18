@@ -84,7 +84,7 @@ export const CustomTableRow = ({
       <StyledTableCell sx={{ textAlign: 'center' }}>
         <IconButton
           size="small"
-          data-testid="icon-button"
+          data-testid="open-modal-btn"
           sx={({ palette }) => ({
             color: palette.common.black,
             width: '24px',

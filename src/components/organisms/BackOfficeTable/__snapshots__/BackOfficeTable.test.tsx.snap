@@ -275,7 +275,7 @@ exports[`BackOfficeTable Component renders BackOfficeTable component 1`] = `
     </table>
     <div
       class="MuiBox-root css-tj50lq"
-      data-testid="main-container"
+      data-testid="table-pagination"
     >
       <div
         class="MuiBox-root css-69mwjq"

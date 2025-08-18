@@ -40,7 +40,7 @@ export const CustomTablePagination = ({
   });
 
   return (
-    <StyledMainContainer data-testid="main-container">
+    <StyledMainContainer data-testid="table-pagination">
       <StyledItemsCountContainer>
         <StyledSecondaryText>{t('itemsPerPage')}</StyledSecondaryText>
         <StyledSelect
