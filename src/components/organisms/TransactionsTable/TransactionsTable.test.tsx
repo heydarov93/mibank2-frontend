@@ -1,4 +1,4 @@
-jest.mock('./hooks/useTransactions.ts', () => ({
+jest.mock('./hooks/useTransactions', () => ({
   useTransactions: jest.fn(),
 }));
 
