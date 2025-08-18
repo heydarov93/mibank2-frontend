@@ -63,11 +63,24 @@ export const INITIAL_PRODUCT_TYPES = [
 ];
 
 export const TABLE_HEAD = [
-  { label: t('BackOffice.CreateProduct.productName'), key: 'productName' },
+  {
+    label: t('BackOffice.CreateProduct.productName'),
+    key: 'productName',
+    sortable: true,
+  },
   {
     label: t('BackOffice.CreateProduct.productSubtype'),
     key: 'productSubtype',
+    sortable: true,
   },
-  { label: t('BackOffice.CreateProduct.productStatus'), key: 'productStatus' },
-  { label: t('BackOffice.CreateProduct.addedDate'), key: 'addedDate' }, // New column
+  {
+    label: t('BackOffice.CreateProduct.productStatus'),
+    key: 'productStatus',
+    sortable: true,
+  },
+  { label: t('BackOffice.CreateProduct.addedDate'),
+    key: 'addedDate',
+    sortable: true,
+  }, 
+
 ];
