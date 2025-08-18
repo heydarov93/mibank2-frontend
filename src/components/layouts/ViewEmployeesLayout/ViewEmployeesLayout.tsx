@@ -16,6 +16,8 @@ import {
 } from 'components/organisms';
 import { TO_BACK_OFFICE_CREATE_EMPLOYEE } from 'constants/navigation/routePaths';
 import { useEmployeeActions } from 'hooks/user/useEmployeeActions';
+import { getEmployeeRole } from 'utils';
+import { USER_ROLES } from 'constants/security/storageAuthKeys';
 
 export const ViewEmployeesLayout = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'BackOffice' });
@@ -99,6 +101,8 @@ export const ViewEmployeesLayout = () => {
 
   const showNoMatches = searchValue && tableData.length === 0;
 
+  const isAdmin = getEmployeeRole() === USER_ROLES.ADMINISTRATOR;
+
   return (
     <StyledContainer>
       <BackOfficeViewHeader
@@ -123,6 +127,7 @@ export const ViewEmployeesLayout = () => {
         onPageSizeChange={handlePageSizeChange}
         onEditClick={handleEdit}
         onDeleteClick={handleDeleteModal}
+        isAdmin={isAdmin}
       />
       {showEditForm && (
         <EmployeeEditForm

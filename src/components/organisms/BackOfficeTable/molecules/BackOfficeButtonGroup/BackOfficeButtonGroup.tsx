@@ -37,6 +37,7 @@ export const BackOfficeButtonGroup = ({
   return (
     <Box sx={{ display: 'flex', gap: '8px' }}>
       <StyledButton
+        aria-label={t('LastResortDeposit.edit')}
         onClick={handleEditClick}
         sx={{
           color: theme.palette.primary.main,
@@ -48,6 +49,7 @@ export const BackOfficeButtonGroup = ({
         {t('LastResortDeposit.edit')}
       </StyledButton>
       <StyledButton
+        aria-label={t('LastResortDeposit.delete')}
         onClick={handleDeleteClick}
         sx={{
           color: theme.palette.error.main,
