@@ -24,7 +24,7 @@ export const transactionsApi = createApi({
   refetchOnFocus: true,
   refetchOnReconnect: true,
   endpoints: (builder) => ({
-    getTransactionsByUserId: builder.mutation<
+    getTransactionsByUserId: builder.query<
       IGetTransactionsResponse,
       IGetTransactionsRequest
     >({
@@ -50,8 +50,7 @@ export const transactionsApi = createApi({
     }),
   }),
 });
-
 export const {
-  useGetTransactionsByUserIdMutation,
+  useGetTransactionsByUserIdQuery,
   useGetTransactionDetailsQuery,
 } = transactionsApi;

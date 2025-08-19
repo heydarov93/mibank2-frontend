@@ -6,10 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { EmptySection, Transactions } from '../Sidebar/molecules';
 
 import { StyledTab, StyledTabs } from './MyTransactionsSection.styled';
-import { useMockTransactions } from './hooks';
+import { useTransactionsList } from './hooks';
 
 import { TabPanel } from 'components/atoms';
 import { TRANSACTION_FILTER_OPTIONS } from 'constants/business/transaction';
+import { getDisplayTransactionData } from './util';
 
 export function MyTransactionsSection() {
   const { t } = useTranslation('translation', {
@@ -21,13 +22,17 @@ export function MyTransactionsSection() {
     setTab(newValue);
   };
 
-  const { transactions, isLoading, isError } = useMockTransactions();
+  const {
+    transactions: { all, income, expenses },
+    isTransactionsListLoading,
+    isTransactionsListError,
+  } = useTransactionsList();
 
-  if (isError) {
+  if (isTransactionsListError) {
     return <EmptySection description={t('emptySectionConnectionError')} />;
   }
 
-  if (isLoading) {
+  if (isTransactionsListLoading) {
     return (
       <Box display="flex" justifyContent="center">
         <CircularProgress size={20} />
@@ -35,7 +40,7 @@ export function MyTransactionsSection() {
     );
   }
 
-  if (transactions.all.length === 0) {
+  if (all.length === 0) {
     return <EmptySection />;
   }
 
@@ -58,13 +63,13 @@ export function MyTransactionsSection() {
       </StyledTabs>
 
       <TabPanel value={tab} index={0}>
-        <Transactions data={transactions.all} />
+        <Transactions data={getDisplayTransactionData(all)} />
       </TabPanel>
       <TabPanel value={tab} index={1}>
-        <Transactions data={transactions.income} />
+        <Transactions data={getDisplayTransactionData(income)} />
       </TabPanel>
       <TabPanel value={tab} index={2}>
-        <Transactions data={transactions.expenses} />
+        <Transactions data={getDisplayTransactionData(expenses)} />
       </TabPanel>
     </>
   );
