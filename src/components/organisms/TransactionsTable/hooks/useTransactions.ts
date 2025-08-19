@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { useGetTransactionsByUserIdMutation } from 'api/services/account-service/transactions.api';
+import { useGetTransactionsByUserIdQuery } from 'api/services/account-service/transactions.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { DATE_FORMATS } from 'constants/business/date';
 import { SORT_ORDER } from 'constants/business/sortOrder';
@@ -28,31 +27,65 @@ export const useTransactions = ({
   count,
   currentFilters,
 }: UseTransactionsParams) => {
-  const [
-    getTransactions,
-    { isLoading: isTransactionsListLoading, isError, isSuccess },
-  ] = useGetTransactionsByUserIdMutation();
-
-  const [transactionsList, setTransactionList] = useState<IRawTransaction[]>(
-    [],
-  );
-
-  const [transactionsLength, setTransactionsLength] = useState(0);
-
-  const [numberOfAllTransactionsInDb, setNumberOfAllTransactionsInDb] =
-    useState(0);
-
   const [dataSortOrder, setDataSortOrder] = useState<'ASC' | 'DESC'>(
     SORT_ORDER.DESC,
   );
-
   const { data: userIdObject, isLoading: isGetUserIdLoading } =
     useGetUserIdQuery();
 
-  const isLoading = isGetUserIdLoading || isTransactionsListLoading;
+  const { card, transactionsType, startDate, endDate } = currentFilters;
+  const sources = card?.filter(
+    (c): c is string => typeof c === 'string' && c !== 'All cards',
+  );
+  const transactionType =
+    transactionsType !== 'ALL' ? transactionsType : undefined;
+
+  const {
+    data: transactionsData,
+    isLoading: isTransactionsListLoading,
+    isError,
+    isSuccess,
+  } = useGetTransactionsByUserIdQuery(
+    {
+      userId: Number(userIdObject?.userId),
+      page,
+      count,
+      sources,
+      transactionType,
+      fromDate: startDate
+        ? formatDateByPattern(startDate, DATE_FORMATS.YYYY_MM_DD)
+        : undefined,
+      toDate: endDate
+        ? formatDateByPattern(endDate, DATE_FORMATS.YYYY_MM_DD)
+        : undefined,
+      dataSortOrder,
+    },
+    { skip: !userIdObject },
+  );
+
+  const { data: totalTransactionsData, isLoading: isTotalTransactionsLoading } =
+    useGetTransactionsByUserIdQuery(
+      {
+        userId: Number(userIdObject?.userId),
+        page: 0,
+        count: 1,
+      },
+      { skip: !userIdObject },
+    );
+
+  const transactionsList: IRawTransaction[] = transactionsData?.data ?? [];
+  const transactionsLength = transactionsData?.totalElements ?? 0;
+
+  const isLoading =
+    isGetUserIdLoading ||
+    isTransactionsListLoading ||
+    isTotalTransactionsLoading;
+
   const { t } = useTranslation('translation', {
     keyPrefix: 'TransactionsHistoryPage',
   });
+
+  const numberOfAllTransactionsInDb = totalTransactionsData?.totalElements ?? 0;
 
   const isOffline = !navigator.onLine;
   const showEmptyState: IShowEmptyState = {
@@ -85,61 +118,6 @@ export const useTransactions = ({
     showEmptyState.noMatches,
     showEmptyState.noTransactions,
   ].find((obj) => obj.title);
-
-  useEffect(() => {
-    if (!userIdObject) return;
-
-    // Request API and see whether user has transactions at all
-    // Display a specific message if user doesn't have any transaction
-    getTransactions({
-      userId: userIdObject.userId,
-      page: 0,
-      count: 10,
-    }).then((res) => {
-      'data' in res && setNumberOfAllTransactionsInDb(res.data.totalElements);
-    });
-  }, [userIdObject]);
-
-  // TODO: Send `templatesId` as well when it's supported by the backend
-  const { card, transactionsType, startDate, endDate } = currentFilters;
-  useEffect(() => {
-    const sources = card?.filter(
-      (c): c is string => typeof c === 'string' && c !== 'All cards',
-    );
-    const transactionType =
-      transactionsType !== 'ALL' ? transactionsType : undefined;
-
-    async function fetchTransactionsHistory() {
-      if (!userIdObject) return;
-
-      const response = await getTransactions({
-        userId: userIdObject.userId,
-        page,
-        count,
-        sources,
-        transactionType,
-        fromDate: formatDateByPattern(startDate || '', DATE_FORMATS.YYYY_MM_DD),
-        toDate: formatDateByPattern(endDate || '', DATE_FORMATS.YYYY_MM_DD),
-        dataSortOrder,
-      });
-
-      if ('data' in response) {
-        setTransactionList(response.data.data);
-        setTransactionsLength(response.data.totalElements);
-      }
-    }
-
-    fetchTransactionsHistory();
-  }, [
-    page,
-    count,
-    userIdObject,
-    card,
-    transactionsType,
-    startDate,
-    endDate,
-    dataSortOrder,
-  ]);
 
   return {
     transactionsList,

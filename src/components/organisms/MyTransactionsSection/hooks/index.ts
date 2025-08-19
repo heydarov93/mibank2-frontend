@@ -1,1 +1,1 @@
-export { useMockTransactions } from './useMockTransactions';
+export { useTransactionsList } from './useTransactionsList';
