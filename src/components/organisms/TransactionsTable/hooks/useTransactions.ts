@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { useGetTransactionsByUserIdQuery } from 'api/services/account-service/transactions.api';
 import { useGetUserIdQuery } from 'api/services/user-account-service/get-user-id.api';
 import { DATE_FORMATS } from 'constants/business/date';
@@ -47,7 +48,8 @@ export const useTransactions = ({
     isSuccess,
   } = useGetTransactionsByUserIdQuery(
     {
-      userId: Number(userIdObject?.userId),
+      // userId: Number(userIdObject?.userId),
+      userId: 1002,
       page,
       count,
       sources,
@@ -66,7 +68,8 @@ export const useTransactions = ({
   const { data: totalTransactionsData, isLoading: isTotalTransactionsLoading } =
     useGetTransactionsByUserIdQuery(
       {
-        userId: Number(userIdObject?.userId),
+        // userId: Number(userIdObject?.userId),
+        userId: 1002,
         page: 0,
         count: 1,
       },

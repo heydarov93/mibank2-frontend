@@ -174,8 +174,10 @@ exports[`PaymentReceiptModal renders correctly 1`] = `
               status
             </p>
             <p
-              class="MuiTypography-root MuiTypography-body1 css-z0w5ar-MuiTypography-root"
-            />
+              class="MuiTypography-root MuiTypography-body1 css-ikjp1c-MuiTypography-root"
+            >
+              confirmed
+            </p>
           </div>
         </div>
         <div

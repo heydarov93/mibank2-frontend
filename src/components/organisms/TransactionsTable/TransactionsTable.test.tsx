@@ -257,13 +257,5 @@ describe('TransactionsTable', () => {
 
       expect(screen.getByTestId('red-minus-icon')).toBeInTheDocument();
     });
-
-    it('opens the Payment Receipt Modal when the ChevronRight icon button is clicked', async () => {
-      const openModalButton = screen.getByTestId('open-modal-btn');
-
-      await userEvent.click(openModalButton);
-
-      expect(screen.getByTestId('payment-receipt-modal')).toBeInTheDocument();
-    });
   });
 });

@@ -34,11 +34,8 @@ export const businessSignupSchema = yup.object().shape({
     .string()
     .trim()
     .required(t(requiredField))
-    .matches(VALIDATION_PATTERNS.EMAIL, t(`${VALIDATION_KEY}.emailPattern`))
-    .max(
-      VALIDATION_LIMITS.EMAIL_MAX_LENGTH,
-      t(`${VALIDATION_KEY}.emailMaxLen`),
-    ),
+    .max(VALIDATION_LIMITS.EMAIL_MAX_LENGTH, t(`${VALIDATION_KEY}.emailMaxLen`))
+    .matches(VALIDATION_PATTERNS.EMAIL, t(`${VALIDATION_KEY}.emailPattern`)),
   ownerName: yup
     .string()
     .trim()

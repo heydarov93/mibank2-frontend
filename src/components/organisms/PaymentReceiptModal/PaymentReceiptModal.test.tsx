@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 
 import { PaymentReceiptModal } from './PaymentReceiptModal';
 
-import { TCurrency } from 'types/types';
+import { TCurrency, TPaymentStatus } from 'types/types';
 
 const onCloseMock = jest.fn();
 
@@ -31,6 +31,7 @@ const renderModal = (open = true) =>
         fee: 2.5,
         totalAmount: 102.5,
         transferMethod: 'card',
+        status: 'confirmed' as TPaymentStatus,
       }}
     />,
   );
